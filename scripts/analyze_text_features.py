@@ -105,28 +105,38 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=Path("artifacts/text_features.csv"))
     ap.add_argument("--text-col", type=str, default="transcript_best")
     ap.add_argument("--id-col", type=str, default="video_id")
+    ap.add_argument(
+        "--meta-cols",
+        type=str,
+        default="Title,Author,Categories,Num Reviews,Average Rating,Price,Grade Level,Publisher,Published Date,Language,Format,Print Length,ISBN-10,ISBN-13,Asin,Book URL,yt_view_count,yt_like_count,yt_duration,yt_uploader,yt_channel,yt_upload_date",
+        help="Comma-separated metadata columns to carry through if present in master.",
+    )
     ap.add_argument("--with-textstat", action="store_true", help="Add textstat metrics if available.")
     args = ap.parse_args()
 
     df = read_table(args.master)
-    needed = [args.id_col, "story_id", "age_lo", "age_hi", "age_mid", args.text_col, "review_n_events"]
-    have = [c for c in needed if c in df.columns]
-    work = df[have].copy()
+    base_cols = [args.id_col, "story_id", "age_lo", "age_hi", "age_mid", args.text_col, "review_n_events"]
+    meta_cols = [c.strip() for c in args.meta_cols.split(",") if c.strip()]
+    cols = [c for c in base_cols + meta_cols if c in df.columns]
+    work = df[cols].copy()
 
     work = work.rename(columns={args.id_col: "item_id", args.text_col: "text"})
     work["item_id"] = work["item_id"].astype(str)
     work = work[work["text"].notna()].reset_index(drop=True)
 
+    carry_cols = ["age_lo", "age_hi", "age_mid", "review_n_events"] + meta_cols
+
     feats: List[Dict[str, Any]] = []
-    for row in work.itertuples(index=False):
-        text = str(row.text)
+    for row in work.itertuples(index=False, name=None):
+        row_map = dict(zip(work.columns, row))
+        text = str(row_map["text"])
         f = basic_features(text)
         if args.with_textstat:
             f.update(try_textstat(text))
-        out = {"item_id": row.item_id, "story_id": getattr(row, "story_id", None)}
-        for k in ["age_lo", "age_hi", "age_mid", "review_n_events"]:
-            if hasattr(row, k):
-                out[k] = getattr(row, k)
+        out: Dict[str, Any] = {"item_id": row_map.get("item_id"), "story_id": row_map.get("story_id")}
+        for k in carry_cols:
+            if k in row_map:
+                out[k] = row_map.get(k)
         out.update(f)
         feats.append(out)
 
