@@ -1,0 +1,99 @@
+[2026-01-29 16:21:09] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-29 16:21:09] Playlist title: 5th Grade-Wonders
+[2026-01-29 16:21:09] Total videos: 30
+[2026-01-29 16:21:09] Cookies file: cookies_1.txt
+[2026-01-29 16:21:09] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:50:06] === Summary ===
+[2026-01-29 16:50:06] Processed: 30
+[2026-01-29 16:50:06] Failed: 0
+[2026-01-29 16:50:06] With subtitles: 30
+[2026-01-29 16:50:06] No subtitles: 0
+[2026-01-29 16:50:06] Cleaned transcripts (non-empty): 30
+[2026-01-29 16:50:06] Transcript source counts: {'manual': 0, 'auto_generated': 30, 'none': 0}
+[2026-01-29 16:50:06] Subtitle language counts: {'en': 30}
+[2026-01-29 16:50:06] Rate-limited events: 0
+[2026-01-29 16:50:06] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:50:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:08:50] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-29 17:08:50] Playlist title: 5th Grade-Wonders
+[2026-01-29 17:08:50] Total videos: 30
+[2026-01-29 17:08:50] Cookies file: cookies_1.txt
+[2026-01-29 17:08:50] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:12:24] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-29 17:12:24] Playlist title: 5th Grade-Wonders
+[2026-01-29 17:12:24] Total videos: 30
+[2026-01-29 17:12:24] Cookies file: cookies_1.txt
+[2026-01-29 17:12:24] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:38:06] === Summary ===
+[2026-01-29 17:38:06] Processed: 30
+[2026-01-29 17:38:06] Failed: 0
+[2026-01-29 17:38:06] With subtitles: 30
+[2026-01-29 17:38:06] No subtitles: 0
+[2026-01-29 17:38:06] Cleaned transcripts (non-empty): 30
+[2026-01-29 17:38:06] Transcript source counts: {'manual': 0, 'auto_generated': 30, 'none': 0}
+[2026-01-29 17:38:06] Subtitle language counts: {'en': 30}
+[2026-01-29 17:38:06] Rate-limited events: 0
+[2026-01-29 17:38:06] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:38:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:47:00] === Summary ===
+[2026-01-29 17:47:00] Processed: 30
+[2026-01-29 17:47:00] Failed: 0
+[2026-01-29 17:47:00] With subtitles: 30
+[2026-01-29 17:47:00] No subtitles: 0
+[2026-01-29 17:47:00] Cleaned transcripts (non-empty): 30
+[2026-01-29 17:47:00] Transcript source counts: {'manual': 0, 'auto_generated': 30, 'none': 0}
+[2026-01-29 17:47:00] Subtitle language counts: {'en': 30}
+[2026-01-29 17:47:00] Rate-limited events: 0
+[2026-01-29 17:47:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:47:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:08] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-30 14:02:08] Playlist title: 5th Grade-Wonders
+[2026-01-30 14:02:08] Total videos: 30
+[2026-01-30 14:02:08] Cookies file: cookies_1.txt
+[2026-01-30 14:02:08] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:08] Resume enabled. Existing videos: 30
+[2026-01-30 14:02:08] === Summary ===
+[2026-01-30 14:02:08] Processed: 0
+[2026-01-30 14:02:08] Failed: 0
+[2026-01-30 14:02:08] With subtitles: 0
+[2026-01-30 14:02:08] No subtitles: 0
+[2026-01-30 14:02:08] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:08] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:08] Subtitle language counts: {}
+[2026-01-30 14:02:08] Rate-limited events: 0
+[2026-01-30 14:02:08] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:08] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:30] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-30 14:02:30] Playlist title: 5th Grade-Wonders
+[2026-01-30 14:02:30] Total videos: 30
+[2026-01-30 14:02:30] Cookies file: cookies_1.txt
+[2026-01-30 14:02:30] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:30] Resume enabled. Existing videos: 30
+[2026-01-30 14:02:30] === Summary ===
+[2026-01-30 14:02:30] Processed: 0
+[2026-01-30 14:02:30] Failed: 0
+[2026-01-30 14:02:30] With subtitles: 0
+[2026-01-30 14:02:30] No subtitles: 0
+[2026-01-30 14:02:30] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:30] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:30] Subtitle language counts: {}
+[2026-01-30 14:02:30] Rate-limited events: 0
+[2026-01-30 14:02:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:39] Playlist URL: https://youtube.com/playlist?list=PLX9ojj7_J-Nq5i0-kaP1urUpqCu-5JhGm&si=7G3hKc_vnGrLbSo0
+[2026-01-30 20:44:39] Playlist title: 5th Grade-Wonders
+[2026-01-30 20:44:39] Total videos: 30
+[2026-01-30 20:44:39] Cookies file: cookies_1.txt
+[2026-01-30 20:44:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:39] Resume enabled. Existing videos: 30
+[2026-01-30 20:44:39] === Summary ===
+[2026-01-30 20:44:39] Processed: 0
+[2026-01-30 20:44:39] Failed: 0
+[2026-01-30 20:44:39] With subtitles: 0
+[2026-01-30 20:44:39] No subtitles: 0
+[2026-01-30 20:44:39] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:39] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:39] Subtitle language counts: {}
+[2026-01-30 20:44:39] Rate-limited events: 0
+[2026-01-30 20:44:39] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:39] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

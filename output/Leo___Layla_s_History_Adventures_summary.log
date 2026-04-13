@@ -1,0 +1,17 @@
+[2026-02-03 15:24:41] Playlist URL: https://youtube.com/playlist?list=PLU6AbyBWHPOsXYXBGRZBbIPTPMfI_d5pb&si=_VKcyHAGRWCV5uGU
+[2026-02-03 15:24:41] Playlist title: Leo & Layla's History Adventures
+[2026-02-03 15:24:41] Total videos: 69
+[2026-02-03 15:24:41] Cookies file: cookies_3.txt
+[2026-02-03 15:24:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 16:49:46] EMPTY_SUBTITLES Xv-q5DQyY-k: source=auto_generated, lang=en
+[2026-02-03 17:00:56] === Summary ===
+[2026-02-03 17:00:56] Processed: 69
+[2026-02-03 17:00:56] Failed: 0
+[2026-02-03 17:00:56] With subtitles: 67
+[2026-02-03 17:00:56] No subtitles: 2
+[2026-02-03 17:00:56] Cleaned transcripts (non-empty): 67
+[2026-02-03 17:00:56] Transcript source counts: {'manual': 0, 'auto_generated': 68, 'none': 1}
+[2026-02-03 17:00:56] Subtitle language counts: {'en': 68}
+[2026-02-03 17:00:56] Rate-limited events: 0
+[2026-02-03 17:00:56] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 17:00:56] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

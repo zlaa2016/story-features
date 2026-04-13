@@ -1,0 +1,116 @@
+[2026-01-29 15:20:48] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-29 15:20:48] Playlist title: 2nd Grade Read Alouds
+[2026-01-29 15:20:48] Total videos: 20
+[2026-01-29 15:20:48] Cookies file: cookies_1.txt
+[2026-01-29 15:20:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:41:03] === Summary ===
+[2026-01-29 15:41:03] Processed: 20
+[2026-01-29 15:41:03] Failed: 0
+[2026-01-29 15:41:03] With subtitles: 20
+[2026-01-29 15:41:03] No subtitles: 7
+[2026-01-29 15:41:03] Cleaned transcripts (non-empty): 20
+[2026-01-29 15:41:03] Transcript source counts: {'manual': 7, 'auto_generated': 13, 'none': 0}
+[2026-01-29 15:41:03] Subtitle language counts: {'en': 20}
+[2026-01-29 15:41:03] Rate-limited events: 0
+[2026-01-29 15:41:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 15:41:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:08:28] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-29 16:08:28] Playlist title: 2nd Grade Read Alouds
+[2026-01-29 16:08:28] Total videos: 20
+[2026-01-29 16:08:28] Cookies file: cookies_1.txt
+[2026-01-29 16:08:28] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:08:59] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-29 16:08:59] Playlist title: 2nd Grade Read Alouds
+[2026-01-29 16:08:59] Total videos: 20
+[2026-01-29 16:08:59] Cookies file: cookies_1.txt
+[2026-01-29 16:08:59] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:29:31] === Summary ===
+[2026-01-29 16:29:31] Processed: 20
+[2026-01-29 16:29:31] Failed: 0
+[2026-01-29 16:29:31] With subtitles: 20
+[2026-01-29 16:29:31] No subtitles: 7
+[2026-01-29 16:29:31] Cleaned transcripts (non-empty): 20
+[2026-01-29 16:29:31] Transcript source counts: {'manual': 7, 'auto_generated': 13, 'none': 0}
+[2026-01-29 16:29:31] Subtitle language counts: {'en': 20}
+[2026-01-29 16:29:31] Rate-limited events: 0
+[2026-01-29 16:29:31] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:29:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:30:34] === Summary ===
+[2026-01-29 16:30:34] Processed: 20
+[2026-01-29 16:30:34] Failed: 0
+[2026-01-29 16:30:34] With subtitles: 20
+[2026-01-29 16:30:34] No subtitles: 7
+[2026-01-29 16:30:34] Cleaned transcripts (non-empty): 20
+[2026-01-29 16:30:34] Transcript source counts: {'manual': 7, 'auto_generated': 13, 'none': 0}
+[2026-01-29 16:30:34] Subtitle language counts: {'en': 20}
+[2026-01-29 16:30:34] Rate-limited events: 0
+[2026-01-29 16:30:34] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:30:34] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:05] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-30 14:02:05] Playlist title: 2nd Grade Read Alouds
+[2026-01-30 14:02:05] Total videos: 20
+[2026-01-30 14:02:05] Cookies file: cookies_1.txt
+[2026-01-30 14:02:05] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:05] Resume enabled. Existing videos: 20
+[2026-01-30 14:02:05] === Summary ===
+[2026-01-30 14:02:05] Processed: 0
+[2026-01-30 14:02:05] Failed: 0
+[2026-01-30 14:02:05] With subtitles: 0
+[2026-01-30 14:02:05] No subtitles: 0
+[2026-01-30 14:02:05] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:05] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:05] Subtitle language counts: {}
+[2026-01-30 14:02:05] Rate-limited events: 0
+[2026-01-30 14:02:05] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:05] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:27] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-30 14:02:27] Playlist title: 2nd Grade Read Alouds
+[2026-01-30 14:02:27] Total videos: 20
+[2026-01-30 14:02:27] Cookies file: cookies_1.txt
+[2026-01-30 14:02:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:27] Resume enabled. Existing videos: 20
+[2026-01-30 14:02:27] === Summary ===
+[2026-01-30 14:02:27] Processed: 0
+[2026-01-30 14:02:27] Failed: 0
+[2026-01-30 14:02:27] With subtitles: 0
+[2026-01-30 14:02:27] No subtitles: 0
+[2026-01-30 14:02:27] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:27] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:27] Subtitle language counts: {}
+[2026-01-30 14:02:27] Rate-limited events: 0
+[2026-01-30 14:02:27] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:27] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:36] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=WPMeO4HoqS2obaOu
+[2026-01-30 20:44:36] Playlist title: 2nd Grade Read Alouds
+[2026-01-30 20:44:36] Total videos: 20
+[2026-01-30 20:44:36] Cookies file: cookies_1.txt
+[2026-01-30 20:44:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:36] Resume enabled. Existing videos: 20
+[2026-01-30 20:44:36] === Summary ===
+[2026-01-30 20:44:36] Processed: 0
+[2026-01-30 20:44:36] Failed: 0
+[2026-01-30 20:44:36] With subtitles: 0
+[2026-01-30 20:44:36] No subtitles: 0
+[2026-01-30 20:44:36] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:36] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:36] Subtitle language counts: {}
+[2026-01-30 20:44:36] Rate-limited events: 0
+[2026-01-30 20:44:36] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:36] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-04 18:55:37] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=QgBvLpZQ3wH9oTyV
+[2026-02-04 18:55:37] Playlist title: 2nd Grade Read Alouds
+[2026-02-04 18:55:37] Total videos: 20
+[2026-02-04 18:55:37] Cookies file: cookies_3.txt
+[2026-02-04 18:55:37] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 18:55:37] Resume enabled. Existing videos: 20
+[2026-02-04 18:55:37] === Summary ===
+[2026-02-04 18:55:37] Processed: 0
+[2026-02-04 18:55:37] Failed: 0
+[2026-02-04 18:55:37] With subtitles: 0
+[2026-02-04 18:55:37] No subtitles: 0
+[2026-02-04 18:55:37] Cleaned transcripts (non-empty): 0
+[2026-02-04 18:55:37] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-04 18:55:37] Subtitle language counts: {}
+[2026-02-04 18:55:37] Rate-limited events: 0
+[2026-02-04 18:55:37] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 18:55:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,50 @@
+[2026-01-30 12:53:42] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTaytLtZOPzWcGlMr5Sf6yRE9D&si=E9aNljw6W2nChjGz
+[2026-01-30 12:53:42] Playlist title: The Wizard of Oz
+[2026-01-30 12:53:42] Total videos: 1
+[2026-01-30 12:53:42] Cookies file: cookie.txt
+[2026-01-30 12:53:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:53:46] === Summary ===
+[2026-01-30 12:53:46] Processed: 1
+[2026-01-30 12:53:46] Failed: 0
+[2026-01-30 12:53:46] With subtitles: 1
+[2026-01-30 12:53:46] No subtitles: 0
+[2026-01-30 12:53:46] Cleaned transcripts (non-empty): 1
+[2026-01-30 12:53:46] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-01-30 12:53:46] Subtitle language counts: {'en': 1}
+[2026-01-30 12:53:46] Rate-limited events: 0
+[2026-01-30 12:53:46] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 12:53:46] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:11:17] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTaytLtZOPzWcGlMr5Sf6yRE9D&si=E9aNljw6W2nChjGz
+[2026-01-30 14:11:17] Playlist title: The Wizard of Oz
+[2026-01-30 14:11:17] Total videos: 1
+[2026-01-30 14:11:17] Cookies file: cookie.txt
+[2026-01-30 14:11:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:11:17] Resume enabled. Existing videos: 1
+[2026-01-30 14:11:17] === Summary ===
+[2026-01-30 14:11:17] Processed: 0
+[2026-01-30 14:11:17] Failed: 0
+[2026-01-30 14:11:17] With subtitles: 0
+[2026-01-30 14:11:17] No subtitles: 0
+[2026-01-30 14:11:17] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:11:17] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:11:17] Subtitle language counts: {}
+[2026-01-30 14:11:17] Rate-limited events: 0
+[2026-01-30 14:11:17] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:11:17] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 13:35:55] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTaytLtZOPzWcGlMr5Sf6yRE9D&si=E9aNljw6W2nChjGz
+[2026-02-01 13:35:55] Playlist title: The Wizard of Oz
+[2026-02-01 13:35:55] Total videos: 1
+[2026-02-01 13:35:55] Cookies file: cookies_2.txt
+[2026-02-01 13:35:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 13:35:55] Resume enabled. Existing videos: 1
+[2026-02-01 13:35:55] === Summary ===
+[2026-02-01 13:35:55] Processed: 0
+[2026-02-01 13:35:55] Failed: 0
+[2026-02-01 13:35:55] With subtitles: 0
+[2026-02-01 13:35:55] No subtitles: 0
+[2026-02-01 13:35:55] Cleaned transcripts (non-empty): 0
+[2026-02-01 13:35:55] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 13:35:55] Subtitle language counts: {}
+[2026-02-01 13:35:55] Rate-limited events: 0
+[2026-02-01 13:35:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 13:35:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

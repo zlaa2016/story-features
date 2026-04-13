@@ -1,0 +1,99 @@
+[2026-01-29 18:16:06] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-29 18:16:06] Playlist title: Award Winners
+[2026-01-29 18:16:06] Total videos: 2
+[2026-01-29 18:16:06] Cookies file: cookies_1.txt
+[2026-01-29 18:16:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 18:17:07] === Summary ===
+[2026-01-29 18:17:07] Processed: 2
+[2026-01-29 18:17:07] Failed: 0
+[2026-01-29 18:17:07] With subtitles: 2
+[2026-01-29 18:17:07] No subtitles: 0
+[2026-01-29 18:17:07] Cleaned transcripts (non-empty): 2
+[2026-01-29 18:17:07] Transcript source counts: {'manual': 0, 'auto_generated': 2, 'none': 0}
+[2026-01-29 18:17:07] Subtitle language counts: {'en': 2}
+[2026-01-29 18:17:07] Rate-limited events: 0
+[2026-01-29 18:17:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 18:17:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 19:03:41] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-29 19:03:41] Playlist title: Award Winners
+[2026-01-29 19:03:41] Total videos: 2
+[2026-01-29 19:03:41] Cookies file: cookies_1.txt
+[2026-01-29 19:03:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 19:04:33] === Summary ===
+[2026-01-29 19:04:33] Processed: 2
+[2026-01-29 19:04:33] Failed: 0
+[2026-01-29 19:04:33] With subtitles: 2
+[2026-01-29 19:04:33] No subtitles: 0
+[2026-01-29 19:04:33] Cleaned transcripts (non-empty): 2
+[2026-01-29 19:04:33] Transcript source counts: {'manual': 0, 'auto_generated': 2, 'none': 0}
+[2026-01-29 19:04:33] Subtitle language counts: {'en': 2}
+[2026-01-29 19:04:33] Rate-limited events: 0
+[2026-01-29 19:04:33] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 19:04:33] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 19:16:48] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-29 19:16:48] Playlist title: Award Winners
+[2026-01-29 19:16:48] Total videos: 2
+[2026-01-29 19:16:48] Cookies file: cookies_1.txt
+[2026-01-29 19:16:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 19:17:58] === Summary ===
+[2026-01-29 19:17:58] Processed: 2
+[2026-01-29 19:17:58] Failed: 0
+[2026-01-29 19:17:58] With subtitles: 2
+[2026-01-29 19:17:58] No subtitles: 0
+[2026-01-29 19:17:58] Cleaned transcripts (non-empty): 2
+[2026-01-29 19:17:58] Transcript source counts: {'manual': 0, 'auto_generated': 2, 'none': 0}
+[2026-01-29 19:17:58] Subtitle language counts: {'en': 2}
+[2026-01-29 19:17:58] Rate-limited events: 0
+[2026-01-29 19:17:58] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 19:17:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:19:01] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-30 14:19:01] Playlist title: Award Winners
+[2026-01-30 14:19:01] Total videos: 2
+[2026-01-30 14:19:01] Cookies file: cookies_1.txt
+[2026-01-30 14:19:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:19:01] Resume enabled. Existing videos: 2
+[2026-01-30 14:19:01] === Summary ===
+[2026-01-30 14:19:01] Processed: 0
+[2026-01-30 14:19:01] Failed: 0
+[2026-01-30 14:19:01] With subtitles: 0
+[2026-01-30 14:19:01] No subtitles: 0
+[2026-01-30 14:19:01] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:19:01] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:19:01] Subtitle language counts: {}
+[2026-01-30 14:19:01] Rate-limited events: 0
+[2026-01-30 14:19:01] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:19:01] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:42] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-30 14:20:42] Playlist title: Award Winners
+[2026-01-30 14:20:42] Total videos: 2
+[2026-01-30 14:20:42] Cookies file: cookies_1.txt
+[2026-01-30 14:20:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:42] Resume enabled. Existing videos: 2
+[2026-01-30 14:20:42] === Summary ===
+[2026-01-30 14:20:42] Processed: 0
+[2026-01-30 14:20:42] Failed: 0
+[2026-01-30 14:20:42] With subtitles: 0
+[2026-01-30 14:20:42] No subtitles: 0
+[2026-01-30 14:20:42] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:42] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:42] Subtitle language counts: {}
+[2026-01-30 14:20:42] Rate-limited events: 0
+[2026-01-30 14:20:42] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:42] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:04:35] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06yWLbo1rnMa4Umn5DJ5nUx&si=YUF6G5k1tj6gukRq
+[2026-01-30 21:04:35] Playlist title: Award Winners
+[2026-01-30 21:04:35] Total videos: 2
+[2026-01-30 21:04:35] Cookies file: cookies_1.txt
+[2026-01-30 21:04:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:04:35] Resume enabled. Existing videos: 2
+[2026-01-30 21:04:35] === Summary ===
+[2026-01-30 21:04:35] Processed: 0
+[2026-01-30 21:04:35] Failed: 0
+[2026-01-30 21:04:35] With subtitles: 0
+[2026-01-30 21:04:35] No subtitles: 0
+[2026-01-30 21:04:35] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:04:35] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:04:35] Subtitle language counts: {}
+[2026-01-30 21:04:35] Rate-limited events: 0
+[2026-01-30 21:04:35] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:04:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

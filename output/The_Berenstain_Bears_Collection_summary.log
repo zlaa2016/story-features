@@ -1,0 +1,16 @@
+[2026-02-04 18:55:42] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JNRDJ9weSGeFnsXYF1rX6M7&si=tV6Fk6tjTW9DH_GZ
+[2026-02-04 18:55:42] Playlist title: The Berenstain Bears Collection
+[2026-02-04 18:55:42] Total videos: 10
+[2026-02-04 18:55:42] Cookies file: cookies_3.txt
+[2026-02-04 18:55:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 19:06:26] === Summary ===
+[2026-02-04 19:06:26] Processed: 10
+[2026-02-04 19:06:26] Failed: 0
+[2026-02-04 19:06:26] With subtitles: 10
+[2026-02-04 19:06:26] No subtitles: 0
+[2026-02-04 19:06:26] Cleaned transcripts (non-empty): 10
+[2026-02-04 19:06:26] Transcript source counts: {'manual': 2, 'auto_generated': 8, 'none': 0}
+[2026-02-04 19:06:26] Subtitle language counts: {'en': 10}
+[2026-02-04 19:06:26] Rate-limited events: 0
+[2026-02-04 19:06:26] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 19:06:26] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

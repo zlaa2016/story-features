@@ -1,0 +1,51 @@
+[2026-01-30 12:59:31] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xFXfqbSVNdra3JQjCyiG5QB&si=VIdWOS0ddC_sHoDS
+[2026-01-30 12:59:31] Playlist title: Valentine's Day Read-Alouds (English)
+[2026-01-30 12:59:31] Total videos: 21
+[2026-01-30 12:59:31] Cookies file: cookie.txt
+[2026-01-30 12:59:31] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:59:31] Resume enabled. Existing videos: 21
+[2026-01-30 12:59:31] === Summary ===
+[2026-01-30 12:59:31] Processed: 0
+[2026-01-30 12:59:31] Failed: 0
+[2026-01-30 12:59:31] With subtitles: 0
+[2026-01-30 12:59:31] No subtitles: 0
+[2026-01-30 12:59:31] Cleaned transcripts (non-empty): 0
+[2026-01-30 12:59:31] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 12:59:31] Subtitle language counts: {}
+[2026-01-30 12:59:31] Rate-limited events: 0
+[2026-01-30 12:59:31] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 12:59:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:11:26] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xFXfqbSVNdra3JQjCyiG5QB&si=VIdWOS0ddC_sHoDS
+[2026-01-30 14:11:26] Playlist title: Valentine's Day Read-Alouds (English)
+[2026-01-30 14:11:26] Total videos: 21
+[2026-01-30 14:11:26] Cookies file: cookie.txt
+[2026-01-30 14:11:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:11:26] Resume enabled. Existing videos: 21
+[2026-01-30 14:11:26] === Summary ===
+[2026-01-30 14:11:26] Processed: 0
+[2026-01-30 14:11:26] Failed: 0
+[2026-01-30 14:11:26] With subtitles: 0
+[2026-01-30 14:11:26] No subtitles: 0
+[2026-01-30 14:11:26] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:11:26] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:11:26] Subtitle language counts: {}
+[2026-01-30 14:11:26] Rate-limited events: 0
+[2026-01-30 14:11:26] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:11:26] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:19:03] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xFXfqbSVNdra3JQjCyiG5QB&si=VIdWOS0ddC_sHoDS
+[2026-02-01 14:19:03] Playlist title: Valentine's Day Read-Alouds (English)
+[2026-02-01 14:19:03] Total videos: 21
+[2026-02-01 14:19:03] Cookies file: cookies_3.txt
+[2026-02-01 14:19:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:19:03] Resume enabled. Existing videos: 21
+[2026-02-01 14:19:03] === Summary ===
+[2026-02-01 14:19:03] Processed: 0
+[2026-02-01 14:19:03] Failed: 0
+[2026-02-01 14:19:03] With subtitles: 0
+[2026-02-01 14:19:03] No subtitles: 0
+[2026-02-01 14:19:03] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:19:03] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:19:03] Subtitle language counts: {}
+[2026-02-01 14:19:03] Rate-limited events: 0
+[2026-02-01 14:19:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:19:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

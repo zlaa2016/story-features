@@ -1,0 +1,16 @@
+[2026-02-04 19:32:32] Playlist URL: https://www.youtube.com/@tippytoesnook/videos
+[2026-02-04 19:32:32] Playlist title: Tippy Toes Nook - Videos
+[2026-02-04 19:32:32] Total videos: 49
+[2026-02-04 19:32:32] Cookies file: cookies_3.txt
+[2026-02-04 19:32:32] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 20:21:22] === Summary ===
+[2026-02-04 20:21:22] Processed: 49
+[2026-02-04 20:21:22] Failed: 0
+[2026-02-04 20:21:22] With subtitles: 49
+[2026-02-04 20:21:22] No subtitles: 0
+[2026-02-04 20:21:22] Cleaned transcripts (non-empty): 49
+[2026-02-04 20:21:22] Transcript source counts: {'manual': 0, 'auto_generated': 49, 'none': 0}
+[2026-02-04 20:21:22] Subtitle language counts: {'en': 49}
+[2026-02-04 20:21:22] Rate-limited events: 0
+[2026-02-04 20:21:22] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 20:21:22] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

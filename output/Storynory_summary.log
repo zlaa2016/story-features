@@ -1,0 +1,54 @@
+[2026-01-30 00:13:45] Playlist URL: https://www.youtube.com/channel/UCI7gXZrVe2y-u5LGLilMvvQ
+[2026-01-30 00:13:45] Playlist title: Storynory
+[2026-01-30 00:13:45] Total videos: 2
+[2026-01-30 00:13:45] Cookies file: cookie.txt
+[2026-01-30 00:13:45] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 00:13:46] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-01-30 00:14:58] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-01-30 00:14:58] === Summary ===
+[2026-01-30 00:14:58] Processed: 0
+[2026-01-30 00:14:58] Failed: 2
+[2026-01-30 00:14:58] With subtitles: 0
+[2026-01-30 00:14:58] No subtitles: 0
+[2026-01-30 00:14:58] Cleaned transcripts (non-empty): 0
+[2026-01-30 00:14:58] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 00:14:58] Subtitle language counts: {}
+[2026-01-30 00:14:58] Rate-limited events: 0
+[2026-01-30 00:14:58] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 00:14:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 00:20:04] Playlist URL: https://www.youtube.com/channel/UCI7gXZrVe2y-u5LGLilMvvQ
+[2026-01-30 00:20:04] Playlist title: Storynory
+[2026-01-30 00:20:04] Total videos: 2
+[2026-01-30 00:20:04] Cookies file: cookie.txt
+[2026-01-30 00:20:04] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 00:20:05] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-01-30 00:21:35] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-01-30 00:21:35] === Summary ===
+[2026-01-30 00:21:35] Processed: 0
+[2026-01-30 00:21:35] Failed: 2
+[2026-01-30 00:21:35] With subtitles: 0
+[2026-01-30 00:21:35] No subtitles: 0
+[2026-01-30 00:21:35] Cleaned transcripts (non-empty): 0
+[2026-01-30 00:21:35] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 00:21:35] Subtitle language counts: {}
+[2026-01-30 00:21:35] Rate-limited events: 0
+[2026-01-30 00:21:35] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 00:21:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 13:21:39] Playlist URL: https://www.youtube.com/channel/UCI7gXZrVe2y-u5LGLilMvvQ
+[2026-02-01 13:21:39] Playlist title: Storynory
+[2026-02-01 13:21:39] Total videos: 2
+[2026-02-01 13:21:39] Cookies file: cookies_2.txt
+[2026-02-01 13:21:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 13:21:40] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-02-01 13:22:29] FAILED UCI7gXZrVe2y-u5LGLilMvvQ: ERROR: [youtube] UCI7gXZrVe2: Video unavailable
+[2026-02-01 13:22:29] === Summary ===
+[2026-02-01 13:22:29] Processed: 0
+[2026-02-01 13:22:29] Failed: 2
+[2026-02-01 13:22:29] With subtitles: 0
+[2026-02-01 13:22:29] No subtitles: 0
+[2026-02-01 13:22:29] Cleaned transcripts (non-empty): 0
+[2026-02-01 13:22:29] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 13:22:29] Subtitle language counts: {}
+[2026-02-01 13:22:29] Rate-limited events: 0
+[2026-02-01 13:22:29] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 13:22:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

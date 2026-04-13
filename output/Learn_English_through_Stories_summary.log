@@ -1,0 +1,16 @@
+[2026-01-31 03:16:04] Playlist URL: https://youtube.com/playlist?list=PL5sxewK7zO1T3ZJEyfFZOkAR0ZrT08-ns&si=uhvdxPGbswaH9EYB
+[2026-01-31 03:16:04] Playlist title: Learn English through Stories
+[2026-01-31 03:16:04] Total videos: 301
+[2026-01-31 03:16:04] Cookies file: cookies.txt
+[2026-01-31 03:16:04] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-31 03:16:05] Resume enabled. Existing videos: 236
+[2026-01-31 03:17:25] FAILED Ij1z-W4RwK0: ERROR: [youtube] Ij1z-W4RwK0: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:20:07] FAILED 4xCIMshrlDs: ERROR: [youtube] 4xCIMshrlDs: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:23:36] FAILED 92zeBTX0ZAI: ERROR: [youtube] 92zeBTX0ZAI: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-31 03:25:06] FAILED --lnL-JTGTc: ERROR: [youtube] --lnL-JTGTc: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-31 03:25:53] FAILED aDdIXW4CGcQ: ERROR: [youtube] aDdIXW4CGcQ: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:26:37] FAILED JG-SrhRBZMw: ERROR: [youtube] JG-SrhRBZMw: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:27:20] FAILED Hz2KmgnutaI: ERROR: [youtube] Hz2KmgnutaI: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:28:51] FAILED UPhgHGkDHdA: ERROR: [youtube] UPhgHGkDHdA: Video unavailable. This video has been removed by the uploader
+[2026-01-31 03:30:33] FAILED 72NJ6jRnG1g: ERROR: [youtube] 72NJ6jRnG1g: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-31 03:31:53] FAILED 6TZpL_Dd-KA: ERROR: [youtube] 6TZpL_Dd-KA: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies

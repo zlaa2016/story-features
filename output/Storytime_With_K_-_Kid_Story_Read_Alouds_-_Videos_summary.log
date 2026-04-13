@@ -1,0 +1,28 @@
+[2026-02-05 12:42:32] Playlist URL: https://www.youtube.com/@StorytimeWithKPodcast/videos
+[2026-02-05 12:42:32] Playlist title: Storytime With K - Kid Story Read Alouds - Videos
+[2026-02-05 12:42:32] Total videos: 943
+[2026-02-05 12:42:32] Cookies file: cookies_3.txt
+[2026-02-05 12:42:32] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-06 01:24:57] FAILED yQ3QhGWLx6Y: ERROR: [youtube] yQ3QhGWLx6Y: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3fcf88ac0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3fcf88ac0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 02:36:10] EMPTY_SUBTITLES DalTGDymcgY: source=auto_generated, lang=en-orig
+[2026-02-06 03:43:54] FAILED Teyo0kO8Xr4: ERROR: [youtube] Teyo0kO8Xr4: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3fe369360>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3fe369360>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 05:12:42] FAILED Tx1NeKri8s4: ERROR: [youtube] Tx1NeKri8s4: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3ff7f3ee0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3ff7f3ee0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 05:50:15] FAILED dxOZCTDivwM: ERROR: [youtube] dxOZCTDivwM: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3fe368bb0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3fe368bb0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 07:29:03] FAILED gq8zR_lMF6E: ERROR: [youtube] gq8zR_lMF6E: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3fe95c4f0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3fe95c4f0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 08:07:33] FAILED prvXcQgV_tk: ERROR: [youtube] prvXcQgV_tk: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x365940f70>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x365940f70>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 08:45:21] FAILED qRBeeT2_YOg: ERROR: [youtube] qRBeeT2_YOg: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x41715e710>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x41715e710>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 09:19:31] FAILED ViYgLL-_qlo: ERROR: [youtube] ViYgLL-_qlo: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x41715f2e0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x41715f2e0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 11:14:12] FAILED qHYEzNwIIgI: ERROR: [youtube] qHYEzNwIIgI: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x3fe36b820>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x3fe36b820>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 12:25:58] EMPTY_SUBTITLES 7ZacTtM4KHg: source=auto_generated, lang=en-orig
+[2026-02-06 14:34:19] FAILED SZpijhJ0U5U: ERROR: [youtube] SZpijhJ0U5U: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x4417f8d90>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x4417f8d90>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-06 17:18:31] === Summary ===
+[2026-02-06 17:18:31] Processed: 933
+[2026-02-06 17:18:31] Failed: 10
+[2026-02-06 17:18:31] With subtitles: 928
+[2026-02-06 17:18:31] No subtitles: 5
+[2026-02-06 17:18:31] Cleaned transcripts (non-empty): 928
+[2026-02-06 17:18:31] Transcript source counts: {'manual': 0, 'auto_generated': 930, 'none': 3}
+[2026-02-06 17:18:31] Subtitle language counts: {'en': 928, 'en-orig': 2}
+[2026-02-06 17:18:31] Rate-limited events: 0
+[2026-02-06 17:18:31] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 10}
+[2026-02-06 17:18:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

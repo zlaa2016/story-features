@@ -1,0 +1,133 @@
+[2026-01-30 01:27:28] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 01:27:28] Playlist title: Family Storytime
+[2026-01-30 01:27:28] Total videos: 27
+[2026-01-30 01:27:28] Cookies file: cookies.txt
+[2026-01-30 01:27:28] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 01:35:57] Rate-limited on video 8g_bQU-FObE; sleeping 3600s before retry 1/2
+[2026-01-30 02:52:43] === Summary ===
+[2026-01-30 02:52:43] Processed: 27
+[2026-01-30 02:52:43] Failed: 0
+[2026-01-30 02:52:43] With subtitles: 27
+[2026-01-30 02:52:43] No subtitles: 0
+[2026-01-30 02:52:43] Cleaned transcripts (non-empty): 27
+[2026-01-30 02:52:43] Transcript source counts: {'manual': 0, 'auto_generated': 27, 'none': 0}
+[2026-01-30 02:52:43] Subtitle language counts: {'en': 27}
+[2026-01-30 02:52:43] Rate-limited events: 1
+[2026-01-30 02:52:43] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 02:52:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 03:26:57] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 03:26:57] Playlist title: Family Storytime
+[2026-01-30 03:26:57] Total videos: 27
+[2026-01-30 03:26:57] Cookies file: cookies.txt
+[2026-01-30 03:26:57] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 03:34:52] Rate-limited on video nMdMjpYOM9I; sleeping 3600s before retry 1/2
+[2026-01-30 04:55:03] === Summary ===
+[2026-01-30 04:55:03] Processed: 27
+[2026-01-30 04:55:03] Failed: 0
+[2026-01-30 04:55:03] With subtitles: 27
+[2026-01-30 04:55:03] No subtitles: 0
+[2026-01-30 04:55:03] Cleaned transcripts (non-empty): 27
+[2026-01-30 04:55:03] Transcript source counts: {'manual': 0, 'auto_generated': 27, 'none': 0}
+[2026-01-30 04:55:03] Subtitle language counts: {'en': 27}
+[2026-01-30 04:55:03] Rate-limited events: 1
+[2026-01-30 04:55:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:55:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 07:38:19] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 07:38:19] Playlist title: Family Storytime
+[2026-01-30 07:38:19] Total videos: 27
+[2026-01-30 07:38:19] Cookies file: cookies_1.txt
+[2026-01-30 07:38:19] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 08:06:41] === Summary ===
+[2026-01-30 08:06:41] Processed: 27
+[2026-01-30 08:06:41] Failed: 0
+[2026-01-30 08:06:41] With subtitles: 27
+[2026-01-30 08:06:41] No subtitles: 0
+[2026-01-30 08:06:41] Cleaned transcripts (non-empty): 27
+[2026-01-30 08:06:41] Transcript source counts: {'manual': 0, 'auto_generated': 27, 'none': 0}
+[2026-01-30 08:06:41] Subtitle language counts: {'en': 27}
+[2026-01-30 08:06:41] Rate-limited events: 0
+[2026-01-30 08:06:41] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 08:06:41] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 08:28:53] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 08:28:53] Playlist title: Family Storytime
+[2026-01-30 08:28:53] Total videos: 27
+[2026-01-30 08:28:53] Cookies file: cookies_1.txt
+[2026-01-30 08:28:53] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 08:53:15] === Summary ===
+[2026-01-30 08:53:15] Processed: 27
+[2026-01-30 08:53:15] Failed: 0
+[2026-01-30 08:53:15] With subtitles: 27
+[2026-01-30 08:53:15] No subtitles: 0
+[2026-01-30 08:53:15] Cleaned transcripts (non-empty): 27
+[2026-01-30 08:53:15] Transcript source counts: {'manual': 0, 'auto_generated': 27, 'none': 0}
+[2026-01-30 08:53:15] Subtitle language counts: {'en': 27}
+[2026-01-30 08:53:15] Rate-limited events: 0
+[2026-01-30 08:53:15] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 08:53:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 08:55:29] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 08:55:29] Playlist title: Family Storytime
+[2026-01-30 08:55:29] Total videos: 27
+[2026-01-30 08:55:29] Cookies file: cookies_1.txt
+[2026-01-30 08:55:29] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 09:24:59] === Summary ===
+[2026-01-30 09:24:59] Processed: 27
+[2026-01-30 09:24:59] Failed: 0
+[2026-01-30 09:24:59] With subtitles: 27
+[2026-01-30 09:24:59] No subtitles: 0
+[2026-01-30 09:24:59] Cleaned transcripts (non-empty): 27
+[2026-01-30 09:24:59] Transcript source counts: {'manual': 0, 'auto_generated': 27, 'none': 0}
+[2026-01-30 09:24:59] Subtitle language counts: {'en': 27}
+[2026-01-30 09:24:59] Rate-limited events: 0
+[2026-01-30 09:24:59] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 09:24:59] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:28:12] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 14:28:12] Playlist title: Family Storytime
+[2026-01-30 14:28:12] Total videos: 27
+[2026-01-30 14:28:12] Cookies file: cookies_1.txt
+[2026-01-30 14:28:12] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:28:12] Resume enabled. Existing videos: 27
+[2026-01-30 14:28:12] === Summary ===
+[2026-01-30 14:28:12] Processed: 0
+[2026-01-30 14:28:12] Failed: 0
+[2026-01-30 14:28:12] With subtitles: 0
+[2026-01-30 14:28:12] No subtitles: 0
+[2026-01-30 14:28:12] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:28:12] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:28:12] Subtitle language counts: {}
+[2026-01-30 14:28:12] Rate-limited events: 0
+[2026-01-30 14:28:12] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:28:12] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:28:58] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 14:28:58] Playlist title: Family Storytime
+[2026-01-30 14:28:58] Total videos: 27
+[2026-01-30 14:28:58] Cookies file: cookies_1.txt
+[2026-01-30 14:28:58] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:28:58] Resume enabled. Existing videos: 27
+[2026-01-30 14:28:58] === Summary ===
+[2026-01-30 14:28:58] Processed: 0
+[2026-01-30 14:28:58] Failed: 0
+[2026-01-30 14:28:58] With subtitles: 0
+[2026-01-30 14:28:58] No subtitles: 0
+[2026-01-30 14:28:58] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:28:58] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:28:58] Subtitle language counts: {}
+[2026-01-30 14:28:58] Rate-limited events: 0
+[2026-01-30 14:28:58] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:28:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:14:17] Playlist URL: https://youtube.com/playlist?list=PLC3ovioe-ApjKMslERK46pSLeNBkfc3ek&si=sXRnjLeryz9iK2E7
+[2026-01-30 21:14:17] Playlist title: Family Storytime
+[2026-01-30 21:14:17] Total videos: 27
+[2026-01-30 21:14:17] Cookies file: cookies_1.txt
+[2026-01-30 21:14:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:14:17] Resume enabled. Existing videos: 27
+[2026-01-30 21:14:17] === Summary ===
+[2026-01-30 21:14:17] Processed: 0
+[2026-01-30 21:14:17] Failed: 0
+[2026-01-30 21:14:17] With subtitles: 0
+[2026-01-30 21:14:17] No subtitles: 0
+[2026-01-30 21:14:17] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:14:17] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:14:17] Subtitle language counts: {}
+[2026-01-30 21:14:17] Rate-limited events: 0
+[2026-01-30 21:14:17] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:14:17] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

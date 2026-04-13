@@ -1,0 +1,78 @@
+[2026-01-30 13:09:27] Playlist URL: https://youtube.com/playlist?list=PLoOc9M0VgduN5zJfIxyZOsJJ2qKLuDxGZ&si=LKAMaYI0NKdKplgX
+[2026-01-30 13:09:27] Playlist title: Watch more Bedtime Stories on CBeebies
+[2026-01-30 13:09:27] Total videos: 46
+[2026-01-30 13:09:27] Cookies file: cookie.txt
+[2026-01-30 13:09:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:09:27] Resume enabled. Existing videos: 36
+[2026-01-30 13:10:30] FAILED Je9d5FjJA-c: ERROR: [youtube] Je9d5FjJA-c: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-01-30 13:11:34] FAILED J5Bh9x2ddmY: ERROR: [youtube] J5Bh9x2ddmY: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 13:12:52] FAILED LXy52iengRs: ERROR: [youtube] LXy52iengRs: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-01-30 13:13:28] FAILED ozWLB8ZPLF4: ERROR: [youtube] ozWLB8ZPLF4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 13:14:27] FAILED lZJ_iJDQBA4: ERROR: [youtube] lZJ_iJDQBA4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 13:19:50] === Summary ===
+[2026-01-30 13:19:50] Processed: 5
+[2026-01-30 13:19:50] Failed: 5
+[2026-01-30 13:19:50] With subtitles: 5
+[2026-01-30 13:19:50] No subtitles: 4
+[2026-01-30 13:19:50] Cleaned transcripts (non-empty): 5
+[2026-01-30 13:19:50] Transcript source counts: {'manual': 4, 'auto_generated': 1, 'none': 0}
+[2026-01-30 13:19:50] Subtitle language counts: {'en': 1, 'en-GB': 4}
+[2026-01-30 13:19:50] Rate-limited events: 0
+[2026-01-30 13:19:50] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 3, 'auth_or_cookies': 0, 'other': 2}
+[2026-01-30 13:19:50] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:14:27] Playlist URL: https://youtube.com/playlist?list=PLoOc9M0VgduN5zJfIxyZOsJJ2qKLuDxGZ&si=LKAMaYI0NKdKplgX
+[2026-01-30 14:14:27] Playlist title: Watch more Bedtime Stories on CBeebies
+[2026-01-30 14:14:27] Total videos: 46
+[2026-01-30 14:14:27] Cookies file: cookie.txt
+[2026-01-30 14:14:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:14:27] Resume enabled. Existing videos: 41
+[2026-01-30 14:15:45] FAILED Je9d5FjJA-c: ERROR: [youtube] Je9d5FjJA-c: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-01-30 14:16:31] FAILED J5Bh9x2ddmY: ERROR: [youtube] J5Bh9x2ddmY: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 14:18:02] FAILED LXy52iengRs: ERROR: [youtube] LXy52iengRs: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-01-30 14:18:38] FAILED ozWLB8ZPLF4: ERROR: [youtube] ozWLB8ZPLF4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 14:20:05] FAILED lZJ_iJDQBA4: ERROR: [youtube] lZJ_iJDQBA4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 14:20:05] === Summary ===
+[2026-01-30 14:20:05] Processed: 0
+[2026-01-30 14:20:05] Failed: 5
+[2026-01-30 14:20:05] With subtitles: 0
+[2026-01-30 14:20:05] No subtitles: 0
+[2026-01-30 14:20:05] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:05] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:05] Subtitle language counts: {}
+[2026-01-30 14:20:05] Rate-limited events: 0
+[2026-01-30 14:20:05] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 3, 'auth_or_cookies': 0, 'other': 2}
+[2026-01-30 14:20:05] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:20:27] Playlist URL: https://youtube.com/playlist?list=PLoOc9M0VgduN5zJfIxyZOsJJ2qKLuDxGZ&si=LKAMaYI0NKdKplgX
+[2026-02-01 14:20:27] Playlist title: Watch more Bedtime Stories on CBeebies
+[2026-02-01 14:20:27] Total videos: 46
+[2026-02-01 14:20:27] Cookies file: cookies_3.txt
+[2026-02-01 14:20:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:20:27] Resume enabled. Existing videos: 41
+[2026-02-01 14:21:54] FAILED Je9d5FjJA-c: ERROR: [youtube] Je9d5FjJA-c: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-02-01 14:23:03] FAILED J5Bh9x2ddmY: ERROR: [youtube] J5Bh9x2ddmY: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-01 14:24:14] FAILED LXy52iengRs: ERROR: [youtube] LXy52iengRs: The uploader has not made this video available in your country
+This video is available in United Kingdom.
+You might want to use a VPN or a proxy server (with --proxy) to workaround.
+[2026-02-01 14:25:24] FAILED ozWLB8ZPLF4: ERROR: [youtube] ozWLB8ZPLF4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-01 14:26:31] FAILED lZJ_iJDQBA4: ERROR: [youtube] lZJ_iJDQBA4: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-01 14:26:31] === Summary ===
+[2026-02-01 14:26:31] Processed: 0
+[2026-02-01 14:26:31] Failed: 5
+[2026-02-01 14:26:31] With subtitles: 0
+[2026-02-01 14:26:31] No subtitles: 0
+[2026-02-01 14:26:31] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:26:31] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:26:31] Subtitle language counts: {}
+[2026-02-01 14:26:31] Rate-limited events: 0
+[2026-02-01 14:26:31] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 3, 'auth_or_cookies': 0, 'other': 2}
+[2026-02-01 14:26:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

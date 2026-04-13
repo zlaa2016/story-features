@@ -1,0 +1,39 @@
+[2026-01-30 21:43:35] Playlist URL: https://www.youtube.com/@AudioAdventures11/videos
+[2026-01-30 21:43:35] Playlist title: AudioAdventures - Videos
+[2026-01-30 21:43:35] Total videos: 268
+[2026-01-30 21:43:35] Cookies file: cookie.txt
+[2026-01-30 21:43:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:53:56] Playlist URL: https://www.youtube.com/@AudioAdventures11/videos
+[2026-01-30 21:53:56] Playlist title: AudioAdventures - Videos
+[2026-01-30 21:53:56] Total videos: 268
+[2026-01-30 21:53:56] Cookies file: cookie.txt
+[2026-01-30 21:53:56] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:53:56] Resume enabled. Existing videos: 10
+[2026-01-31 02:26:32] === Summary ===
+[2026-01-31 02:26:32] Processed: 258
+[2026-01-31 02:26:32] Failed: 0
+[2026-01-31 02:26:32] With subtitles: 253
+[2026-01-31 02:26:32] No subtitles: 5
+[2026-01-31 02:26:32] Cleaned transcripts (non-empty): 253
+[2026-01-31 02:26:32] Transcript source counts: {'manual': 0, 'auto_generated': 253, 'none': 5}
+[2026-01-31 02:26:32] Subtitle language counts: {'en': 253}
+[2026-01-31 02:26:32] Rate-limited events: 0
+[2026-01-31 02:26:32] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-31 02:26:32] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:29:35] Playlist URL: https://www.youtube.com/@AudioAdventures11/videos
+[2026-02-01 14:29:35] Playlist title: AudioAdventures - Videos
+[2026-02-01 14:29:35] Total videos: 268
+[2026-02-01 14:29:35] Cookies file: cookies_3.txt
+[2026-02-01 14:29:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:29:35] Resume enabled. Existing videos: 268
+[2026-02-01 14:29:35] === Summary ===
+[2026-02-01 14:29:35] Processed: 0
+[2026-02-01 14:29:35] Failed: 0
+[2026-02-01 14:29:35] With subtitles: 0
+[2026-02-01 14:29:35] No subtitles: 0
+[2026-02-01 14:29:35] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:29:35] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:29:35] Subtitle language counts: {}
+[2026-02-01 14:29:35] Rate-limited events: 0
+[2026-02-01 14:29:35] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:29:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,51 @@
+[2026-01-30 12:52:30] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayv1QeUT3fI7c7F68rJ7o65y&si=QGrCgeXpxLnXO_bj
+[2026-01-30 12:52:30] Playlist title: The Avengers
+[2026-01-30 12:52:30] Total videos: 8
+[2026-01-30 12:52:30] Cookies file: cookie.txt
+[2026-01-30 12:52:30] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:52:30] Resume enabled. Existing videos: 8
+[2026-01-30 12:52:30] === Summary ===
+[2026-01-30 12:52:30] Processed: 0
+[2026-01-30 12:52:30] Failed: 0
+[2026-01-30 12:52:30] With subtitles: 0
+[2026-01-30 12:52:30] No subtitles: 0
+[2026-01-30 12:52:30] Cleaned transcripts (non-empty): 0
+[2026-01-30 12:52:30] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 12:52:30] Subtitle language counts: {}
+[2026-01-30 12:52:30] Rate-limited events: 0
+[2026-01-30 12:52:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 12:52:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:09:43] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayv1QeUT3fI7c7F68rJ7o65y&si=QGrCgeXpxLnXO_bj
+[2026-01-30 14:09:43] Playlist title: The Avengers
+[2026-01-30 14:09:43] Total videos: 8
+[2026-01-30 14:09:43] Cookies file: cookie.txt
+[2026-01-30 14:09:43] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:09:43] Resume enabled. Existing videos: 8
+[2026-01-30 14:09:43] === Summary ===
+[2026-01-30 14:09:43] Processed: 0
+[2026-01-30 14:09:43] Failed: 0
+[2026-01-30 14:09:43] With subtitles: 0
+[2026-01-30 14:09:43] No subtitles: 0
+[2026-01-30 14:09:43] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:09:43] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:09:43] Subtitle language counts: {}
+[2026-01-30 14:09:43] Rate-limited events: 0
+[2026-01-30 14:09:43] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:09:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 13:34:46] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayv1QeUT3fI7c7F68rJ7o65y&si=QGrCgeXpxLnXO_bj
+[2026-02-01 13:34:46] Playlist title: The Avengers
+[2026-02-01 13:34:46] Total videos: 8
+[2026-02-01 13:34:46] Cookies file: cookies_2.txt
+[2026-02-01 13:34:46] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 13:34:46] Resume enabled. Existing videos: 8
+[2026-02-01 13:34:46] === Summary ===
+[2026-02-01 13:34:46] Processed: 0
+[2026-02-01 13:34:46] Failed: 0
+[2026-02-01 13:34:46] With subtitles: 0
+[2026-02-01 13:34:46] No subtitles: 0
+[2026-02-01 13:34:46] Cleaned transcripts (non-empty): 0
+[2026-02-01 13:34:46] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 13:34:46] Subtitle language counts: {}
+[2026-02-01 13:34:46] Rate-limited events: 0
+[2026-02-01 13:34:46] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 13:34:46] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,16 @@
+[2026-02-03 17:59:24] Playlist URL: https://www.youtube.com/@MissEmsBookwormReadAloud/videos
+[2026-02-03 17:59:24] Playlist title: MissEmsBookworm Read Aloud - Videos
+[2026-02-03 17:59:24] Total videos: 102
+[2026-02-03 17:59:24] Cookies file: cookies_3.txt
+[2026-02-03 17:59:24] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 19:49:44] === Summary ===
+[2026-02-03 19:49:44] Processed: 102
+[2026-02-03 19:49:44] Failed: 0
+[2026-02-03 19:49:44] With subtitles: 102
+[2026-02-03 19:49:44] No subtitles: 0
+[2026-02-03 19:49:44] Cleaned transcripts (non-empty): 102
+[2026-02-03 19:49:44] Transcript source counts: {'manual': 0, 'auto_generated': 102, 'none': 0}
+[2026-02-03 19:49:44] Subtitle language counts: {'en': 102}
+[2026-02-03 19:49:44] Rate-limited events: 0
+[2026-02-03 19:49:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 19:49:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,269 @@
+Files with auto_generated but empty cleaned_subtitles: 62
+
+594	output/unscraped_transcripts.csv
+  - 	Arthur Writes a Story Read Aloud
+  - 	The Best Yard Sale Read Aloud
+  - 	The Moonlit Miracle of Chuseok | By Reading Pioneers Academy
+
+72	output/__Reading_Time.csv
+  - rGOdKXV9Xes	Alphabot Adventures – 🔤 How many ABC objects can you find?
+  - Dmy4hfs7Vi4	Can You Do This? – 🤸 Fun imagination play book about movement and interaction!
+  - A-0YrU-Tkns	See You Later, Alligator – 👋🐊 Sing-along goodbye rhymes with wild animal fun!
+
+58	output/Peppa_Pig_Playlist.csv
+  - 9El71Ayr56E	Peppa's Mermaid Adventure Peppa Pig | Kids Books Read Aloud
+  - jcqCAk_zBik	Peppa Pig Family Trip | Kids Book Read Aloud
+  - Sqq496VJTS8	Peppa's Storybook Collection 30 mins of Peppa! | Kids Book Read Aloud
+
+57	output/Level_2__Preschool_-_Grade_1.csv
+  - PQ_frB0pGPY	Finding Dory: Three Little Words | A Read-Along Storybook for Kids
+  - Yi_B1yBW94k	Cars: Radiator Springs Road Trip | A Read-Along Storybook for Kids
+  - SgYLa1e9ZY4	Minnie: Pop Star Minnie | A Read-Along Storybook for Kids
+
+55	output/Yay_Read_Alouds_-_Videos.csv
+  - peIKm_TFKDI	Creepy Crayon | halloween story, spooky fun read aloud for children, classroom fall october books
+  - XkRCK3s9fcg	The Big Cheese | classroom books for children, kids story, jory john series, humility, competition
+  - CZkwNrEcYxI	Nerdy Birdy Tweets | book of friendship, being kind, classroom library, build class community book
+
+54	output/MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv
+  - lKqmK4O1egw	"MICKEY'S Spooky Night!" - Bedtime Story for Kids
+  - tkGRF23nG3Q	DONALD DUCK "The Witch Next Door" - HILARIOUS Halloween Bedtime Story!
+  - ozInQeSNPTs	It's MUSEUM MEYHEM with Donald Duck | Bedtime Story for Kids
+
+49	output/Magical_WINNIE_THE_POOH_Bedtime_Stories_for_Kids.csv
+  - xEXFqABE-JA	Pooh Discovers the Magic Words | Bedtime Story for Kids
+  - cHpAw9wX-GA	"POOH'S Happy Halloween" | Heartwarming Bedtime Story for Kids
+  - gyV9_cjvCwQ	Winnie the Pooh's Spooky Halloween Adventure!
+
+45	output/Vintage_Book_Read_Alouds.csv
+  - 7hIWjy3_eY4	Mike Mulligan and His Steam Shovel w/ Music & EFX
+  - s-YuifRw7zY	Blueberries for Sal - Caldecott Honor Read Aloud
+  - RslSA5_trb0	Now It's Fall  w/ Music - Lois Lenski's 1948 Classic
+
+32	output/March_Book_Madness_2025_Children_s_Books_-_Mokena_Community_Public_Library_District.csv
+  - nkwlf4kiFaI	March Book Madness 2025 - Not Yet
+  - IzS2t3i2AUs	March Book Madness 2025 - Wings of an Eagle
+  - V-_DpdGhKWs	March Book Madness 2025 - Magic Ramen
+
+32	output/March_Book_Madness_2024_Children_s_Books__-_Mokena_Community_Public_Library_District.csv
+  - OfrIRfuPRYc	March Book Madness 2024 - The Day the Crayons Quit
+  - vCQIJP7m4Nc	March Book Madness 2024 - Finding Winnie
+  - FSE3dJiL9rI	March Book Madness 2024 - Gaston
+
+32	output/Reading_Age__6_-_8_years.csv
+  - PQ_frB0pGPY	Finding Dory: Three Little Words | A Read-Along Storybook for Kids
+  - IDRyx_lJ0dM	Frozen: Anna & Elsa: Olaf's Perfect Summer Day | A Read-Along Storybook for Kids
+  - 2XqUoa-L-h4	Soul: Journey to You (Step into Reading) | A Read-Along Storybook for Kids
+
+29	output/Level_3__Grade_1-_Grade_3.csv
+  - IDRyx_lJ0dM	Frozen: Anna & Elsa: Olaf's Perfect Summer Day | A Read-Along Storybook for Kids
+  - 2XqUoa-L-h4	Soul: Journey to You (Step into Reading) | A Read-Along Storybook for Kids
+  - 9Y9VZgN6YRw	Frozen: Olaf's Night Before Christmas | A Read-Along Storybook for Kids
+
+28	output/Tales_for_Toddlers.csv
+  - yuS4Itlo57o	Tales for Toddlers • EVPL Digital Program
+  - Yw1q4lhyJaA	Tales for Toddlers • EVPL Digital Program
+  - MMA_2hymO7E	Tales for Toddlers • EVPL Digital Program
+
+26	output/Preschool_Storytime.csv
+  - VIhAn72Cv6M	Preschool Storytime • EVPL Digital Program
+  - -N3MrN6gq1s	Preschool Storytime • EVPL Digital Program
+  - EN3oFgdkqrY	Preschool Storytime • EVPL Digital Program
+
+25	output/Level_1__Preschool_-_Kindergarten.csv
+  - aVUMlIIOEQ8	The Good Dinosaur: Crash, Boom, Roar! | A Read-Along Storybook for Kids
+  - PAl3IulkzRk	Finding Dory: Ocean of Color | A Read-Along Storybook for Kids
+  - ZLM0EbqqsB0	Mickey’s Perfecto Day | A Read-Along Storybook for Kids
+
+16	output/Mr__Klein_s_Story_Time_-_Videos.csv
+  - U7gTGcxww-s	Pete the Cat - Rock On, Mom and Dad! - Kids Read Aloud Audiobook - NO ADS
+  - LJ9YZy5Bt4U	Pete the Cat - Making New Friends - Kids Read Aloud Audiobook - NO ADS
+  - RgkUq1sF9yU	Lion in Bed - Kids Read Aloud Audiobook - NO ADS
+
+15	output/Women_s_History_Month.csv
+  - sF6CYDVdhyA	Mae Among The Stars w/ words, music & EFX - Mae Jamison Story
+  - gswuPQzR8tE	Coretta Scott (King) - Civil Rights Pioneer
+  - ir7ut1Bpeig	Harriet Tubman - My First Biography - Black History Month
+
+14	output/The_Tales_of_Beatrix_Potter.csv
+  - g2-IV0bxMgg	The Story of Miss Moppet by Beatrix Potter
+  - EuTlQCGxE5Y	The Tale of Peter Rabbit by Beatrix Potter
+  - fYeooRFVQJo	The Tale of Jemima Puddle Duck by Beatrix Potter
+
+12	output/Stories_by_Grandma_.csv
+  - pjsTLsCBL74	FROGGY'S HALLOWEEN ~ Halloween Stories for Kids ~ Children's Halloween Books Read Aloud
+  - x807Dgz6WxM	CLIFFORD'S FIRST AUTUMN  Read Aloud ~ Bedtime Story Read Along Books  ~  Kids Books Read Aloud
+  - b7KYTfTDIyk	THE NIGHT BEFORE NEW YEAR'S Read Aloud ~ Kids Books Read Aloud ~ Storytime Children's Books
+
+11	output/Storytelling__Fairytale_.csv
+  - RJF7KN1y2Wg	The pearl, 1NOV
+  - 37JJIP0FhuY	Annie  1982
+  - rwVCKIXb-go	Who Framed Roger Rabbit
+
+11	output/Brightly_Storytime_-_Videos.csv
+  - ItqrB70cEDY	🐶🐱 EVERY ONE IS SPECIAL: DOGS + CATS | Read Aloud Picture Book | Brightly Storytime
+  - mkBgLkc2jv4	🇲🇽🏘🇺🇸 MY TWO BORDER TOWNS | Read Along with the Author | Brightly Storytime
+  - asYxcNxg810	🏇 MY BLUE-RIBBON HORSE - Read Aloud Picture Book | Brightly Storytime
+
+10	output/November_2025_Family_Stories_Month_Picture_Book_Series.csv
+  - rIlO6ngs2vk	Hattie Harmony: Opening Night
+  - wfk-tPQTth0	Tiny T-Rex and the Grand Ta-Da!
+  - b6WFmKvTr2o	Eggasaurus
+
+8	output/Mrs__K_s_Book_Worm_Adventures_-_Videos.csv
+  - eQBscUdBI28	HUMPHREY THE EGG-SPLORER by Nadia Ali | An Easter Read aloud Picture Book | Storytime | Bravery
+  - jWydInB8vTw	Patrick: Patron Saint of Ireland by Tommy dePaola 🍀 St. Patrick's Day Read Aloud | Christian Saints
+  - m7l6WY204iY	GRUMPY MONKEY VALENTINE GROSS-OUT read aloud – A Kids Funny Story read along | Kids Picture book
+
+8	output/Book_League_Storytime_Adventures_-_Videos.csv
+  - _iNrPcgrwQQ	👦🏆The Boy Who Makes a Million Mistakes - Growth Mindset - Read Aloud - Brenda Li
+  - uDf7Qo-Wyuo	🦃Turkey Trouble Series 8 Book Read Aloud Compilation - Thanksgiving
+  - jzTfE98QvQU	🖍️The Crayons’ Book of Numbers - Read Aloud
+
+8	output/Kids_Books_Read_Aloud_-_Entire_Catalog.csv
+  - lj6uvBJE3n8	GREEN EGGS AND HAM Read Aloud by Mrs. K | By Dr. Seuss| A Beginner Kids Book Read Aloud
+  - y9B0gNnfr6E	JAMIE O’ROURKE AND THE BIG POTATO Read Aloud | Tomie dePaola | Kids Irish Folktale Book Read Aloud
+  - WWa6D2WTDXI	KID SHERIFF AND THE TERRIBLE TOADS Read Aloud - Written by Bob Shea | Kids Book Read Aloud
+
+6	output/Virtual_Storytime.csv
+  - haitHPwl3Qc	All Ages Storytime: The Monster's Monster by Patrick McDonnell
+  - 8EKUiu-RIzQ	Bedtime Stories with Ms. Beth: There's a SUPERHERO in your book!
+  - sgW38KyksrY	All Ages Storytime: Under the Sea!
+
+6	output/CSUF_Future_Titans_Read_-_Videos.csv
+  - UmTd8Etm1OA	Cami Kangaroo Has Too Much Stuff! by Stacy C. Bauer
+  - xrjuU1tPOwA	Giggle, Giggle, Quack by Doreen Cronin
+  - 7l5NwXVf9Hs	Not Quite Snow White by Ashley Franklin/Storytime Read Aloud
+
+6	output/Reading_Age__4_-_6_years.csv
+  - gztfowzePsY	Hello, Olaf! (Disney Frozen) | A Read-Along Storybook in HD
+  - E0XKBGZkLf8	One Unicorny Day | A Read-Along Storybook in HD
+  - mn4A8OuEFIo	I Want My Hat Back | A Read-Along Storybook for Kids in HD
+
+6	output/Disney_Movies_Read_Along_Storybooks__Read_Aloud_Story_Books__Books_Stories__Bedtime_Stories__Playlist.csv
+  - K9es_ar2-qw	The Lion King Read Along Storybook, Read Aloud Story Books, The Lion King - A Wild Night Out
+  - B7vXqMGj8rk	Toy Story 4 Read Along Storybook, Read Aloud Story Books, Books Stories, Bedtime Stories
+  - SEePrD_Se7M	Moana Read Along Storybook, Read Aloud Story Books, Books Stories, Bedtime Stories
+
+5	output/World_Book_Day.csv
+  - RiSVsmHGvf0	"I Like it when....." by Mary Murphy
+  - KjOUhuqos3I	The Very Hungry Caterpillar by Eric Carle
+  - luTR2ZL5GKE	Billionaire Boy by David Walliams (Chapter 1)
+
+4	output/Fiction_Books.csv
+  - sWnAZXgTyL4	Arthur Writes a Story Read Aloud
+  - H3nOOfBVXNs	The Best Yard Sale Read Aloud
+  - Nexwh_oHXTA	The Moonlit Miracle of Chuseok | By Reading Pioneers Academy
+
+4	output/Sofia.csv
+  - mgYeBINHn2o	Sofia the First|Bunny Magic|Books for Kids
+  - EDUWB54sOcQ	Sofia the First Books|Kids Storytime|Books for Kids
+  - mgYeBINHn2o	Sofia the First|Bunny Magic|Books for Kids
+
+4	output/Princess.csv
+  - z44apizlUiM	Snow White Fun Puzzle
+  - 3Ud3dZWGals	Aladdin Princess Jasmine Fun Puzzle
+  - EDn9TVMiM0M	Moana Fun Puzzle
+
+3	output/Preschool_Read_Alouds.csv
+  - 5paV03sYfns	Can You Do This?  | READ ALOUD book for little kids
+  - 5Cz8QLi1QpU	Alphabot Adventures | READ ALOUD book for kids 🤖 Learn the Alphabet with robots
+  - TFb-6R4a1uY	When Fall Comes | READ ALOUD book for Kids 🍂
+
+3	output/Rockin_Read_Alouds_-_Videos.csv
+  - Uzp84eSVvtc	Skippyjon Jones In The Doghouse Read Aloud
+  - nnJze5QNEDA	Sunken Treasures Read Aloud
+  - xNZGgd8NOEQ	A Picture Book of Martin Luther King Jr. Read Aloud
+
+3	output/Learn_English_through_Stories.csv
+  - zRA6gm5XofI	An Old Lady’s Journey Through Childhood Memories |learn english through story |story telling English
+  - gTh-IWdcOk4	Honk Honk Beep Beep: A Heartwarming Story of Kindness & Helping Others | Kids Moral Story
+  - t0N216cZUBU	The Cracked Bowl | learn english through story | long story in english for children
+
+2	output/The_World_of_Eric_Carle_-_Animated_and_Read_aloud.csv
+  - 8b1_X6V7j0E	🦍 From Head to Toe - Animated and Read Aloud for Kids
+  - TWl-3vzVwwE	🐍 The Greedy Python by Richard Buckley & Eric Carle | Animated Read Aloud for Kids!
+
+2	output/Children_s_Stories_-_Preschool_-_Kindergarten_-_First_grade_Stories_and_Nursery_Rhymes__KS1.csv
+  - X_EM-iZNguo	The Gruffalo by Julia Donaldson. Children's read-aloud (audiobook) with colour illustrations.
+  - OiY8ff_sTEk	Hooray, I can do it! By Aleks Harrison. Preschool Audiobook - perseverance & overcoming frustration
+
+2	output/Kindergarten_Read_Alouds.csv
+  - zxxo5JW7ghE	Hug and Make Up Berenstain Bears | READ ALOUD book for Kids ❤️
+  - 7sHKFpWHh-8	The Shape of Me and Other Things by Dr. Seuss | READ ALOUD books for kids
+
+2	output/Stories.csv
+  - ZcGkPb7DxGM	Moses When Harriet Tubman Led Her People to Freedom
+  - _CjIKGwtf9w	Snowmen All Year (AKA Snowpeople All Year)
+
+2	output/Black_History___POC_Pride_Stories_for_Kids__Empowerment___Self-Love_Read_Alongs.csv
+  - PZCAvcY2NNw	The Three Ninja Pigs Read Aloud with Comprehension Questions | Homeschool Curriculum & Activities
+  - u4Kxr_Nwa5o	Pa Me and Our Sidewalk Pantry Read Aloud with Comprehension Questions Homeschool Curriculum
+
+2	output/DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv
+  - 8rgZDJLB2VU	MOANA Our Perfect Stormy Day | Bedtime Story Read Aloud
+  - 8rgZDJLB2VU	MOANA Our Perfect Stormy Day | Bedtime Story Read Aloud
+
+2	output/Behavior_Buddies_Read_Aloud_Stories.csv
+  - FHSoIV5Rdc4	Behavior Buddies: THE LISTENING LION | Children's Read Aloud | Listening | Animals | SEL Books
+  - G3-WLDsMGIQ	Behavior Buddies: THE PATIENT PANDA | Children’s Read Aloud | Self-Control | Patience | Be Patient
+
+2	output/Animated_Storybooks.csv
+  - 7uO5Y-GpvCc	The Three Little Pigs and the Bad Wolf 🐷🐷🐷🐺 | Fairy Tale for Kids | Bedtime Story Animation
+  - hYDxaqI0kvw	🎉🎁 The Birthday Box – Animated Storybook 🎈🪀
+
+2	output/Storytime_With_Faye_-_Videos.csv
+  - SFPUbf60AsU	Escargot By Dashka Slater - Storytime Read Aloud Books With Music
+  - -4MRXZh2yVw	The Dinosaur Who Discovered Hamburger - With Music and Sound Effects Read Aloud Storytime
+
+1	output/Otto_s_Tales___Storytime_with_American_Values.csv
+  - _E3ZWUjGW-M	Let’s Meet a Volunteer: Honoring Holocaust Survivors | Otto's Tales | PragerU Kids
+
+1	output/_READ_ALOUDS.csv
+  - zgCzpFF4xEQ	CHELSEA'S CHINESE NEW YEAR By: Lisa Bullard | LUNAR NEW YEAR STORIES FOR KIDS | LUNAR YEAR BOOKS
+
+1	output/TGP4C_read_alouds.csv
+  - Lm0-MPlpOWo	Read Aloud- Give a Goat By: Jan West Schrock
+
+1	output/Children_s_Corner_-_Videos.csv
+  - vVrjqrgJgKM	Rosa Plays Ball by: Jessica Spanyol #READ-ALOUD! #español #english  #storytime @Children-12j
+
+1	output/Irvington_Public_Library_NJ_-_Videos.csv
+  - dHQJPYEUwEs	Froggy Picks a Pumpkin | Story Time With Ms. Acharchelle
+
+1	output/Storytime_Passport_-_Videos.csv
+  - QczVj5D3Ha8	Highlighters on Strike Read Aloud 🖍️ | When the Classroom Highlighters Say “No More!” [English] 2025
+
+1	output/Riggan_Reads_-_Videos.csv
+  - vNK2HAnRCBc	Twas the Night Before Christmas | A Visit from St. Nicholas [Audiobook by Riggan Reads]
+
+1	output/Great_Stories_for_Bedtime.csv
+  - WuNkBTx00dI	Walking Your Human | A story about training your human to exercise
+
+1	output/BellaLuna_Read_Aloud_-_Videos.csv
+  - uKPqIECBMZU	First Day Jitters by Julie Danneberg 📚READ ALOUD📚
+
+1	output/SpongeBob_SquarePants.csv
+  - XoYeSXfONkw	SpongeBob SquarePants:Surf's Up|For Kids|Books for Kids|Read to Me|Storytime|Read aloud|Audio
+
+1	output/Books_Beyond_Borders_-_Videos.csv
+  - yMzG0q3bObk	📚 Celebrando el Día de los Muertos (SPANISH Version) - Kids Books Read Aloud
+
+1	output/Fiction_-_Older_Children__6__.csv
+  - sTwggQjRKCE	Part 1/3 of George's Marvellous Medicine by Roald Dahl. Read-aloud/audiobook with illustrations.
+
+1	output/Story_Adventures_With_Sara_-_Videos.csv
+  - dy97w7TDDAQ	The Snow Thief
+
+1	output/Reading_Rainbow_Stories.csv
+  - jw1HHGacCv0	Zin! Zin! Zin! A Violin STORY
+
+1	output/Sid_the_Science_Kid.csv
+  - af2oyqS7Zs0	Sid the Science Kid|The Rolie Polies|Read to Me|Books|Kids|Read Along
+
+1	output/Arab_American_Heritage_Month.csv
+  - AXCQtwJLE90	Zain’s Super Friday (@LiterallyCultured Read Aloud)
+
+1	output/StorylineOnline_-_Videos.csv
+  - WGFC2HYE4b4	'La nevera de Maddi' leído por Isabella Gomez
+

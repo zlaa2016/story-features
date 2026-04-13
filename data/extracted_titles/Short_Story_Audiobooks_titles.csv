@@ -1,0 +1,41 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Test,The Test,Theodore L. Thomas,Short_Story_Audiobooks.csv,py8t_cqQmEM,The Test by Theodore L. Thomas Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",success
+Ruthless,Ruthless,William De Mille,Short_Story_Audiobooks.csv,jlEV7xhEeUk,Ruthless by William De Mille Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",success
+Lamb to the Slaughter,Lamb to the Slaughter,Roald Dahl,Short_Story_Audiobooks.csv,xFrFWsSuSUM,Lamb to the Slaughter by Roald Dahl Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",success
+Eleven,Eleven,Sandra Cisneros,Short_Story_Audiobooks.csv,PHjFdIEtsyU,Eleven by Sandra Cisneros Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",success
+N/A,N/A,N/A,Short_Story_Audiobooks.csv,ssZ5nXtx1v8,The Sniper by Liam O'Flaherty Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",failed
+N/A,N/A,N/A,Short_Story_Audiobooks.csv,f0uGVcWDKOc,The Lottery by Shirley Jackson Audiobook,"Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",failed
+N/A,N/A,N/A,Short_Story_Audiobooks.csv,GfeuLWZB48I,"The Lady, or the Tiger By Frank R. Stockton Audiobook","Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",failed
+N/A,N/A,N/A,Short_Story_Audiobooks.csv,Q3Z9yFR87LU,"Thank You, Ma'am by Langston Hughes Audiobook","Just a teacher reading a fantastic story aloud.
+
+Disclaimer — this is for educational purposes only.
+
+Subscribe. Comment. Like. Read.",failed

@@ -1,0 +1,20 @@
+[2026-02-02 22:08:11] Playlist URL: https://www.youtube.com/@kidsstorytimewithjackandjill/videos
+[2026-02-02 22:08:11] Playlist title: Kids Story Time with Jack & Jill - Videos
+[2026-02-02 22:08:11] Total videos: 782
+[2026-02-02 22:08:11] Cookies file: cookies_3.txt
+[2026-02-02 22:08:11] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 01:21:43] Rate-limited on video 8huW97GawJM; sleeping 3600s before retry 1/2
+[2026-02-03 08:20:33] EMPTY_SUBTITLES rp--BAqnqqo: source=auto_generated, lang=en-orig
+[2026-02-03 12:18:51] FAILED 8auHBuBQk-Y: ERROR: [youtube] 8auHBuBQk-Y: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x105ba2860>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x105ba2860>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-03 12:20:31] FAILED YyRDvS8Buos: ERROR: [youtube] YyRDvS8Buos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1062331f0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x1062331f0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-03 15:24:39] === Summary ===
+[2026-02-03 15:24:39] Processed: 780
+[2026-02-03 15:24:39] Failed: 2
+[2026-02-03 15:24:39] With subtitles: 772
+[2026-02-03 15:24:39] No subtitles: 8
+[2026-02-03 15:24:39] Cleaned transcripts (non-empty): 772
+[2026-02-03 15:24:39] Transcript source counts: {'manual': 0, 'auto_generated': 773, 'none': 7}
+[2026-02-03 15:24:39] Subtitle language counts: {'en': 772, 'en-orig': 1}
+[2026-02-03 15:24:39] Rate-limited events: 1
+[2026-02-03 15:24:39] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 2}
+[2026-02-03 15:24:39] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

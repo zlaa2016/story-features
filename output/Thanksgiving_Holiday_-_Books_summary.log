@@ -1,0 +1,16 @@
+[2026-02-04 19:23:55] Playlist URL: https://youtube.com/playlist?list=PLBkceuBtGMvsbRyCXc0yuJzmVIzmk6lF8&si=qJqJTSl3Dx4xVFZD
+[2026-02-04 19:23:55] Playlist title: Thanksgiving Holiday - Books
+[2026-02-04 19:23:55] Total videos: 9
+[2026-02-04 19:23:55] Cookies file: cookies_3.txt
+[2026-02-04 19:23:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 19:32:30] === Summary ===
+[2026-02-04 19:32:30] Processed: 9
+[2026-02-04 19:32:30] Failed: 0
+[2026-02-04 19:32:30] With subtitles: 9
+[2026-02-04 19:32:30] No subtitles: 0
+[2026-02-04 19:32:30] Cleaned transcripts (non-empty): 9
+[2026-02-04 19:32:30] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-02-04 19:32:30] Subtitle language counts: {'en': 9}
+[2026-02-04 19:32:30] Rate-limited events: 0
+[2026-02-04 19:32:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 19:32:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

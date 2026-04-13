@@ -1,0 +1,34 @@
+[2026-01-31 02:48:59] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JM7ztbUh1zkPbZg1xYiXMUS&si=XQUkZ7ck5CZc_-vF
+[2026-01-31 02:48:59] Playlist title: Kindergarten Read Alouds
+[2026-01-31 02:48:59] Total videos: 87
+[2026-01-31 02:48:59] Cookies file: cookies.txt
+[2026-01-31 02:48:59] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-31 02:48:59] Resume enabled. Existing videos: 63
+[2026-01-31 03:15:59] === Summary ===
+[2026-01-31 03:15:59] Processed: 24
+[2026-01-31 03:15:59] Failed: 0
+[2026-01-31 03:15:59] With subtitles: 24
+[2026-01-31 03:15:59] No subtitles: 4
+[2026-01-31 03:15:59] Cleaned transcripts (non-empty): 24
+[2026-01-31 03:15:59] Transcript source counts: {'manual': 4, 'auto_generated': 20, 'none': 0}
+[2026-01-31 03:15:59] Subtitle language counts: {'en': 24}
+[2026-01-31 03:15:59] Rate-limited events: 0
+[2026-01-31 03:15:59] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-31 03:15:59] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-04 18:55:40] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JM7ztbUh1zkPbZg1xYiXMUS&si=SHUxC4ZvJ2cOZscO
+[2026-02-04 18:55:40] Playlist title: Kindergarten Read Alouds
+[2026-02-04 18:55:40] Total videos: 87
+[2026-02-04 18:55:40] Cookies file: cookies_3.txt
+[2026-02-04 18:55:40] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 18:55:40] Resume enabled. Existing videos: 87
+[2026-02-04 18:55:40] === Summary ===
+[2026-02-04 18:55:40] Processed: 0
+[2026-02-04 18:55:40] Failed: 0
+[2026-02-04 18:55:40] With subtitles: 0
+[2026-02-04 18:55:40] No subtitles: 0
+[2026-02-04 18:55:40] Cleaned transcripts (non-empty): 0
+[2026-02-04 18:55:40] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-04 18:55:40] Subtitle language counts: {}
+[2026-02-04 18:55:40] Rate-limited events: 0
+[2026-02-04 18:55:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 18:55:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

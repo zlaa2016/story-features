@@ -1,0 +1,97 @@
+Re-extracting 92 failed rows with improved prompt...
+
+  [1/92] ✅ The Ant and the Grasshopper
+  [2/92] ✅ Elephant Cat
+  [3/92] ✅ Rainforest Explorers
+  [4/92] ✅ The Gingerbread Man
+  [5/92] ✅ A Tall Tale About the Dog With the Polka Dotted Tail
+  [6/92] ✅ Arctic Animals For Kids
+  [7/92] ⚠️ Still no extraction
+  [8/92] ✅ Ancient Egypt for Kids
+  [9/92] ✅ Rainforest Explorers
+  [10/92] ✅ The Ant and the Grasshopper
+  [11/92] ✅ The Color of Us
+  [12/92] ✅ The Squeaky Door
+  [13/92] ✅ Flower Garden
+  [14/92] ✅ Today I Feel Silly
+  [15/92] ✅ Shut the Door!
+  [16/92] ✅ The Color of Us
+  [17/92] ⚠️ Still no extraction
+  [18/92] ✅ Today I Feel Silly
+  [19/92] ✅ Shut the Door!
+  [20/92] ✅ On Account of the Gum
+  [21/92] ✅ Pigloo
+  [22/92] ✅ Larf
+  [23/92] ⚠️ Still no extraction
+  [24/92] ✅ Captain Starfish
+  [25/92] ✅ Hat Tricks
+  [26/92] ✅ Play With Me
+  [27/92] ✅ Smart George
+  [28/92] ✅ The Panda Problem
+  [29/92] ✅ Reading Makes You Feel Good
+  [30/92] ✅ The Squirrels Who Squabbled
+  [31/92] ✅ The Princess and the Pony
+  [32/92] ✅ Paul Bunyan
+  [33/92] ✅ Stone Soup
+  [34/92] ✅ Chicken Break
+  [35/92] ⚠️ Still no extraction
+  [36/92] ✅ Waiting
+  [37/92] ⚠️ Still no extraction
+  [38/92] ⚠️ Still no extraction
+  [39/92] ✅ Mother's Day Sandwich
+  [40/92] ⚠️ Still no extraction
+  [41/92] ✅ On Account of the Gum
+  [42/92] ✅ Pigloo
+  [43/92] ✅ Larf
+  [44/92] ⚠️ Still no extraction
+  [45/92] ✅ Hat Tricks
+  [46/92] ✅ Play With Me
+  [47/92] ✅ Smart George
+  [48/92] ✅ The Panda Problem
+  [49/92] ✅ Reading Makes You Feel Good
+  [50/92] ✅ The Squirrels Who Squabbled
+  [51/92] ✅ Paul Bunyan
+  [52/92] ✅ Little Red
+  [53/92] ✅ Stone Soup
+  [54/92] ✅ Chicken Break
+  [55/92] ⚠️ Still no extraction
+  [56/92] ✅ Waiting
+  [57/92] ⚠️ Still no extraction
+  [58/92] ⚠️ Still no extraction
+  [59/92] ✅ Mother's Day Sandwich
+  [60/92] ⚠️ Still no extraction
+  [61/92] ✅ How To Cheer Up Dad
+  [62/92] ✅ How To Get Your Teacher Ready
+  [63/92] ✅ Sir Gawain and the Loathly Lady by Selina Hastings
+  [64/92] ✅ Stella the Stingray
+  [65/92] ✅ Max the Magpie
+  [66/92] ✅ Casey Jones
+  [67/92] ✅ The Gingerbread Man by Louise Martin
+  [68/92] ✅ My Shadow by Robert Louis Stevenson
+  [69/92] ⚠️ Still no extraction
+  [70/92] ✅ Ancient Egypt for Kids
+  [71/92] ⚠️ Still no extraction
+  [72/92] ✅ Ancient Egypt
+  [73/92] ⚠️ Still no extraction
+  [74/92] ✅ From Struggle to Success
+  [75/92] ✅ How to Stop Overthinking
+  [76/92] ✅ How to Learn From Mistakes
+  [77/92] ✅ Rediscovered family bond
+  [78/92] ✅ Why We Have Problems in Life: Lessons from the Flowing River
+  [79/92] ✅ How to OVERCOME LAZINESS
+  [80/92] ⚠️ Still no extraction
+  [81/92] ✅ The Journey of a Clockmaker’s Apprentice
+  [82/92] ✅ How Changing Perspective Transformed Samir's Work Life
+  [83/92] ✅ How to Break Bad Habits and Transform Your Life
+  [84/92] ✅ How a Simple Act of Kindness Changed an Entire Community
+  [85/92] ⚠️ Still no extraction
+  [86/92] ✅ The Inspiring Journey of a Wildflower: A Tale of Growth and Resilience
+  [87/92] ✅ The Battle Inside: Which Wolf Will You Feed?
+  [88/92] ✅ The Spendthrift and the Swallow
+  [89/92] ✅ The Bird and the Whale by TheFableCottage.com
+  [90/92] ✅ The Dog and his Bone by TheFableCottage.com
+  [91/92] ✅ The Oak Tree
+  [92/92] ✅ Sir Gawain and the Loathly Lady by Selina Hastings
+
+✅ Re-extraction complete. Updated 75/92 rows. Saved to /Users/tzl/repos/story-features/data/extracted_titles/all_story_nosub_manual_titles.csv
+

@@ -1,0 +1,51 @@
+[2026-01-30 12:53:48] Playlist URL: https://youtube.com/playlist?list=PLvHtFRBVcEFv9eokS3FT72Jd-N_T209I6&si=6AdISgR_YuqpGPm4
+[2026-01-30 12:53:48] Playlist title: The World of Eric Carle - Animated and Read aloud
+[2026-01-30 12:53:48] Total videos: 42
+[2026-01-30 12:53:48] Cookies file: cookie.txt
+[2026-01-30 12:53:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:53:48] Resume enabled. Existing videos: 39
+[2026-01-30 12:57:16] === Summary ===
+[2026-01-30 12:57:16] Processed: 3
+[2026-01-30 12:57:16] Failed: 0
+[2026-01-30 12:57:16] With subtitles: 3
+[2026-01-30 12:57:16] No subtitles: 3
+[2026-01-30 12:57:16] Cleaned transcripts (non-empty): 3
+[2026-01-30 12:57:16] Transcript source counts: {'manual': 3, 'auto_generated': 0, 'none': 0}
+[2026-01-30 12:57:16] Subtitle language counts: {'en': 3}
+[2026-01-30 12:57:16] Rate-limited events: 0
+[2026-01-30 12:57:16] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 12:57:16] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:11:19] Playlist URL: https://youtube.com/playlist?list=PLvHtFRBVcEFv9eokS3FT72Jd-N_T209I6&si=6AdISgR_YuqpGPm4
+[2026-01-30 14:11:19] Playlist title: The World of Eric Carle - Animated and Read aloud
+[2026-01-30 14:11:19] Total videos: 42
+[2026-01-30 14:11:19] Cookies file: cookie.txt
+[2026-01-30 14:11:19] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:11:19] Resume enabled. Existing videos: 42
+[2026-01-30 14:11:19] === Summary ===
+[2026-01-30 14:11:19] Processed: 0
+[2026-01-30 14:11:19] Failed: 0
+[2026-01-30 14:11:19] With subtitles: 0
+[2026-01-30 14:11:19] No subtitles: 0
+[2026-01-30 14:11:19] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:11:19] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:11:19] Subtitle language counts: {}
+[2026-01-30 14:11:19] Rate-limited events: 0
+[2026-01-30 14:11:19] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:11:19] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 13:35:57] Playlist URL: https://youtube.com/playlist?list=PLvHtFRBVcEFv9eokS3FT72Jd-N_T209I6&si=6AdISgR_YuqpGPm4
+[2026-02-01 13:35:57] Playlist title: The World of Eric Carle - Animated and Read aloud
+[2026-02-01 13:35:57] Total videos: 42
+[2026-02-01 13:35:57] Cookies file: cookies_2.txt
+[2026-02-01 13:35:57] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 13:35:57] Resume enabled. Existing videos: 42
+[2026-02-01 13:35:57] === Summary ===
+[2026-02-01 13:35:57] Processed: 0
+[2026-02-01 13:35:57] Failed: 0
+[2026-02-01 13:35:57] With subtitles: 0
+[2026-02-01 13:35:57] No subtitles: 0
+[2026-02-01 13:35:57] Cleaned transcripts (non-empty): 0
+[2026-02-01 13:35:57] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 13:35:57] Subtitle language counts: {}
+[2026-02-01 13:35:57] Rate-limited events: 0
+[2026-02-01 13:35:57] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 13:35:57] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

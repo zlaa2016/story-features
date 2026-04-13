@@ -1,0 +1,51 @@
+[2026-01-30 13:31:23] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf05z_v4OyROEN_ELKLzK81BG&si=RZ7_ZXrvSUe_Rq5R
+[2026-01-30 13:31:23] Playlist title: Winter Read Aloud Books
+[2026-01-30 13:31:23] Total videos: 22
+[2026-01-30 13:31:23] Cookies file: cookie.txt
+[2026-01-30 13:31:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:31:23] Resume enabled. Existing videos: 22
+[2026-01-30 13:31:23] === Summary ===
+[2026-01-30 13:31:23] Processed: 0
+[2026-01-30 13:31:23] Failed: 0
+[2026-01-30 13:31:23] With subtitles: 0
+[2026-01-30 13:31:23] No subtitles: 0
+[2026-01-30 13:31:23] Cleaned transcripts (non-empty): 0
+[2026-01-30 13:31:23] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 13:31:23] Subtitle language counts: {}
+[2026-01-30 13:31:23] Rate-limited events: 0
+[2026-01-30 13:31:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 13:31:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:09] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf05z_v4OyROEN_ELKLzK81BG&si=RZ7_ZXrvSUe_Rq5R
+[2026-01-30 14:20:09] Playlist title: Winter Read Aloud Books
+[2026-01-30 14:20:09] Total videos: 22
+[2026-01-30 14:20:09] Cookies file: cookie.txt
+[2026-01-30 14:20:09] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:09] Resume enabled. Existing videos: 22
+[2026-01-30 14:20:09] === Summary ===
+[2026-01-30 14:20:09] Processed: 0
+[2026-01-30 14:20:09] Failed: 0
+[2026-01-30 14:20:09] With subtitles: 0
+[2026-01-30 14:20:09] No subtitles: 0
+[2026-01-30 14:20:09] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:09] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:09] Subtitle language counts: {}
+[2026-01-30 14:20:09] Rate-limited events: 0
+[2026-01-30 14:20:09] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:09] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:26:35] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf05z_v4OyROEN_ELKLzK81BG&si=RZ7_ZXrvSUe_Rq5R
+[2026-02-01 14:26:35] Playlist title: Winter Read Aloud Books
+[2026-02-01 14:26:35] Total videos: 22
+[2026-02-01 14:26:35] Cookies file: cookies_3.txt
+[2026-02-01 14:26:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:26:35] Resume enabled. Existing videos: 22
+[2026-02-01 14:26:35] === Summary ===
+[2026-02-01 14:26:35] Processed: 0
+[2026-02-01 14:26:35] Failed: 0
+[2026-02-01 14:26:35] With subtitles: 0
+[2026-02-01 14:26:35] No subtitles: 0
+[2026-02-01 14:26:35] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:26:35] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:26:35] Subtitle language counts: {}
+[2026-02-01 14:26:35] Rate-limited events: 0
+[2026-02-01 14:26:35] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:26:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,131 @@
+[2026-01-29 21:07:33] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-29 21:07:33] Playlist title: E2E Original Story Shorts
+[2026-01-29 21:07:33] Total videos: 76
+[2026-01-29 21:07:33] Cookies file: cookies.txt
+[2026-01-29 21:07:33] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:16:48] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-29 22:16:48] Playlist title: E2E Original Story Shorts
+[2026-01-29 22:16:48] Total videos: 76
+[2026-01-29 22:16:48] Cookies file: cookies.txt
+[2026-01-29 22:16:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:28:39] === Summary ===
+[2026-01-29 22:28:39] Processed: 76
+[2026-01-29 22:28:39] Failed: 0
+[2026-01-29 22:28:39] With subtitles: 59
+[2026-01-29 22:28:39] No subtitles: 17
+[2026-01-29 22:28:39] Cleaned transcripts (non-empty): 59
+[2026-01-29 22:28:39] Transcript source counts: {'manual': 0, 'auto_generated': 59, 'none': 17}
+[2026-01-29 22:28:39] Subtitle language counts: {'en': 59}
+[2026-01-29 22:28:39] Rate-limited events: 0
+[2026-01-29 22:28:39] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:28:39] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 23:35:56] === Summary ===
+[2026-01-29 23:35:56] Processed: 76
+[2026-01-29 23:35:56] Failed: 0
+[2026-01-29 23:35:56] With subtitles: 59
+[2026-01-29 23:35:56] No subtitles: 17
+[2026-01-29 23:35:56] Cleaned transcripts (non-empty): 59
+[2026-01-29 23:35:56] Transcript source counts: {'manual': 0, 'auto_generated': 59, 'none': 17}
+[2026-01-29 23:35:56] Subtitle language counts: {'en': 59}
+[2026-01-29 23:35:56] Rate-limited events: 0
+[2026-01-29 23:35:56] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 23:35:56] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 03:28:43] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 03:28:43] Playlist title: E2E Original Story Shorts
+[2026-01-30 03:28:43] Total videos: 76
+[2026-01-30 03:28:43] Cookies file: cookies_1.txt
+[2026-01-30 03:28:43] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:12:36] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 04:12:36] Playlist title: E2E Original Story Shorts
+[2026-01-30 04:12:36] Total videos: 76
+[2026-01-30 04:12:36] Cookies file: cookies_1.txt
+[2026-01-30 04:12:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:37:23] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 04:37:23] Playlist title: E2E Original Story Shorts
+[2026-01-30 04:37:23] Total videos: 76
+[2026-01-30 04:37:23] Cookies file: cookies_1.txt
+[2026-01-30 04:37:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:48:20] === Summary ===
+[2026-01-30 04:48:20] Processed: 76
+[2026-01-30 04:48:20] Failed: 0
+[2026-01-30 04:48:20] With subtitles: 59
+[2026-01-30 04:48:20] No subtitles: 17
+[2026-01-30 04:48:20] Cleaned transcripts (non-empty): 59
+[2026-01-30 04:48:20] Transcript source counts: {'manual': 0, 'auto_generated': 59, 'none': 17}
+[2026-01-30 04:48:20] Subtitle language counts: {'en': 59}
+[2026-01-30 04:48:20] Rate-limited events: 0
+[2026-01-30 04:48:20] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:48:20] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 05:34:19] === Summary ===
+[2026-01-30 05:34:19] Processed: 76
+[2026-01-30 05:34:19] Failed: 0
+[2026-01-30 05:34:19] With subtitles: 59
+[2026-01-30 05:34:19] No subtitles: 17
+[2026-01-30 05:34:19] Cleaned transcripts (non-empty): 59
+[2026-01-30 05:34:19] Transcript source counts: {'manual': 0, 'auto_generated': 59, 'none': 17}
+[2026-01-30 05:34:19] Subtitle language counts: {'en': 59}
+[2026-01-30 05:34:19] Rate-limited events: 0
+[2026-01-30 05:34:19] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 05:34:19] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 05:58:15] === Summary ===
+[2026-01-30 05:58:15] Processed: 76
+[2026-01-30 05:58:15] Failed: 0
+[2026-01-30 05:58:15] With subtitles: 59
+[2026-01-30 05:58:15] No subtitles: 17
+[2026-01-30 05:58:15] Cleaned transcripts (non-empty): 59
+[2026-01-30 05:58:15] Transcript source counts: {'manual': 0, 'auto_generated': 59, 'none': 17}
+[2026-01-30 05:58:15] Subtitle language counts: {'en': 59}
+[2026-01-30 05:58:15] Rate-limited events: 0
+[2026-01-30 05:58:15] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 05:58:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:00] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 14:25:00] Playlist title: E2E Original Story Shorts
+[2026-01-30 14:25:00] Total videos: 76
+[2026-01-30 14:25:00] Cookies file: cookies_1.txt
+[2026-01-30 14:25:00] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:00] Resume enabled. Existing videos: 76
+[2026-01-30 14:25:00] === Summary ===
+[2026-01-30 14:25:00] Processed: 0
+[2026-01-30 14:25:00] Failed: 0
+[2026-01-30 14:25:00] With subtitles: 0
+[2026-01-30 14:25:00] No subtitles: 0
+[2026-01-30 14:25:00] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:25:00] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:25:00] Subtitle language counts: {}
+[2026-01-30 14:25:00] Rate-limited events: 0
+[2026-01-30 14:25:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:25:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:48] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 14:25:48] Playlist title: E2E Original Story Shorts
+[2026-01-30 14:25:48] Total videos: 76
+[2026-01-30 14:25:48] Cookies file: cookies_1.txt
+[2026-01-30 14:25:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:48] Resume enabled. Existing videos: 76
+[2026-01-30 14:25:48] === Summary ===
+[2026-01-30 14:25:48] Processed: 0
+[2026-01-30 14:25:48] Failed: 0
+[2026-01-30 14:25:48] With subtitles: 0
+[2026-01-30 14:25:48] No subtitles: 0
+[2026-01-30 14:25:48] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:25:48] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:25:48] Subtitle language counts: {}
+[2026-01-30 14:25:48] Rate-limited events: 0
+[2026-01-30 14:25:48] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:25:48] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:10:25] Playlist URL: https://youtube.com/playlist?list=PLu9nygZqCiGs_AFvlK6imIUartgClfEij&si=0qwGJW8TUak39L53
+[2026-01-30 21:10:25] Playlist title: E2E Original Story Shorts
+[2026-01-30 21:10:25] Total videos: 76
+[2026-01-30 21:10:25] Cookies file: cookies_1.txt
+[2026-01-30 21:10:25] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:10:25] Resume enabled. Existing videos: 76
+[2026-01-30 21:10:25] === Summary ===
+[2026-01-30 21:10:25] Processed: 0
+[2026-01-30 21:10:25] Failed: 0
+[2026-01-30 21:10:25] With subtitles: 0
+[2026-01-30 21:10:25] No subtitles: 0
+[2026-01-30 21:10:25] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:10:25] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:10:25] Subtitle language counts: {}
+[2026-01-30 21:10:25] Rate-limited events: 0
+[2026-01-30 21:10:25] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:10:25] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

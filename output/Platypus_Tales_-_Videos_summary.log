@@ -1,0 +1,51 @@
+[2026-01-30 13:53:41] Playlist URL: https://www.youtube.com/@PlatypusTales2025/videos
+[2026-01-30 13:53:41] Playlist title: Platypus Tales - Videos
+[2026-01-30 13:53:41] Total videos: 10
+[2026-01-30 13:53:41] Cookies file: cookie.txt
+[2026-01-30 13:53:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:53:41] Resume enabled. Existing videos: 10
+[2026-01-30 13:53:41] === Summary ===
+[2026-01-30 13:53:41] Processed: 0
+[2026-01-30 13:53:41] Failed: 0
+[2026-01-30 13:53:41] With subtitles: 0
+[2026-01-30 13:53:41] No subtitles: 0
+[2026-01-30 13:53:41] Cleaned transcripts (non-empty): 0
+[2026-01-30 13:53:41] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 13:53:41] Subtitle language counts: {}
+[2026-01-30 13:53:41] Rate-limited events: 0
+[2026-01-30 13:53:41] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 13:53:41] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:21] Playlist URL: https://www.youtube.com/@PlatypusTales2025/videos
+[2026-01-30 14:20:21] Playlist title: Platypus Tales - Videos
+[2026-01-30 14:20:21] Total videos: 10
+[2026-01-30 14:20:21] Cookies file: cookie.txt
+[2026-01-30 14:20:21] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:21] Resume enabled. Existing videos: 10
+[2026-01-30 14:20:21] === Summary ===
+[2026-01-30 14:20:21] Processed: 0
+[2026-01-30 14:20:21] Failed: 0
+[2026-01-30 14:20:21] With subtitles: 0
+[2026-01-30 14:20:21] No subtitles: 0
+[2026-01-30 14:20:21] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:21] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:21] Subtitle language counts: {}
+[2026-01-30 14:20:21] Rate-limited events: 0
+[2026-01-30 14:20:21] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:21] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:26:49] Playlist URL: https://www.youtube.com/@PlatypusTales2025/videos
+[2026-02-01 14:26:49] Playlist title: Platypus Tales - Videos
+[2026-02-01 14:26:49] Total videos: 10
+[2026-02-01 14:26:49] Cookies file: cookies_3.txt
+[2026-02-01 14:26:49] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:26:49] Resume enabled. Existing videos: 10
+[2026-02-01 14:26:50] === Summary ===
+[2026-02-01 14:26:50] Processed: 0
+[2026-02-01 14:26:50] Failed: 0
+[2026-02-01 14:26:50] With subtitles: 0
+[2026-02-01 14:26:50] No subtitles: 0
+[2026-02-01 14:26:50] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:26:50] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:26:50] Subtitle language counts: {}
+[2026-02-01 14:26:50] Rate-limited events: 0
+[2026-02-01 14:26:50] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:26:50] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

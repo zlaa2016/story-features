@@ -1,0 +1,19 @@
+[2026-01-31 22:22:26] Playlist URL: https://youtube.com/playlist?list=PLktcXheWIAtTzHmsDM48sH8bRTylIJgGQ&si=zCrsjxQPk3l5xHFk
+[2026-01-31 22:22:26] Playlist title: Magical WINNIE THE POOH Bedtime Stories for Kids
+[2026-01-31 22:22:26] Total videos: 60
+[2026-01-31 22:22:26] Cookies file: cookies_2.txt
+[2026-01-31 22:22:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-31 22:22:26] Resume enabled. Existing videos: 44
+[2026-01-31 22:31:42] FAILED H_SijHwz8l8: ERROR: [youtube] H_SijHwz8l8: Video unavailable. This video has been removed by the uploader
+[2026-01-31 22:32:43] FAILED d6fuLyXbS4A: ERROR: [youtube] d6fuLyXbS4A: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-31 22:32:43] === Summary ===
+[2026-01-31 22:32:43] Processed: 9
+[2026-01-31 22:32:43] Failed: 2
+[2026-01-31 22:32:43] With subtitles: 9
+[2026-01-31 22:32:43] No subtitles: 0
+[2026-01-31 22:32:43] Cleaned transcripts (non-empty): 9
+[2026-01-31 22:32:43] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-01-31 22:32:43] Subtitle language counts: {'en': 9}
+[2026-01-31 22:32:43] Rate-limited events: 0
+[2026-01-31 22:32:43] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 1, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-31 22:32:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

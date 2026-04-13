@@ -1,0 +1,99 @@
+[2026-01-29 16:50:08] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-29 16:50:08] Playlist title: Aesop's Fables
+[2026-01-29 16:50:08] Total videos: 6
+[2026-01-29 16:50:08] Cookies file: cookies_1.txt
+[2026-01-29 16:50:08] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:56:00] === Summary ===
+[2026-01-29 16:56:00] Processed: 6
+[2026-01-29 16:56:00] Failed: 0
+[2026-01-29 16:56:00] With subtitles: 6
+[2026-01-29 16:56:00] No subtitles: 6
+[2026-01-29 16:56:00] Cleaned transcripts (non-empty): 6
+[2026-01-29 16:56:00] Transcript source counts: {'manual': 6, 'auto_generated': 0, 'none': 0}
+[2026-01-29 16:56:00] Subtitle language counts: {'en': 6}
+[2026-01-29 16:56:00] Rate-limited events: 0
+[2026-01-29 16:56:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:56:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:38:07] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-29 17:38:07] Playlist title: Aesop's Fables
+[2026-01-29 17:38:07] Total videos: 6
+[2026-01-29 17:38:07] Cookies file: cookies_1.txt
+[2026-01-29 17:38:07] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:43:31] === Summary ===
+[2026-01-29 17:43:31] Processed: 6
+[2026-01-29 17:43:31] Failed: 0
+[2026-01-29 17:43:31] With subtitles: 6
+[2026-01-29 17:43:31] No subtitles: 6
+[2026-01-29 17:43:31] Cleaned transcripts (non-empty): 6
+[2026-01-29 17:43:31] Transcript source counts: {'manual': 6, 'auto_generated': 0, 'none': 0}
+[2026-01-29 17:43:31] Subtitle language counts: {'en': 6}
+[2026-01-29 17:43:31] Rate-limited events: 0
+[2026-01-29 17:43:31] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:43:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:47:02] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-29 17:47:02] Playlist title: Aesop's Fables
+[2026-01-29 17:47:02] Total videos: 6
+[2026-01-29 17:47:02] Cookies file: cookies_1.txt
+[2026-01-29 17:47:02] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:52:40] === Summary ===
+[2026-01-29 17:52:40] Processed: 6
+[2026-01-29 17:52:40] Failed: 0
+[2026-01-29 17:52:40] With subtitles: 6
+[2026-01-29 17:52:40] No subtitles: 6
+[2026-01-29 17:52:40] Cleaned transcripts (non-empty): 6
+[2026-01-29 17:52:40] Transcript source counts: {'manual': 6, 'auto_generated': 0, 'none': 0}
+[2026-01-29 17:52:40] Subtitle language counts: {'en': 6}
+[2026-01-29 17:52:40] Rate-limited events: 0
+[2026-01-29 17:52:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:52:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:10] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-30 14:02:10] Playlist title: Aesop's Fables
+[2026-01-30 14:02:10] Total videos: 6
+[2026-01-30 14:02:10] Cookies file: cookies_1.txt
+[2026-01-30 14:02:10] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:10] Resume enabled. Existing videos: 6
+[2026-01-30 14:02:10] === Summary ===
+[2026-01-30 14:02:10] Processed: 0
+[2026-01-30 14:02:10] Failed: 0
+[2026-01-30 14:02:10] With subtitles: 0
+[2026-01-30 14:02:10] No subtitles: 0
+[2026-01-30 14:02:10] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:10] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:10] Subtitle language counts: {}
+[2026-01-30 14:02:10] Rate-limited events: 0
+[2026-01-30 14:02:10] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:10] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:32] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-30 14:02:32] Playlist title: Aesop's Fables
+[2026-01-30 14:02:32] Total videos: 6
+[2026-01-30 14:02:32] Cookies file: cookies_1.txt
+[2026-01-30 14:02:32] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:32] Resume enabled. Existing videos: 6
+[2026-01-30 14:02:32] === Summary ===
+[2026-01-30 14:02:32] Processed: 0
+[2026-01-30 14:02:32] Failed: 0
+[2026-01-30 14:02:32] With subtitles: 0
+[2026-01-30 14:02:32] No subtitles: 0
+[2026-01-30 14:02:32] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:32] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:32] Subtitle language counts: {}
+[2026-01-30 14:02:32] Rate-limited events: 0
+[2026-01-30 14:02:32] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:32] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:41] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_xgNDxS-QFmZvWht3-Ue3_w&si=pkQunDgOsa0rrihz
+[2026-01-30 20:44:41] Playlist title: Aesop's Fables
+[2026-01-30 20:44:41] Total videos: 6
+[2026-01-30 20:44:41] Cookies file: cookies_1.txt
+[2026-01-30 20:44:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:41] Resume enabled. Existing videos: 6
+[2026-01-30 20:44:41] === Summary ===
+[2026-01-30 20:44:41] Processed: 0
+[2026-01-30 20:44:41] Failed: 0
+[2026-01-30 20:44:41] With subtitles: 0
+[2026-01-30 20:44:41] No subtitles: 0
+[2026-01-30 20:44:41] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:41] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:41] Subtitle language counts: {}
+[2026-01-30 20:44:41] Rate-limited events: 0
+[2026-01-30 20:44:41] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:41] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

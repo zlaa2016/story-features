@@ -1,0 +1,51 @@
+[2026-01-30 13:31:29] Playlist URL: https://www.youtube.com/@storytimewithtqtownsend/videos
+[2026-01-30 13:31:29] Playlist title: Storytime with T.Q. Townsend - Videos
+[2026-01-30 13:31:29] Total videos: 13
+[2026-01-30 13:31:29] Cookies file: cookie.txt
+[2026-01-30 13:31:29] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:31:29] Resume enabled. Existing videos: 4
+[2026-01-30 13:45:14] === Summary ===
+[2026-01-30 13:45:14] Processed: 9
+[2026-01-30 13:45:14] Failed: 0
+[2026-01-30 13:45:14] With subtitles: 9
+[2026-01-30 13:45:14] No subtitles: 0
+[2026-01-30 13:45:14] Cleaned transcripts (non-empty): 9
+[2026-01-30 13:45:14] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-01-30 13:45:14] Subtitle language counts: {'en': 9}
+[2026-01-30 13:45:14] Rate-limited events: 0
+[2026-01-30 13:45:14] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 13:45:14] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:15] Playlist URL: https://www.youtube.com/@storytimewithtqtownsend/videos
+[2026-01-30 14:20:15] Playlist title: Storytime with T.Q. Townsend - Videos
+[2026-01-30 14:20:15] Total videos: 13
+[2026-01-30 14:20:15] Cookies file: cookie.txt
+[2026-01-30 14:20:15] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:15] Resume enabled. Existing videos: 13
+[2026-01-30 14:20:15] === Summary ===
+[2026-01-30 14:20:15] Processed: 0
+[2026-01-30 14:20:15] Failed: 0
+[2026-01-30 14:20:15] With subtitles: 0
+[2026-01-30 14:20:15] No subtitles: 0
+[2026-01-30 14:20:15] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:15] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:15] Subtitle language counts: {}
+[2026-01-30 14:20:15] Rate-limited events: 0
+[2026-01-30 14:20:15] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:26:42] Playlist URL: https://www.youtube.com/@storytimewithtqtownsend/videos
+[2026-02-01 14:26:42] Playlist title: Storytime with T.Q. Townsend - Videos
+[2026-02-01 14:26:42] Total videos: 13
+[2026-02-01 14:26:42] Cookies file: cookies_3.txt
+[2026-02-01 14:26:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:26:42] Resume enabled. Existing videos: 13
+[2026-02-01 14:26:42] === Summary ===
+[2026-02-01 14:26:42] Processed: 0
+[2026-02-01 14:26:42] Failed: 0
+[2026-02-01 14:26:42] With subtitles: 0
+[2026-02-01 14:26:42] No subtitles: 0
+[2026-02-01 14:26:42] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:26:42] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:26:42] Subtitle language counts: {}
+[2026-02-01 14:26:42] Rate-limited events: 0
+[2026-02-01 14:26:42] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:26:42] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

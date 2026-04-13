@@ -1,0 +1,117 @@
+[2026-01-30 08:39:20] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 08:39:20] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 08:39:20] Total videos: 8
+[2026-01-30 08:39:20] Cookies file: cookies.txt
+[2026-01-30 08:39:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 08:47:38] === Summary ===
+[2026-01-30 08:47:38] Processed: 8
+[2026-01-30 08:47:38] Failed: 0
+[2026-01-30 08:47:38] With subtitles: 8
+[2026-01-30 08:47:38] No subtitles: 0
+[2026-01-30 08:47:38] Cleaned transcripts (non-empty): 8
+[2026-01-30 08:47:38] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-30 08:47:38] Subtitle language counts: {'en': 8}
+[2026-01-30 08:47:38] Rate-limited events: 0
+[2026-01-30 08:47:38] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 08:47:38] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 10:47:27] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 10:47:27] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 10:47:27] Total videos: 8
+[2026-01-30 10:47:27] Cookies file: cookies.txt
+[2026-01-30 10:47:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 10:54:09] === Summary ===
+[2026-01-30 10:54:09] Processed: 8
+[2026-01-30 10:54:09] Failed: 0
+[2026-01-30 10:54:09] With subtitles: 8
+[2026-01-30 10:54:09] No subtitles: 0
+[2026-01-30 10:54:09] Cleaned transcripts (non-empty): 8
+[2026-01-30 10:54:09] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-30 10:54:09] Subtitle language counts: {'en': 8}
+[2026-01-30 10:54:09] Rate-limited events: 0
+[2026-01-30 10:54:09] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 10:54:09] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 13:56:24] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 13:56:24] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 13:56:24] Total videos: 8
+[2026-01-30 13:56:24] Cookies file: cookies_1.txt
+[2026-01-30 13:56:24] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:56:24] Resume enabled. Existing videos: 8
+[2026-01-30 13:56:24] === Summary ===
+[2026-01-30 13:56:24] Processed: 0
+[2026-01-30 13:56:24] Failed: 0
+[2026-01-30 13:56:24] With subtitles: 0
+[2026-01-30 13:56:24] No subtitles: 0
+[2026-01-30 13:56:24] Cleaned transcripts (non-empty): 0
+[2026-01-30 13:56:24] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 13:56:24] Subtitle language counts: {}
+[2026-01-30 13:56:24] Rate-limited events: 0
+[2026-01-30 13:56:24] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 13:56:24] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:10:26] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 14:10:26] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 14:10:26] Total videos: 8
+[2026-01-30 14:10:26] Cookies file: cookies_1.txt
+[2026-01-30 14:10:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:10:26] Resume enabled. Existing videos: 8
+[2026-01-30 14:10:26] === Summary ===
+[2026-01-30 14:10:26] Processed: 0
+[2026-01-30 14:10:26] Failed: 0
+[2026-01-30 14:10:26] With subtitles: 0
+[2026-01-30 14:10:26] No subtitles: 0
+[2026-01-30 14:10:26] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:10:26] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:10:26] Subtitle language counts: {}
+[2026-01-30 14:10:26] Rate-limited events: 0
+[2026-01-30 14:10:26] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:10:26] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:39:46] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 14:39:46] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 14:39:46] Total videos: 8
+[2026-01-30 14:39:46] Cookies file: cookies_1.txt
+[2026-01-30 14:39:46] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:39:46] Resume enabled. Existing videos: 8
+[2026-01-30 14:39:47] === Summary ===
+[2026-01-30 14:39:47] Processed: 0
+[2026-01-30 14:39:47] Failed: 0
+[2026-01-30 14:39:47] With subtitles: 0
+[2026-01-30 14:39:47] No subtitles: 0
+[2026-01-30 14:39:47] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:39:47] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:39:47] Subtitle language counts: {}
+[2026-01-30 14:39:47] Rate-limited events: 0
+[2026-01-30 14:39:47] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:39:47] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:54:40] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 14:54:40] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 14:54:40] Total videos: 8
+[2026-01-30 14:54:40] Cookies file: cookies_1.txt
+[2026-01-30 14:54:40] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:54:40] Resume enabled. Existing videos: 8
+[2026-01-30 14:54:40] === Summary ===
+[2026-01-30 14:54:40] Processed: 0
+[2026-01-30 14:54:40] Failed: 0
+[2026-01-30 14:54:40] With subtitles: 0
+[2026-01-30 14:54:40] No subtitles: 0
+[2026-01-30 14:54:40] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:54:40] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:54:40] Subtitle language counts: {}
+[2026-01-30 14:54:40] Rate-limited events: 0
+[2026-01-30 14:54:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:54:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:17:55] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrPrBmRmLvLTsHhP-z-v0NDo&si=aOHWmsU7p-1S54D_
+[2026-01-30 21:17:55] Playlist title: I Know An Old Lady / There Was An Old Lady Book Series
+[2026-01-30 21:17:55] Total videos: 8
+[2026-01-30 21:17:55] Cookies file: cookies_1.txt
+[2026-01-30 21:17:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:17:55] Resume enabled. Existing videos: 8
+[2026-01-30 21:17:55] === Summary ===
+[2026-01-30 21:17:55] Processed: 0
+[2026-01-30 21:17:55] Failed: 0
+[2026-01-30 21:17:55] With subtitles: 0
+[2026-01-30 21:17:55] No subtitles: 0
+[2026-01-30 21:17:55] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:17:55] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:17:55] Subtitle language counts: {}
+[2026-01-30 21:17:55] Rate-limited events: 0
+[2026-01-30 21:17:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:17:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

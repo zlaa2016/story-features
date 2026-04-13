@@ -1,0 +1,51 @@
+[2026-01-30 13:53:43] Playlist URL: https://www.youtube.com/@Books-BeyondBorders/videos
+[2026-01-30 13:53:43] Playlist title: Books Beyond Borders - Videos
+[2026-01-30 13:53:43] Total videos: 30
+[2026-01-30 13:53:43] Cookies file: cookie.txt
+[2026-01-30 13:53:43] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:53:43] Resume enabled. Existing videos: 18
+[2026-01-30 14:07:44] === Summary ===
+[2026-01-30 14:07:44] Processed: 12
+[2026-01-30 14:07:44] Failed: 0
+[2026-01-30 14:07:44] With subtitles: 12
+[2026-01-30 14:07:44] No subtitles: 0
+[2026-01-30 14:07:44] Cleaned transcripts (non-empty): 12
+[2026-01-30 14:07:44] Transcript source counts: {'manual': 0, 'auto_generated': 12, 'none': 0}
+[2026-01-30 14:07:44] Subtitle language counts: {'en': 12}
+[2026-01-30 14:07:44] Rate-limited events: 0
+[2026-01-30 14:07:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:07:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:22] Playlist URL: https://www.youtube.com/@Books-BeyondBorders/videos
+[2026-01-30 14:20:22] Playlist title: Books Beyond Borders - Videos
+[2026-01-30 14:20:22] Total videos: 30
+[2026-01-30 14:20:22] Cookies file: cookie.txt
+[2026-01-30 14:20:22] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:22] Resume enabled. Existing videos: 30
+[2026-01-30 14:20:23] === Summary ===
+[2026-01-30 14:20:23] Processed: 0
+[2026-01-30 14:20:23] Failed: 0
+[2026-01-30 14:20:23] With subtitles: 0
+[2026-01-30 14:20:23] No subtitles: 0
+[2026-01-30 14:20:23] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:23] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:23] Subtitle language counts: {}
+[2026-01-30 14:20:23] Rate-limited events: 0
+[2026-01-30 14:20:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:26:51] Playlist URL: https://www.youtube.com/@Books-BeyondBorders/videos
+[2026-02-01 14:26:51] Playlist title: Books Beyond Borders - Videos
+[2026-02-01 14:26:51] Total videos: 31
+[2026-02-01 14:26:51] Cookies file: cookies_3.txt
+[2026-02-01 14:26:51] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:26:51] Resume enabled. Existing videos: 30
+[2026-02-01 14:27:02] === Summary ===
+[2026-02-01 14:27:02] Processed: 1
+[2026-02-01 14:27:02] Failed: 0
+[2026-02-01 14:27:02] With subtitles: 1
+[2026-02-01 14:27:02] No subtitles: 0
+[2026-02-01 14:27:02] Cleaned transcripts (non-empty): 1
+[2026-02-01 14:27:02] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-01 14:27:02] Subtitle language counts: {'en': 1}
+[2026-02-01 14:27:02] Rate-limited events: 0
+[2026-02-01 14:27:02] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:27:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

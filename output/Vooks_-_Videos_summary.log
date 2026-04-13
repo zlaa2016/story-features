@@ -1,0 +1,40 @@
+[2026-02-04 22:37:18] Playlist URL: https://www.youtube.com/@VooksStorybooks/videos
+[2026-02-04 22:37:18] Playlist title: Vooks - Videos
+[2026-02-04 22:37:18] Total videos: 303
+[2026-02-04 22:37:18] Cookies file: cookies_1.txt
+[2026-02-04 22:37:18] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 22:59:36] Playlist URL: https://www.youtube.com/@VooksStorybooks/videos
+[2026-02-04 22:59:36] Playlist title: Vooks - Videos
+[2026-02-04 22:59:36] Total videos: 303
+[2026-02-04 22:59:36] Cookies file: cookies_1.txt
+[2026-02-04 22:59:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 22:59:36] Resume enabled. Existing videos: 21
+[2026-02-05 03:40:16] EMPTY_SUBTITLES sKXEfmV6xro: source=auto_generated, lang=en-tr
+[2026-02-05 03:47:05] EMPTY_SUBTITLES HpQbuwyjclA: source=auto_generated, lang=en
+[2026-02-05 03:47:54] EMPTY_SUBTITLES tkY72MIzAYQ: source=auto_generated, lang=en
+[2026-02-05 03:52:04] EMPTY_SUBTITLES sKXEfmV6xro: source=auto_generated, lang=en-tr
+[2026-02-05 03:58:43] EMPTY_SUBTITLES HpQbuwyjclA: source=auto_generated, lang=en
+[2026-02-05 03:59:45] EMPTY_SUBTITLES tkY72MIzAYQ: source=auto_generated, lang=en
+[2026-02-05 04:13:38] EMPTY_SUBTITLES RvVtybgSYqM: source=auto_generated, lang=en
+[2026-02-05 04:13:38] === Summary ===
+[2026-02-05 04:13:38] Processed: 282
+[2026-02-05 04:13:38] Failed: 0
+[2026-02-05 04:13:38] With subtitles: 278
+[2026-02-05 04:13:38] No subtitles: 4
+[2026-02-05 04:13:38] Cleaned transcripts (non-empty): 278
+[2026-02-05 04:13:38] Transcript source counts: {'manual': 4, 'auto_generated': 278, 'none': 0}
+[2026-02-05 04:13:38] Subtitle language counts: {'en': 281, 'en-tr': 1}
+[2026-02-05 04:13:38] Rate-limited events: 0
+[2026-02-05 04:13:38] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-05 04:13:38] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-05 04:27:11] === Summary ===
+[2026-02-05 04:27:11] Processed: 303
+[2026-02-05 04:27:11] Failed: 0
+[2026-02-05 04:27:11] With subtitles: 300
+[2026-02-05 04:27:11] No subtitles: 3
+[2026-02-05 04:27:11] Cleaned transcripts (non-empty): 300
+[2026-02-05 04:27:11] Transcript source counts: {'manual': 3, 'auto_generated': 300, 'none': 0}
+[2026-02-05 04:27:11] Subtitle language counts: {'en': 300, 'en-orig': 1, 'en-pt': 1, 'en-tr': 1}
+[2026-02-05 04:27:11] Rate-limited events: 0
+[2026-02-05 04:27:11] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-05 04:27:11] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,131 @@
+[2026-01-29 20:44:09] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-29 20:44:09] Playlist title: Do Not Open This Playlist
+[2026-01-29 20:44:09] Total videos: 16
+[2026-01-29 20:44:09] Cookies file: cookies.txt
+[2026-01-29 20:44:09] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 20:59:39] === Summary ===
+[2026-01-29 20:59:39] Processed: 16
+[2026-01-29 20:59:39] Failed: 0
+[2026-01-29 20:59:39] With subtitles: 16
+[2026-01-29 20:59:39] No subtitles: 0
+[2026-01-29 20:59:39] Cleaned transcripts (non-empty): 16
+[2026-01-29 20:59:39] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-01-29 20:59:39] Subtitle language counts: {'en': 16}
+[2026-01-29 20:59:39] Rate-limited events: 0
+[2026-01-29 20:59:39] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 20:59:39] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 21:52:00] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-29 21:52:00] Playlist title: Do Not Open This Playlist
+[2026-01-29 21:52:00] Total videos: 16
+[2026-01-29 21:52:00] Cookies file: cookies.txt
+[2026-01-29 21:52:00] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:09:02] === Summary ===
+[2026-01-29 22:09:02] Processed: 16
+[2026-01-29 22:09:02] Failed: 0
+[2026-01-29 22:09:02] With subtitles: 16
+[2026-01-29 22:09:02] No subtitles: 0
+[2026-01-29 22:09:02] Cleaned transcripts (non-empty): 16
+[2026-01-29 22:09:02] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-01-29 22:09:02] Subtitle language counts: {'en': 16}
+[2026-01-29 22:09:02] Rate-limited events: 0
+[2026-01-29 22:09:02] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:09:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 03:04:41] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 03:04:41] Playlist title: Do Not Open This Playlist
+[2026-01-30 03:04:41] Total videos: 16
+[2026-01-30 03:04:41] Cookies file: cookies_1.txt
+[2026-01-30 03:04:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 03:21:20] === Summary ===
+[2026-01-30 03:21:20] Processed: 16
+[2026-01-30 03:21:20] Failed: 0
+[2026-01-30 03:21:20] With subtitles: 16
+[2026-01-30 03:21:20] No subtitles: 0
+[2026-01-30 03:21:20] Cleaned transcripts (non-empty): 16
+[2026-01-30 03:21:20] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-01-30 03:21:20] Subtitle language counts: {'en': 16}
+[2026-01-30 03:21:20] Rate-limited events: 0
+[2026-01-30 03:21:20] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 03:21:20] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 03:46:52] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 03:46:52] Playlist title: Do Not Open This Playlist
+[2026-01-30 03:46:52] Total videos: 16
+[2026-01-30 03:46:52] Cookies file: cookies_1.txt
+[2026-01-30 03:46:52] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:03:24] === Summary ===
+[2026-01-30 04:03:24] Processed: 16
+[2026-01-30 04:03:24] Failed: 0
+[2026-01-30 04:03:24] With subtitles: 16
+[2026-01-30 04:03:24] No subtitles: 0
+[2026-01-30 04:03:24] Cleaned transcripts (non-empty): 16
+[2026-01-30 04:03:24] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-01-30 04:03:24] Subtitle language counts: {'en': 16}
+[2026-01-30 04:03:24] Rate-limited events: 0
+[2026-01-30 04:03:24] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:03:24] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 04:13:20] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 04:13:20] Playlist title: Do Not Open This Playlist
+[2026-01-30 04:13:20] Total videos: 16
+[2026-01-30 04:13:20] Cookies file: cookies_1.txt
+[2026-01-30 04:13:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:30:11] === Summary ===
+[2026-01-30 04:30:11] Processed: 16
+[2026-01-30 04:30:11] Failed: 0
+[2026-01-30 04:30:11] With subtitles: 16
+[2026-01-30 04:30:11] No subtitles: 0
+[2026-01-30 04:30:11] Cleaned transcripts (non-empty): 16
+[2026-01-30 04:30:11] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-01-30 04:30:11] Subtitle language counts: {'en': 16}
+[2026-01-30 04:30:11] Rate-limited events: 0
+[2026-01-30 04:30:11] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:30:11] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:24:55] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 14:24:55] Playlist title: Do Not Open This Playlist
+[2026-01-30 14:24:55] Total videos: 16
+[2026-01-30 14:24:55] Cookies file: cookies_1.txt
+[2026-01-30 14:24:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:24:55] Resume enabled. Existing videos: 16
+[2026-01-30 14:24:55] === Summary ===
+[2026-01-30 14:24:55] Processed: 0
+[2026-01-30 14:24:55] Failed: 0
+[2026-01-30 14:24:55] With subtitles: 0
+[2026-01-30 14:24:55] No subtitles: 0
+[2026-01-30 14:24:55] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:24:55] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:24:55] Subtitle language counts: {}
+[2026-01-30 14:24:55] Rate-limited events: 0
+[2026-01-30 14:24:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:24:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:45] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 14:25:45] Playlist title: Do Not Open This Playlist
+[2026-01-30 14:25:45] Total videos: 16
+[2026-01-30 14:25:45] Cookies file: cookies_1.txt
+[2026-01-30 14:25:45] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:45] Resume enabled. Existing videos: 16
+[2026-01-30 14:25:45] === Summary ===
+[2026-01-30 14:25:45] Processed: 0
+[2026-01-30 14:25:45] Failed: 0
+[2026-01-30 14:25:45] With subtitles: 0
+[2026-01-30 14:25:45] No subtitles: 0
+[2026-01-30 14:25:45] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:25:45] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:25:45] Subtitle language counts: {}
+[2026-01-30 14:25:45] Rate-limited events: 0
+[2026-01-30 14:25:45] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:25:45] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:10:21] Playlist URL: https://youtube.com/playlist?list=PLaCbgVmvOg1q2he0Js-ue-XD7CuNiVyEr&si=cNkUKg0h5pMYg4db
+[2026-01-30 21:10:21] Playlist title: Do Not Open This Playlist
+[2026-01-30 21:10:21] Total videos: 16
+[2026-01-30 21:10:21] Cookies file: cookies_1.txt
+[2026-01-30 21:10:21] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:10:21] Resume enabled. Existing videos: 16
+[2026-01-30 21:10:21] === Summary ===
+[2026-01-30 21:10:21] Processed: 0
+[2026-01-30 21:10:21] Failed: 0
+[2026-01-30 21:10:21] With subtitles: 0
+[2026-01-30 21:10:21] No subtitles: 0
+[2026-01-30 21:10:21] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:10:21] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:10:21] Subtitle language counts: {}
+[2026-01-30 21:10:21] Rate-limited events: 0
+[2026-01-30 21:10:21] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:10:21] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

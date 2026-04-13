@@ -1,0 +1,147 @@
+[2026-01-29 15:26:53] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-29 15:26:53] Playlist title: Children's Books
+[2026-01-29 15:26:53] Total videos: 45
+[2026-01-29 15:26:53] Cookies file: cookies.txt
+[2026-01-29 15:26:53] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:30:50] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-29 15:30:50] Playlist title: Children's Books
+[2026-01-29 15:30:50] Total videos: 45
+[2026-01-29 15:30:50] Cookies file: cookies.txt
+[2026-01-29 15:30:50] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:46:16] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 15:50:28] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 16:07:55] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 16:11:43] === Summary ===
+[2026-01-29 16:11:43] Processed: 43
+[2026-01-29 16:11:43] Failed: 2
+[2026-01-29 16:11:43] With subtitles: 41
+[2026-01-29 16:11:43] No subtitles: 24
+[2026-01-29 16:11:43] Cleaned transcripts (non-empty): 41
+[2026-01-29 16:11:43] Transcript source counts: {'manual': 22, 'auto_generated': 19, 'none': 2}
+[2026-01-29 16:11:43] Subtitle language counts: {'en': 41}
+[2026-01-29 16:11:43] Rate-limited events: 0
+[2026-01-29 16:11:43] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:11:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:13:38] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 16:17:56] === Summary ===
+[2026-01-29 16:17:56] Processed: 43
+[2026-01-29 16:17:56] Failed: 2
+[2026-01-29 16:17:56] With subtitles: 41
+[2026-01-29 16:17:56] No subtitles: 24
+[2026-01-29 16:17:56] Cleaned transcripts (non-empty): 41
+[2026-01-29 16:17:56] Transcript source counts: {'manual': 22, 'auto_generated': 19, 'none': 2}
+[2026-01-29 16:17:56] Subtitle language counts: {'en': 41}
+[2026-01-29 16:17:56] Rate-limited events: 0
+[2026-01-29 16:17:56] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:17:56] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 21:34:32] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-29 21:34:32] Playlist title: Children's Books
+[2026-01-29 21:34:32] Total videos: 45
+[2026-01-29 21:34:32] Cookies file: cookies_1.txt
+[2026-01-29 21:34:32] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 21:54:42] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 22:17:07] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 22:20:16] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-29 22:20:16] Playlist title: Children's Books
+[2026-01-29 22:20:16] Total videos: 45
+[2026-01-29 22:20:16] Cookies file: cookies_1.txt
+[2026-01-29 22:20:16] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:22:02] === Summary ===
+[2026-01-29 22:22:02] Processed: 43
+[2026-01-29 22:22:02] Failed: 2
+[2026-01-29 22:22:02] With subtitles: 41
+[2026-01-29 22:22:02] No subtitles: 24
+[2026-01-29 22:22:02] Cleaned transcripts (non-empty): 41
+[2026-01-29 22:22:02] Transcript source counts: {'manual': 22, 'auto_generated': 19, 'none': 2}
+[2026-01-29 22:22:02] Subtitle language counts: {'en': 41}
+[2026-01-29 22:22:02] Rate-limited events: 0
+[2026-01-29 22:22:02] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:22:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 22:35:47] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-29 22:35:47] Playlist title: Children's Books
+[2026-01-29 22:35:47] Total videos: 45
+[2026-01-29 22:35:47] Cookies file: cookies_1.txt
+[2026-01-29 22:35:47] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:44:12] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 22:59:52] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 23:06:32] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 23:10:09] === Summary ===
+[2026-01-29 23:10:09] Processed: 43
+[2026-01-29 23:10:09] Failed: 2
+[2026-01-29 23:10:09] With subtitles: 41
+[2026-01-29 23:10:09] No subtitles: 24
+[2026-01-29 23:10:09] Cleaned transcripts (non-empty): 41
+[2026-01-29 23:10:09] Transcript source counts: {'manual': 22, 'auto_generated': 19, 'none': 2}
+[2026-01-29 23:10:09] Subtitle language counts: {'en': 41}
+[2026-01-29 23:10:09] Rate-limited events: 0
+[2026-01-29 23:10:09] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 23:10:09] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 23:24:32] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-29 23:28:06] === Summary ===
+[2026-01-29 23:28:06] Processed: 43
+[2026-01-29 23:28:06] Failed: 2
+[2026-01-29 23:28:06] With subtitles: 41
+[2026-01-29 23:28:06] No subtitles: 24
+[2026-01-29 23:28:06] Cleaned transcripts (non-empty): 41
+[2026-01-29 23:28:06] Transcript source counts: {'manual': 22, 'auto_generated': 19, 'none': 2}
+[2026-01-29 23:28:06] Subtitle language counts: {'en': 41}
+[2026-01-29 23:28:06] Rate-limited events: 0
+[2026-01-29 23:28:06] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 23:28:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:16] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-30 14:20:16] Playlist title: Children's Books
+[2026-01-30 14:20:16] Total videos: 45
+[2026-01-30 14:20:16] Cookies file: cookies_1.txt
+[2026-01-30 14:20:16] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:16] Resume enabled. Existing videos: 42
+[2026-01-30 14:20:54] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 14:21:52] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 14:21:52] === Summary ===
+[2026-01-30 14:21:52] Processed: 0
+[2026-01-30 14:21:52] Failed: 2
+[2026-01-30 14:21:52] With subtitles: 0
+[2026-01-30 14:21:52] No subtitles: 0
+[2026-01-30 14:21:52] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:21:52] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:21:52] Subtitle language counts: {}
+[2026-01-30 14:21:52] Rate-limited events: 0
+[2026-01-30 14:21:52] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:21:52] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:22:04] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-30 14:22:04] Playlist title: Children's Books
+[2026-01-30 14:22:04] Total videos: 45
+[2026-01-30 14:22:04] Cookies file: cookies_1.txt
+[2026-01-30 14:22:04] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:22:04] Resume enabled. Existing videos: 42
+[2026-01-30 14:23:27] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 14:24:51] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 14:24:51] === Summary ===
+[2026-01-30 14:24:51] Processed: 0
+[2026-01-30 14:24:51] Failed: 2
+[2026-01-30 14:24:51] With subtitles: 0
+[2026-01-30 14:24:51] No subtitles: 0
+[2026-01-30 14:24:51] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:24:51] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:24:51] Subtitle language counts: {}
+[2026-01-30 14:24:51] Rate-limited events: 0
+[2026-01-30 14:24:51] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:24:51] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:06:03] Playlist URL: https://youtube.com/playlist?list=PLOfUlFKl4r6V-4JJyiJaPFC0b5PEp0gTX&si=Mdi0OYekL9VLfsNE
+[2026-01-30 21:06:03] Playlist title: Children's Books
+[2026-01-30 21:06:03] Total videos: 45
+[2026-01-30 21:06:03] Cookies file: cookies_1.txt
+[2026-01-30 21:06:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:06:03] Resume enabled. Existing videos: 42
+[2026-01-30 21:07:28] FAILED T1-4aEvySzc: ERROR: [youtube] T1-4aEvySzc: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 21:08:42] FAILED RXsSj2jUFt0: ERROR: [youtube] RXsSj2jUFt0: Video unavailable. This video is no longer available due to a copyright claim by Web Capio
+[2026-01-30 21:08:42] === Summary ===
+[2026-01-30 21:08:42] Processed: 0
+[2026-01-30 21:08:42] Failed: 2
+[2026-01-30 21:08:42] With subtitles: 0
+[2026-01-30 21:08:42] No subtitles: 0
+[2026-01-30 21:08:42] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:08:42] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:08:42] Subtitle language counts: {}
+[2026-01-30 21:08:42] Rate-limited events: 0
+[2026-01-30 21:08:42] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:08:42] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

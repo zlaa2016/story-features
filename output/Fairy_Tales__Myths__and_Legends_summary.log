@@ -1,0 +1,16 @@
+[2026-02-03 17:22:01] Playlist URL: https://youtube.com/playlist?list=PLU6AbyBWHPOswBR2kSEtXv8Iu7I281rL6&si=dW1-wLfzc6WEHwcU
+[2026-02-03 17:22:01] Playlist title: Fairy Tales, Myths, and Legends
+[2026-02-03 17:22:01] Total videos: 12
+[2026-02-03 17:22:01] Cookies file: cookies_3.txt
+[2026-02-03 17:22:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 17:32:35] === Summary ===
+[2026-02-03 17:32:35] Processed: 12
+[2026-02-03 17:32:35] Failed: 0
+[2026-02-03 17:32:35] With subtitles: 12
+[2026-02-03 17:32:35] No subtitles: 0
+[2026-02-03 17:32:35] Cleaned transcripts (non-empty): 12
+[2026-02-03 17:32:35] Transcript source counts: {'manual': 0, 'auto_generated': 12, 'none': 0}
+[2026-02-03 17:32:35] Subtitle language counts: {'en': 12}
+[2026-02-03 17:32:35] Rate-limited events: 0
+[2026-02-03 17:32:35] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 17:32:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

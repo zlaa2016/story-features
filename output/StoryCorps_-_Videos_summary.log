@@ -1,0 +1,52 @@
+[2026-01-29 15:39:26] Playlist URL: https://www.youtube.com/@storycorps/videos
+[2026-01-29 15:39:26] Playlist title: StoryCorps - Videos
+[2026-01-29 15:39:26] Total videos: 474
+[2026-01-29 15:39:26] Cookies file: cookie.txt
+[2026-01-29 15:39:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:45:46] Playlist URL: https://www.youtube.com/@storycorps/videos
+[2026-01-29 15:45:46] Playlist title: StoryCorps - Videos
+[2026-01-29 15:45:46] Total videos: 474
+[2026-01-29 15:45:46] Cookies file: cookie.txt
+[2026-01-29 15:45:46] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 23:41:23] FAILED 3P9-BjYxTu8: ERROR: [youtube] 3P9-BjYxTu8: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-29 23:44:08] FAILED 3P9-BjYxTu8: ERROR: [youtube] 3P9-BjYxTu8: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 00:13:40] === Summary ===
+[2026-01-30 00:13:40] Processed: 473
+[2026-01-30 00:13:40] Failed: 1
+[2026-01-30 00:13:40] With subtitles: 466
+[2026-01-30 00:13:40] No subtitles: 248
+[2026-01-30 00:13:40] Cleaned transcripts (non-empty): 466
+[2026-01-30 00:13:40] Transcript source counts: {'manual': 241, 'auto_generated': 225, 'none': 7}
+[2026-01-30 00:13:40] Subtitle language counts: {'en': 344, 'en-US': 121, 'en-CA': 1}
+[2026-01-30 00:13:40] Rate-limited events: 0
+[2026-01-30 00:13:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 1, 'other': 0}
+[2026-01-30 00:13:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 00:19:58] === Summary ===
+[2026-01-30 00:19:58] Processed: 473
+[2026-01-30 00:19:58] Failed: 1
+[2026-01-30 00:19:58] With subtitles: 466
+[2026-01-30 00:19:58] No subtitles: 248
+[2026-01-30 00:19:58] Cleaned transcripts (non-empty): 466
+[2026-01-30 00:19:58] Transcript source counts: {'manual': 241, 'auto_generated': 225, 'none': 7}
+[2026-01-30 00:19:58] Subtitle language counts: {'en': 344, 'en-US': 121, 'en-CA': 1}
+[2026-01-30 00:19:58] Rate-limited events: 0
+[2026-01-30 00:19:58] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 1, 'other': 0}
+[2026-01-30 00:19:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 13:20:25] Playlist URL: https://www.youtube.com/@storycorps/videos
+[2026-02-01 13:20:25] Playlist title: StoryCorps - Videos
+[2026-02-01 13:20:25] Total videos: 475
+[2026-02-01 13:20:25] Cookies file: cookies_2.txt
+[2026-02-01 13:20:25] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 13:20:25] Resume enabled. Existing videos: 473
+[2026-02-01 13:21:37] FAILED 3P9-BjYxTu8: ERROR: [youtube] 3P9-BjYxTu8: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-01 13:21:37] === Summary ===
+[2026-02-01 13:21:37] Processed: 1
+[2026-02-01 13:21:37] Failed: 1
+[2026-02-01 13:21:37] With subtitles: 1
+[2026-02-01 13:21:37] No subtitles: 0
+[2026-02-01 13:21:37] Cleaned transcripts (non-empty): 1
+[2026-02-01 13:21:37] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-01 13:21:37] Subtitle language counts: {'en': 1}
+[2026-02-01 13:21:37] Rate-limited events: 0
+[2026-02-01 13:21:37] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 1, 'other': 0}
+[2026-02-01 13:21:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,17 @@
+[2026-02-01 10:15:17] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayvbtukTTN2DNYTJSwkQRkvl&si=Z-9c9ezlXAfY76fB
+[2026-02-01 10:15:17] Playlist title: Sesame Street
+[2026-02-01 10:15:17] Total videos: 3
+[2026-02-01 10:15:17] Cookies file: cookies_2.txt
+[2026-02-01 10:15:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 10:15:17] Resume enabled. Existing videos: 3
+[2026-02-01 10:15:17] === Summary ===
+[2026-02-01 10:15:17] Processed: 0
+[2026-02-01 10:15:17] Failed: 0
+[2026-02-01 10:15:17] With subtitles: 0
+[2026-02-01 10:15:17] No subtitles: 0
+[2026-02-01 10:15:17] Cleaned transcripts (non-empty): 0
+[2026-02-01 10:15:17] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 10:15:17] Subtitle language counts: {}
+[2026-02-01 10:15:17] Rate-limited events: 0
+[2026-02-01 10:15:17] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 10:15:17] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

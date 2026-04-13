@@ -1,0 +1,16 @@
+[2026-02-03 17:32:36] Playlist URL: https://www.youtube.com/@BevsBookAdventures/videos
+[2026-02-03 17:32:36] Playlist title: Book Adventures w/ Bev - Videos
+[2026-02-03 17:32:36] Total videos: 26
+[2026-02-03 17:32:36] Cookies file: cookies_3.txt
+[2026-02-03 17:32:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 17:59:22] === Summary ===
+[2026-02-03 17:59:22] Processed: 26
+[2026-02-03 17:59:22] Failed: 0
+[2026-02-03 17:59:22] With subtitles: 26
+[2026-02-03 17:59:22] No subtitles: 0
+[2026-02-03 17:59:22] Cleaned transcripts (non-empty): 26
+[2026-02-03 17:59:22] Transcript source counts: {'manual': 0, 'auto_generated': 26, 'none': 0}
+[2026-02-03 17:59:22] Subtitle language counts: {'en': 26}
+[2026-02-03 17:59:22] Rate-limited events: 0
+[2026-02-03 17:59:22] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 17:59:22] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,131 @@
+[2026-01-29 15:22:26] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-29 15:22:26] Playlist title: Children's Book Week • 2019
+[2026-01-29 15:22:26] Total videos: 5
+[2026-01-29 15:22:26] Cookies file: cookies.txt
+[2026-01-29 15:22:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:25:53] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-29 15:25:53] Playlist title: Children's Book Week • 2019
+[2026-01-29 15:25:53] Total videos: 5
+[2026-01-29 15:25:53] Cookies file: cookies.txt
+[2026-01-29 15:25:53] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:26:52] === Summary ===
+[2026-01-29 15:26:52] Processed: 5
+[2026-01-29 15:26:52] Failed: 0
+[2026-01-29 15:26:52] With subtitles: 5
+[2026-01-29 15:26:52] No subtitles: 0
+[2026-01-29 15:26:52] Cleaned transcripts (non-empty): 5
+[2026-01-29 15:26:52] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-01-29 15:26:52] Subtitle language counts: {'en': 5}
+[2026-01-29 15:26:52] Rate-limited events: 0
+[2026-01-29 15:26:52] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 15:26:52] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 15:30:48] === Summary ===
+[2026-01-29 15:30:48] Processed: 5
+[2026-01-29 15:30:48] Failed: 0
+[2026-01-29 15:30:48] With subtitles: 5
+[2026-01-29 15:30:48] No subtitles: 0
+[2026-01-29 15:30:48] Cleaned transcripts (non-empty): 5
+[2026-01-29 15:30:48] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-01-29 15:30:48] Subtitle language counts: {'en': 5}
+[2026-01-29 15:30:48] Rate-limited events: 0
+[2026-01-29 15:30:48] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 15:30:48] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 21:29:39] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-29 21:29:39] Playlist title: Children's Book Week • 2019
+[2026-01-29 21:29:39] Total videos: 5
+[2026-01-29 21:29:39] Cookies file: cookies_1.txt
+[2026-01-29 21:29:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 21:34:30] === Summary ===
+[2026-01-29 21:34:30] Processed: 5
+[2026-01-29 21:34:30] Failed: 0
+[2026-01-29 21:34:30] With subtitles: 5
+[2026-01-29 21:34:30] No subtitles: 0
+[2026-01-29 21:34:30] Cleaned transcripts (non-empty): 5
+[2026-01-29 21:34:30] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-01-29 21:34:30] Subtitle language counts: {'en': 5}
+[2026-01-29 21:34:30] Rate-limited events: 0
+[2026-01-29 21:34:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 21:34:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 22:15:02] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-29 22:15:02] Playlist title: Children's Book Week • 2019
+[2026-01-29 22:15:02] Total videos: 5
+[2026-01-29 22:15:02] Cookies file: cookies_1.txt
+[2026-01-29 22:15:02] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:20:14] === Summary ===
+[2026-01-29 22:20:14] Processed: 5
+[2026-01-29 22:20:14] Failed: 0
+[2026-01-29 22:20:14] With subtitles: 5
+[2026-01-29 22:20:14] No subtitles: 0
+[2026-01-29 22:20:14] Cleaned transcripts (non-empty): 5
+[2026-01-29 22:20:14] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-01-29 22:20:14] Subtitle language counts: {'en': 5}
+[2026-01-29 22:20:14] Rate-limited events: 0
+[2026-01-29 22:20:14] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:20:14] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 22:30:35] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-29 22:30:35] Playlist title: Children's Book Week • 2019
+[2026-01-29 22:30:35] Total videos: 5
+[2026-01-29 22:30:35] Cookies file: cookies_1.txt
+[2026-01-29 22:30:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:35:45] === Summary ===
+[2026-01-29 22:35:45] Processed: 5
+[2026-01-29 22:35:45] Failed: 0
+[2026-01-29 22:35:45] With subtitles: 5
+[2026-01-29 22:35:45] No subtitles: 0
+[2026-01-29 22:35:45] Cleaned transcripts (non-empty): 5
+[2026-01-29 22:35:45] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-01-29 22:35:45] Subtitle language counts: {'en': 5}
+[2026-01-29 22:35:45] Rate-limited events: 0
+[2026-01-29 22:35:45] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:35:45] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:15] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-30 14:20:15] Playlist title: Children's Book Week • 2019
+[2026-01-30 14:20:15] Total videos: 5
+[2026-01-30 14:20:15] Cookies file: cookies_1.txt
+[2026-01-30 14:20:15] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:15] Resume enabled. Existing videos: 5
+[2026-01-30 14:20:15] === Summary ===
+[2026-01-30 14:20:15] Processed: 0
+[2026-01-30 14:20:15] Failed: 0
+[2026-01-30 14:20:15] With subtitles: 0
+[2026-01-30 14:20:15] No subtitles: 0
+[2026-01-30 14:20:15] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:15] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:15] Subtitle language counts: {}
+[2026-01-30 14:20:15] Rate-limited events: 0
+[2026-01-30 14:20:15] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:22:02] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-30 14:22:02] Playlist title: Children's Book Week • 2019
+[2026-01-30 14:22:02] Total videos: 5
+[2026-01-30 14:22:02] Cookies file: cookies_1.txt
+[2026-01-30 14:22:02] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:22:03] Resume enabled. Existing videos: 5
+[2026-01-30 14:22:03] === Summary ===
+[2026-01-30 14:22:03] Processed: 0
+[2026-01-30 14:22:03] Failed: 0
+[2026-01-30 14:22:03] With subtitles: 0
+[2026-01-30 14:22:03] No subtitles: 0
+[2026-01-30 14:22:03] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:22:03] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:22:03] Subtitle language counts: {}
+[2026-01-30 14:22:03] Rate-limited events: 0
+[2026-01-30 14:22:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:22:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:06:01] Playlist URL: https://youtube.com/playlist?list=PLHBvds1gdPkpj7fjKVP3QAxNVGeRxz6lZ&si=jrOdE7owCmQX_kHP
+[2026-01-30 21:06:01] Playlist title: Children's Book Week • 2019
+[2026-01-30 21:06:01] Total videos: 5
+[2026-01-30 21:06:01] Cookies file: cookies_1.txt
+[2026-01-30 21:06:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:06:01] Resume enabled. Existing videos: 5
+[2026-01-30 21:06:01] === Summary ===
+[2026-01-30 21:06:01] Processed: 0
+[2026-01-30 21:06:01] Failed: 0
+[2026-01-30 21:06:01] With subtitles: 0
+[2026-01-30 21:06:01] No subtitles: 0
+[2026-01-30 21:06:01] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:06:01] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:06:01] Subtitle language counts: {}
+[2026-01-30 21:06:01] Rate-limited events: 0
+[2026-01-30 21:06:01] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:06:01] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

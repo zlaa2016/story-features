@@ -1,0 +1,99 @@
+[2026-01-29 16:56:11] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-29 16:56:11] Playlist title: Arnold Lobel
+[2026-01-29 16:56:11] Total videos: 13
+[2026-01-29 16:56:11] Cookies file: cookies_1.txt
+[2026-01-29 16:56:11] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:10:02] === Summary ===
+[2026-01-29 17:10:02] Processed: 13
+[2026-01-29 17:10:02] Failed: 0
+[2026-01-29 17:10:02] With subtitles: 13
+[2026-01-29 17:10:02] No subtitles: 0
+[2026-01-29 17:10:02] Cleaned transcripts (non-empty): 13
+[2026-01-29 17:10:02] Transcript source counts: {'manual': 0, 'auto_generated': 13, 'none': 0}
+[2026-01-29 17:10:02] Subtitle language counts: {'en': 13}
+[2026-01-29 17:10:02] Rate-limited events: 0
+[2026-01-29 17:10:02] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:10:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:43:42] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-29 17:43:42] Playlist title: Arnold Lobel
+[2026-01-29 17:43:42] Total videos: 13
+[2026-01-29 17:43:42] Cookies file: cookies_1.txt
+[2026-01-29 17:43:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:52:51] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-29 17:52:51] Playlist title: Arnold Lobel
+[2026-01-29 17:52:51] Total videos: 13
+[2026-01-29 17:52:51] Cookies file: cookies_1.txt
+[2026-01-29 17:52:51] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:58:09] === Summary ===
+[2026-01-29 17:58:09] Processed: 13
+[2026-01-29 17:58:09] Failed: 0
+[2026-01-29 17:58:09] With subtitles: 13
+[2026-01-29 17:58:09] No subtitles: 0
+[2026-01-29 17:58:09] Cleaned transcripts (non-empty): 13
+[2026-01-29 17:58:09] Transcript source counts: {'manual': 0, 'auto_generated': 13, 'none': 0}
+[2026-01-29 17:58:09] Subtitle language counts: {'en': 13}
+[2026-01-29 17:58:09] Rate-limited events: 0
+[2026-01-29 17:58:09] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:58:09] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 18:06:41] === Summary ===
+[2026-01-29 18:06:41] Processed: 13
+[2026-01-29 18:06:41] Failed: 0
+[2026-01-29 18:06:41] With subtitles: 13
+[2026-01-29 18:06:41] No subtitles: 0
+[2026-01-29 18:06:41] Cleaned transcripts (non-empty): 13
+[2026-01-29 18:06:41] Transcript source counts: {'manual': 0, 'auto_generated': 13, 'none': 0}
+[2026-01-29 18:06:41] Subtitle language counts: {'en': 13}
+[2026-01-29 18:06:41] Rate-limited events: 0
+[2026-01-29 18:06:41] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 18:06:41] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:13] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-30 14:02:13] Playlist title: Arnold Lobel
+[2026-01-30 14:02:13] Total videos: 13
+[2026-01-30 14:02:13] Cookies file: cookies_1.txt
+[2026-01-30 14:02:13] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:13] Resume enabled. Existing videos: 13
+[2026-01-30 14:02:13] === Summary ===
+[2026-01-30 14:02:13] Processed: 0
+[2026-01-30 14:02:13] Failed: 0
+[2026-01-30 14:02:13] With subtitles: 0
+[2026-01-30 14:02:13] No subtitles: 0
+[2026-01-30 14:02:13] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:13] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:13] Subtitle language counts: {}
+[2026-01-30 14:02:13] Rate-limited events: 0
+[2026-01-30 14:02:13] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:13] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:35] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-30 14:02:35] Playlist title: Arnold Lobel
+[2026-01-30 14:02:35] Total videos: 13
+[2026-01-30 14:02:35] Cookies file: cookies_1.txt
+[2026-01-30 14:02:35] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:35] Resume enabled. Existing videos: 13
+[2026-01-30 14:02:35] === Summary ===
+[2026-01-30 14:02:35] Processed: 0
+[2026-01-30 14:02:35] Failed: 0
+[2026-01-30 14:02:35] With subtitles: 0
+[2026-01-30 14:02:35] No subtitles: 0
+[2026-01-30 14:02:35] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:35] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:35] Subtitle language counts: {}
+[2026-01-30 14:02:35] Rate-limited events: 0
+[2026-01-30 14:02:35] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:35] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:44] Playlist URL: https://youtube.com/playlist?list=PLwlwWmF1URrOFg__CVOG-Q9wlG4wiJjAg&si=fIKiIdBccDmcpLmr
+[2026-01-30 20:44:44] Playlist title: Arnold Lobel
+[2026-01-30 20:44:44] Total videos: 13
+[2026-01-30 20:44:44] Cookies file: cookies_1.txt
+[2026-01-30 20:44:44] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:44] Resume enabled. Existing videos: 13
+[2026-01-30 20:44:44] === Summary ===
+[2026-01-30 20:44:44] Processed: 0
+[2026-01-30 20:44:44] Failed: 0
+[2026-01-30 20:44:44] With subtitles: 0
+[2026-01-30 20:44:44] No subtitles: 0
+[2026-01-30 20:44:44] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:44] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:44] Subtitle language counts: {}
+[2026-01-30 20:44:44] Rate-limited events: 0
+[2026-01-30 20:44:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

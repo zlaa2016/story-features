@@ -1,0 +1,16 @@
+[2026-02-03 17:00:58] Playlist URL: https://youtube.com/playlist?list=PLU6AbyBWHPOsbkdLGM1n8nmJg_75wEe7f&si=cUOLqA5bmghhy90n
+[2026-02-03 17:00:58] Playlist title: Around the World
+[2026-02-03 17:00:58] Total videos: 21
+[2026-02-03 17:00:58] Cookies file: cookies_3.txt
+[2026-02-03 17:00:58] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 17:22:00] === Summary ===
+[2026-02-03 17:22:00] Processed: 21
+[2026-02-03 17:22:00] Failed: 0
+[2026-02-03 17:22:00] With subtitles: 21
+[2026-02-03 17:22:00] No subtitles: 0
+[2026-02-03 17:22:00] Cleaned transcripts (non-empty): 21
+[2026-02-03 17:22:00] Transcript source counts: {'manual': 1, 'auto_generated': 20, 'none': 0}
+[2026-02-03 17:22:00] Subtitle language counts: {'en': 21}
+[2026-02-03 17:22:00] Rate-limited events: 0
+[2026-02-03 17:22:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 17:22:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

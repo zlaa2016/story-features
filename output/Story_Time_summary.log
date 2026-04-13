@@ -1,0 +1,17 @@
+[2026-02-03 20:56:55] Playlist URL: https://youtube.com/playlist?list=PLOWx29rdgux1MRqJfEvmf92OysIeq5fDq&si=l3EPOP_OZYMe--Lf
+[2026-02-03 20:56:55] Playlist title: Story Time
+[2026-02-03 20:56:55] Total videos: 12
+[2026-02-03 20:56:55] Cookies file: cookies_3.txt
+[2026-02-03 20:56:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 22:11:03] FAILED ICWwiCsjH9s: ERROR: [youtube] ICWwiCsjH9s: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1109b7520>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x1109b7520>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-04 09:41:54] === Summary ===
+[2026-02-04 09:41:54] Processed: 11
+[2026-02-04 09:41:54] Failed: 1
+[2026-02-04 09:41:54] With subtitles: 11
+[2026-02-04 09:41:54] No subtitles: 0
+[2026-02-04 09:41:54] Cleaned transcripts (non-empty): 11
+[2026-02-04 09:41:54] Transcript source counts: {'manual': 0, 'auto_generated': 11, 'none': 0}
+[2026-02-04 09:41:54] Subtitle language counts: {'en': 11}
+[2026-02-04 09:41:54] Rate-limited events: 0
+[2026-02-04 09:41:54] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-02-04 09:41:54] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

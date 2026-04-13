@@ -1,0 +1,17 @@
+[2026-02-01 07:01:51] Playlist URL: https://youtube.com/playlist?list=PLfLxvB2pKw8aJO2-pvY0qf44yPy5YSwiM&si=NE-Ch4cBOaIlFTSR
+[2026-02-01 07:01:51] Playlist title: Peppa Pig Playlist
+[2026-02-01 07:01:51] Total videos: 58
+[2026-02-01 07:01:51] Cookies file: cookies_2.txt
+[2026-02-01 07:01:51] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 07:01:51] Resume enabled. Existing videos: 58
+[2026-02-01 07:01:51] === Summary ===
+[2026-02-01 07:01:51] Processed: 0
+[2026-02-01 07:01:51] Failed: 0
+[2026-02-01 07:01:51] With subtitles: 0
+[2026-02-01 07:01:51] No subtitles: 0
+[2026-02-01 07:01:51] Cleaned transcripts (non-empty): 0
+[2026-02-01 07:01:51] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 07:01:51] Subtitle language counts: {}
+[2026-02-01 07:01:51] Rate-limited events: 0
+[2026-02-01 07:01:51] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 07:01:51] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

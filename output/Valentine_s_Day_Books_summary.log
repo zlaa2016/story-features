@@ -1,0 +1,51 @@
+[2026-01-30 12:57:20] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-01-30 12:57:20] Playlist title: Valentine's Day Books
+[2026-01-30 12:57:20] Total videos: 17
+[2026-01-30 12:57:20] Cookies file: cookie.txt
+[2026-01-30 12:57:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:57:20] Resume enabled. Existing videos: 15
+[2026-01-30 12:59:28] === Summary ===
+[2026-01-30 12:59:28] Processed: 2
+[2026-01-30 12:59:28] Failed: 0
+[2026-01-30 12:59:28] With subtitles: 2
+[2026-01-30 12:59:28] No subtitles: 0
+[2026-01-30 12:59:28] Cleaned transcripts (non-empty): 2
+[2026-01-30 12:59:28] Transcript source counts: {'manual': 0, 'auto_generated': 2, 'none': 0}
+[2026-01-30 12:59:28] Subtitle language counts: {'en': 2}
+[2026-01-30 12:59:28] Rate-limited events: 0
+[2026-01-30 12:59:28] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 12:59:28] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:11:23] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-01-30 14:11:23] Playlist title: Valentine's Day Books
+[2026-01-30 14:11:23] Total videos: 17
+[2026-01-30 14:11:23] Cookies file: cookie.txt
+[2026-01-30 14:11:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:11:23] Resume enabled. Existing videos: 17
+[2026-01-30 14:11:23] === Summary ===
+[2026-01-30 14:11:23] Processed: 0
+[2026-01-30 14:11:23] Failed: 0
+[2026-01-30 14:11:23] With subtitles: 0
+[2026-01-30 14:11:23] No subtitles: 0
+[2026-01-30 14:11:23] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:11:23] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:11:23] Subtitle language counts: {}
+[2026-01-30 14:11:23] Rate-limited events: 0
+[2026-01-30 14:11:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:11:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:18:59] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-01 14:18:59] Playlist title: Valentine's Day Books
+[2026-02-01 14:18:59] Total videos: 17
+[2026-02-01 14:18:59] Cookies file: cookies_3.txt
+[2026-02-01 14:18:59] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:18:59] Resume enabled. Existing videos: 17
+[2026-02-01 14:18:59] === Summary ===
+[2026-02-01 14:18:59] Processed: 0
+[2026-02-01 14:18:59] Failed: 0
+[2026-02-01 14:18:59] With subtitles: 0
+[2026-02-01 14:18:59] No subtitles: 0
+[2026-02-01 14:18:59] Cleaned transcripts (non-empty): 0
+[2026-02-01 14:18:59] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-01 14:18:59] Subtitle language counts: {}
+[2026-02-01 14:18:59] Rate-limited events: 0
+[2026-02-01 14:18:59] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:18:59] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

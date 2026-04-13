@@ -1,0 +1,20 @@
+Part2 URLs: 59
+CSV files found: 53
+Summary logs found: 54
+Missing CSVs: 6
+Missing summaries: 5
+
+Missing CSVs:
+Mr__Potato_Head_Goes_To_Market__1984_Kid_Stuff_book___tape_	https://youtu.be/XX43j7lom0E?si=_iSryl6maCoaUdlF
+Rootin__Tootin__Speed_Reversin__Rescue_Rangers__EDIT_	https://youtu.be/OaU2chR9nRM?si=kdDtj2-9EdvDBQEs
+Storynory	https://www.youtube.com/channel/UCI7gXZrVe2y-u5LGLilMvvQ
+Super_Mario_Bros__-_Trapped_in_the_Perilous_Pit__1990_Nintendo_Golden_Book_Read-Along_story_	https://youtu.be/YVh17zYlPJ8?si=p40u4aR8krIBHYWC
+Suzy_McKee_Charnas_Hugo_Award_Winning_Short_Story	https://youtu.be/w6_obxw_psM?si=3LeUJBVeMY0FPXlI
+The_Sentinel_by_Arthur_C_Clarke	https://youtu.be/EPmyOYyXkk8?si=PgfbE6pgN9g9taWi
+
+Missing summaries:
+Mr__Potato_Head_Goes_To_Market__1984_Kid_Stuff_book___tape_	https://youtu.be/XX43j7lom0E?si=_iSryl6maCoaUdlF
+Rootin__Tootin__Speed_Reversin__Rescue_Rangers__EDIT_	https://youtu.be/OaU2chR9nRM?si=kdDtj2-9EdvDBQEs
+Super_Mario_Bros__-_Trapped_in_the_Perilous_Pit__1990_Nintendo_Golden_Book_Read-Along_story_	https://youtu.be/YVh17zYlPJ8?si=p40u4aR8krIBHYWC
+Suzy_McKee_Charnas_Hugo_Award_Winning_Short_Story	https://youtu.be/w6_obxw_psM?si=3LeUJBVeMY0FPXlI
+The_Sentinel_by_Arthur_C_Clarke	https://youtu.be/EPmyOYyXkk8?si=PgfbE6pgN9g9taWi

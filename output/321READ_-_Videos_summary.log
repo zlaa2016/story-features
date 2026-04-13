@@ -1,0 +1,99 @@
+[2026-01-29 15:41:05] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-29 15:41:05] Playlist title: 321READ - Videos
+[2026-01-29 15:41:05] Total videos: 37
+[2026-01-29 15:41:05] Cookies file: cookies_1.txt
+[2026-01-29 15:41:05] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:21:07] === Summary ===
+[2026-01-29 16:21:07] Processed: 37
+[2026-01-29 16:21:07] Failed: 0
+[2026-01-29 16:21:07] With subtitles: 37
+[2026-01-29 16:21:07] No subtitles: 0
+[2026-01-29 16:21:07] Cleaned transcripts (non-empty): 37
+[2026-01-29 16:21:07] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-29 16:21:07] Subtitle language counts: {'en': 37}
+[2026-01-29 16:21:07] Rate-limited events: 0
+[2026-01-29 16:21:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:21:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:29:33] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-29 16:29:33] Playlist title: 321READ - Videos
+[2026-01-29 16:29:33] Total videos: 37
+[2026-01-29 16:29:33] Cookies file: cookies_1.txt
+[2026-01-29 16:29:33] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 16:30:36] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-29 16:30:36] Playlist title: 321READ - Videos
+[2026-01-29 16:30:36] Total videos: 37
+[2026-01-29 16:30:36] Cookies file: cookies_1.txt
+[2026-01-29 16:30:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 17:08:48] === Summary ===
+[2026-01-29 17:08:48] Processed: 37
+[2026-01-29 17:08:48] Failed: 0
+[2026-01-29 17:08:48] With subtitles: 37
+[2026-01-29 17:08:48] No subtitles: 0
+[2026-01-29 17:08:48] Cleaned transcripts (non-empty): 37
+[2026-01-29 17:08:48] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-29 17:08:48] Subtitle language counts: {'en': 37}
+[2026-01-29 17:08:48] Rate-limited events: 0
+[2026-01-29 17:08:48] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:08:48] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 17:12:22] === Summary ===
+[2026-01-29 17:12:22] Processed: 37
+[2026-01-29 17:12:22] Failed: 0
+[2026-01-29 17:12:22] With subtitles: 37
+[2026-01-29 17:12:22] No subtitles: 0
+[2026-01-29 17:12:22] Cleaned transcripts (non-empty): 37
+[2026-01-29 17:12:22] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-29 17:12:22] Subtitle language counts: {'en': 37}
+[2026-01-29 17:12:22] Rate-limited events: 0
+[2026-01-29 17:12:22] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 17:12:22] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:06] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-30 14:02:06] Playlist title: 321READ - Videos
+[2026-01-30 14:02:06] Total videos: 37
+[2026-01-30 14:02:06] Cookies file: cookies_1.txt
+[2026-01-30 14:02:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:06] Resume enabled. Existing videos: 37
+[2026-01-30 14:02:06] === Summary ===
+[2026-01-30 14:02:06] Processed: 0
+[2026-01-30 14:02:06] Failed: 0
+[2026-01-30 14:02:06] With subtitles: 0
+[2026-01-30 14:02:06] No subtitles: 0
+[2026-01-30 14:02:06] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:06] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:06] Subtitle language counts: {}
+[2026-01-30 14:02:06] Rate-limited events: 0
+[2026-01-30 14:02:06] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:29] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-30 14:02:29] Playlist title: 321READ - Videos
+[2026-01-30 14:02:29] Total videos: 37
+[2026-01-30 14:02:29] Cookies file: cookies_1.txt
+[2026-01-30 14:02:29] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:02:29] Resume enabled. Existing videos: 37
+[2026-01-30 14:02:29] === Summary ===
+[2026-01-30 14:02:29] Processed: 0
+[2026-01-30 14:02:29] Failed: 0
+[2026-01-30 14:02:29] With subtitles: 0
+[2026-01-30 14:02:29] No subtitles: 0
+[2026-01-30 14:02:29] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:02:29] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:02:29] Subtitle language counts: {}
+[2026-01-30 14:02:29] Rate-limited events: 0
+[2026-01-30 14:02:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:38] Playlist URL: https://www.youtube.com/@321read/videos
+[2026-01-30 20:44:38] Playlist title: 321READ - Videos
+[2026-01-30 20:44:38] Total videos: 37
+[2026-01-30 20:44:38] Cookies file: cookies_1.txt
+[2026-01-30 20:44:38] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:38] Resume enabled. Existing videos: 37
+[2026-01-30 20:44:38] === Summary ===
+[2026-01-30 20:44:38] Processed: 0
+[2026-01-30 20:44:38] Failed: 0
+[2026-01-30 20:44:38] With subtitles: 0
+[2026-01-30 20:44:38] No subtitles: 0
+[2026-01-30 20:44:38] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:38] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:38] Subtitle language counts: {}
+[2026-01-30 20:44:38] Rate-limited events: 0
+[2026-01-30 20:44:38] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:38] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

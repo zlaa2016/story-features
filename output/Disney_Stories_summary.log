@@ -1,0 +1,139 @@
+[2026-01-29 18:14:52] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-29 18:14:52] Playlist title: Disney Stories
+[2026-01-29 18:14:52] Total videos: 17
+[2026-01-29 18:14:52] Cookies file: cookies.txt
+[2026-01-29 18:14:52] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 18:21:50] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-29 18:30:13] === Summary ===
+[2026-01-29 18:30:13] Processed: 16
+[2026-01-29 18:30:13] Failed: 1
+[2026-01-29 18:30:13] With subtitles: 0
+[2026-01-29 18:30:13] No subtitles: 16
+[2026-01-29 18:30:13] Cleaned transcripts (non-empty): 0
+[2026-01-29 18:30:13] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 16}
+[2026-01-29 18:30:13] Subtitle language counts: {}
+[2026-01-29 18:30:13] Rate-limited events: 0
+[2026-01-29 18:30:13] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 18:30:13] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 19:14:45] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-29 19:14:45] Playlist title: Disney Stories
+[2026-01-29 19:14:45] Total videos: 17
+[2026-01-29 19:14:45] Cookies file: cookies.txt
+[2026-01-29 19:14:45] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 19:23:01] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-29 19:32:06] === Summary ===
+[2026-01-29 19:32:06] Processed: 16
+[2026-01-29 19:32:06] Failed: 1
+[2026-01-29 19:32:06] With subtitles: 0
+[2026-01-29 19:32:06] No subtitles: 16
+[2026-01-29 19:32:06] Cleaned transcripts (non-empty): 0
+[2026-01-29 19:32:06] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 16}
+[2026-01-29 19:32:06] Subtitle language counts: {}
+[2026-01-29 19:32:06] Rate-limited events: 0
+[2026-01-29 19:32:06] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 19:32:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 00:27:20] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 00:27:20] Playlist title: Disney Stories
+[2026-01-30 00:27:20] Total videos: 17
+[2026-01-30 00:27:20] Cookies file: cookies_1.txt
+[2026-01-30 00:27:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 00:34:23] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 00:44:27] === Summary ===
+[2026-01-30 00:44:27] Processed: 16
+[2026-01-30 00:44:27] Failed: 1
+[2026-01-30 00:44:27] With subtitles: 0
+[2026-01-30 00:44:27] No subtitles: 16
+[2026-01-30 00:44:27] Cleaned transcripts (non-empty): 0
+[2026-01-30 00:44:27] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 16}
+[2026-01-30 00:44:27] Subtitle language counts: {}
+[2026-01-30 00:44:27] Rate-limited events: 0
+[2026-01-30 00:44:27] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 00:44:27] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 01:11:46] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 01:11:46] Playlist title: Disney Stories
+[2026-01-30 01:11:46] Total videos: 17
+[2026-01-30 01:11:46] Cookies file: cookies_1.txt
+[2026-01-30 01:11:46] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 01:18:43] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 01:28:33] === Summary ===
+[2026-01-30 01:28:33] Processed: 16
+[2026-01-30 01:28:33] Failed: 1
+[2026-01-30 01:28:33] With subtitles: 0
+[2026-01-30 01:28:33] No subtitles: 16
+[2026-01-30 01:28:33] Cleaned transcripts (non-empty): 0
+[2026-01-30 01:28:33] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 16}
+[2026-01-30 01:28:33] Subtitle language counts: {}
+[2026-01-30 01:28:33] Rate-limited events: 0
+[2026-01-30 01:28:33] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 01:28:33] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 01:33:15] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 01:33:15] Playlist title: Disney Stories
+[2026-01-30 01:33:15] Total videos: 17
+[2026-01-30 01:33:15] Cookies file: cookies_1.txt
+[2026-01-30 01:33:15] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 01:41:04] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 01:50:53] === Summary ===
+[2026-01-30 01:50:53] Processed: 16
+[2026-01-30 01:50:53] Failed: 1
+[2026-01-30 01:50:53] With subtitles: 0
+[2026-01-30 01:50:53] No subtitles: 16
+[2026-01-30 01:50:53] Cleaned transcripts (non-empty): 0
+[2026-01-30 01:50:53] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 16}
+[2026-01-30 01:50:53] Subtitle language counts: {}
+[2026-01-30 01:50:53] Rate-limited events: 0
+[2026-01-30 01:50:53] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 01:50:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:22:01] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 14:22:01] Playlist title: Disney Stories
+[2026-01-30 14:22:01] Total videos: 17
+[2026-01-30 14:22:01] Cookies file: cookies_1.txt
+[2026-01-30 14:22:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:22:01] Resume enabled. Existing videos: 16
+[2026-01-30 14:23:13] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 14:23:13] === Summary ===
+[2026-01-30 14:23:13] Processed: 0
+[2026-01-30 14:23:13] Failed: 1
+[2026-01-30 14:23:13] With subtitles: 0
+[2026-01-30 14:23:13] No subtitles: 0
+[2026-01-30 14:23:13] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:23:13] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:23:13] Subtitle language counts: {}
+[2026-01-30 14:23:13] Rate-limited events: 0
+[2026-01-30 14:23:13] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:23:13] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:01] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 14:25:01] Playlist title: Disney Stories
+[2026-01-30 14:25:01] Total videos: 17
+[2026-01-30 14:25:01] Cookies file: cookies_1.txt
+[2026-01-30 14:25:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:01] Resume enabled. Existing videos: 16
+[2026-01-30 14:25:36] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 14:25:36] === Summary ===
+[2026-01-30 14:25:36] Processed: 0
+[2026-01-30 14:25:36] Failed: 1
+[2026-01-30 14:25:36] With subtitles: 0
+[2026-01-30 14:25:36] No subtitles: 0
+[2026-01-30 14:25:36] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:25:36] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:25:36] Subtitle language counts: {}
+[2026-01-30 14:25:36] Rate-limited events: 0
+[2026-01-30 14:25:36] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:25:36] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:08:52] Playlist URL: https://youtube.com/playlist?list=PL5NarVlMDfGHoXytcXlaNzyo0RUFHG7H-&si=DxPpwphrfdNncfIa
+[2026-01-30 21:08:52] Playlist title: Disney Stories
+[2026-01-30 21:08:52] Total videos: 17
+[2026-01-30 21:08:52] Cookies file: cookies_1.txt
+[2026-01-30 21:08:52] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:08:52] Resume enabled. Existing videos: 16
+[2026-01-30 21:10:11] FAILED 9I4bYN4rKZc: ERROR: [youtube] 9I4bYN4rKZc: Video unavailable. This video is not available
+[2026-01-30 21:10:11] === Summary ===
+[2026-01-30 21:10:11] Processed: 0
+[2026-01-30 21:10:11] Failed: 1
+[2026-01-30 21:10:11] With subtitles: 0
+[2026-01-30 21:10:11] No subtitles: 0
+[2026-01-30 21:10:11] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:10:11] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:10:11] Subtitle language counts: {}
+[2026-01-30 21:10:11] Rate-limited events: 0
+[2026-01-30 21:10:11] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:10:11] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

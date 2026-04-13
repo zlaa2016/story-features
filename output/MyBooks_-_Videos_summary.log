@@ -1,0 +1,19 @@
+[2026-02-04 09:41:57] Playlist URL: https://www.youtube.com/@mybooks1733/videos
+[2026-02-04 09:41:57] Playlist title: MyBooks - Videos
+[2026-02-04 09:41:57] Total videos: 149
+[2026-02-04 09:41:57] Cookies file: cookies_3.txt
+[2026-02-04 09:41:57] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 10:59:19] FAILED EDM_gwFUoiI: ERROR: [youtube] EDM_gwFUoiI: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x105ab8c40>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x105ab8c40>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-04 11:02:02] FAILED 5YDsM5W5pb0: ERROR: [youtube] 5YDsM5W5pb0: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10d2b1780>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x10d2b1780>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-04 12:45:36] FAILED egX_jx7txnY: ERROR: [youtube] egX_jx7txnY: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x11fd51930>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x11fd51930>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-04 13:14:23] === Summary ===
+[2026-02-04 13:14:23] Processed: 146
+[2026-02-04 13:14:23] Failed: 3
+[2026-02-04 13:14:23] With subtitles: 125
+[2026-02-04 13:14:23] No subtitles: 21
+[2026-02-04 13:14:23] Cleaned transcripts (non-empty): 125
+[2026-02-04 13:14:23] Transcript source counts: {'manual': 0, 'auto_generated': 125, 'none': 21}
+[2026-02-04 13:14:23] Subtitle language counts: {'en': 125}
+[2026-02-04 13:14:23] Rate-limited events: 0
+[2026-02-04 13:14:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 3}
+[2026-02-04 13:14:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

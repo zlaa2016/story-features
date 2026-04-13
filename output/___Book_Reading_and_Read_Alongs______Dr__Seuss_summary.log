@@ -1,0 +1,97 @@
+[2026-01-29 14:07:38] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-29 14:07:38] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-29 14:07:38] Total videos: 70
+[2026-01-29 14:07:38] Cookies file: cookies_1.txt
+[2026-01-29 14:07:38] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 14:49:26] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-29 14:49:26] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-29 14:49:26] Total videos: 70
+[2026-01-29 14:49:26] Cookies file: cookies_1.txt
+[2026-01-29 14:49:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 14:56:12] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-29 14:56:12] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-29 14:56:12] Total videos: 70
+[2026-01-29 14:56:12] Cookies file: cookies_1.txt
+[2026-01-29 14:56:12] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 15:20:46] FAILED Td4SQf0XaT4: ERROR: [youtube] Td4SQf0XaT4: Video unavailable. This video is private
+[2026-01-29 15:20:46] === Summary ===
+[2026-01-29 15:20:46] Processed: 69
+[2026-01-29 15:20:46] Failed: 1
+[2026-01-29 15:20:46] With subtitles: 68
+[2026-01-29 15:20:46] No subtitles: 1
+[2026-01-29 15:20:46] Rate-limited events: 0
+[2026-01-29 15:20:46] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 15:20:46] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:08:26] FAILED Td4SQf0XaT4: ERROR: [youtube] Td4SQf0XaT4: Video unavailable. This video is private
+[2026-01-29 16:08:26] === Summary ===
+[2026-01-29 16:08:26] Processed: 69
+[2026-01-29 16:08:26] Failed: 1
+[2026-01-29 16:08:26] With subtitles: 68
+[2026-01-29 16:08:26] No subtitles: 1
+[2026-01-29 16:08:26] Rate-limited events: 0
+[2026-01-29 16:08:26] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:08:26] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 16:08:57] FAILED Td4SQf0XaT4: ERROR: [youtube] Td4SQf0XaT4: Video unavailable. This video is private
+[2026-01-29 16:08:57] === Summary ===
+[2026-01-29 16:08:57] Processed: 69
+[2026-01-29 16:08:57] Failed: 1
+[2026-01-29 16:08:57] With subtitles: 68
+[2026-01-29 16:08:57] No subtitles: 1
+[2026-01-29 16:08:57] Cleaned transcripts (non-empty): 68
+[2026-01-29 16:08:57] Transcript source counts: {'manual': 0, 'auto_generated': 68, 'none': 1}
+[2026-01-29 16:08:57] Subtitle language counts: {'en': 68}
+[2026-01-29 16:08:57] Rate-limited events: 0
+[2026-01-29 16:08:57] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 16:08:57] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 12:38:42] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-30 12:38:42] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-30 12:38:42] Total videos: 70
+[2026-01-30 12:38:42] Cookies file: cookies_1.txt
+[2026-01-30 12:38:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:47:48] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-30 12:47:48] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-30 12:47:48] Total videos: 70
+[2026-01-30 12:47:48] Cookies file: cookies_1.txt
+[2026-01-30 12:47:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 12:47:48] Resume enabled. Existing videos: 8
+[2026-01-30 14:02:03] EMPTY_SUBTITLES 3DnnEtpFzm0: source=auto_generated, lang=en
+[2026-01-30 14:02:03] === Summary ===
+[2026-01-30 14:02:03] Processed: 62
+[2026-01-30 14:02:03] Failed: 0
+[2026-01-30 14:02:03] With subtitles: 60
+[2026-01-30 14:02:03] No subtitles: 1
+[2026-01-30 14:02:03] Cleaned transcripts (non-empty): 60
+[2026-01-30 14:02:03] Transcript source counts: {'manual': 0, 'auto_generated': 61, 'none': 1}
+[2026-01-30 14:02:03] Subtitle language counts: {'en': 61}
+[2026-01-30 14:02:03] Rate-limited events: 0
+[2026-01-30 14:02:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:02:25] EMPTY_SUBTITLES 3DnnEtpFzm0: source=auto_generated, lang=en
+[2026-01-30 14:02:25] === Summary ===
+[2026-01-30 14:02:25] Processed: 70
+[2026-01-30 14:02:25] Failed: 0
+[2026-01-30 14:02:25] With subtitles: 68
+[2026-01-30 14:02:25] No subtitles: 1
+[2026-01-30 14:02:25] Cleaned transcripts (non-empty): 68
+[2026-01-30 14:02:25] Transcript source counts: {'manual': 0, 'auto_generated': 69, 'none': 1}
+[2026-01-30 14:02:25] Subtitle language counts: {'en': 69}
+[2026-01-30 14:02:25] Rate-limited events: 0
+[2026-01-30 14:02:25] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:02:25] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 20:44:33] Playlist URL: https://youtube.com/playlist?list=PLm9CVz3wWQf_HgCQoyUJQf3P810PF9GNV&si=HFCQxuaDrAybo20j
+[2026-01-30 20:44:33] Playlist title: 🤓📚 Book Reading and Read Alongs 📚🤓 | Dr. Seuss
+[2026-01-30 20:44:33] Total videos: 70
+[2026-01-30 20:44:33] Cookies file: cookies_1.txt
+[2026-01-30 20:44:33] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 20:44:33] Resume enabled. Existing videos: 70
+[2026-01-30 20:44:34] === Summary ===
+[2026-01-30 20:44:34] Processed: 0
+[2026-01-30 20:44:34] Failed: 0
+[2026-01-30 20:44:34] With subtitles: 0
+[2026-01-30 20:44:34] No subtitles: 0
+[2026-01-30 20:44:34] Cleaned transcripts (non-empty): 0
+[2026-01-30 20:44:34] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 20:44:34] Subtitle language counts: {}
+[2026-01-30 20:44:34] Rate-limited events: 0
+[2026-01-30 20:44:34] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 20:44:34] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

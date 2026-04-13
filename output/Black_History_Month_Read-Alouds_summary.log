@@ -1,0 +1,125 @@
+[2026-01-29 13:54:56] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-29 13:54:56] Playlist title: Black History Month Read-Alouds
+[2026-01-29 13:54:56] Total videos: 14
+[2026-01-29 13:54:56] Cookies file: cookies.txt
+[2026-01-29 13:54:56] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 13:57:41] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-29 13:57:41] Playlist title: Black History Month Read-Alouds
+[2026-01-29 13:57:41] Total videos: 14
+[2026-01-29 13:57:41] Cookies file: cookies.txt
+[2026-01-29 13:57:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 14:08:51] === Summary ===
+[2026-01-29 14:08:51] Processed: 14
+[2026-01-29 14:08:51] Failed: 0
+[2026-01-29 14:08:51] With subtitles: 14
+[2026-01-29 14:08:51] No subtitles: 0
+[2026-01-29 14:08:51] Rate-limited events: 0
+[2026-01-29 14:08:51] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 14:08:51] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 14:11:19] === Summary ===
+[2026-01-29 14:11:19] Processed: 14
+[2026-01-29 14:11:19] Failed: 0
+[2026-01-29 14:11:19] With subtitles: 14
+[2026-01-29 14:11:19] No subtitles: 0
+[2026-01-29 14:11:19] Rate-limited events: 0
+[2026-01-29 14:11:19] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 14:11:19] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 19:59:48] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-29 19:59:48] Playlist title: Black History Month Read-Alouds
+[2026-01-29 19:59:48] Total videos: 14
+[2026-01-29 19:59:48] Cookies file: cookies_1.txt
+[2026-01-29 19:59:48] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 20:15:07] === Summary ===
+[2026-01-29 20:15:07] Processed: 14
+[2026-01-29 20:15:07] Failed: 0
+[2026-01-29 20:15:07] With subtitles: 14
+[2026-01-29 20:15:07] No subtitles: 0
+[2026-01-29 20:15:07] Cleaned transcripts (non-empty): 14
+[2026-01-29 20:15:07] Transcript source counts: {'manual': 0, 'auto_generated': 14, 'none': 0}
+[2026-01-29 20:15:07] Subtitle language counts: {'en': 14}
+[2026-01-29 20:15:07] Rate-limited events: 0
+[2026-01-29 20:15:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 20:15:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 20:45:24] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-29 20:45:24] Playlist title: Black History Month Read-Alouds
+[2026-01-29 20:45:24] Total videos: 14
+[2026-01-29 20:45:24] Cookies file: cookies_1.txt
+[2026-01-29 20:45:24] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 21:00:18] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-29 21:00:18] Playlist title: Black History Month Read-Alouds
+[2026-01-29 21:00:18] Total videos: 14
+[2026-01-29 21:00:18] Cookies file: cookies_1.txt
+[2026-01-29 21:00:18] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 21:01:29] === Summary ===
+[2026-01-29 21:01:29] Processed: 14
+[2026-01-29 21:01:29] Failed: 0
+[2026-01-29 21:01:29] With subtitles: 14
+[2026-01-29 21:01:29] No subtitles: 0
+[2026-01-29 21:01:29] Cleaned transcripts (non-empty): 14
+[2026-01-29 21:01:29] Transcript source counts: {'manual': 0, 'auto_generated': 14, 'none': 0}
+[2026-01-29 21:01:29] Subtitle language counts: {'en': 14}
+[2026-01-29 21:01:29] Rate-limited events: 0
+[2026-01-29 21:01:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 21:01:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 21:14:44] === Summary ===
+[2026-01-29 21:14:44] Processed: 14
+[2026-01-29 21:14:44] Failed: 0
+[2026-01-29 21:14:44] With subtitles: 14
+[2026-01-29 21:14:44] No subtitles: 0
+[2026-01-29 21:14:44] Cleaned transcripts (non-empty): 14
+[2026-01-29 21:14:44] Transcript source counts: {'manual': 0, 'auto_generated': 14, 'none': 0}
+[2026-01-29 21:14:44] Subtitle language counts: {'en': 14}
+[2026-01-29 21:14:44] Rate-limited events: 0
+[2026-01-29 21:14:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 21:14:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:20:06] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-30 14:20:06] Playlist title: Black History Month Read-Alouds
+[2026-01-30 14:20:06] Total videos: 14
+[2026-01-30 14:20:06] Cookies file: cookies_1.txt
+[2026-01-30 14:20:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:20:06] Resume enabled. Existing videos: 14
+[2026-01-30 14:20:07] === Summary ===
+[2026-01-30 14:20:07] Processed: 0
+[2026-01-30 14:20:07] Failed: 0
+[2026-01-30 14:20:07] With subtitles: 0
+[2026-01-30 14:20:07] No subtitles: 0
+[2026-01-30 14:20:07] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:20:07] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:20:07] Subtitle language counts: {}
+[2026-01-30 14:20:07] Rate-limited events: 0
+[2026-01-30 14:20:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:20:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:21:55] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-30 14:21:55] Playlist title: Black History Month Read-Alouds
+[2026-01-30 14:21:55] Total videos: 14
+[2026-01-30 14:21:55] Cookies file: cookies_1.txt
+[2026-01-30 14:21:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:21:55] Resume enabled. Existing videos: 14
+[2026-01-30 14:21:55] === Summary ===
+[2026-01-30 14:21:55] Processed: 0
+[2026-01-30 14:21:55] Failed: 0
+[2026-01-30 14:21:55] With subtitles: 0
+[2026-01-30 14:21:55] No subtitles: 0
+[2026-01-30 14:21:55] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:21:55] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:21:55] Subtitle language counts: {}
+[2026-01-30 14:21:55] Rate-limited events: 0
+[2026-01-30 14:21:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:21:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:05:53] Playlist URL: https://youtube.com/playlist?list=PL0GrRTnya7xGpz_mPMY7og1pfQjZbYLA8&si=Z78oKlBg6hryXCxz
+[2026-01-30 21:05:53] Playlist title: Black History Month Read-Alouds
+[2026-01-30 21:05:53] Total videos: 14
+[2026-01-30 21:05:53] Cookies file: cookies_1.txt
+[2026-01-30 21:05:53] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:05:53] Resume enabled. Existing videos: 14
+[2026-01-30 21:05:53] === Summary ===
+[2026-01-30 21:05:53] Processed: 0
+[2026-01-30 21:05:53] Failed: 0
+[2026-01-30 21:05:53] With subtitles: 0
+[2026-01-30 21:05:53] No subtitles: 0
+[2026-01-30 21:05:53] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:05:53] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:05:53] Subtitle language counts: {}
+[2026-01-30 21:05:53] Rate-limited events: 0
+[2026-01-30 21:05:53] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:05:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

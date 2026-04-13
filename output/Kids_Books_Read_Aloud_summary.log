@@ -1,0 +1,286 @@
+[2026-01-30 08:47:40] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 08:47:40] Playlist title: Kids Books Read Aloud
+[2026-01-30 08:47:40] Total videos: 259
+[2026-01-30 08:47:40] Cookies file: cookies.txt
+[2026-01-30 08:47:40] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 08:51:59] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 10:00:26] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 10:01:12] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 10:54:12] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 10:54:12] Playlist title: Kids Books Read Aloud
+[2026-01-30 10:54:12] Total videos: 259
+[2026-01-30 10:54:12] Cookies file: cookies.txt
+[2026-01-30 10:54:12] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 10:59:39] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 11:37:10] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 12:12:08] FAILED 9sWTDiRXEPU: ERROR: [youtube] 9sWTDiRXEPU: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10997f8e0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x10997f8e0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 12:25:37] FAILED 5Lo3Ove6glE: ERROR: [youtube] 5Lo3Ove6glE: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x12592f220>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x12592f220>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 12:52:35] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 12:53:08] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 13:56:27] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 13:56:27] Playlist title: Kids Books Read Aloud
+[2026-01-30 13:56:27] Total videos: 259
+[2026-01-30 13:56:27] Cookies file: cookies_1.txt
+[2026-01-30 13:56:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 13:56:27] Resume enabled. Existing videos: 231
+[2026-01-30 13:57:12] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Video unavailable. This video is private
+[2026-01-30 13:59:05] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Video unavailable. This video is private
+[2026-01-30 13:59:55] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Video unavailable. This video is private
+[2026-01-30 14:01:22] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:10:29] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 14:10:29] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:10:29] Total videos: 259
+[2026-01-30 14:10:29] Cookies file: cookies_1.txt
+[2026-01-30 14:10:29] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:10:29] Resume enabled. Existing videos: 245
+[2026-01-30 14:11:10] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Video unavailable. This video is private
+[2026-01-30 14:12:07] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Video unavailable. This video is private
+[2026-01-30 14:13:23] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Video unavailable. This video is private
+[2026-01-30 14:14:52] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:19:50] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:19:50] === Summary ===
+[2026-01-30 14:19:50] Processed: 253
+[2026-01-30 14:19:50] Failed: 6
+[2026-01-30 14:19:50] With subtitles: 253
+[2026-01-30 14:19:50] No subtitles: 0
+[2026-01-30 14:19:50] Cleaned transcripts (non-empty): 253
+[2026-01-30 14:19:50] Transcript source counts: {'manual': 0, 'auto_generated': 253, 'none': 0}
+[2026-01-30 14:19:50] Subtitle language counts: {'en': 253}
+[2026-01-30 14:19:50] Rate-limited events: 0
+[2026-01-30 14:19:50] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 3, 'auth_or_cookies': 0, 'other': 1}
+[2026-01-30 14:19:50] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:19:56] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 14:19:56] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:19:56] Total videos: 526
+[2026-01-30 14:19:56] Cookies file: cookies.txt
+[2026-01-30 14:19:56] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:19:56] Resume enabled. Existing videos: 254
+[2026-01-30 14:26:55] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:26:55] === Summary ===
+[2026-01-30 14:26:55] Processed: 23
+[2026-01-30 14:26:55] Failed: 5
+[2026-01-30 14:26:55] With subtitles: 23
+[2026-01-30 14:26:55] No subtitles: 0
+[2026-01-30 14:26:55] Cleaned transcripts (non-empty): 23
+[2026-01-30 14:26:55] Transcript source counts: {'manual': 0, 'auto_generated': 23, 'none': 0}
+[2026-01-30 14:26:55] Subtitle language counts: {'en': 23}
+[2026-01-30 14:26:55] Rate-limited events: 0
+[2026-01-30 14:26:55] Failure reasons: {'rate_limited': 0, 'unavailable': 5, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:26:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:27:00] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 14:27:00] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:27:00] Total videos: 526
+[2026-01-30 14:27:00] Cookies file: cookies_1.txt
+[2026-01-30 14:27:00] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:27:00] Resume enabled. Existing videos: 261
+[2026-01-30 14:27:17] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:27:17] === Summary ===
+[2026-01-30 14:27:17] Processed: 9
+[2026-01-30 14:27:17] Failed: 5
+[2026-01-30 14:27:17] With subtitles: 9
+[2026-01-30 14:27:17] No subtitles: 0
+[2026-01-30 14:27:17] Cleaned transcripts (non-empty): 9
+[2026-01-30 14:27:17] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-01-30 14:27:17] Subtitle language counts: {'en': 9}
+[2026-01-30 14:27:17] Rate-limited events: 0
+[2026-01-30 14:27:17] Failure reasons: {'rate_limited': 0, 'unavailable': 5, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:27:17] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:27:22] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 14:27:22] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:27:22] Total videos: 526
+[2026-01-30 14:27:22] Cookies file: cookies_1.txt
+[2026-01-30 14:27:22] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:27:22] Resume enabled. Existing videos: 261
+[2026-01-30 14:29:20] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:34:32] EMPTY_SUBTITLES on2zz7ObQcE: source=auto_generated, lang=en
+[2026-01-30 14:35:17] FAILED -VtcXrJIKXg: ERROR: [youtube] -VtcXrJIKXg: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x13df3fc10>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x13df3fc10>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:35:35] FAILED 7fJ5g8Qu3OM: ERROR: [youtube] 7fJ5g8Qu3OM: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x113a1e710>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x113a1e710>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:36:45] FAILED 7fJ5g8Qu3OM: ERROR: [youtube] 7fJ5g8Qu3OM: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x115563e80>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x115563e80>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:38:53] FAILED QKHUMtVXBn4: ERROR: [youtube] QKHUMtVXBn4: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x168ac28c0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x168ac28c0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:39:49] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 14:39:49] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:39:49] Total videos: 259
+[2026-01-30 14:39:49] Cookies file: cookies_1.txt
+[2026-01-30 14:39:49] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:39:49] Resume enabled. Existing videos: 266
+[2026-01-30 14:40:52] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Video unavailable. This video is private
+[2026-01-30 14:41:34] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Video unavailable. This video is private
+[2026-01-30 14:42:42] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Video unavailable. This video is private
+[2026-01-30 14:43:19] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:43:58] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:43:58] === Summary ===
+[2026-01-30 14:43:58] Processed: 0
+[2026-01-30 14:43:58] Failed: 5
+[2026-01-30 14:43:58] With subtitles: 0
+[2026-01-30 14:43:58] No subtitles: 0
+[2026-01-30 14:43:58] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:43:58] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:43:58] Subtitle language counts: {}
+[2026-01-30 14:43:58] Rate-limited events: 0
+[2026-01-30 14:43:58] Failure reasons: {'rate_limited': 0, 'unavailable': 5, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:43:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:44:02] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 14:44:02] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:44:02] Total videos: 526
+[2026-01-30 14:44:02] Cookies file: cookies_1.txt
+[2026-01-30 14:44:02] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:44:02] Resume enabled. Existing videos: 270
+[2026-01-30 14:54:43] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 14:54:43] Playlist title: Kids Books Read Aloud
+[2026-01-30 14:54:43] Total videos: 259
+[2026-01-30 14:54:43] Cookies file: cookies_1.txt
+[2026-01-30 14:54:43] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:54:43] Resume enabled. Existing videos: 281
+[2026-01-30 14:55:57] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Video unavailable. This video is private
+[2026-01-30 14:57:16] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Video unavailable. This video is private
+[2026-01-30 14:58:13] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Video unavailable. This video is private
+[2026-01-30 14:58:52] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 15:00:03] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 15:00:03] === Summary ===
+[2026-01-30 15:00:03] Processed: 0
+[2026-01-30 15:00:03] Failed: 5
+[2026-01-30 15:00:03] With subtitles: 0
+[2026-01-30 15:00:03] No subtitles: 0
+[2026-01-30 15:00:03] Cleaned transcripts (non-empty): 0
+[2026-01-30 15:00:03] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 15:00:03] Subtitle language counts: {}
+[2026-01-30 15:00:03] Rate-limited events: 0
+[2026-01-30 15:00:03] Failure reasons: {'rate_limited': 0, 'unavailable': 5, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 15:00:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 15:00:07] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 15:00:07] Playlist title: Kids Books Read Aloud
+[2026-01-30 15:00:07] Total videos: 526
+[2026-01-30 15:00:07] Cookies file: cookies_1.txt
+[2026-01-30 15:00:07] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 15:00:07] Resume enabled. Existing videos: 287
+[2026-01-30 15:18:10] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Video unavailable. This video is private
+[2026-01-30 15:18:39] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 15:23:06] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Video unavailable. This video is private
+[2026-01-30 15:23:18] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Video unavailable. This video is private
+[2026-01-30 15:23:29] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Video unavailable. This video is private
+[2026-01-30 15:24:53] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Video unavailable. This video is private
+[2026-01-30 15:25:56] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 15:29:09] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Video unavailable. This video is private
+[2026-01-30 15:29:20] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Video unavailable. This video is private
+[2026-01-30 15:32:06] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Video unavailable. This video is private
+[2026-01-30 16:07:47] FAILED bs4lA1pEJ_Y: ERROR: [youtube] bs4lA1pEJ_Y: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x12383e500>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x12383e500>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 16:07:51] FAILED sUDdrpGUBYg: ERROR: [youtube] sUDdrpGUBYg: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x128efb700>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x128efb700>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 16:07:53] EMPTY_SUBTITLES 4c7jEgigUxs: source=auto_generated, lang=en
+[2026-01-30 16:07:56] EMPTY_SUBTITLES jSXUYo6KWAI: source=auto_generated, lang=en
+[2026-01-30 16:07:57] EMPTY_SUBTITLES u9Y0Aw_qqTc: source=auto_generated, lang=en
+[2026-01-30 16:38:23] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 16:38:23] === Summary ===
+[2026-01-30 16:38:23] Processed: 251
+[2026-01-30 16:38:23] Failed: 8
+[2026-01-30 16:38:23] With subtitles: 250
+[2026-01-30 16:38:23] No subtitles: 0
+[2026-01-30 16:38:23] Cleaned transcripts (non-empty): 250
+[2026-01-30 16:38:23] Transcript source counts: {'manual': 0, 'auto_generated': 251, 'none': 0}
+[2026-01-30 16:38:23] Subtitle language counts: {'en': 251}
+[2026-01-30 16:38:23] Rate-limited events: 0
+[2026-01-30 16:38:23] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 3, 'auth_or_cookies': 0, 'other': 3}
+[2026-01-30 16:38:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 16:38:29] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 16:38:29] Playlist title: Kids Books Read Aloud
+[2026-01-30 16:38:29] Total videos: 526
+[2026-01-30 16:38:29] Cookies file: cookies.txt
+[2026-01-30 16:38:29] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 16:38:29] Resume enabled. Existing videos: 365
+[2026-01-30 16:39:16] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 16:40:39] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 16:53:17] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 16:55:43] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Video unavailable. This video is private
+[2026-01-30 16:56:36] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 16:56:36] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Video unavailable. This video is private
+[2026-01-30 16:56:45] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Video unavailable. This video is private
+[2026-01-30 16:59:44] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Video unavailable. This video is private
+[2026-01-30 17:05:07] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:06:21] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:07:30] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Video unavailable. This video is private
+[2026-01-30 17:08:12] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Video unavailable. This video is private
+[2026-01-30 17:08:21] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:08:38] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:09:09] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:09:37] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Video unavailable. This video is private
+[2026-01-30 17:10:00] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Video unavailable. This video is private
+[2026-01-30 17:10:50] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Video unavailable. This video is private
+[2026-01-30 17:11:35] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Video unavailable. This video is private
+[2026-01-30 17:11:53] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:12:33] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Video unavailable. This video is private
+[2026-01-30 17:13:15] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Video unavailable. This video is private
+[2026-01-30 17:13:32] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Video unavailable. This video is private
+[2026-01-30 17:14:20] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Video unavailable. This video is private
+[2026-01-30 17:14:30] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Video unavailable. This video is private
+[2026-01-30 17:16:08] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Video unavailable. This video is private
+[2026-01-30 17:16:48] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:17:33] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Video unavailable. This video is private
+[2026-01-30 17:18:09] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:20:55] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Video unavailable. This video is private
+[2026-01-30 17:21:53] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Video unavailable. This video is private
+[2026-01-30 17:24:11] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Video unavailable. This video is private
+[2026-01-30 17:25:16] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:26:29] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 17:26:30] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Video unavailable. This video is private
+[2026-01-30 17:29:37] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Video unavailable. This video is private
+[2026-01-30 17:30:58] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Video unavailable. This video is private
+[2026-01-30 17:31:39] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Video unavailable. This video is private
+[2026-01-30 18:11:25] FAILED X9WhMAU4YaE: ERROR: [youtube] X9WhMAU4YaE: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x12dfbf580>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x12dfbf580>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 18:58:42] FAILED _kA1FosILGY: ERROR: [youtube] _kA1FosILGY: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1336ed330>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x1336ed330>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 19:53:38] FAILED eIWzqFuVO80: ERROR: [youtube] eIWzqFuVO80: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x11a464dc0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x11a464dc0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 19:53:39] FAILED eIWzqFuVO80: ERROR: [youtube] eIWzqFuVO80: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109ee4a00>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x109ee4a00>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 20:33:24] FAILED cAQO_B5dclA: ERROR: [youtube] cAQO_B5dclA: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x16cff0df0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x16cff0df0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 21:17:58] Playlist URL: https://youtube.com/playlist?list=PLuDTq4LBCsPThzWX3_o3JEef6uZiSkUa0&si=-Db6tT6bR0jK-IWt
+[2026-01-30 21:17:58] Playlist title: Kids Books Read Aloud
+[2026-01-30 21:17:58] Total videos: 259
+[2026-01-30 21:17:58] Cookies file: cookies_1.txt
+[2026-01-30 21:17:58] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:17:58] Resume enabled. Existing videos: 468
+[2026-01-30 21:19:07] FAILED 3fRgdMOJAFQ: ERROR: [youtube] 3fRgdMOJAFQ: Video unavailable. This video is private
+[2026-01-30 21:20:25] FAILED _JYNsWtVIww: ERROR: [youtube] _JYNsWtVIww: Video unavailable. This video is private
+[2026-01-30 21:20:59] FAILED aDA0XCY7yWs: ERROR: [youtube] aDA0XCY7yWs: Video unavailable. This video is private
+[2026-01-30 21:22:01] FAILED -FxuH52HnbI: ERROR: [youtube] -FxuH52HnbI: Video unavailable. This video has been removed by the uploader
+[2026-01-30 21:22:53] FAILED yqjzcSECrPA: ERROR: [youtube] yqjzcSECrPA: Video unavailable. This video has been removed by the uploader
+[2026-01-30 21:22:53] === Summary ===
+[2026-01-30 21:22:53] Processed: 0
+[2026-01-30 21:22:53] Failed: 5
+[2026-01-30 21:22:53] With subtitles: 0
+[2026-01-30 21:22:53] No subtitles: 0
+[2026-01-30 21:22:53] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:22:53] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:22:53] Subtitle language counts: {}
+[2026-01-30 21:22:53] Rate-limited events: 0
+[2026-01-30 21:22:53] Failure reasons: {'rate_limited': 0, 'unavailable': 5, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:22:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:22:58] Playlist URL: https://youtube.com/playlist?list=PLZmd3TNliCZjk7bhYNJ4OdhG7oTSms-I_&si=pg7SR29_fe8XAdrr
+[2026-01-30 21:22:58] Playlist title: Kids Books Read Aloud
+[2026-01-30 21:22:58] Total videos: 526
+[2026-01-30 21:22:58] Cookies file: cookies_1.txt
+[2026-01-30 21:22:58] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:22:58] Resume enabled. Existing videos: 472
+[2026-01-30 21:23:34] FAILED Zh_Wvv13_3k: ERROR: [youtube] Zh_Wvv13_3k: Video unavailable. This video is private
+[2026-01-30 21:24:32] FAILED _fmkEj3-G98: ERROR: [youtube] _fmkEj3-G98: Video unavailable. This video is private
+[2026-01-30 21:25:21] FAILED ylN_yEp-JvI: ERROR: [youtube] ylN_yEp-JvI: Video unavailable. This video is private
+[2026-01-30 21:25:52] FAILED 7mrz_PU5GQo: ERROR: [youtube] 7mrz_PU5GQo: Video unavailable. This video is private
+[2026-01-30 21:26:19] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 21:26:33] FAILED E67e6uxKlMY: ERROR: [youtube] E67e6uxKlMY: Video unavailable. This video is private
+[2026-01-30 21:27:26] FAILED IlEvKESfZeQ: ERROR: [youtube] IlEvKESfZeQ: Video unavailable. This video is private
+[2026-01-30 21:28:12] FAILED UvkCo9ml5_Y: ERROR: [youtube] UvkCo9ml5_Y: Video unavailable. This video is private
+[2026-01-30 21:29:15] FAILED YLeZaQMwTc8: ERROR: [youtube] YLeZaQMwTc8: Video unavailable. This video is private
+[2026-01-30 21:29:45] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 21:30:30] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Video unavailable. This video is private
+[2026-01-30 21:33:18] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Video unavailable. This video is private
+[2026-01-30 21:34:17] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Video unavailable. This video is private
+[2026-01-30 21:35:03] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Video unavailable. This video is private
+[2026-01-30 21:35:44] FAILED cZWMSmNvEZ0: ERROR: [youtube] cZWMSmNvEZ0: Video unavailable. This video is private
+[2026-01-31 02:42:33] FAILED 2AdbhOz9rs0: ERROR: [youtube] 2AdbhOz9rs0: Video unavailable. This video has been removed by the uploader
+[2026-01-31 02:48:54] === Summary ===
+[2026-01-31 02:48:54] Processed: 515
+[2026-01-31 02:48:54] Failed: 11
+[2026-01-31 02:48:54] With subtitles: 511
+[2026-01-31 02:48:54] No subtitles: 2
+[2026-01-31 02:48:54] Cleaned transcripts (non-empty): 511
+[2026-01-31 02:48:54] Transcript source counts: {'manual': 0, 'auto_generated': 513, 'none': 2}
+[2026-01-31 02:48:54] Subtitle language counts: {'en': 513}
+[2026-01-31 02:48:54] Rate-limited events: 0
+[2026-01-31 02:48:54] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 9, 'auth_or_cookies': 0, 'other': 1}
+[2026-01-31 02:48:54] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

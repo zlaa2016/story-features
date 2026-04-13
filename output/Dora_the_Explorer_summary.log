@@ -1,0 +1,131 @@
+[2026-01-29 20:59:41] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-29 20:59:41] Playlist title: Dora the Explorer
+[2026-01-29 20:59:41] Total videos: 8
+[2026-01-29 20:59:41] Cookies file: cookies.txt
+[2026-01-29 20:59:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 21:07:30] === Summary ===
+[2026-01-29 21:07:30] Processed: 8
+[2026-01-29 21:07:30] Failed: 0
+[2026-01-29 21:07:30] With subtitles: 8
+[2026-01-29 21:07:30] No subtitles: 0
+[2026-01-29 21:07:30] Cleaned transcripts (non-empty): 8
+[2026-01-29 21:07:30] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-29 21:07:30] Subtitle language counts: {'en': 8}
+[2026-01-29 21:07:30] Rate-limited events: 0
+[2026-01-29 21:07:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 21:07:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 22:09:04] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-29 22:09:04] Playlist title: Dora the Explorer
+[2026-01-29 22:09:04] Total videos: 8
+[2026-01-29 22:09:04] Cookies file: cookies.txt
+[2026-01-29 22:09:04] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:16:45] === Summary ===
+[2026-01-29 22:16:45] Processed: 8
+[2026-01-29 22:16:45] Failed: 0
+[2026-01-29 22:16:45] With subtitles: 8
+[2026-01-29 22:16:45] No subtitles: 0
+[2026-01-29 22:16:45] Cleaned transcripts (non-empty): 8
+[2026-01-29 22:16:45] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-29 22:16:45] Subtitle language counts: {'en': 8}
+[2026-01-29 22:16:45] Rate-limited events: 0
+[2026-01-29 22:16:45] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 22:16:45] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 03:21:22] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 03:21:22] Playlist title: Dora the Explorer
+[2026-01-30 03:21:22] Total videos: 8
+[2026-01-30 03:21:22] Cookies file: cookies_1.txt
+[2026-01-30 03:21:22] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 03:28:41] === Summary ===
+[2026-01-30 03:28:41] Processed: 8
+[2026-01-30 03:28:41] Failed: 0
+[2026-01-30 03:28:41] With subtitles: 8
+[2026-01-30 03:28:41] No subtitles: 0
+[2026-01-30 03:28:41] Cleaned transcripts (non-empty): 8
+[2026-01-30 03:28:41] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-30 03:28:41] Subtitle language counts: {'en': 8}
+[2026-01-30 03:28:41] Rate-limited events: 0
+[2026-01-30 03:28:41] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 03:28:41] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 04:03:25] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 04:03:25] Playlist title: Dora the Explorer
+[2026-01-30 04:03:25] Total videos: 8
+[2026-01-30 04:03:25] Cookies file: cookies_1.txt
+[2026-01-30 04:03:25] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:12:34] === Summary ===
+[2026-01-30 04:12:34] Processed: 8
+[2026-01-30 04:12:34] Failed: 0
+[2026-01-30 04:12:34] With subtitles: 8
+[2026-01-30 04:12:34] No subtitles: 0
+[2026-01-30 04:12:34] Cleaned transcripts (non-empty): 8
+[2026-01-30 04:12:34] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-30 04:12:34] Subtitle language counts: {'en': 8}
+[2026-01-30 04:12:34] Rate-limited events: 0
+[2026-01-30 04:12:34] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:12:34] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 04:30:12] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 04:30:12] Playlist title: Dora the Explorer
+[2026-01-30 04:30:12] Total videos: 8
+[2026-01-30 04:30:12] Cookies file: cookies_1.txt
+[2026-01-30 04:30:12] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:37:21] === Summary ===
+[2026-01-30 04:37:21] Processed: 8
+[2026-01-30 04:37:21] Failed: 0
+[2026-01-30 04:37:21] With subtitles: 8
+[2026-01-30 04:37:21] No subtitles: 0
+[2026-01-30 04:37:21] Cleaned transcripts (non-empty): 8
+[2026-01-30 04:37:21] Transcript source counts: {'manual': 0, 'auto_generated': 8, 'none': 0}
+[2026-01-30 04:37:21] Subtitle language counts: {'en': 8}
+[2026-01-30 04:37:21] Rate-limited events: 0
+[2026-01-30 04:37:21] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:37:21] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:24:57] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 14:24:57] Playlist title: Dora the Explorer
+[2026-01-30 14:24:57] Total videos: 8
+[2026-01-30 14:24:57] Cookies file: cookies_1.txt
+[2026-01-30 14:24:57] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:24:57] Resume enabled. Existing videos: 8
+[2026-01-30 14:24:57] === Summary ===
+[2026-01-30 14:24:57] Processed: 0
+[2026-01-30 14:24:57] Failed: 0
+[2026-01-30 14:24:57] With subtitles: 0
+[2026-01-30 14:24:57] No subtitles: 0
+[2026-01-30 14:24:57] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:24:57] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:24:57] Subtitle language counts: {}
+[2026-01-30 14:24:57] Rate-limited events: 0
+[2026-01-30 14:24:57] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:24:57] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:47] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 14:25:47] Playlist title: Dora the Explorer
+[2026-01-30 14:25:47] Total videos: 8
+[2026-01-30 14:25:47] Cookies file: cookies_1.txt
+[2026-01-30 14:25:47] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:47] Resume enabled. Existing videos: 8
+[2026-01-30 14:25:47] === Summary ===
+[2026-01-30 14:25:47] Processed: 0
+[2026-01-30 14:25:47] Failed: 0
+[2026-01-30 14:25:47] With subtitles: 0
+[2026-01-30 14:25:47] No subtitles: 0
+[2026-01-30 14:25:47] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:25:47] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:25:47] Subtitle language counts: {}
+[2026-01-30 14:25:47] Rate-limited events: 0
+[2026-01-30 14:25:47] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:25:47] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:10:23] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTayuVxx9LF42e6MtX0neOEGFk&si=ZgWiNtbLOohy9ZHM
+[2026-01-30 21:10:23] Playlist title: Dora the Explorer
+[2026-01-30 21:10:23] Total videos: 8
+[2026-01-30 21:10:23] Cookies file: cookies_1.txt
+[2026-01-30 21:10:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:10:23] Resume enabled. Existing videos: 8
+[2026-01-30 21:10:23] === Summary ===
+[2026-01-30 21:10:23] Processed: 0
+[2026-01-30 21:10:23] Failed: 0
+[2026-01-30 21:10:23] With subtitles: 0
+[2026-01-30 21:10:23] No subtitles: 0
+[2026-01-30 21:10:23] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:10:23] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:10:23] Subtitle language counts: {}
+[2026-01-30 21:10:23] Rate-limited events: 0
+[2026-01-30 21:10:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:10:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,22 @@
+[2026-02-01 01:10:53] Playlist URL: https://www.youtube.com/@NERLibrary/videos
+[2026-02-01 01:10:53] Playlist title: Northeast Regional Library - Videos
+[2026-02-01 01:10:53] Total videos: 300
+[2026-02-01 01:10:53] Cookies file: cookies_2.txt
+[2026-02-01 01:10:53] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 01:17:02] FAILED 8a5_jcYmn_o: ERROR: [youtube] 8a5_jcYmn_o: Premieres in 24 days
+[2026-02-01 01:17:45] FAILED RzHNC2NVuSA: ERROR: [youtube] RzHNC2NVuSA: Premieres in 17 days
+[2026-02-01 01:18:28] FAILED TjHKmyM8gRA: ERROR: [youtube] TjHKmyM8gRA: Premieres in 15 days
+[2026-02-01 01:19:35] FAILED GDsxH-9Wkus: ERROR: [youtube] GDsxH-9Wkus: Premieres in 4 days
+[2026-02-01 01:22:18] FAILED hztTGN0oXbM: ERROR: [youtube] hztTGN0oXbM: Premieres in 3 days
+[2026-02-01 01:30:51] FAILED BKU4JgbcKgU: ERROR: [youtube] BKU4JgbcKgU: Premieres in 16 days
+[2026-02-01 06:19:04] === Summary ===
+[2026-02-01 06:19:04] Processed: 294
+[2026-02-01 06:19:04] Failed: 6
+[2026-02-01 06:19:04] With subtitles: 294
+[2026-02-01 06:19:04] No subtitles: 0
+[2026-02-01 06:19:04] Cleaned transcripts (non-empty): 294
+[2026-02-01 06:19:04] Transcript source counts: {'manual': 0, 'auto_generated': 294, 'none': 0}
+[2026-02-01 06:19:04] Subtitle language counts: {'en': 294}
+[2026-02-01 06:19:04] Rate-limited events: 0
+[2026-02-01 06:19:04] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 6}
+[2026-02-01 06:19:04] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,51 @@
+[2026-01-30 14:55:44] Playlist URL: https://www.youtube.com/@KatiesStorytime/videos
+[2026-01-30 14:55:44] Playlist title: Katie's Storytime - Videos
+[2026-01-30 14:55:44] Total videos: 77
+[2026-01-30 14:55:44] Cookies file: cookie.txt
+[2026-01-30 14:55:44] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:55:44] Resume enabled. Existing videos: 67
+[2026-01-30 14:56:23] Playlist URL: https://www.youtube.com/@KatiesStorytime/videos
+[2026-01-30 14:56:23] Playlist title: Katie's Storytime - Videos
+[2026-01-30 14:56:23] Total videos: 77
+[2026-01-30 14:56:23] Cookies file: cookie.txt
+[2026-01-30 14:56:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:56:23] Resume enabled. Existing videos: 68
+[2026-01-30 15:05:00] === Summary ===
+[2026-01-30 15:05:00] Processed: 10
+[2026-01-30 15:05:00] Failed: 0
+[2026-01-30 15:05:00] With subtitles: 10
+[2026-01-30 15:05:00] No subtitles: 0
+[2026-01-30 15:05:00] Cleaned transcripts (non-empty): 10
+[2026-01-30 15:05:00] Transcript source counts: {'manual': 0, 'auto_generated': 10, 'none': 0}
+[2026-01-30 15:05:00] Subtitle language counts: {'en': 10}
+[2026-01-30 15:05:00] Rate-limited events: 0
+[2026-01-30 15:05:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 15:05:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 15:06:12] === Summary ===
+[2026-01-30 15:06:12] Processed: 9
+[2026-01-30 15:06:12] Failed: 0
+[2026-01-30 15:06:12] With subtitles: 9
+[2026-01-30 15:06:12] No subtitles: 0
+[2026-01-30 15:06:12] Cleaned transcripts (non-empty): 9
+[2026-01-30 15:06:12] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-01-30 15:06:12] Subtitle language counts: {'en': 9}
+[2026-01-30 15:06:12] Rate-limited events: 0
+[2026-01-30 15:06:12] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 15:06:12] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-02-01 14:29:18] Playlist URL: https://www.youtube.com/@KatiesStorytime/videos
+[2026-02-01 14:29:18] Playlist title: Katie's Storytime - Videos
+[2026-02-01 14:29:18] Total videos: 78
+[2026-02-01 14:29:18] Cookies file: cookies_3.txt
+[2026-02-01 14:29:18] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-01 14:29:18] Resume enabled. Existing videos: 77
+[2026-02-01 14:29:28] === Summary ===
+[2026-02-01 14:29:28] Processed: 1
+[2026-02-01 14:29:28] Failed: 0
+[2026-02-01 14:29:28] With subtitles: 1
+[2026-02-01 14:29:28] No subtitles: 0
+[2026-02-01 14:29:28] Cleaned transcripts (non-empty): 1
+[2026-02-01 14:29:28] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-01 14:29:28] Subtitle language counts: {'en': 1}
+[2026-02-01 14:29:28] Rate-limited events: 0
+[2026-02-01 14:29:28] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-01 14:29:28] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

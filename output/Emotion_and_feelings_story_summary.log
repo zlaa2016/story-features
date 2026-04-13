@@ -1,0 +1,155 @@
+[2026-01-29 22:28:41] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-29 22:28:41] Playlist title: Emotion and feelings story
+[2026-01-29 22:28:41] Total videos: 40
+[2026-01-29 22:28:41] Cookies file: cookies.txt
+[2026-01-29 22:28:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 22:29:17] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-29 22:37:03] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-29 22:39:54] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-29 23:10:53] === Summary ===
+[2026-01-29 23:10:53] Processed: 37
+[2026-01-29 23:10:53] Failed: 3
+[2026-01-29 23:10:53] With subtitles: 37
+[2026-01-29 23:10:53] No subtitles: 0
+[2026-01-29 23:10:53] Cleaned transcripts (non-empty): 37
+[2026-01-29 23:10:53] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-29 23:10:53] Subtitle language counts: {'en': 37}
+[2026-01-29 23:10:53] Rate-limited events: 0
+[2026-01-29 23:10:53] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 2, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-29 23:10:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-29 23:35:58] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-29 23:35:58] Playlist title: Emotion and feelings story
+[2026-01-29 23:35:58] Total videos: 40
+[2026-01-29 23:35:58] Cookies file: cookies.txt
+[2026-01-29 23:35:58] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-29 23:37:23] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-29 23:43:30] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-29 23:45:19] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 00:15:31] === Summary ===
+[2026-01-30 00:15:31] Processed: 37
+[2026-01-30 00:15:31] Failed: 3
+[2026-01-30 00:15:31] With subtitles: 37
+[2026-01-30 00:15:31] No subtitles: 0
+[2026-01-30 00:15:31] Cleaned transcripts (non-empty): 37
+[2026-01-30 00:15:31] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-30 00:15:31] Subtitle language counts: {'en': 37}
+[2026-01-30 00:15:31] Rate-limited events: 0
+[2026-01-30 00:15:31] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 2, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 00:15:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 04:48:21] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 04:48:21] Playlist title: Emotion and feelings story
+[2026-01-30 04:48:21] Total videos: 40
+[2026-01-30 04:48:21] Cookies file: cookies_1.txt
+[2026-01-30 04:48:21] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:49:24] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 04:56:54] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 04:58:47] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 05:29:15] === Summary ===
+[2026-01-30 05:29:15] Processed: 37
+[2026-01-30 05:29:15] Failed: 3
+[2026-01-30 05:29:15] With subtitles: 37
+[2026-01-30 05:29:15] No subtitles: 0
+[2026-01-30 05:29:15] Cleaned transcripts (non-empty): 37
+[2026-01-30 05:29:15] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-30 05:29:15] Subtitle language counts: {'en': 37}
+[2026-01-30 05:29:15] Rate-limited events: 0
+[2026-01-30 05:29:15] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 05:29:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 05:34:20] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 05:34:20] Playlist title: Emotion and feelings story
+[2026-01-30 05:34:20] Total videos: 40
+[2026-01-30 05:34:20] Cookies file: cookies_1.txt
+[2026-01-30 05:34:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 05:35:33] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 05:45:04] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 05:46:27] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 05:58:17] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 05:58:17] Playlist title: Emotion and feelings story
+[2026-01-30 05:58:17] Total videos: 40
+[2026-01-30 05:58:17] Cookies file: cookies_1.txt
+[2026-01-30 05:58:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 05:59:41] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 06:07:17] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 06:09:34] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 06:16:27] === Summary ===
+[2026-01-30 06:16:27] Processed: 37
+[2026-01-30 06:16:27] Failed: 3
+[2026-01-30 06:16:27] With subtitles: 37
+[2026-01-30 06:16:27] No subtitles: 0
+[2026-01-30 06:16:27] Cleaned transcripts (non-empty): 37
+[2026-01-30 06:16:27] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-30 06:16:27] Subtitle language counts: {'en': 37}
+[2026-01-30 06:16:27] Rate-limited events: 0
+[2026-01-30 06:16:27] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 06:16:27] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 06:42:12] === Summary ===
+[2026-01-30 06:42:12] Processed: 37
+[2026-01-30 06:42:12] Failed: 3
+[2026-01-30 06:42:12] With subtitles: 37
+[2026-01-30 06:42:12] No subtitles: 0
+[2026-01-30 06:42:12] Cleaned transcripts (non-empty): 37
+[2026-01-30 06:42:12] Transcript source counts: {'manual': 0, 'auto_generated': 37, 'none': 0}
+[2026-01-30 06:42:12] Subtitle language counts: {'en': 37}
+[2026-01-30 06:42:12] Rate-limited events: 0
+[2026-01-30 06:42:12] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 06:42:12] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:25:03] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 14:25:03] Playlist title: Emotion and feelings story
+[2026-01-30 14:25:03] Total videos: 40
+[2026-01-30 14:25:03] Cookies file: cookies_1.txt
+[2026-01-30 14:25:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:03] Resume enabled. Existing videos: 37
+[2026-01-30 14:25:50] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 14:25:50] Playlist title: Emotion and feelings story
+[2026-01-30 14:25:50] Total videos: 40
+[2026-01-30 14:25:50] Cookies file: cookies_1.txt
+[2026-01-30 14:25:50] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:25:50] Resume enabled. Existing videos: 37
+[2026-01-30 14:25:55] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 14:26:35] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 14:26:55] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:27:21] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 14:28:04] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 14:28:04] === Summary ===
+[2026-01-30 14:28:04] Processed: 0
+[2026-01-30 14:28:04] Failed: 3
+[2026-01-30 14:28:04] With subtitles: 0
+[2026-01-30 14:28:04] No subtitles: 0
+[2026-01-30 14:28:04] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:28:04] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:28:04] Subtitle language counts: {}
+[2026-01-30 14:28:04] Rate-limited events: 0
+[2026-01-30 14:28:04] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:28:04] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:28:49] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 14:28:49] === Summary ===
+[2026-01-30 14:28:49] Processed: 0
+[2026-01-30 14:28:49] Failed: 3
+[2026-01-30 14:28:49] With subtitles: 0
+[2026-01-30 14:28:49] No subtitles: 0
+[2026-01-30 14:28:49] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:28:49] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:28:49] Subtitle language counts: {}
+[2026-01-30 14:28:49] Rate-limited events: 0
+[2026-01-30 14:28:49] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 14:28:49] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:10:27] Playlist URL: https://youtube.com/playlist?list=PLyEEsVNls7EVxDrtLS2rYWvMjiimW9TYk&si=tjujzvjZx2t7JLbt
+[2026-01-30 21:10:27] Playlist title: Emotion and feelings story
+[2026-01-30 21:10:27] Total videos: 40
+[2026-01-30 21:10:27] Cookies file: cookies_1.txt
+[2026-01-30 21:10:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:10:27] Resume enabled. Existing videos: 37
+[2026-01-30 21:11:52] FAILED aUkOlZEIBy0: ERROR: [youtube] aUkOlZEIBy0: Video unavailable. This video is private
+[2026-01-30 21:13:15] FAILED FkT4uS56Lzk: ERROR: [youtube] FkT4uS56Lzk: Video unavailable. This video has been removed by the uploader
+[2026-01-30 21:14:08] FAILED 7S06IlsgD00: ERROR: [youtube] 7S06IlsgD00: Video unavailable. This video is private
+[2026-01-30 21:14:08] === Summary ===
+[2026-01-30 21:14:08] Processed: 0
+[2026-01-30 21:14:08] Failed: 3
+[2026-01-30 21:14:08] With subtitles: 0
+[2026-01-30 21:14:08] No subtitles: 0
+[2026-01-30 21:14:08] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:14:08] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:14:08] Subtitle language counts: {}
+[2026-01-30 21:14:08] Rate-limited events: 0
+[2026-01-30 21:14:08] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:14:08] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

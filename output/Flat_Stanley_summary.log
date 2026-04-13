@@ -1,0 +1,155 @@
+[2026-01-30 03:57:54] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 03:57:54] Playlist title: Flat Stanley
+[2026-01-30 03:57:54] Total videos: 18
+[2026-01-30 03:57:54] Cookies file: cookies.txt
+[2026-01-30 03:57:54] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 04:05:47] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 04:16:06] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 04:16:40] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 04:17:49] === Summary ===
+[2026-01-30 04:17:49] Processed: 15
+[2026-01-30 04:17:49] Failed: 3
+[2026-01-30 04:17:49] With subtitles: 15
+[2026-01-30 04:17:49] No subtitles: 0
+[2026-01-30 04:17:49] Cleaned transcripts (non-empty): 15
+[2026-01-30 04:17:49] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-01-30 04:17:49] Subtitle language counts: {'en': 15}
+[2026-01-30 04:17:49] Rate-limited events: 0
+[2026-01-30 04:17:49] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 1, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 04:17:49] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 07:00:33] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 07:00:33] Playlist title: Flat Stanley
+[2026-01-30 07:00:33] Total videos: 18
+[2026-01-30 07:00:33] Cookies file: cookies.txt
+[2026-01-30 07:00:33] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 07:08:19] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-01-30 07:17:24] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 07:18:16] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 07:19:44] === Summary ===
+[2026-01-30 07:19:44] Processed: 15
+[2026-01-30 07:19:44] Failed: 3
+[2026-01-30 07:19:44] With subtitles: 15
+[2026-01-30 07:19:44] No subtitles: 0
+[2026-01-30 07:19:44] Cleaned transcripts (non-empty): 15
+[2026-01-30 07:19:44] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-01-30 07:19:44] Subtitle language counts: {'en': 15}
+[2026-01-30 07:19:44] Rate-limited events: 0
+[2026-01-30 07:19:44] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 1, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 07:19:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 09:12:42] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 09:12:42] Playlist title: Flat Stanley
+[2026-01-30 09:12:42] Total videos: 18
+[2026-01-30 09:12:42] Cookies file: cookies_1.txt
+[2026-01-30 09:12:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 09:20:20] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 09:28:37] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 09:29:44] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 09:31:15] === Summary ===
+[2026-01-30 09:31:15] Processed: 15
+[2026-01-30 09:31:15] Failed: 3
+[2026-01-30 09:31:15] With subtitles: 15
+[2026-01-30 09:31:15] No subtitles: 0
+[2026-01-30 09:31:15] Cleaned transcripts (non-empty): 15
+[2026-01-30 09:31:15] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-01-30 09:31:15] Subtitle language counts: {'en': 15}
+[2026-01-30 09:31:15] Rate-limited events: 0
+[2026-01-30 09:31:15] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 09:31:15] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 10:01:06] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 10:01:06] Playlist title: Flat Stanley
+[2026-01-30 10:01:06] Total videos: 18
+[2026-01-30 10:01:06] Cookies file: cookies_1.txt
+[2026-01-30 10:01:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 10:09:36] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 10:18:22] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 10:19:09] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 10:20:31] === Summary ===
+[2026-01-30 10:20:31] Processed: 15
+[2026-01-30 10:20:31] Failed: 3
+[2026-01-30 10:20:31] With subtitles: 15
+[2026-01-30 10:20:31] No subtitles: 0
+[2026-01-30 10:20:31] Cleaned transcripts (non-empty): 15
+[2026-01-30 10:20:31] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-01-30 10:20:31] Subtitle language counts: {'en': 15}
+[2026-01-30 10:20:31] Rate-limited events: 0
+[2026-01-30 10:20:31] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 10:20:31] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 10:30:05] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 10:30:05] Playlist title: Flat Stanley
+[2026-01-30 10:30:05] Total videos: 18
+[2026-01-30 10:30:05] Cookies file: cookies_1.txt
+[2026-01-30 10:30:05] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 10:38:32] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 10:46:52] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 10:48:16] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 10:49:34] === Summary ===
+[2026-01-30 10:49:34] Processed: 15
+[2026-01-30 10:49:34] Failed: 3
+[2026-01-30 10:49:34] With subtitles: 15
+[2026-01-30 10:49:34] No subtitles: 0
+[2026-01-30 10:49:34] Cleaned transcripts (non-empty): 15
+[2026-01-30 10:49:34] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-01-30 10:49:34] Subtitle language counts: {'en': 15}
+[2026-01-30 10:49:34] Rate-limited events: 0
+[2026-01-30 10:49:34] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 10:49:34] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:28:16] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 14:28:16] Playlist title: Flat Stanley
+[2026-01-30 14:28:16] Total videos: 18
+[2026-01-30 14:28:16] Cookies file: cookies_1.txt
+[2026-01-30 14:28:16] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:28:16] Resume enabled. Existing videos: 15
+[2026-01-30 14:29:01] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 14:29:01] Playlist title: Flat Stanley
+[2026-01-30 14:29:01] Total videos: 18
+[2026-01-30 14:29:01] Cookies file: cookies_1.txt
+[2026-01-30 14:29:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 14:29:01] Resume enabled. Existing videos: 15
+[2026-01-30 14:29:39] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 14:29:52] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 14:30:38] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 14:33:28] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 14:36:37] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x105446f80>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x105446f80>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:36:37] === Summary ===
+[2026-01-30 14:36:37] Processed: 0
+[2026-01-30 14:36:37] Failed: 3
+[2026-01-30 14:36:37] With subtitles: 0
+[2026-01-30 14:36:37] No subtitles: 0
+[2026-01-30 14:36:37] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:36:37] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:36:37] Subtitle language counts: {}
+[2026-01-30 14:36:37] Rate-limited events: 0
+[2026-01-30 14:36:37] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-01-30 14:36:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 14:38:58] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1072c9780>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x1072c9780>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-01-30 14:38:58] === Summary ===
+[2026-01-30 14:38:58] Processed: 0
+[2026-01-30 14:38:58] Failed: 3
+[2026-01-30 14:38:58] With subtitles: 0
+[2026-01-30 14:38:58] No subtitles: 0
+[2026-01-30 14:38:58] Cleaned transcripts (non-empty): 0
+[2026-01-30 14:38:58] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 14:38:58] Subtitle language counts: {}
+[2026-01-30 14:38:58] Rate-limited events: 0
+[2026-01-30 14:38:58] Failure reasons: {'rate_limited': 0, 'unavailable': 2, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-01-30 14:38:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-01-30 21:14:21] Playlist URL: https://youtube.com/playlist?list=PL-hXVGQXsg1SN34isP9CUo07aQORI35px&si=LEfG6mbodWCm28W6
+[2026-01-30 21:14:21] Playlist title: Flat Stanley
+[2026-01-30 21:14:21] Total videos: 18
+[2026-01-30 21:14:21] Cookies file: cookies_1.txt
+[2026-01-30 21:14:21] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-01-30 21:14:21] Resume enabled. Existing videos: 15
+[2026-01-30 21:15:26] FAILED 8XgH7djiK9U: ERROR: [youtube] 8XgH7djiK9U: Video unavailable. This video is private
+[2026-01-30 21:16:35] FAILED EhfXGw6ue2k: ERROR: [youtube] EhfXGw6ue2k: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 21:17:38] FAILED xKZXWnEATeA: ERROR: [youtube] xKZXWnEATeA: Video unavailable. This video is no longer available because the YouTube account associated with this video has been terminated.
+[2026-01-30 21:17:38] === Summary ===
+[2026-01-30 21:17:38] Processed: 0
+[2026-01-30 21:17:38] Failed: 3
+[2026-01-30 21:17:38] With subtitles: 0
+[2026-01-30 21:17:38] No subtitles: 0
+[2026-01-30 21:17:38] Cleaned transcripts (non-empty): 0
+[2026-01-30 21:17:38] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-01-30 21:17:38] Subtitle language counts: {}
+[2026-01-30 21:17:38] Rate-limited events: 0
+[2026-01-30 21:17:38] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-01-30 21:17:38] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

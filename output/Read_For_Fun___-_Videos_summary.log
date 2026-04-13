@@ -1,0 +1,16 @@
+[2026-02-04 15:19:42] Playlist URL: https://www.youtube.com/@ReadForFun23/videos
+[2026-02-04 15:19:42] Playlist title: Read For Fun   - Videos
+[2026-02-04 15:19:42] Total videos: 66
+[2026-02-04 15:19:42] Cookies file: cookies_3.txt
+[2026-02-04 15:19:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 16:28:28] === Summary ===
+[2026-02-04 16:28:28] Processed: 66
+[2026-02-04 16:28:28] Failed: 0
+[2026-02-04 16:28:28] With subtitles: 66
+[2026-02-04 16:28:28] No subtitles: 0
+[2026-02-04 16:28:28] Cleaned transcripts (non-empty): 66
+[2026-02-04 16:28:28] Transcript source counts: {'manual': 0, 'auto_generated': 66, 'none': 0}
+[2026-02-04 16:28:28] Subtitle language counts: {'en': 66}
+[2026-02-04 16:28:28] Rate-limited events: 0
+[2026-02-04 16:28:28] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-04 16:28:28] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

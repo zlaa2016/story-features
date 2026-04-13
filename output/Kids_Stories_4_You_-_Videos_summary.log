@@ -1,0 +1,17 @@
+[2026-02-04 13:14:25] Playlist URL: https://www.youtube.com/@kidsstories4you905/videos
+[2026-02-04 13:14:25] Playlist title: Kids Stories 4 You - Videos
+[2026-02-04 13:14:25] Total videos: 96
+[2026-02-04 13:14:25] Cookies file: cookies_3.txt
+[2026-02-04 13:14:25] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-04 14:29:43] FAILED mxdUryB-7Es: ERROR: [youtube] mxdUryB-7Es: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106c43700>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x106c43700>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-02-04 15:19:40] === Summary ===
+[2026-02-04 15:19:40] Processed: 95
+[2026-02-04 15:19:40] Failed: 1
+[2026-02-04 15:19:40] With subtitles: 95
+[2026-02-04 15:19:40] No subtitles: 0
+[2026-02-04 15:19:40] Cleaned transcripts (non-empty): 95
+[2026-02-04 15:19:40] Transcript source counts: {'manual': 0, 'auto_generated': 95, 'none': 0}
+[2026-02-04 15:19:40] Subtitle language counts: {'en': 95}
+[2026-02-04 15:19:40] Rate-limited events: 0
+[2026-02-04 15:19:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-02-04 15:19:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
