@@ -305,6 +305,19 @@ def _event_text_and_counts(event: Any) -> Optional[Dict[str, Any]]:
     }
 
 
+def text_from_review_events(review_events_json: Any) -> Optional[str]:
+    events = _safe_json_loads(review_events_json)
+    if not isinstance(events, list) or not events:
+        return None
+    parts: List[str] = []
+    for e in events:
+        counts = _event_text_and_counts(e)
+        if counts and counts.get("text"):
+            parts.append(str(counts["text"]))
+    joined = " ".join(parts).strip()
+    return joined or None
+
+
 def concept_features_from_events(review_events_json: Any) -> Dict[str, Any]:
     events = _safe_json_loads(review_events_json)
     if not isinstance(events, list) or not events:
@@ -360,6 +373,13 @@ def main() -> None:
     ap.add_argument("--text-col", type=str, default="transcript_best")
     ap.add_argument("--id-col", type=str, default="video_id")
     ap.add_argument(
+        "--text-from",
+        type=str,
+        choices=["transcript", "review_events"],
+        default="transcript",
+        help="Which text to analyze. 'review_events' concatenates sentences from review_samples (requires review_events_json).",
+    )
+    ap.add_argument(
         "--meta-cols",
         type=str,
         default="Title,Author,Categories,Num Reviews,Average Rating,Price,Grade Level,Publisher,Published Date,Language,Format,Print Length,ISBN-10,ISBN-13,Asin,Book URL,yt_view_count,yt_like_count,yt_duration,yt_uploader,yt_channel,yt_upload_date",
@@ -396,13 +416,23 @@ def main() -> None:
     base_cols = [args.id_col, "story_id", "age_lo", "age_hi", "age_mid", args.text_col, "review_n_events"]
     if args.concepts_from_events:
         base_cols.append("review_events_json")
+    if args.text_from == "review_events":
+        base_cols.append("review_events_json")
+    # De-duplicate in case the same column was added twice.
+    base_cols = list(dict.fromkeys(base_cols))
     meta_cols = [c.strip() for c in args.meta_cols.split(",") if c.strip()]
     cols = [c for c in base_cols + meta_cols if c in df.columns]
     work = df[cols].copy()
 
     work = work.rename(columns={args.id_col: "item_id", args.text_col: "text"})
     work["item_id"] = work["item_id"].astype(str)
-    work = work[work["text"].notna()].reset_index(drop=True)
+    if args.text_from == "review_events":
+        if "review_events_json" not in work.columns:
+            raise ValueError("--text-from review_events requires review_events_json in the master table.")
+        work["text"] = work["review_events_json"].apply(text_from_review_events)
+        work = work[work["text"].notna()].reset_index(drop=True)
+    else:
+        work = work[work["text"].notna()].reset_index(drop=True)
 
     aoa_map: Dict[str, float] = {}
     if args.aoa_lexicon and str(args.aoa_lexicon).strip():
