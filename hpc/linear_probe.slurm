@@ -16,5 +16,5 @@ export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
 
 ./hpc/run_in_singularity.sh \
-  "cd \"$PWD\" && \
-   python scripts/run_linear_probe.py --vectors artifacts/distilbert_vectors/story_vectors.npz --outdir artifacts/linear_probe"
+  'cd "$SLURM_SUBMIT_DIR" && \
+   python scripts/run_linear_probe.py --vectors artifacts/distilbert_vectors/story_vectors.npz --outdir artifacts/linear_probe'

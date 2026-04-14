@@ -21,5 +21,5 @@ export USE_NV="${USE_NV:-0}"
 #   TARGET      : column name (e.g. flesch_kincaid_grade_est, aoa_mean)
 
 ./hpc/run_in_singularity.sh \
-  "cd \"$PWD\" && \
-   python scripts/run_layerwise_regression_probe.py --vectors \"${VECTORS_NPZ}\" --features \"${FEATURES_CSV}\" --target \"${TARGET}\" --outdir artifacts/layerwise_regression_probe"
+  'cd "$SLURM_SUBMIT_DIR" && \
+   python scripts/run_layerwise_regression_probe.py --vectors "$VECTORS_NPZ" --features "$FEATURES_CSV" --target "$TARGET" --outdir artifacts/layerwise_regression_probe'
