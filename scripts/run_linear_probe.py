@@ -49,7 +49,12 @@ def main() -> None:
     ap.add_argument("--outdir", type=Path, default=Path("artifacts/linear_probe"))
     ap.add_argument("--test-size", type=float, default=0.25)
     ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--bins", type=str, default="", help="Comma bins for age_mid like '2-5,4-8,7-12'.")
+    ap.add_argument(
+        "--bins",
+        type=str,
+        default="0-3,4-6,7-12",
+        help="Comma bins for age_mid like '0-3,4-6,7-12'.",
+    )
     ap.add_argument("--shuffle-labels", action="store_true", help="Control: shuffle labels before training.")
     args = ap.parse_args()
 
@@ -135,4 +140,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

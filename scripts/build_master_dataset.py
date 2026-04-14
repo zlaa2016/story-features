@@ -298,7 +298,24 @@ def write_parquet_or_csv(df: pd.DataFrame, out_path: Path) -> Path:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Join Amazon + YouTube transcripts + event segments into a master table.")
-    ap.add_argument("--base-xlsx", type=Path, default=Path("data/amazon_data/all_extracted_titles_with_amazon.xlsx"))
+    ap.add_argument(
+        "--base",
+        type=Path,
+        default=Path("data/amazon_data/all_extracted_titles_with_amazon.xlsx"),
+        help="Base Amazon/YouTube metadata table (xlsx or csv).",
+    )
+    ap.add_argument(
+        "--base-xlsx",
+        type=Path,
+        default=None,
+        help="Deprecated alias for --base (kept for backwards compatibility).",
+    )
+    ap.add_argument(
+        "--videoid-storyid-map",
+        type=Path,
+        default=Path("data/amazon_data/unmatched_videos_with_youtube.csv"),
+        help="Optional mapping table with columns like video_id, story_id (to link review_samples/transcripts_to_clean).",
+    )
     ap.add_argument("--output-dir", type=Path, default=Path("output"))
     ap.add_argument("--transcripts-dir", type=Path, default=Path("data/transcripts_to_clean"))
     ap.add_argument("--review-samples-dir", type=Path, default=Path("review_samples"))
@@ -306,7 +323,11 @@ def main() -> None:
     ap.add_argument("--out-index", type=Path, default=Path("data/processed/master_stories_index.csv"))
     args = ap.parse_args()
 
-    base = pd.read_excel(args.base_xlsx)
+    base_path = args.base_xlsx if args.base_xlsx is not None else args.base
+    if base_path.suffix.lower() in {".xlsx", ".xls"}:
+        base = pd.read_excel(base_path)
+    else:
+        base = pd.read_csv(base_path, low_memory=False)
     base = base.copy()
 
     # Normalize ids
@@ -321,6 +342,28 @@ def main() -> None:
 
     if "story_id" in base.columns:
         base["story_id"] = base["story_id"].apply(ensure_story_id_str)
+    else:
+        base["story_id"] = None
+
+    # If base table lacks story_id, try to map via video_id.
+    if args.videoid_storyid_map and args.videoid_storyid_map.exists() and "video_id" in base.columns:
+        try:
+            m = pd.read_csv(args.videoid_storyid_map, low_memory=False)
+            if "video_id" in m.columns and "story_id" in m.columns:
+                m = m[["video_id", "story_id"]].copy()
+                m["video_id"] = m["video_id"].apply(parse_youtube_id)
+                m["story_id"] = m["story_id"].apply(ensure_story_id_str)
+                # Deduplicate video_id to avoid blowing up the base table.
+                m = (
+                    m.groupby("video_id", as_index=False)
+                    .agg({"story_id": first_non_null})
+                )
+                base = base.merge(m, on="video_id", how="left", suffixes=("", "_map"))
+                base["story_id"] = base["story_id"].fillna(base.get("story_id_map"))
+                if "story_id_map" in base.columns:
+                    base = base.drop(columns=["story_id_map"])
+        except Exception:
+            pass
 
     # Normalize age
     base["age_range"] = base.get("Reading Age", pd.Series([None] * len(base))).apply(parse_age_range)
