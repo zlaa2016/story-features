@@ -16,6 +16,10 @@ import pandas as pd
 
 
 def read_table(path: Path) -> pd.DataFrame:
+    if not path.exists() and path.suffix.lower() == ".parquet":
+        alt = path.with_suffix(".csv.gz")
+        if alt.exists():
+            path = alt
     if path.suffix.lower() == ".parquet":
         return pd.read_parquet(path)
     if path.suffix.lower() in {".csv", ".gz"} or path.name.endswith(".csv.gz"):

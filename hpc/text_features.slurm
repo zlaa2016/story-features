@@ -22,6 +22,4 @@ export FEATURES_OUT="${FEATURES_OUT:-artifacts/text_features.csv}"
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    python scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   MASTER="$MASTER_OUT"; \
-   if [[ ! -f "$MASTER" && -f "${MASTER_OUT%.parquet}.csv.gz" ]]; then MASTER="${MASTER_OUT%.parquet}.csv.gz"; fi; \
-   python scripts/analyze_text_features.py --master "$MASTER" --out "$FEATURES_OUT" --extra-nlp --concepts-from-events'
+   python scripts/analyze_text_features.py --master "$MASTER_OUT" --out "$FEATURES_OUT" --extra-nlp --concepts-from-events'

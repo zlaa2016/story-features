@@ -26,6 +26,4 @@ export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    python scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   MASTER="$MASTER_OUT"; \
-   if [[ ! -f "$MASTER" && -f "${MASTER_OUT%.parquet}.csv.gz" ]]; then MASTER="${MASTER_OUT%.parquet}.csv.gz"; fi; \
-   python scripts/extract_vectors_distilbert.py --master "$MASTER" --outdir "$VEC_OUTDIR"'
+   python scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR"'
