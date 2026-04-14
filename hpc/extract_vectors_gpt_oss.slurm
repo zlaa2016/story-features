@@ -13,7 +13,14 @@ mkdir -p logs artifacts/gpt_oss_vectors data/processed
 
 export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
-export CONDA_ENV="${CONDA_ENV:-stroy}"
+export CONDA_ENV="${CONDA_ENV:-story-features}"
+export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
+export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
+export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
+export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/gpt_oss_vectors}"
+export GPT_OSS_MODEL="${GPT_OSS_MODEL:-openai/gpt-oss-20b}"
+export GPT_OSS_UNIT="${GPT_OSS_UNIT:-story}"
+export GPT_OSS_REASONING="${GPT_OSS_REASONING:-low}"
 
 # Optional: point Hugging Face cache to scratch
 export HF_HOME="${HF_HOME:-/scratch/$USER/hf}"
@@ -21,8 +28,7 @@ export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$HF_HOME}"
 
 ./hpc/run_in_singularity.sh \
   "cd \"$PWD\" && \
-   python scripts/build_master_dataset.py --out data/processed/master_stories.parquet --out-index data/processed/master_stories_index.csv && \
-   MASTER=data/processed/master_stories.parquet; \
-   if [[ ! -f \"${MASTER}\" && -f data/processed/master_stories.csv.gz ]]; then MASTER=data/processed/master_stories.csv.gz; fi; \
-   python scripts/extract_vectors_gpt_oss.py --master \"${MASTER}\" --outdir artifacts/gpt_oss_vectors --model openai/gpt-oss-20b --unit story --reasoning low"
-
+   python scripts/build_master_dataset.py --base \"${BASE}\" --out \"${MASTER_OUT}\" --out-index \"${MASTER_INDEX}\" && \
+   MASTER=\"${MASTER_OUT}\"; \
+   if [[ ! -f \"${MASTER}\" && -f \"${MASTER_OUT%.parquet}.csv.gz\" ]]; then MASTER=\"${MASTER_OUT%.parquet}.csv.gz\"; fi; \
+   python scripts/extract_vectors_gpt_oss.py --master \"${MASTER}\" --outdir \"${VEC_OUTDIR}\" --model \"${GPT_OSS_MODEL}\" --unit \"${GPT_OSS_UNIT}\" --reasoning \"${GPT_OSS_REASONING}\""

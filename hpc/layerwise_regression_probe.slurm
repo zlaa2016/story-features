@@ -12,7 +12,7 @@ mkdir -p logs artifacts/layerwise_regression_probe
 
 export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
-export CONDA_ENV="${CONDA_ENV:-stroy}"
+export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
 
 # Required env vars:
@@ -23,4 +23,3 @@ export USE_NV="${USE_NV:-0}"
 ./hpc/run_in_singularity.sh \
   "cd \"$PWD\" && \
    python scripts/run_layerwise_regression_probe.py --vectors \"${VECTORS_NPZ}\" --features \"${FEATURES_CSV}\" --target \"${TARGET}\" --outdir artifacts/layerwise_regression_probe"
-

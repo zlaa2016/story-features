@@ -14,14 +14,18 @@ mkdir -p logs artifacts/distilbert_vectors data/processed
 # Edit these for your cluster (or pass via env when submitting).
 export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
-export CONDA_ENV="${CONDA_ENV:-stroy}"
+export CONDA_ENV="${CONDA_ENV:-story-features}"
+export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
+export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
+export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
+export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
 
 # If conda isn't at /opt/conda in your image, set CONDA_SH too.
 # export CONDA_SH="/path/inside/container/to/conda.sh"
 
 ./hpc/run_in_singularity.sh \
   "cd \"$PWD\" && \
-   python scripts/build_master_dataset.py --out data/processed/master_stories.parquet --out-index data/processed/master_stories_index.csv && \
-   MASTER=data/processed/master_stories.parquet; \
-   if [[ ! -f \"${MASTER}\" && -f data/processed/master_stories.csv.gz ]]; then MASTER=data/processed/master_stories.csv.gz; fi; \
-   python scripts/extract_vectors_distilbert.py --master \"${MASTER}\" --outdir artifacts/distilbert_vectors"
+   python scripts/build_master_dataset.py --base \"${BASE}\" --out \"${MASTER_OUT}\" --out-index \"${MASTER_INDEX}\" && \
+   MASTER=\"${MASTER_OUT}\"; \
+   if [[ ! -f \"${MASTER}\" && -f \"${MASTER_OUT%.parquet}.csv.gz\" ]]; then MASTER=\"${MASTER_OUT%.parquet}.csv.gz\"; fi; \
+   python scripts/extract_vectors_distilbert.py --master \"${MASTER}\" --outdir \"${VEC_OUTDIR}\""
