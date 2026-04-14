@@ -15,6 +15,7 @@ mkdir -p logs artifacts/distilbert_vectors data/processed
 export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
+export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
 export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
@@ -25,5 +26,5 @@ export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
-   python scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   python scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR"'
+   "$PYTHON_BIN" scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
+   "$PYTHON_BIN" scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR"'

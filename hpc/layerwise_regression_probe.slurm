@@ -14,6 +14,7 @@ export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
+export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 
 # Required env vars:
 #   VECTORS_NPZ : path to extracted vectors (e.g. artifacts/distilbert_vectors/story_vectors.npz)
@@ -22,4 +23,4 @@ export USE_NV="${USE_NV:-0}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
-   python scripts/run_layerwise_regression_probe.py --vectors "$VECTORS_NPZ" --features "$FEATURES_CSV" --target "$TARGET" --outdir artifacts/layerwise_regression_probe'
+   "$PYTHON_BIN" scripts/run_layerwise_regression_probe.py --vectors "$VECTORS_NPZ" --features "$FEATURES_CSV" --target "$TARGET" --outdir artifacts/layerwise_regression_probe'

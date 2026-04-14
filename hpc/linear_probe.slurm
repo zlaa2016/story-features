@@ -14,7 +14,8 @@ export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
+export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
-   python scripts/run_linear_probe.py --vectors artifacts/distilbert_vectors/story_vectors.npz --outdir artifacts/linear_probe'
+   "$PYTHON_BIN" scripts/run_linear_probe.py --vectors artifacts/distilbert_vectors/story_vectors.npz --outdir artifacts/linear_probe'
