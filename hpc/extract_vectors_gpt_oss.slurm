@@ -29,5 +29,7 @@ export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$HF_HOME}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
+   mkdir -p "$VEC_OUTDIR" && \
    "$PYTHON_BIN" scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   "$PYTHON_BIN" scripts/extract_vectors_gpt_oss.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR" --model "$GPT_OSS_MODEL" --unit "$GPT_OSS_UNIT" --reasoning "$GPT_OSS_REASONING"'
+   "$PYTHON_BIN" scripts/extract_vectors_gpt_oss.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR" --model "$GPT_OSS_MODEL" --unit "$GPT_OSS_UNIT" --reasoning "$GPT_OSS_REASONING" && \
+   test -f "$VEC_OUTDIR/story_vectors.npz" && ls -lh "$VEC_OUTDIR/story_vectors.npz"'

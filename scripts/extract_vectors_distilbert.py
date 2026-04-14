@@ -22,7 +22,13 @@ def read_table(path: Path) -> pd.DataFrame:
         if alt.exists():
             path = alt
     if path.suffix.lower() == ".parquet":
-        return pd.read_parquet(path)
+        try:
+            return pd.read_parquet(path)
+        except ImportError:
+            alt = path.with_suffix(".csv.gz")
+            if alt.exists():
+                return pd.read_csv(alt, low_memory=False)
+            raise
     if path.suffix.lower() in {".csv", ".gz"} or path.name.endswith(".csv.gz"):
         return pd.read_csv(path, low_memory=False)
     raise ValueError(f"Unsupported input: {path}")

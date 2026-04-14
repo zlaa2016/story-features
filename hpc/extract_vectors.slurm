@@ -26,5 +26,7 @@ export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
+   mkdir -p "$VEC_OUTDIR" && \
    "$PYTHON_BIN" scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   "$PYTHON_BIN" scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR"'
+   "$PYTHON_BIN" scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR" && \
+   test -f "$VEC_OUTDIR/story_vectors.npz" && ls -lh "$VEC_OUTDIR/story_vectors.npz"'
