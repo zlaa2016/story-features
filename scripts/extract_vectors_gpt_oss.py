@@ -137,6 +137,13 @@ def main() -> None:
     ap.add_argument("--text-col", type=str, default="transcript_best")
     ap.add_argument("--id-col", type=str, default="video_id")
     ap.add_argument("--reasoning", type=str, default="low", choices=["low", "medium", "high"])
+    ap.add_argument(
+        "--device-map",
+        type=str,
+        choices=["auto", "none"],
+        default="auto",
+        help="Use transformers device_map. 'auto' requires accelerate; 'none' loads on a single device.",
+    )
     ap.add_argument("--max-length", type=int, default=1024, help="Max tokens per forward pass.")
     ap.add_argument("--chunk-chars", type=int, default=8000, help="Story chunk size in characters (story unit).")
     ap.add_argument("--chunk-overlap", type=int, default=1000, help="Chunk overlap in characters (story unit).")
@@ -171,15 +178,29 @@ def main() -> None:
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    # Prefer device_map=auto for big models (requires accelerate).
-    try:
-        model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype="auto", device_map="auto")
-        device = None
-    except Exception:
+    print(f"Loading model: {args.model}  device_map={args.device_map}", flush=True)
+    device = None
+    input_device = None
+    if args.device_map == "auto":
+        # device_map=auto requires accelerate; if it's missing, this will throw.
+        try:
+            model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype="auto", device_map="auto")
+            device = None
+        except Exception as e:
+            print("Failed to load with device_map=auto.", flush=True)
+            print(f"Exception: {type(e).__name__}: {e}", flush=True)
+            print("Tip: install `accelerate` in the conda env, or rerun with --device-map none (may OOM).", flush=True)
+            raise
+    else:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype="auto")
         model.to(device)
     model.eval()
+    try:
+        input_device = model.get_input_embeddings().weight.device
+    except Exception:
+        input_device = next(model.parameters()).device
+    print(f"Model input device: {input_device}", flush=True)
 
     item_ids: List[str] = []
     story_ids: List[str] = []
@@ -224,9 +245,9 @@ def main() -> None:
             )
             input_ids = enc["input_ids"]
             attention_mask = enc["attention_mask"]
-            if device is not None:
-                input_ids = input_ids.to(device)
-                attention_mask = attention_mask.to(device)
+            # With device_map=auto, the embedding layer typically lives on cuda:0; inputs must match.
+            input_ids = input_ids.to(input_device)
+            attention_mask = attention_mask.to(input_device)
             with torch.no_grad():
                 out = model(input_ids=input_ids, attention_mask=attention_mask, output_hidden_states=True)
             pooled = mean_pool_hidden_states(out.hidden_states, attention_mask)
@@ -264,6 +285,8 @@ def main() -> None:
         age_hi.append(_to_f(getattr(row, "age_hi", float("nan"))))
         age_mid.append(_to_f(getattr(row, "age_mid", float("nan"))))
         segment_counts.append(len(pooled_segments))
+        if len(item_ids) % 25 == 0:
+            print(f"Processed {len(item_ids)}/{len(work)} items...", flush=True)
 
     if not vectors:
         raise SystemExit("No vectors extracted (no usable texts found).")
