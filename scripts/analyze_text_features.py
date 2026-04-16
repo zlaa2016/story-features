@@ -45,6 +45,27 @@ PRONOUNS = {
 }
 
 
+def _normalize_story_id(value: Any) -> Optional[str]:
+    if value is None:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except Exception:
+        pass
+    if isinstance(value, (int, float)):
+        try:
+            return str(int(value)).zfill(6)
+        except Exception:
+            return None
+    s = str(value).strip()
+    if not s:
+        return None
+    if re.fullmatch(r"\d{1,6}", s):
+        return s.zfill(6)
+    return None
+
+
 def read_table(path: Path) -> pd.DataFrame:
     if not path.exists() and path.suffix.lower() == ".parquet":
         alt = path.with_suffix(".csv.gz")
@@ -59,7 +80,13 @@ def read_table(path: Path) -> pd.DataFrame:
                 return pd.read_csv(alt, low_memory=False)
             raise
     if path.suffix.lower() in {".csv", ".gz"} or path.name.endswith(".csv.gz"):
-        return pd.read_csv(path, low_memory=False)
+        df = pd.read_csv(path, low_memory=False)
+        # Preserve leading zeros for story ids (review_samples use 6-digit ids).
+        if "story_id" in df.columns:
+            df["story_id"] = df["story_id"].map(_normalize_story_id)
+        if "video_id" in df.columns:
+            df["video_id"] = df["video_id"].astype(str)
+        return df
     raise ValueError(f"Unsupported input: {path}")
 
 
