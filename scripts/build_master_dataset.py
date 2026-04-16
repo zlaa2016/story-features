@@ -42,6 +42,18 @@ def parse_youtube_id(value: Any) -> Optional[str]:
     return None
 
 
+def read_csv_any_encoding(path: Path) -> pd.DataFrame:
+    last_err: Optional[Exception] = None
+    for enc in ["utf-8", "utf-8-sig", "latin-1", "cp1252"]:
+        try:
+            return pd.read_csv(path, low_memory=False, encoding=enc)
+        except Exception as e:
+            last_err = e
+    if last_err:
+        raise last_err
+    return pd.read_csv(path, low_memory=False)
+
+
 def first_non_null(series: pd.Series) -> Any:
     for v in series:
         if v is None:
@@ -313,7 +325,7 @@ def main() -> None:
     ap.add_argument(
         "--videoid-storyid-map",
         type=Path,
-        default=Path("data/amazon_data/unmatched_videos_with_youtube.csv"),
+        default=Path("data/amazon_data/all_story_nosub_manual_amazon.csv"),
         help="Optional mapping table with columns like video_id, story_id (to link review_samples/transcripts_to_clean).",
     )
     ap.add_argument("--output-dir", type=Path, default=Path("output"))
@@ -327,7 +339,7 @@ def main() -> None:
     if base_path.suffix.lower() in {".xlsx", ".xls"}:
         base = pd.read_excel(base_path)
     else:
-        base = pd.read_csv(base_path, low_memory=False)
+        base = read_csv_any_encoding(base_path)
     base = base.copy()
 
     # Normalize ids
@@ -348,7 +360,7 @@ def main() -> None:
     # If base table lacks story_id, try to map via video_id.
     if args.videoid_storyid_map and args.videoid_storyid_map.exists() and "video_id" in base.columns:
         try:
-            m = pd.read_csv(args.videoid_storyid_map, low_memory=False)
+            m = read_csv_any_encoding(args.videoid_storyid_map)
             if "video_id" in m.columns and "story_id" in m.columns:
                 m = m[["video_id", "story_id"]].copy()
                 m["video_id"] = m["video_id"].apply(parse_youtube_id)

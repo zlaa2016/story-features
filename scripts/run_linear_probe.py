@@ -47,6 +47,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Layer-wise linear probing over extracted story vectors.")
     ap.add_argument("--vectors", type=Path, default=Path("artifacts/distilbert_vectors/story_vectors.npz"))
     ap.add_argument("--outdir", type=Path, default=Path("artifacts/linear_probe"))
+    ap.add_argument(
+        "--features-csv",
+        type=Path,
+        default=None,
+        help="Optional: restrict/examples + labels from this CSV (must include item_id and age_mid).",
+    )
     ap.add_argument("--test-size", type=float, default=0.25)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument(
@@ -62,6 +68,19 @@ def main() -> None:
     vectors = data["vectors"]  # (n_items, n_layers, hidden)
     item_id = data["item_id"].astype(str).tolist()
     age_mid = data["age_mid"].astype(np.float32)
+
+    if args.features_csv is not None:
+        fdf = pd.read_csv(args.features_csv, low_memory=False)
+        if "item_id" not in fdf.columns or "age_mid" not in fdf.columns:
+            raise SystemExit("--features-csv must include columns: item_id, age_mid")
+        fdf = fdf[["item_id", "age_mid"]].copy()
+        fdf["item_id"] = fdf["item_id"].astype(str)
+        fdf["age_mid"] = pd.to_numeric(fdf["age_mid"], errors="coerce")
+        fdf = fdf[fdf["age_mid"].notna()].copy()
+        age_map = dict(zip(fdf["item_id"].tolist(), fdf["age_mid"].astype(float).tolist()))
+        # override age_mid array and restrict to intersection
+        new_age = np.array([age_map.get(i, np.nan) for i in item_id], dtype=np.float32)
+        age_mid = new_age
 
     if vectors.ndim != 3:
         raise ValueError(f"Unexpected vectors shape: {vectors.shape}")
