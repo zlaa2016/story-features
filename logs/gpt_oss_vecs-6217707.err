@@ -1,0 +1,37 @@
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    Using fakeroot command combined with root-mapped namespace
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 42 files:   0%|          | 0/42 [00:00<?, ?it/s]Fetching 42 files: 100%|██████████| 42/42 [00:00<00:00, 1182.96it/s]
+Loading weights:   0%|          | 0/411 [00:00<?, ?it/s]Loading weights:   0%|          | 1/411 [00:02<14:13,  2.08s/it]Loading weights:   0%|          | 2/411 [00:03<13:31,  1.98s/it]Loading weights:   1%|          | 5/411 [00:04<04:43,  1.43it/s]Loading weights:   2%|▏         | 7/411 [00:05<03:32,  1.90it/s]Loading weights:   3%|▎         | 12/411 [00:05<01:30,  4.39it/s]Loading weights:   5%|▍         | 20/411 [00:05<00:49,  7.88it/s]Loading weights:   6%|▌         | 24/411 [00:06<00:54,  7.13it/s]Loading weights:   9%|▉         | 39/411 [00:06<00:28, 13.18it/s]Loading weights:  10%|▉         | 41/411 [00:07<00:40,  9.15it/s]Loading weights:  12%|█▏        | 50/411 [00:07<00:25, 13.96it/s]Loading weights:  13%|█▎        | 55/411 [00:08<00:26, 13.23it/s]Loading weights:  14%|█▍        | 58/411 [00:09<00:39,  8.97it/s]Loading weights:  15%|█▍        | 60/411 [00:09<00:36,  9.71it/s]Loading weights:  18%|█▊        | 72/411 [00:09<00:20, 16.49it/s]Loading weights:  18%|█▊        | 75/411 [00:09<00:25, 13.12it/s]Loading weights:  22%|██▏       | 89/411 [00:10<00:15, 20.97it/s]Loading weights:  22%|██▏       | 92/411 [00:10<00:19, 15.95it/s]Loading weights:  26%|██▌       | 106/411 [00:11<00:13, 23.06it/s]Loading weights:  27%|██▋       | 109/411 [00:11<00:17, 17.37it/s]Loading weights:  29%|██▊       | 118/411 [00:11<00:12, 23.67it/s]Loading weights:  30%|███       | 124/411 [00:11<00:11, 24.31it/s]Loading weights:  31%|███       | 128/411 [00:12<00:16, 17.58it/s]Loading weights:  34%|███▍      | 139/411 [00:12<00:12, 22.47it/s]Loading weights:  35%|███▍      | 143/411 [00:13<00:15, 17.84it/s]Loading weights:  36%|███▌      | 146/411 [00:13<00:17, 15.49it/s]Loading weights:  39%|███▊      | 159/411 [00:13<00:11, 21.58it/s]Loading weights:  41%|████      | 167/411 [00:13<00:08, 27.14it/s]Loading weights:  42%|████▏     | 172/411 [00:14<00:10, 22.64it/s]Loading weights:  43%|████▎     | 175/411 [00:15<00:18, 13.11it/s]Loading weights:  44%|████▍     | 180/411 [00:15<00:14, 15.63it/s]Loading weights:  45%|████▌     | 185/411 [00:15<00:15, 14.85it/s]Loading weights:  47%|████▋     | 194/411 [00:16<00:15, 14.16it/s]Loading weights:  49%|████▉     | 203/411 [00:16<00:10, 20.06it/s]Loading weights:  51%|█████     | 208/411 [00:16<00:10, 19.05it/s]Loading weights:  51%|█████▏    | 211/411 [00:17<00:16, 12.31it/s]Loading weights:  54%|█████▍    | 223/411 [00:17<00:08, 21.54it/s]Loading weights:  55%|█████▌    | 228/411 [00:18<00:15, 11.75it/s]Loading weights:  57%|█████▋    | 235/411 [00:19<00:20,  8.63it/s]Loading weights:  61%|██████    | 250/411 [00:20<00:10, 15.41it/s]Loading weights:  63%|██████▎   | 259/411 [00:20<00:08, 17.06it/s]Loading weights:  64%|██████▍   | 263/411 [00:21<00:11, 12.80it/s]Loading weights:  66%|██████▌   | 271/411 [00:21<00:10, 13.23it/s]Loading weights:  68%|██████▊   | 279/411 [00:22<00:10, 12.40it/s]Loading weights:  70%|███████   | 288/411 [00:22<00:07, 16.99it/s]Loading weights:  72%|███████▏  | 294/411 [00:22<00:06, 17.26it/s]Loading weights:  72%|███████▏  | 297/411 [00:23<00:09, 11.50it/s]Loading weights:  75%|███████▌  | 310/411 [00:24<00:07, 14.05it/s]Loading weights:  76%|███████▌  | 313/411 [00:25<00:09, 10.67it/s]Loading weights:  78%|███████▊  | 319/411 [00:25<00:06, 13.24it/s]Loading weights:  80%|███████▉  | 328/411 [00:25<00:05, 15.29it/s]Loading weights:  81%|████████  | 331/411 [00:26<00:08,  9.87it/s]Loading weights:  82%|████████▏ | 337/411 [00:26<00:05, 12.81it/s]Loading weights:  83%|████████▎ | 342/411 [00:27<00:05, 12.73it/s]Loading weights:  84%|████████▍ | 347/411 [00:27<00:06, 10.10it/s]Loading weights:  86%|████████▌ | 352/411 [00:28<00:04, 12.13it/s]Loading weights:  88%|████████▊ | 360/411 [00:28<00:03, 15.07it/s]Loading weights:  89%|████████▊ | 364/411 [00:29<00:04, 11.20it/s]Loading weights:  91%|█████████ | 373/411 [00:29<00:02, 17.21it/s]Loading weights:  92%|█████████▏| 377/411 [00:29<00:02, 15.83it/s]Loading weights:  93%|█████████▎| 381/411 [00:30<00:02, 11.91it/s]Loading weights:  94%|█████████▍| 388/411 [00:30<00:01, 16.70it/s]Loading weights:  96%|█████████▌| 395/411 [00:30<00:00, 18.68it/s]Loading weights:  97%|█████████▋| 398/411 [00:31<00:01, 12.14it/s]Loading weights: 100%|██████████| 411/411 [00:31<00:00, 13.12it/s]
+Traceback (most recent call last):
+  File "/scratch/zl6113/story-features/scripts/extract_vectors_gpt_oss.py", line 300, in <module>
+    main()
+  File "/scratch/zl6113/story-features/scripts/extract_vectors_gpt_oss.py", line 231, in main
+    out = model(input_ids=input_ids, attention_mask=attention_mask, output_hidden_states=True)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/transformers/utils/generic.py", line 876, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/transformers/models/gpt_oss/modeling_gpt_oss.py", line 649, in forward
+    outputs: MoeModelOutputWithPast = self.model(
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/transformers/utils/generic.py", line 952, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/transformers/models/gpt_oss/modeling_gpt_oss.py", line 466, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/modules/sparse.py", line 189, in forward
+    return F.embedding(
+  File "/ext3/story-features/lib/python3.10/site-packages/torch/nn/functional.py", line 2567, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+RuntimeError: Expected all tensors to be on the same device, but got index is on cpu, different from other tensors on cuda:0 (when checking argument in method wrapper_CUDA__index_select)

@@ -1,0 +1,18 @@
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    Using fakeroot command combined with root-mapped namespace
+Traceback (most recent call last):
+  File "/scratch/zl6113/story-features/scripts/extract_vectors_distilbert.py", line 205, in <module>
+    main()
+  File "/scratch/zl6113/story-features/scripts/extract_vectors_distilbert.py", line 113, in main
+    df = read_table(args.master)
+  File "/scratch/zl6113/story-features/scripts/extract_vectors_distilbert.py", line 25, in read_table
+    return pd.read_parquet(path)
+  File "/ext3/story-features/lib/python3.10/site-packages/pandas/io/parquet.py", line 653, in read_parquet
+    impl = get_engine(engine)
+  File "/ext3/story-features/lib/python3.10/site-packages/pandas/io/parquet.py", line 68, in get_engine
+    raise ImportError(
+ImportError: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.
+A suitable version of pyarrow or fastparquet is required for parquet support.
+Trying to import the above resulted in these errors:
+ - Missing optional dependency 'pyarrow'. pyarrow is required for parquet support. Use pip or conda to install pyarrow.
+ - Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.
