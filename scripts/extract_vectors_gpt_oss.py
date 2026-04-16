@@ -266,7 +266,9 @@ def main() -> None:
             )
 
         story_vec = torch.stack(pooled_segments, dim=0).mean(dim=0)  # (n_layers, hidden)
-        vectors.append(story_vec.numpy().astype(np.float32))
+        # Ensure numpy conversion works regardless of torch dtype/device (e.g., bfloat16)
+        story_vec_np = story_vec.to(dtype=torch.float32).cpu().numpy()
+        vectors.append(story_vec_np.astype(np.float32, copy=False))
         item_ids.append(str(row.item_id))
         story_ids.append("" if not isinstance(getattr(row, "story_id", None), str) else getattr(row, "story_id"))
 
