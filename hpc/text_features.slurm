@@ -19,8 +19,17 @@ export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
 export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
 export FEATURES_OUT="${FEATURES_OUT:-artifacts/text_features.csv}"
+export AOA_LEXICON="${AOA_LEXICON:-}"
+export AOA_WORD_COL="${AOA_WORD_COL:-}"
+export AOA_AGE_COL="${AOA_AGE_COL:-}"
+export AOA_LOOKUP="${AOA_LOOKUP:-}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   "$PYTHON_BIN" scripts/analyze_text_features.py --master "$MASTER_OUT" --out "$FEATURES_OUT" --extra-nlp --concepts-from-events'
+   AOA_ARGS=(); \
+   if [[ -n "${AOA_LEXICON:-}" ]]; then AOA_ARGS+=(--aoa-lexicon "$AOA_LEXICON"); fi; \
+   if [[ -n "${AOA_WORD_COL:-}" ]]; then AOA_ARGS+=(--aoa-word-col "$AOA_WORD_COL"); fi; \
+   if [[ -n "${AOA_AGE_COL:-}" ]]; then AOA_ARGS+=(--aoa-age-col "$AOA_AGE_COL"); fi; \
+   if [[ -n "${AOA_LOOKUP:-}" ]]; then AOA_ARGS+=(--aoa-lookup "$AOA_LOOKUP"); fi; \
+   "$PYTHON_BIN" scripts/analyze_text_features.py --master "$MASTER_OUT" --out "$FEATURES_OUT" --extra-nlp --concepts-from-events "${AOA_ARGS[@]}"'

@@ -166,8 +166,12 @@ def sentiment_features(text: str) -> Dict[str, Any]:
 def load_aoa_lexicon(path: Path, word_col: str = "", aoa_col: str = "") -> Dict[str, float]:
     if not path.exists():
         return {}
-    sep = "\t" if path.suffix.lower() in {".tsv"} else ","
-    df = pd.read_csv(path, sep=sep, low_memory=False)
+    suf = path.suffix.lower()
+    if suf in {".xlsx", ".xls"}:
+        df = pd.read_excel(path)
+    else:
+        sep = "\t" if suf in {".tsv"} else ","
+        df = pd.read_csv(path, sep=sep, low_memory=False)
     cols = {c.lower().strip(): c for c in df.columns}
     if not word_col:
         for cand in ["word", "lemma", "item", "token"]:
@@ -175,7 +179,17 @@ def load_aoa_lexicon(path: Path, word_col: str = "", aoa_col: str = "") -> Dict[
                 word_col = cols[cand]
                 break
     if not aoa_col:
-        for cand in ["aoa", "aoa_mean", "mean_aoa", "rating.mean", "rating_mean"]:
+        for cand in [
+            "aoa",
+            "aoa_mean",
+            "mean_aoa",
+            "rating.mean",  # e.g. Kuperman sheet
+            "rating_mean",
+            "aoa_kup_lem",  # AoA_51715_words.xlsx
+            "aoa_kup",
+            "aoa_kup_lemmas",
+            "aoa_kup_lemma",
+        ]:
             if cand in cols:
                 aoa_col = cols[cand]
                 break
@@ -193,7 +207,36 @@ def load_aoa_lexicon(path: Path, word_col: str = "", aoa_col: str = "") -> Dict[
     return out
 
 
-def aoa_features(words: List[str], aoa_map: Dict[str, float]) -> Dict[str, Any]:
+def lemma_heuristic(word: str) -> str:
+    w = word.lower()
+    # possessives
+    if w.endswith("'s"):
+        w = w[:-2]
+    if w.endswith("’s"):
+        w = w[:-2]
+    # simple plural handling
+    if len(w) > 4 and w.endswith("ies"):
+        return w[:-3] + "y"
+    if len(w) > 3 and w.endswith("es"):
+        return w[:-2]
+    if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+        w = w[:-1]
+    # simple verb inflections
+    if len(w) > 5 and w.endswith("ing"):
+        w2 = w[:-3]
+        # running -> run (drop double consonant)
+        if len(w2) >= 2 and w2[-1] == w2[-2]:
+            w2 = w2[:-1]
+        return w2
+    if len(w) > 4 and w.endswith("ed"):
+        w2 = w[:-2]
+        if len(w2) >= 2 and w2[-1] == w2[-2]:
+            w2 = w2[:-1]
+        return w2
+    return w
+
+
+def aoa_features(words: List[str], aoa_map: Dict[str, float], lookup_mode: str = "wordform") -> Dict[str, Any]:
     if not aoa_map or not words:
         return {
             "aoa_mean": float("nan"),
@@ -202,7 +245,10 @@ def aoa_features(words: List[str], aoa_map: Dict[str, float]) -> Dict[str, Any]:
         }
     vals: List[float] = []
     for w in words:
-        a = aoa_map.get(w)
+        key = w
+        if lookup_mode == "lemma_heuristic":
+            key = lemma_heuristic(w)
+        a = aoa_map.get(key)
         if a is not None:
             vals.append(a)
     if not vals:
@@ -404,6 +450,13 @@ def main() -> None:
     ap.add_argument("--aoa-word-col", type=str, default="", help="Override AoA lexicon word column name.")
     ap.add_argument("--aoa-age-col", type=str, default="", help="Override AoA lexicon AoA column name.")
     ap.add_argument(
+        "--aoa-lookup",
+        type=str,
+        choices=["wordform", "lemma_heuristic"],
+        default="wordform",
+        help="How to look up words in the AoA lexicon. Only affects AoA features.",
+    )
+    ap.add_argument(
         "--events-out",
         type=str,
         default="",
@@ -469,7 +522,7 @@ def main() -> None:
             f.update(sentiment_features(text))
             f.update(frequency_features(words, corpus_counts, corpus_total))
             if aoa_map:
-                f.update(aoa_features(words, aoa_map))
+                f.update(aoa_features(words, aoa_map, lookup_mode=args.aoa_lookup))
         out: Dict[str, Any] = {"item_id": row_map.get("item_id"), "story_id": row_map.get("story_id")}
         for k in carry_cols:
             if k in row_map:
