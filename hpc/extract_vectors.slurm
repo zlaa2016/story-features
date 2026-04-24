@@ -21,6 +21,7 @@ export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
 export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
 export VEC_UNIT="${VEC_UNIT:-story}"
+export VEC_SEGMENT_AGG="${VEC_SEGMENT_AGG:-mean}"
 
 # If conda isn't at /opt/conda in your image, set CONDA_SH too.
 # export CONDA_SH="/path/inside/container/to/conda.sh"
@@ -29,5 +30,5 @@ export VEC_UNIT="${VEC_UNIT:-story}"
   'cd "$SLURM_SUBMIT_DIR" && \
    mkdir -p "$VEC_OUTDIR" && \
    "$PYTHON_BIN" scripts/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
-   "$PYTHON_BIN" scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR" --unit "$VEC_UNIT" && \
+   "$PYTHON_BIN" scripts/extract_vectors_distilbert.py --master "$MASTER_OUT" --outdir "$VEC_OUTDIR" --unit "$VEC_UNIT" --segment-agg "$VEC_SEGMENT_AGG" && \
    test -f "$VEC_OUTDIR/story_vectors.npz" && ls -lh "$VEC_OUTDIR/story_vectors.npz"'

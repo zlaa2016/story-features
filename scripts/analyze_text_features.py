@@ -190,6 +190,50 @@ def sentiment_features(text: str) -> Dict[str, Any]:
     }
 
 
+def sentiment_features_over_events(review_events_json: Any) -> Dict[str, Any]:
+    """
+    Computes sentiment per event (from review_events_json sentences) and returns mean/std aggregates.
+    Returns NaNs if VADER is unavailable or events are missing/unparseable.
+    """
+    try:
+        from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer  # type: ignore
+    except Exception:
+        return {
+            "sentiment_compound_mean": float("nan"),
+            "sentiment_compound_std": float("nan"),
+        }
+    events = _safe_json_loads(review_events_json)
+    if not isinstance(events, list) or not events:
+        return {
+            "sentiment_compound_mean": float("nan"),
+            "sentiment_compound_std": float("nan"),
+        }
+    analyzer = SentimentIntensityAnalyzer()
+    vals: List[float] = []
+    for e in events:
+        info = _event_text_and_counts(e)
+        if not info:
+            continue
+        txt = str(info.get("text", "")).strip()
+        if not txt:
+            continue
+        s = analyzer.polarity_scores(txt)
+        try:
+            vals.append(float(s.get("compound", 0.0)))
+        except Exception:
+            continue
+    if not vals:
+        return {
+            "sentiment_compound_mean": float("nan"),
+            "sentiment_compound_std": float("nan"),
+        }
+    ser = pd.Series(vals, dtype="float")
+    return {
+        "sentiment_compound_mean": float(ser.mean()),
+        "sentiment_compound_std": float(ser.std(ddof=0)),
+    }
+
+
 def load_aoa_lexicon(path: Path, word_col: str = "", aoa_col: str = "") -> Dict[str, float]:
     if not path.exists():
         return {}
@@ -469,6 +513,29 @@ def main() -> None:
         help="Add non-LLM NLP features (readability, syllables, diversity, sentiment, corpus frequency).",
     )
     ap.add_argument(
+        "--sentiment-over-events",
+        action="store_true",
+        help="If review_events_json is present, compute sentiment per event and output mean/std aggregates.",
+    )
+    ap.add_argument(
+        "--category-tfidf",
+        action="store_true",
+        help="Add TF-IDF + SVD features derived from Amazon Categories (content confound).",
+    )
+    ap.add_argument(
+        "--category-level",
+        type=str,
+        choices=["parent", "leaf", "full"],
+        default="parent",
+        help="Which Categories level to featurize (parent = second-to-last breadcrumb).",
+    )
+    ap.add_argument(
+        "--category-tfidf-k",
+        type=int,
+        default=32,
+        help="Number of SVD components for category TF-IDF features.",
+    )
+    ap.add_argument(
         "--aoa-lexicon",
         type=str,
         default="",
@@ -531,9 +598,41 @@ def main() -> None:
 
     carry_cols = ["age_lo", "age_hi", "age_mid", "review_n_events"] + meta_cols
 
+    # Optional: category TF-IDF features as a content confound.
+    cat_svd_cols: List[str] = []
+    cat_svd_mat = None
+    if args.category_tfidf and "Categories" in work.columns and args.category_tfidf_k > 0:
+        try:
+            from sklearn.decomposition import TruncatedSVD
+            from sklearn.feature_extraction.text import TfidfVectorizer
+        except Exception:
+            TruncatedSVD = None  # type: ignore
+            TfidfVectorizer = None  # type: ignore
+        if TruncatedSVD is not None and TfidfVectorizer is not None:
+            raw = work["Categories"].astype(str).fillna("").tolist()
+
+            def _cat_level(s: str) -> str:
+                parts = [p.strip() for p in str(s).split(">") if p and str(p).strip() and str(p).strip().lower() != "nan"]
+                if not parts:
+                    return ""
+                if args.category_level == "full":
+                    return " > ".join(parts)
+                if args.category_level == "leaf":
+                    return parts[-1]
+                return parts[-2] if len(parts) >= 2 else parts[-1]
+
+            cats = [_cat_level(s) for s in raw]
+            vec = TfidfVectorizer(min_df=2, token_pattern=r"(?u)\b\w+\b")
+            Xcat = vec.fit_transform(cats)
+            if Xcat.shape[1] > 0:
+                k = min(int(args.category_tfidf_k), max(1, Xcat.shape[1] - 1))
+                svd = TruncatedSVD(n_components=k, random_state=0)
+                cat_svd_mat = svd.fit_transform(Xcat).astype("float32")
+                cat_svd_cols = [f"cat_tfidf_svd_{i}" for i in range(cat_svd_mat.shape[1])]
+
     feats: List[Dict[str, Any]] = []
     event_rows: List[Dict[str, Any]] = []
-    for row in work.itertuples(index=False, name=None):
+    for row_i, row in enumerate(work.itertuples(index=False, name=None)):
         row_map = dict(zip(work.columns, row))
         text = str(row_map["text"])
         f = basic_features(text)
@@ -548,8 +647,13 @@ def main() -> None:
             f["syllable_count_est"] = int(syllables)
             f.update(sentiment_features(text))
             f.update(frequency_features(words, corpus_counts, corpus_total))
+            if args.sentiment_over_events and "review_events_json" in row_map:
+                f.update(sentiment_features_over_events(row_map.get("review_events_json")))
             if aoa_map:
                 f.update(aoa_features(words, aoa_map, lookup_mode=args.aoa_lookup))
+        if cat_svd_mat is not None and cat_svd_cols:
+            for j, c in enumerate(cat_svd_cols):
+                f[c] = float(cat_svd_mat[row_i, j])
         out: Dict[str, Any] = {"item_id": row_map.get("item_id"), "story_id": row_map.get("story_id")}
         for k in carry_cols:
             if k in row_map:

@@ -18,7 +18,7 @@ export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 
 # Inputs/outputs (override via env on sbatch if desired)
 export BASE="${BASE:-data/amazon_data/amazon_youtube_batch1.csv}"
-export MASTER_OUT="${MASTER_OUT:-data/processed/master_batch1.parquet}"
+export MASTER_OUT="${MASTER_OUT:-data/processed/master_batch1.csv.gz}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_batch1_index.csv}"
 export FEATURES_OUT="${FEATURES_OUT:-artifacts/text_features_batch1_review_samples.csv}"
 export BASELINE_OUT="${BASELINE_OUT:-artifacts/feature_baseline_batch1_review_samples.csv}"
@@ -36,5 +36,5 @@ export AOA_LOOKUP="${AOA_LOOKUP:-}"
    if [[ -n "${AOA_WORD_COL:-}" ]]; then AOA_ARGS+=(--aoa-word-col "$AOA_WORD_COL"); fi; \
    if [[ -n "${AOA_AGE_COL:-}" ]]; then AOA_ARGS+=(--aoa-age-col "$AOA_AGE_COL"); fi; \
    if [[ -n "${AOA_LOOKUP:-}" ]]; then AOA_ARGS+=(--aoa-lookup "$AOA_LOOKUP"); fi; \
-   "$PYTHON_BIN" scripts/analyze_text_features.py --master "$MASTER_OUT" --out "$FEATURES_OUT" --text-from review_events --extra-nlp --concepts-from-events "${AOA_ARGS[@]}" && \
+   "$PYTHON_BIN" scripts/analyze_text_features.py --master "$MASTER_OUT" --out "$FEATURES_OUT" --text-from review_events --extra-nlp --concepts-from-events --sentiment-over-events --category-tfidf --category-level parent "${AOA_ARGS[@]}" && \
    "$PYTHON_BIN" scripts/run_feature_baseline_probe.py --features "$FEATURES_OUT" --bins "$BINS" --out "$BASELINE_OUT"'

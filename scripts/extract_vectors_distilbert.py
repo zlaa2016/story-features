@@ -171,6 +171,13 @@ def main() -> None:
     ap.add_argument("--text-col", type=str, default="transcript_best")
     ap.add_argument("--id-col", type=str, default="video_id")
     ap.add_argument("--unit", type=str, choices=["story", "event"], default="story")
+    ap.add_argument(
+        "--segment-agg",
+        type=str,
+        choices=["mean", "concat_mean_std"],
+        default="mean",
+        help="How to aggregate multiple segments (events) into one story vector.",
+    )
     ap.add_argument("--max-len", type=int, default=128)
     ap.add_argument("--stride", type=int, default=64)
     ap.add_argument("--batch-size", type=int, default=16)
@@ -272,7 +279,13 @@ def main() -> None:
         if not pooled_segments:
             continue
 
-        story_vec = torch.stack(pooled_segments, dim=0).mean(dim=0)  # (n_layers, hidden)
+        seg_mat = torch.stack(pooled_segments, dim=0)  # (n_segments, n_layers, hidden)
+        story_mean = seg_mat.mean(dim=0)  # (n_layers, hidden)
+        if args.segment_agg == "concat_mean_std":
+            story_std = seg_mat.std(dim=0, unbiased=False)  # (n_layers, hidden)
+            story_vec = torch.cat([story_mean, story_std], dim=-1)  # (n_layers, 2*hidden)
+        else:
+            story_vec = story_mean  # (n_layers, hidden)
 
         vectors.append(story_vec.numpy().astype(np.float32))
         item_ids.append(str(row.item_id))
@@ -304,6 +317,7 @@ def main() -> None:
                 "max_len": args.max_len,
                 "stride": args.stride,
                 "unit": args.unit,
+                "segment_agg": args.segment_agg,
             }
         ),
     )
