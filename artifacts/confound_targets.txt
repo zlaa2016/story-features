@@ -1,0 +1,15 @@
+num_words
+num_sentences
+mean_sentence_length_words
+mean_word_length_chars
+ttr
+mean_log10_corpus_freq
+rare_frac_corpus_le_5
+flesch_kincaid_grade_est
+avg_syllables_per_word
+aoa_mean
+aoa_coverage
+sentiment_compound_mean
+sentiment_compound_std
+concept_n_events_parsed
+concept_mean_event_words

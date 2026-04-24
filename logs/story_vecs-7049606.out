@@ -1,0 +1,5 @@
+Wrote master: data/processed/master_batch1.csv.gz
+Wrote index:  data/processed/master_stories_index.csv
+Rows: 2860 | transcripts: 2371 | events: 378
+Wrote: artifacts/distilbert_vectors_events_meanstd/story_vectors.npz  shape=(2371, 7, 1536)
+-rw-r--r-- 1 root root 53M Apr 24 13:18 artifacts/distilbert_vectors_events_meanstd/story_vectors.npz

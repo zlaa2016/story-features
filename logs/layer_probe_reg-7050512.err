@@ -1,0 +1,3 @@
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    Using fakeroot command combined with root-mapped namespace
+/bin/bash: line 51: VECTORS_NPZ: unbound variable
