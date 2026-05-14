@@ -59,6 +59,30 @@ def read_table(path: Path) -> pd.DataFrame:
     raise ValueError(f"Unsupported input: {path}")
 
 
+def filter_cleaned_rows(df: pd.DataFrame, meta_path: Path, cleaned_col: str) -> pd.DataFrame:
+    meta = pd.read_csv(meta_path, low_memory=False)
+    keep = pd.to_numeric(meta.get(cleaned_col), errors="coerce").fillna(0).astype(int) == 1
+    meta = meta[keep].copy()
+
+    matched = pd.Series(False, index=df.index)
+    out = df.copy()
+
+    if "story_id" in out.columns and "story_id" in meta.columns:
+        meta["story_id"] = meta["story_id"].map(_normalize_story_id)
+        keep_story = set(meta["story_id"].dropna().astype(str))
+        matched = matched | out["story_id"].isin(keep_story)
+
+    if "video_id" in out.columns and "video_id" in meta.columns:
+        meta["video_id"] = meta["video_id"].astype(str).str.strip()
+        out["video_id"] = out["video_id"].astype(str).str.strip()
+        keep_video = set(meta["video_id"].dropna().astype(str))
+        matched = matched | out["video_id"].isin(keep_video)
+
+    out = out[matched].copy()
+    out["cleaned"] = 1
+    return out
+
+
 def sent_split(text: str) -> List[str]:
     sents = re.split(r"(?<=[.!?])\s+", text.strip())
     return [s.strip() for s in sents if s and s.strip()]
@@ -174,6 +198,13 @@ def main() -> None:
     ap.add_argument("--chunk-chars", type=int, default=8000, help="Story chunk size in characters (story unit).")
     ap.add_argument("--chunk-overlap", type=int, default=1000, help="Chunk overlap in characters (story unit).")
     ap.add_argument("--limit", type=int, default=0, help="Limit number of items (0 = no limit).")
+    ap.add_argument(
+        "--cleaned-meta",
+        type=Path,
+        default=None,
+        help="Optional metadata CSV with story_id/video_id and a cleaned column; keeps only cleaned=1 rows.",
+    )
+    ap.add_argument("--cleaned-col", type=str, default="cleaned")
     args = ap.parse_args()
 
     global torch
@@ -181,6 +212,8 @@ def main() -> None:
     from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
 
     df = read_table(args.master)
+    if args.cleaned_meta is not None and args.cleaned_meta.exists():
+        df = filter_cleaned_rows(df, args.cleaned_meta, args.cleaned_col)
     if args.text_col not in df.columns:
         raise ValueError(f"Missing text column: {args.text_col}")
     if args.id_col not in df.columns:

@@ -90,6 +90,30 @@ def read_table(path: Path) -> pd.DataFrame:
     raise ValueError(f"Unsupported input: {path}")
 
 
+def filter_cleaned_rows(df: pd.DataFrame, meta_path: Path, cleaned_col: str) -> pd.DataFrame:
+    meta = pd.read_csv(meta_path, low_memory=False)
+    keep = pd.to_numeric(meta.get(cleaned_col), errors="coerce").fillna(0).astype(int) == 1
+    meta = meta[keep].copy()
+
+    matched = pd.Series(False, index=df.index)
+    out = df.copy()
+
+    if "story_id" in out.columns and "story_id" in meta.columns:
+        meta["story_id"] = meta["story_id"].map(_normalize_story_id)
+        keep_story = set(meta["story_id"].dropna().astype(str))
+        matched = matched | out["story_id"].isin(keep_story)
+
+    if "video_id" in out.columns and "video_id" in meta.columns:
+        meta["video_id"] = meta["video_id"].astype(str).str.strip()
+        out["video_id"] = out["video_id"].astype(str).str.strip()
+        keep_video = set(meta["video_id"].dropna().astype(str))
+        matched = matched | out["video_id"].isin(keep_video)
+
+    out = out[matched].copy()
+    out["cleaned"] = 1
+    return out
+
+
 def sent_split(text: str) -> List[str]:
     # Robust-ish sentence split for transcripts that may lack punctuation.
     sents = re.split(r"(?<=[.!?])\s+|\n+", text.strip())
@@ -557,9 +581,18 @@ def main() -> None:
         help="Optional: write an event-level table (one row per event) to this path.",
     )
     ap.add_argument("--with-textstat", action="store_true", help="Add textstat metrics if available.")
+    ap.add_argument(
+        "--cleaned-meta",
+        type=Path,
+        default=None,
+        help="Optional metadata CSV with story_id/video_id and a cleaned column; keeps only cleaned=1 rows.",
+    )
+    ap.add_argument("--cleaned-col", type=str, default="cleaned")
     args = ap.parse_args()
 
     df = read_table(args.master)
+    if args.cleaned_meta is not None and args.cleaned_meta.exists():
+        df = filter_cleaned_rows(df, args.cleaned_meta, args.cleaned_col)
     base_cols = [args.id_col, "story_id", "age_lo", "age_hi", "age_mid", args.text_col, "review_n_events"]
     if args.concepts_from_events:
         base_cols.append("review_events_json")

@@ -1,0 +1,13 @@
+{
+  "n_full_cleaned": 249,
+  "n_aoa_matched": 212,
+  "n_narrative_matched": 140,
+  "age_cutoff": 5.0,
+  "aoa_col": "aoa_mean",
+  "aoa_low_quantile": 0.33,
+  "aoa_high_quantile": 0.67,
+  "best_full_layer": 2,
+  "best_aoa_matched_layer": 2,
+  "best_narrative_matched_layer": 6,
+  "best_direction_layer_by_cosine": 1
+}

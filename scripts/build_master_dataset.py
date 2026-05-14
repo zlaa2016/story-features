@@ -13,6 +13,7 @@ import pandas as pd
 
 AGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)")
 YOUTUBE_ID_RE = re.compile(r"(?:v=|youtu\.be/)([A-Za-z0-9_-]{6,})")
+VALID_VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{6,}$")
 
 
 def parse_age_range(value: Any) -> Optional[Tuple[float, float]]:
@@ -25,6 +26,21 @@ def parse_age_range(value: Any) -> Optional[Tuple[float, float]]:
     if hi < lo:
         lo, hi = hi, lo
     return lo, hi
+
+
+def normalize_age_source(value: Any) -> Optional[str]:
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return None
+    s = str(value).strip().lower()
+    if not s or s == "nan":
+        return None
+    if "customer" in s:
+        return "customer"
+    if "publisher" in s:
+        return "publisher"
+    if s in {"customer", "publisher"}:
+        return s
+    return None
 
 
 def parse_youtube_id(value: Any) -> Optional[str]:
@@ -52,6 +68,48 @@ def read_csv_any_encoding(path: Path) -> pd.DataFrame:
     if last_err:
         raise last_err
     return pd.read_csv(path, low_memory=False)
+
+
+def _normalize_story_id(value: Any) -> Optional[str]:
+    if value is None:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except Exception:
+        pass
+    if isinstance(value, (int, float)):
+        try:
+            return str(int(value)).zfill(6)
+        except Exception:
+            return None
+    s = str(value).strip()
+    if not s:
+        return None
+    if re.fullmatch(r"\d{1,6}", s):
+        return s.zfill(6)
+    return None
+
+
+def load_cleaned_filter(meta_path: Path, cleaned_col: str) -> pd.DataFrame:
+    meta = read_csv_any_encoding(meta_path)
+    keep = pd.to_numeric(meta.get(cleaned_col), errors="coerce").fillna(0).astype(int) == 1
+    meta = meta[keep].copy()
+    if "story_id" in meta.columns:
+        meta["story_id"] = meta["story_id"].apply(_normalize_story_id)
+    else:
+        meta["story_id"] = None
+    if "video_id" in meta.columns:
+        meta["video_id"] = meta["video_id"].apply(parse_youtube_id)
+    else:
+        meta["video_id"] = None
+    cols = [c for c in ["story_id", "video_id", cleaned_col] if c in meta.columns]
+    out = meta[cols].copy()
+    if cleaned_col in out.columns and cleaned_col != "cleaned":
+        out = out.rename(columns={cleaned_col: "cleaned"})
+    elif cleaned_col not in out.columns:
+        out["cleaned"] = 1
+    return out.drop_duplicates(subset=[c for c in ["story_id", "video_id"] if c in out.columns], keep="first")
 
 
 def first_non_null(series: pd.Series) -> Any:
@@ -97,6 +155,41 @@ def load_youtube_outputs(output_dir: Path) -> pd.DataFrame:
     # Prefix to avoid collisions with Amazon fields.
     merged = merged.rename(columns={c: f"yt_{c}" for c in merged.columns if c != "video_id"})
     return merged
+
+
+def load_playlists_from_extracted_titles(titles_dir: Path) -> pd.DataFrame:
+    """
+    Aggregate the playlist(s) a video_id appeared in from data/extracted_titles/*_titles.csv.
+    Returns columns: video_id, source_playlists
+    """
+    if not titles_dir.exists():
+        return pd.DataFrame(columns=["video_id", "source_playlists"])
+
+    rows: List[pd.DataFrame] = []
+    for p in sorted(titles_dir.glob("*_titles.csv")):
+        try:
+            df = read_csv_any_encoding(p)
+        except Exception:
+            continue
+        if "video_id" not in df.columns:
+            continue
+        playlist = p.name.replace("_titles.csv", "")
+        tmp = df[["video_id"]].copy()
+        tmp["video_id"] = tmp["video_id"].astype(str).str.strip()
+        tmp = tmp[tmp["video_id"].str.match(VALID_VIDEO_ID_RE, na=False)]
+        tmp["source_playlist"] = playlist
+        rows.append(tmp)
+
+    if not rows:
+        return pd.DataFrame(columns=["video_id", "source_playlists"])
+
+    all_df = pd.concat(rows, ignore_index=True).drop_duplicates()
+    playlists = (
+        all_df.groupby("video_id", as_index=False)["source_playlist"]
+        .agg(lambda s: "|".join(sorted(set(s))))
+        .rename(columns={"source_playlist": "source_playlists"})
+    )
+    return playlists
 
 
 def load_story_transcripts(transcripts_dir: Path) -> pd.DataFrame:
@@ -329,10 +422,23 @@ def main() -> None:
         help="Optional mapping table with columns like video_id, story_id (to link review_samples/transcripts_to_clean).",
     )
     ap.add_argument("--output-dir", type=Path, default=Path("output"))
+    ap.add_argument("--titles-dir", type=Path, default=Path("data/extracted_titles"))
     ap.add_argument("--transcripts-dir", type=Path, default=Path("data/transcripts_to_clean"))
     ap.add_argument("--review-samples-dir", type=Path, default=Path("review_samples"))
     ap.add_argument("--out", type=Path, default=Path("data/processed/master_stories.parquet"))
     ap.add_argument("--out-index", type=Path, default=Path("data/processed/master_stories_index.csv"))
+    ap.add_argument(
+        "--cleaned-meta",
+        type=Path,
+        default=None,
+        help="Optional metadata CSV with story_id/video_id and a cleaned column to merge/filter against.",
+    )
+    ap.add_argument("--cleaned-col", type=str, default="cleaned")
+    ap.add_argument(
+        "--cleaned-only",
+        action="store_true",
+        help="Keep only rows whose story_id/video_id are marked cleaned=1 in --cleaned-meta.",
+    )
     args = ap.parse_args()
 
     base_path = args.base_xlsx if args.base_xlsx is not None else args.base
@@ -343,6 +449,8 @@ def main() -> None:
     base = base.copy()
 
     # Normalize ids
+    if "video_id" not in base.columns:
+        base["video_id"] = None
     if "video_id" in base.columns:
         base["video_id"] = base["video_id"].apply(parse_youtube_id)
     if "video_url" in base.columns:
@@ -351,6 +459,17 @@ def main() -> None:
     if "youtube_url" in base.columns:
         missing = base["video_id"].isna()
         base.loc[missing, "video_id"] = base.loc[missing, "youtube_url"].apply(parse_youtube_id)
+
+    # Drop rows we can't link to YouTube (these are usually unmatched Amazon rows / scrape artifacts).
+    base = base[base["video_id"].notna()].copy()
+
+    # Ensure we always have a usable YouTube watch URL for inspection/exports.
+    if "youtube_url" not in base.columns:
+        base["youtube_url"] = None
+    base["youtube_url"] = base["youtube_url"].where(
+        base["youtube_url"].notna(),
+        "https://www.youtube.com/watch?v=" + base["video_id"].astype(str),
+    )
 
     if "story_id" in base.columns:
         base["story_id"] = base["story_id"].apply(ensure_story_id_str)
@@ -382,14 +501,41 @@ def main() -> None:
     base["age_lo"] = base["age_range"].apply(lambda t: t[0] if isinstance(t, tuple) else None)
     base["age_hi"] = base["age_range"].apply(lambda t: t[1] if isinstance(t, tuple) else None)
     base["age_mid"] = base["age_range"].apply(lambda t: (t[0] + t[1]) / 2 if isinstance(t, tuple) else None)
+    base["amazon_age_source"] = base.get("Reading Age Source", pd.Series([None] * len(base))).apply(normalize_age_source)
+    base["has_amazon_age"] = base.get("Reading Age", pd.Series([None] * len(base))).notna()
 
     yt = load_youtube_outputs(args.output_dir)
+    playlists = load_playlists_from_extracted_titles(args.titles_dir)
     txt = load_story_transcripts(args.transcripts_dir)
     reviews = load_review_samples(args.review_samples_dir)
 
     merged = base.merge(yt, on="video_id", how="left")
+    merged = merged.merge(playlists, on="video_id", how="left")
     merged = merged.merge(txt, on="story_id", how="left")
     merged = merged.merge(reviews, on="story_id", how="left")
+
+    if args.cleaned_meta is not None and args.cleaned_meta.exists():
+        cleaned_meta = load_cleaned_filter(args.cleaned_meta, args.cleaned_col)
+        if "story_id" in cleaned_meta.columns and cleaned_meta["story_id"].notna().any():
+            merged = merged.merge(
+                cleaned_meta[["story_id", "cleaned"]].dropna(subset=["story_id"]).drop_duplicates("story_id"),
+                on="story_id",
+                how="left",
+                suffixes=("", "_cleaned"),
+            )
+        if "video_id" in cleaned_meta.columns and cleaned_meta["video_id"].notna().any():
+            merged = merged.merge(
+                cleaned_meta[["video_id", "cleaned"]].dropna(subset=["video_id"]).drop_duplicates("video_id"),
+                on="video_id",
+                how="left",
+                suffixes=("", "_video"),
+            )
+        if "cleaned_video" in merged.columns:
+            merged["cleaned"] = merged.get("cleaned").fillna(merged["cleaned_video"])
+            merged = merged.drop(columns=["cleaned_video"])
+        merged["cleaned"] = pd.to_numeric(merged.get("cleaned"), errors="coerce")
+        if args.cleaned_only:
+            merged = merged[merged["cleaned"].fillna(0).astype(int) == 1].copy()
 
     yt_clean = merged["yt_cleaned_subtitles"] if "yt_cleaned_subtitles" in merged.columns else pd.Series([None] * len(merged))
     yt_src = merged["yt_transcript_source"] if "yt_transcript_source" in merged.columns else pd.Series([None] * len(merged))
@@ -410,6 +556,8 @@ def main() -> None:
 
     index_cols = [
         "video_id",
+        "youtube_url",
+        "source_playlists",
         "story_id",
         "video_title",
         "Title",
@@ -421,8 +569,11 @@ def main() -> None:
         "Grade Level",
         "Book URL",
         "Reading Age",
+        "amazon_age_source",
+        "has_amazon_age",
         "age_lo",
         "age_hi",
+        "cleaned",
         "transcript_source_best",
         "has_transcript",
         "has_events",

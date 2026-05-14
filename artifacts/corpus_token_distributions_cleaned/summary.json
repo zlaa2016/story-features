@@ -1,0 +1,32 @@
+{
+  "n_cleaned_stories_with_text": 1733,
+  "total_tokens": 947660,
+  "vocab_types": 25020,
+  "aoa_matched_types": 9129,
+  "aoa_type_coverage": 0.3648681055155875,
+  "aoa_matched_tokens": 714375,
+  "aoa_token_coverage": 0.753830487727666,
+  "type_aoa_distribution": {
+    "min": 1.58,
+    "q05": 4.26,
+    "q25": 6.370915000000001,
+    "median": 8.17,
+    "q75": 9.89,
+    "q95": 12.466000000000005,
+    "max": 18.33,
+    "mean": 8.226335454266623,
+    "std": 2.51155646045189
+  },
+  "token_aoa_distribution": {
+    "min": 1.58,
+    "q05": 2.8933839999999993,
+    "q25": 3.813235,
+    "median": 4.388713,
+    "q75": 5.209302000000001,
+    "q95": 7.35,
+    "max": 18.33,
+    "mean": 4.661118289478216,
+    "std": 1.430449412103771
+  },
+  "log10_freq_vs_aoa_corr_types": -0.652283995199909
+}

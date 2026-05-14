@@ -1,0 +1,27 @@
+{
+  "n_items": 249,
+  "age_cutoff": 5.0,
+  "aoa_col": "aoa_mean",
+  "aoa_low_quantile": 0.33,
+  "aoa_high_quantile": 0.67,
+  "aoa_train_low_cutoff": 4.5632736377505605,
+  "aoa_train_high_cutoff": 4.769416864079373,
+  "split_counts": {
+    "train": 149,
+    "val": 50,
+    "test": 50
+  },
+  "age_label_counts": {
+    "0": 142,
+    "1": 107
+  },
+  "best_age_steer_layer": 0,
+  "best_age_steer_alpha": 3.0,
+  "best_age_steer_delta_age_prob": 0.3568979210091557,
+  "best_age_steer_delta_aoa_prob": 0.04469627886048033,
+  "best_aoa_steer_layer": 0,
+  "best_aoa_steer_alpha": 3.0,
+  "best_aoa_steer_delta_aoa_prob": 0.45009603973081974,
+  "best_aoa_steer_delta_age_prob": 0.040206943773970716,
+  "alpha_target_frac": 0.95
+}

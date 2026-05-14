@@ -15,7 +15,16 @@ export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
+export VECTORS="${VECTORS:-artifacts/distilbert_vectors/story_vectors.npz}"
+export FEATURES_CSV="${FEATURES_CSV:-}"
+export PROBE_OUTDIR="${PROBE_OUTDIR:-artifacts/linear_probe}"
+export BINS="${BINS:-0-3,4-6,7-12}"
+export SEED="${SEED:-42}"
+export SHUFFLE_LABELS="${SHUFFLE_LABELS:-0}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
-   "$PYTHON_BIN" scripts/run_linear_probe.py --vectors artifacts/distilbert_vectors/story_vectors.npz --outdir artifacts/linear_probe'
+   PROBE_ARGS=(--vectors "$VECTORS" --outdir "$PROBE_OUTDIR" --bins "$BINS" --seed "$SEED"); \
+   if [[ -n "${FEATURES_CSV:-}" ]]; then PROBE_ARGS+=(--features-csv "$FEATURES_CSV"); fi; \
+   if [[ "${SHUFFLE_LABELS:-0}" == "1" ]]; then PROBE_ARGS+=(--shuffle-labels); fi; \
+   "$PYTHON_BIN" scripts/run_linear_probe.py "${PROBE_ARGS[@]}"'
