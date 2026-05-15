@@ -101,6 +101,12 @@ def main() -> None:
     ap.add_argument("--model", type=str, default="roberta-base")
     ap.add_argument("--age-cutoff", type=float, default=5.0)
     ap.add_argument("--outdir", type=Path, default=Path("artifacts/finetuned_age_classifier"))
+    ap.add_argument(
+        "--split-csv",
+        type=Path,
+        default=None,
+        help="Optional CSV with item_id and split columns to force train/val/test assignment.",
+    )
     ap.add_argument("--max-length", type=int, default=512)
     ap.add_argument("--train-batch-size", type=int, default=4)
     ap.add_argument("--eval-batch-size", type=int, default=8)
@@ -135,25 +141,37 @@ def main() -> None:
     work["label"] = (work["age_mid"] > float(args.age_cutoff)).astype(int)
     work = work.drop_duplicates(subset=["item_id"]).reset_index(drop=True)
 
-    idx_all = np.arange(len(work))
-    idx_train, idx_tmp = train_test_split(
-        idx_all,
-        test_size=float(args.val_size + args.test_size),
-        random_state=int(args.seed),
-        stratify=work["label"].to_numpy(dtype=int),
-    )
-    rel_test = float(args.test_size / (args.val_size + args.test_size))
-    idx_val, idx_test = train_test_split(
-        idx_tmp,
-        test_size=rel_test,
-        random_state=int(args.seed),
-        stratify=work.iloc[idx_tmp]["label"].to_numpy(dtype=int),
-    )
-    split = np.array([""] * len(work), dtype=object)
-    split[idx_train] = "train"
-    split[idx_val] = "val"
-    split[idx_test] = "test"
-    work["split"] = split
+    if args.split_csv is not None and args.split_csv.exists():
+        split_df = pd.read_csv(args.split_csv, low_memory=False)
+        if "item_id" not in split_df.columns or "split" not in split_df.columns:
+            raise ValueError("--split-csv must contain item_id and split columns")
+        split_df["item_id"] = split_df["item_id"].astype(str)
+        work = work.merge(split_df[["item_id", "split"]], on="item_id", how="inner")
+        if work["split"].nunique() < 3:
+            raise ValueError("Merged split CSV does not contain train/val/test examples")
+        idx_train = work.index[work["split"] == "train"].to_numpy()
+        idx_val = work.index[work["split"] == "val"].to_numpy()
+        idx_test = work.index[work["split"] == "test"].to_numpy()
+    else:
+        idx_all = np.arange(len(work))
+        idx_train, idx_tmp = train_test_split(
+            idx_all,
+            test_size=float(args.val_size + args.test_size),
+            random_state=int(args.seed),
+            stratify=work["label"].to_numpy(dtype=int),
+        )
+        rel_test = float(args.test_size / (args.val_size + args.test_size))
+        idx_val, idx_test = train_test_split(
+            idx_tmp,
+            test_size=rel_test,
+            random_state=int(args.seed),
+            stratify=work.iloc[idx_tmp]["label"].to_numpy(dtype=int),
+        )
+        split = np.array([""] * len(work), dtype=object)
+        split[idx_train] = "train"
+        split[idx_val] = "val"
+        split[idx_test] = "test"
+        work["split"] = split
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
 

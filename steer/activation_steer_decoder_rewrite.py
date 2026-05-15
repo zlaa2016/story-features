@@ -288,6 +288,9 @@ def main() -> None:
 
     args.outdir.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(args.outdir / "rewrites.csv", index=False)
+    merged[["item_id", "story_id", "video_id", "age_mid", "age_label", "split"]].to_csv(
+        args.outdir / "split_assignments.csv", index=False
+    )
     summary = {
         "n_items": int(len(rows)),
         "model": args.model,
