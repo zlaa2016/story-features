@@ -15,7 +15,7 @@ export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
-export HF_TOKEN_DIR="${HF_TOKEN_DIR:-/scratch/$USER/.huggingface}"
+export HF_TOKEN_DIR="${HF_TOKEN_DIR:-/scratch/$USER/.cache/huggingface}"
 if [[ -z "${HF_TOKEN:-}" && -f "${HF_TOKEN_DIR}/token" ]]; then
   export HF_TOKEN="$(<"${HF_TOKEN_DIR}/token")"
 fi
