@@ -20,11 +20,16 @@ export INPUT_CSV="${INPUT_CSV:-}"
 export ORIGINAL_COL="${ORIGINAL_COL:-original_text}"
 export REWRITTEN_COL="${REWRITTEN_COL:-rewritten_text}"
 export AOA_LEXICON="${AOA_LEXICON:-data/aoa/AoA_ratings_Kuperman_et_al_BRM_with_PoS.xlsx}"
+export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
 export AGE_MODEL_DIR="${AGE_MODEL_DIR:-}"
+export PPL_MODEL="${PPL_MODEL:-}"
+export PPL_BATCH_SIZE="${PPL_BATCH_SIZE:-2}"
+export PPL_MAX_LENGTH="${PPL_MAX_LENGTH:-1024}"
 export OUTDIR="${OUTDIR:-artifacts/rewrite_eval/default}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
-   EVAL_ARGS=(--input-csv "$INPUT_CSV" --original-col "$ORIGINAL_COL" --rewritten-col "$REWRITTEN_COL" --aoa-lexicon "$AOA_LEXICON" --outdir "$OUTDIR"); \
+   EVAL_ARGS=(--input-csv "$INPUT_CSV" --original-col "$ORIGINAL_COL" --rewritten-col "$REWRITTEN_COL" --aoa-lexicon "$AOA_LEXICON" --age-cutoff "$AGE_CUTOFF" --outdir "$OUTDIR"); \
    if [[ -n "${AGE_MODEL_DIR:-}" ]]; then EVAL_ARGS+=(--age-model-dir "$AGE_MODEL_DIR"); fi; \
+   if [[ -n "${PPL_MODEL:-}" ]]; then EVAL_ARGS+=(--ppl-model "$PPL_MODEL" --ppl-batch-size "$PPL_BATCH_SIZE" --ppl-max-length "$PPL_MAX_LENGTH"); fi; \
    "$PYTHON_BIN" steer/evaluate_rewrites.py "${EVAL_ARGS[@]}"'

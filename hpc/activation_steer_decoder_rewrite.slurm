@@ -2,10 +2,10 @@
 #SBATCH --job-name=dec_rewrite
 #SBATCH --output=logs/%x-%j.out
 #SBATCH --error=logs/%x-%j.err
-#SBATCH --time=08:00:00
+#SBATCH --time=03:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=32G
+#SBATCH --mem=24G
 
 set -euo pipefail
 

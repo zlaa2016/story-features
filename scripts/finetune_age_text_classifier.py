@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import re
 from pathlib import Path
@@ -228,23 +229,30 @@ def main() -> None:
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=num_labels)
     if args.task == "regression":
         model.config.problem_type = "regression"
-    train_args = TrainingArguments(
-        output_dir=str(args.outdir / "hf_trainer"),
-        overwrite_output_dir=True,
-        per_device_train_batch_size=int(args.train_batch_size),
-        per_device_eval_batch_size=int(args.eval_batch_size),
-        num_train_epochs=float(args.epochs),
-        learning_rate=float(args.learning_rate),
-        weight_decay=float(args.weight_decay),
-        evaluation_strategy="epoch",
-        save_strategy="epoch",
-        load_best_model_at_end=True,
-        metric_for_best_model="eval_rmse" if args.task == "regression" else "eval_accuracy",
-        greater_is_better=False if args.task == "regression" else True,
-        save_total_limit=1,
-        seed=int(args.seed),
-        report_to=[],
-    )
+    ta_params = inspect.signature(TrainingArguments.__init__).parameters
+    train_kwargs: Dict[str, Any] = {
+        "output_dir": str(args.outdir / "hf_trainer"),
+        "per_device_train_batch_size": int(args.train_batch_size),
+        "per_device_eval_batch_size": int(args.eval_batch_size),
+        "num_train_epochs": float(args.epochs),
+        "learning_rate": float(args.learning_rate),
+        "weight_decay": float(args.weight_decay),
+        "seed": int(args.seed),
+    }
+    optional_kwargs: Dict[str, Any] = {
+        "overwrite_output_dir": True,
+        "evaluation_strategy": "epoch",
+        "save_strategy": "epoch",
+        "load_best_model_at_end": True,
+        "metric_for_best_model": "eval_rmse" if args.task == "regression" else "eval_accuracy",
+        "greater_is_better": False if args.task == "regression" else True,
+        "save_total_limit": 1,
+        "report_to": [],
+    }
+    for key, value in optional_kwargs.items():
+        if key in ta_params:
+            train_kwargs[key] = value
+    train_args = TrainingArguments(**train_kwargs)
     trainer = Trainer(
         model=model,
         args=train_args,
