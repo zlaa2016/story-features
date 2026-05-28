@@ -9,7 +9,7 @@ from typing import Any, Dict, Optional
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.metrics import accuracy_score, f1_score, mean_absolute_error, r2_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 
 
@@ -73,22 +73,43 @@ def filter_cleaned_rows(df: pd.DataFrame, meta_path: Path, cleaned_col: str) -> 
     return out[matched].copy()
 
 
-def compute_metrics(eval_pred: tuple[np.ndarray, np.ndarray]) -> Dict[str, float]:
-    logits, labels = eval_pred
-    probs = np.asarray(logits)
-    if probs.ndim == 2 and probs.shape[1] == 2:
-        pos = probs[:, 1]
-        pred = probs.argmax(axis=1)
-    else:
-        pos = probs.reshape(-1)
-        pred = (pos >= 0.5).astype(int)
-    labels = np.asarray(labels)
+def compute_binary_metrics_from_scores(scores: np.ndarray, labels: np.ndarray) -> Dict[str, float]:
+    pred = (scores >= 0.5).astype(int)
     out = {
         "accuracy": float(accuracy_score(labels, pred)),
         "f1_macro": float(f1_score(labels, pred, average="macro")),
     }
     if len(np.unique(labels)) == 2:
-        out["roc_auc"] = float(roc_auc_score(labels, pos))
+        out["roc_auc"] = float(roc_auc_score(labels, scores))
+    return out
+
+
+def compute_classifier_metrics(eval_pred: tuple[np.ndarray, np.ndarray]) -> Dict[str, float]:
+    logits, labels = eval_pred
+    probs = np.asarray(logits)
+    if probs.ndim == 2 and probs.shape[1] == 2:
+        pos = probs[:, 1]
+    else:
+        pos = probs.reshape(-1)
+    labels = np.asarray(labels).astype(int)
+    return compute_binary_metrics_from_scores(pos, labels)
+
+
+def compute_regression_metrics(eval_pred: tuple[np.ndarray, np.ndarray], age_cutoff: float) -> Dict[str, float]:
+    preds, labels = eval_pred
+    y_pred = np.asarray(preds).reshape(-1)
+    y_true = np.asarray(labels).reshape(-1)
+    rmse = float(np.sqrt(np.mean((y_pred - y_true) ** 2)))
+    out: Dict[str, float] = {
+        "mae": float(mean_absolute_error(y_true, y_pred)),
+        "rmse": rmse,
+        "r2": float(r2_score(y_true, y_pred)),
+    }
+    cls_true = (y_true > float(age_cutoff)).astype(int)
+    cls_score = 1.0 / (1.0 + np.exp(-(y_pred - float(age_cutoff))))
+    cls_metrics = compute_binary_metrics_from_scores(cls_score, cls_true)
+    for k, v in cls_metrics.items():
+        out[f"cutoff5_{k}" if age_cutoff == 5.0 else f"cutoff_{age_cutoff:g}_{k}"] = float(v)
     return out
 
 
@@ -99,6 +120,7 @@ def main() -> None:
     ap.add_argument("--cleaned-col", type=str, default="cleaned")
     ap.add_argument("--text-col", type=str, default="transcript_best")
     ap.add_argument("--model", type=str, default="roberta-base")
+    ap.add_argument("--task", type=str, choices=["classification", "regression"], default="regression")
     ap.add_argument("--age-cutoff", type=float, default=5.0)
     ap.add_argument("--outdir", type=Path, default=Path("artifacts/finetuned_age_classifier"))
     ap.add_argument(
@@ -106,6 +128,12 @@ def main() -> None:
         type=Path,
         default=None,
         help="Optional CSV with item_id and split columns to force train/val/test assignment.",
+    )
+    ap.add_argument(
+        "--split-col",
+        type=str,
+        default="split",
+        help="Which split column to read from --split-csv. Use evaluator_split for decoder rewrite evaluation.",
     )
     ap.add_argument("--max-length", type=int, default=512)
     ap.add_argument("--train-batch-size", type=int, default=4)
@@ -139,14 +167,15 @@ def main() -> None:
     work["text"] = work["text"].astype(str).str.strip()
     work = work[work["text"].ne("")].copy()
     work["label"] = (work["age_mid"] > float(args.age_cutoff)).astype(int)
+    work["target"] = work["age_mid"].astype(float) if args.task == "regression" else work["label"].astype(int)
     work = work.drop_duplicates(subset=["item_id"]).reset_index(drop=True)
 
     if args.split_csv is not None and args.split_csv.exists():
         split_df = pd.read_csv(args.split_csv, low_memory=False)
-        if "item_id" not in split_df.columns or "split" not in split_df.columns:
-            raise ValueError("--split-csv must contain item_id and split columns")
+        if "item_id" not in split_df.columns or args.split_col not in split_df.columns:
+            raise ValueError(f"--split-csv must contain item_id and {args.split_col} columns")
         split_df["item_id"] = split_df["item_id"].astype(str)
-        work = work.merge(split_df[["item_id", "split"]], on="item_id", how="inner")
+        work = work.merge(split_df[["item_id", args.split_col]].rename(columns={args.split_col: "split"}), on="item_id", how="inner")
         if work["split"].nunique() < 3:
             raise ValueError("Merged split CSV does not contain train/val/test examples")
         idx_train = work.index[work["split"] == "train"].to_numpy()
@@ -178,7 +207,7 @@ def main() -> None:
     class TextDataset(torch.utils.data.Dataset):
         def __init__(self, frame: pd.DataFrame) -> None:
             self.texts = frame["text"].tolist()
-            self.labels = frame["label"].astype(int).tolist()
+            self.targets = frame["target"].tolist()
             self.item_ids = frame["item_id"].astype(str).tolist()
 
         def __len__(self) -> int:
@@ -186,7 +215,8 @@ def main() -> None:
 
         def __getitem__(self, idx: int) -> Dict[str, Any]:
             enc = tokenizer(self.texts[idx], truncation=True, max_length=int(args.max_length))
-            enc["labels"] = int(self.labels[idx])
+            val = self.targets[idx]
+            enc["labels"] = float(val) if args.task == "regression" else int(val)
             return enc
 
     train_ds = TextDataset(work.iloc[idx_train].copy())
@@ -194,7 +224,10 @@ def main() -> None:
     test_ds = TextDataset(work.iloc[idx_test].copy())
 
     args.outdir.mkdir(parents=True, exist_ok=True)
-    model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=2)
+    num_labels = 1 if args.task == "regression" else 2
+    model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=num_labels)
+    if args.task == "regression":
+        model.config.problem_type = "regression"
     train_args = TrainingArguments(
         output_dir=str(args.outdir / "hf_trainer"),
         overwrite_output_dir=True,
@@ -206,8 +239,8 @@ def main() -> None:
         evaluation_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
-        metric_for_best_model="eval_accuracy",
-        greater_is_better=True,
+        metric_for_best_model="eval_rmse" if args.task == "regression" else "eval_accuracy",
+        greater_is_better=False if args.task == "regression" else True,
         save_total_limit=1,
         seed=int(args.seed),
         report_to=[],
@@ -219,20 +252,28 @@ def main() -> None:
         eval_dataset=val_ds,
         tokenizer=tokenizer,
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
+        compute_metrics=(lambda p: compute_regression_metrics(p, float(args.age_cutoff))) if args.task == "regression" else compute_classifier_metrics,
     )
     trainer.train()
     val_out = trainer.predict(val_ds)
     test_out = trainer.predict(test_ds)
-    val_metrics = compute_metrics((val_out.predictions, val_out.label_ids))
-    test_metrics = compute_metrics((test_out.predictions, test_out.label_ids))
+    if args.task == "regression":
+        val_metrics = compute_regression_metrics((val_out.predictions, val_out.label_ids), float(args.age_cutoff))
+        test_metrics = compute_regression_metrics((test_out.predictions, test_out.label_ids), float(args.age_cutoff))
+    else:
+        val_metrics = compute_classifier_metrics((val_out.predictions, val_out.label_ids))
+        test_metrics = compute_classifier_metrics((test_out.predictions, test_out.label_ids))
     trainer.save_model(str(args.outdir / "model"))
     tokenizer.save_pretrained(str(args.outdir / "model"))
-    work[["item_id", "story_id", "age_mid", "label", "split"]].to_csv(args.outdir / "split_assignments.csv", index=False)
+    work[["item_id", "story_id", "age_mid", "label", "target", "split"]].to_csv(args.outdir / "split_assignments.csv", index=False)
     summary = {
         "n_items": int(len(work)),
         "split_counts": work["split"].value_counts().to_dict(),
         "age_cutoff": float(args.age_cutoff),
         "model": args.model,
+        "task": args.task,
+        "target_source": "amazon_age_mid",
+        "text_source": args.text_col,
         "val_metrics": val_metrics,
         "test_metrics": test_metrics,
     }

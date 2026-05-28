@@ -133,6 +133,72 @@ def format_history(tokenizer: Any, messages: list[dict[str, str]]) -> str:
     return "\n\n".join(lines)
 
 
+def normalized_direction(pos_mean: np.ndarray, neg_mean: np.ndarray) -> np.ndarray:
+    v = np.asarray(pos_mean, dtype=float) - np.asarray(neg_mean, dtype=float)
+    n = float(np.linalg.norm(v))
+    return v if n == 0.0 else v / n
+
+
+def assign_role_splits(
+    labels: np.ndarray,
+    seed: int,
+    direction_train_frac: float,
+    evaluator_val_size: float,
+    rewrite_test_size: float,
+) -> pd.DataFrame:
+    if not (0.0 < direction_train_frac < 1.0):
+        raise ValueError("--direction-train-frac must be between 0 and 1")
+    if evaluator_val_size <= 0.0 or rewrite_test_size <= 0.0:
+        raise ValueError("--evaluator-val-size and --rewrite-test-size must be positive")
+    remaining = 1.0 - direction_train_frac
+    if evaluator_val_size + rewrite_test_size >= remaining:
+        raise ValueError("evaluator/rewrite fractions must fit within the held-out pool")
+
+    idx_all = np.arange(len(labels))
+    idx_dir, idx_rest = train_test_split(
+        idx_all,
+        train_size=float(direction_train_frac),
+        random_state=int(seed),
+        stratify=labels,
+    )
+    heldout_frac = float(evaluator_val_size + rewrite_test_size) / remaining
+    idx_eval_train, idx_eval_holdout = train_test_split(
+        idx_rest,
+        test_size=heldout_frac,
+        random_state=int(seed),
+        stratify=labels[idx_rest],
+    )
+    rel_rewrite = float(rewrite_test_size / (evaluator_val_size + rewrite_test_size))
+    idx_eval_val, idx_rewrite = train_test_split(
+        idx_eval_holdout,
+        test_size=rel_rewrite,
+        random_state=int(seed),
+        stratify=labels[idx_eval_holdout],
+    )
+
+    direction_split = np.full(len(labels), "heldout", dtype=object)
+    direction_split[idx_dir] = "train"
+
+    evaluator_split = np.full(len(labels), "excluded", dtype=object)
+    evaluator_split[idx_eval_train] = "train"
+    evaluator_split[idx_eval_val] = "val"
+    evaluator_split[idx_rewrite] = "test"
+
+    rewrite_split = np.full(len(labels), "not_rewritten", dtype=object)
+    rewrite_split[idx_rewrite] = "test"
+
+    legacy_split = evaluator_split.copy()
+
+    return pd.DataFrame(
+        {
+            "split": legacy_split,
+            "direction_split": direction_split,
+            "evaluator_split": evaluator_split,
+            "rewrite_split": rewrite_split,
+        }
+    )
+
+
 def generate(model: Any, tokenizer: Any, prompt: str, max_new_tokens: int, input_device: Any, hook_layer: Any = None, delta: Any = None) -> str:
     import torch  # type: ignore
 
@@ -179,8 +245,9 @@ def main() -> None:
     ap.add_argument("--model", type=str, required=True)
     ap.add_argument("--age-cutoff", type=float, default=5.0)
     ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--val-size", type=float, default=0.2)
-    ap.add_argument("--test-size", type=float, default=0.2)
+    ap.add_argument("--direction-train-frac", type=float, default=0.6)
+    ap.add_argument("--evaluator-val-size", type=float, default=0.2)
+    ap.add_argument("--rewrite-test-size", type=float, default=0.2)
     ap.add_argument("--layer", type=int, required=True)
     ap.add_argument("--alpha", type=float, required=True)
     ap.add_argument("--max-items", type=int, default=50)
@@ -223,17 +290,15 @@ def main() -> None:
     merged = merged[merged["text"].ne("") & merged["age_mid"].notna()].copy()
     merged["age_label"] = (merged["age_mid"] > float(args.age_cutoff)).astype(int)
     merged = merged.drop_duplicates(subset=["item_id"]).reset_index(drop=True)
-
-    idx_all = np.arange(len(merged))
-    idx_train, idx_tmp = train_test_split(idx_all, test_size=float(args.val_size + args.test_size), random_state=int(args.seed), stratify=merged["age_label"].to_numpy(dtype=int))
-    rel_test = float(args.test_size / (args.val_size + args.test_size))
-    idx_val, idx_test = train_test_split(idx_tmp, test_size=rel_test, random_state=int(args.seed), stratify=merged.iloc[idx_tmp]["age_label"].to_numpy(dtype=int))
-    split = np.array([""] * len(merged), dtype=object)
-    split[idx_train] = "train"
-    split[idx_val] = "val"
-    split[idx_test] = "test"
-    merged["split"] = split
-    holdout = merged[(merged["split"] == "test") & (merged["age_label"] == 0)].copy()
+    role_splits = assign_role_splits(
+        merged["age_label"].to_numpy(dtype=int),
+        seed=int(args.seed),
+        direction_train_frac=float(args.direction_train_frac),
+        evaluator_val_size=float(args.evaluator_val_size),
+        rewrite_test_size=float(args.rewrite_test_size),
+    )
+    merged = pd.concat([merged, role_splits], axis=1)
+    holdout = merged[(merged["rewrite_split"] == "test") & (merged["age_label"] == 0)].copy()
     if args.max_items > 0:
         holdout = holdout.head(int(args.max_items)).copy()
 
@@ -276,6 +341,9 @@ def main() -> None:
                 "video_id": row.video_id,
                 "age_mid": float(row.age_mid),
                 "split": row.split,
+                "direction_split": row.direction_split,
+                "evaluator_split": row.evaluator_split,
+                "rewrite_split": row.rewrite_split,
                 "layer": int(args.layer),
                 "alpha": float(args.alpha),
                 "model": args.model,
@@ -288,11 +356,27 @@ def main() -> None:
 
     args.outdir.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(args.outdir / "rewrites.csv", index=False)
-    merged[["item_id", "story_id", "video_id", "age_mid", "age_label", "split"]].to_csv(
+    merged[
+        [
+            "item_id",
+            "story_id",
+            "video_id",
+            "age_mid",
+            "age_label",
+            "split",
+            "direction_split",
+            "evaluator_split",
+            "rewrite_split",
+        ]
+    ].to_csv(
         args.outdir / "split_assignments.csv", index=False
     )
     summary = {
         "n_items": int(len(rows)),
+        "n_total_stories": int(len(merged)),
+        "direction_split_counts": merged["direction_split"].value_counts().to_dict(),
+        "evaluator_split_counts": merged["evaluator_split"].value_counts().to_dict(),
+        "rewrite_split_counts": merged["rewrite_split"].value_counts().to_dict(),
         "model": args.model,
         "layer": int(args.layer),
         "alpha": float(args.alpha),

@@ -27,6 +27,9 @@ export TEXT_COL="${TEXT_COL:-transcript_best}"
 export ID_COL="${ID_COL:-video_id}"
 export MODEL_NAME="${MODEL_NAME:-Qwen/Qwen3-8B-Base}"
 export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
+export DIRECTION_TRAIN_FRAC="${DIRECTION_TRAIN_FRAC:-0.6}"
+export EVALUATOR_VAL_SIZE="${EVALUATOR_VAL_SIZE:-0.2}"
+export REWRITE_TEST_SIZE="${REWRITE_TEST_SIZE:-0.2}"
 export LAYER="${LAYER:-0}"
 export ALPHA="${ALPHA:-1.0}"
 export MAX_ITEMS="${MAX_ITEMS:-50}"
@@ -48,6 +51,9 @@ export REWRITE_PROMPT="${REWRITE_PROMPT:-Rewrite this story for slightly older c
       --id-col "$ID_COL" \
       --model "$MODEL_NAME" \
       --age-cutoff "$AGE_CUTOFF" \
+      --direction-train-frac "$DIRECTION_TRAIN_FRAC" \
+      --evaluator-val-size "$EVALUATOR_VAL_SIZE" \
+      --rewrite-test-size "$REWRITE_TEST_SIZE" \
       --layer "$LAYER" \
       --alpha "$ALPHA" \
       --max-items "$MAX_ITEMS" \

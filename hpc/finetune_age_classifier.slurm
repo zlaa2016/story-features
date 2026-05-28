@@ -23,8 +23,10 @@ export CLEANED_COL="${CLEANED_COL:-cleaned}"
 export TEXT_COL="${TEXT_COL:-transcript_best}"
 export MODEL_NAME="${MODEL_NAME:-roberta-base}"
 export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
+export TASK="${TASK:-regression}"
 export OUTDIR="${OUTDIR:-artifacts/finetuned_age_classifier/roberta_base}"
 export SPLIT_CSV="${SPLIT_CSV:-}"
+export SPLIT_COL="${SPLIT_COL:-split}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
@@ -34,8 +36,9 @@ export SPLIT_CSV="${SPLIT_CSV:-}"
       --cleaned-col "$CLEANED_COL" \
       --text-col "$TEXT_COL" \
       --model "$MODEL_NAME" \
+      --task "$TASK" \
       --age-cutoff "$AGE_CUTOFF" \
       --outdir "$OUTDIR" \
    ); \
-   if [[ -n "${SPLIT_CSV:-}" ]]; then FT_ARGS+=(--split-csv "$SPLIT_CSV"); fi; \
+   if [[ -n "${SPLIT_CSV:-}" ]]; then FT_ARGS+=(--split-csv "$SPLIT_CSV" --split-col "$SPLIT_COL"); fi; \
    "$PYTHON_BIN" scripts/finetune_age_text_classifier.py "${FT_ARGS[@]}"'
