@@ -239,19 +239,25 @@ def main() -> None:
         "weight_decay": float(args.weight_decay),
         "seed": int(args.seed),
     }
-    optional_kwargs: Dict[str, Any] = {
-        "overwrite_output_dir": True,
-        "evaluation_strategy": "epoch",
-        "save_strategy": "epoch",
-        "load_best_model_at_end": True,
-        "metric_for_best_model": "eval_rmse" if args.task == "regression" else "eval_accuracy",
-        "greater_is_better": False if args.task == "regression" else True,
-        "save_total_limit": 1,
-        "report_to": [],
-    }
-    for key, value in optional_kwargs.items():
-        if key in ta_params:
-            train_kwargs[key] = value
+    if "overwrite_output_dir" in ta_params:
+        train_kwargs["overwrite_output_dir"] = True
+    if "report_to" in ta_params:
+        train_kwargs["report_to"] = []
+    if "save_total_limit" in ta_params:
+        train_kwargs["save_total_limit"] = 1
+
+    has_eval = "evaluation_strategy" in ta_params
+    has_save = "save_strategy" in ta_params
+    if has_eval:
+        train_kwargs["evaluation_strategy"] = "epoch"
+    if has_save:
+        train_kwargs["save_strategy"] = "epoch"
+    if has_eval and has_save and "load_best_model_at_end" in ta_params:
+        train_kwargs["load_best_model_at_end"] = True
+        if "metric_for_best_model" in ta_params:
+            train_kwargs["metric_for_best_model"] = "eval_rmse" if args.task == "regression" else "eval_accuracy"
+        if "greater_is_better" in ta_params:
+            train_kwargs["greater_is_better"] = False if args.task == "regression" else True
     train_args = TrainingArguments(**train_kwargs)
     trainer = Trainer(
         model=model,

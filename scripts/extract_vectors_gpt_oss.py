@@ -178,6 +178,23 @@ def build_messages(text: str, reasoning: str) -> List[Dict[str, str]]:
     ]
 
 
+def format_history(tokenizer: Any, messages: List[Dict[str, str]]) -> str:
+    if getattr(tokenizer, "chat_template", None):
+        return tokenizer.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=False,
+        )
+    lines: List[str] = []
+    for m in messages:
+        prefix = "Assistant" if m.get("role") == "assistant" else "User"
+        if m.get("role") == "system":
+            prefix = "System"
+        lines.append(f"{prefix}: {m.get('content', '').strip()}")
+    lines.append("Assistant:")
+    return "\n\n".join(lines)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Extract pooled per-layer vectors from openai/gpt-oss-* activations.")
     ap.add_argument("--master", type=Path, default=Path("data/processed/master_stories.parquet"))
@@ -290,11 +307,7 @@ def main() -> None:
         pooled_segments: List[torch.Tensor] = []
         for seg in segments:
             messages = build_messages(seg["text"], args.reasoning)
-            prompt_text = tokenizer.apply_chat_template(
-                messages,
-                add_generation_prompt=True,
-                tokenize=False,
-            )
+            prompt_text = format_history(tokenizer, messages)
             enc = tokenizer(
                 prompt_text,
                 return_tensors="pt",

@@ -16,6 +16,13 @@ export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-1}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
+export HF_HOME="${HF_HOME:-/scratch/$USER/.huggingface}"
+if [[ -z "${HF_TOKEN:-}" && -f "${HF_HOME}/token" ]]; then
+  export HF_TOKEN="$(<"${HF_HOME}/token")"
+fi
+if [[ -n "${HF_TOKEN:-}" ]]; then
+  export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-$HF_TOKEN}"
+fi
 
 export MASTER="${MASTER:-data/processed/master_stories.parquet}"
 export STORY_VECTORS="${STORY_VECTORS:-}"

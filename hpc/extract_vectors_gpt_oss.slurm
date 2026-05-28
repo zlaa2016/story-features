@@ -15,6 +15,13 @@ export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
 export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
+export HF_TOKEN_DIR="${HF_TOKEN_DIR:-/scratch/$USER/.huggingface}"
+if [[ -z "${HF_TOKEN:-}" && -f "${HF_TOKEN_DIR}/token" ]]; then
+  export HF_TOKEN="$(<"${HF_TOKEN_DIR}/token")"
+fi
+if [[ -n "${HF_TOKEN:-}" ]]; then
+  export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-$HF_TOKEN}"
+fi
 export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
 export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
