@@ -259,15 +259,20 @@ def main() -> None:
         if "greater_is_better" in ta_params:
             train_kwargs["greater_is_better"] = False if args.task == "regression" else True
     train_args = TrainingArguments(**train_kwargs)
-    trainer = Trainer(
-        model=model,
-        args=train_args,
-        train_dataset=train_ds,
-        eval_dataset=val_ds,
-        tokenizer=tokenizer,
-        data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
-        compute_metrics=(lambda p: compute_regression_metrics(p, float(args.age_cutoff))) if args.task == "regression" else compute_classifier_metrics,
-    )
+    trainer_params = inspect.signature(Trainer.__init__).parameters
+    trainer_kwargs: Dict[str, Any] = {
+        "model": model,
+        "args": train_args,
+        "train_dataset": train_ds,
+        "eval_dataset": val_ds,
+        "data_collator": DataCollatorWithPadding(tokenizer=tokenizer),
+        "compute_metrics": (lambda p: compute_regression_metrics(p, float(args.age_cutoff))) if args.task == "regression" else compute_classifier_metrics,
+    }
+    if "tokenizer" in trainer_params:
+        trainer_kwargs["tokenizer"] = tokenizer
+    if "processing_class" in trainer_params:
+        trainer_kwargs["processing_class"] = tokenizer
+    trainer = Trainer(**trainer_kwargs)
     trainer.train()
     val_out = trainer.predict(val_ds)
     test_out = trainer.predict(test_ds)
