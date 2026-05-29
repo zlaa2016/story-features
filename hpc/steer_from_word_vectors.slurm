@@ -26,6 +26,8 @@ export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
 export STORY_AOA_COL="${STORY_AOA_COL:-aoa_mean_story}"
 export STORY_AOA_LOW_Q="${STORY_AOA_LOW_Q:-0.33}"
 export STORY_AOA_HIGH_Q="${STORY_AOA_HIGH_Q:-0.67}"
+export CONTROL="${CONTROL:-real}"
+export CONTROL_SEED="${CONTROL_SEED:-42}"
 export SEED="${SEED:-42}"
 export OUTDIR="${OUTDIR:-artifacts/steer/results/default}"
 
@@ -42,5 +44,7 @@ export OUTDIR="${OUTDIR:-artifacts/steer/results/default}"
       --story-aoa-col "$STORY_AOA_COL" \
       --story-aoa-low-quantile "$STORY_AOA_LOW_Q" \
       --story-aoa-high-quantile "$STORY_AOA_HIGH_Q" \
+      --control "$CONTROL" \
+      --control-seed "$CONTROL_SEED" \
       --seed "$SEED" \
       --outdir "$OUTDIR"'

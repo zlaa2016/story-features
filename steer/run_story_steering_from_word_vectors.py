@@ -54,6 +54,22 @@ def parse_floats(spec: str) -> List[float]:
     return [float(s.strip()) for s in spec.split(",") if s.strip()]
 
 
+def make_control_direction(
+    X_word: np.ndarray,
+    word_aoa_label: np.ndarray,
+    control: str,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    if control == "real":
+        return normalized_direction(X_word[word_aoa_label == 1].mean(axis=0), X_word[word_aoa_label == 0].mean(axis=0))
+    if control == "negative":
+        return -normalized_direction(X_word[word_aoa_label == 1].mean(axis=0), X_word[word_aoa_label == 0].mean(axis=0))
+    if control == "shuffled":
+        shuffled = rng.permutation(word_aoa_label)
+        return normalized_direction(X_word[shuffled == 1].mean(axis=0), X_word[shuffled == 0].mean(axis=0))
+    raise ValueError(f"Unknown control: {control}")
+
+
 def load_cleaned_filter(meta_path: Path, cleaned_col: str) -> tuple[set[str], set[str]]:
     meta = pd.read_csv(meta_path, low_memory=False)
     keep = pd.to_numeric(meta.get(cleaned_col), errors="coerce").fillna(0).astype(int) == 1
@@ -223,6 +239,8 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--alphas", type=str, default="0,0.1,0.25,0.5,0.75,1.0,1.5,2.0,3.0")
     ap.add_argument("--alpha-target-frac", type=float, default=0.95)
+    ap.add_argument("--control", type=str, choices=["real", "negative", "shuffled"], default="real")
+    ap.add_argument("--control-seed", type=int, default=42)
     ap.add_argument("--outdir", type=Path, required=True)
     args = ap.parse_args()
 
@@ -239,6 +257,7 @@ def main() -> None:
     word_vectors = word_npz["vectors"]
     word_aoa_label = word_npz["aoa_label"].astype(int)
     word_meta = json.loads(str(word_npz["meta"]))
+    control_rng = np.random.default_rng(int(args.control_seed))
 
     idx_all = np.arange(len(merged))
     idx_train, idx_tmp = train_test_split(idx_all, test_size=float(args.val_size + args.test_size), random_state=int(args.seed), stratify=merged["age_label"].to_numpy(dtype=int))
@@ -287,7 +306,7 @@ def main() -> None:
         aoa_test_auc = float(roc_auc_score(test_df.loc[test_ext, "story_aoa_label"].to_numpy(dtype=int), aoa_probe.predict_proba(X_test_z[test_ext])[:, 1]))
 
         X_word = word_vectors[:, layer, :]
-        v_word_raw = normalized_direction(X_word[word_aoa_label == 1].mean(axis=0), X_word[word_aoa_label == 0].mean(axis=0))
+        v_word_raw = make_control_direction(X_word, word_aoa_label, args.control, control_rng)
         v_story = normalized_direction(v_word_raw / (scaler.scale_ + 1e-12), np.zeros_like(v_word_raw))
 
         age_w = age_probe.coef_[0]
@@ -339,13 +358,17 @@ def main() -> None:
         )
         grouped["layer"] = layer
         grouped["best_alpha"] = float(best_alpha)
+        grouped["control"] = args.control
         age_bin_rows.append(grouped)
 
     results_df = pd.DataFrame(results)
+    results_df["control"] = args.control
     results_df.to_csv(args.outdir / "steering_results.csv", index=False)
     pd.DataFrame(curves).to_csv(args.outdir / "val_curve.csv", index=False)
     if per_item_rows:
-        pd.concat(per_item_rows, ignore_index=True).to_csv(args.outdir / "per_item_steering.csv", index=False)
+        per_item_df = pd.concat(per_item_rows, ignore_index=True)
+        per_item_df["control"] = args.control
+        per_item_df.to_csv(args.outdir / "per_item_steering.csv", index=False)
     if age_bin_rows:
         pd.concat(age_bin_rows, ignore_index=True).to_csv(args.outdir / "age_binned_steering.csv", index=False)
     merged[["item_id","story_id","video_id","age_mid",args.story_aoa_col,"age_label","split"]].to_csv(args.outdir / "split_assignments.csv", index=False)
@@ -357,6 +380,8 @@ def main() -> None:
         "story_aoa_col": args.story_aoa_col,
         "story_aoa_train_low_cutoff": lo,
         "story_aoa_train_high_cutoff": hi,
+        "control": args.control,
+        "control_seed": int(args.control_seed),
         "word_vector_meta": word_meta,
         "best_layer": int(best["layer"]),
         "best_alpha": float(best["best_alpha"]),

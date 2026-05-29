@@ -145,6 +145,13 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--val-size", type=float, default=0.2)
     ap.add_argument("--test-size", type=float, default=0.2)
+    ap.add_argument(
+        "--split-mode",
+        type=str,
+        choices=["heldout", "full"],
+        default="heldout",
+        help="heldout: train/val/test split. full: train on all data and report training-set metrics only.",
+    )
     args = ap.parse_args()
 
     global torch
@@ -171,7 +178,12 @@ def main() -> None:
     work["target"] = work["age_mid"].astype(float) if args.task == "regression" else work["label"].astype(int)
     work = work.drop_duplicates(subset=["item_id"]).reset_index(drop=True)
 
-    if args.split_csv is not None and args.split_csv.exists():
+    if args.split_mode == "full":
+        work["split"] = "train"
+        idx_train = work.index.to_numpy()
+        idx_val = np.array([], dtype=int)
+        idx_test = np.array([], dtype=int)
+    elif args.split_csv is not None and args.split_csv.exists():
         split_df = pd.read_csv(args.split_csv, low_memory=False)
         if "item_id" not in split_df.columns or args.split_col not in split_df.columns:
             raise ValueError(f"--split-csv must contain item_id and {args.split_col} columns")
@@ -221,8 +233,8 @@ def main() -> None:
             return enc
 
     train_ds = TextDataset(work.iloc[idx_train].copy())
-    val_ds = TextDataset(work.iloc[idx_val].copy())
-    test_ds = TextDataset(work.iloc[idx_test].copy())
+    val_ds = TextDataset(work.iloc[idx_val].copy()) if len(idx_val) else None
+    test_ds = TextDataset(work.iloc[idx_test].copy()) if len(idx_test) else None
 
     args.outdir.mkdir(parents=True, exist_ok=True)
     num_labels = 1 if args.task == "regression" else 2
@@ -246,7 +258,7 @@ def main() -> None:
     if "save_total_limit" in ta_params:
         train_kwargs["save_total_limit"] = 1
 
-    has_eval = "evaluation_strategy" in ta_params
+    has_eval = "evaluation_strategy" in ta_params and val_ds is not None
     has_save = "save_strategy" in ta_params
     if has_eval:
         train_kwargs["evaluation_strategy"] = "epoch"
@@ -264,35 +276,45 @@ def main() -> None:
         "model": model,
         "args": train_args,
         "train_dataset": train_ds,
-        "eval_dataset": val_ds,
         "data_collator": DataCollatorWithPadding(tokenizer=tokenizer),
         "compute_metrics": (lambda p: compute_regression_metrics(p, float(args.age_cutoff))) if args.task == "regression" else compute_classifier_metrics,
     }
+    if val_ds is not None:
+        trainer_kwargs["eval_dataset"] = val_ds
     if "tokenizer" in trainer_params:
         trainer_kwargs["tokenizer"] = tokenizer
     if "processing_class" in trainer_params:
         trainer_kwargs["processing_class"] = tokenizer
     trainer = Trainer(**trainer_kwargs)
     trainer.train()
-    val_out = trainer.predict(val_ds)
-    test_out = trainer.predict(test_ds)
-    if args.task == "regression":
-        val_metrics = compute_regression_metrics((val_out.predictions, val_out.label_ids), float(args.age_cutoff))
-        test_metrics = compute_regression_metrics((test_out.predictions, test_out.label_ids), float(args.age_cutoff))
+
+    def compute_metrics_for_dataset(ds: TextDataset) -> Dict[str, float]:
+        pred_out = trainer.predict(ds)
+        if args.task == "regression":
+            return compute_regression_metrics((pred_out.predictions, pred_out.label_ids), float(args.age_cutoff))
+        return compute_classifier_metrics((pred_out.predictions, pred_out.label_ids))
+
+    if args.split_mode == "full":
+        train_metrics = compute_metrics_for_dataset(train_ds)
+        val_metrics = None
+        test_metrics = None
     else:
-        val_metrics = compute_classifier_metrics((val_out.predictions, val_out.label_ids))
-        test_metrics = compute_classifier_metrics((test_out.predictions, test_out.label_ids))
+        train_metrics = None
+        val_metrics = compute_metrics_for_dataset(val_ds) if val_ds is not None else None
+        test_metrics = compute_metrics_for_dataset(test_ds) if test_ds is not None else None
     trainer.save_model(str(args.outdir / "model"))
     tokenizer.save_pretrained(str(args.outdir / "model"))
     work[["item_id", "story_id", "age_mid", "label", "target", "split"]].to_csv(args.outdir / "split_assignments.csv", index=False)
     summary = {
         "n_items": int(len(work)),
         "split_counts": work["split"].value_counts().to_dict(),
+        "split_mode": args.split_mode,
         "age_cutoff": float(args.age_cutoff),
         "model": args.model,
         "task": args.task,
         "target_source": "amazon_age_mid",
         "text_source": args.text_col,
+        "train_metrics": train_metrics,
         "val_metrics": val_metrics,
         "test_metrics": test_metrics,
     }
