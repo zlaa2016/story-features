@@ -188,6 +188,24 @@ def summarize_shift(X: np.ndarray, steer_dir: np.ndarray, alpha: float, age_w: n
     }
 
 
+def per_item_shift(X: np.ndarray, steer_dir: np.ndarray, alpha: float, age_w: np.ndarray, age_b: float, aoa_w: np.ndarray, aoa_b: float) -> Dict[str, np.ndarray]:
+    Xs = X + float(alpha) * steer_dir[None, :]
+    age_before = sigmoid(X @ age_w + age_b)
+    age_after = sigmoid(Xs @ age_w + age_b)
+    aoa_before = sigmoid(X @ aoa_w + aoa_b)
+    aoa_after = sigmoid(Xs @ aoa_w + aoa_b)
+    cos = np.sum(X * Xs, axis=1) / (np.linalg.norm(X, axis=1) * np.linalg.norm(Xs, axis=1) + 1e-12)
+    return {
+        "age_prob_before": age_before,
+        "age_prob_after": age_after,
+        "delta_age_prob": age_after - age_before,
+        "aoa_prob_before": aoa_before,
+        "aoa_prob_after": aoa_after,
+        "delta_aoa_prob": aoa_after - aoa_before,
+        "cosine_to_original": cos,
+    }
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Steer Amazon story embeddings from precomputed AoA word vectors.")
     ap.add_argument("--story-vectors", type=Path, required=True)
@@ -244,6 +262,8 @@ def main() -> None:
     alphas = parse_floats(args.alphas)
     results = []
     curves = []
+    per_item_rows = []
+    age_bin_rows = []
     for layer in range(story_vectors.shape[1]):
         X_train = story_vectors[train_df["vec_row"].astype(int).to_numpy(), layer, :]
         X_val = story_vectors[val_df["vec_row"].astype(int).to_numpy(), layer, :]
@@ -279,6 +299,9 @@ def main() -> None:
         X_test_young = X_test_z[test_df["age_label"].to_numpy(dtype=int) == 0]
         best_alpha, curve = choose_alpha(X_val_young, age_w, age_b, v_story, alphas, float(args.alpha_target_frac))
         shift = summarize_shift(X_test_young, v_story, best_alpha, age_w, age_b, aoa_w, aoa_b)
+        young_mask_test = test_df["age_label"].to_numpy(dtype=int) == 0
+        young_test_df = test_df.loc[young_mask_test].copy().reset_index(drop=True)
+        item_shift = per_item_shift(X_test_young, v_story, best_alpha, age_w, age_b, aoa_w, aoa_b)
         results.append(
             {
                 "layer": layer,
@@ -292,10 +315,39 @@ def main() -> None:
         )
         for _, row in curve.iterrows():
             curves.append({"layer": layer, "alpha": float(row["alpha"]), "val_mean_age_prob": float(row["mean_prob"])})
+        item_df = young_test_df[["item_id", "story_id", "video_id", "age_mid", args.story_aoa_col]].copy()
+        item_df["layer"] = layer
+        item_df["best_alpha"] = float(best_alpha)
+        for key, vals in item_shift.items():
+            item_df[key] = vals
+        per_item_rows.append(item_df)
+
+        bin_df = item_df.copy()
+        bin_df["age_mid_bin"] = bin_df["age_mid"].round(1)
+        grouped = (
+            bin_df.groupby("age_mid_bin", dropna=True)
+            .agg(
+                n_items=("item_id", "count"),
+                mean_age_mid=("age_mid", "mean"),
+                mean_delta_age_prob=("delta_age_prob", "mean"),
+                mean_delta_aoa_prob=("delta_aoa_prob", "mean"),
+                mean_age_prob_before=("age_prob_before", "mean"),
+                mean_age_prob_after=("age_prob_after", "mean"),
+                mean_cosine_to_original=("cosine_to_original", "mean"),
+            )
+            .reset_index()
+        )
+        grouped["layer"] = layer
+        grouped["best_alpha"] = float(best_alpha)
+        age_bin_rows.append(grouped)
 
     results_df = pd.DataFrame(results)
     results_df.to_csv(args.outdir / "steering_results.csv", index=False)
     pd.DataFrame(curves).to_csv(args.outdir / "val_curve.csv", index=False)
+    if per_item_rows:
+        pd.concat(per_item_rows, ignore_index=True).to_csv(args.outdir / "per_item_steering.csv", index=False)
+    if age_bin_rows:
+        pd.concat(age_bin_rows, ignore_index=True).to_csv(args.outdir / "age_binned_steering.csv", index=False)
     merged[["item_id","story_id","video_id","age_mid",args.story_aoa_col,"age_label","split"]].to_csv(args.outdir / "split_assignments.csv", index=False)
     best = results_df.sort_values("delta_age_prob", ascending=False).iloc[0]
     summary = {
