@@ -77,11 +77,24 @@ MODEL_KEY=olmo_2_7b_base LIMIT=100 sbatch perplexity/run_model_perplexity.slurm
 bash perplexity/submit_all_perplexity.sh
 ```
 
-By default, this submits `COMPARISON_SET=core`, which is the Qwen3/Gemma3/OLMo2
-set used for the main story-perplexity workflow. To inspect all comparison sets:
+By default, this submits every registered model using Torch account
+`torch_pr_494_general`, the CUDA 12.3 Singularity image, and the same
+`story-features` overlay used by the older scripts:
+`/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro`.
+Override these only if your HPC setup differs:
 
 ```bash
-python -m perplexity.models --list-comparison-sets
+ACCOUNT=torch_pr_494_general \
+OVERLAY=/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro \
+CONDA_ENV=story-features \
+PYTHON_BIN=/ext3/story-features/bin/python \
+bash perplexity/submit_all_perplexity.sh
+```
+
+Use `MODEL_KEYS` only if you need to manually restrict a rerun:
+
+```bash
+MODEL_KEYS="qwen3_8b olmo_2_7b_base" bash perplexity/submit_all_perplexity.sh
 ```
 
 To inspect the registry:
@@ -90,7 +103,13 @@ To inspect the registry:
 python -m perplexity.models --tsv
 ```
 
-The current default registry emphasizes:
+To inspect the analysis comparison sets:
+
+```bash
+python -m perplexity.models --list-comparison-sets
+```
+
+The current registry emphasizes:
 
 - Qwen3 8B, 14B, 30B-A3B, and 32B: native 32K/256K depending on checkpoint; the 32K checkpoints are loaded with YaRN for 128K scoring.
 - Llama 3.1 8B and Llama 3.3 70B: text-only Llama anchors with 128K context. These require accepted Meta gated-model access.
@@ -100,20 +119,14 @@ The current default registry emphasizes:
 - OLMo 2 1B, 7B, 13B, and 32B base/instruct: included to mirror the `Learning is Forgetting` model family, but these are 4K-context models, so overlength stories are skipped rather than truncated.
 - Gemma 3 1B base/instruct: current text-only Gemma 3 checkpoints with 32K context. Larger Gemma 3 checkpoints are multimodal and need a separate scorer.
 
-Runnable comparison sets:
+Comparison sets are for analysis after the model outputs exist:
 
 ```bash
-# Around the 7B-12B scale, plus a small Gemma anchor.
-COMPARISON_SET=similar_scale bash perplexity/submit_all_perplexity.sh
-
-# One representative per family, including Kimi. This includes large jobs.
-COMPARISON_SET=family_survey bash perplexity/submit_all_perplexity.sh
-
-# Large-model sweep for H100/H200-class resources.
-COMPARISON_SET=large_family_survey bash perplexity/submit_all_perplexity.sh
-
-# OLMo-only, useful for matching the Learning is Forgetting family.
-COMPARISON_SET=olmo_family bash perplexity/submit_all_perplexity.sh
+python perplexity/analyze_age_order.py \
+  --runs artifacts/perplexity/runs \
+  --outdir artifacts/perplexity/analysis \
+  --metric mean_nll \
+  --comparison-set similar_scale
 ```
 
 To run only long-context models and exclude OLMo 2:
@@ -142,6 +155,7 @@ Main outputs:
 - `artifacts/perplexity/runs/<model_key>.csv`: one row per story per model.
 - `artifacts/perplexity/analysis/age_order_summary_mean_nll.csv`: model-level Spearman/Pearson age-order summary.
 - `artifacts/perplexity/analysis/age_bins_mean_nll.csv`: per-age median/mean perplexity table.
+- `artifacts/perplexity/analysis/age_order_summary_<comparison_set>_mean_nll.csv`: same summary restricted to a named comparison set.
 
 ## 5. GitHub / HPC Handoff
 

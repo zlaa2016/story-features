@@ -10,6 +10,7 @@ set -euo pipefail
 # Optional env vars:
 #   USE_NV=1 : pass --nv (default: 1)
 #   FAKEROOT=1 : pass --fakeroot (default: 1)
+#   ENV_SH : path to an env bootstrap script inside container, e.g. /ext3/env.sh
 #   CONDA_SH : path to conda.sh inside container (auto-detected if unset)
 #   CONDA_ENV: conda env name to activate (default: story)
 #   PYTHON_BIN: explicit python path inside container; adds its dir to PATH
@@ -40,6 +41,11 @@ cmd="$*"
 
 activation_snippet='
 set -euo pipefail
+
+if [[ -n "${ENV_SH:-}" && -f "${ENV_SH}" ]]; then
+  # shellcheck disable=SC1090
+  source "${ENV_SH}" || true
+fi
 
 if [[ -n "${PYTHON_BIN:-}" ]]; then
   if [[ -x "${PYTHON_BIN}" ]]; then

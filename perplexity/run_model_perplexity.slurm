@@ -2,6 +2,7 @@
 #SBATCH --job-name=story_ppl
 #SBATCH --output=logs/%x-%j.out
 #SBATCH --error=logs/%x-%j.err
+#SBATCH --account=torch_pr_494_general
 #SBATCH --time=12:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4

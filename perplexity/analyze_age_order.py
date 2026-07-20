@@ -8,6 +8,11 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
+try:
+    from perplexity.models import COMPARISON_SETS
+except ModuleNotFoundError:
+    from models import COMPARISON_SETS
+
 
 def rank_corr(x: pd.Series, y: pd.Series) -> float:
     tmp = pd.DataFrame({"x": x, "y": y}).dropna()
@@ -62,6 +67,7 @@ def main() -> None:
     ap.add_argument("--runs", type=Path, nargs="+", default=[Path("artifacts/perplexity/runs")])
     ap.add_argument("--outdir", type=Path, default=Path("artifacts/perplexity/analysis"))
     ap.add_argument("--metric", type=str, default="mean_nll", choices=["mean_nll", "log10_perplexity", "perplexity"])
+    ap.add_argument("--comparison-set", choices=sorted(COMPARISON_SETS), default=None, help="Analyze only one named model comparison set.")
     args = ap.parse_args()
 
     paths: list[Path] = []
@@ -71,6 +77,11 @@ def main() -> None:
         else:
             paths.append(p)
     df = read_runs(paths)
+    if args.comparison_set:
+        keys = set(COMPARISON_SETS[args.comparison_set])
+        df = df[df["model_key"].astype(str).isin(keys)].copy()
+        if df.empty:
+            raise ValueError(f"No run rows matched comparison set: {args.comparison_set}")
     df["age_median"] = pd.to_numeric(df["age_median"], errors="coerce")
     df[args.metric] = pd.to_numeric(df[args.metric], errors="coerce")
     scored = df[df["age_median"].notna() & df[args.metric].notna()].copy()
@@ -111,6 +122,8 @@ def main() -> None:
         )
 
     summary = pd.DataFrame(rows).sort_values(["family", "model_key"])
+    if args.comparison_set:
+        summary.insert(0, "comparison_set", args.comparison_set)
     age_bins = (
         scored.groupby(group_cols + ["age_median"], dropna=False)
         .agg(
@@ -123,10 +136,13 @@ def main() -> None:
         .reset_index()
         .sort_values(["model_key", "age_median"])
     )
+    if args.comparison_set:
+        age_bins.insert(0, "comparison_set", args.comparison_set)
 
     args.outdir.mkdir(parents=True, exist_ok=True)
-    summary_path = args.outdir / f"age_order_summary_{args.metric}.csv"
-    bins_path = args.outdir / f"age_bins_{args.metric}.csv"
+    suffix = f"{args.comparison_set}_{args.metric}" if args.comparison_set else args.metric
+    summary_path = args.outdir / f"age_order_summary_{suffix}.csv"
+    bins_path = args.outdir / f"age_bins_{suffix}.csv"
     summary.to_csv(summary_path, index=False)
     age_bins.to_csv(bins_path, index=False)
     print(f"Wrote {summary_path}")
