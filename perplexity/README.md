@@ -81,6 +81,8 @@ By default, this submits every registered model using Torch account
 `torch_pr_494_general`, the CUDA 12.3 Singularity image, and the same
 `story-features` overlay used by the older scripts:
 `/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro`.
+Each model job requests one generic GPU, 4 CPU cores, 24G CPU memory, and 4
+hours walltime.
 Override these only if your HPC setup differs:
 
 ```bash
@@ -89,6 +91,12 @@ OVERLAY=/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro \
 CONDA_ENV=story-features \
 PYTHON_BIN=/ext3/story-features/bin/python \
 bash perplexity/submit_all_perplexity.sh
+```
+
+To override walltime or CPU memory at submit time:
+
+```bash
+TIME=02:00:00 MEM=24G bash perplexity/submit_all_perplexity.sh
 ```
 
 Use `MODEL_KEYS` only if you need to manually restrict a rerun:
@@ -138,6 +146,14 @@ MIN_CONTEXT_LENGTH=32768 bash perplexity/submit_all_perplexity.sh
 Quantized checkpoints are not part of this runner. The earlier bitsandbytes
 path failed in the related unsteerable runs, and GGUF/FP8 server deployments
 need a separate server-side perplexity scorer to keep scores comparable.
+
+Rough walltime estimates for the full 2,075-story dataset, assuming the model is
+already cached on `/scratch/$USER/hf`:
+
+- 1B models: about 10-30 minutes.
+- 7B-14B models: about 30-90 minutes.
+- 30B-32B models: about 1.5-4 hours.
+- 49B, 70B, and Kimi K2: not realistic under the default one generic GPU / 24G CPU memory job; run these separately only on appropriate large-GPU or multi-GPU resources.
 
 ## 4. Analyze Age Order
 

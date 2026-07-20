@@ -3,10 +3,10 @@
 #SBATCH --output=logs/%x-%j.out
 #SBATCH --error=logs/%x-%j.err
 #SBATCH --account=torch_pr_494_general
-#SBATCH --time=12:00:00
+#SBATCH --time=04:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=64G
+#SBATCH --mem=24G
 
 set -euo pipefail
 

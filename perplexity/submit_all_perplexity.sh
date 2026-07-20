@@ -9,6 +9,8 @@ set -euo pipefail
 
 PYTHON_BIN="${PYTHON_BIN:-python}"
 ACCOUNT="${ACCOUNT:-torch_pr_494_general}"
+TIME="${TIME:-04:00:00}"
+MEM="${MEM:-24G}"
 MIN_CONTEXT_LENGTH="${MIN_CONTEXT_LENGTH:-0}"
 MODEL_KEYS="${MODEL_KEYS:-}"
 
@@ -18,5 +20,10 @@ fi
 
 for key in $MODEL_KEYS; do
   echo "Submitting perplexity job for ${key}"
-  sbatch --account="${ACCOUNT}" --export=ALL,MODEL_KEY="${key}" perplexity/run_model_perplexity.slurm
+  sbatch \
+    --account="${ACCOUNT}" \
+    --time="${TIME}" \
+    --mem="${MEM}" \
+    --export=ALL,MODEL_KEY="${key}" \
+    perplexity/run_model_perplexity.slurm
 done
