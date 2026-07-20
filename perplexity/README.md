@@ -77,6 +77,13 @@ MODEL_KEY=olmo_2_7b_base LIMIT=100 sbatch perplexity/run_model_perplexity.slurm
 bash perplexity/submit_all_perplexity.sh
 ```
 
+By default, this submits `COMPARISON_SET=core`, which is the Qwen3/Gemma3/OLMo2
+set used for the main story-perplexity workflow. To inspect all comparison sets:
+
+```bash
+python -m perplexity.models --list-comparison-sets
+```
+
 To inspect the registry:
 
 ```bash
@@ -86,14 +93,38 @@ python -m perplexity.models --tsv
 The current default registry emphasizes:
 
 - Qwen3 8B, 14B, 30B-A3B, and 32B: native 32K/256K depending on checkpoint; the 32K checkpoints are loaded with YaRN for 128K scoring.
+- Llama 3.1 8B and Llama 3.3 70B: text-only Llama anchors with 128K context. These require accepted Meta gated-model access.
+- NVIDIA Llama-Nemotron Nano 8B and Super 49B: 128K-context reasoning models. The 49B checkpoint uses custom code and should be treated as a large-HPC run.
+- Kimi K2 Instruct 0905: 256K-context MoE, 1T total / 32B active. This is a very large custom-code run.
+- Mistral-Nemo 12B: runnable text-only Mistral family anchor. Current Mistral Small 3.2 is newer, but uses Mistral3/vLLM-style loading and is not included in this causal-LM scorer.
 - OLMo 2 1B, 7B, 13B, and 32B base/instruct: included to mirror the `Learning is Forgetting` model family, but these are 4K-context models, so overlength stories are skipped rather than truncated.
 - Gemma 3 1B base/instruct: current text-only Gemma 3 checkpoints with 32K context. Larger Gemma 3 checkpoints are multimodal and need a separate scorer.
+
+Runnable comparison sets:
+
+```bash
+# Around the 7B-12B scale, plus a small Gemma anchor.
+COMPARISON_SET=similar_scale bash perplexity/submit_all_perplexity.sh
+
+# One representative per family, including Kimi. This includes large jobs.
+COMPARISON_SET=family_survey bash perplexity/submit_all_perplexity.sh
+
+# Large-model sweep for H100/H200-class resources.
+COMPARISON_SET=large_family_survey bash perplexity/submit_all_perplexity.sh
+
+# OLMo-only, useful for matching the Learning is Forgetting family.
+COMPARISON_SET=olmo_family bash perplexity/submit_all_perplexity.sh
+```
 
 To run only long-context models and exclude OLMo 2:
 
 ```bash
 MIN_CONTEXT_LENGTH=32768 bash perplexity/submit_all_perplexity.sh
 ```
+
+Quantized checkpoints are not part of this runner. The earlier bitsandbytes
+path failed in the related unsteerable runs, and GGUF/FP8 server deployments
+need a separate server-side perplexity scorer to keep scores comparable.
 
 ## 4. Analyze Age Order
 
