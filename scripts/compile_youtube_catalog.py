@@ -37,6 +37,72 @@ def youtube_watch_url(video_id: str) -> str:
     return f"https://www.youtube.com/watch?v={video_id}"
 
 
+def first_non_null(series: pd.Series) -> Any:
+    for v in series:
+        if v is None:
+            continue
+        if isinstance(v, float) and pd.isna(v):
+            continue
+        if isinstance(v, str) and not v.strip():
+            continue
+        return v
+    return None
+
+
+def load_transcript_scrapes(output_dir: Path) -> pd.DataFrame:
+    rows: List[pd.DataFrame] = []
+    for p in sorted(output_dir.glob("*.csv")):
+        try:
+            df = pd.read_csv(p, low_memory=False)
+        except Exception:
+            continue
+        if "id" not in df.columns:
+            continue
+        df = df.copy()
+        df["video_id"] = df["id"].astype(str).str.strip()
+        df = df[df["video_id"].str.match(VALID_VIDEO_ID_RE, na=False)]
+        df["transcript_source_csv"] = p.name
+        if "playlist" not in df.columns:
+            df["playlist"] = p.stem
+        rows.append(df)
+
+    if not rows:
+        return pd.DataFrame(
+            columns=[
+                "video_id",
+                "youtube_url",
+                "video_title",
+                "description",
+                "transcript_source_csv",
+                "transcript_source",
+                "cleaned_subtitles",
+                "playlist",
+                "has_transcript_scrape",
+            ]
+        )
+
+    all_df = pd.concat(rows, ignore_index=True)
+    agg: Dict[str, Any] = {}
+    for col in all_df.columns:
+        if col == "video_id":
+            continue
+        agg[col] = first_non_null
+
+    merged = all_df.groupby("video_id", as_index=False).agg(agg)
+    merged = merged.rename(
+        columns={
+            "webpage_url": "youtube_url",
+            "title": "video_title",
+        }
+    )
+    if "youtube_url" not in merged.columns:
+        merged["youtube_url"] = merged["video_id"].map(youtube_watch_url)
+    else:
+        merged["youtube_url"] = merged["youtube_url"].fillna(merged["video_id"].map(youtube_watch_url))
+    merged["has_transcript_scrape"] = True
+    return merged
+
+
 def pick_best_row(df: pd.DataFrame) -> pd.DataFrame:
     # Prefer successful extraction + more non-null fields.
     def score_row(row: pd.Series) -> int:
@@ -85,6 +151,7 @@ def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
                 "book_title",
                 "story_title",
                 "author",
+                "source_csv",
                 "source_playlist",
                 "source_titles_csv",
             ]
@@ -104,7 +171,7 @@ def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
     all_df = all_df.rename(columns=rename)
 
     # Normalize expected columns.
-    for col in ["book_title", "story_title", "author", "video_title", "description", "extraction_status"]:
+    for col in ["book_title", "story_title", "author", "video_title", "description", "extraction_status", "source_csv"]:
         if col not in all_df.columns:
             all_df[col] = None
 
@@ -138,6 +205,7 @@ def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
         "book_title",
         "story_title",
         "author",
+        "source_csv",
         "source_playlists",
         "source_titles_csv",
     ]
@@ -179,8 +247,15 @@ def load_amazon_merge(path: Path) -> pd.DataFrame:
     if "youtube_url" not in out.columns:
         out["youtube_url"] = None
     if "video_url" in out.columns:
-        out["youtube_url"] = out["youtube_url"].fillna(out["video_url"])
-    out["youtube_url"] = out["youtube_url"].fillna(out["video_id"].map(youtube_watch_url))
+        out["youtube_url"] = out["youtube_url"].combine_first(out["video_url"])
+    out["youtube_url"] = out["youtube_url"].combine_first(out["video_id"].map(youtube_watch_url))
+
+    agg: Dict[str, Any] = {}
+    for c in out.columns:
+        if c in {"video_id", "youtube_url"}:
+            continue
+        agg[c] = first_non_null
+    out = out.groupby(["video_id", "youtube_url"], as_index=False).agg(agg)
 
     # Prefix to avoid collisions with titles fields.
     ren: Dict[str, str] = {}
@@ -191,24 +266,194 @@ def load_amazon_merge(path: Path) -> pd.DataFrame:
     return out.rename(columns=ren)
 
 
+def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["catalog_row_key"] = df["video_id"].astype(str)
+    df["catalog_version"] = "youtube_catalog_v1"
+
+    for col in [
+        "has_transcript_scrape",
+        "has_title_extraction_attempt",
+        "has_title_extraction_success",
+        "needs_title_extraction",
+    ]:
+        if col in df.columns:
+            df[col] = df[col].fillna(False).astype(bool)
+
+    age_cols = [c for c in ["amz_Reading Age", "amz_Reading Age Customer", "amz_Reading Age Publisher"] if c in df.columns]
+    if age_cols:
+        df["has_amazon_age"] = df[age_cols].notna().any(axis=1)
+    else:
+        df["has_amazon_age"] = False
+
+    if "amz_has_amazon_match" in df.columns:
+        match_norm = df["amz_has_amazon_match"].fillna("").astype(str).str.strip().str.lower()
+        df["has_amazon_match"] = match_norm.isin(["true", "1", "yes"])
+    else:
+        df["has_amazon_match"] = False
+
+    def choose_first(*values: Any) -> Optional[str]:
+        for value in values:
+            value = norm_str(value)
+            if value is not None:
+                return value
+        return None
+
+    df["search_book_title"] = [
+        choose_first(book_title, story_title, amz_title, video_title)
+        for book_title, story_title, amz_title, video_title in zip(
+            df.get("book_title", pd.Series([None] * len(df))),
+            df.get("story_title", pd.Series([None] * len(df))),
+            df.get("amz_Title", pd.Series([None] * len(df))),
+            df.get("video_title", pd.Series([None] * len(df))),
+        )
+    ]
+    df["search_story_title"] = [
+        choose_first(story_title, book_title)
+        for story_title, book_title in zip(
+            df.get("story_title", pd.Series([None] * len(df))),
+            df.get("book_title", pd.Series([None] * len(df))),
+        )
+    ]
+    df["search_author"] = [
+        choose_first(author, amz_author)
+        for author, amz_author in zip(
+            df.get("author", pd.Series([None] * len(df))),
+            df.get("amz_Author", pd.Series([None] * len(df))),
+        )
+    ]
+    df["search_query"] = [
+        " ".join([part for part in [book, story, author] if part]).strip() or None
+        for book, story, author in zip(df["search_book_title"], df["search_story_title"], df["search_author"])
+    ]
+    return df
+
+
+def export_queue(df: pd.DataFrame, out_path: Path, mask: pd.Series) -> None:
+    queue_cols = [
+        "catalog_row_key",
+        "video_id",
+        "youtube_url",
+        "video_title",
+        "channel",
+        "channel_id",
+        "channel_url",
+        "uploader",
+        "uploader_id",
+        "uploader_url",
+        "playlist",
+        "playlist_title",
+        "playlist_id",
+        "playlist_webpage_url",
+        "transcript_source_csv",
+        "source_csv",
+        "source_titles_csv",
+        "source_playlists",
+        "book_title",
+        "story_title",
+        "author",
+        "extraction_status",
+        "search_book_title",
+        "search_story_title",
+        "search_author",
+        "search_query",
+        "has_title_extraction_attempt",
+        "has_title_extraction_success",
+        "needs_title_extraction",
+        "has_amazon_match",
+        "has_amazon_age",
+        "amz_Title",
+        "amz_Author",
+        "amz_Reading Age",
+        "amz_Categories",
+        "amz_Book URL",
+        "amz_source_csv_base",
+        "amz_story_id",
+        "amz_story_id_str",
+    ]
+    queue_cols = [c for c in queue_cols if c in df.columns]
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    df.loc[mask, queue_cols].to_csv(out_path, index=False)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Compile a single YouTube catalog from data/extracted_titles/*_titles.csv.")
     ap.add_argument("--titles-dir", type=Path, default=Path("data/extracted_titles"))
+    ap.add_argument("--output-dir", type=Path, default=Path("output"))
     ap.add_argument("--with-amazon", type=Path, default=None, help="Optional merge file (e.g. data/amazon_data/all_extracted_titles_with_amazon.csv).")
     ap.add_argument("--out", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
+    ap.add_argument("--queue-dir", type=Path, default=Path("data/processed/youtube_queues"))
     args = ap.parse_args()
 
-    df = load_titles_dir(args.titles_dir)
+    transcripts = load_transcript_scrapes(args.output_dir)
+    titles = load_titles_dir(args.titles_dir)
+    if len(transcripts):
+        df = transcripts.merge(titles, on="video_id", how="left", suffixes=("", "_titles"))
+        # Prefer transcript scrape metadata as the primary video metadata.
+        if "youtube_url_titles" in df.columns:
+            df["youtube_url"] = df["youtube_url"].fillna(df["youtube_url_titles"])
+            df = df.drop(columns=["youtube_url_titles"])
+        for col in ["video_title", "description"]:
+            other = f"{col}_titles"
+            if other in df.columns:
+                df[col] = df[col].fillna(df[other])
+                df = df.drop(columns=[other])
+    else:
+        df = titles.copy()
+        if len(df):
+            df["has_transcript_scrape"] = False
+
+    if "extraction_status" not in df.columns:
+        df["extraction_status"] = None
+    status_norm = df["extraction_status"].fillna("").astype(str).str.lower().str.strip()
+    df["has_title_extraction_attempt"] = status_norm.ne("")
+    df["has_title_extraction_success"] = status_norm.eq("success")
+    df["needs_title_extraction"] = df["has_transcript_scrape"].fillna(False) & ~df["has_title_extraction_success"]
+
     if args.with_amazon:
         amz = load_amazon_merge(args.with_amazon)
         df = df.merge(amz, on=["video_id", "youtube_url"], how="left")
 
+    # Keep one row per video_id if upstream merges introduce duplicates.
+    if df["video_id"].duplicated().any():
+        df = df.sort_values(["video_id"]).groupby("video_id", as_index=False).agg(first_non_null)
+
+    df = add_derived_columns(df)
+
     args.out.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(args.out, index=False, compression="infer")
 
-    n_success = int((df["extraction_status"].fillna("").str.lower() == "success").sum()) if "extraction_status" in df.columns else 0
+    export_queue(
+        df,
+        args.queue_dir / "needs_title_extraction.csv",
+        df["has_transcript_scrape"] & ~df["has_title_extraction_success"],
+    )
+    export_queue(
+        df,
+        args.queue_dir / "ready_for_amazon_search.csv",
+        df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_match"],
+    )
+    export_queue(
+        df,
+        args.queue_dir / "matched_but_missing_amazon_age.csv",
+        df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"],
+    )
+
+    n_scraped = int(df["has_transcript_scrape"].sum()) if "has_transcript_scrape" in df.columns else 0
+    n_attempted = int(df["has_title_extraction_attempt"].sum())
+    n_success = int(df["has_title_extraction_success"].sum())
+    n_left = int(df["needs_title_extraction"].sum())
+    n_ready_for_amazon = int((df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_match"]).sum())
+    n_missing_age_after_match = int((df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"]).sum())
     print(f"Wrote: {args.out}")
-    print(f"Rows: {len(df)} | unique videos: {df['video_id'].nunique()} | success rows: {n_success}")
+    print(f"Rows: {len(df)} | unique videos: {df['video_id'].nunique()}")
+    print(f"Transcript scrapes: {n_scraped}")
+    print(f"Title extraction attempted: {n_attempted}")
+    print(f"Title extraction success: {n_success}")
+    print(f"Left to scrape titles: {n_left}")
+    print(f"Ready for Amazon search: {n_ready_for_amazon}")
+    print(f"Matched but missing Amazon age: {n_missing_age_after_match}")
+    print(f"Queue dir: {args.queue_dir}")
 
 
 if __name__ == "__main__":
