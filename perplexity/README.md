@@ -173,7 +173,41 @@ Main outputs:
 - `artifacts/perplexity/analysis/age_bins_mean_nll.csv`: per-age median/mean perplexity table.
 - `artifacts/perplexity/analysis/age_order_summary_<comparison_set>_mean_nll.csv`: same summary restricted to a named comparison set.
 
-## 5. GitHub / HPC Handoff
+## 5. Plot Age Geometry
+
+To make a paper-style sequential age-geometry plot, first run the analysis above,
+then:
+
+```bash
+python perplexity/plot_age_geometry.py \
+  --age-bins artifacts/perplexity/analysis/age_bins_mean_nll.csv \
+  --outdir artifacts/perplexity/figures
+```
+
+On the HPC login node without system Python, run it inside the same Singularity
+overlay:
+
+```bash
+export SIF=/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif
+export OVERLAY=/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro
+export CONDA_ENV=story-features
+export PYTHON_BIN=/ext3/story-features/bin/python
+export USE_NV=0
+
+./hpc/run_in_singularity.sh \
+  'cd "$PWD" && "$PYTHON_BIN" perplexity/plot_age_geometry.py \
+    --age-bins artifacts/perplexity/analysis/age_bins_mean_nll.csv \
+    --outdir artifacts/perplexity/figures'
+```
+
+This writes:
+
+- `artifacts/perplexity/figures/age_geometry_mds_metric_median.png`: MDS age manifold plus scaled-isometry and neighbor-similarity panels.
+- `artifacts/perplexity/figures/age_geometry_model_curves_metric_median.png`: per-model age curves.
+- `artifacts/perplexity/figures/age_geometry_summary_metric_median.csv`: distance-correlation summary.
+- `artifacts/perplexity/figures/age_geometry_pairwise_metric_median.csv`: pairwise age distances.
+
+## 6. GitHub / HPC Handoff
 
 The current push-ready data path is:
 
