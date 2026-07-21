@@ -266,6 +266,54 @@ def load_amazon_merge(path: Path) -> pd.DataFrame:
     return out.rename(columns=ren)
 
 
+def load_supplemental_age_merge(paths: List[Path]) -> pd.DataFrame:
+    rows: List[pd.DataFrame] = []
+    wanted = [
+        "video_id",
+        "Title",
+        "Author",
+        "Reading Age",
+        "Reading Age Source",
+        "Reading Age Customer",
+        "Reading Age Publisher",
+        "Grade Level",
+        "Categories",
+        "Book URL",
+    ]
+    for path in paths:
+        if not path.exists():
+            continue
+        df = read_csv_any_encoding(path)
+        if "video_id" not in df.columns:
+            continue
+        keep = [c for c in wanted if c in df.columns]
+        if "video_id" not in keep:
+            keep = ["video_id", *keep]
+        df = df[keep].copy()
+        df["video_id"] = df["video_id"].astype(str).str.strip()
+        df = df[df["video_id"].str.match(VALID_VIDEO_ID_RE, na=False)]
+        df["supp_source_table"] = path.name
+        rows.append(df)
+
+    if not rows:
+        return pd.DataFrame(columns=["video_id"])
+
+    all_df = pd.concat(rows, ignore_index=True)
+    agg: Dict[str, Any] = {}
+    for c in all_df.columns:
+        if c == "video_id":
+            continue
+        agg[c] = first_non_null
+    out = all_df.groupby("video_id", as_index=False).agg(agg)
+
+    ren: Dict[str, str] = {}
+    for c in out.columns:
+        if c == "video_id":
+            continue
+        ren[c] = f"supp_{c}"
+    return out.rename(columns=ren)
+
+
 def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["catalog_row_key"] = df["video_id"].astype(str)
@@ -280,7 +328,18 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
         if col in df.columns:
             df[col] = df[col].fillna(False).astype(bool)
 
-    age_cols = [c for c in ["amz_Reading Age", "amz_Reading Age Customer", "amz_Reading Age Publisher"] if c in df.columns]
+    age_cols = [
+        c
+        for c in [
+            "amz_Reading Age",
+            "amz_Reading Age Customer",
+            "amz_Reading Age Publisher",
+            "supp_Reading Age",
+            "supp_Reading Age Customer",
+            "supp_Reading Age Publisher",
+        ]
+        if c in df.columns
+    ]
     if age_cols:
         df["has_amazon_age"] = df[age_cols].notna().any(axis=1)
     else:
@@ -326,6 +385,25 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
         " ".join([part for part in [book, story, author] if part]).strip() or None
         for book, story, author in zip(df["search_book_title"], df["search_story_title"], df["search_author"])
     ]
+
+    for base_col in ["Title", "Author", "Reading Age", "Reading Age Source", "Grade Level", "Categories", "Book URL"]:
+        best_col = f"best_{base_col}"
+        amz_col = f"amz_{base_col}"
+        supp_col = f"supp_{base_col}"
+        df[best_col] = [
+            choose_first(amz_val, supp_val)
+            for amz_val, supp_val in zip(
+                df.get(amz_col, pd.Series([None] * len(df))),
+                df.get(supp_col, pd.Series([None] * len(df))),
+            )
+        ]
+    df["best_amazon_source_table"] = [
+        choose_first(amz_src, supp_src)
+        for amz_src, supp_src in zip(
+            df.get("amz_source_csv_base", pd.Series([None] * len(df))),
+            df.get("supp_source_table", pd.Series([None] * len(df))),
+        )
+    ]
     return df
 
 
@@ -362,12 +440,28 @@ def export_queue(df: pd.DataFrame, out_path: Path, mask: pd.Series) -> None:
         "needs_title_extraction",
         "has_amazon_match",
         "has_amazon_age",
+        "best_Title",
+        "best_Author",
+        "best_Reading Age",
+        "best_Reading Age Source",
+        "best_Grade Level",
+        "best_Categories",
+        "best_Book URL",
+        "best_amazon_source_table",
         "amz_Title",
         "amz_Author",
         "amz_Reading Age",
         "amz_Categories",
         "amz_Book URL",
         "amz_source_csv_base",
+        "supp_Title",
+        "supp_Author",
+        "supp_Reading Age",
+        "supp_Reading Age Source",
+        "supp_Grade Level",
+        "supp_Categories",
+        "supp_Book URL",
+        "supp_source_table",
         "amz_story_id",
         "amz_story_id_str",
     ]
@@ -381,6 +475,17 @@ def main() -> None:
     ap.add_argument("--titles-dir", type=Path, default=Path("data/extracted_titles"))
     ap.add_argument("--output-dir", type=Path, default=Path("output"))
     ap.add_argument("--with-amazon", type=Path, default=None, help="Optional merge file (e.g. data/amazon_data/all_extracted_titles_with_amazon.csv).")
+    ap.add_argument(
+        "--supplemental-age",
+        type=Path,
+        nargs="*",
+        default=[
+            Path("data/amazon_data/amazon_youtube_batch1.csv"),
+            Path("story_wAmazonData_042626/amazon_youtube_batch1_wid.csv"),
+            Path("data/amazon_data/missing_reading_age_extracted_success_amazon.csv"),
+        ],
+        help="Extra Amazon-derived tables to merge for age coverage before building queues.",
+    )
     ap.add_argument("--out", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
     ap.add_argument("--queue-dir", type=Path, default=Path("data/processed/youtube_queues"))
     args = ap.parse_args()
@@ -413,6 +518,10 @@ def main() -> None:
     if args.with_amazon:
         amz = load_amazon_merge(args.with_amazon)
         df = df.merge(amz, on=["video_id", "youtube_url"], how="left")
+    if args.supplemental_age:
+        supp = load_supplemental_age_merge(args.supplemental_age)
+        if len(supp):
+            df = df.merge(supp, on="video_id", how="left")
 
     # Keep one row per video_id if upstream merges introduce duplicates.
     if df["video_id"].duplicated().any():
@@ -431,7 +540,7 @@ def main() -> None:
     export_queue(
         df,
         args.queue_dir / "ready_for_amazon_search.csv",
-        df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_match"],
+        df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_age"],
     )
     export_queue(
         df,
@@ -443,7 +552,7 @@ def main() -> None:
     n_attempted = int(df["has_title_extraction_attempt"].sum())
     n_success = int(df["has_title_extraction_success"].sum())
     n_left = int(df["needs_title_extraction"].sum())
-    n_ready_for_amazon = int((df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_match"]).sum())
+    n_ready_for_amazon = int((df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_age"]).sum())
     n_missing_age_after_match = int((df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"]).sum())
     print(f"Wrote: {args.out}")
     print(f"Rows: {len(df)} | unique videos: {df['video_id'].nunique()}")

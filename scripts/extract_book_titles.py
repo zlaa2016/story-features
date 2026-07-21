@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+import pandas as pd
+
+
+DEFAULT_MODEL = os.environ.get("OPENAI_TITLE_MODEL", "gpt-4o-mini")
+
+SYSTEM_PROMPT = """You extract structured children's book metadata from YouTube story video metadata.
+
+Given only a YouTube video title and its description, identify:
+- book_title: the overall book or collection title
+- story_title: the specific story title if different from the book title
+- author: the author name if reasonably inferable
+
+Rules:
+- Use only evidence from the title and description.
+- Do not use outside knowledge.
+- If unknown, return "N/A".
+- If the video is not clearly a storybook read-aloud or the title cannot be determined, return "N/A" fields and extraction_status = "failed".
+- Prefer conservative extraction over guessing.
+
+Return valid JSON only with exactly these keys:
+{
+  "book_title": "...",
+  "story_title": "...",
+  "author": "...",
+  "extraction_status": "success" or "failed"
+}
+"""
+
+
+def read_csv_any_encoding(path: Path) -> pd.DataFrame:
+    last_err: Optional[Exception] = None
+    for enc in ["utf-8", "utf-8-sig", "latin-1", "cp1252"]:
+        try:
+            return pd.read_csv(path, low_memory=False, encoding=enc)
+        except Exception as e:
+            last_err = e
+    if last_err:
+        raise last_err
+    return pd.read_csv(path, low_memory=False)
+
+
+def normalize_string(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, float) and pd.isna(value):
+        return ""
+    return str(value).strip()
+
+
+def load_api_key(key_path: Optional[Path]) -> None:
+    if os.environ.get("OPENAI_API_KEY"):
+        return
+    if key_path and key_path.exists():
+        os.environ["OPENAI_API_KEY"] = key_path.read_text(encoding="utf-8").strip()
+
+
+def build_user_prompt(video_title: str, description: str) -> str:
+    return (
+        f"Video title:\n{video_title or 'N/A'}\n\n"
+        f"Video description:\n{description or 'N/A'}\n"
+    )
+
+
+def call_openai(model: str, video_title: str, description: str) -> Dict[str, Any]:
+    from openai import OpenAI
+
+    client = OpenAI()
+    response = client.responses.create(
+        model=model,
+        instructions=SYSTEM_PROMPT,
+        input=build_user_prompt(video_title, description),
+        text={"format": {"type": "json_object"}},
+        store=False,
+    )
+    payload = json.loads(response.output_text)
+    return {
+        "book_title": normalize_string(payload.get("book_title")) or "N/A",
+        "story_title": normalize_string(payload.get("story_title")) or "N/A",
+        "author": normalize_string(payload.get("author")) or "N/A",
+        "extraction_status": normalize_string(payload.get("extraction_status")).lower() or "failed",
+    }
+
+
+def choose_source_csv(row: pd.Series) -> str:
+    for col in ["source_csv", "transcript_source_csv", "playlist"]:
+        value = normalize_string(row.get(col))
+        if value:
+            if col == "playlist" and not value.endswith(".csv"):
+                return f"{value}.csv"
+            return value
+    return "unknown_source.csv"
+
+
+def title_output_name(source_csv: str) -> str:
+    stem = Path(source_csv).stem
+    return f"{stem}_titles.csv"
+
+
+def load_input_rows(queue_path: Path) -> pd.DataFrame:
+    df = read_csv_any_encoding(queue_path)
+    needed = [c for c in ["video_id", "video_title", "description", "source_csv", "transcript_source_csv", "playlist"] if c in df.columns]
+    df = df[needed].copy()
+    df["video_id"] = df["video_id"].astype(str).str.strip()
+    df["video_title"] = df["video_title"].map(normalize_string)
+    if "description" in df.columns:
+        df["description"] = df["description"].map(normalize_string)
+    else:
+        df["description"] = ""
+    df["source_csv"] = df.apply(choose_source_csv, axis=1)
+    return df
+
+
+def write_results(
+    results: List[Dict[str, Any]],
+    out_dir: Path,
+) -> None:
+    if not results:
+        return
+    out_dir.mkdir(parents=True, exist_ok=True)
+    result_df = pd.DataFrame(results)
+    for source_csv, group in result_df.groupby("source_csv", sort=True):
+        out_path = out_dir / title_output_name(source_csv)
+        if out_path.exists():
+            existing = read_csv_any_encoding(out_path)
+        else:
+            existing = pd.DataFrame(
+                columns=[
+                    "book_title",
+                    "story_title",
+                    "author",
+                    "source_csv",
+                    "video_id",
+                    "video_title",
+                    "description",
+                    "extraction_status",
+                ]
+            )
+        merged = pd.concat([existing, group], ignore_index=True)
+        merged = merged.drop_duplicates(subset=["video_id"], keep="last")
+        merged = merged[
+            [
+                "book_title",
+                "story_title",
+                "author",
+                "source_csv",
+                "video_id",
+                "video_title",
+                "description",
+                "extraction_status",
+            ]
+        ]
+        merged.to_csv(out_path, index=False)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
+    ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_queues/needs_title_extraction.csv"))
+    ap.add_argument("--out-dir", type=Path, default=Path("data/extracted_titles"))
+    ap.add_argument("--key-path", type=Path, default=None, help="Optional path to an OpenAI API key file.")
+    ap.add_argument("--model", type=str, default=DEFAULT_MODEL)
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--start", type=int, default=0)
+    ap.add_argument("--sleep", type=float, default=0.25)
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    load_api_key(args.key_path)
+    if not args.dry_run and not os.environ.get("OPENAI_API_KEY"):
+        raise RuntimeError("OPENAI_API_KEY is not set. Pass --key-path or export OPENAI_API_KEY.")
+
+    rows = load_input_rows(args.queue)
+    if args.start:
+        rows = rows.iloc[args.start:]
+    if args.limit is not None:
+        rows = rows.iloc[: args.limit]
+
+    results: List[Dict[str, Any]] = []
+    for _, row in rows.iterrows():
+        if args.dry_run:
+            payload = {
+                "book_title": "N/A",
+                "story_title": "N/A",
+                "author": "N/A",
+                "extraction_status": "dry_run",
+            }
+        else:
+            payload = call_openai(args.model, row["video_title"], row["description"])
+            time.sleep(args.sleep)
+        results.append(
+            {
+                **payload,
+                "source_csv": row["source_csv"],
+                "video_id": row["video_id"],
+                "video_title": row["video_title"],
+                "description": row["description"],
+            }
+        )
+
+    write_results(results, args.out_dir)
+    print(f"Wrote {len(results)} rows into {args.out_dir}")
+
+
+if __name__ == "__main__":
+    main()
