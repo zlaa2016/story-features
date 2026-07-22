@@ -66,6 +66,7 @@ def load_api_key(key_path: Optional[Path]) -> None:
 
 def build_user_prompt(video_title: str, description: str) -> str:
     return (
+        "Return JSON only.\n\n"
         f"Video title:\n{video_title or 'N/A'}\n\n"
         f"Video description:\n{description or 'N/A'}\n"
     )
