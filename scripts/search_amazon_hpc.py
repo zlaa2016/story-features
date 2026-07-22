@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 import requests
@@ -26,20 +26,151 @@ from amazon_scraper_common import (
 )
 
 
-def first_result_url_from_search_html(html: str) -> Optional[str]:
+POSITIVE_HINTS = {
+    "children",
+    "childrens",
+    "kids",
+    "kid",
+    "picture book",
+    "board book",
+    "little golden",
+    "beginner readers",
+    "readers",
+    "read aloud",
+    "storybook",
+    "storybooks",
+    "paw patrol",
+    "disney",
+}
+
+NEGATIVE_HINTS = {
+    "romance",
+    "regency",
+    "duke",
+    "billionaire",
+    "polyamory",
+    "erotica",
+    "new adult",
+    "college romance",
+    "motor sports",
+    "motorcycle",
+    "driving",
+    "sports & outdoors",
+    "contemporary fiction",
+    "historical romance",
+    "victorian",
+    "kindle store > kindle ebooks > romance",
+}
+
+STOPWORDS = {"the", "a", "an", "and", "of", "to", "for", "in", "on", "with", "book", "series"}
+
+
+def normalize_for_match(text: str) -> str:
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def token_set(text: str) -> set[str]:
+    return {token for token in normalize_for_match(text).split() if token and token not in STOPWORDS}
+
+
+def overlap_score(query: str, candidate: str) -> float:
+    query_tokens = token_set(query)
+    cand_tokens = token_set(candidate)
+    if not query_tokens or not cand_tokens:
+        return 0.0
+    return len(query_tokens & cand_tokens) / max(1, len(query_tokens))
+
+
+def title_contains_phrase(query: str, candidate: str) -> bool:
+    norm_query = normalize_for_match(query)
+    norm_candidate = normalize_for_match(candidate)
+    return bool(norm_query and norm_query in norm_candidate)
+
+
+def parse_search_results(html: str) -> List[Dict[str, str]]:
     soup = BeautifulSoup(html, "html.parser")
+    rows: List[Dict[str, str]] = []
     for result in soup.select("div[data-component-type='s-search-result']"):
+        title_node = result.select_one("h2 span") or result.select_one("h2 a")
+        title = title_node.get_text(" ", strip=True) if title_node else ""
         link = result.select_one("h2 a") or result.select_one("a[href*='/dp/']")
+        href = ""
         if link and link.get("href"):
             href = link["href"]
             if href.startswith("/"):
                 href = "https://www.amazon.com" + href
             if "/dp/" in href:
-                return href.split("?")[0].split("ref=")[0]
+                href = href.split("?")[0].split("ref=")[0]
         asin = result.get("data-asin")
-        if asin:
-            return f"https://www.amazon.com/dp/{asin}"
-    return None
+        if not href and asin:
+            href = f"https://www.amazon.com/dp/{asin}"
+        byline = " ".join(node.get_text(" ", strip=True) for node in result.select("div.a-row.a-size-base.a-color-secondary"))
+        whole_text = result.get_text(" ", strip=True)
+        if href:
+            rows.append({"title": title, "url": href, "byline": byline, "text": whole_text})
+    return rows
+
+
+def score_result(
+    result: Dict[str, str],
+    book_title: str,
+    story_title: str,
+    author: str,
+    video_title: str,
+) -> Tuple[float, List[str]]:
+    title = result["title"]
+    blob = f"{result.get('title', '')} {result.get('byline', '')} {result.get('text', '')}"
+    score = 0.0
+    reasons: List[str] = []
+
+    book_overlap = overlap_score(book_title, title)
+    story_overlap = overlap_score(story_title, title) if story_title else 0.0
+    video_overlap = overlap_score(video_title, title) if video_title else 0.0
+    author_overlap = overlap_score(author, blob) if author else 0.0
+
+    score += 4.0 * book_overlap
+    if book_overlap:
+        reasons.append(f"book={book_overlap:.2f}")
+    score += 3.0 * story_overlap
+    if story_overlap:
+        reasons.append(f"story={story_overlap:.2f}")
+    score += 1.5 * video_overlap
+    if video_overlap:
+        reasons.append(f"video={video_overlap:.2f}")
+    score += 2.5 * author_overlap
+    if author_overlap:
+        reasons.append(f"author={author_overlap:.2f}")
+
+    if title_contains_phrase(book_title, title):
+        score += 2.0
+        reasons.append("book_phrase")
+    if story_title and title_contains_phrase(story_title, title):
+        score += 1.5
+        reasons.append("story_phrase")
+
+    blob_norm = normalize_for_match(blob)
+    for hint in POSITIVE_HINTS:
+        if hint in blob_norm:
+            score += 0.75
+            reasons.append(f"+{hint}")
+    for hint in NEGATIVE_HINTS:
+        if hint in blob_norm:
+            score -= 3.0
+            reasons.append(f"-{hint}")
+
+    if book_overlap < 0.34 and story_overlap < 0.34 and not title_contains_phrase(book_title, title):
+        score -= 3.5
+        reasons.append("weak_title_match")
+    if author and author_overlap == 0 and book_overlap < 0.6 and story_overlap < 0.6:
+        score -= 1.0
+        reasons.append("no_author_support")
+    if "kindle store" in blob_norm and "children" not in blob_norm and "kids" not in blob_norm:
+        score -= 1.5
+        reasons.append("generic_kindle_penalty")
+
+    return score, reasons
 
 
 def fetch_html(session: requests.Session, url: str, timeout: int) -> str:
@@ -48,9 +179,28 @@ def fetch_html(session: requests.Session, url: str, timeout: int) -> str:
     return resp.text
 
 
-def search_amazon_book(session: requests.Session, search_query: str, timeout: int) -> Optional[str]:
+def search_amazon_book(
+    session: requests.Session,
+    search_query: str,
+    timeout: int,
+    book_title: str,
+    story_title: str,
+    author: str,
+    video_title: str,
+) -> Tuple[Optional[str], Optional[str]]:
     html = fetch_html(session, amazon_search_url(search_query), timeout=timeout)
-    return first_result_url_from_search_html(html)
+    results = parse_search_results(html)
+    if not results:
+        return None, None
+    ranked: List[Tuple[float, Dict[str, str], List[str]]] = []
+    for result in results[:8]:
+        score, reasons = score_result(result, book_title, story_title, author, video_title)
+        ranked.append((score, result, reasons))
+    ranked.sort(key=lambda row: row[0], reverse=True)
+    best_score, best_result, _reasons = ranked[0]
+    if best_score < 2.5:
+        return None, None
+    return best_result["url"], best_result["title"]
 
 
 def get_book_details(session: requests.Session, book_url: str, timeout: int):
@@ -90,8 +240,17 @@ def process_book_titles(
         try:
             book_url = None
             search_query_used = None
+            matched_title = None
             for query in queries:
-                book_url = search_amazon_book(session, query, timeout=timeout)
+                book_url, matched_title = search_amazon_book(
+                    session,
+                    query,
+                    timeout=timeout,
+                    book_title=book_title,
+                    story_title=story_title,
+                    author=author,
+                    video_title=video_title,
+                )
                 if book_url:
                     search_query_used = query
                     break
@@ -101,10 +260,22 @@ def process_book_titles(
                 failed += 1
                 continue
             details = get_book_details(session, book_url, timeout=timeout)
+            matched_overlap = max(
+                overlap_score(book_title, details.get("title", "")),
+                overlap_score(story_title, details.get("title", "")) if story_title else 0.0,
+            )
+            details_blob = f"{details.get('categories','')} {details.get('summary','')} {details.get('title','')}".lower()
+            if matched_overlap < 0.34 or any(hint in details_blob for hint in NEGATIVE_HINTS):
+                append_to_csv([build_not_found_placeholder(row, book_title, primary_label, title_column)], output_csv)
+                failed += 1
+                rate_limit_sleep(sleep)
+                continue
             details["extracted_book_title"] = book_title
             details["amazon_search_query"] = search_query_used or primary_label
             details["amazon_match_status"] = "FOUND"
             details["source_merge_key"] = build_source_merge_key(row, title_column, fallback_title=book_title)
+            if matched_title:
+                details["matched_search_title"] = matched_title
             merge_input_columns_into_book(details, row)
             append_to_csv([details], output_csv)
             processed += 1
