@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 from amazon_scraper_common import (
     DEFAULT_HEADERS,
+    asin_from_book_url,
     amazon_search_query_candidates,
     amazon_search_url,
     append_to_csv,
@@ -179,6 +180,14 @@ def fetch_html(session: requests.Session, url: str, timeout: int) -> str:
     return resp.text
 
 
+def fetch_optional_soup(session: requests.Session, url: str, timeout: int) -> Optional[BeautifulSoup]:
+    try:
+        html = fetch_html(session, url, timeout=timeout)
+        return BeautifulSoup(html, "html.parser")
+    except Exception:
+        return None
+
+
 def search_amazon_book(
     session: requests.Session,
     search_query: str,
@@ -209,7 +218,14 @@ def search_amazon_book(
 def get_book_details(session: requests.Session, book_url: str, timeout: int):
     html = fetch_html(session, book_url, timeout=timeout)
     soup = BeautifulSoup(html, "html.parser")
-    return extract_book_details_from_soup(soup, book_url=book_url)
+    review_soups: List[BeautifulSoup] = []
+    asin = asin_from_book_url(book_url)
+    if asin:
+        review_url = f"https://www.amazon.com/product-reviews/{asin}/?reviewerType=all_reviews"
+        review_soup = fetch_optional_soup(session, review_url, timeout=timeout)
+        if review_soup is not None:
+            review_soups.append(review_soup)
+    return extract_book_details_from_soup(soup, book_url=book_url, review_soups=review_soups)
 
 
 def process_book_titles(

@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from amazon_scraper_common import (
+    asin_from_book_url,
     amazon_search_query_candidates,
     amazon_search_url,
     append_to_csv,
@@ -84,7 +85,25 @@ def get_book_details(driver: webdriver.Chrome, book_url: str):
     except Exception:
         pass
     soup = BeautifulSoup(driver.page_source, "html.parser")
-    return extract_book_details_from_soup(soup, book_url=book_url)
+    review_soups = []
+    asin = asin_from_book_url(book_url)
+    if asin:
+        try:
+            review_url = f"https://www.amazon.com/product-reviews/{asin}/?reviewerType=all_reviews"
+            driver.get(review_url)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "[data-hook='review'], #cm_cr-review_list, #cr-filter-info-review-rating-count"))
+            )
+            time.sleep(2)
+            review_soups.append(BeautifulSoup(driver.page_source, "html.parser"))
+        except Exception:
+            pass
+        finally:
+            driver.get(book_url)
+            WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "productTitle")))
+            time.sleep(1)
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+    return extract_book_details_from_soup(soup, book_url=book_url, review_soups=review_soups)
 
 
 def process_book_titles(

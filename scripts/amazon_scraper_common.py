@@ -326,6 +326,26 @@ def extract_reviews_json(soup: BeautifulSoup, max_us: int = 10) -> List[Dict[str
     return out
 
 
+def extract_reviews_json_from_soups(soups: List[BeautifulSoup], max_us: int = 10) -> List[Dict[str, str]]:
+    out: List[Dict[str, str]] = []
+    seen = set()
+    for soup in soups:
+        for review in extract_reviews_json(soup, max_us=max_us):
+            key = (
+                review.get("author", ""),
+                review.get("title", ""),
+                review.get("date", ""),
+                review.get("text", "")[:120],
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(review)
+            if len(out) >= max_us:
+                return out
+    return out
+
+
 def extract_editorial_sections(soup: BeautifulSoup) -> Dict[str, str]:
     sections: Dict[str, str] = {}
     editorial_section = soup.find("div", id="editorialReviews_feature_div") or soup.find("div", {"data-hook": "editorial-reviews"})
@@ -403,7 +423,28 @@ def extract_customer_review_summary(soup: BeautifulSoup) -> str:
     return customer_reviews_text
 
 
-def extract_book_details_from_soup(soup: BeautifulSoup, book_url: Optional[str]) -> Dict[str, Any]:
+def extract_customer_review_summary_from_soups(soups: List[BeautifulSoup]) -> str:
+    for soup in soups:
+        text = extract_customer_review_summary(soup)
+        if text != "N/A":
+            return text
+    return "N/A"
+
+
+def asin_from_book_url(book_url: Optional[str]) -> Optional[str]:
+    if not book_url:
+        return None
+    match = re.search(r"/(?:dp|gp/product)/([A-Z0-9]{10})", str(book_url), re.I)
+    return match.group(1) if match else None
+
+
+def extract_book_details_from_soup(
+    soup: BeautifulSoup,
+    book_url: Optional[str],
+    review_soups: Optional[List[BeautifulSoup]] = None,
+) -> Dict[str, Any]:
+    review_soups = review_soups or []
+    all_review_soups = [soup, *review_soups]
     details = extract_all_metadata(soup)
     title_tag = soup.find("span", id="productTitle")
     title = clean_text(title_tag.get_text(" ", strip=True) if title_tag else None)
@@ -496,8 +537,8 @@ def extract_book_details_from_soup(soup: BeautifulSoup, book_url: Optional[str])
             f"{k}: {v[:1500]}" for k, v in sections.items() if v and len(v.strip()) > 10
         ) or "N/A"
 
-    customer_reviews_text = extract_customer_review_summary(soup)
-    customer_reviews_json = extract_reviews_json(soup, max_us=10)
+    customer_reviews_text = extract_customer_review_summary_from_soups(all_review_soups)
+    customer_reviews_json = extract_reviews_json_from_soups(all_review_soups, max_us=10)
     about_author = extract_about_author(soup)
     return {
         "title": title,
