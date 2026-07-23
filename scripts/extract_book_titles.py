@@ -14,7 +14,7 @@ import pandas as pd
 
 DEFAULT_MODEL = os.environ.get("OPENAI_TITLE_MODEL", "gpt-4o-mini")
 
-SYSTEM_PROMPT = """You extract structured children's book metadata from YouTube story video metadata.
+SYSTEM_PROMPT = """You extract structured book metadata from YouTube video metadata.
 
 Given only a YouTube video title and its description, identify:
 - book_title: the overall book or collection title
@@ -24,8 +24,11 @@ Given only a YouTube video title and its description, identify:
 Rules:
 - Use only evidence from the title and description.
 - Do not use outside knowledge.
+- It is acceptable if the work is not a children's book, as long as it is plausibly a book, story, tale, anthology, audiobook, read-aloud, chapter reading, literary work, or other book-like text being presented in the video.
+- If the title/description clearly indicates a specific story, chapter, episode, or segment from a larger book or collection, use the larger work as `book_title` when inferable and the specific segment as `story_title`.
+- Prefer extracting a plausible book/work title over failing when the video appears to present a book or written story.
 - If unknown, return "N/A".
-- If the video is not clearly a storybook read-aloud or the title cannot be determined, return "N/A" fields and extraction_status = "failed".
+- If the video appears to be non-book media only (for example only a TV episode, toy property, movie clip, song, gameplay, or unrelated video) and no book-like work can be inferred from the title/description, return "N/A" fields and extraction_status = "failed".
 - Prefer conservative extraction over guessing.
 
 Return valid JSON only with exactly these keys:
