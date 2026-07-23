@@ -163,6 +163,23 @@ def write_results(
         merged.to_csv(out_path, index=False)
 
 
+def summarize_results(results: List[Dict[str, Any]]) -> str:
+    if not results:
+        return "no rows"
+    df = pd.DataFrame(results)
+    status_counts = (
+        df["extraction_status"].fillna("NA").astype(str).value_counts().to_dict()
+        if "extraction_status" in df.columns
+        else {}
+    )
+    source_counts = (
+        df["source_csv"].fillna("NA").astype(str).value_counts().head(5).to_dict()
+        if "source_csv" in df.columns
+        else {}
+    )
+    return f"statuses={status_counts} top_sources={source_counts}"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
     ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_queues/needs_title_extraction.csv"))
@@ -184,10 +201,19 @@ def main() -> None:
         raise RuntimeError("OPENAI_API_KEY is not set. Pass --key-path or export OPENAI_API_KEY.")
 
     rows = load_input_rows(args.queue)
+    queue_rows_before_slice = len(rows)
     if args.start:
         rows = rows.iloc[args.start:]
     if args.limit is not None:
         rows = rows.iloc[: args.limit]
+    total_rows = len(rows)
+    print(
+        f"Starting title extraction | queue={args.queue} | total_queue_rows={queue_rows_before_slice} "
+        f"| start={args.start} | limit={args.limit} | selected_rows={total_rows} | out_dir={args.out_dir}"
+    )
+    if total_rows:
+        top_sources = rows["source_csv"].fillna("NA").astype(str).value_counts().head(10).to_dict()
+        print(f"Selected row source distribution (top 10): {top_sources}")
 
     results: List[Dict[str, Any]] = []
     for index, row in enumerate(rows.itertuples(index=False), start=1):
@@ -212,11 +238,18 @@ def main() -> None:
         )
         if args.flush_every > 0 and len(results) >= args.flush_every:
             write_results(results, args.out_dir)
-            print(f"Checkpointed {index} rows into {args.out_dir}")
+            print(
+                f"Checkpointed rows 1..{index} into {args.out_dir} | "
+                f"batch_rows={len(results)} | {summarize_results(results)}"
+            )
             results = []
 
+    remaining = len(results)
     write_results(results, args.out_dir)
-    print(f"Finished run; wrote remaining {len(results)} rows into {args.out_dir}")
+    print(
+        f"Finished run | selected_rows={total_rows} | remaining_batch_rows={remaining} "
+        f"| {summarize_results(results)} | out_dir={args.out_dir}"
+    )
 
 
 if __name__ == "__main__":

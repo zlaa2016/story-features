@@ -127,7 +127,7 @@ def pick_best_row(df: pd.DataFrame) -> pd.DataFrame:
 
 def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
     rows: List[pd.DataFrame] = []
-    for p in sorted(titles_dir.glob("*_titles.csv")):
+    for p in sorted(titles_dir.rglob("*_titles.csv")):
         df = read_csv_any_encoding(p)
         if "video_id" not in df.columns:
             continue
@@ -137,7 +137,7 @@ def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
 
         playlist = p.name.replace("_titles.csv", "")
         df["source_playlist"] = playlist
-        df["source_titles_csv"] = p.name
+        df["source_titles_csv"] = str(p.relative_to(titles_dir))
         rows.append(df)
 
     if not rows:

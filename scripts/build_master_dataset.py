@@ -202,7 +202,7 @@ def load_playlists_from_extracted_titles(titles_dir: Path) -> pd.DataFrame:
         return pd.DataFrame(columns=["video_id", "source_playlists"])
 
     rows: List[pd.DataFrame] = []
-    for p in sorted(titles_dir.glob("*_titles.csv")):
+    for p in sorted(titles_dir.rglob("*_titles.csv")):
         try:
             df = read_csv_any_encoding(p)
         except Exception:
