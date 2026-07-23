@@ -167,13 +167,17 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
     ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_queues/needs_title_extraction.csv"))
     ap.add_argument("--out-dir", type=Path, default=Path("data/extracted_titles"))
+    ap.add_argument("--run-label", type=str, default=None, help="Optional run label; writes outputs into out-dir/<run-label>/")
     ap.add_argument("--key-path", type=Path, default=None, help="Optional path to an OpenAI API key file.")
     ap.add_argument("--model", type=str, default=DEFAULT_MODEL)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--sleep", type=float, default=0.25)
+    ap.add_argument("--flush-every", type=int, default=25, help="Write intermediate results every N rows.")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+    if args.run_label:
+        args.out_dir = args.out_dir / args.run_label
 
     load_api_key(args.key_path)
     if not args.dry_run and not os.environ.get("OPENAI_API_KEY"):
@@ -186,7 +190,7 @@ def main() -> None:
         rows = rows.iloc[: args.limit]
 
     results: List[Dict[str, Any]] = []
-    for _, row in rows.iterrows():
+    for index, row in enumerate(rows.itertuples(index=False), start=1):
         if args.dry_run:
             payload = {
                 "book_title": "N/A",
@@ -195,20 +199,24 @@ def main() -> None:
                 "extraction_status": "dry_run",
             }
         else:
-            payload = call_openai(args.model, row["video_title"], row["description"])
+            payload = call_openai(args.model, row.video_title, row.description)
             time.sleep(args.sleep)
         results.append(
             {
                 **payload,
-                "source_csv": row["source_csv"],
-                "video_id": row["video_id"],
-                "video_title": row["video_title"],
-                "description": row["description"],
+                "source_csv": row.source_csv,
+                "video_id": row.video_id,
+                "video_title": row.video_title,
+                "description": row.description,
             }
         )
+        if args.flush_every > 0 and len(results) >= args.flush_every:
+            write_results(results, args.out_dir)
+            print(f"Checkpointed {index} rows into {args.out_dir}")
+            results = []
 
     write_results(results, args.out_dir)
-    print(f"Wrote {len(results)} rows into {args.out_dir}")
+    print(f"Finished run; wrote remaining {len(results)} rows into {args.out_dir}")
 
 
 if __name__ == "__main__":
