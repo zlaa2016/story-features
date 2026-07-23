@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -181,6 +182,11 @@ def summarize_results(results: List[Dict[str, Any]]) -> str:
 
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(line_buffering=True)
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(line_buffering=True)
+
     ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
     ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_queues/needs_title_extraction.csv"))
     ap.add_argument("--out-dir", type=Path, default=Path("data/extracted_titles"))
@@ -209,14 +215,20 @@ def main() -> None:
     total_rows = len(rows)
     print(
         f"Starting title extraction | queue={args.queue} | total_queue_rows={queue_rows_before_slice} "
-        f"| start={args.start} | limit={args.limit} | selected_rows={total_rows} | out_dir={args.out_dir}"
+        f"| start={args.start} | limit={args.limit} | selected_rows={total_rows} | out_dir={args.out_dir}",
+        flush=True,
     )
     if total_rows:
         top_sources = rows["source_csv"].fillna("NA").astype(str).value_counts().head(10).to_dict()
-        print(f"Selected row source distribution (top 10): {top_sources}")
+        print(f"Selected row source distribution (top 10): {top_sources}", flush=True)
 
     results: List[Dict[str, Any]] = []
     for index, row in enumerate(rows.itertuples(index=False), start=1):
+        print(
+            f"Processing row {index}/{total_rows} | video_id={row.video_id} | source_csv={row.source_csv} | "
+            f"video_title={row.video_title[:100]}",
+            flush=True,
+        )
         if args.dry_run:
             payload = {
                 "book_title": "N/A",
@@ -240,7 +252,8 @@ def main() -> None:
             write_results(results, args.out_dir)
             print(
                 f"Checkpointed rows 1..{index} into {args.out_dir} | "
-                f"batch_rows={len(results)} | {summarize_results(results)}"
+                f"batch_rows={len(results)} | {summarize_results(results)}",
+                flush=True,
             )
             results = []
 
@@ -248,7 +261,8 @@ def main() -> None:
     write_results(results, args.out_dir)
     print(
         f"Finished run | selected_rows={total_rows} | remaining_batch_rows={remaining} "
-        f"| {summarize_results(results)} | out_dir={args.out_dir}"
+        f"| {summarize_results(results)} | out_dir={args.out_dir}",
+        flush=True,
     )
 
 
