@@ -356,6 +356,53 @@ def extract_about_author(soup: BeautifulSoup) -> str:
     return "N/A"
 
 
+def extract_customer_review_summary(soup: BeautifulSoup) -> str:
+    customer_reviews_text = "N/A"
+    try:
+        widgets_container = soup.find("div", class_="cm_cr_grid_center_right_non_images_widgets")
+        if widgets_container:
+            product_summary = widgets_container.find("div", id="product-summary")
+            if product_summary:
+                summary_para = product_summary.find("p", class_="a-spacing-small")
+                if summary_para:
+                    summary_span = summary_para.find("span") or summary_para
+                    summary_text = summary_span.get_text(separator=" ", strip=True)
+                    if summary_text and len(summary_text) > 30:
+                        customer_reviews_text = summary_text[:2000]
+            if customer_reviews_text == "N/A":
+                widget_summary = widgets_container.find("div", {"data-hook": "cr-insights-widget-summary"})
+                if widget_summary:
+                    summary_para = widget_summary.find("p", class_="a-spacing-small")
+                    if summary_para:
+                        summary_span = summary_para.find("span") or summary_para
+                        summary_text = summary_span.get_text(separator=" ", strip=True)
+                        if summary_text and len(summary_text) > 30:
+                            customer_reviews_text = summary_text[:2000]
+        if customer_reviews_text == "N/A":
+            product_summary = soup.find("div", id="product-summary")
+            if product_summary:
+                summary_para = product_summary.find("p", class_="a-spacing-small")
+                if summary_para:
+                    summary_span = summary_para.find("span") or summary_para
+                    summary_text = summary_span.get_text(separator=" ", strip=True)
+                    if summary_text and len(summary_text) > 30:
+                        customer_reviews_text = summary_text[:2000]
+        if customer_reviews_text == "N/A":
+            customers_say_heading = soup.find("h3", {"data-hook": "cr-insights-heading-label"})
+            if customers_say_heading and "customers say" in customers_say_heading.get_text().lower():
+                parent = customers_say_heading.find_parent("div")
+                if parent:
+                    summary_para = parent.find("p", class_="a-spacing-small")
+                    if summary_para:
+                        summary_span = summary_para.find("span") or summary_para
+                        summary_text = summary_span.get_text(separator=" ", strip=True)
+                        if summary_text and len(summary_text) > 30:
+                            customer_reviews_text = summary_text[:2000]
+    except Exception:
+        pass
+    return customer_reviews_text
+
+
 def extract_book_details_from_soup(soup: BeautifulSoup, book_url: Optional[str]) -> Dict[str, Any]:
     details = extract_all_metadata(soup)
     title_tag = soup.find("span", id="productTitle")
@@ -449,13 +496,7 @@ def extract_book_details_from_soup(soup: BeautifulSoup, book_url: Optional[str])
             f"{k}: {v[:1500]}" for k, v in sections.items() if v and len(v.strip()) > 10
         ) or "N/A"
 
-    customer_reviews_text = "N/A"
-    product_summary = soup.find("div", id="product-summary")
-    if product_summary:
-        para = product_summary.find("p", class_="a-spacing-small")
-        if para:
-            customer_reviews_text = clean_text(para.get_text(" ", strip=True))[:2000]
-
+    customer_reviews_text = extract_customer_review_summary(soup)
     customer_reviews_json = extract_reviews_json(soup, max_us=10)
     about_author = extract_about_author(soup)
     return {
@@ -587,4 +628,3 @@ def rate_limit_sleep(seconds: float) -> None:
 
 def amazon_search_url(query: str) -> str:
     return f"https://www.amazon.com/s?k={urllib.parse.quote(query)}&i=stripbooks"
-

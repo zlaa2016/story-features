@@ -65,6 +65,24 @@ def search_amazon_book(driver: webdriver.Chrome, search_query: str) -> Optional[
 def get_book_details(driver: webdriver.Chrome, book_url: str):
     driver.get(book_url)
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "productTitle")))
+    try:
+        read_more_buttons = driver.find_elements(By.XPATH, "//a[contains(text(),'Read more')]")
+        if read_more_buttons:
+            read_more_buttons[0].click()
+            time.sleep(1)
+    except Exception:
+        pass
+    try:
+        for selector in ["#reviews-medley", "#cr-original-review-content", "[data-hook='review']", "#cm_cr-review_list"]:
+            try:
+                elem = driver.find_element(By.CSS_SELECTOR, selector)
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", elem)
+                time.sleep(2)
+                break
+            except Exception:
+                continue
+    except Exception:
+        pass
     soup = BeautifulSoup(driver.page_source, "html.parser")
     return extract_book_details_from_soup(soup, book_url=book_url)
 

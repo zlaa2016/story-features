@@ -198,7 +198,10 @@ def search_amazon_book(
         ranked.append((score, result, reasons))
     ranked.sort(key=lambda row: row[0], reverse=True)
     best_score, best_result, _reasons = ranked[0]
-    if best_score < 2.5:
+    strong_phrase = title_contains_phrase(book_title, best_result["title"]) or (
+        story_title and title_contains_phrase(story_title, best_result["title"])
+    )
+    if best_score < 1.5 and not strong_phrase:
         return None, None
     return best_result["url"], best_result["title"]
 
@@ -265,7 +268,9 @@ def process_book_titles(
                 overlap_score(story_title, details.get("title", "")) if story_title else 0.0,
             )
             details_blob = f"{details.get('categories','')} {details.get('summary','')} {details.get('title','')}".lower()
-            if matched_overlap < 0.34 or any(hint in details_blob for hint in NEGATIVE_HINTS):
+            if (matched_overlap < 0.20 and not title_contains_phrase(book_title, details.get("title", ""))) or any(
+                hint in details_blob for hint in NEGATIVE_HINTS
+            ):
                 append_to_csv([build_not_found_placeholder(row, book_title, primary_label, title_column)], output_csv)
                 failed += 1
                 rate_limit_sleep(sleep)
