@@ -24,6 +24,7 @@ from amazon_scraper_common import (
     merge_input_columns_into_book,
     normalized_title_value,
     rate_limit_sleep,
+    simplify_video_title_for_query,
 )
 
 
@@ -144,6 +145,13 @@ def score_result(
     if author_overlap:
         reasons.append(f"author={author_overlap:.2f}")
 
+    if normalize_for_match(book_title) == normalize_for_match(title):
+        score += 5.0
+        reasons.append("book_exact")
+    if story_title and normalize_for_match(story_title) == normalize_for_match(title):
+        score += 4.0
+        reasons.append("story_exact")
+
     if title_contains_phrase(book_title, title):
         score += 2.0
         reasons.append("book_phrase")
@@ -202,7 +210,7 @@ def search_amazon_book(
     if not results:
         return None, None
     ranked: List[Tuple[float, Dict[str, str], List[str]]] = []
-    for result in results[:8]:
+    for result in results[:12]:
         score, reasons = score_result(result, book_title, story_title, author, video_title)
         ranked.append((score, result, reasons))
     ranked.sort(key=lambda row: row[0], reverse=True)
@@ -210,7 +218,10 @@ def search_amazon_book(
     strong_phrase = title_contains_phrase(book_title, best_result["title"]) or (
         story_title and title_contains_phrase(story_title, best_result["title"])
     )
-    if best_score < 1.5 and not strong_phrase:
+    exactish_match = normalize_for_match(book_title) == normalize_for_match(best_result["title"]) or (
+        story_title and normalize_for_match(story_title) == normalize_for_match(best_result["title"])
+    )
+    if best_score < 1.5 and not strong_phrase and not exactish_match:
         return None, None
     return best_result["url"], best_result["title"]
 
@@ -253,7 +264,7 @@ def process_book_titles(
             continue
         story_title = normalized_title_value(row.get("story_title"))
         author = normalized_title_value(row.get("author"))
-        video_title = normalized_title_value(row.get("video_title"))
+        video_title = simplify_video_title_for_query(normalized_title_value(row.get("video_title")))
         queries = amazon_search_query_candidates(book_title, story_title, author, video_title)
         primary_label = queries[0] if queries else book_title
         try:

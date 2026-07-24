@@ -20,7 +20,7 @@ export OUTPUT_CSV="${OUTPUT_CSV:-data/amazon_data/amazon_from_hpc.csv}"
 export MAX_BOOKS="${MAX_BOOKS:-}"
 export SKIP_ROWS="${SKIP_ROWS:-0}"
 export PENDING_ONLY="${PENDING_ONLY:-0}"
-export SLEEP_SECS="${SLEEP_SECS:-2.0}"
+export SLEEP_SECS="${SLEEP_SECS:-5.0}"
 export TIMEOUT_SECS="${TIMEOUT_SECS:-30}"
 
 ./hpc/run_in_singularity.sh \

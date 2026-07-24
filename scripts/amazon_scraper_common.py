@@ -126,11 +126,100 @@ def build_source_merge_key(row: pd.Series, title_column: str, fallback_title: st
     return f"{video_id}||{extracted_title}" if video_id else f"NO_VIDEO_ID||{extracted_title}"
 
 
+GENERIC_TITLE_HINTS = {
+    "adventures",
+    "avengers",
+    "bluey",
+    "cars",
+    "daniel tiger",
+    "disney",
+    "encanto",
+    "frozen",
+    "little larks",
+    "marvel",
+    "mickey",
+    "mickey mouse",
+    "moana",
+    "paw patrol",
+    "peppa pig",
+    "pixar",
+    "princess",
+    "read aloud",
+    "scooby doo",
+    "story of the week",
+    "storytime",
+    "super hero",
+    "vooks",
+    "zootopia",
+}
+
+NOISY_VIDEO_FRAGMENTS = [
+    "read aloud",
+    "read along",
+    "read-along",
+    "storybook",
+    "story book",
+    "storybooks",
+    "stories for kids",
+    "kids book",
+    "kids books",
+    "children's book",
+    "childrens book",
+    "bedtime story",
+    "bedtime stories",
+    "vooks narrated storybooks",
+    "narrated storybooks",
+]
+
+
+def normalize_title_for_query(text: str) -> str:
+    text = normalized_title_value(text)
+    if not text:
+        return ""
+    text = re.sub(r"[\u2018\u2019]", "'", text)
+    text = re.sub(r"[\u201C\u201D]", '"', text)
+    text = re.sub(r"[\u2013\u2014]", "-", text)
+    text = re.sub(r"[^\w\s:'&/,\-!?]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip(" -:|,")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def simplify_video_title_for_query(video_title: str) -> str:
+    text = normalize_title_for_query(video_title)
+    if not text:
+        return ""
+    text = re.sub(r"\[[^\]]*\]", " ", text)
+    text = re.sub(r"\([^)]*\)", " ", text)
+    parts = [part.strip() for part in re.split(r"\s+[|:/-]\s+|[|:]", text) if part.strip()]
+    if parts:
+        text = max(parts, key=len)
+    lowered = text.lower()
+    for fragment in NOISY_VIDEO_FRAGMENTS:
+        lowered = lowered.replace(fragment, " ")
+    text = re.sub(r"\bby\s+[A-Z][A-Za-z'.-]+(?:\s+[A-Z][A-Za-z'.-]+){0,3}\b", " ", lowered, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text).strip(" -:|,")
+    return text.title() if text.islower() else text
+
+
+def is_generic_title(text: str) -> bool:
+    normalized = normalize_title_for_query(text).lower()
+    if not normalized:
+        return True
+    if normalized in GENERIC_TITLE_HINTS:
+        return True
+    if any(hint in normalized for hint in GENERIC_TITLE_HINTS):
+        tokens = normalized.split()
+        if len(tokens) <= 4:
+            return True
+    tokens = [token for token in re.split(r"\W+", normalized) if token]
+    return len(tokens) <= 1
+
+
 def amazon_search_query_candidates(book_title: str, story_title: str, author: str, video_title: str = "") -> List[str]:
     seen = set()
 
     def add(q: str) -> None:
-        q = (q or "").strip()
+        q = normalize_title_for_query(q)
         if len(q) < 3:
             return
         lowered = q.lower()
@@ -140,23 +229,44 @@ def amazon_search_query_candidates(book_title: str, story_title: str, author: st
         out.append(q)
 
     out: List[str] = []
+    book_title = normalize_title_for_query(book_title)
+    story_title = normalize_title_for_query(story_title)
+    author = normalize_title_for_query(author)
+    video_title = simplify_video_title_for_query(video_title)
+    generic_book = is_generic_title(book_title)
+    generic_story = is_generic_title(story_title)
+
+    add(book_title)
+    add(f'"{book_title}" book')
+    add(f"{book_title} book")
     if author:
         add(f"{book_title} {author}")
-    else:
-        add(book_title)
+        add(f'"{book_title}" {author} book')
+
     if story_title and story_title.lower() not in {"n/a", "nan"}:
         for q in [
             f"{story_title} {author}" if author else story_title,
             story_title,
+            f'"{story_title}" book',
+            f"{story_title} book",
             f"{book_title} {story_title}",
             f"{story_title} {book_title}",
             f"{book_title} {story_title} {author}" if author else "",
+            f"{story_title} children's book",
         ]:
             add(q)
+    if generic_book and story_title and not generic_story:
+        add(story_title)
+        add(f"{story_title} {author}" if author else story_title)
+        add(f"{story_title} book")
     if video_title and video_title.lower() not in {"n/a", "nan"}:
         add(video_title)
+        add(f"{video_title} book")
         if author:
             add(f"{video_title} {author}")
+    if generic_book and video_title and video_title.lower() not in {"n/a", "nan"}:
+        add(video_title)
+        add(f"{video_title} book")
     return out
 
 
