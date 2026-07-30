@@ -510,20 +510,32 @@ def main() -> None:
 
     transcripts = load_transcript_scrapes(args.output_dir)
     titles = load_titles_dir(args.titles_dir)
-    if len(transcripts):
-        df = transcripts.merge(titles, on="video_id", how="left", suffixes=("", "_titles"))
-        # Prefer transcript scrape metadata as the primary video metadata.
+    if len(transcripts) and len(titles):
+        df = transcripts.merge(titles, on="video_id", how="outer", suffixes=("", "_titles"))
+        if "has_transcript_scrape" not in df.columns:
+            df["has_transcript_scrape"] = False
+        df["has_transcript_scrape"] = df["has_transcript_scrape"].fillna(False).astype(bool)
+
+        # Prefer transcript scrape metadata as primary, but retain titles-only rows.
         if "youtube_url_titles" in df.columns:
+            if "youtube_url" not in df.columns:
+                df["youtube_url"] = None
             df["youtube_url"] = df["youtube_url"].fillna(df["youtube_url_titles"])
             df = df.drop(columns=["youtube_url_titles"])
+        elif "youtube_url" not in df.columns:
+            df["youtube_url"] = None
+        df["youtube_url"] = df["youtube_url"].fillna(df["video_id"].map(youtube_watch_url))
+
         for col in ["video_title", "description"]:
             other = f"{col}_titles"
             if other in df.columns:
+                if col not in df.columns:
+                    df[col] = None
                 df[col] = df[col].fillna(df[other])
                 df = df.drop(columns=[other])
     else:
-        df = titles.copy()
-        if len(df):
+        df = titles.copy() if len(titles) else transcripts.copy()
+        if len(df) and "has_transcript_scrape" not in df.columns:
             df["has_transcript_scrape"] = False
 
     if "extraction_status" not in df.columns:
