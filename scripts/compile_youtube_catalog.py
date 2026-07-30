@@ -218,7 +218,11 @@ def load_titles_dir(titles_dir: Path) -> pd.DataFrame:
 def load_amazon_merge(path: Path) -> pd.DataFrame:
     df = read_csv_any_encoding(path)
     if "video_id" not in df.columns:
-        raise ValueError(f"Expected video_id column in {path}")
+        if "Source Merge Key" in df.columns:
+            df = df.copy()
+            df["video_id"] = df["Source Merge Key"].astype(str).str.split("||").str[0].str.strip()
+        else:
+            raise ValueError(f"Expected video_id or Source Merge Key column in {path}")
     df = df.copy()
     df["video_id"] = df["video_id"].astype(str).str.strip()
     df = df[df["video_id"].str.match(VALID_VIDEO_ID_RE, na=False)]
@@ -228,9 +232,13 @@ def load_amazon_merge(path: Path) -> pd.DataFrame:
         "youtube_url",
         "video_url",
         "has_amazon_match",
+        "Amazon Match Status",
         "Title",
         "Author",
         "Reading Age",
+        "Reading Age Source",
+        "Reading Age Customer",
+        "Reading Age Publisher",
         "Grade Level",
         "Categories",
         "Num Reviews",
@@ -256,6 +264,14 @@ def load_amazon_merge(path: Path) -> pd.DataFrame:
             continue
         agg[c] = first_non_null
     out = out.groupby(["video_id", "youtube_url"], as_index=False).agg(agg)
+
+    if "has_amazon_match" not in out.columns:
+        out["has_amazon_match"] = None
+    if "Amazon Match Status" in out.columns:
+        status = out["Amazon Match Status"].fillna("").astype(str).str.strip().str.upper()
+        inferred = status.eq("FOUND")
+        missing = out["has_amazon_match"].isna() | out["has_amazon_match"].astype(str).str.strip().eq("")
+        out.loc[missing, "has_amazon_match"] = inferred.loc[missing]
 
     # Prefix to avoid collisions with titles fields.
     ren: Dict[str, str] = {}
@@ -438,6 +454,8 @@ def export_queue(df: pd.DataFrame, out_path: Path, mask: pd.Series) -> None:
         "has_title_extraction_attempt",
         "has_title_extraction_success",
         "needs_title_extraction",
+        "ready_for_amazon_search",
+        "matched_but_missing_amazon_age",
         "has_amazon_match",
         "has_amazon_age",
         "best_Title",
@@ -528,6 +546,8 @@ def main() -> None:
         df = df.sort_values(["video_id"]).groupby("video_id", as_index=False).agg(first_non_null)
 
     df = add_derived_columns(df)
+    df["ready_for_amazon_search"] = df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_age"]
+    df["matched_but_missing_amazon_age"] = df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"]
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(args.out, index=False, compression="infer")
@@ -540,20 +560,20 @@ def main() -> None:
     export_queue(
         df,
         args.queue_dir / "ready_for_amazon_search.csv",
-        df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_age"],
+        df["ready_for_amazon_search"],
     )
     export_queue(
         df,
         args.queue_dir / "matched_but_missing_amazon_age.csv",
-        df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"],
+        df["matched_but_missing_amazon_age"],
     )
 
     n_scraped = int(df["has_transcript_scrape"].sum()) if "has_transcript_scrape" in df.columns else 0
     n_attempted = int(df["has_title_extraction_attempt"].sum())
     n_success = int(df["has_title_extraction_success"].sum())
     n_left = int(df["needs_title_extraction"].sum())
-    n_ready_for_amazon = int((df["has_transcript_scrape"] & df["has_title_extraction_success"] & ~df["has_amazon_age"]).sum())
-    n_missing_age_after_match = int((df["has_transcript_scrape"] & df["has_amazon_match"] & ~df["has_amazon_age"]).sum())
+    n_ready_for_amazon = int(df["ready_for_amazon_search"].sum())
+    n_missing_age_after_match = int(df["matched_but_missing_amazon_age"].sum())
     print(f"Wrote: {args.out}")
     print(f"Rows: {len(df)} | unique videos: {df['video_id'].nunique()}")
     print(f"Transcript scrapes: {n_scraped}")

@@ -247,8 +247,9 @@ def process_book_titles(
     pending_only: bool,
     sleep: float,
     timeout: int,
+    status_column: Optional[str],
 ) -> int:
-    df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows)
+    df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows, status_column=status_column)
     if pending_only:
         df_titles = choose_rows_for_pending_only(df_titles, output_csv, title_column)
     session = requests.Session()
@@ -326,6 +327,7 @@ def main() -> None:
     ap.add_argument("--max-books", type=int, default=None)
     ap.add_argument("--skip-rows", type=int, default=0)
     ap.add_argument("--pending-only", action="store_true")
+    ap.add_argument("--status-column", type=str, default="ready_for_amazon_search")
     ap.add_argument("--sleep", type=float, default=2.0)
     ap.add_argument("--timeout", type=int, default=30)
     args = ap.parse_args()
@@ -338,6 +340,7 @@ def main() -> None:
             pending_only=args.pending_only,
             sleep=args.sleep,
             timeout=args.timeout,
+            status_column=args.status_column,
         )
     )
 

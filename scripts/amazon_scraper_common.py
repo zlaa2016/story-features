@@ -69,6 +69,11 @@ def read_csv_any_encoding(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, low_memory=False)
 
 
+def is_truthy(value: Any) -> bool:
+    text = _serialize_cell(value).strip().lower()
+    return text in {"1", "true", "t", "yes", "y"}
+
+
 def _serialize_cell(value: Any) -> str:
     if value is None:
         return ""
@@ -735,8 +740,10 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
         existing_data.to_csv(csv_file, index=False)
 
 
-def load_title_rows(input_csv: Path, skip_rows: int = 0) -> Tuple[pd.DataFrame, str]:
+def load_title_rows(input_csv: Path, skip_rows: int = 0, status_column: Optional[str] = None) -> Tuple[pd.DataFrame, str]:
     df = read_csv_any_encoding(input_csv)
+    if status_column and status_column in df.columns:
+        df = df[df[status_column].map(is_truthy)].copy()
     if skip_rows:
         df = df.iloc[int(skip_rows):].copy().reset_index(drop=True)
     if "book_title" in df.columns:

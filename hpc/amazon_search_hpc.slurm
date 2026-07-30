@@ -15,11 +15,12 @@ export OVERLAY="${OVERLAY:-/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro}"
 export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
-export INPUT_CSV="${INPUT_CSV:-data/processed/youtube_queues/ready_for_amazon_search.csv}"
+export INPUT_CSV="${INPUT_CSV:-data/processed/youtube_catalog.csv.gz}"
 export OUTPUT_CSV="${OUTPUT_CSV:-data/amazon_data/amazon_from_hpc.csv}"
 export MAX_BOOKS="${MAX_BOOKS:-}"
 export SKIP_ROWS="${SKIP_ROWS:-0}"
 export PENDING_ONLY="${PENDING_ONLY:-0}"
+export STATUS_COLUMN="${STATUS_COLUMN:-ready_for_amazon_search}"
 export SLEEP_SECS="${SLEEP_SECS:-5.0}"
 export TIMEOUT_SECS="${TIMEOUT_SECS:-30}"
 
@@ -32,6 +33,7 @@ export TIMEOUT_SECS="${TIMEOUT_SECS:-30}"
       --input-csv "$INPUT_CSV" \
       --output-csv "$OUTPUT_CSV" \
       --skip-rows "$SKIP_ROWS" \
+      --status-column "$STATUS_COLUMN" \
       --sleep "$SLEEP_SECS" \
       --timeout "$TIMEOUT_SECS" \
       "${EXTRA_ARGS[@]}"'
