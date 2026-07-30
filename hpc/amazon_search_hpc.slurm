@@ -17,6 +17,7 @@ export USE_NV="${USE_NV:-0}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 export INPUT_CSV="${INPUT_CSV:-data/processed/youtube_catalog.csv.gz}"
 export OUTPUT_CSV="${OUTPUT_CSV:-data/amazon_data/amazon_from_hpc.csv}"
+export MASTER_CSV="${MASTER_CSV:-$INPUT_CSV}"
 export MAX_BOOKS="${MAX_BOOKS:-}"
 export SKIP_ROWS="${SKIP_ROWS:-0}"
 export PENDING_ONLY="${PENDING_ONLY:-0}"
@@ -32,6 +33,7 @@ export TIMEOUT_SECS="${TIMEOUT_SECS:-30}"
    "$PYTHON_BIN" scripts/search_amazon_hpc.py \
       --input-csv "$INPUT_CSV" \
       --output-csv "$OUTPUT_CSV" \
+      --master-csv "$MASTER_CSV" \
       --skip-rows "$SKIP_ROWS" \
       --status-column "$STATUS_COLUMN" \
       --sleep "$SLEEP_SECS" \

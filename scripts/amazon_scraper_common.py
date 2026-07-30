@@ -786,3 +786,112 @@ def rate_limit_sleep(seconds: float) -> None:
 
 def amazon_search_url(query: str) -> str:
     return f"https://www.amazon.com/s?k={urllib.parse.quote(query)}&i=stripbooks"
+
+
+def _is_missingish(value: Any) -> bool:
+    text = _serialize_cell(value).strip()
+    return text == "" or text.lower() in {"n/a", "nan", "none"}
+
+
+def load_master_csv(master_csv: Optional[Path]) -> Optional[pd.DataFrame]:
+    if master_csv is None:
+        return None
+    if not master_csv.exists():
+        raise FileNotFoundError(f"Master CSV does not exist: {master_csv}")
+    df = read_csv_any_encoding(master_csv)
+    if "video_id" not in df.columns:
+        raise ValueError(f"Master CSV must contain video_id: {master_csv}")
+    df = df.copy()
+    df["video_id"] = df["video_id"].astype(str).str.strip()
+    return df
+
+
+def save_master_csv(master_df: Optional[pd.DataFrame], master_csv: Optional[Path]) -> None:
+    if master_df is None or master_csv is None:
+        return
+    master_csv.parent.mkdir(parents=True, exist_ok=True)
+    master_df.to_csv(master_csv, index=False, compression="infer")
+
+
+def update_master_with_title_result(
+    master_df: Optional[pd.DataFrame],
+    row: pd.Series,
+    payload: Dict[str, Any],
+) -> None:
+    if master_df is None:
+        return
+    video_id = _serialize_cell(row.get("video_id")).strip()
+    if not video_id:
+        return
+    matches = master_df["video_id"].astype(str).str.strip() == video_id
+    if not matches.any():
+        return
+    idx = master_df[matches].index[0]
+    for col, value in {
+        "book_title": payload.get("book_title", "N/A"),
+        "story_title": payload.get("story_title", "N/A"),
+        "author": payload.get("author", "N/A"),
+        "extraction_status": payload.get("extraction_status", "failed"),
+    }.items():
+        if col not in master_df.columns:
+            master_df[col] = ""
+        master_df.at[idx, col] = value
+    status = _serialize_cell(payload.get("extraction_status", "failed")).strip().lower()
+    for col, value in {
+        "has_title_extraction_attempt": True,
+        "has_title_extraction_success": status == "success",
+        "needs_title_extraction": status != "success",
+    }.items():
+        if col not in master_df.columns:
+            master_df[col] = False
+        master_df.at[idx, col] = value
+
+
+def update_master_with_amazon_result(
+    master_df: Optional[pd.DataFrame],
+    row: pd.Series,
+    result: Dict[str, Any],
+) -> None:
+    if master_df is None:
+        return
+    video_id = _serialize_cell(row.get("video_id")).strip()
+    if not video_id:
+        return
+    matches = master_df["video_id"].astype(str).str.strip() == video_id
+    if not matches.any():
+        return
+    idx = master_df[matches].index[0]
+    col_updates = {
+        "Amazon Match Status": result.get("amazon_match_status", "NOT_FOUND"),
+        "Reading Age": result.get("reading_age", "N/A"),
+        "Reading Age Source": result.get("reading_age_source", "N/A"),
+        "Reading Age Customer": result.get("reading_age_customer", "N/A"),
+        "Reading Age Publisher": result.get("reading_age_publisher", "N/A"),
+        "Book URL": result.get("book_url", "N/A"),
+        "Title": result.get("title", "N/A"),
+        "Extracted Book Title": result.get("extracted_book_title", "N/A"),
+        "Amazon Search Query": result.get("amazon_search_query", "N/A"),
+        "Source Merge Key": result.get("source_merge_key", "N/A"),
+        "Categories": result.get("categories", "N/A"),
+        "Num Reviews": result.get("num_reviews", "N/A"),
+        "Average Rating": result.get("average_rating", "N/A"),
+        "Review Summary": result.get("customer_reviews_text", "N/A"),
+        "Customer Reviews": result.get("customer_reviews_json", "N/A"),
+    }
+    for col, value in col_updates.items():
+        if col not in master_df.columns:
+            master_df[col] = ""
+        master_df.at[idx, col] = value
+
+    match_status = _serialize_cell(result.get("amazon_match_status", "NOT_FOUND")).strip().upper()
+    reading_age = result.get("reading_age", "N/A")
+    has_age = not _is_missingish(reading_age)
+    for col, value in {
+        "has_amazon_match": match_status == "FOUND",
+        "has_amazon_age": has_age,
+        "ready_for_amazon_search": False,
+        "matched_but_missing_amazon_age": match_status == "FOUND" and not has_age,
+    }.items():
+        if col not in master_df.columns:
+            master_df[col] = False
+        master_df.at[idx, col] = value

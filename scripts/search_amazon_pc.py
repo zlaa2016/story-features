@@ -23,9 +23,12 @@ from amazon_scraper_common import (
     choose_rows_for_pending_only,
     extract_book_details_from_soup,
     load_title_rows,
+    load_master_csv,
     merge_input_columns_into_book,
     normalized_title_value,
     rate_limit_sleep,
+    save_master_csv,
+    update_master_with_amazon_result,
 )
 
 
@@ -109,15 +112,18 @@ def get_book_details(driver: webdriver.Chrome, book_url: str):
 def process_book_titles(
     input_csv: Path,
     output_csv: Path,
+    master_csv: Optional[Path],
     max_books: Optional[int],
     skip_rows: int,
     pending_only: bool,
     sleep: float,
     headless: bool,
+    status_column: Optional[str],
 ) -> int:
-    df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows)
+    df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows, status_column=status_column)
     if pending_only:
         df_titles = choose_rows_for_pending_only(df_titles, output_csv, title_column)
+    master_df = load_master_csv(master_csv)
     driver = setup_driver(headless=headless)
     processed = 0
     failed = 0
@@ -145,7 +151,9 @@ def process_book_titles(
                         break
                     rate_limit_sleep(sleep)
                 if not book_url:
-                    append_to_csv([build_not_found_placeholder(row, book_title, primary_label, title_column)], output_csv)
+                    not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
+                    append_to_csv([not_found], output_csv)
+                    update_master_with_amazon_result(master_df, row, not_found)
                     failed += 1
                     continue
                 details = get_book_details(driver, book_url)
@@ -155,13 +163,17 @@ def process_book_titles(
                 details["source_merge_key"] = build_source_merge_key(row, title_column, fallback_title=book_title)
                 merge_input_columns_into_book(details, row)
                 append_to_csv([details], output_csv)
+                update_master_with_amazon_result(master_df, row, details)
                 processed += 1
             except Exception:
-                append_to_csv([build_not_found_placeholder(row, book_title, primary_label, title_column)], output_csv)
+                not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
+                append_to_csv([not_found], output_csv)
+                update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
             rate_limit_sleep(sleep)
     finally:
         driver.quit()
+    save_master_csv(master_df, master_csv)
     print(f"Processed={processed} Failed={failed} Skipped={skipped} Output={output_csv}")
     return 0 if processed > 0 or skipped > 0 else 1
 
@@ -170,9 +182,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="PC Amazon scraper using Selenium/Chrome.")
     ap.add_argument("--input-csv", type=Path, required=True)
     ap.add_argument("--output-csv", type=Path, required=True)
+    ap.add_argument("--master-csv", type=Path, default=None)
     ap.add_argument("--max-books", type=int, default=None)
     ap.add_argument("--skip-rows", type=int, default=0)
     ap.add_argument("--pending-only", action="store_true")
+    ap.add_argument("--status-column", type=str, default="ready_for_amazon_search")
     ap.add_argument("--sleep", type=float, default=5.0)
     ap.add_argument("--show-browser", action="store_true")
     args = ap.parse_args()
@@ -180,11 +194,13 @@ def main() -> None:
         process_book_titles(
             input_csv=args.input_csv,
             output_csv=args.output_csv,
+            master_csv=args.master_csv,
             max_books=args.max_books,
             skip_rows=args.skip_rows,
             pending_only=args.pending_only,
             sleep=args.sleep,
             headless=not args.show_browser,
+            status_column=args.status_column,
         )
     )
 

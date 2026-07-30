@@ -11,6 +11,8 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
+from amazon_scraper_common import load_master_csv, save_master_csv, update_master_with_title_result
+
 
 DEFAULT_MODEL = os.environ.get("OPENAI_TITLE_MODEL", "gpt-4o-mini")
 
@@ -59,6 +61,11 @@ def normalize_string(value: Any) -> str:
     if isinstance(value, float) and pd.isna(value):
         return ""
     return str(value).strip()
+
+
+def is_truthy(value: Any) -> bool:
+    text = normalize_string(value).lower()
+    return text in {"1", "true", "t", "yes", "y"}
 
 
 def load_api_key(key_path: Optional[Path]) -> None:
@@ -111,8 +118,10 @@ def title_output_name(source_csv: str) -> str:
     return f"{stem}_titles.csv"
 
 
-def load_input_rows(queue_path: Path) -> pd.DataFrame:
+def load_input_rows(queue_path: Path, status_column: Optional[str] = None) -> pd.DataFrame:
     df = read_csv_any_encoding(queue_path)
+    if status_column and status_column in df.columns:
+        df = df[df[status_column].map(is_truthy)].copy()
     needed = [c for c in ["video_id", "video_title", "description", "source_csv", "transcript_source_csv", "playlist"] if c in df.columns]
     df = df[needed].copy()
     df["video_id"] = df["video_id"].astype(str).str.strip()
@@ -191,8 +200,10 @@ def main() -> None:
         sys.stderr.reconfigure(line_buffering=True)
 
     ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
-    ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_queues/needs_title_extraction.csv"))
+    ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
     ap.add_argument("--out-dir", type=Path, default=Path("data/extracted_titles"))
+    ap.add_argument("--master-csv", type=Path, default=None, help="Optional master status CSV to update in place.")
+    ap.add_argument("--status-column", type=str, default="needs_title_extraction")
     ap.add_argument("--run-label", type=str, default=None, help="Optional run label; writes outputs into out-dir/<run-label>/")
     ap.add_argument("--key-path", type=Path, default=None, help="Optional path to an OpenAI API key file.")
     ap.add_argument("--model", type=str, default=DEFAULT_MODEL)
@@ -209,7 +220,8 @@ def main() -> None:
     if not args.dry_run and not os.environ.get("OPENAI_API_KEY"):
         raise RuntimeError("OPENAI_API_KEY is not set. Pass --key-path or export OPENAI_API_KEY.")
 
-    rows = load_input_rows(args.queue)
+    rows = load_input_rows(args.queue, status_column=args.status_column)
+    master_df = load_master_csv(args.master_csv)
     queue_rows_before_slice = len(rows)
     if args.start:
         rows = rows.iloc[args.start:]
@@ -251,8 +263,10 @@ def main() -> None:
                 "description": row.description,
             }
         )
+        update_master_with_title_result(master_df, pd.Series(row._asdict()), payload)
         if args.flush_every > 0 and len(results) >= args.flush_every:
             write_results(results, args.out_dir)
+            save_master_csv(master_df, args.master_csv)
             print(
                 f"Checkpointed rows 1..{index} into {args.out_dir} | "
                 f"batch_rows={len(results)} | {summarize_results(results)}",
@@ -262,6 +276,7 @@ def main() -> None:
 
     remaining = len(results)
     write_results(results, args.out_dir)
+    save_master_csv(master_df, args.master_csv)
     print(
         f"Finished run | selected_rows={total_rows} | remaining_batch_rows={remaining} "
         f"| {summarize_results(results)} | out_dir={args.out_dir}",
