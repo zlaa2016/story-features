@@ -1,0 +1,16 @@
+[2026-02-10 16:48:20] Playlist URL: https://youtube.com/playlist?list=PLcrApfnvcfVxbEHANf3DGZ-2r8CVt0_0N&si=ORGHCa7iJpiC21Qc
+[2026-02-10 16:48:20] Playlist title: DC's 5 Minute Story: Read Along | DC Kids
+[2026-02-10 16:48:20] Total videos: 6
+[2026-02-10 16:48:20] Cookies file: cookies_3.txt
+[2026-02-10 16:48:20] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-10 16:53:33] === Summary ===
+[2026-02-10 16:53:33] Processed: 6
+[2026-02-10 16:53:33] Failed: 0
+[2026-02-10 16:53:33] With subtitles: 6
+[2026-02-10 16:53:33] No subtitles: 0
+[2026-02-10 16:53:33] Cleaned transcripts (non-empty): 6
+[2026-02-10 16:53:33] Transcript source counts: {'manual': 0, 'auto_generated': 6, 'none': 0}
+[2026-02-10 16:53:33] Subtitle language counts: {'en': 6}
+[2026-02-10 16:53:33] Rate-limited events: 0
+[2026-02-10 16:53:33] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-10 16:53:33] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

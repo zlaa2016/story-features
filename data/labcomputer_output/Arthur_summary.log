@@ -1,0 +1,28 @@
+[2026-02-07 22:27:34] Playlist URL: https://youtube.com/playlist?list=PLessqtWV0kHT5UbtF1zGWdvhrXQpMhieG&si=a-n4yaKYRGRdYnUt
+[2026-02-07 22:27:34] Playlist title: Arthur
+[2026-02-07 22:27:34] Total videos: 13
+[2026-02-07 22:27:34] Cookies file: cookies_3.txt
+[2026-02-07 22:27:34] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 22:27:38] FAILED XsPJ9BOwMr4: [0;31mERROR:[0m [youtube] XsPJ9BOwMr4: This video is not available
+[2026-02-07 22:28:25] FAILED 9rlj2UiGLHA: [0;31mERROR:[0m [youtube] 9rlj2UiGLHA: This video is not available
+[2026-02-07 22:29:51] FAILED uyd0jDyRC5s: [0;31mERROR:[0m [youtube] uyd0jDyRC5s: This video is not available
+[2026-02-07 22:31:11] FAILED WpuVGuJKjeM: [0;31mERROR:[0m [youtube] WpuVGuJKjeM: This video is not available
+[2026-02-07 22:32:03] FAILED JHXDqoOe8w8: [0;31mERROR:[0m [youtube] JHXDqoOe8w8: This video is not available
+[2026-02-07 22:32:55] FAILED 8Vkw1qiDZUI: [0;31mERROR:[0m [youtube] 8Vkw1qiDZUI: This video is not available
+[2026-02-07 22:34:04] FAILED HMsSugNfucs: [0;31mERROR:[0m [youtube] HMsSugNfucs: This video is not available
+[2026-02-07 22:35:31] FAILED y-lhoiBsxn8: [0;31mERROR:[0m [youtube] y-lhoiBsxn8: This video is not available
+[2026-02-07 22:36:42] FAILED 2D1WWqPEJkk: [0;31mERROR:[0m [youtube] 2D1WWqPEJkk: This video is not available
+[2026-02-07 22:37:37] FAILED d3tEtWiqCkM: [0;31mERROR:[0m [youtube] d3tEtWiqCkM: This video is not available
+[2026-02-07 22:38:31] FAILED 3fY-Pq3Rrag: [0;31mERROR:[0m [youtube] 3fY-Pq3Rrag: This video is not available
+[2026-02-07 22:39:33] FAILED Ub_EhwqhNl4: [0;31mERROR:[0m [youtube] Ub_EhwqhNl4: This video is not available
+[2026-02-07 22:41:08] === Summary ===
+[2026-02-07 22:41:08] Processed: 1
+[2026-02-07 22:41:08] Failed: 12
+[2026-02-07 22:41:08] With subtitles: 1
+[2026-02-07 22:41:08] No subtitles: 0
+[2026-02-07 22:41:08] Cleaned transcripts (non-empty): 1
+[2026-02-07 22:41:08] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-07 22:41:08] Subtitle language counts: {'en': 1}
+[2026-02-07 22:41:08] Rate-limited events: 0
+[2026-02-07 22:41:08] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 12}
+[2026-02-07 22:41:08] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

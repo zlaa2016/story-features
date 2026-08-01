@@ -1,0 +1,16 @@
+[2026-02-02 17:35:27] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9yYJ-PcOz_6NClCUANfAyqg&si=wclUVR8EzYuIfG1p
+[2026-02-02 17:35:27] Playlist title: Winter and Christmas Books!
+[2026-02-02 17:35:27] Total videos: 42
+[2026-02-02 17:35:27] Cookies file: cookies_3.txt
+[2026-02-02 17:35:27] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 18:23:43] === Summary ===
+[2026-02-02 18:23:43] Processed: 42
+[2026-02-02 18:23:43] Failed: 0
+[2026-02-02 18:23:43] With subtitles: 42
+[2026-02-02 18:23:43] No subtitles: 0
+[2026-02-02 18:23:43] Cleaned transcripts (non-empty): 42
+[2026-02-02 18:23:43] Transcript source counts: {'manual': 0, 'auto_generated': 42, 'none': 0}
+[2026-02-02 18:23:43] Subtitle language counts: {'en': 42}
+[2026-02-02 18:23:43] Rate-limited events: 0
+[2026-02-02 18:23:43] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 18:23:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

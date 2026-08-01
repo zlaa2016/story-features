@@ -1,0 +1,36 @@
+[2026-02-05 10:21:16] Playlist URL: https://youtube.com/playlist?list=PLU6AbyBWHPOsbkdLGM1n8nmJg_75wEe7f&si=cUOLqA5bmghhy90n
+[2026-02-05 10:21:16] Playlist title: Around the World
+[2026-02-05 10:21:16] Total videos: 21
+[2026-02-05 10:21:16] Cookies file: cookies_3.txt
+[2026-02-05 10:21:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 10:21:19] FAILED 50McWj1PRvY: [0;31mERROR:[0m [youtube] 50McWj1PRvY: This video is not available
+[2026-02-05 10:22:25] FAILED i1vo4rws0jU: [0;31mERROR:[0m [youtube] i1vo4rws0jU: This video is not available
+[2026-02-05 10:23:22] FAILED Mq23H5kXu6Y: [0;31mERROR:[0m [youtube] Mq23H5kXu6Y: This video is not available
+[2026-02-05 10:24:32] FAILED _2O_mjlkgac: [0;31mERROR:[0m [youtube] _2O_mjlkgac: This video is not available
+[2026-02-05 10:25:48] FAILED mdzlcM22Y3U: [0;31mERROR:[0m [youtube] mdzlcM22Y3U: This video is not available
+[2026-02-05 10:27:18] FAILED sdxqhRcWDw8: [0;31mERROR:[0m [youtube] sdxqhRcWDw8: This video is not available
+[2026-02-05 10:28:33] FAILED HmzW4L_4nts: [0;31mERROR:[0m [youtube] HmzW4L_4nts: This video is not available
+[2026-02-05 10:29:33] FAILED f9tOx7UiKgA: [0;31mERROR:[0m [youtube] f9tOx7UiKgA: This video is not available
+[2026-02-05 10:30:47] FAILED LVe7lH89GLs: [0;31mERROR:[0m [youtube] LVe7lH89GLs: This video is not available
+[2026-02-05 10:31:43] FAILED KAkfCUNidAE: [0;31mERROR:[0m [youtube] KAkfCUNidAE: This video is not available
+[2026-02-05 10:32:29] FAILED GZfCmy6GJUY: [0;31mERROR:[0m [youtube] GZfCmy6GJUY: This video is not available
+[2026-02-05 10:33:08] FAILED cFR2lOc_tiw: [0;31mERROR:[0m [youtube] cFR2lOc_tiw: This video is not available
+[2026-02-05 10:33:42] FAILED Rj57ogINgTY: [0;31mERROR:[0m [youtube] Rj57ogINgTY: This video is not available
+[2026-02-05 10:34:40] FAILED 5vzrh_aNEwA: [0;31mERROR:[0m [youtube] 5vzrh_aNEwA: This video is not available
+[2026-02-05 10:37:00] FAILED Dz3iOepQ5Sk: [0;31mERROR:[0m [youtube] Dz3iOepQ5Sk: This video is not available
+[2026-02-05 10:38:07] FAILED PO5L67vpAD4: [0;31mERROR:[0m [youtube] PO5L67vpAD4: This video is not available
+[2026-02-05 10:38:56] FAILED yONRtYs6Jno: [0;31mERROR:[0m [youtube] yONRtYs6Jno: This video is not available
+[2026-02-05 10:40:26] FAILED TQ4q_33fltk: [0;31mERROR:[0m [youtube] TQ4q_33fltk: This video is not available
+[2026-02-05 10:41:24] FAILED r9ugq1VSeRw: [0;31mERROR:[0m [youtube] r9ugq1VSeRw: This video is not available
+[2026-02-05 10:42:00] FAILED Qb1Fb8lKhQ4: [0;31mERROR:[0m [youtube] Qb1Fb8lKhQ4: This video is not available
+[2026-02-05 10:42:00] === Summary ===
+[2026-02-05 10:42:00] Processed: 1
+[2026-02-05 10:42:00] Failed: 20
+[2026-02-05 10:42:00] With subtitles: 1
+[2026-02-05 10:42:00] No subtitles: 0
+[2026-02-05 10:42:00] Cleaned transcripts (non-empty): 1
+[2026-02-05 10:42:00] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-05 10:42:00] Subtitle language counts: {'en': 1}
+[2026-02-05 10:42:00] Rate-limited events: 0
+[2026-02-05 10:42:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 20}
+[2026-02-05 10:42:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

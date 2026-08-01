@@ -1,0 +1,28 @@
+[2026-02-09 16:54:34] Playlist URL: https://youtube.com/playlist?list=PLj8E2qgQ4N_x4Odhahe5zbLgmGsj9BCpi&si=OShkwmPZLSFrs45n
+[2026-02-09 16:54:34] Playlist title: Black Heroes & History Read Aloud Books
+[2026-02-09 16:54:34] Total videos: 12
+[2026-02-09 16:54:34] Cookies file: cookies_3.txt
+[2026-02-09 16:54:34] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-09 16:54:38] FAILED TVtIdfWPZWs: [0;31mERROR:[0m [youtube] TVtIdfWPZWs: This video is not available
+[2026-02-09 16:55:17] FAILED Fcu1ajzOHx8: [0;31mERROR:[0m [youtube] Fcu1ajzOHx8: This video is not available
+[2026-02-09 16:55:54] FAILED MYo9p9388ic: [0;31mERROR:[0m [youtube] MYo9p9388ic: This video is not available
+[2026-02-09 16:57:04] FAILED MQs6imudVbg: [0;31mERROR:[0m [youtube] MQs6imudVbg: This video is not available
+[2026-02-09 16:58:31] FAILED oTKtcqX9nbg: [0;31mERROR:[0m [youtube] oTKtcqX9nbg: This video is not available
+[2026-02-09 16:59:35] FAILED hdQIjQKj9MM: [0;31mERROR:[0m [youtube] hdQIjQKj9MM: This video is not available
+[2026-02-09 17:00:09] FAILED jDXxyuhwQkQ: [0;31mERROR:[0m [youtube] jDXxyuhwQkQ: This video is not available
+[2026-02-09 17:01:18] FAILED fbfeA5u0kEE: [0;31mERROR:[0m [youtube] fbfeA5u0kEE: This video is not available
+[2026-02-09 17:02:42] FAILED ZEJnE-KQx-Q: [0;31mERROR:[0m [youtube] ZEJnE-KQx-Q: This video is not available
+[2026-02-09 17:03:38] FAILED DLCfFPmogCU: [0;31mERROR:[0m [youtube] DLCfFPmogCU: This video is not available
+[2026-02-09 17:05:05] FAILED x2drQkCYfNE: [0;31mERROR:[0m [youtube] x2drQkCYfNE: This video is not available
+[2026-02-09 17:06:29] FAILED lhN4uSEiV-k: [0;31mERROR:[0m [youtube] lhN4uSEiV-k: This video is not available
+[2026-02-09 17:06:29] === Summary ===
+[2026-02-09 17:06:29] Processed: 0
+[2026-02-09 17:06:29] Failed: 12
+[2026-02-09 17:06:29] With subtitles: 0
+[2026-02-09 17:06:29] No subtitles: 0
+[2026-02-09 17:06:29] Cleaned transcripts (non-empty): 0
+[2026-02-09 17:06:29] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-09 17:06:29] Subtitle language counts: {}
+[2026-02-09 17:06:29] Rate-limited events: 0
+[2026-02-09 17:06:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 12}
+[2026-02-09 17:06:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,22 @@
+[2026-02-05 19:35:59] Playlist URL: https://www.youtube.com/@rad9140/videos
+[2026-02-05 19:35:59] Playlist title: RAD - Videos
+[2026-02-05 19:35:59] Total videos: 19
+[2026-02-05 19:35:59] Cookies file: cookies_3.txt
+[2026-02-05 19:35:59] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 19:36:02] FAILED Bi-Vm2gZILY: [0;31mERROR:[0m [youtube] Bi-Vm2gZILY: This video is not available
+[2026-02-05 19:37:14] FAILED 9-5fQEk9Hds: [0;31mERROR:[0m [youtube] 9-5fQEk9Hds: This video is not available
+[2026-02-05 19:38:02] FAILED 4Pv1XxX4JWc: [0;31mERROR:[0m [youtube] 4Pv1XxX4JWc: This video is not available
+[2026-02-05 19:41:47] FAILED v42U59AOnlA: [0;31mERROR:[0m [youtube] v42U59AOnlA: This video is not available
+[2026-02-05 19:42:54] FAILED RMkt06KPcCA: [0;31mERROR:[0m [youtube] RMkt06KPcCA: This video is not available
+[2026-02-05 19:54:58] FAILED k8k4SezUhFc: [0;31mERROR:[0m [youtube] k8k4SezUhFc: This video is not available
+[2026-02-05 19:54:58] === Summary ===
+[2026-02-05 19:54:58] Processed: 13
+[2026-02-05 19:54:58] Failed: 6
+[2026-02-05 19:54:58] With subtitles: 12
+[2026-02-05 19:54:58] No subtitles: 1
+[2026-02-05 19:54:58] Cleaned transcripts (non-empty): 12
+[2026-02-05 19:54:58] Transcript source counts: {'manual': 0, 'auto_generated': 12, 'none': 1}
+[2026-02-05 19:54:58] Subtitle language counts: {'en': 12}
+[2026-02-05 19:54:58] Rate-limited events: 0
+[2026-02-05 19:54:58] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 6}
+[2026-02-05 19:54:58] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

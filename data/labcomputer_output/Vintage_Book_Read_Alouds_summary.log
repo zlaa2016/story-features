@@ -1,0 +1,18 @@
+[2026-02-02 15:50:49] Playlist URL: https://youtube.com/playlist?list=PLIZWwnQt2lOcUC3ypk3q36mKI_X-paKDd&si=Mp8qcAHrkXAP1oCp
+[2026-02-02 15:50:49] Playlist title: Vintage Book Read Alouds
+[2026-02-02 15:50:49] Total videos: 48
+[2026-02-02 15:50:49] Cookies file: cookies_3.txt
+[2026-02-02 15:50:49] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 16:14:49] FAILED 74ET6oSD1MU: [0;31mERROR:[0m [youtube] 74ET6oSD1MU: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-02 16:16:06] FAILED 6zRBbhNOOR8: [0;31mERROR:[0m [youtube] 6zRBbhNOOR8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-02 16:41:43] === Summary ===
+[2026-02-02 16:41:43] Processed: 46
+[2026-02-02 16:41:43] Failed: 2
+[2026-02-02 16:41:43] With subtitles: 45
+[2026-02-02 16:41:43] No subtitles: 1
+[2026-02-02 16:41:43] Cleaned transcripts (non-empty): 45
+[2026-02-02 16:41:43] Transcript source counts: {'manual': 0, 'auto_generated': 45, 'none': 1}
+[2026-02-02 16:41:43] Subtitle language counts: {'en': 45}
+[2026-02-02 16:41:43] Rate-limited events: 0
+[2026-02-02 16:41:43] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 2, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 16:41:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,22 @@
+[2026-02-06 01:11:39] Playlist URL: https://youtube.com/playlist?list=PLBkceuBtGMvvpAyTF3FfEmPFGbf1gb6ov&si=r5PbZHsyZ0K_3MsJ
+[2026-02-06 01:11:39] Playlist title: African American Minority Books
+[2026-02-06 01:11:39] Total videos: 16
+[2026-02-06 01:11:39] Cookies file: cookies_3.txt
+[2026-02-06 01:11:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-06 01:11:42] FAILED bGKYmjaYqhY: [0;31mERROR:[0m [youtube] bGKYmjaYqhY: This video is not available
+[2026-02-06 01:12:36] FAILED hcy4CLxN2eQ: [0;31mERROR:[0m [youtube] hcy4CLxN2eQ: This video is not available
+[2026-02-06 01:15:32] FAILED MQChDyRhT_8: [0;31mERROR:[0m [youtube] MQChDyRhT_8: This video is not available
+[2026-02-06 01:24:13] FAILED pNIZPOlkOiM: [0;31mERROR:[0m [youtube] pNIZPOlkOiM: This video is not available
+[2026-02-06 01:25:41] FAILED FyE7-qivLMc: [0;31mERROR:[0m [youtube] FyE7-qivLMc: This video is not available
+[2026-02-06 01:26:18] FAILED YS7Cdm2_JW8: [0;31mERROR:[0m [youtube] YS7Cdm2_JW8: This video is not available
+[2026-02-06 01:26:18] === Summary ===
+[2026-02-06 01:26:18] Processed: 10
+[2026-02-06 01:26:18] Failed: 6
+[2026-02-06 01:26:18] With subtitles: 10
+[2026-02-06 01:26:18] No subtitles: 0
+[2026-02-06 01:26:18] Cleaned transcripts (non-empty): 10
+[2026-02-06 01:26:18] Transcript source counts: {'manual': 0, 'auto_generated': 10, 'none': 0}
+[2026-02-06 01:26:18] Subtitle language counts: {'en': 10}
+[2026-02-06 01:26:18] Rate-limited events: 0
+[2026-02-06 01:26:18] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 6}
+[2026-02-06 01:26:18] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

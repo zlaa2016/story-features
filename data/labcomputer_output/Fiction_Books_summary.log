@@ -1,0 +1,19 @@
+[2026-02-10 23:34:50] Playlist URL: https://youtube.com/playlist?list=PLude0WtcfIhfAJXK0TDqI93CbElX-Q6Qn&si=dMH7lIod0_i0XOKU
+[2026-02-10 23:34:50] Playlist title: Fiction Books
+[2026-02-10 23:34:50] Total videos: 324
+[2026-02-10 23:34:50] Cookies file: cookies_3.txt
+[2026-02-10 23:34:50] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-11 05:49:20] FAILED 35WvM7Yy0h8: [0;31mERROR:[0m [youtube] 35WvM7Yy0h8: Video unavailable. This video is no longer available due to a copyright claim by PRH US
+[2026-02-11 05:50:02] FAILED -cTqO18B7po: [0;31mERROR:[0m [youtube] -cTqO18B7po: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-11 05:51:22] FAILED QgQMbWHGoX0: [0;31mERROR:[0m [youtube] QgQMbWHGoX0: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-11 05:51:22] === Summary ===
+[2026-02-11 05:51:22] Processed: 321
+[2026-02-11 05:51:22] Failed: 3
+[2026-02-11 05:51:22] With subtitles: 321
+[2026-02-11 05:51:22] No subtitles: 0
+[2026-02-11 05:51:22] Cleaned transcripts (non-empty): 321
+[2026-02-11 05:51:22] Transcript source counts: {'manual': 8, 'auto_generated': 313, 'none': 0}
+[2026-02-11 05:51:22] Subtitle language counts: {'en': 321}
+[2026-02-11 05:51:22] Rate-limited events: 0
+[2026-02-11 05:51:22] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 2, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-11 05:51:22] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

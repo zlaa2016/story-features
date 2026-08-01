@@ -1,0 +1,16 @@
+[2026-02-02 20:41:57] Playlist URL: https://www.youtube.com/@PlatypusTales2025/videos
+[2026-02-02 20:41:57] Playlist title: Platypus Tales - Videos
+[2026-02-02 20:41:57] Total videos: 10
+[2026-02-02 20:41:57] Cookies file: cookies_3.txt
+[2026-02-02 20:41:57] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 20:52:18] === Summary ===
+[2026-02-02 20:52:18] Processed: 10
+[2026-02-02 20:52:18] Failed: 0
+[2026-02-02 20:52:18] With subtitles: 10
+[2026-02-02 20:52:18] No subtitles: 0
+[2026-02-02 20:52:18] Cleaned transcripts (non-empty): 10
+[2026-02-02 20:52:18] Transcript source counts: {'manual': 6, 'auto_generated': 4, 'none': 0}
+[2026-02-02 20:52:18] Subtitle language counts: {'en': 10}
+[2026-02-02 20:52:18] Rate-limited events: 0
+[2026-02-02 20:52:18] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 20:52:18] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

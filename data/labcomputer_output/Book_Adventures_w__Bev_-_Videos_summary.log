@@ -1,0 +1,42 @@
+[2026-02-05 10:55:42] Playlist URL: https://www.youtube.com/@BevsBookAdventures/videos
+[2026-02-05 10:55:42] Playlist title: Book Adventures w/ Bev - Videos
+[2026-02-05 10:55:42] Total videos: 26
+[2026-02-05 10:55:42] Cookies file: cookies_3.txt
+[2026-02-05 10:55:42] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 10:55:44] FAILED v9i5MUsd9wE: [0;31mERROR:[0m [youtube] v9i5MUsd9wE: This video is not available
+[2026-02-05 10:56:26] FAILED Bn5t9l2Ft9k: [0;31mERROR:[0m [youtube] Bn5t9l2Ft9k: This video is not available
+[2026-02-05 10:57:45] FAILED b-kQkP8Fdjw: [0;31mERROR:[0m [youtube] b-kQkP8Fdjw: This video is not available
+[2026-02-05 10:59:07] FAILED _0b9AzJFFJ8: [0;31mERROR:[0m [youtube] _0b9AzJFFJ8: This video is not available
+[2026-02-05 10:59:57] FAILED yX3cC5wf3yY: [0;31mERROR:[0m [youtube] yX3cC5wf3yY: This video is not available
+[2026-02-05 11:01:18] FAILED HMsmlxmOK18: [0;31mERROR:[0m [youtube] HMsmlxmOK18: This video is not available
+[2026-02-05 11:02:23] FAILED G_ml_cyR7wc: [0;31mERROR:[0m [youtube] G_ml_cyR7wc: This video is not available
+[2026-02-05 11:03:20] FAILED 1qs-Qk9HeZs: [0;31mERROR:[0m [youtube] 1qs-Qk9HeZs: This video is not available
+[2026-02-05 11:04:02] FAILED 7iRsU4scszs: [0;31mERROR:[0m [youtube] 7iRsU4scszs: This video is not available
+[2026-02-05 11:04:57] FAILED g-QOtapPhVk: [0;31mERROR:[0m [youtube] g-QOtapPhVk: This video is not available
+[2026-02-05 11:05:41] FAILED z-Aoptm5338: [0;31mERROR:[0m [youtube] z-Aoptm5338: This video is not available
+[2026-02-05 11:06:22] FAILED zqCDpDSkbCE: [0;31mERROR:[0m [youtube] zqCDpDSkbCE: This video is not available
+[2026-02-05 11:06:56] FAILED XSgGoL_VOVg: [0;31mERROR:[0m [youtube] XSgGoL_VOVg: This video is not available
+[2026-02-05 11:07:31] FAILED EOzXsy3L33U: [0;31mERROR:[0m [youtube] EOzXsy3L33U: This video is not available
+[2026-02-05 11:08:51] FAILED dWvakTfSicc: [0;31mERROR:[0m [youtube] dWvakTfSicc: This video is not available
+[2026-02-05 11:10:14] FAILED bYLQ0geB99k: [0;31mERROR:[0m [youtube] bYLQ0geB99k: This video is not available
+[2026-02-05 11:11:31] FAILED Yb_XMlxkTlQ: [0;31mERROR:[0m [youtube] Yb_XMlxkTlQ: This video is not available
+[2026-02-05 11:12:24] FAILED ig2WCieoq7A: [0;31mERROR:[0m [youtube] ig2WCieoq7A: This video is not available
+[2026-02-05 11:13:48] FAILED XC7nmKJlLco: [0;31mERROR:[0m [youtube] XC7nmKJlLco: This video is not available
+[2026-02-05 11:14:31] FAILED Z5j_15RJ3oM: [0;31mERROR:[0m [youtube] Z5j_15RJ3oM: This video is not available
+[2026-02-05 11:15:20] FAILED nFlSjoefNgs: [0;31mERROR:[0m [youtube] nFlSjoefNgs: This video is not available
+[2026-02-05 11:15:57] FAILED BueEkUMnPlk: [0;31mERROR:[0m [youtube] BueEkUMnPlk: This video is not available
+[2026-02-05 11:16:37] FAILED uITCDh-T-AY: [0;31mERROR:[0m [youtube] uITCDh-T-AY: This video is not available
+[2026-02-05 11:17:41] FAILED 4rVIHSfTkQM: [0;31mERROR:[0m [youtube] 4rVIHSfTkQM: This video is not available
+[2026-02-05 11:18:34] FAILED d9UL9nZAQTY: [0;31mERROR:[0m [youtube] d9UL9nZAQTY: This video is not available
+[2026-02-05 11:19:49] FAILED vVNC0MaFNKE: [0;31mERROR:[0m [youtube] vVNC0MaFNKE: This video is not available
+[2026-02-05 11:19:49] === Summary ===
+[2026-02-05 11:19:49] Processed: 0
+[2026-02-05 11:19:49] Failed: 26
+[2026-02-05 11:19:49] With subtitles: 0
+[2026-02-05 11:19:49] No subtitles: 0
+[2026-02-05 11:19:49] Cleaned transcripts (non-empty): 0
+[2026-02-05 11:19:49] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-05 11:19:49] Subtitle language counts: {}
+[2026-02-05 11:19:49] Rate-limited events: 0
+[2026-02-05 11:19:49] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 26}
+[2026-02-05 11:19:49] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,33 @@
+[2026-02-07 17:40:26] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzMfjsmkap4zkWAMj6tHu0bF&si=jNIYCdLKyRXmwFHA
+[2026-02-07 17:40:26] Playlist title: Journeys Second Grade
+[2026-02-07 17:40:26] Total videos: 30
+[2026-02-07 17:40:26] Cookies file: cookies_3.txt
+[2026-02-07 17:40:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 17:40:30] FAILED RUD3T2V0FC0: [0;31mERROR:[0m [youtube] RUD3T2V0FC0: This video is not available
+[2026-02-07 17:43:48] FAILED kkqytwhN_b0: [0;31mERROR:[0m [youtube] kkqytwhN_b0: This video is not available
+[2026-02-07 17:47:36] FAILED d5OCVBtRaVc: [0;31mERROR:[0m [youtube] d5OCVBtRaVc: This video is not available
+[2026-02-07 17:48:09] FAILED mDI4wxOd524: [0;31mERROR:[0m [youtube] mDI4wxOd524: This video is not available
+[2026-02-07 17:50:06] FAILED tGi3hnCM3CY: [0;31mERROR:[0m [youtube] tGi3hnCM3CY: This video is not available
+[2026-02-07 17:51:33] FAILED PEDZrkFUnZ4: [0;31mERROR:[0m [youtube] PEDZrkFUnZ4: This video is not available
+[2026-02-07 17:52:29] FAILED Tk_f7zJoX0k: [0;31mERROR:[0m [youtube] Tk_f7zJoX0k: This video is not available
+[2026-02-07 17:53:22] FAILED -4-STugHphY: [0;31mERROR:[0m [youtube] -4-STugHphY: This video is not available
+[2026-02-07 17:53:55] FAILED i6l3KrPZyHg: [0;31mERROR:[0m [youtube] i6l3KrPZyHg: This video is not available
+[2026-02-07 17:54:29] FAILED 30TGKIzg5DQ: [0;31mERROR:[0m [youtube] 30TGKIzg5DQ: This video is not available
+[2026-02-07 17:56:16] FAILED 1wEA2oSnvno: [0;31mERROR:[0m [youtube] 1wEA2oSnvno: This video is not available
+[2026-02-07 17:57:47] FAILED 5hspwRvR_uw: [0;31mERROR:[0m [youtube] 5hspwRvR_uw: This video is not available
+[2026-02-07 17:59:26] FAILED PLYbHhbsWf8: [0;31mERROR:[0m [youtube] PLYbHhbsWf8: This video is not available
+[2026-02-07 18:01:34] FAILED MkQPzDGC9b4: [0;31mERROR:[0m [youtube] MkQPzDGC9b4: This video is not available
+[2026-02-07 18:04:35] FAILED 7N0ZQIWbhwQ: [0;31mERROR:[0m [youtube] 7N0ZQIWbhwQ: This video is not available
+[2026-02-07 18:06:32] FAILED 7C5PgMnKRLw: [0;31mERROR:[0m [youtube] 7C5PgMnKRLw: This video is not available
+[2026-02-07 18:07:56] FAILED y8omoa5RvIo: [0;31mERROR:[0m [youtube] y8omoa5RvIo: This video is not available
+[2026-02-07 18:09:11] === Summary ===
+[2026-02-07 18:09:11] Processed: 13
+[2026-02-07 18:09:11] Failed: 17
+[2026-02-07 18:09:11] With subtitles: 13
+[2026-02-07 18:09:11] No subtitles: 0
+[2026-02-07 18:09:11] Cleaned transcripts (non-empty): 13
+[2026-02-07 18:09:11] Transcript source counts: {'manual': 0, 'auto_generated': 13, 'none': 0}
+[2026-02-07 18:09:11] Subtitle language counts: {'en': 13}
+[2026-02-07 18:09:11] Rate-limited events: 0
+[2026-02-07 18:09:11] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 17}
+[2026-02-07 18:09:11] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

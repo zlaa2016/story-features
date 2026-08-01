@@ -1,0 +1,36 @@
+[2026-02-05 21:57:08] Playlist URL: https://youtube.com/playlist?list=PL_rYdffwG5JPmWKq6aWwcA6C62WcK7WTu&si=QgBvLpZQ3wH9oTyV
+[2026-02-05 21:57:08] Playlist title: 2nd Grade Read Alouds
+[2026-02-05 21:57:08] Total videos: 20
+[2026-02-05 21:57:08] Cookies file: cookies_3.txt
+[2026-02-05 21:57:08] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 21:57:10] FAILED HLJgZlQbtCE: [0;31mERROR:[0m [youtube] HLJgZlQbtCE: This video is not available
+[2026-02-05 21:57:57] FAILED KX0KnaVuWTE: [0;31mERROR:[0m [youtube] KX0KnaVuWTE: This video is not available
+[2026-02-05 21:59:08] FAILED ekjCeiImCzE: [0;31mERROR:[0m [youtube] ekjCeiImCzE: This video is not available
+[2026-02-05 22:00:33] FAILED 6_OpuNe0Fi4: [0;31mERROR:[0m [youtube] 6_OpuNe0Fi4: This video is not available
+[2026-02-05 22:01:29] FAILED vOY6x4NksIk: [0;31mERROR:[0m [youtube] vOY6x4NksIk: This video is not available
+[2026-02-05 22:02:25] FAILED 80EUzy6zOeM: [0;31mERROR:[0m [youtube] 80EUzy6zOeM: This video is not available
+[2026-02-05 22:03:15] FAILED x05hfZXyWj4: [0;31mERROR:[0m [youtube] x05hfZXyWj4: This video is not available
+[2026-02-05 22:04:04] FAILED BccglPVGBCc: [0;31mERROR:[0m [youtube] BccglPVGBCc: This video is not available
+[2026-02-05 22:05:33] FAILED j0DyemHdLzc: [0;31mERROR:[0m [youtube] j0DyemHdLzc: This video is not available
+[2026-02-05 22:06:59] FAILED rVilLVu0UMY: [0;31mERROR:[0m [youtube] rVilLVu0UMY: This video is not available
+[2026-02-05 22:08:17] FAILED FmWC8O_s-MY: [0;31mERROR:[0m [youtube] FmWC8O_s-MY: This video is not available
+[2026-02-05 22:09:23] FAILED 4rEEsvVsQAg: [0;31mERROR:[0m [youtube] 4rEEsvVsQAg: This video is not available
+[2026-02-05 22:09:55] FAILED WSh8OJLNCZE: [0;31mERROR:[0m [youtube] WSh8OJLNCZE: This video is not available
+[2026-02-05 22:11:06] FAILED GldfMjtcZyY: [0;31mERROR:[0m [youtube] GldfMjtcZyY: This video is not available
+[2026-02-05 22:12:13] FAILED FBEEHCpXSXc: [0;31mERROR:[0m [youtube] FBEEHCpXSXc: This video is not available
+[2026-02-05 22:12:46] FAILED y5x7sowRwvM: [0;31mERROR:[0m [youtube] y5x7sowRwvM: This video is not available
+[2026-02-05 22:14:01] FAILED TFb-6R4a1uY: [0;31mERROR:[0m [youtube] TFb-6R4a1uY: This video is not available
+[2026-02-05 22:14:37] FAILED VMSa-Ilq6gk: [0;31mERROR:[0m [youtube] VMSa-Ilq6gk: This video is not available
+[2026-02-05 22:15:55] FAILED m1_jej0e5ws: [0;31mERROR:[0m [youtube] m1_jej0e5ws: This video is not available
+[2026-02-05 22:17:00] FAILED X5LfuKIa9e0: [0;31mERROR:[0m [youtube] X5LfuKIa9e0: This video is not available
+[2026-02-05 22:17:00] === Summary ===
+[2026-02-05 22:17:00] Processed: 0
+[2026-02-05 22:17:00] Failed: 20
+[2026-02-05 22:17:00] With subtitles: 0
+[2026-02-05 22:17:00] No subtitles: 0
+[2026-02-05 22:17:00] Cleaned transcripts (non-empty): 0
+[2026-02-05 22:17:00] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-05 22:17:00] Subtitle language counts: {}
+[2026-02-05 22:17:00] Rate-limited events: 0
+[2026-02-05 22:17:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 20}
+[2026-02-05 22:17:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

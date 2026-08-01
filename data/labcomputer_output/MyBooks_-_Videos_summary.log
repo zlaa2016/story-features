@@ -1,0 +1,21 @@
+[2026-02-05 14:13:06] Playlist URL: https://www.youtube.com/@mybooks1733/videos
+[2026-02-05 14:13:06] Playlist title: MyBooks - Videos
+[2026-02-05 14:13:06] Total videos: 149
+[2026-02-05 14:13:06] Cookies file: cookies_3.txt
+[2026-02-05 14:13:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 15:53:42] FAILED KnGJX4X6chg: [0;31mERROR:[0m [youtube] KnGJX4X6chg: This video is not available
+[2026-02-05 15:56:50] FAILED 2dTDS14crks: [0;31mERROR:[0m [youtube] 2dTDS14crks: This video is not available
+[2026-02-05 15:57:40] FAILED EdE56qkGFdE: [0;31mERROR:[0m [youtube] EdE56qkGFdE: This video is not available
+[2026-02-05 16:12:36] FAILED ctfU7BMaDH0: [0;31mERROR:[0m [youtube] ctfU7BMaDH0: This video is not available
+[2026-02-05 16:48:26] FAILED 50vBFMa8gWI: [0;31mERROR:[0m [youtube] 50vBFMa8gWI: This video is not available
+[2026-02-05 16:50:44] === Summary ===
+[2026-02-05 16:50:44] Processed: 144
+[2026-02-05 16:50:44] Failed: 5
+[2026-02-05 16:50:44] With subtitles: 122
+[2026-02-05 16:50:44] No subtitles: 22
+[2026-02-05 16:50:44] Cleaned transcripts (non-empty): 122
+[2026-02-05 16:50:44] Transcript source counts: {'manual': 0, 'auto_generated': 122, 'none': 22}
+[2026-02-05 16:50:44] Subtitle language counts: {'en': 122}
+[2026-02-05 16:50:44] Rate-limited events: 0
+[2026-02-05 16:50:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 5}
+[2026-02-05 16:50:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

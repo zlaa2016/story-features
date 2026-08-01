@@ -1,0 +1,21 @@
+[2026-02-07 13:47:52] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzP1bznd4sQjeP7i7Nbt1TBP&si=jyP0mfdnf6tB8M9j
+[2026-02-07 13:47:52] Playlist title: My View Literacy Kindergarten
+[2026-02-07 13:47:52] Total videos: 26
+[2026-02-07 13:47:52] Cookies file: cookies_3.txt
+[2026-02-07 13:47:52] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 13:47:56] FAILED sJrNw5NRtuw: [0;31mERROR:[0m [youtube] sJrNw5NRtuw: This video is not available
+[2026-02-07 13:49:18] FAILED SGws6pMXTnc: [0;31mERROR:[0m [youtube] SGws6pMXTnc: This video is not available
+[2026-02-07 13:56:07] FAILED n1ID_ia51og: [0;31mERROR:[0m [youtube] n1ID_ia51og: This video is not available
+[2026-02-07 14:12:42] FAILED ByHZSTUVsKY: [0;31mERROR:[0m [youtube] ByHZSTUVsKY: This video is not available
+[2026-02-07 14:13:19] FAILED 2Y-ULomHbsc: [0;31mERROR:[0m [youtube] 2Y-ULomHbsc: This video is not available
+[2026-02-07 14:16:39] === Summary ===
+[2026-02-07 14:16:39] Processed: 21
+[2026-02-07 14:16:39] Failed: 5
+[2026-02-07 14:16:39] With subtitles: 21
+[2026-02-07 14:16:39] No subtitles: 0
+[2026-02-07 14:16:39] Cleaned transcripts (non-empty): 21
+[2026-02-07 14:16:39] Transcript source counts: {'manual': 0, 'auto_generated': 21, 'none': 0}
+[2026-02-07 14:16:39] Subtitle language counts: {'en': 21}
+[2026-02-07 14:16:39] Rate-limited events: 0
+[2026-02-07 14:16:39] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 5}
+[2026-02-07 14:16:39] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

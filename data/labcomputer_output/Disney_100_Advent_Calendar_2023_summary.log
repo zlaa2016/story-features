@@ -1,0 +1,21 @@
+[2026-02-07 20:29:03] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzO0RBrjpT44Z_kZ9UB95egf&si=-BdDGUiYUu7yXV2o
+[2026-02-07 20:29:03] Playlist title: Disney 100 Advent Calendar 2023
+[2026-02-07 20:29:03] Total videos: 25
+[2026-02-07 20:29:03] Cookies file: cookies_3.txt
+[2026-02-07 20:29:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 20:33:38] FAILED zQ4qmvW2UX4: [0;31mERROR:[0m [youtube] zQ4qmvW2UX4: This video is not available
+[2026-02-07 20:34:53] FAILED pTXp0KD6SUs: [0;31mERROR:[0m [youtube] pTXp0KD6SUs: This video is not available
+[2026-02-07 20:38:03] FAILED BEInQVnnHhU: [0;31mERROR:[0m [youtube] BEInQVnnHhU: This video is not available
+[2026-02-07 20:39:07] FAILED JdEFLjUtsYg: [0;31mERROR:[0m [youtube] JdEFLjUtsYg: This video is not available
+[2026-02-07 20:41:11] FAILED 1vXgq3Gf_ZQ: [0;31mERROR:[0m [youtube] 1vXgq3Gf_ZQ: This video is not available
+[2026-02-07 20:55:55] === Summary ===
+[2026-02-07 20:55:55] Processed: 20
+[2026-02-07 20:55:55] Failed: 5
+[2026-02-07 20:55:55] With subtitles: 20
+[2026-02-07 20:55:55] No subtitles: 0
+[2026-02-07 20:55:55] Cleaned transcripts (non-empty): 20
+[2026-02-07 20:55:55] Transcript source counts: {'manual': 0, 'auto_generated': 20, 'none': 0}
+[2026-02-07 20:55:55] Subtitle language counts: {'en': 20}
+[2026-02-07 20:55:55] Rate-limited events: 0
+[2026-02-07 20:55:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 5}
+[2026-02-07 20:55:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

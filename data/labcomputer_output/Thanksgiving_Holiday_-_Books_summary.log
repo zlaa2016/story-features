@@ -1,0 +1,20 @@
+[2026-02-06 01:28:28] Playlist URL: https://youtube.com/playlist?list=PLBkceuBtGMvsbRyCXc0yuJzmVIzmk6lF8&si=qJqJTSl3Dx4xVFZD
+[2026-02-06 01:28:28] Playlist title: Thanksgiving Holiday - Books
+[2026-02-06 01:28:28] Total videos: 9
+[2026-02-06 01:28:28] Cookies file: cookies_3.txt
+[2026-02-06 01:28:28] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-06 01:34:18] FAILED dSdAtK7dp40: [0;31mERROR:[0m [youtube] dSdAtK7dp40: This video is not available
+[2026-02-06 01:35:43] FAILED 9cMNnTccBV8: [0;31mERROR:[0m [youtube] 9cMNnTccBV8: This video is not available
+[2026-02-06 01:36:42] FAILED pNIZPOlkOiM: [0;31mERROR:[0m [youtube] pNIZPOlkOiM: This video is not available
+[2026-02-06 01:37:48] FAILED wgz4GWZ56Vk: [0;31mERROR:[0m [youtube] wgz4GWZ56Vk: This video is not available
+[2026-02-06 01:37:48] === Summary ===
+[2026-02-06 01:37:48] Processed: 5
+[2026-02-06 01:37:48] Failed: 4
+[2026-02-06 01:37:48] With subtitles: 5
+[2026-02-06 01:37:48] No subtitles: 0
+[2026-02-06 01:37:48] Cleaned transcripts (non-empty): 5
+[2026-02-06 01:37:48] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-02-06 01:37:48] Subtitle language counts: {'en': 5}
+[2026-02-06 01:37:48] Rate-limited events: 0
+[2026-02-06 01:37:48] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 4}
+[2026-02-06 01:37:48] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

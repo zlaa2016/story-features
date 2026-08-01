@@ -1,0 +1,16 @@
+[2026-02-07 13:09:17] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzM30u8ogE7xPcMjav16K4Cf&si=jUu7GpM9AVozj2DH
+[2026-02-07 13:09:17] Playlist title: Memoirs
+[2026-02-07 13:09:17] Total videos: 6
+[2026-02-07 13:09:17] Cookies file: cookies_3.txt
+[2026-02-07 13:09:17] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 13:15:56] === Summary ===
+[2026-02-07 13:15:56] Processed: 6
+[2026-02-07 13:15:56] Failed: 0
+[2026-02-07 13:15:56] With subtitles: 6
+[2026-02-07 13:15:56] No subtitles: 0
+[2026-02-07 13:15:56] Cleaned transcripts (non-empty): 6
+[2026-02-07 13:15:56] Transcript source counts: {'manual': 0, 'auto_generated': 6, 'none': 0}
+[2026-02-07 13:15:56] Subtitle language counts: {'en': 6}
+[2026-02-07 13:15:56] Rate-limited events: 0
+[2026-02-07 13:15:56] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-07 13:15:56] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

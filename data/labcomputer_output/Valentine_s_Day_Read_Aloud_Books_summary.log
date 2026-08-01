@@ -1,0 +1,16 @@
+[2026-02-02 15:24:03] Playlist URL: https://youtube.com/playlist?list=PLGWgTmPBYf06JQrIKeYIp6Z85pqwLJBXQ&si=RAeWP9kb8FfutHxg
+[2026-02-02 15:24:03] Playlist title: Valentine's Day Read Aloud Books
+[2026-02-02 15:24:03] Total videos: 5
+[2026-02-02 15:24:03] Cookies file: cookies_3.txt
+[2026-02-02 15:24:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 15:27:51] === Summary ===
+[2026-02-02 15:27:51] Processed: 5
+[2026-02-02 15:27:51] Failed: 0
+[2026-02-02 15:27:51] With subtitles: 5
+[2026-02-02 15:27:51] No subtitles: 0
+[2026-02-02 15:27:51] Cleaned transcripts (non-empty): 5
+[2026-02-02 15:27:51] Transcript source counts: {'manual': 0, 'auto_generated': 5, 'none': 0}
+[2026-02-02 15:27:51] Subtitle language counts: {'en': 5}
+[2026-02-02 15:27:51] Rate-limited events: 0
+[2026-02-02 15:27:51] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 15:27:51] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

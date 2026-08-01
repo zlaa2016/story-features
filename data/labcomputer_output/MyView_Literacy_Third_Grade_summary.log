@@ -1,0 +1,21 @@
+[2026-02-07 15:13:06] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzM_0-IW9Se8fzUzROWCBZkX&si=2gvM7yAsa-ADyP5E
+[2026-02-07 15:13:06] Playlist title: MyView Literacy Third Grade
+[2026-02-07 15:13:06] Total videos: 25
+[2026-02-07 15:13:06] Cookies file: cookies_3.txt
+[2026-02-07 15:13:06] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 15:16:21] FAILED NxDlziHeNdg: [0;31mERROR:[0m [youtube] NxDlziHeNdg: This video is not available
+[2026-02-07 15:17:43] FAILED Aph1JPFkeXc: [0;31mERROR:[0m [youtube] Aph1JPFkeXc: This video is not available
+[2026-02-07 15:31:37] FAILED tsVlozwqzFk: [0;31mERROR:[0m [youtube] tsVlozwqzFk: This video is not available
+[2026-02-07 15:32:44] FAILED yAbdP3XGvOw: [0;31mERROR:[0m [youtube] yAbdP3XGvOw: This video is not available
+[2026-02-07 15:33:27] FAILED 4isPwydp7TM: [0;31mERROR:[0m [youtube] 4isPwydp7TM: This video is not available
+[2026-02-07 15:38:00] === Summary ===
+[2026-02-07 15:38:00] Processed: 20
+[2026-02-07 15:38:00] Failed: 5
+[2026-02-07 15:38:00] With subtitles: 20
+[2026-02-07 15:38:00] No subtitles: 0
+[2026-02-07 15:38:00] Cleaned transcripts (non-empty): 20
+[2026-02-07 15:38:00] Transcript source counts: {'manual': 0, 'auto_generated': 20, 'none': 0}
+[2026-02-07 15:38:00] Subtitle language counts: {'en': 20}
+[2026-02-07 15:38:00] Rate-limited events: 0
+[2026-02-07 15:38:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 5}
+[2026-02-07 15:38:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

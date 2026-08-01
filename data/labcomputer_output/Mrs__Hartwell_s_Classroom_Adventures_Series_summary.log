@@ -1,0 +1,17 @@
+[2026-02-07 13:36:08] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzOcsr9wlgaVEelWUwX5vQAw&si=wk8yTK7QvNu--qBQ
+[2026-02-07 13:36:08] Playlist title: Mrs. Hartwell's Classroom Adventures Series
+[2026-02-07 13:36:08] Total videos: 8
+[2026-02-07 13:36:08] Cookies file: cookies_3.txt
+[2026-02-07 13:36:08] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 13:38:57] FAILED Wzzh1DJe_U4: [0;31mERROR:[0m [youtube] Wzzh1DJe_U4: This video is not available
+[2026-02-07 13:44:29] === Summary ===
+[2026-02-07 13:44:29] Processed: 7
+[2026-02-07 13:44:29] Failed: 1
+[2026-02-07 13:44:29] With subtitles: 7
+[2026-02-07 13:44:29] No subtitles: 0
+[2026-02-07 13:44:29] Cleaned transcripts (non-empty): 7
+[2026-02-07 13:44:29] Transcript source counts: {'manual': 0, 'auto_generated': 7, 'none': 0}
+[2026-02-07 13:44:29] Subtitle language counts: {'en': 7}
+[2026-02-07 13:44:29] Rate-limited events: 0
+[2026-02-07 13:44:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-02-07 13:44:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

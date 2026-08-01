@@ -1,0 +1,28 @@
+[2026-02-05 10:42:01] Playlist URL: https://youtube.com/playlist?list=PLU6AbyBWHPOswBR2kSEtXv8Iu7I281rL6&si=dW1-wLfzc6WEHwcU
+[2026-02-05 10:42:01] Playlist title: Fairy Tales, Myths, and Legends
+[2026-02-05 10:42:01] Total videos: 12
+[2026-02-05 10:42:01] Cookies file: cookies_3.txt
+[2026-02-05 10:42:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 10:42:04] FAILED QXQlzCKfYFI: [0;31mERROR:[0m [youtube] QXQlzCKfYFI: This video is not available
+[2026-02-05 10:43:17] FAILED v6HNXtmyA2c: [0;31mERROR:[0m [youtube] v6HNXtmyA2c: This video is not available
+[2026-02-05 10:44:37] FAILED t1LRmTDdyXI: [0;31mERROR:[0m [youtube] t1LRmTDdyXI: This video is not available
+[2026-02-05 10:45:22] FAILED 7iNhh0Wd77o: [0;31mERROR:[0m [youtube] 7iNhh0Wd77o: This video is not available
+[2026-02-05 10:46:42] FAILED ci5bAjmuZwc: [0;31mERROR:[0m [youtube] ci5bAjmuZwc: This video is not available
+[2026-02-05 10:48:08] FAILED EHTp00NZ_io: [0;31mERROR:[0m [youtube] EHTp00NZ_io: This video is not available
+[2026-02-05 10:49:12] FAILED tCpJcKlLrYI: [0;31mERROR:[0m [youtube] tCpJcKlLrYI: This video is not available
+[2026-02-05 10:50:23] FAILED U2g7u0_J-_0: [0;31mERROR:[0m [youtube] U2g7u0_J-_0: This video is not available
+[2026-02-05 10:51:46] FAILED b7CgHoklkpk: [0;31mERROR:[0m [youtube] b7CgHoklkpk: This video is not available
+[2026-02-05 10:53:10] FAILED WnE67658alI: [0;31mERROR:[0m [youtube] WnE67658alI: This video is not available
+[2026-02-05 10:54:31] FAILED d3dkGJHWBQY: [0;31mERROR:[0m [youtube] d3dkGJHWBQY: This video is not available
+[2026-02-05 10:55:40] FAILED MckBflKXTv0: [0;31mERROR:[0m [youtube] MckBflKXTv0: This video is not available
+[2026-02-05 10:55:40] === Summary ===
+[2026-02-05 10:55:40] Processed: 0
+[2026-02-05 10:55:40] Failed: 12
+[2026-02-05 10:55:40] With subtitles: 0
+[2026-02-05 10:55:40] No subtitles: 0
+[2026-02-05 10:55:40] Cleaned transcripts (non-empty): 0
+[2026-02-05 10:55:40] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-05 10:55:40] Subtitle language counts: {}
+[2026-02-05 10:55:40] Rate-limited events: 0
+[2026-02-05 10:55:40] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 12}
+[2026-02-05 10:55:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

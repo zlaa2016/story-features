@@ -1,0 +1,20 @@
+[2026-02-07 16:36:51] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzNUvmPYpq8Ly6exBFfBoGPL&si=XloWnjBg-tEx3IaF
+[2026-02-07 16:36:51] Playlist title: First Day of School
+[2026-02-07 16:36:51] Total videos: 18
+[2026-02-07 16:36:51] Cookies file: cookies_3.txt
+[2026-02-07 16:36:51] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 16:44:28] FAILED _hVxbvM4mjY: [0;31mERROR:[0m [youtube] _hVxbvM4mjY: This video is not available
+[2026-02-07 16:47:51] FAILED 9TS7SyJN__s: [0;31mERROR:[0m [youtube] 9TS7SyJN__s: This video is not available
+[2026-02-07 16:48:29] FAILED Juxeoi9wO7M: [0;31mERROR:[0m [youtube] Juxeoi9wO7M: This video is not available
+[2026-02-07 16:49:27] FAILED mkxD-Xpe_9U: [0;31mERROR:[0m [youtube] mkxD-Xpe_9U: This video is not available
+[2026-02-07 16:54:29] === Summary ===
+[2026-02-07 16:54:29] Processed: 14
+[2026-02-07 16:54:29] Failed: 4
+[2026-02-07 16:54:29] With subtitles: 14
+[2026-02-07 16:54:29] No subtitles: 0
+[2026-02-07 16:54:29] Cleaned transcripts (non-empty): 14
+[2026-02-07 16:54:29] Transcript source counts: {'manual': 0, 'auto_generated': 14, 'none': 0}
+[2026-02-07 16:54:29] Subtitle language counts: {'en': 14}
+[2026-02-07 16:54:29] Rate-limited events: 0
+[2026-02-07 16:54:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 4}
+[2026-02-07 16:54:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

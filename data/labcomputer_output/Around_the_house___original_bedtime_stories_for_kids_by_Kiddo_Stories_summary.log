@@ -1,0 +1,20 @@
+[2026-02-08 01:52:41] Playlist URL: https://youtube.com/playlist?list=PL-hmG8O2L2Bek7gX6wFhSBSFYjX1s1P37&si=ER26MWo7QsBrpcBR
+[2026-02-08 01:52:41] Playlist title: Around the house : original bedtime stories for kids by Kiddo Stories
+[2026-02-08 01:52:41] Total videos: 4
+[2026-02-08 01:52:41] Cookies file: cookies_3.txt
+[2026-02-08 01:52:41] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-08 01:52:45] FAILED SgOpoiMFwp4: [0;31mERROR:[0m [youtube] SgOpoiMFwp4: This video is not available
+[2026-02-08 01:53:30] FAILED lzDEKHYSAZI: [0;31mERROR:[0m [youtube] lzDEKHYSAZI: This video is not available
+[2026-02-08 01:54:07] FAILED XP7Jb818RxE: [0;31mERROR:[0m [youtube] XP7Jb818RxE: This video is not available
+[2026-02-08 01:54:52] FAILED 4XvYYXlZ1yg: [0;31mERROR:[0m [youtube] 4XvYYXlZ1yg: This video is not available
+[2026-02-08 01:54:52] === Summary ===
+[2026-02-08 01:54:52] Processed: 0
+[2026-02-08 01:54:52] Failed: 4
+[2026-02-08 01:54:52] With subtitles: 0
+[2026-02-08 01:54:52] No subtitles: 0
+[2026-02-08 01:54:52] Cleaned transcripts (non-empty): 0
+[2026-02-08 01:54:52] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-08 01:54:52] Subtitle language counts: {}
+[2026-02-08 01:54:52] Rate-limited events: 0
+[2026-02-08 01:54:52] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 4}
+[2026-02-08 01:54:52] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

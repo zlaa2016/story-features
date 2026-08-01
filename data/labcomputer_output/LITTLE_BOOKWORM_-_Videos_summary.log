@@ -1,0 +1,27 @@
+[2026-02-07 20:56:44] Playlist URL: https://www.youtube.com/@little_bookworm/videos
+[2026-02-07 20:56:44] Playlist title: LITTLE BOOKWORM - Videos
+[2026-02-07 20:56:44] Total videos: 11
+[2026-02-07 20:56:44] Cookies file: cookies_3.txt
+[2026-02-07 20:56:44] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 20:56:48] FAILED aeS1leT5Evk: [0;31mERROR:[0m [youtube] aeS1leT5Evk: This video is not available
+[2026-02-07 20:58:10] FAILED ztBZSJoDDpo: [0;31mERROR:[0m [youtube] ztBZSJoDDpo: This video is not available
+[2026-02-07 20:59:01] FAILED DRET3GVbdDs: [0;31mERROR:[0m [youtube] DRET3GVbdDs: This video is not available
+[2026-02-07 21:00:29] FAILED eljUuEL5_FQ: [0;31mERROR:[0m [youtube] eljUuEL5_FQ: This video is not available
+[2026-02-07 21:01:40] FAILED nYMQ1lmvTuQ: [0;31mERROR:[0m [youtube] nYMQ1lmvTuQ: This video is not available
+[2026-02-07 21:02:44] FAILED YVrAoW-PRq4: [0;31mERROR:[0m [youtube] YVrAoW-PRq4: This video is not available
+[2026-02-07 21:03:31] FAILED s6HBCp_uQPQ: [0;31mERROR:[0m [youtube] s6HBCp_uQPQ: This video is not available
+[2026-02-07 21:04:53] FAILED 6coi5d4bxlc: [0;31mERROR:[0m [youtube] 6coi5d4bxlc: This video is not available
+[2026-02-07 21:06:19] FAILED u8tLYSz8fAs: [0;31mERROR:[0m [youtube] u8tLYSz8fAs: This video is not available
+[2026-02-07 21:07:00] FAILED 9aeEDKb_Xk4: [0;31mERROR:[0m [youtube] 9aeEDKb_Xk4: This video is not available
+[2026-02-07 21:07:37] FAILED 8u-QfRD_WPE: [0;31mERROR:[0m [youtube] 8u-QfRD_WPE: This video is not available
+[2026-02-07 21:07:37] === Summary ===
+[2026-02-07 21:07:37] Processed: 0
+[2026-02-07 21:07:37] Failed: 11
+[2026-02-07 21:07:37] With subtitles: 0
+[2026-02-07 21:07:37] No subtitles: 0
+[2026-02-07 21:07:37] Cleaned transcripts (non-empty): 0
+[2026-02-07 21:07:37] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-07 21:07:37] Subtitle language counts: {}
+[2026-02-07 21:07:37] Rate-limited events: 0
+[2026-02-07 21:07:37] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 11}
+[2026-02-07 21:07:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

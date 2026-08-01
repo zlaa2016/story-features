@@ -1,0 +1,19 @@
+[2026-02-09 16:52:26] Playlist URL: https://www.youtube.com/@bellalunareadaloud9668
+[2026-02-09 16:52:26] Playlist title: BellaLuna Read Aloud - Videos
+[2026-02-09 16:52:26] Total videos: 3
+[2026-02-09 16:52:26] Cookies file: cookies_3.txt
+[2026-02-09 16:52:26] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-09 16:52:29] FAILED uKPqIECBMZU: [0;31mERROR:[0m [youtube] uKPqIECBMZU: This video is not available
+[2026-02-09 16:53:20] FAILED 0Z8zjHwnMFM: [0;31mERROR:[0m [youtube] 0Z8zjHwnMFM: This video is not available
+[2026-02-09 16:54:32] FAILED XII6mOD8-FM: [0;31mERROR:[0m [youtube] XII6mOD8-FM: This video is not available
+[2026-02-09 16:54:32] === Summary ===
+[2026-02-09 16:54:32] Processed: 0
+[2026-02-09 16:54:32] Failed: 3
+[2026-02-09 16:54:32] With subtitles: 0
+[2026-02-09 16:54:32] No subtitles: 0
+[2026-02-09 16:54:32] Cleaned transcripts (non-empty): 0
+[2026-02-09 16:54:32] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-09 16:54:32] Subtitle language counts: {}
+[2026-02-09 16:54:32] Rate-limited events: 0
+[2026-02-09 16:54:32] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 3}
+[2026-02-09 16:54:32] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

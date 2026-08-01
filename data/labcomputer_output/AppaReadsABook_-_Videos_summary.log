@@ -1,0 +1,17 @@
+[2026-02-03 00:43:04] Playlist URL: https://www.youtube.com/@Appa-Reads-A-Book/videos
+[2026-02-03 00:43:04] Playlist title: AppaReadsABook - Videos
+[2026-02-03 00:43:04] Total videos: 53
+[2026-02-03 00:43:04] Cookies file: cookies_3.txt
+[2026-02-03 00:43:04] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-03 01:21:28] Rate-limited on video 7iQP44E16sM; sleeping 3600s before retry 1/2
+[2026-02-03 02:39:45] === Summary ===
+[2026-02-03 02:39:45] Processed: 53
+[2026-02-03 02:39:45] Failed: 0
+[2026-02-03 02:39:45] With subtitles: 53
+[2026-02-03 02:39:45] No subtitles: 0
+[2026-02-03 02:39:45] Cleaned transcripts (non-empty): 53
+[2026-02-03 02:39:45] Transcript source counts: {'manual': 0, 'auto_generated': 53, 'none': 0}
+[2026-02-03 02:39:45] Subtitle language counts: {'en': 53}
+[2026-02-03 02:39:45] Rate-limited events: 1
+[2026-02-03 02:39:45] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-03 02:39:45] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

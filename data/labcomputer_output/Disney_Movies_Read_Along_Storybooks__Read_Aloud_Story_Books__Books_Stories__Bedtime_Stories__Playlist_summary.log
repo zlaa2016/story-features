@@ -1,0 +1,26 @@
+[2026-02-10 16:53:36] Playlist URL: https://youtube.com/playlist?list=PLrOK2BUgNUQPXIJrfInIiUiwxKwc0QA9s&si=NAfTpyrz82ImCYTJ
+[2026-02-10 16:53:36] Playlist title: Disney Movies Read Along Storybooks, Read Aloud Story Books, Books Stories, Bedtime Stories, Playlist
+[2026-02-10 16:53:36] Total videos: 328
+[2026-02-10 16:53:36] Cookies file: cookies_3.txt
+[2026-02-10 16:53:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-10 17:11:08] FAILED b8NS9B0L1vM: [0;31mERROR:[0m [youtube] b8NS9B0L1vM: Video unavailable. This video has been removed by the uploader
+[2026-02-10 17:19:10] FAILED kWi-SYJreZg: [0;31mERROR:[0m [youtube] kWi-SYJreZg: Video unavailable. This video has been removed by the uploader
+[2026-02-10 17:26:00] FAILED fePM48caUE4: [0;31mERROR:[0m [youtube] fePM48caUE4: Video unavailable. This video has been removed by the uploader
+[2026-02-10 22:59:17] FAILED GDFHt5CZlFI: [0;31mERROR:[0m [youtube] GDFHt5CZlFI: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:00:31] FAILED __NaZhPQhBw: [0;31mERROR:[0m [youtube] __NaZhPQhBw: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:01:16] FAILED rMEwekQ0Y54: [0;31mERROR:[0m [youtube] rMEwekQ0Y54: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:02:45] FAILED DWrPYn_6vyc: [0;31mERROR:[0m [youtube] DWrPYn_6vyc: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:03:18] FAILED Gjtxdba3vHo: [0;31mERROR:[0m [youtube] Gjtxdba3vHo: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:04:28] FAILED vRXJZxnZ28U: [0;31mERROR:[0m [youtube] vRXJZxnZ28U: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:05:53] FAILED yn_4VPQLpeo: [0;31mERROR:[0m [youtube] yn_4VPQLpeo: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+[2026-02-10 23:05:53] === Summary ===
+[2026-02-10 23:05:53] Processed: 318
+[2026-02-10 23:05:53] Failed: 10
+[2026-02-10 23:05:53] With subtitles: 316
+[2026-02-10 23:05:53] No subtitles: 2
+[2026-02-10 23:05:53] Cleaned transcripts (non-empty): 316
+[2026-02-10 23:05:53] Transcript source counts: {'manual': 0, 'auto_generated': 316, 'none': 2}
+[2026-02-10 23:05:53] Subtitle language counts: {'en': 316}
+[2026-02-10 23:05:53] Rate-limited events: 0
+[2026-02-10 23:05:53] Failure reasons: {'rate_limited': 0, 'unavailable': 3, 'restricted': 7, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-10 23:05:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

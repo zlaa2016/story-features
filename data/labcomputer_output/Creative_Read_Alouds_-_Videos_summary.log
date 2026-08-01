@@ -1,0 +1,16 @@
+[2026-02-10 14:34:47] Playlist URL: https://www.youtube.com/@CreativeReadAlouds
+[2026-02-10 14:34:47] Playlist title: Creative Read Alouds - Videos
+[2026-02-10 14:34:47] Total videos: 119
+[2026-02-10 14:34:47] Cookies file: cookies_3.txt
+[2026-02-10 14:34:47] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-10 16:48:18] === Summary ===
+[2026-02-10 16:48:18] Processed: 119
+[2026-02-10 16:48:18] Failed: 0
+[2026-02-10 16:48:18] With subtitles: 118
+[2026-02-10 16:48:18] No subtitles: 1
+[2026-02-10 16:48:18] Cleaned transcripts (non-empty): 118
+[2026-02-10 16:48:18] Transcript source counts: {'manual': 0, 'auto_generated': 118, 'none': 1}
+[2026-02-10 16:48:18] Subtitle language counts: {'en': 118}
+[2026-02-10 16:48:18] Rate-limited events: 0
+[2026-02-10 16:48:18] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-10 16:48:18] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

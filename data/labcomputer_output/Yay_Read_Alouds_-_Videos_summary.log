@@ -1,0 +1,16 @@
+[2026-02-02 19:04:39] Playlist URL: https://www.youtube.com/@YayReadAlouds/videos
+[2026-02-02 19:04:39] Playlist title: Yay Read Alouds - Videos
+[2026-02-02 19:04:39] Total videos: 55
+[2026-02-02 19:04:39] Cookies file: cookies_3.txt
+[2026-02-02 19:04:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 20:04:37] === Summary ===
+[2026-02-02 20:04:37] Processed: 55
+[2026-02-02 20:04:37] Failed: 0
+[2026-02-02 20:04:37] With subtitles: 55
+[2026-02-02 20:04:37] No subtitles: 0
+[2026-02-02 20:04:37] Cleaned transcripts (non-empty): 55
+[2026-02-02 20:04:37] Transcript source counts: {'manual': 0, 'auto_generated': 55, 'none': 0}
+[2026-02-02 20:04:37] Subtitle language counts: {'en': 55}
+[2026-02-02 20:04:37] Rate-limited events: 0
+[2026-02-02 20:04:37] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 20:04:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

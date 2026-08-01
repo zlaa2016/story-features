@@ -1,0 +1,16 @@
+[2026-02-11 12:35:23] Playlist URL: https://www.youtube.com/@irvingtonpubliclibrarynj632/videos
+[2026-02-11 12:35:23] Playlist title: Irvington Public Library NJ - Videos
+[2026-02-11 12:35:23] Total videos: 264
+[2026-02-11 12:35:23] Cookies file: cookies_3.txt
+[2026-02-11 12:35:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-11 17:27:20] === Summary ===
+[2026-02-11 17:27:20] Processed: 264
+[2026-02-11 17:27:20] Failed: 0
+[2026-02-11 17:27:20] With subtitles: 264
+[2026-02-11 17:27:20] No subtitles: 0
+[2026-02-11 17:27:20] Cleaned transcripts (non-empty): 264
+[2026-02-11 17:27:20] Transcript source counts: {'manual': 0, 'auto_generated': 264, 'none': 0}
+[2026-02-11 17:27:20] Subtitle language counts: {'en': 264}
+[2026-02-11 17:27:20] Rate-limited events: 0
+[2026-02-11 17:27:20] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-11 17:27:20] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,28 @@
+[2026-02-07 18:09:13] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzOqg2TISLQSRBNaVTQ8Kq6z&si=aFRFtIsbt2Rq8dZO
+[2026-02-07 18:09:13] Playlist title: Journeys Third Grade Textbook - Read Aloud In Order
+[2026-02-07 18:09:13] Total videos: 30
+[2026-02-07 18:09:13] Cookies file: cookies_3.txt
+[2026-02-07 18:09:13] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 18:09:17] FAILED Hg6oMcrqs7U: [0;31mERROR:[0m [youtube] Hg6oMcrqs7U: This video is not available
+[2026-02-07 18:09:50] FAILED 6hAXo0-kv-Y: [0;31mERROR:[0m [youtube] 6hAXo0-kv-Y: This video is not available
+[2026-02-07 18:11:40] FAILED bdDfSKxzdAQ: [0;31mERROR:[0m [youtube] bdDfSKxzdAQ: This video is not available
+[2026-02-07 18:12:16] FAILED ahOG7ZT5hRU: [0;31mERROR:[0m [youtube] ahOG7ZT5hRU: This video is not available
+[2026-02-07 18:12:52] FAILED soCd0Mkbupc: [0;31mERROR:[0m [youtube] soCd0Mkbupc: This video is not available
+[2026-02-07 18:15:49] FAILED fd2y0F7Zctk: [0;31mERROR:[0m [youtube] fd2y0F7Zctk: This video is not available
+[2026-02-07 18:16:40] FAILED AAm2MwNOANc: [0;31mERROR:[0m [youtube] AAm2MwNOANc: This video is not available
+[2026-02-07 18:22:48] FAILED wmKcpGvZ-XQ: [0;31mERROR:[0m [youtube] wmKcpGvZ-XQ: This video is not available
+[2026-02-07 18:24:37] FAILED 1iafRQcez8g: [0;31mERROR:[0m [youtube] 1iafRQcez8g: This video is not available
+[2026-02-07 18:25:55] FAILED nMtflERvzmE: [0;31mERROR:[0m [youtube] nMtflERvzmE: This video is not available
+[2026-02-07 18:26:40] FAILED WNi8Mb4eX2I: [0;31mERROR:[0m [youtube] WNi8Mb4eX2I: This video is not available
+[2026-02-07 18:31:20] FAILED KajqM9zERCU: [0;31mERROR:[0m [youtube] KajqM9zERCU: This video is not available
+[2026-02-07 18:38:23] === Summary ===
+[2026-02-07 18:38:23] Processed: 18
+[2026-02-07 18:38:23] Failed: 12
+[2026-02-07 18:38:23] With subtitles: 18
+[2026-02-07 18:38:23] No subtitles: 0
+[2026-02-07 18:38:23] Cleaned transcripts (non-empty): 18
+[2026-02-07 18:38:23] Transcript source counts: {'manual': 0, 'auto_generated': 18, 'none': 0}
+[2026-02-07 18:38:23] Subtitle language counts: {'en': 18}
+[2026-02-07 18:38:23] Rate-limited events: 0
+[2026-02-07 18:38:23] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 12}
+[2026-02-07 18:38:23] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

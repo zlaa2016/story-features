@@ -1,0 +1,16 @@
+[2026-02-02 23:16:01] Playlist URL: https://www.youtube.com/@kgmerlo1306/videos
+[2026-02-02 23:16:01] Playlist title: K G Merlo - Videos
+[2026-02-02 23:16:01] Total videos: 34
+[2026-02-02 23:16:01] Cookies file: cookies_3.txt
+[2026-02-02 23:16:01] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 23:53:12] === Summary ===
+[2026-02-02 23:53:12] Processed: 34
+[2026-02-02 23:53:12] Failed: 0
+[2026-02-02 23:53:12] With subtitles: 34
+[2026-02-02 23:53:12] No subtitles: 0
+[2026-02-02 23:53:12] Cleaned transcripts (non-empty): 34
+[2026-02-02 23:53:12] Transcript source counts: {'manual': 0, 'auto_generated': 34, 'none': 0}
+[2026-02-02 23:53:12] Subtitle language counts: {'en': 34}
+[2026-02-02 23:53:12] Rate-limited events: 0
+[2026-02-02 23:53:12] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 23:53:12] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,22 @@
+[2026-02-07 15:38:03] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzM1f3swtGcCEtVu1glVUzgZ&si=dJn1D3GzoD91a4GW
+[2026-02-07 15:38:03] Playlist title: MyView Literacy Fourth Grade
+[2026-02-07 15:38:03] Total videos: 28
+[2026-02-07 15:38:03] Cookies file: cookies_3.txt
+[2026-02-07 15:38:03] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 15:38:06] FAILED he6NssW8n5I: [0;31mERROR:[0m [youtube] he6NssW8n5I: This video is not available
+[2026-02-07 15:57:52] FAILED XwCTY8OPm28: [0;31mERROR:[0m [youtube] XwCTY8OPm28: This video is not available
+[2026-02-07 16:00:09] FAILED g54UWacEkR0: [0;31mERROR:[0m [youtube] g54UWacEkR0: This video is not available
+[2026-02-07 16:01:22] FAILED dg0C7Te5awA: [0;31mERROR:[0m [youtube] dg0C7Te5awA: This video is not available
+[2026-02-07 16:01:56] FAILED DDMlL7RL8KM: [0;31mERROR:[0m [youtube] DDMlL7RL8KM: This video is not available
+[2026-02-07 16:03:00] FAILED nJrE-OfNULQ: [0;31mERROR:[0m [youtube] nJrE-OfNULQ: This video is not available
+[2026-02-07 16:09:30] === Summary ===
+[2026-02-07 16:09:30] Processed: 22
+[2026-02-07 16:09:30] Failed: 6
+[2026-02-07 16:09:30] With subtitles: 22
+[2026-02-07 16:09:30] No subtitles: 0
+[2026-02-07 16:09:30] Cleaned transcripts (non-empty): 22
+[2026-02-07 16:09:30] Transcript source counts: {'manual': 0, 'auto_generated': 22, 'none': 0}
+[2026-02-07 16:09:30] Subtitle language counts: {'en': 22}
+[2026-02-07 16:09:30] Rate-limited events: 0
+[2026-02-07 16:09:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 6}
+[2026-02-07 16:09:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,25 @@
+[2026-02-07 14:43:59] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzPpKN0amv7JP7V2WJj4w-i6&si=KpZVCJTjVd0_wkXJ
+[2026-02-07 14:43:59] Playlist title: MyView Literacy Second Grade
+[2026-02-07 14:43:59] Total videos: 27
+[2026-02-07 14:43:59] Cookies file: cookies_3.txt
+[2026-02-07 14:43:59] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 14:44:39] FAILED p1Oovn48_mk: [0;31mERROR:[0m [youtube] p1Oovn48_mk: This video is not available
+[2026-02-07 14:48:30] FAILED 6qeQcENUn5A: [0;31mERROR:[0m [youtube] 6qeQcENUn5A: This video is not available
+[2026-02-07 14:49:19] FAILED lRbRLN6AdvE: [0;31mERROR:[0m [youtube] lRbRLN6AdvE: This video is not available
+[2026-02-07 14:53:14] FAILED xlHFUxDnxqA: [0;31mERROR:[0m [youtube] xlHFUxDnxqA: This video is not available
+[2026-02-07 15:02:13] FAILED gGoqh4cBUlU: [0;31mERROR:[0m [youtube] gGoqh4cBUlU: This video is not available
+[2026-02-07 15:04:35] FAILED 3PuFVeKuU0s: [0;31mERROR:[0m [youtube] 3PuFVeKuU0s: This video is not available
+[2026-02-07 15:07:15] FAILED iScEVxalbNA: [0;31mERROR:[0m [youtube] iScEVxalbNA: This video is not available
+[2026-02-07 15:08:10] FAILED eEupO346jHg: [0;31mERROR:[0m [youtube] eEupO346jHg: This video is not available
+[2026-02-07 15:09:41] FAILED YaI8TfOU4fw: [0;31mERROR:[0m [youtube] YaI8TfOU4fw: This video is not available
+[2026-02-07 15:13:04] === Summary ===
+[2026-02-07 15:13:04] Processed: 18
+[2026-02-07 15:13:04] Failed: 9
+[2026-02-07 15:13:04] With subtitles: 18
+[2026-02-07 15:13:04] No subtitles: 0
+[2026-02-07 15:13:04] Cleaned transcripts (non-empty): 18
+[2026-02-07 15:13:04] Transcript source counts: {'manual': 0, 'auto_generated': 18, 'none': 0}
+[2026-02-07 15:13:04] Subtitle language counts: {'en': 18}
+[2026-02-07 15:13:04] Rate-limited events: 0
+[2026-02-07 15:13:04] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 9}
+[2026-02-07 15:13:04] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

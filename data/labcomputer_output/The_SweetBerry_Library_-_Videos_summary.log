@@ -1,0 +1,16 @@
+[2026-02-02 20:17:24] Playlist URL: https://www.youtube.com/@thesweetberrylibrary2799/videos
+[2026-02-02 20:17:24] Playlist title: The SweetBerry Library - Videos
+[2026-02-02 20:17:24] Total videos: 4
+[2026-02-02 20:17:24] Cookies file: cookies_3.txt
+[2026-02-02 20:17:24] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 20:19:55] === Summary ===
+[2026-02-02 20:19:55] Processed: 4
+[2026-02-02 20:19:55] Failed: 0
+[2026-02-02 20:19:55] With subtitles: 4
+[2026-02-02 20:19:55] No subtitles: 0
+[2026-02-02 20:19:55] Cleaned transcripts (non-empty): 4
+[2026-02-02 20:19:55] Transcript source counts: {'manual': 0, 'auto_generated': 4, 'none': 0}
+[2026-02-02 20:19:55] Subtitle language counts: {'en': 4}
+[2026-02-02 20:19:55] Rate-limited events: 0
+[2026-02-02 20:19:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 20:19:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

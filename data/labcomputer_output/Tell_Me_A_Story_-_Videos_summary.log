@@ -1,0 +1,29 @@
+[2026-02-05 19:55:00] Playlist URL: https://www.youtube.com/@tellmeastory4608/videos
+[2026-02-05 19:55:00] Playlist title: Tell Me A Story - Videos
+[2026-02-05 19:55:00] Total videos: 13
+[2026-02-05 19:55:00] Cookies file: cookies_3.txt
+[2026-02-05 19:55:00] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-05 19:55:02] FAILED 4CYUSq2yiRs: [0;31mERROR:[0m [youtube] 4CYUSq2yiRs: This video is not available
+[2026-02-05 19:56:30] FAILED DJa6KL-ixIU: [0;31mERROR:[0m [youtube] DJa6KL-ixIU: This video is not available
+[2026-02-05 19:57:09] FAILED ChPmhIpNnRw: [0;31mERROR:[0m [youtube] ChPmhIpNnRw: This video is not available
+[2026-02-05 19:57:46] FAILED pAIJeypsjrw: [0;31mERROR:[0m [youtube] pAIJeypsjrw: This video is not available
+[2026-02-05 19:59:07] FAILED gGrLWqrwMYs: [0;31mERROR:[0m [youtube] gGrLWqrwMYs: This video is not available
+[2026-02-05 20:00:31] FAILED OhnTYI2jH2Q: [0;31mERROR:[0m [youtube] OhnTYI2jH2Q: This video is not available
+[2026-02-05 20:01:20] FAILED R2j9uu1-xnc: [0;31mERROR:[0m [youtube] R2j9uu1-xnc: This video is not available
+[2026-02-05 20:02:21] FAILED DzGp5L36jCc: [0;31mERROR:[0m [youtube] DzGp5L36jCc: This video is not available
+[2026-02-05 20:03:06] FAILED qiHpuDsXGAA: [0;31mERROR:[0m [youtube] qiHpuDsXGAA: This video is not available
+[2026-02-05 20:03:43] FAILED QSlX2MivPQc: [0;31mERROR:[0m [youtube] QSlX2MivPQc: This video is not available
+[2026-02-05 20:04:21] FAILED C5DonNTdlHQ: [0;31mERROR:[0m [youtube] C5DonNTdlHQ: This video is not available
+[2026-02-05 20:05:53] FAILED psX1WZ5nGBM: [0;31mERROR:[0m [youtube] psX1WZ5nGBM: This video is not available
+[2026-02-05 20:06:29] FAILED h5FBKIH6Tgo: [0;31mERROR:[0m [youtube] h5FBKIH6Tgo: This video is not available
+[2026-02-05 20:06:29] === Summary ===
+[2026-02-05 20:06:29] Processed: 0
+[2026-02-05 20:06:29] Failed: 13
+[2026-02-05 20:06:29] With subtitles: 0
+[2026-02-05 20:06:29] No subtitles: 0
+[2026-02-05 20:06:29] Cleaned transcripts (non-empty): 0
+[2026-02-05 20:06:29] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-05 20:06:29] Subtitle language counts: {}
+[2026-02-05 20:06:29] Rate-limited events: 0
+[2026-02-05 20:06:29] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 13}
+[2026-02-05 20:06:29] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

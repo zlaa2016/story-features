@@ -1,0 +1,37 @@
+[2026-02-07 22:56:13] Playlist URL: https://www.youtube.com/@thestoryhub9912/videos
+[2026-02-07 22:56:13] Playlist title: TheStoryHub - Videos
+[2026-02-07 22:56:13] Total videos: 21
+[2026-02-07 22:56:13] Cookies file: cookies_3.txt
+[2026-02-07 22:56:13] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 22:56:16] FAILED 44EjGkmQuKo: [0;31mERROR:[0m [youtube] 44EjGkmQuKo: This video is not available
+[2026-02-07 22:57:40] FAILED Wvaai0mGnBI: [0;31mERROR:[0m [youtube] Wvaai0mGnBI: This video is not available
+[2026-02-07 22:58:14] FAILED 8p9wNBkEHbY: [0;31mERROR:[0m [youtube] 8p9wNBkEHbY: This video is not available
+[2026-02-07 22:58:58] FAILED HBp6rO6nGjI: [0;31mERROR:[0m [youtube] HBp6rO6nGjI: This video is not available
+[2026-02-07 22:59:48] FAILED w0wlED9UqvQ: [0;31mERROR:[0m [youtube] w0wlED9UqvQ: This video is not available
+[2026-02-07 23:00:40] FAILED sNfQFQJ0Tu8: [0;31mERROR:[0m [youtube] sNfQFQJ0Tu8: This video is not available
+[2026-02-07 23:01:47] FAILED 8u-1jqfTUts: [0;31mERROR:[0m [youtube] 8u-1jqfTUts: This video is not available
+[2026-02-07 23:02:31] FAILED DrzTA4cIs1c: [0;31mERROR:[0m [youtube] DrzTA4cIs1c: This video is not available
+[2026-02-07 23:03:47] FAILED Fsl9Y6Menjc: [0;31mERROR:[0m [youtube] Fsl9Y6Menjc: This video is not available
+[2026-02-07 23:04:47] FAILED EHccfDWxakM: [0;31mERROR:[0m [youtube] EHccfDWxakM: This video is not available
+[2026-02-07 23:05:37] FAILED BwHaUFUHoS8: [0;31mERROR:[0m [youtube] BwHaUFUHoS8: This video is not available
+[2026-02-07 23:06:19] FAILED hhmWBeI0SUQ: [0;31mERROR:[0m [youtube] hhmWBeI0SUQ: This video is not available
+[2026-02-07 23:07:32] FAILED xi3Tm-uukrg: [0;31mERROR:[0m [youtube] xi3Tm-uukrg: This video is not available
+[2026-02-07 23:08:47] FAILED QMf_NoxgbK0: [0;31mERROR:[0m [youtube] QMf_NoxgbK0: This video is not available
+[2026-02-07 23:09:32] FAILED W50DNT33cnU: [0;31mERROR:[0m [youtube] W50DNT33cnU: This video is not available
+[2026-02-07 23:10:42] FAILED _LY0UVBLq7Q: [0;31mERROR:[0m [youtube] _LY0UVBLq7Q: This video is not available
+[2026-02-07 23:11:21] FAILED i9dXoz9z4R0: [0;31mERROR:[0m [youtube] i9dXoz9z4R0: This video is not available
+[2026-02-07 23:12:09] FAILED V4CyDQ81ius: [0;31mERROR:[0m [youtube] V4CyDQ81ius: This video is not available
+[2026-02-07 23:13:41] FAILED 4zl8x_F9O30: [0;31mERROR:[0m [youtube] 4zl8x_F9O30: This video is not available
+[2026-02-07 23:15:03] FAILED p8TUPPrHa5U: [0;31mERROR:[0m [youtube] p8TUPPrHa5U: This video is not available
+[2026-02-07 23:16:04] FAILED ktTI_K-lqeA: [0;31mERROR:[0m [youtube] ktTI_K-lqeA: This video is not available
+[2026-02-07 23:16:04] === Summary ===
+[2026-02-07 23:16:04] Processed: 0
+[2026-02-07 23:16:04] Failed: 21
+[2026-02-07 23:16:04] With subtitles: 0
+[2026-02-07 23:16:04] No subtitles: 0
+[2026-02-07 23:16:04] Cleaned transcripts (non-empty): 0
+[2026-02-07 23:16:04] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-07 23:16:04] Subtitle language counts: {}
+[2026-02-07 23:16:04] Rate-limited events: 0
+[2026-02-07 23:16:04] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 21}
+[2026-02-07 23:16:04] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

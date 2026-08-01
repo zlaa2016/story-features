@@ -1,0 +1,16 @@
+[2026-02-02 18:45:12] Playlist URL: https://youtube.com/playlist?list=PLIZWwnQt2lOcqUPpIU5MR-QbrNKkxwLnR&si=rPGiYTPCU955MHP9
+[2026-02-02 18:45:12] Playlist title: Women's History Month
+[2026-02-02 18:45:12] Total videos: 15
+[2026-02-02 18:45:12] Cookies file: cookies_3.txt
+[2026-02-02 18:45:12] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 19:00:00] === Summary ===
+[2026-02-02 19:00:00] Processed: 15
+[2026-02-02 19:00:00] Failed: 0
+[2026-02-02 19:00:00] With subtitles: 15
+[2026-02-02 19:00:00] No subtitles: 0
+[2026-02-02 19:00:00] Cleaned transcripts (non-empty): 15
+[2026-02-02 19:00:00] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-02-02 19:00:00] Subtitle language counts: {'en': 15}
+[2026-02-02 19:00:00] Rate-limited events: 0
+[2026-02-02 19:00:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 19:00:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

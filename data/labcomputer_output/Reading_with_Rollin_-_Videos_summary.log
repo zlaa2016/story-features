@@ -1,0 +1,40 @@
+[2026-02-07 09:56:23] Playlist URL: https://www.youtube.com/@RollinYeatts/videos
+[2026-02-07 09:56:23] Playlist title: Reading with Rollin - Videos
+[2026-02-07 09:56:23] Total videos: 24
+[2026-02-07 09:56:23] Cookies file: cookies_3.txt
+[2026-02-07 09:56:23] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 09:56:26] FAILED FFN-kk4kYX8: [0;31mERROR:[0m [youtube] FFN-kk4kYX8: This video is not available
+[2026-02-07 09:57:51] FAILED kjwHyod5KsI: [0;31mERROR:[0m [youtube] kjwHyod5KsI: This video is not available
+[2026-02-07 09:58:25] FAILED ORfrBWLhK9M: [0;31mERROR:[0m [youtube] ORfrBWLhK9M: This video is not available
+[2026-02-07 09:59:20] FAILED kpf-_9c-az8: [0;31mERROR:[0m [youtube] kpf-_9c-az8: This video is not available
+[2026-02-07 10:00:12] FAILED 9DceZAyTFv4: [0;31mERROR:[0m [youtube] 9DceZAyTFv4: This video is not available
+[2026-02-07 10:01:05] FAILED s2GDl1U7nmU: [0;31mERROR:[0m [youtube] s2GDl1U7nmU: This video is not available
+[2026-02-07 10:01:54] FAILED sNupP-fEhes: [0;31mERROR:[0m [youtube] sNupP-fEhes: This video is not available
+[2026-02-07 10:02:57] FAILED c-8g3C157mU: [0;31mERROR:[0m [youtube] c-8g3C157mU: This video is not available
+[2026-02-07 10:04:25] FAILED 1Z_xP9GfZDM: [0;31mERROR:[0m [youtube] 1Z_xP9GfZDM: This video is not available
+[2026-02-07 10:05:49] FAILED XI0CmhJK7TY: [0;31mERROR:[0m [youtube] XI0CmhJK7TY: This video is not available
+[2026-02-07 10:06:51] FAILED y22H2EUy_Cs: [0;31mERROR:[0m [youtube] y22H2EUy_Cs: This video is not available
+[2026-02-07 10:08:04] FAILED u2FKJf_QdMM: [0;31mERROR:[0m [youtube] u2FKJf_QdMM: This video is not available
+[2026-02-07 10:09:03] FAILED yWrx4steQUs: [0;31mERROR:[0m [youtube] yWrx4steQUs: This video is not available
+[2026-02-07 10:09:57] FAILED rhRZNIc9NZs: [0;31mERROR:[0m [youtube] rhRZNIc9NZs: This video is not available
+[2026-02-07 10:10:57] FAILED 5aW2a802_6k: [0;31mERROR:[0m [youtube] 5aW2a802_6k: This video is not available
+[2026-02-07 10:12:26] FAILED e517Xf61eio: [0;31mERROR:[0m [youtube] e517Xf61eio: This video is not available
+[2026-02-07 10:13:37] FAILED tV3V9tJScGg: [0;31mERROR:[0m [youtube] tV3V9tJScGg: This video is not available
+[2026-02-07 10:15:07] FAILED 0E-YuLUvitg: [0;31mERROR:[0m [youtube] 0E-YuLUvitg: This video is not available
+[2026-02-07 10:16:12] FAILED F_FRXZ5mBxs: [0;31mERROR:[0m [youtube] F_FRXZ5mBxs: This video is not available
+[2026-02-07 10:17:06] FAILED ClaycycELPg: [0;31mERROR:[0m [youtube] ClaycycELPg: This video is not available
+[2026-02-07 10:18:12] FAILED EdAzcrZdEsA: [0;31mERROR:[0m [youtube] EdAzcrZdEsA: This video is not available
+[2026-02-07 10:19:13] FAILED lUrLli5FhS8: [0;31mERROR:[0m [youtube] lUrLli5FhS8: This video is not available
+[2026-02-07 10:20:03] FAILED y4JrRsG_hS0: [0;31mERROR:[0m [youtube] y4JrRsG_hS0: This video is not available
+[2026-02-07 10:20:55] FAILED X3vVNT_hcxE: [0;31mERROR:[0m [youtube] X3vVNT_hcxE: This video is not available
+[2026-02-07 10:20:55] === Summary ===
+[2026-02-07 10:20:55] Processed: 0
+[2026-02-07 10:20:55] Failed: 24
+[2026-02-07 10:20:55] With subtitles: 0
+[2026-02-07 10:20:55] No subtitles: 0
+[2026-02-07 10:20:55] Cleaned transcripts (non-empty): 0
+[2026-02-07 10:20:55] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-07 10:20:55] Subtitle language counts: {}
+[2026-02-07 10:20:55] Rate-limited events: 0
+[2026-02-07 10:20:55] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 24}
+[2026-02-07 10:20:55] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

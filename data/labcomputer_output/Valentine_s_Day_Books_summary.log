@@ -1,0 +1,48 @@
+[2026-02-02 14:39:39] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-02 14:39:39] Playlist title: Valentine's Day Books
+[2026-02-02 14:39:39] Total videos: 17
+[2026-02-02 14:39:39] Cookies file: cookies.txt
+[2026-02-02 14:39:39] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 14:39:40] FAILED u8ogzRKB_dI: [0;31mERROR:[0m [youtube] u8ogzRKB_dI: This video is not available
+[2026-02-02 14:40:19] FAILED St-FfbtF5Ms: [0;31mERROR:[0m [youtube] St-FfbtF5Ms: This video is not available
+[2026-02-02 14:44:05] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-02 14:44:05] Playlist title: Valentine's Day Books
+[2026-02-02 14:44:05] Total videos: 17
+[2026-02-02 14:44:05] Cookies file: cookies.txt
+[2026-02-02 14:44:05] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 14:44:06] FAILED u8ogzRKB_dI: [0;31mERROR:[0m [youtube] u8ogzRKB_dI: This video is not available
+[2026-02-02 14:44:53] FAILED St-FfbtF5Ms: [0;31mERROR:[0m [youtube] St-FfbtF5Ms: This video is not available
+[2026-02-02 14:45:45] FAILED U8b-C12AxgY: [0;31mERROR:[0m [youtube] U8b-C12AxgY: This video is not available
+[2026-02-02 14:50:50] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-02 14:50:50] Playlist title: Valentine's Day Books
+[2026-02-02 14:50:50] Total videos: 17
+[2026-02-02 14:50:50] Cookies file: cookies.txt
+[2026-02-02 14:50:50] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 14:50:51] FAILED u8ogzRKB_dI: [0;31mERROR:[0m [youtube] u8ogzRKB_dI: This video is not available
+[2026-02-02 14:52:15] FAILED St-FfbtF5Ms: [0;31mERROR:[0m [youtube] St-FfbtF5Ms: This video is not available
+[2026-02-02 14:53:45] FAILED U8b-C12AxgY: [0;31mERROR:[0m [youtube] U8b-C12AxgY: This video is not available
+[2026-02-02 14:54:31] FAILED 9-xNOVXheDg: [0;31mERROR:[0m [youtube] 9-xNOVXheDg: This video is not available
+[2026-02-02 14:55:53] FAILED tVyfEt064R0: [0;31mERROR:[0m [youtube] tVyfEt064R0: This video is not available
+[2026-02-02 14:56:43] FAILED FXDmJzoM5pk: [0;31mERROR:[0m [youtube] FXDmJzoM5pk: This video is not available
+[2026-02-02 15:00:36] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-02 15:00:36] Playlist title: Valentine's Day Books
+[2026-02-02 15:00:36] Total videos: 17
+[2026-02-02 15:00:36] Cookies file: cookies.txt
+[2026-02-02 15:00:36] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 15:00:38] FAILED u8ogzRKB_dI: [0;31mERROR:[0m [youtube] u8ogzRKB_dI: This video is not available
+[2026-02-02 15:05:55] Playlist URL: https://youtube.com/playlist?list=PLti4Bxmb7u9z1w0HsO9yYGxtKK0ne0cJI&si=q34qLo6LGg42xzkV
+[2026-02-02 15:05:55] Playlist title: Valentine's Day Books
+[2026-02-02 15:05:55] Total videos: 17
+[2026-02-02 15:05:55] Cookies file: cookies_3.txt
+[2026-02-02 15:05:55] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-02 15:24:01] === Summary ===
+[2026-02-02 15:24:01] Processed: 17
+[2026-02-02 15:24:01] Failed: 0
+[2026-02-02 15:24:01] With subtitles: 17
+[2026-02-02 15:24:01] No subtitles: 0
+[2026-02-02 15:24:01] Cleaned transcripts (non-empty): 17
+[2026-02-02 15:24:01] Transcript source counts: {'manual': 0, 'auto_generated': 17, 'none': 0}
+[2026-02-02 15:24:01] Subtitle language counts: {'en': 17}
+[2026-02-02 15:24:01] Rate-limited events: 0
+[2026-02-02 15:24:01] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-02 15:24:01] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

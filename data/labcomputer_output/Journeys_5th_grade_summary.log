@@ -1,0 +1,21 @@
+[2026-02-07 19:06:54] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzOYOM8O5SmLV4BXTcDnyT1M&si=A0F5t642nDaPUKBA
+[2026-02-07 19:06:54] Playlist title: Journeys 5th grade
+[2026-02-07 19:06:54] Total videos: 25
+[2026-02-07 19:06:54] Cookies file: cookies_3.txt
+[2026-02-07 19:06:54] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-07 19:09:19] FAILED C_i6gaHx_n8: [0;31mERROR:[0m [youtube] C_i6gaHx_n8: This video is not available
+[2026-02-07 19:20:54] FAILED oI9RMnJ4MGs: [0;31mERROR:[0m [youtube] oI9RMnJ4MGs: This video is not available
+[2026-02-07 19:22:05] FAILED bnB9ShqdVwk: [0;31mERROR:[0m [youtube] bnB9ShqdVwk: This video is not available
+[2026-02-07 19:22:56] FAILED DH8_Tqjn8v0: [0;31mERROR:[0m [youtube] DH8_Tqjn8v0: This video is not available
+[2026-02-07 19:24:19] FAILED 95uNCbEOIbk: [0;31mERROR:[0m [youtube] 95uNCbEOIbk: This video is not available
+[2026-02-07 19:34:10] === Summary ===
+[2026-02-07 19:34:10] Processed: 20
+[2026-02-07 19:34:10] Failed: 5
+[2026-02-07 19:34:10] With subtitles: 20
+[2026-02-07 19:34:10] No subtitles: 0
+[2026-02-07 19:34:10] Cleaned transcripts (non-empty): 20
+[2026-02-07 19:34:10] Transcript source counts: {'manual': 0, 'auto_generated': 20, 'none': 0}
+[2026-02-07 19:34:10] Subtitle language counts: {'en': 20}
+[2026-02-07 19:34:10] Rate-limited events: 0
+[2026-02-07 19:34:10] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 5}
+[2026-02-07 19:34:10] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

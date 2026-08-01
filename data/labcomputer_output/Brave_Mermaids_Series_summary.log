@@ -1,0 +1,19 @@
+[2026-02-08 00:30:32] Playlist URL: https://youtube.com/playlist?list=PLCIyuhjHK4eNApRRaW1QDhVOn0OYMMjJA&si=XpEi3imFI04zVTTg
+[2026-02-08 00:30:32] Playlist title: Brave Mermaids Series
+[2026-02-08 00:30:32] Total videos: 3
+[2026-02-08 00:30:32] Cookies file: cookies_3.txt
+[2026-02-08 00:30:32] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-08 00:30:36] FAILED jbfv9M_7J4g: [0;31mERROR:[0m [youtube] jbfv9M_7J4g: This video is not available
+[2026-02-08 00:31:12] FAILED bgnqypkxyp4: [0;31mERROR:[0m [youtube] bgnqypkxyp4: This video is not available
+[2026-02-08 00:32:24] FAILED 48IlooRm8rc: [0;31mERROR:[0m [youtube] 48IlooRm8rc: This video is not available
+[2026-02-08 00:32:24] === Summary ===
+[2026-02-08 00:32:24] Processed: 0
+[2026-02-08 00:32:24] Failed: 3
+[2026-02-08 00:32:24] With subtitles: 0
+[2026-02-08 00:32:24] No subtitles: 0
+[2026-02-08 00:32:24] Cleaned transcripts (non-empty): 0
+[2026-02-08 00:32:24] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-02-08 00:32:24] Subtitle language counts: {}
+[2026-02-08 00:32:24] Rate-limited events: 0
+[2026-02-08 00:32:24] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 3}
+[2026-02-08 00:32:24] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,22 @@
+[2026-02-08 17:29:43] Playlist URL: https://youtube.com/playlist?list=PL65ijVzWl9ktdwo9hGhxBeN8FQoBzucVf&si=GBkS9mP7JTUiKo_0
+[2026-02-08 17:29:43] Playlist title: Learn to Read | Oxford Owl
+[2026-02-08 17:29:43] Total videos: 63
+[2026-02-08 17:29:43] Cookies file: cookies_3.txt
+[2026-02-08 17:29:43] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-08 17:32:11] FAILED ccl7la0Mad8: [0;31mERROR:[0m [youtube] ccl7la0Mad8: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:17:33] FAILED -HFN_e5LvHo: [0;31mERROR:[0m [youtube] -HFN_e5LvHo: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:18:56] FAILED fEn7-or7e3E: [0;31mERROR:[0m [youtube] fEn7-or7e3E: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:23:14] FAILED dgecDh4HXIQ: [0;31mERROR:[0m [youtube] dgecDh4HXIQ: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:23:53] FAILED kvdeRkCzWjI: [0;31mERROR:[0m [youtube] kvdeRkCzWjI: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:26:10] FAILED o24ZQZAPHfQ: [0;31mERROR:[0m [youtube] o24ZQZAPHfQ: Video unavailable. This video is no longer available due to a copyright claim by Oxford University Press
+[2026-02-08 18:38:40] === Summary ===
+[2026-02-08 18:38:40] Processed: 57
+[2026-02-08 18:38:40] Failed: 6
+[2026-02-08 18:38:40] With subtitles: 55
+[2026-02-08 18:38:40] No subtitles: 2
+[2026-02-08 18:38:40] Cleaned transcripts (non-empty): 55
+[2026-02-08 18:38:40] Transcript source counts: {'manual': 0, 'auto_generated': 55, 'none': 2}
+[2026-02-08 18:38:40] Subtitle language counts: {'en': 55}
+[2026-02-08 18:38:40] Rate-limited events: 0
+[2026-02-08 18:38:40] Failure reasons: {'rate_limited': 0, 'unavailable': 6, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-02-08 18:38:40] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

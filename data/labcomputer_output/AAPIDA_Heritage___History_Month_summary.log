@@ -1,0 +1,41 @@
+[2026-02-09 06:27:33] Playlist URL: https://youtube.com/playlist?list=PLjVIYwHVcwLjrJVV-K-mUNF3FWXuDkrGW&si=xTvkOf4WGzNHNMWP
+[2026-02-09 06:27:33] Playlist title: AAPIDA Heritage & History Month
+[2026-02-09 06:27:33] Total videos: 26
+[2026-02-09 06:27:33] Cookies file: cookies_3.txt
+[2026-02-09 06:27:33] Sleep range: 30-90s, rate-limit sleep: 3600s, retries: 2
+[2026-02-09 06:27:36] FAILED OdpWUnEvcAY: [0;31mERROR:[0m [youtube] OdpWUnEvcAY: This video is not available
+[2026-02-09 06:29:05] FAILED wCix6zDYzhg: [0;31mERROR:[0m [youtube] wCix6zDYzhg: This video is not available
+[2026-02-09 06:30:37] FAILED jA9bzjd6hPw: [0;31mERROR:[0m [youtube] jA9bzjd6hPw: This video is not available
+[2026-02-09 06:31:15] FAILED Y0dZX1n3_3A: [0;31mERROR:[0m [youtube] Y0dZX1n3_3A: This video is not available
+[2026-02-09 06:31:57] FAILED GPsgw-TB6f4: [0;31mERROR:[0m [youtube] GPsgw-TB6f4: This video is not available
+[2026-02-09 06:32:37] FAILED hnAcVnKk6fk: [0;31mERROR:[0m [youtube] hnAcVnKk6fk: This video is not available
+[2026-02-09 06:33:35] FAILED tTNs-NJpTYk: [0;31mERROR:[0m [youtube] tTNs-NJpTYk: This video is not available
+[2026-02-09 06:34:32] FAILED LbbTwdht1hE: [0;31mERROR:[0m [youtube] LbbTwdht1hE: This video is not available
+[2026-02-09 06:35:17] FAILED FCkOzfXr_ns: [0;31mERROR:[0m [youtube] FCkOzfXr_ns: This video is not available
+[2026-02-09 06:36:05] FAILED RdMMkxldUB0: [0;31mERROR:[0m [youtube] RdMMkxldUB0: This video is not available
+[2026-02-09 06:36:45] FAILED LWxLtFkyAvI: [0;31mERROR:[0m [youtube] LWxLtFkyAvI: This video is not available
+[2026-02-09 06:37:28] FAILED h8BrlwxGrTw: [0;31mERROR:[0m [youtube] h8BrlwxGrTw: This video is not available
+[2026-02-09 06:38:55] FAILED xsxY_UXzwRQ: [0;31mERROR:[0m [youtube] xsxY_UXzwRQ: This video is not available
+[2026-02-09 06:39:47] FAILED DXlTXLFO5Bw: [0;31mERROR:[0m [youtube] DXlTXLFO5Bw: This video is not available
+[2026-02-09 06:40:45] FAILED J6YKqWVaYM4: [0;31mERROR:[0m [youtube] J6YKqWVaYM4: This video is not available
+[2026-02-09 06:41:32] FAILED AdrhM-ZhRyw: [0;31mERROR:[0m [youtube] AdrhM-ZhRyw: This video is not available
+[2026-02-09 06:42:58] FAILED TTCbKTegjHI: [0;31mERROR:[0m [youtube] TTCbKTegjHI: This video is not available
+[2026-02-09 06:44:23] FAILED Ikn4s0H5zdQ: [0;31mERROR:[0m [youtube] Ikn4s0H5zdQ: This video is not available
+[2026-02-09 06:45:54] FAILED F2P-F1lifUE: [0;31mERROR:[0m [youtube] F2P-F1lifUE: This video is not available
+[2026-02-09 06:47:19] FAILED rOCEq38geBM: [0;31mERROR:[0m [youtube] rOCEq38geBM: This video is not available
+[2026-02-09 06:48:21] FAILED Gw2gllH_YJo: [0;31mERROR:[0m [youtube] Gw2gllH_YJo: This video is not available
+[2026-02-09 06:49:23] FAILED PYHpPza2SRo: [0;31mERROR:[0m [youtube] PYHpPza2SRo: This video is not available
+[2026-02-09 06:50:18] FAILED az6EQCohVYQ: [0;31mERROR:[0m [youtube] az6EQCohVYQ: This video is not available
+[2026-02-09 06:51:00] FAILED gJyVNhngk_c: [0;31mERROR:[0m [youtube] gJyVNhngk_c: This video is not available
+[2026-02-09 06:51:53] FAILED nzLNl-F3qOs: [0;31mERROR:[0m [youtube] nzLNl-F3qOs: This video is not available
+[2026-02-09 06:51:53] === Summary ===
+[2026-02-09 06:51:53] Processed: 1
+[2026-02-09 06:51:53] Failed: 25
+[2026-02-09 06:51:53] With subtitles: 1
+[2026-02-09 06:51:53] No subtitles: 0
+[2026-02-09 06:51:53] Cleaned transcripts (non-empty): 1
+[2026-02-09 06:51:53] Transcript source counts: {'manual': 0, 'auto_generated': 1, 'none': 0}
+[2026-02-09 06:51:53] Subtitle language counts: {'en': 1}
+[2026-02-09 06:51:53] Rate-limited events: 0
+[2026-02-09 06:51:53] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 25}
+[2026-02-09 06:51:53] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
