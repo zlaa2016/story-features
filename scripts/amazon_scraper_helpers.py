@@ -48,6 +48,43 @@ OUTPUT_COLUMN_MAPPING = {
     "customer_reviews_json": "Customer Reviews",
 }
 
+BATCH1_COLUMN_PRIORITY = [
+    "video_id",
+    "video_title",
+    "Source Csv Base",
+    "extraction_status",
+    "Nosub_Manual_Inspected",
+    "Title",
+    "Author",
+    "Publisher",
+    "Published Date",
+    "Categories",
+    "Summary",
+    "Book URL",
+    "Reading Age",
+    "Reading Age Source",
+    "Reading Age Customer",
+    "Reading Age Publisher",
+    "Grade Level",
+    "Print Length",
+    "ISBN-10",
+    "ISBN-13",
+    "Language",
+    "Format",
+    "Dimensions",
+    "Item Weight",
+    "Series",
+    "Average Rating",
+    "Num Reviews",
+    "Price",
+    "Review Summary",
+    "Editorial Reviews",
+    "About Author",
+    "Customer Reviews",
+    "Extracted Book Title",
+    "Amazon Search Query",
+]
+
 DEFAULT_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -113,17 +150,20 @@ def passthrough_csv_column_name(key: str) -> str:
 
 def merge_input_columns_into_book(book_details: Dict[str, Any], row: pd.Series) -> None:
     keys_in_book = set(book_details.keys())
+    existing_output_columns = {OUTPUT_COLUMN_MAPPING.get(key, key) for key in keys_in_book}
     for col in row.index:
         value = _serialize_cell(row[col])
         key = col
-        if key in keys_in_book:
-            key = f"extracted_{col}"
+        target_col = OUTPUT_COLUMN_MAPPING.get(key, key)
+        if key in keys_in_book or target_col in existing_output_columns:
+            key = f"source_{col}"
             suffix = 1
-            while key in keys_in_book:
-                key = f"extracted_{col}_{suffix}"
+            while key in keys_in_book or OUTPUT_COLUMN_MAPPING.get(key, key) in existing_output_columns:
+                key = f"source_{col}_{suffix}"
                 suffix += 1
         book_details[key] = value
         keys_in_book.add(key)
+        existing_output_columns.add(OUTPUT_COLUMN_MAPPING.get(key, key))
 
 
 def build_source_merge_key(row: pd.Series, title_column: str, fallback_title: str = "") -> str:
@@ -780,6 +820,9 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
         existing_data = pd.concat([existing_data, pd.DataFrame(new_books)], ignore_index=True)
     if new_books or updated_rows:
         csv_file.parent.mkdir(parents=True, exist_ok=True)
+        priority = [col for col in BATCH1_COLUMN_PRIORITY if col in existing_data.columns]
+        remainder = [col for col in existing_data.columns if col not in priority]
+        existing_data = existing_data[priority + remainder]
         existing_data.to_csv(csv_file, index=False)
 
 
