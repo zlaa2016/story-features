@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from amazon_scraper_common import (
+from amazon_scraper_helpers import (
     DEFAULT_HEADERS,
     asin_from_book_url,
     amazon_search_query_candidates,
@@ -23,11 +23,12 @@ from amazon_scraper_common import (
     extract_book_details_from_soup,
     load_title_rows,
     load_master_csv,
+    load_cookie_payload,
     merge_input_columns_into_book,
     normalized_title_value,
-    rate_limit_sleep,
     save_master_csv,
     simplify_video_title_for_query,
+    jittered_sleep,
     update_master_with_amazon_result,
 )
 
@@ -287,14 +288,24 @@ def process_book_titles(
     skip_rows: int,
     pending_only: bool,
     sleep: float,
+    sleep_jitter: float,
     timeout: int,
     status_column: Optional[str],
+    cookie_json: Optional[Path],
 ) -> int:
     df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows, status_column=status_column)
     if pending_only:
         df_titles = choose_rows_for_pending_only(df_titles, output_csv, title_column)
     master_df = load_master_csv(master_csv)
     session = requests.Session()
+    session.headers.update(DEFAULT_HEADERS)
+    for cookie in load_cookie_payload(cookie_json):
+        session.cookies.set(
+            cookie["name"],
+            cookie["value"],
+            domain=cookie.get("domain") or ".amazon.com",
+            path=cookie.get("path") or "/",
+        )
     processed = 0
     failed = 0
     skipped = 0
@@ -328,7 +339,7 @@ def process_book_titles(
                 if book_url:
                     search_query_used = query
                     break
-                rate_limit_sleep(sleep)
+                jittered_sleep(sleep, sleep_jitter)
             if not book_url:
                 not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
                 append_to_csv([not_found], output_csv)
@@ -348,7 +359,7 @@ def process_book_titles(
                 append_to_csv([not_found], output_csv)
                 update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
-                rate_limit_sleep(sleep)
+                jittered_sleep(sleep, sleep_jitter)
                 continue
             details["extracted_book_title"] = book_title
             details["amazon_search_query"] = search_query_used or primary_label
@@ -370,7 +381,7 @@ def process_book_titles(
             append_to_csv([not_found], output_csv)
             update_master_with_amazon_result(master_df, row, not_found)
             failed += 1
-        rate_limit_sleep(sleep)
+        jittered_sleep(sleep, sleep_jitter)
     save_master_csv(master_df, master_csv)
     print(f"Processed={processed} Failed={failed} Skipped={skipped} Output={output_csv}")
     return 0 if processed > 0 or skipped > 0 else 1
@@ -386,7 +397,9 @@ def main() -> None:
     ap.add_argument("--pending-only", action="store_true")
     ap.add_argument("--status-column", type=str, default="ready_for_amazon_search")
     ap.add_argument("--sleep", type=float, default=2.0)
+    ap.add_argument("--sleep-jitter", type=float, default=0.0)
     ap.add_argument("--timeout", type=int, default=30)
+    ap.add_argument("--cookie-json", type=Path, default=None)
     args = ap.parse_args()
     raise SystemExit(
         process_book_titles(
@@ -397,8 +410,10 @@ def main() -> None:
             skip_rows=args.skip_rows,
             pending_only=args.pending_only,
             sleep=args.sleep,
+            sleep_jitter=args.sleep_jitter,
             timeout=args.timeout,
             status_column=args.status_column,
+            cookie_json=args.cookie_json,
         )
     )
 

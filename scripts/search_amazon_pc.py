@@ -9,11 +9,12 @@ from typing import Optional
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from amazon_scraper_common import (
+from amazon_scraper_helpers import (
     asin_from_book_url,
     amazon_search_query_candidates,
     amazon_search_url,
@@ -22,17 +23,23 @@ from amazon_scraper_common import (
     build_source_merge_key,
     choose_rows_for_pending_only,
     extract_book_details_from_soup,
+    jittered_sleep,
+    load_cookie_payload,
     load_title_rows,
     load_master_csv,
     merge_input_columns_into_book,
     normalized_title_value,
-    rate_limit_sleep,
     save_master_csv,
     update_master_with_amazon_result,
 )
 
 
-def setup_driver(headless: bool = True) -> webdriver.Chrome:
+def setup_driver(
+    headless: bool = True,
+    cookie_json: Optional[Path] = None,
+    chrome_binary: Optional[str] = None,
+    chromedriver_binary: Optional[str] = None,
+) -> webdriver.Chrome:
     options = Options()
     if headless:
         options.add_argument("--headless=new")
@@ -40,9 +47,33 @@ def setup_driver(headless: bool = True) -> webdriver.Chrome:
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    driver = webdriver.Chrome(options=options)
+    if chrome_binary:
+        options.binary_location = chrome_binary
+    service = Service(executable_path=chromedriver_binary) if chromedriver_binary else None
+    driver = webdriver.Chrome(service=service, options=options)
     driver.implicitly_wait(5)
     driver.set_page_load_timeout(30)
+    if cookie_json is not None:
+        driver.get("https://www.amazon.com/")
+        for cookie in load_cookie_payload(cookie_json):
+            selenium_cookie = {
+                "name": cookie["name"],
+                "value": cookie["value"],
+                "domain": cookie.get("domain") or ".amazon.com",
+                "path": cookie.get("path") or "/",
+                "secure": bool(cookie.get("secure", False)),
+            }
+            expiry = cookie.get("expiry")
+            if expiry not in {None, "", "None"}:
+                try:
+                    selenium_cookie["expiry"] = int(expiry)
+                except Exception:
+                    pass
+            try:
+                driver.add_cookie(selenium_cookie)
+            except Exception:
+                continue
+        driver.get("https://www.amazon.com/")
     return driver
 
 
@@ -117,14 +148,23 @@ def process_book_titles(
     skip_rows: int,
     pending_only: bool,
     sleep: float,
+    sleep_jitter: float,
     headless: bool,
     status_column: Optional[str],
+    cookie_json: Optional[Path],
+    chrome_binary: Optional[str],
+    chromedriver_binary: Optional[str],
 ) -> int:
     df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows, status_column=status_column)
     if pending_only:
         df_titles = choose_rows_for_pending_only(df_titles, output_csv, title_column)
     master_df = load_master_csv(master_csv)
-    driver = setup_driver(headless=headless)
+    driver = setup_driver(
+        headless=headless,
+        cookie_json=cookie_json,
+        chrome_binary=chrome_binary,
+        chromedriver_binary=chromedriver_binary,
+    )
     processed = 0
     failed = 0
     skipped = 0
@@ -149,7 +189,7 @@ def process_book_titles(
                     if book_url:
                         search_query_used = query
                         break
-                    rate_limit_sleep(sleep)
+                    jittered_sleep(sleep, sleep_jitter)
                 if not book_url:
                     not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
                     append_to_csv([not_found], output_csv)
@@ -170,7 +210,7 @@ def process_book_titles(
                 append_to_csv([not_found], output_csv)
                 update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
-            rate_limit_sleep(sleep)
+            jittered_sleep(sleep, sleep_jitter)
     finally:
         driver.quit()
     save_master_csv(master_df, master_csv)
@@ -188,6 +228,10 @@ def main() -> None:
     ap.add_argument("--pending-only", action="store_true")
     ap.add_argument("--status-column", type=str, default="ready_for_amazon_search")
     ap.add_argument("--sleep", type=float, default=5.0)
+    ap.add_argument("--sleep-jitter", type=float, default=0.0)
+    ap.add_argument("--cookie-json", type=Path, default=None)
+    ap.add_argument("--chrome-binary", type=str, default=None)
+    ap.add_argument("--chromedriver-binary", type=str, default=None)
     ap.add_argument("--show-browser", action="store_true")
     args = ap.parse_args()
     raise SystemExit(
@@ -199,8 +243,12 @@ def main() -> None:
             skip_rows=args.skip_rows,
             pending_only=args.pending_only,
             sleep=args.sleep,
+            sleep_jitter=args.sleep_jitter,
             headless=not args.show_browser,
             status_column=args.status_column,
+            cookie_json=args.cookie_json,
+            chrome_binary=args.chrome_binary,
+            chromedriver_binary=args.chromedriver_binary,
         )
     )
 
