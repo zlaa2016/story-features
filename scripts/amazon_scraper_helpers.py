@@ -890,7 +890,31 @@ def jittered_sleep(base_seconds: float, jitter_seconds: float = 0.0) -> float:
 def load_cookie_payload(cookie_path: Optional[Path]) -> List[Dict[str, Any]]:
     if cookie_path is None:
         return []
-    payload = json.loads(cookie_path.read_text())
+    text = cookie_path.read_text()
+    stripped = text.lstrip()
+    if stripped.startswith("# Netscape HTTP Cookie File"):
+        cookies: List[Dict[str, Any]] = []
+        for line in text.splitlines():
+            row = line.strip()
+            if not row or row.startswith("#"):
+                continue
+            parts = row.split("\t")
+            if len(parts) != 7:
+                continue
+            domain, _include_subdomains, path, secure_flag, expiry, name, value = parts
+            cookies.append(
+                {
+                    "name": name.strip(),
+                    "value": value.strip(),
+                    "domain": domain.strip() or ".amazon.com",
+                    "path": path.strip() or "/",
+                    "secure": secure_flag.strip().upper() == "TRUE",
+                    "expiry": expiry.strip(),
+                }
+            )
+        return cookies
+
+    payload = json.loads(text)
     if isinstance(payload, dict):
         cookies: List[Dict[str, Any]] = []
         for name, value in payload.items():
