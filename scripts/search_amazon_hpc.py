@@ -17,6 +17,7 @@ from amazon_scraper_common import (
     amazon_search_url,
     append_to_csv,
     build_not_found_placeholder,
+    build_pending_placeholder,
     build_source_merge_key,
     choose_rows_for_pending_only,
     extract_book_details_from_soup,
@@ -68,6 +69,10 @@ NEGATIVE_HINTS = {
 }
 
 STOPWORDS = {"the", "a", "an", "and", "of", "to", "for", "in", "on", "with", "book", "series"}
+
+
+class AmazonTemporaryBlockError(RuntimeError):
+    pass
 
 
 def normalize_for_match(text: str) -> str:
@@ -185,15 +190,46 @@ def score_result(
     return score, reasons
 
 
-def fetch_html(session: requests.Session, url: str, timeout: int) -> str:
-    resp = session.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
-    resp.raise_for_status()
-    return resp.text
+def looks_like_amazon_block_page(html: str) -> bool:
+    blob = html.lower()
+    checks = [
+        "sorry, we just need to make sure you're not a robot",
+        "enter the characters you see below",
+        "type the characters you see in this image",
+        "validatecaptcha",
+        "api-services-support@amazon.com",
+    ]
+    return any(token in blob for token in checks)
+
+
+def fetch_html(session: requests.Session, url: str, timeout: int, sleep: float, max_attempts: int = 4) -> str:
+    last_error: Optional[Exception] = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            resp = session.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
+            resp.raise_for_status()
+            html = resp.text
+            if looks_like_amazon_block_page(html):
+                raise AmazonTemporaryBlockError(f"Amazon temporary block detected for {url}")
+            return html
+        except AmazonTemporaryBlockError as exc:
+            last_error = exc
+            if attempt == max_attempts:
+                raise
+            rate_limit_sleep(max(sleep * (3 ** attempt), 15.0))
+        except Exception as exc:
+            last_error = exc
+            if attempt == max_attempts:
+                raise
+            rate_limit_sleep(max(sleep * (2 ** attempt), 10.0))
+    if last_error:
+        raise last_error
+    raise RuntimeError(f"Failed to fetch {url}")
 
 
 def fetch_optional_soup(session: requests.Session, url: str, timeout: int) -> Optional[BeautifulSoup]:
     try:
-        html = fetch_html(session, url, timeout=timeout)
+        html = fetch_html(session, url, timeout=timeout, sleep=5.0)
         return BeautifulSoup(html, "html.parser")
     except Exception:
         return None
@@ -203,12 +239,13 @@ def search_amazon_book(
     session: requests.Session,
     search_query: str,
     timeout: int,
+    sleep: float,
     book_title: str,
     story_title: str,
     author: str,
     video_title: str,
 ) -> Tuple[Optional[str], Optional[str]]:
-    html = fetch_html(session, amazon_search_url(search_query), timeout=timeout)
+    html = fetch_html(session, amazon_search_url(search_query), timeout=timeout, sleep=sleep)
     results = parse_search_results(html)
     if not results:
         return None, None
@@ -229,8 +266,8 @@ def search_amazon_book(
     return best_result["url"], best_result["title"]
 
 
-def get_book_details(session: requests.Session, book_url: str, timeout: int):
-    html = fetch_html(session, book_url, timeout=timeout)
+def get_book_details(session: requests.Session, book_url: str, timeout: int, sleep: float):
+    html = fetch_html(session, book_url, timeout=timeout, sleep=sleep)
     soup = BeautifulSoup(html, "html.parser")
     review_soups: List[BeautifulSoup] = []
     asin = asin_from_book_url(book_url)
@@ -282,6 +319,7 @@ def process_book_titles(
                     session,
                     query,
                     timeout=timeout,
+                    sleep=sleep,
                     book_title=book_title,
                     story_title=story_title,
                     author=author,
@@ -297,7 +335,7 @@ def process_book_titles(
                 update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
                 continue
-            details = get_book_details(session, book_url, timeout=timeout)
+            details = get_book_details(session, book_url, timeout=timeout, sleep=sleep)
             matched_overlap = max(
                 overlap_score(book_title, details.get("title", "")),
                 overlap_score(story_title, details.get("title", "")) if story_title else 0.0,
@@ -322,6 +360,11 @@ def process_book_titles(
             append_to_csv([details], output_csv)
             update_master_with_amazon_result(master_df, row, details)
             processed += 1
+        except AmazonTemporaryBlockError:
+            pending = build_pending_placeholder(row, book_title, primary_label, title_column, reason="TEMPORARY_BLOCK")
+            append_to_csv([pending], output_csv)
+            update_master_with_amazon_result(master_df, row, pending)
+            skipped += 1
         except Exception:
             not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
             append_to_csv([not_found], output_csv)

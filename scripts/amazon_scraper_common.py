@@ -316,6 +316,53 @@ def build_not_found_placeholder(row: pd.Series, book_title: str, search_query: s
     return payload
 
 
+def build_pending_placeholder(
+    row: pd.Series,
+    book_title: str,
+    search_query: str,
+    title_column: str,
+    reason: str = "TEMPORARY_BLOCK",
+) -> Dict[str, Any]:
+    source_id = _serialize_cell(row.get("video_id", "")) if "video_id" in row.index else ""
+    marker = f"{book_title}::{source_id}" if source_id else book_title
+    payload = {
+        "title": f"[PENDING_AMAZON] {marker}",
+        "author": "N/A",
+        "publisher": "N/A",
+        "published_date": "N/A",
+        "categories": "N/A",
+        "summary": "N/A",
+        "book_url": "N/A",
+        "reading_age": "N/A",
+        "reading_age_source": "N/A",
+        "reading_age_customer": "N/A",
+        "reading_age_publisher": "N/A",
+        "grade_level": "N/A",
+        "print_length": "N/A",
+        "isbn_10": "N/A",
+        "isbn_13": "N/A",
+        "language": "N/A",
+        "format_binding": "N/A",
+        "dimensions": "N/A",
+        "item_weight": "N/A",
+        "series": "N/A",
+        "average_rating": "N/A",
+        "num_reviews": "N/A",
+        "price": "N/A",
+        "customer_reviews_text": "N/A",
+        "editorial_reviews_text": "N/A",
+        "about_author": "N/A",
+        "customer_reviews_json": "N/A",
+        "all_metadata": {},
+        "extracted_book_title": _serialize_cell(row.get(title_column, book_title)),
+        "amazon_search_query": search_query,
+        "amazon_match_status": f"PENDING_{reason}",
+        "source_merge_key": build_source_merge_key(row, title_column, fallback_title=book_title),
+    }
+    merge_input_columns_into_book(payload, row)
+    return payload
+
+
 def extract_product_details_kv(soup: BeautifulSoup) -> Dict[str, str]:
     details: Dict[str, str] = {}
     for table_id in ["productDetailsTable", "productDetails_detailBullets_sections1"]:
@@ -693,17 +740,14 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
     else:
         existing_data = pd.DataFrame(columns=list(OUTPUT_COLUMN_MAPPING.values()))
     title_col = "Title" if "Title" in existing_data.columns else "Book Title"
-    if "Source Merge Key" not in existing_data.columns:
-        existing_data["Source Merge Key"] = ""
+    existing_data = ensure_columns(existing_data, ["Source Merge Key"])
     metadata_columns: List[str] = []
     for book in books_data:
         for key in (book.get("all_metadata") or {}).keys():
             col = metadata_key_to_column(key)
             if col not in metadata_columns:
                 metadata_columns.append(col)
-    for col in metadata_columns:
-        if col not in existing_data.columns:
-            existing_data[col] = ""
+    existing_data = ensure_columns(existing_data, metadata_columns)
     new_books: List[Dict[str, Any]] = []
     updated_rows = 0
     existing_titles = set(existing_data.get(title_col, pd.Series(dtype=str)).astype(str).str.lower().dropna().tolist())
@@ -723,21 +767,27 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
                 idx = existing_data[matches].index[0]
                 for col, value in row.items():
                     if col not in existing_data.columns:
-                        existing_data[col] = ""
+                        existing_data = ensure_columns(existing_data, [col])
                     existing_data.at[idx, col] = value
                 updated_rows += 1
                 continue
         if str(book.get("title", "")).lower() not in existing_titles:
             new_books.append(row)
-    for row in new_books:
-        for col in row:
-            if col not in existing_data.columns:
-                existing_data[col] = ""
+    pending_new_columns = sorted({col for row in new_books for col in row if col not in existing_data.columns})
+    existing_data = ensure_columns(existing_data, pending_new_columns)
     if new_books:
         existing_data = pd.concat([existing_data, pd.DataFrame(new_books)], ignore_index=True)
     if new_books or updated_rows:
         csv_file.parent.mkdir(parents=True, exist_ok=True)
         existing_data.to_csv(csv_file, index=False)
+
+
+def ensure_columns(df: pd.DataFrame, columns: Iterable[str], fill_value: str = "") -> pd.DataFrame:
+    missing = [col for col in columns if col not in df.columns]
+    if not missing:
+        return df
+    additions = pd.DataFrame(fill_value, index=df.index, columns=missing)
+    return pd.concat([df, additions], axis=1)
 
 
 def load_title_rows(input_csv: Path, skip_rows: int = 0, status_column: Optional[str] = None) -> Tuple[pd.DataFrame, str]:
@@ -889,7 +939,7 @@ def update_master_with_amazon_result(
     for col, value in {
         "has_amazon_match": match_status == "FOUND",
         "has_amazon_age": has_age,
-        "ready_for_amazon_search": False,
+        "ready_for_amazon_search": match_status.startswith("PENDING_"),
         "matched_but_missing_amazon_age": match_status == "FOUND" and not has_age,
     }.items():
         if col not in master_df.columns:
