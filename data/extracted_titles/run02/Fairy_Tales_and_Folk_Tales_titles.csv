@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,Rapunzel,,Fairy_Tales_and_Folk_Tales.csv,C65fLBkfm9A,The Story of Rapunzel | Disneyland Record 1969 | A Grimm Fairy Tale,,failed
+1970 Scholastic Record & Book,Henny Penny,,Fairy_Tales_and_Folk_Tales.csv,F7oMoWcdTUI,Henny Penny | Read-Along | 1970 Scholastic Record & Book | Vintage Children's Story,,success
+The Elves and the Shoemaker,The Elves and the Shoemaker,Brothers Grimm,Fairy_Tales_and_Folk_Tales.csv,GmC87kbY2kA,The Elves and the Shoemaker Story | Read-Along Scholastic Book Published in 1975 | Brothers Grimm,,success

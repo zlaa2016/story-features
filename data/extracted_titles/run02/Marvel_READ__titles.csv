@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Marvel Super Hero Adventures,Don't Get Mad,,Marvel_READ_.csv,-9HSTdrb8Mw,Marvel Super Hero Adventures: Don't Get Mad (Part 1) | Marvel Read!,,success
+Marvel Super Hero Adventures,Panic Island,,Marvel_READ_.csv,2ufoX0nHqvc,Marvel Super Hero Adventures: Panic Island | Marvel READ!,,success
+Marvel Super Hero Adventures,Spiders Everywhere,,Marvel_READ_.csv,3becuFpnKfA,Marvel Super Hero Adventures: Spiders Everywhere | Marvel READ!,,success
+,,,Marvel_READ_.csv,CgrRr6e5ho4,Marvel Super Hero Adventures: Slice of Life | Marvel READ!,,failed
+N/A,N/A,N/A,Marvel_READ_.csv,G0gEhKuQzlA,Marvel Super Hero Adventures: The Spider-Doctor | Marvel READ!,,failed

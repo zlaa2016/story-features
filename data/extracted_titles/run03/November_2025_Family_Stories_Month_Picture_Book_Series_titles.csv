@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+B. Bear and Lolly,Catch That Cookie!,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,I89VWgld2eU,B. Bear and Lolly: Catch That Cookie!,,success
+,,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,M2v0DLqU8iU,Taco Falls Apart,,failed
+How Old Is Mr. Tortoise?,,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,RgFkVemy6fE,How Old Is Mr. Tortoise?,,success
+Farmhouse,N/A,N/A,November_2025_Family_Stories_Month_Picture_Book_Series.csv,V-jK7a8SOj4,Farmhouse,,success

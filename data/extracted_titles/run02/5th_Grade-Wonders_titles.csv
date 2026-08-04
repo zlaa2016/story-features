@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Weslandia,,,5th_Grade-Wonders.csv,0093aQkfpZ8,Wonders Grade 5 Weslandia,,success
+Wonders,You Are My Music,,5th_Grade-Wonders.csv,2gi5xByFd78,Wonders Grade 5 You Are My Music,,success
+,,,5th_Grade-Wonders.csv,C7HBHtJ763Q,Wonders Grade 5 U6w4,,failed
+N/A,N/A,N/A,5th_Grade-Wonders.csv,F7tdX99BvIE,Wonders Grade 5 Who Wrote the US Constitution,,failed

@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Christmas Stories for Kids,Christmas Chaos in Monstropolis,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,rMPUykoSh8M,Christmas Chaos in Monstropolis | Christmas Stories for Kids,,success
+Moana,Our Perfect Stormy Day,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,8rgZDJLB2VU,MOANA Our Perfect Stormy Day | Bedtime Story Read Aloud,,success
+,,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,Ealm9p9fErU,"Disney INSIDE OUT - ""Riley & Bing Bong Band"" | Bedtime Story For Kids",,failed
+,,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,nqOoNay9msY,Nick and Judy TEAM UP To Crack The Easter Case,,failed
+Lilo & Stitch,Ride the Waves!,N/A,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,pR7hor8bTDo,LILO & STITCH Ride the Waves! | Bedtime Story Read Aloud,,success

@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,The_World_s_Worst.csv,sdBOIsMUSyk,THE WORLD'S WORST PETS - BAD BUNNY,,failed
+,,,The_World_s_Worst.csv,81ORi_XIbzk,THE WORLD'S WORST PETS - HAMSTERS vs GERBILS,,failed
+The World's Worst Pets,Furp the Fish,,The_World_s_Worst.csv,WdO1UkaNUI8,THE WORLD'S WORST PETS - FURP THE FISH,,success
+THE WORLD'S WORST PETS,ZOOM THE SUPERSONIC TORTOISE,N/A,The_World_s_Worst.csv,mfnBW7P51eE,THE WORLD'S WORST PETS - ZOOM THE SUPERSONIC TORTOISE,,success

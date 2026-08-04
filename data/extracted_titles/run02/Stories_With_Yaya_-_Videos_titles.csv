@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Bad Seed,,,Stories_With_Yaya_-_Videos.csv,BwVl4yliMCM,😈 The Bad Seed 🌻 | Funny & Heartwarming Read Aloud for Kids | Stories With Yaya 📚,,success
+,,,Stories_With_Yaya_-_Videos.csv,EXGhNBRt7i8,🍪 THE GINGERBREAD BOY 🍪 | Halloween Picture Book Read Aloud for Kids | Stories With Yaya 📚,,failed
+Strega Nona,Strega Nona,Tomie dePaola,Stories_With_Yaya_-_Videos.csv,FfXJ9fCuAHw,🍜 Strega Nona by Tomie dePaola | Magical Italian Tale Read Aloud for Kids | Stories With Yaya ✨,,success

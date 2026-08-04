@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,Happy Birthday Cupcake!,,Tell_Me_A_Story_-_Videos.csv,4CYUSq2yiRs,Happy Birthday Cupcake!,,failed
+Duffy The Famous Wing,Duffy The Famous Wing,,Tell_Me_A_Story_-_Videos.csv,C5DonNTdlHQ,Duffy The Famous Wing (Children’s Book Read Aloud),,success
+Little Acorn,,,Tell_Me_A_Story_-_Videos.csv,ChPmhIpNnRw,Little Acorn,,failed
+A Sloth Called Bob,A Sloth Called Bob,,Tell_Me_A_Story_-_Videos.csv,DJa6KL-ixIU,A Sloth Called Bob (Children's Book Read Aloud),,success
+The Boy With The Rainbow Heart,The Boy With The Rainbow Heart,N/A,Tell_Me_A_Story_-_Videos.csv,DzGp5L36jCc,The Boy With The Rainbow Heart (Children’s Book Read Aloud),,success

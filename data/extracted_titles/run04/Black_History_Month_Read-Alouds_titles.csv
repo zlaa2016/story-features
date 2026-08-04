@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+"Martin Luther King, Jr.",,,Black_History_Month_Read-Alouds.csv,b3CWeUH7An0,"National Geographic Jr. Martin Luther King, Jr.",,success
+I Have a Dream,I Have a Dream,"Dr. Martin Luther King, Jr.",Black_History_Month_Read-Alouds.csv,bm4Dh7NDfUI,"I Have A Dream Dr. Martin Luther King, Jr.",,success
+"Martin Luther King, Jr",N/A,My itty-bitty bio,Black_History_Month_Read-Alouds.csv,egGTC0J23aA,"Martin Luther King, Jr by My itty-bitty bio Read Aloud",,success

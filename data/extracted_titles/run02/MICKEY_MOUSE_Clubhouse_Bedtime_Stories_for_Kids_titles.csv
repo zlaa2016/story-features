@@ -1,0 +1,7 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,DONALD'S Ice-Skating Adventure,,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,4EkGEz0_oEk,"""DONALD'S Ice-Skating Adventure"" | Bedtime Stories for Kids",,failed
+Mickey's Christmas Carol,,,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,6-MTHn7EJAE,Mickey's Christmas Carol | Disney Bedtime Storybook,,success
+,Donald Duck Discovers a Treasure Map!,,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,7BsFtfiLovU,Donald Duck Discovers a Treasure Map! | Bedtime Story for Kids,,failed
+MICKEY MOUSE Clubhouse Christmas,,,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,C8EoqCgO344,MICKEY MOUSE Clubhouse Christmas | Christmas Stories for Kids,,success
+,,,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,FIM4hj3NhbY,Mickey Mouse Embarks On A Wild West Adventure,,failed
+N/A,N/A,N/A,MICKEY_MOUSE_Clubhouse_Bedtime_Stories_for_Kids.csv,GBR2Xpz1HY8,DONALD DUCK let loose at the County Fair! | Bedtime Story For Kids,,failed

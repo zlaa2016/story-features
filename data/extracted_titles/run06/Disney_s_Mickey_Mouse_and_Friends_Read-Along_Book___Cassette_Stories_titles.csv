@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Disney Discovery Series,Telling Time,,Disney_s_Mickey_Mouse_and_Friends_Read-Along_Book___Cassette_Stories.csv,7MbjxEnrde0,Disney Discovery Series - Telling Time (1987 Read-Along),,success
+,,,Disney_s_Mickey_Mouse_and_Friends_Read-Along_Book___Cassette_Stories.csv,T-R3RGzR2BI,The Talking Mickey Mouse Show - Mickey Mouse and Goofy Display Tape (1986 Disney/WoW Promo Cassette),,failed
+The Talking Mickey Mouse Show,The City Beneath the Sand,,Disney_s_Mickey_Mouse_and_Friends_Read-Along_Book___Cassette_Stories.csv,XNp9YyP7LZc,The Talking Mickey Mouse Show - The City Beneath the Sand (1986 Disney Worlds of Wonder Read-Along),,success
+Disney Read-Along,Donald’s Pooch Parlor,N/A,Disney_s_Mickey_Mouse_and_Friends_Read-Along_Book___Cassette_Stories.csv,o8ef5Yl-cuU,Mickey Mouse - Donald’s Pooch Parlor (1988 Disney Read-Along storybook & cassette),,success

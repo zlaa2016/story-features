@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Disney Bedtime Story,Who Stole MINNIE's Brownies?!,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,2NbOfgUOiW0,Who Stole MINNIE's Brownies?! | Disney Bedtime Story Read Aloud,,success
+,,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,8rgZDJLB2VU,MOANA Our Perfect Stormy Day | Bedtime Story Read Aloud,,failed
+NEMO is Having a Big Blue Christmas,Christmas Story for Kids,,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,De-YrDKqkv4,NEMO is Having a Big Blue Christmas | Christmas Story for Kids,,success
+N/A,Riley & Bing Bong Band,N/A,DISNEY_PIXAR_Bedtime_Stories_for_Kids.csv,Ealm9p9fErU,"Disney INSIDE OUT - ""Riley & Bing Bong Band"" | Bedtime Story For Kids",,failed

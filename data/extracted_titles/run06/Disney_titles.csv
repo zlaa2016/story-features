@@ -1,0 +1,31 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Palace Pets,Berry A Sweet Bunny For Snow White,,Disney.csv,smqvNQ_v7dw,Palace Pets - Berry A Sweet Bunny For Snow White,,success
+,,,Disney.csv,-jdidKcoHR0,Minnie and Mickey Mouse Fun Puzzle,,failed
+,,,Disney.csv,uuGGxNWbzhg,Minnie Mouse and Daisy Duck  Car Puzzle,,failed
+Cinderella,,,Disney.csv,v5sbp5bILew,Cinderella Fun Puzzle for Kids,,success
+,,,Disney.csv,08AC-EJDiE0,Baby Moana Beach Puzzle,,failed
+Rapanzel and Pascal Puzzle,Rapanzel and Pascal Puzzle,,Disney.csv,yj_6n4HGGLQ,Rapanzel and Pascal Puzzle,,success
+,Snow White Fun Puzzle,,Disney.csv,z44apizlUiM,Snow White Fun Puzzle,,failed
+Dumbo,,Disney,Disney.csv,2BwopHwMnc4,Dumbo|Disney Books|Kids Books,,success
+,,,Disney.csv,3Ud3dZWGals,Aladdin Princess Jasmine Fun Puzzle,,failed
+,,,Disney.csv,4U23PYZvoyQ,The Incredibles|Read to me books|Audio Books,,failed
+Walle Books,,,Disney.csv,DNWFCJH9dEQ,Walle Books|Books for Kids|Kids Books,,success
+,,,Disney.csv,EDn9TVMiM0M,Moana Fun Puzzle,,failed
+Disney Pixar Brave,,Disney Pixar,Disney.csv,FXKyQoUTUgY,Disney Pixar Brave|Books Read Aloud|Audio Books,,success
+,,,Disney.csv,HT7F_krSde8,Dumbo - Happy To Help,,failed
+Puppy Dog Pals,Design a Dog,,Disney.csv,Iso-F1K2nog,Puppy Dog Pals|Design a Dog|Books for kids,,success
+,,,Disney.csv,Iuj_aWkiQZo,Bambi and Friends Fun Puzzle,,failed
+,,,Disney.csv,PDSnS0Lu9I4,Dalmatians Fun Puzzle,,failed
+,,,Disney.csv,PVu02d1N63c,Cars - Protect and Serve,,failed
+,,,Disney.csv,Vys4-GGuvqI,Minnie and Mickey Mouse Car Puzzle - Fun To Watch,,failed
+,,,Disney.csv,W2-OLN_BFEk,Minnie Mouse and Daisy Duck Fun Puzzle,,failed
+Fuli Finds Her Place,,,Disney.csv,WtJ0wW8t7v8,The Lion Guard - Fuli Finds Her Place Book,,success
+Toy Story Books,The Bunny Surprise,,Disney.csv,XUtW1QDrySs,Toy Story |Toy Story Books|The Bunny Surprise,,success
+,,,Disney.csv,Z8yrFI4Do_8,Mickey Mouse Clubhouse - Minnie's Summer Vacation,,failed
+,,,Disney.csv,e8sN70TCeYE,The Incredibles - Super Annoying,,failed
+,,,Disney.csv,g50f8IdqaKM,Ralph Breaks The Internet - Game Time Book,,failed
+,,,Disney.csv,jOp6i_e3ItA,Disney The Lion King - A Day With Pumbaa,,failed
+Aladdin,Abu's Adventure,,Disney.csv,mUSmv9tuge4,ALADDIN - ABU'S ADVENTURE BOOK,,success
+The Lion King,,,Disney.csv,oefL9fSHlAQ,The Lion King|the lion king book|kids storybooks,,success
+The Incredibles,"Sweet Dreams, Jack-Jack",,Disney.csv,ofbtTpC5p_A,"The Incredibles - Sweet Dreams, Jack Jack Book",,success
+Rapunzel Finds A Friend,N/A,Disney,Disney.csv,qcV3SZjsW7E,Disney - Rapunzel Finds A Friend Book,,success

@@ -1,0 +1,10 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+A Bug's Life,,,Disney_Stories.csv,qwPvG_VcT8s,A Bug's Life (Storyteller),,success
+,,,Disney_Stories.csv,H1P-meqIEhc,"Monsters, Inc.",,failed
+The Lion King,,,Disney_Stories.csv,KVpgajYgagk,The Lion King (Storyteller),,success
+,,,Disney_Stories.csv,QA110IF2QYY,Atlantis: The Lost Empire (Storyteller),,failed
+The Black Cauldron,,,Disney_Stories.csv,Ws2-MSv8SlU,The Black Cauldron (Storyteller),,success
+,,,Disney_Stories.csv,bJ9pO57dlkQ,Toy Story 2 (Storyteller Version),,failed
+Lion King II: Simba's Pride,,,Disney_Stories.csv,fKXCbecuOWI,Lion King II: Simba's Pride (Storyteller),,success
+Beauty And The Beast,Beauty And The Beast,,Disney_Stories.csv,nw_euLOsecQ,Beauty And The Beast (Storyteller),,success
+The Emperor's New Groove,N/A,N/A,Disney_Stories.csv,qAMCpuny3es,The Emperor's New Groove (Storyteller),,success

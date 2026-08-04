@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+THE WORLD'S WORST PETS,MONTY THE MUSICAL DOG,,The_World_s_Worst.csv,3CnIVD5GHnw,THE WORLD'S WORST PETS - MONTY THE MUSICAL DOG,,success
+THE WORLD'S WORST MONSTERS,FRANKENTEDDY,,The_World_s_Worst.csv,7aZopbeOa_c,THE WORLD'S WORST MONSTERS - FRANKENTEDDY,,success
+,,,The_World_s_Worst.csv,81ORi_XIbzk,THE WORLD'S WORST PETS - HAMSTERS vs GERBILS,,failed
+THE WORLD'S WORST PETS,SILLY SID'S SNAKE,N/A,The_World_s_Worst.csv,ADeNO3ORZBw,THE WORLD'S WORST PETS - SILLY SID'S SNAKE,,success

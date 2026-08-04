@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Tell_Me_A_Story_-_Videos.csv,4CYUSq2yiRs,Happy Birthday Cupcake!,,failed
+,,,Tell_Me_A_Story_-_Videos.csv,ChPmhIpNnRw,Little Acorn,,failed
+Little Acorn,Little Acorn,,Tell_Me_A_Story_-_Videos.csv,pAIJeypsjrw,Little Acorn (Children's Book Read Aloud),,success
+Bubblegum Bear,Bubblegum Bear,,Tell_Me_A_Story_-_Videos.csv,psX1WZ5nGBM,Bubblegum Bear (Children’s Book Read Aloud),,success
+The Tallest House On The Street,The Tallest House On The Street,N/A,Tell_Me_A_Story_-_Videos.csv,qiHpuDsXGAA,The Tallest House On The Street (Children’s Book Read Aloud),,success

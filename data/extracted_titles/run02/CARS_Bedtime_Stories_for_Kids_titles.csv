@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+A Very Mater Christmas,,,CARS_Bedtime_Stories_for_Kids.csv,-c_P-2tooSk,A Very Mater Christmas | Christmas Stories for Toddlers,,success
+Bedtime Stories,CARS! Hoodwinked,,CARS_Bedtime_Stories_for_Kids.csv,0u6i9ftnuic,Bedtime Stories Disney Pixar CARS! Hoodwinked (read aloud),,success
+N/A,N/A,N/A,CARS_Bedtime_Stories_for_Kids.csv,71RFAl_cJRU,CARS Snow Party in Radiator Springs! | Bedtime Story Read Aloud,,failed

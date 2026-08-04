@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+March Book Madness 2024,Lifeboat 12,,March_Book_Madness_2024_Children_s_Books__-_Mokena_Community_Public_Library_District.csv,4uKbixVOKxY,March Book Madness 2024 - Lifeboat 12,,success
+March Book Madness 2024,Parachute Kids,,March_Book_Madness_2024_Children_s_Books__-_Mokena_Community_Public_Library_District.csv,57dNqpWhcUA,March Book Madness 2024 - Parachute Kids,,success
+March Book Madness 2024,The Jules Verne Prophecy,,March_Book_Madness_2024_Children_s_Books__-_Mokena_Community_Public_Library_District.csv,5jOtEISVZCQ,March Book Madness 2024 - The Jules Verne Prophecy,,failed
+N/A,N/A,N/A,March_Book_Madness_2024_Children_s_Books__-_Mokena_Community_Public_Library_District.csv,6qCj2buX42I,March Book Madness 2024 - You Are Here,,failed

@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Hunchback of Notre Dame,,,Disney_Stories.csv,3YF7U1koDuU,The Hunchback of Notre Dame (Storyteller),,success
+"Monsters, Inc.",N/A,N/A,Disney_Stories.csv,H1P-meqIEhc,"Monsters, Inc.",,failed

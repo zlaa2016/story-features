@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Princess and the Pea,The Princess and the Pea,Hans Christian Andersen,Fairy_Tales_and_Folk_Tales.csv,Hlxh84FBbLc,The Story of The Princess and the Pea | Disneyland Record 1969 | Hans Christian Andersen Fairy Tale,,success
+Grimm's Fairy Tales,Rumpelstiltskin,Grimm,Fairy_Tales_and_Folk_Tales.csv,M_f71l9OAFw,The Story of Rumpelstiltskin | Disneyland Record 1969 | A Grimm Fairy Tale,,success
+The Three Billy Goats Gruff,The Story of The Three Billy Goats Gruff,,Fairy_Tales_and_Folk_Tales.csv,Owm1zJ10LKE,The Story of The Three Billy Goats Gruff | Read-Along Scholastic Record and Book Published 1963,,success
+The Emperor's New Clothes,The Emperor's New Clothes,N/A,Fairy_Tales_and_Folk_Tales.csv,U0OQU00D7Fc,The Emperor's New Clothes | Read-Along | 1977 Scholastic Record & Book | Vintage Children's Story,,success

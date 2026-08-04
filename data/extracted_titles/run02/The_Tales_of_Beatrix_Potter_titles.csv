@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Tale of Jemima Puddle-Duck,The Tale of Jemima Puddle-Duck,,The_Tales_of_Beatrix_Potter.csv,-93LYh5WUmQ,The Tale of Jemima Puddle-Duck,,success
+The Tale of Peter Rabbit,N/A,N/A,The_Tales_of_Beatrix_Potter.csv,ADi4UnMfSps,The Tale of Peter Rabbit ✿,,failed

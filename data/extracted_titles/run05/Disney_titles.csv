@@ -1,0 +1,11 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney.csv,smqvNQ_v7dw,Palace Pets - Berry A Sweet Bunny For Snow White,,failed
+Starry Night,Toy Story 3,,Disney.csv,tWE1ZUNYNHs,Toy Story 3 - Starry Night Book,,success
+Muppets Books,Miss Piggy in the Spotlight,,Disney.csv,ufYFrc5khj0,The Muppets|Miss Piggy in the Spotlight|Muppets Books,,success
+,,,Disney.csv,uuGGxNWbzhg,Minnie Mouse and Daisy Duck  Car Puzzle,,failed
+Aladdin,,,Disney.csv,uyZ2UJfp5Po,Aladdin|Kid Books|Kids Storytime|Aladdin Books,,success
+,,,Disney.csv,v5sbp5bILew,Cinderella Fun Puzzle for Kids,,failed
+Moana,,,Disney.csv,w0sAQb3rltQ,Moana|Moana Books|Kids Reading Books,,success
+,,,Disney.csv,yj_6n4HGGLQ,Rapanzel and Pascal Puzzle,,failed
+,,,Disney.csv,z44apizlUiM,Snow White Fun Puzzle,,failed
+Finding Nemo,N/A,N/A,Disney.csv,zOxBOFiyiAc,Finding Nemo|Kids Books|Audio for Kids,,success

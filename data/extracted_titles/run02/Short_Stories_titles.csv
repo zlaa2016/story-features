@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Morning Child,,Gardner Dozois,Short_Stories.csv,0oeygE8XZ5w,Morning Child by Gardner Dozois---E2E Sick Minds Short Story Unit,,failed
+Wish for a Good Young Country Doctor,,Allan Gurganus,Short_Stories.csv,5uL5QFSGiWo,Wish for a Good Young Country Doctor by Allan Gurganus---E2E Sick Minds Short Story Unit,,success
+,Theseus and the Minotaur,,Short_Stories.csv,AnOXaxyFWik,Theseus and the Minotaur Version A Text Recording,,failed
+Summer of '38,N/A,Colm Toibin,Short_Stories.csv,C1TyGCZGbZk,Summer of '38 by Colm Toibin,,success

@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Tale of Peter Rabbit,,,The_Tales_of_Beatrix_Potter.csv,ADi4UnMfSps,The Tale of Peter Rabbit ✿,,success
+The Tales of Beatrix Potter,The Tale of Tom Kitten,N/A,The_Tales_of_Beatrix_Potter.csv,Wn8IHHur4_M,The Tale of Tom Kitten,,success

@@ -1,0 +1,7 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Halloween Short Stories,Photo Finish,Joss Ackland,Halloween_Short_Stories___Family_Audio_Books_2019.csv,3Dev-VFYO0U,'Photo Finish' Read By Joss Ackland | Halloween Short Stories,,success
+,Shadow Group,,Halloween_Short_Stories___Family_Audio_Books_2019.csv,3wJUVKNMKlk,'Shadow Group' Read By Phil Daniels | Halloween Ghost Stories,,failed
+,Carter's First Case,,Halloween_Short_Stories___Family_Audio_Books_2019.csv,97tLXCvghMo,'Carter's First Case' Read By Roger Daltrey | Halloween Short Stories,,failed
+,,,Halloween_Short_Stories___Family_Audio_Books_2019.csv,ApwGL4DDS_g,'Moving' Read By Julian Clary | Halloween Short Stories,,failed
+,Confession Time,June Whitfield,Halloween_Short_Stories___Family_Audio_Books_2019.csv,BkB3mecnLaw,'Confession Time' Read by June Whitfield | Halloween Short Stories,,success
+N/A,N/A,N/A,Halloween_Short_Stories___Family_Audio_Books_2019.csv,FAwqqJPJ8sw,'The Game' Read By Jenny Seagrove | Halloween Scary Stories,,failed

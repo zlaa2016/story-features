@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Dinosaur,Storyteller,,Disney_Stories.csv,v6N5QHc-pPw,Dinosaur (Storyteller),,success
+Snow White and the Seven Dwarfs,Snow White and the Seven Dwarfs,N/A,Disney_Stories.csv,zmb1RiX8AwQ,Snow White and the Seven Dwarfs (Storyteller),,success

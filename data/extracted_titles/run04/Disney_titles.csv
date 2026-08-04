@@ -1,0 +1,13 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Incredibles 2 Book,,,Disney.csv,aNtp8K-IXwg,The Incredibles 2 Book,,success
+Lilo & Stitch,"Go, Stitch, Go",,Disney.csv,bn0s4ZYeL9o,"Lilo & Stitch|Go, Stitch, Go|Kids Books|Storytime",,success
+Pinocchio,,,Disney.csv,cCXyPJeJ-hc,Pinocchio|Pinocchio Book|Reading Books,,success
+Palace Pets,Blondie: A Regal Pony for Rapunzel,,Disney.csv,dR-51WTeTzM,Palace Pets - Blondie A Regal Pony for Rapunzel,,success
+Disney Princess,Rapunzel's Spring Adventure,,Disney.csv,dmn5zU1JPFw,Disney Princess - Rapunzel's Spring Adventure Book,,success
+,,,Disney.csv,e8sN70TCeYE,The Incredibles - Super Annoying,,failed
+The Jungle Book,,,Disney.csv,eseJp_IZ0Tk,The Jungle Book|Kids Storybook|Books for Kids,,success
+,,,Disney.csv,g50f8IdqaKM,Ralph Breaks The Internet - Game Time Book,,failed
+Wreck-It Ralph,,,Disney.csv,h1JrmxdwfFI,Wreck It Ralph|Read Along Books|Audio Books,,success
+Happy Birthday Puppy Pals,,,Disney.csv,hRSkTGU0Ct4,PUPPY DOG PALS - HAPPY BIRTHDAY PUPPY PALS BOOK,,success
+,,,Disney.csv,jOp6i_e3ItA,Disney The Lion King - A Day With Pumbaa,,failed
+Lion Guard,Bunga The Wise Book,N/A,Disney.csv,ksDALi14jCc,Lion Guard - Bunga The Wise Book,,success

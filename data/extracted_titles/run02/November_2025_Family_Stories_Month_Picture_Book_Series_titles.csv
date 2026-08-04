@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Snow Fox,The Snow Fox,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,01TqkRmBedQ,The Snow Fox,,success
+,How to Hide a Turkey,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,6FHVpeM2cOY,How to Hide a Turkey,,success
+Frozen,Anna’s Act of Love,,November_2025_Family_Stories_Month_Picture_Book_Series.csv,BHhvy5cTpDA,Disney Frozen Anna’s Act of Love,,success
+N/A,N/A,N/A,November_2025_Family_Stories_Month_Picture_Book_Series.csv,GyQQ-QVSl20,Crayon Stub,,failed

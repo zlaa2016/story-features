@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Fire Cat,Chapter 2,,Vintage_Book_Read_Alouds.csv,7BviVpSgq74,"The Fire Cat - Chapter 2 w/ Words, Music & EFX",,success
+,,,Vintage_Book_Read_Alouds.csv,Dgv--SB4Y5k,"On A Summer Day 1953 - w/ Words, Music & EFX",,failed
+The Fire Cat,Chapter 3,,Vintage_Book_Read_Alouds.csv,YrRSo8oQnBg,"The Fire Cat - Chapter 3 w/ Words, Music & EFX",,success
+,,,Vintage_Book_Read_Alouds.csv,n3oO97KR_iU,"A Day Off w Words, EFX & Music",,failed
+Learn to Count Teddy Bears - 1 to 10,N/A,N/A,Vintage_Book_Read_Alouds.csv,nS9fJVqvckM,Learn to Count Teddy Bears - 1 to 10,,success

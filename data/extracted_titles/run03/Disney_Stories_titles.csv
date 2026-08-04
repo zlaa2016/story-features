@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney_Stories.csv,KVpgajYgagk,The Lion King (Storyteller),,failed
+The Little Mermaid,,,Disney_Stories.csv,KxdRs5PNo5g,The Little Mermaid (Storyteller),,success
+The Many Adventures of Winnie the Pooh,,,Disney_Stories.csv,OdYMhVlhqA0,The Many Adventures of Winnie the Pooh,,success
+Bambi,,,Disney_Stories.csv,Pr2_hH4cgQI,Bambi (Storyteller Version),,success
+N/A,N/A,N/A,Disney_Stories.csv,QA110IF2QYY,Atlantis: The Lost Empire (Storyteller),,failed

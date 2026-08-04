@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Story of an Hour,The Story of an Hour,Kate Chopin,Short_Stories_About_Grief__Loss__and_Mortality.csv,I54dBo-e60k,The Story of an Hour by Kate Chopin,,success
+The Masque of the Red Death,The Masque of the Red Death,Edgar Allan Poe,Short_Stories_About_Grief__Loss__and_Mortality.csv,TnW6kTJf9BE,The Masque of the Red Death by Edgar Allan Poe,,success
+N/A,Cookie Jar,Stephen King,Short_Stories_About_Grief__Loss__and_Mortality.csv,TxOZSKulZlo,Cookie Jar by Stephen King,,success

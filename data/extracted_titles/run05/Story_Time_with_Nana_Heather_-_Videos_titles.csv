@@ -1,0 +1,11 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Pete the Kitty,"Ready, Set, Go Cart!",,Story_Time_with_Nana_Heather_-_Videos.csv,sdB-nhaTc-g,"Pete the Kitty   Ready, Set, Go Cart!",,success
+Pete the Cat,Sir Pete the Brave,James Dean,Story_Time_with_Nana_Heather_-_Videos.csv,swPLABpsR8Y,Pete the Cat   Sir Pete the Brave,,success
+Angelina on Stage,Angelina on Stage,,Story_Time_with_Nana_Heather_-_Videos.csv,vs2V4lg7jxQ,Angelina on Stage,,success
+The Pigeon Will Ride the Roller Coaster,The Pigeon Will Ride the Roller Coaster,Mo Willems,Story_Time_with_Nana_Heather_-_Videos.csv,w5MI-_Ld1ao,The Pigeon Will Ride the Roller Coaster,,success
+The Artist Who Painted A Blue Horse,,Eric Carle,Story_Time_with_Nana_Heather_-_Videos.csv,wfXykG6Y8Sc,The Artist Who Painted A Blue Horse,,success
+Pete the Kitty's Outdoor Art Project,,,Story_Time_with_Nana_Heather_-_Videos.csv,wkRl4iwhhqo,Pete the Kitty's Outdoor Art Project,,success
+,,,Story_Time_with_Nana_Heather_-_Videos.csv,xbRyDr4M2FI,Down the Drain,,failed
+The Fox on the Swing,The Fox on the Swing,,Story_Time_with_Nana_Heather_-_Videos.csv,yAOeLtBI3c4,The Fox on the Swing,,success
+,,,Story_Time_with_Nana_Heather_-_Videos.csv,yRRVCynqCqY,Pricilla Gorilla,,failed
+N/A,N/A,N/A,Story_Time_with_Nana_Heather_-_Videos.csv,zBU-pye7O6g,Horse & Buggy On Wheels,,failed

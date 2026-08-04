@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+The Ugly Duckling,The Ugly Duckling,,Children_s_Books.csv,0nZWju4LGuU,The Ugly Duckling [Children's story | Read Aloud],,success
+,The Not-So-Friendly Friend,,Children_s_Books.csv,4frVczb7Ufg,The Not-So-Friendly Friend [Children's story | Read Aloud],,failed
+Eva's Imagination,,,Children_s_Books.csv,6gw7FZswCkI,Eva's Imagination [Children's story | Read Aloud],,success
+The Bear Who Went Boo,The Bear Who Went Boo,,Children_s_Books.csv,D-54zyR47lM,The Bear Who Went Boo [Children's Story | Read Aloud],,success
+N/A,N/A,N/A,Children_s_Books.csv,E2u-qs16D6U,Side by Side [Children's story | Read Aloud],,failed

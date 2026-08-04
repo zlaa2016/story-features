@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+"Oh, Christmas Tree Book",,,Pixar.csv,B4fORRX7lF4,"Phineas and Ferb|Oh, Christmas Tree Book|Kids Storybooks",,success
+Peter Pan Book,N/A,N/A,Pixar.csv,CZwtAxPpPLA,Peter Pan Book|Audio Books|Storybooks,,success

@@ -1,0 +1,11 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Peppa’s Magical Unicorn,,,NRYKB_Series_1_2025_books.csv,rb0y9QgBC4o,Peppa’s Magical Unicorn - Narration - NRYKB,,success
+Room on the Broom,,,NRYKB_Series_1_2025_books.csv,rgyEFWJw7zQ,Room on the Broom  - NRYKB,,success
+,,,NRYKB_Series_1_2025_books.csv,0c7p978gDCQ,Let’s go for a drive - NRYKB,,failed
+When Pencil Met Eraser,When Pencil Met Eraser,,NRYKB_Series_1_2025_books.csv,5zXi5E5cpiE,When Pencil Met Eraser - Narration - NRYKB,,success
+The Pigeon will ride the Rollercoaster!,,,NRYKB_Series_1_2025_books.csv,6RXfl_4YyJQ,The Pigeon will ride the Rollercoaster! - NRYKB,,success
+Where the Wild Things Are,,,NRYKB_Series_1_2025_books.csv,E61Fkc3HpKE,Where the Wild Things Are - Narration - NRYKB,,success
+Mr Putter and Tabby Drop the Ball,,,NRYKB_Series_1_2025_books.csv,F5_l6ABDOpc,Mr Putter and Tabby Drop the Ball - Narration - NRYKB,,success
+There’s a Monster at the end of this book!,There’s a Monster at the end of this book!,,NRYKB_Series_1_2025_books.csv,GA1UZKfGPWM,There’s a Monster at the end of this book! - NRYKB,,success
+The Berenstain Bears,New Baby,,NRYKB_Series_1_2025_books.csv,YHphBI_9Rvo,The Berenstain Bears New Baby - Narration - NRYKB,,success
+N/A,N/A,N/A,NRYKB_Series_1_2025_books.csv,kdgQBX_vNUE,Should I share my ice cream? - NRYKB,,failed

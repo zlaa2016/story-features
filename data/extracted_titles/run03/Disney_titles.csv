@@ -1,0 +1,13 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney.csv,HT7F_krSde8,Dumbo - Happy To Help,,failed
+,,,Disney.csv,Iso-F1K2nog,Puppy Dog Pals|Design a Dog|Books for kids,,failed
+,,,Disney.csv,Iuj_aWkiQZo,Bambi and Friends Fun Puzzle,,failed
+Jack Jack Attack,,,Disney.csv,KFYXV5m9pIU,The Incredibles - Jack Jack Attack Book,,success
+Princesses Through The Spring,,,Disney.csv,KVpQePv8u-8,Disney Princess - Princesses Through The Spring Book,,success
+Disney Princess,Tiana's Spring Adventure,,Disney.csv,NwBHUQRcM50,Disney Princess - Tiana's Spring Adventure Book,,success
+,,,Disney.csv,PDSnS0Lu9I4,Dalmatians Fun Puzzle,,failed
+,,,Disney.csv,PVu02d1N63c,Cars - Protect and Serve,,failed
+Disney Up,,,Disney.csv,SIpgG9qfu2k,Disney Up|Kids Storytime|Books for Kids,,success
+Elena of Avalor,Isabel's School Adventure,,Disney.csv,U-8HVrWhLLA,Elena of Avalor - Isabel's School Adventure Book,,success
+N/A,N/A,N/A,Disney.csv,Vys4-GGuvqI,Minnie and Mickey Mouse Car Puzzle - Fun To Watch,,failed
+N/A,N/A,N/A,Disney.csv,W2-OLN_BFEk,Minnie Mouse and Daisy Duck Fun Puzzle,,failed

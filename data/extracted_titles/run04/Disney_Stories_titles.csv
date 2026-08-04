@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney_Stories.csv,bJ9pO57dlkQ,Toy Story 2 (Storyteller Version),,failed
+,,,Disney_Stories.csv,fKXCbecuOWI,Lion King II: Simba's Pride (Storyteller),,failed
+The Rescuers Down Under,The Rescuers Down Under,N/A,Disney_Stories.csv,jbrC-zcFNkI,The Rescuers Down Under (Storyteller Version),,success

@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Sapute,The Vine Keeper,,Sapute_Series.csv,-pErUtAwBbU,Sapute episode 3 (The Vine Keeper),,success
+N/A,Sapute Episode 4 (The First Light),N/A,Sapute_Series.csv,8dPK4RJ8fFA,Sapute Episode 4 (The First Light),,failed
