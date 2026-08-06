@@ -11,7 +11,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Set
 
 import pandas as pd
 
@@ -22,12 +22,57 @@ DEFAULT_CLEAN_MODEL = os.environ.get("OPENAI_CLEAN_MODEL", "gpt-5.4-nano")
 DEFAULT_SEGMENT_MODEL = os.environ.get("OPENAI_SEGMENT_MODEL", "gpt-5.4-mini")
 
 
+CLEAN_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "stories": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "story_title_guess": {"type": "string"},
+                    "cleaned_story_verbatim": {"type": "string"},
+                    "punctuated_story": {"type": "string"},
+                },
+                "required": ["story_title_guess", "cleaned_story_verbatim", "punctuated_story"],
+                "additionalProperties": False,
+            }
+        }
+    },
+    "required": ["stories"],
+    "additionalProperties": False,
+}
+
+
+SEGMENT_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "events": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "start_sent_idx": {"type": "integer"},
+                    "end_sent_idx": {"type": "integer"},
+                    "boundary_cue": {"type": "string"},
+                },
+                "required": ["start_sent_idx", "end_sent_idx", "boundary_cue"],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["events"],
+    "additionalProperties": False,
+}
+
+
 CLEAN_AND_PUNCTUATE_PROMPT = """
 You will be given an automatically generated transcript of a YouTube video that tells a children's story.
 
 Your tasks:
-1. Remove all content that is NOT part of the story itself.
-2. Restore readable punctuation and sentence boundaries for the story-only text.
+1. Identify the distinct story narrative(s) present in the transcript, if any.
+2. Remove all content that is NOT part of each story itself.
+3. Restore readable punctuation and sentence boundaries for each story-only text.
 
 Remove:
 - greetings, channel promotion, title/author introductions
@@ -36,23 +81,39 @@ Remove:
 - subtitle headers like "Kind: captions Language: en"
 - sound-effect markers like [Music], [Applause] when they are not story text
 
-Requirements for `cleaned_story_verbatim`:
-- Keep ONLY the story content.
+Story splitting rules:
+- If the video contains one clear story, return exactly one item in `stories`.
+- If the video contains multiple distinct stories, chapters, or anthology entries, split them into separate `stories` items in chronological order.
+- Do NOT split a single continuous story into multiple items just because it has several scenes.
+- If a transcript contains almost no recoverable story content, return an empty `stories` list.
+
+Requirements for each `cleaned_story_verbatim`:
+- Keep ONLY the story content for that story.
 - Keep the surviving story words in their original order.
 - Do NOT add new story content.
-- Do NOT summarize.
+- Do NOT rewrite or paraphrase the story.
+- Do NOT summarize the story.
 
-Requirements for `punctuated_story`:
+Requirements for each `punctuated_story`:
 - Use the same story content after cleaning.
-- Add punctuation, capitalization, and paragraph-free sentence boundaries.
+- Add punctuation, capitalization, and sentence boundaries.
 - Do NOT add or remove story facts.
 - Keep the wording as close as possible while making it readable.
 
-Return valid JSON with exactly these keys:
-{
-  "cleaned_story_verbatim": "...",
-  "punctuated_story": "..."
-}
+For `story_title_guess`:
+- Use a short title-like label if inferable from the transcript.
+- Otherwise return "N/A".
+
+Return valid JSON with exactly this structure:
+{{
+  "stories": [
+    {{
+      "story_title_guess": "...",
+      "cleaned_story_verbatim": "...",
+      "punctuated_story": "..."
+    }}
+  ]
+}}
 
 Transcript:
 {story}
@@ -60,33 +121,34 @@ Transcript:
 
 
 SEGMENT_PROMPT = """
-You are segmenting a children's story into coherent narrative events.
+You are segmenting a children's story into coherent narrative events using the same event-boundary logic as Method O v2.1.
 
-Definition:
-- An event is a contiguous block of sentences describing one ongoing coherent situation.
-- Start a new event when there is a meaningful shift in time, location, characters present, goal, activity, or causal situation.
+Theoretical grounding:
+- Treat event boundaries as situation-model updates in the sense of Event Segmentation Theory.
 
-Rules:
-- Cover all sentences exactly once.
+Definition of a narrative event:
+- An event is a contiguous block of sentences unified by the current characters, location, time, goal, activity, or causal situation.
+
+Segmentation rules:
+- Cover every sentence exactly once.
 - Events must be contiguous and non-overlapping.
 - The first event must start at sentence 0.
 - The last event must end at the final sentence.
-- Do NOT rely on punctuation alone as a boundary signal.
+- Start a new event only when there is a meaningful shift in time, location, characters present, goal, activity, or causal situation.
 - Keep dialogue together when it belongs to the same ongoing situation.
-- Do NOT assign narrative labels like exposition, climax, or initiating_event.
+- Do NOT rely on punctuation alone as a boundary signal.
+- Do NOT assign narrative arc labels such as exposition, climax, or initiating_event.
 
-For each event, return:
-- start_sent_idx
-- end_sent_idx
-- boundary_cue: a short neutral cue phrase for why this event begins; use "story_start" for the first event
+For each event after the first, briefly note the main cue that triggered the boundary in `boundary_cue`.
+Use `story_start` for the first event.
 
-Return valid JSON:
-{
+Return valid JSON only:
+{{
   "events": [
-    {"start_sent_idx": 0, "end_sent_idx": 4, "boundary_cue": "story_start"},
-    {"start_sent_idx": 5, "end_sent_idx": 11, "boundary_cue": "location shift"}
+    {{"start_sent_idx": 0, "end_sent_idx": 4, "boundary_cue": "story_start"}},
+    {{"start_sent_idx": 5, "end_sent_idx": 11, "boundary_cue": "location shift"}}
   ]
-}
+}}
 
 Story sentences:
 {numbered_sentences}
@@ -164,6 +226,37 @@ def load_labcomputer_rows(input_dir: Path, min_words: int = 1) -> List[StoryRow]
     return list(deduped.values())
 
 
+def load_title_success_video_ids(
+    titles_dir: Path,
+    require_success: bool = True,
+    require_book_metadata: bool = False,
+) -> Set[str]:
+    video_ids: Set[str] = set()
+    for csv_path in sorted(titles_dir.glob("**/*_titles.csv")):
+        try:
+            df = pd.read_csv(csv_path, low_memory=False)
+        except Exception:
+            continue
+        if "video_id" not in df.columns:
+            continue
+        mask = pd.Series([True] * len(df), index=df.index)
+        if require_success and "extraction_status" in df.columns:
+            status = df["extraction_status"].fillna("").astype(str).str.lower().str.strip()
+            mask &= status.eq("success")
+        if require_book_metadata:
+            book_ok = pd.Series([False] * len(df), index=df.index)
+            if "book_title" in df.columns:
+                book_ok |= df["book_title"].fillna("").astype(str).str.strip().str.upper().ne("N/A")
+                book_ok &= df["book_title"].fillna("").astype(str).str.strip().ne("")
+            if "story_title" in df.columns:
+                story_ok = df["story_title"].fillna("").astype(str).str.strip()
+                book_ok |= story_ok.ne("") & story_ok.str.upper().ne("N/A")
+            mask &= book_ok
+        ids = df.loc[mask, "video_id"].fillna("").astype(str).str.strip()
+        video_ids.update(video_id for video_id in ids if video_id)
+    return video_ids
+
+
 def _coerce_float(value: Any) -> Optional[float]:
     try:
         if value is None or (isinstance(value, float) and pd.isna(value)):
@@ -195,9 +288,9 @@ def assign_story_ids(rows: List[StoryRow]) -> List[StoryRow]:
     return assigned
 
 
-def story_stub(row: StoryRow) -> str:
-    title_part = sanitize_filename(row.video_title)
-    return f"{row.story_id}_{title_part}" if title_part else row.story_id
+def story_stub(story_id: str, title_text: str) -> str:
+    title_part = sanitize_filename(title_text)
+    return f"{story_id}_{title_part}" if title_part else story_id
 
 
 def local_event_summary(sentences: List[str], start: int, end: int, max_words: int = 24) -> str:
@@ -208,18 +301,18 @@ def local_event_summary(sentences: List[str], start: int, end: int, max_words: i
     return " ".join(words[:max_words]).rstrip(" ,;:") + "..."
 
 
-def write_cleaned_txt(cleaned_dir: Path, row: StoryRow, punctuated_story: str) -> Path:
+def write_cleaned_txt(cleaned_dir: Path, story_id: str, title_text: str, punctuated_story: str) -> Path:
     cleaned_dir.mkdir(parents=True, exist_ok=True)
-    path = cleaned_dir / f"{story_stub(row)}_cleaned.txt"
+    path = cleaned_dir / f"{story_stub(story_id, title_text)}_cleaned.txt"
     path.write_text((punctuated_story.strip() + "\n") if punctuated_story.strip() else "", encoding="utf-8")
     return path
 
 
-def write_review_sample_md(review_dir: Path, row: StoryRow, sentences: List[str], events: List[Dict[str, Any]], method: str = "Method O v2.1") -> Path:
+def write_review_sample_md(review_dir: Path, story_id: str, title_text: str, sentences: List[str], events: List[Dict[str, Any]], method: str = "Method O v2.1") -> Path:
     review_dir.mkdir(parents=True, exist_ok=True)
-    path = review_dir / f"{story_stub(row)}.md"
+    path = review_dir / f"{story_stub(story_id, title_text)}.md"
     lines = [
-        f"# {story_stub(row)}",
+        f"# {story_stub(story_id, title_text)}",
         "",
         f"**{len(sentences)} sentences | {sum(len(s.split()) for s in sentences)} words | {len(events)} events**",
         "",
@@ -246,6 +339,40 @@ def write_review_sample_md(review_dir: Path, row: StoryRow, sentences: List[str]
         lines.append("")
     path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     return path
+
+
+def build_substory_id(root_story_id: str, substory_index: int, n_substories: int) -> str:
+    if n_substories <= 1:
+        return root_story_id
+    return f"{root_story_id}_{substory_index:02d}"
+
+
+def normalize_clean_stories(clean_payload: Dict[str, Any]) -> List[Dict[str, str]]:
+    if isinstance(clean_payload.get("stories"), list):
+        stories = clean_payload.get("stories", [])
+    else:
+        stories = [
+            {
+                "story_title_guess": "N/A",
+                "cleaned_story_verbatim": clean_payload.get("cleaned_story_verbatim", ""),
+                "punctuated_story": clean_payload.get("punctuated_story", ""),
+            }
+        ]
+    normalized: List[Dict[str, str]] = []
+    for story in stories:
+        cleaned_story = normalize_text(story.get("cleaned_story_verbatim", ""))
+        punctuated_story = normalize_text(story.get("punctuated_story", ""))
+        story_title_guess = normalize_text(story.get("story_title_guess", "")) or "N/A"
+        if not cleaned_story and not punctuated_story:
+            continue
+        normalized.append(
+            {
+                "story_title_guess": story_title_guess,
+                "cleaned_story_verbatim": cleaned_story,
+                "punctuated_story": punctuated_story,
+            }
+        )
+    return normalized
 
 
 def record_key(step: str, story_id: str, text: str, model: str, prompt_version: str) -> str:
@@ -321,18 +448,58 @@ def validate_events(events: List[Dict[str, Any]], n_sentences: int) -> List[Dict
     return cleaned
 
 
-def call_openai_json(prompt: str, model: str, temperature: float = 0.0) -> Dict[str, Any]:
+def _extract_json_candidate(text: str) -> str:
+    text = normalize_text(text)
+    if not text:
+        return text
+    start = text.find("{")
+    end = text.rfind("}")
+    if start != -1 and end != -1 and end >= start:
+        return text[start : end + 1]
+    return text
+
+
+def call_openai_json(
+    prompt: str,
+    model: str,
+    temperature: float = 0.0,
+    max_attempts: int = 3,
+    schema_name: str = "response_payload",
+    schema: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     from openai import OpenAI
 
     client = OpenAI()
-    response = client.responses.create(
-        model=model,
-        input=prompt,
-        temperature=temperature,
-        text={"format": {"type": "json_object"}},
-        store=False,
-    )
-    return json.loads(response.output_text)
+    last_err: Optional[Exception] = None
+    for attempt in range(1, max_attempts + 1):
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt if attempt == 1 else (prompt + "\n\nReturn valid JSON only. Do not include any extra text."),
+                }
+            ],
+            temperature=temperature,
+            response_format=(
+                {"type": "json_schema", "json_schema": {"name": schema_name, "schema": schema, "strict": True}}
+                if schema is not None
+                else {"type": "json_object"}
+            ),
+        )
+        message = response.choices[0].message
+        parsed = getattr(message, "parsed", None)
+        if isinstance(parsed, dict):
+            return parsed
+        candidate = _extract_json_candidate(message.content or "")
+        try:
+            return json.loads(candidate)
+        except Exception as exc:
+            last_err = exc
+            time.sleep(min(1.0 * attempt, 3.0))
+    if last_err is not None:
+        raise last_err
+    raise RuntimeError("OpenAI JSON call failed without an exception")
 
 
 def process_story(
@@ -347,7 +514,7 @@ def process_story(
     review_dir: Path,
     sleep_seconds: float,
     max_calls_remaining: Optional[List[int]],
-) -> Dict[str, Any]:
+) -> List[Dict[str, Any]]:
     clean_cache = load_jsonl_cache(clean_cache_path)
     segment_cache = load_jsonl_cache(segment_cache_path)
     clean_key = record_key("clean", row.video_id, row.transcript_text, clean_model, CLEAN_PROMPT_VERSION)
@@ -362,6 +529,8 @@ def process_story(
             CLEAN_AND_PUNCTUATE_PROMPT.format(story=row.transcript_text),
             model=clean_model,
             temperature=0.0,
+            schema_name="cleanup_payload",
+            schema=CLEAN_JSON_SCHEMA,
         )
         append_jsonl(
             clean_cache_path,
@@ -381,88 +550,107 @@ def process_story(
         if sleep_seconds > 0:
             time.sleep(sleep_seconds)
 
-    cleaned_story = normalize_text(clean_payload.get("cleaned_story_verbatim", ""))
-    punctuated_story = normalize_text(clean_payload.get("punctuated_story", ""))
-    sentences = sentence_split(punctuated_story)
+    clean_stories = normalize_clean_stories(clean_payload)
+    n_substories = len(clean_stories)
+    records: List[Dict[str, Any]] = []
+    for substory_index, story_payload in enumerate(clean_stories, start=1):
+        cleaned_story = story_payload["cleaned_story_verbatim"]
+        punctuated_story = story_payload["punctuated_story"]
+        story_title_guess = story_payload["story_title_guess"]
+        substory_id = build_substory_id(row.story_id, substory_index, n_substories)
+        effective_title = story_title_guess if story_title_guess != "N/A" else row.video_title
+        sentences = sentence_split(punctuated_story)
 
-    segment_key = record_key("segment", row.video_id, punctuated_story, segment_model, SEGMENT_PROMPT_VERSION)
-    if segment_key in segment_cache:
-        segment_payload = segment_cache[segment_key]["payload"]
-        segment_from_cache = True
-    else:
-        if not sentences:
-            segment_payload = {"events": []}
+        segment_key = record_key("segment", f"{row.video_id}:{substory_index}", punctuated_story, segment_model, SEGMENT_PROMPT_VERSION)
+        if segment_key in segment_cache:
+            segment_payload = segment_cache[segment_key]["payload"]
             segment_from_cache = True
         else:
-            if max_calls_remaining is not None and max_calls_remaining[0] <= 0:
-                raise RuntimeError("Max API call budget reached before segmentation step")
-            segment_payload = call_openai_json(
-                SEGMENT_PROMPT.format(numbered_sentences=make_numbered_sentences(sentences)),
-                model=segment_model,
-                temperature=0.0,
-            )
-            append_jsonl(
-                segment_cache_path,
-                {
-                    "key": segment_key,
-                    "story_id": row.video_id,
-                    "step": "segment",
-                    "model": segment_model,
-                    "prompt_version": SEGMENT_PROMPT_VERSION,
-                    "timestamp": time.time(),
-                    "payload": segment_payload,
-                },
-            )
-            segment_from_cache = False
-            if max_calls_remaining is not None:
-                max_calls_remaining[0] -= 1
-            if sleep_seconds > 0:
-                time.sleep(sleep_seconds)
+            if not sentences:
+                segment_payload = {"events": []}
+                segment_from_cache = True
+            else:
+                if max_calls_remaining is not None and max_calls_remaining[0] <= 0:
+                    raise RuntimeError("Max API call budget reached before segmentation step")
+                segment_payload = call_openai_json(
+                    SEGMENT_PROMPT.format(numbered_sentences=make_numbered_sentences(sentences)),
+                    model=segment_model,
+                    temperature=0.0,
+                    schema_name="segment_payload",
+                    schema=SEGMENT_JSON_SCHEMA,
+                )
+                append_jsonl(
+                    segment_cache_path,
+                    {
+                        "key": segment_key,
+                        "story_id": substory_id,
+                        "story_root_id": row.story_id,
+                        "step": "segment",
+                        "model": segment_model,
+                        "prompt_version": SEGMENT_PROMPT_VERSION,
+                        "timestamp": time.time(),
+                        "payload": segment_payload,
+                    },
+                )
+                segment_from_cache = False
+                if max_calls_remaining is not None:
+                    max_calls_remaining[0] -= 1
+                if sleep_seconds > 0:
+                    time.sleep(sleep_seconds)
 
-    events = validate_events(segment_payload.get("events", []), len(sentences)) if sentences else []
-    cleaned_txt_path = write_cleaned_txt(cleaned_dir, row, punctuated_story)
-    review_md_path = write_review_sample_md(review_dir, row, sentences, events)
-    openai_schema_record = {
-        "story_id": row.story_id,
-        "video_id": row.video_id,
-        "video_title": row.video_title,
-        "n_sentences": len(sentences),
-        "n_events": len(events),
-        "events": [
-            {
-                "start_sent_idx": int(event["start_sent_idx"]),
-                "end_sent_idx": int(event["end_sent_idx"]),
-                "summary": local_event_summary(sentences, int(event["start_sent_idx"]), int(event["end_sent_idx"])),
-                "label": "event",
-                "boundary_cue": event["boundary_cue"],
-            }
-            for event in events
-        ],
-    }
-    append_jsonl(openai_schema_jsonl_path, openai_schema_record)
-    record = {
-        "story_id": row.story_id,
-        "video_id": row.video_id,
-        "video_title": row.video_title,
-        "transcript_source": row.transcript_source,
-        "duration": row.duration,
-        "source_file": row.source_file,
-        "cleaned_txt_path": str(cleaned_txt_path),
-        "review_md_path": str(review_md_path),
-        "clean_model": clean_model,
-        "segment_model": segment_model,
-        "clean_from_cache": clean_from_cache,
-        "segment_from_cache": segment_from_cache,
-        "raw_transcript": row.transcript_text,
-        "cleaned_story_verbatim": cleaned_story,
-        "punctuated_story": punctuated_story,
-        "n_sentences": len(sentences),
-        "n_events": len(events),
-        "sentences": sentences,
-        "events": events,
-    }
-    append_jsonl(output_jsonl_path, record)
-    return record
+        events = validate_events(segment_payload.get("events", []), len(sentences)) if sentences else []
+        cleaned_txt_path = write_cleaned_txt(cleaned_dir, substory_id, effective_title, punctuated_story)
+        review_md_path = write_review_sample_md(review_dir, substory_id, effective_title, sentences, events)
+        openai_schema_record = {
+            "story_id": substory_id,
+            "story_root_id": row.story_id,
+            "substory_index": substory_index,
+            "n_substories_in_video": n_substories,
+            "video_id": row.video_id,
+            "video_title": row.video_title,
+            "story_title_guess": story_title_guess,
+            "n_sentences": len(sentences),
+            "n_events": len(events),
+            "events": [
+                {
+                    "start_sent_idx": int(event["start_sent_idx"]),
+                    "end_sent_idx": int(event["end_sent_idx"]),
+                    "summary": local_event_summary(sentences, int(event["start_sent_idx"]), int(event["end_sent_idx"])),
+                    "label": "event",
+                    "boundary_cue": event["boundary_cue"],
+                }
+                for event in events
+            ],
+        }
+        append_jsonl(openai_schema_jsonl_path, openai_schema_record)
+        record = {
+            "story_id": substory_id,
+            "story_root_id": row.story_id,
+            "substory_index": substory_index,
+            "n_substories_in_video": n_substories,
+            "video_id": row.video_id,
+            "video_title": row.video_title,
+            "story_title_guess": story_title_guess,
+            "transcript_source": row.transcript_source,
+            "duration": row.duration,
+            "source_file": row.source_file,
+            "cleaned_txt_path": str(cleaned_txt_path),
+            "review_md_path": str(review_md_path),
+            "clean_model": clean_model,
+            "segment_model": segment_model,
+            "clean_from_cache": clean_from_cache,
+            "segment_from_cache": segment_from_cache,
+            "raw_transcript": row.transcript_text,
+            "cleaned_story_verbatim": cleaned_story,
+            "punctuated_story": punctuated_story,
+            "n_sentences": len(sentences),
+            "n_events": len(events),
+            "sentences": sentences,
+            "events": events,
+        }
+        append_jsonl(output_jsonl_path, record)
+        records.append(record)
+    return records
 
 
 def load_processed_story_ids(path: Path) -> set[str]:
@@ -478,9 +666,10 @@ def load_processed_story_ids(path: Path) -> set[str]:
                 payload = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            story_id = normalize_text(payload.get("story_id", ""))
-            if story_id:
-                ids.add(story_id)
+            for field in ["story_id", "story_root_id", "video_id"]:
+                value = normalize_text(payload.get(field, ""))
+                if value:
+                    ids.add(value)
     return ids
 
 
@@ -516,7 +705,11 @@ def write_summary(path: Path, records: List[Dict[str, Any]]) -> None:
         rows.append(
             {
                 "story_id": record["story_id"],
+                "story_root_id": record.get("story_root_id"),
+                "substory_index": record.get("substory_index"),
+                "n_substories_in_video": record.get("n_substories_in_video"),
                 "video_title": record["video_title"],
+                "story_title_guess": record.get("story_title_guess"),
                 "transcript_source": record["transcript_source"],
                 "duration": record["duration"],
                 "source_file": record["source_file"],
@@ -548,6 +741,9 @@ def main() -> None:
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--transcript-source", choices=["manual", "auto_generated", "all"], default="all")
     parser.add_argument("--min-words", type=int, default=20)
+    parser.add_argument("--titles-dir", type=Path, default=None, help="Optional extracted titles directory to filter stories by successful title extraction.")
+    parser.add_argument("--require-title-success", action="store_true", help="Keep only stories whose video_id appears in extracted title outputs with extraction_status=success.")
+    parser.add_argument("--require-book-metadata", action="store_true", help="When filtering by titles, require a non-N/A book_title or story_title.")
     args = parser.parse_args()
 
     load_api_key(args.key_path)
@@ -564,6 +760,14 @@ def main() -> None:
     stories = assign_story_ids(load_labcomputer_rows(args.input_dir, min_words=args.min_words))
     if args.transcript_source != "all":
         stories = [row for row in stories if row.transcript_source == args.transcript_source]
+    if args.require_title_success:
+        titles_dir = args.titles_dir or Path("data/extracted_titles")
+        title_video_ids = load_title_success_video_ids(
+            titles_dir,
+            require_success=True,
+            require_book_metadata=args.require_book_metadata,
+        )
+        stories = [row for row in stories if row.video_id in title_video_ids]
     stories = sorted(stories, key=lambda row: (row.story_id, row.video_id, row.source_file))
     if args.start:
         stories = stories[args.start :]
@@ -583,7 +787,7 @@ def main() -> None:
     ]).to_csv(story_index_path, index=False)
 
     processed_ids = set() if args.overwrite else load_processed_story_ids(output_jsonl_path)
-    stories = [row for row in stories if row.story_id not in processed_ids]
+    stories = [row for row in stories if row.story_id not in processed_ids and row.video_id not in processed_ids]
 
     print(f"Run dir: {run_dir}")
     print(f"Stories selected: {len(stories)}")
@@ -594,7 +798,7 @@ def main() -> None:
     max_calls_remaining = [args.max_calls] if args.max_calls is not None else None
     for idx, row in enumerate(stories, start=1):
         try:
-            record = process_story(
+            records = process_story(
                 row=row,
                 clean_model=args.clean_model,
                 segment_model=args.segment_model,
@@ -607,11 +811,14 @@ def main() -> None:
                 sleep_seconds=args.sleep,
                 max_calls_remaining=max_calls_remaining,
             )
+            latest = records[-1] if records else None
             if idx % 25 == 0:
                 write_summary(summary_csv_path, load_output_records(output_jsonl_path))
             calls_left = "unbounded" if max_calls_remaining is None else str(max_calls_remaining[0])
             print(
-                f"[{idx}/{len(stories)}] {row.video_id} | sents={record['n_sentences']} events={record['n_events']} calls_left={calls_left}"
+                f"[{idx}/{len(stories)}] {row.video_id} | subtories={len(records)}"
+                + (f" | last_sents={latest['n_sentences']} last_events={latest['n_events']}" if latest is not None else "")
+                + f" | calls_left={calls_left}"
             )
         except RuntimeError as exc:
             if "Max API call budget reached" in str(exc):
