@@ -342,6 +342,7 @@ def process_book_titles(
                 jittered_sleep(sleep, sleep_jitter)
             if not book_url:
                 not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
+                not_found["amazon_scrape_run"] = output_csv.stem
                 append_to_csv([not_found], output_csv)
                 update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
@@ -356,6 +357,7 @@ def process_book_titles(
                 hint in details_blob for hint in NEGATIVE_HINTS
             ):
                 not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
+                not_found["amazon_scrape_run"] = output_csv.stem
                 append_to_csv([not_found], output_csv)
                 update_master_with_amazon_result(master_df, row, not_found)
                 failed += 1
@@ -364,6 +366,7 @@ def process_book_titles(
             details["extracted_book_title"] = book_title
             details["amazon_search_query"] = search_query_used or primary_label
             details["amazon_match_status"] = "FOUND"
+            details["amazon_scrape_run"] = output_csv.stem
             details["source_merge_key"] = build_source_merge_key(row, title_column, fallback_title=book_title)
             if matched_title:
                 details["matched_search_title"] = matched_title
@@ -373,11 +376,13 @@ def process_book_titles(
             processed += 1
         except AmazonTemporaryBlockError:
             pending = build_pending_placeholder(row, book_title, primary_label, title_column, reason="TEMPORARY_BLOCK")
+            pending["amazon_scrape_run"] = output_csv.stem
             append_to_csv([pending], output_csv)
             update_master_with_amazon_result(master_df, row, pending)
             skipped += 1
         except Exception:
             not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
+            not_found["amazon_scrape_run"] = output_csv.stem
             append_to_csv([not_found], output_csv)
             update_master_with_amazon_result(master_df, row, not_found)
             failed += 1
@@ -391,7 +396,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="HPC Amazon scraper using requests/BeautifulSoup.")
     ap.add_argument("--input-csv", type=Path, required=True)
     ap.add_argument("--output-csv", type=Path, required=True)
-    ap.add_argument("--master-csv", type=Path, default=None)
+    ap.add_argument("--master-csv", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
     ap.add_argument("--max-books", type=int, default=None)
     ap.add_argument("--skip-rows", type=int, default=0)
     ap.add_argument("--pending-only", action="store_true")

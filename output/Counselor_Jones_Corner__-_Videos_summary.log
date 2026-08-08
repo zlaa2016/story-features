@@ -1,0 +1,17 @@
+[2026-08-05 17:47:07] Playlist URL: https://www.youtube.com/@CounselorJonesCorner/videos
+[2026-08-05 17:47:07] Playlist title: Counselor Jones Corner  - Videos
+[2026-08-05 17:47:07] Total videos: 69
+[2026-08-05 17:47:07] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-05 17:47:07] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-05 18:01:44] FAILED cXX18nQBHvU: [0;31mERROR:[0m [youtube] cXX18nQBHvU: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10bd0ca30>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x10bd0ca30>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-08-05 22:35:45] === Summary ===
+[2026-08-05 22:35:45] Processed: 68
+[2026-08-05 22:35:45] Failed: 1
+[2026-08-05 22:35:45] With subtitles: 68
+[2026-08-05 22:35:45] No subtitles: 0
+[2026-08-05 22:35:45] Cleaned transcripts (non-empty): 68
+[2026-08-05 22:35:45] Transcript source counts: {'manual': 0, 'auto_generated': 68, 'none': 0}
+[2026-08-05 22:35:45] Subtitle language counts: {'en': 68}
+[2026-08-05 22:35:45] Rate-limited events: 0
+[2026-08-05 22:35:45] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-08-05 22:35:45] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

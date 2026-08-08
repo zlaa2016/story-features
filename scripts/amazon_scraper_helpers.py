@@ -107,6 +107,39 @@ def read_csv_any_encoding(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, low_memory=False)
 
 
+def read_table_any(path: Path) -> pd.DataFrame:
+    suffix = path.suffix.lower()
+    if suffix in {".xlsx", ".xls"}:
+        return pd.read_excel(path)
+    return read_csv_any_encoding(path)
+
+
+def normalize_title_input_columns(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    if "book_title" not in df.columns and "title" in df.columns:
+        df["book_title"] = df["title"]
+    if "story_title" not in df.columns and "title" in df.columns:
+        df["story_title"] = df["title"]
+    if "author" not in df.columns:
+        for candidate in ["Author", "creator", "uploader"]:
+            if candidate in df.columns:
+                df["author"] = df[candidate]
+                break
+    if "video_id" not in df.columns:
+        for candidate in ["id", "_id", "code"]:
+            if candidate in df.columns:
+                df["video_id"] = df[candidate].astype(str)
+                break
+    if "video_title" not in df.columns and "title" in df.columns:
+        df["video_title"] = df["title"]
+    if "description" not in df.columns:
+        for candidate in ["blurb", "full_story_text", "fulltitle"]:
+            if candidate in df.columns:
+                df["description"] = df[candidate]
+                break
+    return df
+
+
 def is_truthy(value: Any) -> bool:
     text = _serialize_cell(value).strip().lower()
     return text in {"1", "true", "t", "yes", "y"}
@@ -835,7 +868,7 @@ def ensure_columns(df: pd.DataFrame, columns: Iterable[str], fill_value: str = "
 
 
 def load_title_rows(input_csv: Path, skip_rows: int = 0, status_column: Optional[str] = None) -> Tuple[pd.DataFrame, str]:
-    df = read_csv_any_encoding(input_csv)
+    df = normalize_title_input_columns(read_table_any(input_csv))
     if status_column and status_column in df.columns:
         df = df[df[status_column].map(is_truthy)].copy()
     if skip_rows:
@@ -962,6 +995,7 @@ def load_master_csv(master_csv: Optional[Path]) -> Optional[pd.DataFrame]:
         raise ValueError(f"Master CSV must contain video_id: {master_csv}")
     df = df.copy()
     df["video_id"] = df["video_id"].astype(str).str.strip()
+    df = ensure_operational_master_schema(df)
     return df
 
 
@@ -970,6 +1004,64 @@ def save_master_csv(master_df: Optional[pd.DataFrame], master_csv: Optional[Path
         return
     master_csv.parent.mkdir(parents=True, exist_ok=True)
     master_df.to_csv(master_csv, index=False, compression="infer")
+
+
+def ensure_operational_master_schema(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    bool_defaults = {
+        "has_transcript_scrape": False,
+        "title_extraction_attempted": False,
+        "title_extraction_success": False,
+        "amazon_scrape_attempted": False,
+        "amazon_match_success": False,
+        "amazon_age_success": False,
+        "clean_attempted": False,
+        "clean_success": False,
+        "event_segment_attempted": False,
+        "event_segment_success": False,
+        "has_title_extraction_attempt": False,
+        "has_title_extraction_success": False,
+        "needs_title_extraction": False,
+        "has_amazon_match": False,
+        "has_amazon_age": False,
+        "ready_for_amazon_search": False,
+        "matched_but_missing_amazon_age": False,
+    }
+    text_defaults = {
+        "title_extraction_run": "",
+        "amazon_scrape_run": "",
+        "clean_run": "",
+        "event_segment_run": "",
+        "processing_last_updated_at": "",
+    }
+    for col, default in bool_defaults.items():
+        if col not in df.columns:
+            df[col] = default
+    for col, default in text_defaults.items():
+        if col not in df.columns:
+            df[col] = default
+
+    if "title_extraction_attempted" in df.columns:
+        df["title_extraction_attempted"] = (
+            df["title_extraction_attempted"].fillna(False).astype(bool)
+            | df["has_title_extraction_attempt"].fillna(False).astype(bool)
+        )
+    if "title_extraction_success" in df.columns:
+        df["title_extraction_success"] = (
+            df["title_extraction_success"].fillna(False).astype(bool)
+            | df["has_title_extraction_success"].fillna(False).astype(bool)
+        )
+    if "amazon_match_success" in df.columns:
+        df["amazon_match_success"] = (
+            df["amazon_match_success"].fillna(False).astype(bool)
+            | df["has_amazon_match"].fillna(False).astype(bool)
+        )
+    if "amazon_age_success" in df.columns:
+        df["amazon_age_success"] = (
+            df["amazon_age_success"].fillna(False).astype(bool)
+            | df["has_amazon_age"].fillna(False).astype(bool)
+        )
+    return df
 
 
 def update_master_with_title_result(
@@ -996,7 +1088,10 @@ def update_master_with_title_result(
             master_df[col] = ""
         master_df.at[idx, col] = value
     status = _serialize_cell(payload.get("extraction_status", "failed")).strip().lower()
+    run_label = _serialize_cell(payload.get("title_extraction_run", "")).strip()
     for col, value in {
+        "title_extraction_attempted": True,
+        "title_extraction_success": status == "success",
         "has_title_extraction_attempt": True,
         "has_title_extraction_success": status == "success",
         "needs_title_extraction": status != "success",
@@ -1004,6 +1099,13 @@ def update_master_with_title_result(
         if col not in master_df.columns:
             master_df[col] = False
         master_df.at[idx, col] = value
+    if "title_extraction_run" not in master_df.columns:
+        master_df["title_extraction_run"] = ""
+    if run_label:
+        master_df.at[idx, "title_extraction_run"] = run_label
+    if "processing_last_updated_at" not in master_df.columns:
+        master_df["processing_last_updated_at"] = ""
+    master_df.at[idx, "processing_last_updated_at"] = pd.Timestamp.utcnow().isoformat()
 
 
 def update_master_with_amazon_result(
@@ -1045,7 +1147,11 @@ def update_master_with_amazon_result(
     match_status = _serialize_cell(result.get("amazon_match_status", "NOT_FOUND")).strip().upper()
     reading_age = result.get("reading_age", "N/A")
     has_age = not _is_missingish(reading_age)
+    run_label = _serialize_cell(result.get("amazon_scrape_run", "")).strip()
     for col, value in {
+        "amazon_scrape_attempted": True,
+        "amazon_match_success": match_status == "FOUND",
+        "amazon_age_success": has_age,
         "has_amazon_match": match_status == "FOUND",
         "has_amazon_age": has_age,
         "ready_for_amazon_search": match_status.startswith("PENDING_"),
@@ -1054,3 +1160,59 @@ def update_master_with_amazon_result(
         if col not in master_df.columns:
             master_df[col] = False
         master_df.at[idx, col] = value
+    if "amazon_scrape_run" not in master_df.columns:
+        master_df["amazon_scrape_run"] = ""
+    if run_label:
+        master_df.at[idx, "amazon_scrape_run"] = run_label
+    if "processing_last_updated_at" not in master_df.columns:
+        master_df["processing_last_updated_at"] = ""
+    master_df.at[idx, "processing_last_updated_at"] = pd.Timestamp.utcnow().isoformat()
+
+
+def update_master_with_processing_result(
+    master_df: Optional[pd.DataFrame],
+    video_id: str,
+    *,
+    clean_attempted: Optional[bool] = None,
+    clean_success: Optional[bool] = None,
+    event_segment_attempted: Optional[bool] = None,
+    event_segment_success: Optional[bool] = None,
+    clean_run: Optional[str] = None,
+    event_segment_run: Optional[str] = None,
+) -> None:
+    if master_df is None:
+        return
+    video_id = _serialize_cell(video_id).strip()
+    if not video_id:
+        return
+    matches = master_df["video_id"].astype(str).str.strip() == video_id
+    if not matches.any():
+        return
+    idx = master_df[matches].index[0]
+    bool_updates = {
+        "clean_attempted": clean_attempted,
+        "clean_success": clean_success,
+        "event_segment_attempted": event_segment_attempted,
+        "event_segment_success": event_segment_success,
+    }
+    for col, value in bool_updates.items():
+        if value is None:
+            continue
+        if col not in master_df.columns:
+            master_df[col] = False
+        master_df.at[idx, col] = bool(value)
+    if "cleaned" not in master_df.columns:
+        master_df["cleaned"] = 0
+    if clean_success is not None:
+        master_df.at[idx, "cleaned"] = int(bool(clean_success))
+    if clean_run is not None:
+        if "clean_run" not in master_df.columns:
+            master_df["clean_run"] = ""
+        master_df.at[idx, "clean_run"] = clean_run
+    if event_segment_run is not None:
+        if "event_segment_run" not in master_df.columns:
+            master_df["event_segment_run"] = ""
+        master_df.at[idx, "event_segment_run"] = event_segment_run
+    if "processing_last_updated_at" not in master_df.columns:
+        master_df["processing_last_updated_at"] = ""
+    master_df.at[idx, "processing_last_updated_at"] = pd.Timestamp.utcnow().isoformat()

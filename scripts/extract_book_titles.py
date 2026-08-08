@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
-from amazon_scraper_common import load_master_csv, save_master_csv, update_master_with_title_result
+from amazon_scraper_helpers import load_master_csv, save_master_csv, update_master_with_title_result
 
 
 DEFAULT_MODEL = os.environ.get("OPENAI_TITLE_MODEL", "gpt-4o-mini")
@@ -202,7 +202,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Extract book/story titles from YouTube video title + description only.")
     ap.add_argument("--queue", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
     ap.add_argument("--out-dir", type=Path, default=Path("data/extracted_titles"))
-    ap.add_argument("--master-csv", type=Path, default=None, help="Optional master status CSV to update in place.")
+    ap.add_argument("--master-csv", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"), help="Operational master CSV to update in place.")
     ap.add_argument("--status-column", type=str, default="needs_title_extraction")
     ap.add_argument("--run-label", type=str, default=None, help="Optional run label; writes outputs into out-dir/<run-label>/")
     ap.add_argument("--key-path", type=Path, default=None, help="Optional path to an OpenAI API key file.")
@@ -257,6 +257,7 @@ def main() -> None:
         results.append(
             {
                 **payload,
+                "title_extraction_run": args.run_label or args.model,
                 "source_csv": row.source_csv,
                 "video_id": row.video_id,
                 "video_title": row.video_title,

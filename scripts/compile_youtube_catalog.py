@@ -8,6 +8,8 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
+from amazon_scraper_helpers import ensure_operational_master_schema
+
 
 VALID_VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{6,}$")
 
@@ -331,7 +333,7 @@ def load_supplemental_age_merge(paths: List[Path]) -> pd.DataFrame:
 
 
 def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
+    df = ensure_operational_master_schema(df)
     df["catalog_row_key"] = df["video_id"].astype(str)
     df["catalog_version"] = "youtube_catalog_v1"
 
@@ -360,12 +362,14 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
         df["has_amazon_age"] = df[age_cols].notna().any(axis=1)
     else:
         df["has_amazon_age"] = False
+    df["amazon_age_success"] = df["has_amazon_age"].fillna(False).astype(bool)
 
     if "amz_has_amazon_match" in df.columns:
         match_norm = df["amz_has_amazon_match"].fillna("").astype(str).str.strip().str.lower()
         df["has_amazon_match"] = match_norm.isin(["true", "1", "yes"])
     else:
         df["has_amazon_match"] = False
+    df["amazon_match_success"] = df["has_amazon_match"].fillna(False).astype(bool)
 
     def choose_first(*values: Any) -> Optional[str]:
         for value in values:
@@ -420,6 +424,14 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
             df.get("supp_source_table", pd.Series([None] * len(df))),
         )
     ]
+    df["title_extraction_attempted"] = df["has_title_extraction_attempt"].fillna(False).astype(bool)
+    df["title_extraction_success"] = df["has_title_extraction_success"].fillna(False).astype(bool)
+    df["amazon_scrape_attempted"] = (
+        df["has_amazon_match"].fillna(False).astype(bool)
+        | df["has_amazon_age"].fillna(False).astype(bool)
+        | df.get("Amazon Match Status", pd.Series([""] * len(df))).fillna("").astype(str).str.strip().ne("")
+        | df.get("amz_Amazon Match Status", pd.Series([""] * len(df))).fillna("").astype(str).str.strip().ne("")
+    )
     return df
 
 
@@ -505,7 +517,7 @@ def main() -> None:
         help="Extra Amazon-derived tables to merge for age coverage before building queues.",
     )
     ap.add_argument("--out", type=Path, default=Path("data/processed/youtube_catalog.csv.gz"))
-    ap.add_argument("--queue-dir", type=Path, default=Path("data/processed/youtube_queues"))
+    ap.add_argument("--queue-dir", type=Path, default=None, help="Optional queue export directory. Omit to keep only the master table.")
     args = ap.parse_args()
 
     transcripts = load_transcript_scrapes(args.output_dir)
@@ -564,21 +576,22 @@ def main() -> None:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(args.out, index=False, compression="infer")
 
-    export_queue(
-        df,
-        args.queue_dir / "needs_title_extraction.csv",
-        df["has_transcript_scrape"] & ~df["has_title_extraction_success"],
-    )
-    export_queue(
-        df,
-        args.queue_dir / "ready_for_amazon_search.csv",
-        df["ready_for_amazon_search"],
-    )
-    export_queue(
-        df,
-        args.queue_dir / "matched_but_missing_amazon_age.csv",
-        df["matched_but_missing_amazon_age"],
-    )
+    if args.queue_dir is not None:
+        export_queue(
+            df,
+            args.queue_dir / "needs_title_extraction.csv",
+            df["has_transcript_scrape"] & ~df["has_title_extraction_success"],
+        )
+        export_queue(
+            df,
+            args.queue_dir / "ready_for_amazon_search.csv",
+            df["ready_for_amazon_search"],
+        )
+        export_queue(
+            df,
+            args.queue_dir / "matched_but_missing_amazon_age.csv",
+            df["matched_but_missing_amazon_age"],
+        )
 
     n_scraped = int(df["has_transcript_scrape"].sum()) if "has_transcript_scrape" in df.columns else 0
     n_attempted = int(df["has_title_extraction_attempt"].sum())
@@ -594,7 +607,8 @@ def main() -> None:
     print(f"Left to scrape titles: {n_left}")
     print(f"Ready for Amazon search: {n_ready_for_amazon}")
     print(f"Matched but missing Amazon age: {n_missing_age_after_match}")
-    print(f"Queue dir: {args.queue_dir}")
+    if args.queue_dir is not None:
+        print(f"Queue dir: {args.queue_dir}")
 
 
 if __name__ == "__main__":

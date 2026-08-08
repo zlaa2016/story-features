@@ -1,0 +1,17 @@
+[2026-08-05 02:15:00] Playlist URL: https://www.youtube.com/@Thebookkeepers/videos
+[2026-08-05 02:15:00] Playlist title: The Book Keepers - Videos
+[2026-08-05 02:15:00] Total videos: 502
+[2026-08-05 02:15:00] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-05 02:15:00] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-05 09:57:57] FAILED 8uiUhYzl874: [0;31mERROR:[0m [youtube] 8uiUhYzl874: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1094a9d20>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x1094a9d20>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-08-05 15:40:38] === Summary ===
+[2026-08-05 15:40:38] Processed: 501
+[2026-08-05 15:40:38] Failed: 1
+[2026-08-05 15:40:38] With subtitles: 501
+[2026-08-05 15:40:38] No subtitles: 0
+[2026-08-05 15:40:38] Cleaned transcripts (non-empty): 501
+[2026-08-05 15:40:38] Transcript source counts: {'manual': 0, 'auto_generated': 501, 'none': 0}
+[2026-08-05 15:40:38] Subtitle language counts: {'en': 501}
+[2026-08-05 15:40:38] Rate-limited events: 0
+[2026-08-05 15:40:38] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 1}
+[2026-08-05 15:40:38] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,16 @@
+[2026-08-05 15:40:40] Playlist URL: https://www.youtube.com/@LittleListenersletsread/videos
+[2026-08-05 15:40:40] Playlist title: Little Listeners - Let's Read Together - Videos
+[2026-08-05 15:40:40] Total videos: 92
+[2026-08-05 15:40:40] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-05 15:40:40] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-05 17:47:06] === Summary ===
+[2026-08-05 17:47:06] Processed: 92
+[2026-08-05 17:47:06] Failed: 0
+[2026-08-05 17:47:06] With subtitles: 92
+[2026-08-05 17:47:06] No subtitles: 0
+[2026-08-05 17:47:06] Cleaned transcripts (non-empty): 92
+[2026-08-05 17:47:06] Transcript source counts: {'manual': 0, 'auto_generated': 92, 'none': 0}
+[2026-08-05 17:47:06] Subtitle language counts: {'en': 92}
+[2026-08-05 17:47:06] Rate-limited events: 0
+[2026-08-05 17:47:06] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-05 17:47:06] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
