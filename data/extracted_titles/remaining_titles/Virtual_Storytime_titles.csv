@@ -1,0 +1,6 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Baby & Me Storytime,Bathtime!,,Virtual_Storytime.csv,4wXfoATg2TQ,Baby & Me Storytime: Bathtime!,,success
+Baby Storytime with Ms. Lolly: How Ya Feelin'?,How Ya Feelin'?,,Virtual_Storytime.csv,DHwHqDOlGGc,Baby Storytime with Ms. Lolly: How Ya Feelin'?,,success
+,Movin' and Groovin' Storytime,,Virtual_Storytime.csv,IFJm3iIiOi8,Family Storytime - Movin' and Groovin' Storytime,,failed
+Baby Storytime,Food Fun,Ms. Lolly,Virtual_Storytime.csv,W6ybbu3kPbA,Baby Storytime with Ms. Lolly: Food Fun,,success
+A Very Sappy Storytime,A Very Sappy Storytime,N/A,Virtual_Storytime.csv,ydbW5jAP2bA,Family Storytime with Ms. Kris: A Very Sappy Storytime,,success

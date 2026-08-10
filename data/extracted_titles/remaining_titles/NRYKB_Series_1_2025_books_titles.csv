@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,NRYKB_Series_1_2025_books.csv,0c7p978gDCQ,Let’s go for a drive - NRYKB,,failed
+Should I share my ice cream?,Should I share my ice cream?,N/A,NRYKB_Series_1_2025_books.csv,kdgQBX_vNUE,Should I share my ice cream? - NRYKB,,success

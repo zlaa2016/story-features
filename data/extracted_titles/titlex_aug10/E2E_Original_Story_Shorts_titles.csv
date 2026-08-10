@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,E2E_Original_Story_Shorts.csv,-Fy-oo2hrio,E2E 56 Story Short,,failed
+,E2E Story Short #13,,E2E_Original_Story_Shorts.csv,14zVPptCoiY,E2E Story Short #13,,failed
+N/A,E2E Story Short #22,N/A,E2E_Original_Story_Shorts.csv,2T-p6JCrBUI,E2E Story Short #22,,success
+N/A,E2E Story Short #18,N/A,E2E_Original_Story_Shorts.csv,2cZvqFjnpEU,E2E Story Short #18,,failed

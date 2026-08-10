@@ -1,0 +1,11 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,The Flash,,Reading_Time_With_Nana_-_Videos.csv,3Jec1eZeNtQ,The Flash@Readingtimewithnana,,success
+Sesame Street,What’s Up In The Attic,,Reading_Time_With_Nana_-_Videos.csv,6DD8o8eTkK0,Sesame Street-Whats Up In The Attic@Readingtimewithnana,,success
+,The Secret Life Of Pets 2,,Reading_Time_With_Nana_-_Videos.csv,F1TTmhytuoI,The Secret Life Of Pets 2-Max On The Farm@Readingtimewithnana,,failed
+,,,Reading_Time_With_Nana_-_Videos.csv,Q4401s9TTCg,Super Mario@Readingtimewithnana,,failed
+Cats@Readingtimewithnana,,,Reading_Time_With_Nana_-_Videos.csv,QoasfLYm4Jg,Cats@Readingtimewithnana,,success
+Sesame Street Little Theater,The Four Seasons,,Reading_Time_With_Nana_-_Videos.csv,e8BsV3OTFjA,The Sesame Street Little Theater Proudly Presents-The Four Seasons@Readingtimewithnana,,success
+Grumpy Cat,Yawn!,,Reading_Time_With_Nana_-_Videos.csv,raJBYIZ9X2M,Grumpy Cat-Yawn!@Readingtimewithnana,,success
+The First Moon Landing,The First Moon Landing,,Reading_Time_With_Nana_-_Videos.csv,rtuubTVUSmY,The First Moon Landing@Readingtimewithnana,,success
+The Many Faces of Ernie,The Many Faces of Ernie,N/A,Reading_Time_With_Nana_-_Videos.csv,z1faIJaNQ4c,The Many Faces Of Ernie@Readingtimewithnana,,success
+Peeps In Pajamas,Peeps In Pajamas,N/A,Reading_Time_With_Nana_-_Videos.csv,zy8bYCxpA1c,Peeps In Pajamas@Readingtimewithnana,,success

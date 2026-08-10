@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney_Stories.csv,H1P-meqIEhc,"Monsters, Inc.",,failed
+Atlantis: The Lost Empire,Atlantis: The Lost Empire,,Disney_Stories.csv,QA110IF2QYY,Atlantis: The Lost Empire (Storyteller),,success
+Toy Story 2,Toy Story 2 (Storyteller Version),N/A,Disney_Stories.csv,bJ9pO57dlkQ,Toy Story 2 (Storyteller Version),,success
