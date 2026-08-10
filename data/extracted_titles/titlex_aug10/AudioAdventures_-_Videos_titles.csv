@@ -1,2 +1,15 @@
 book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
-ZORRO: Presenting Señor Zorro,Señor Zorro,N/A,AudioAdventures_-_Videos.csv,1xvxG9rLGs0,ZORRO: Presenting Señor Zorro - Disneyland Records,,success
+ZORRO: Presenting Señor Zorro,Señor Zorro,,AudioAdventures_-_Videos.csv,1xvxG9rLGs0,ZORRO: Presenting Señor Zorro - Disneyland Records,,success
+,,,AudioAdventures_-_Videos.csv,89ToFEMkjqM,U.S. of Archie - The Great Divide LP,,failed
+,,,AudioAdventures_-_Videos.csv,BOIJ7eHIZ80,Voltron: The Masked Robeast,,failed
+Challenge of the GoBots: Battle For GoBotron,Battle For GoBotron - Side Two,,AudioAdventures_-_Videos.csv,CTCHSZqXD8Y,Challenge of the GoBots: Battle For GoBotron - Side Two,,success
+Sectaurs - Warriors Of Symbion,Warriors Of Symbion (Side Two),,AudioAdventures_-_Videos.csv,HdtTFC2Pzp0,Sectaurs - Warriors Of Symbion (Side Two),,success
+,,,AudioAdventures_-_Videos.csv,PLv_FEA5l_s,Archie: Idol-ness In Riverdale LP - Side One,,failed
+,,,AudioAdventures_-_Videos.csv,Pxn64J1bssg,Batman Forever: The Board Game Cassette Side 1,,failed
+,,,AudioAdventures_-_Videos.csv,SAoEDCN67gg,Batman Forever: The Board Game Cassette Side 2,,failed
+,,,AudioAdventures_-_Videos.csv,TGp4-GKtZQg,Voltron: Attack of the Sand Monster,,failed
+Sectaurs - Warriors Of Symbion,Side One,,AudioAdventures_-_Videos.csv,Vi_g4m6womQ,Sectaurs -  Warriors Of Symbion (Side One),,success
+,Popeye: Spinach on the Spanish Main,,AudioAdventures_-_Videos.csv,X2BH3MD4rtI,Popeye: Spinach on the Spanish Main Vinyl LP,,failed
+,,,AudioAdventures_-_Videos.csv,_xIueHMy2PM,Darkwing Duck - High Wave Robbery,,failed
+The Hulk Versus The Bulk!,The Hulk Versus The Bulk!,,AudioAdventures_-_Videos.csv,skn1OQoXeVQ,The Hulk Versus The Bulk! - Tifton Records,,failed
+Voltron,Trapped on the Jungle Planet,N/A,AudioAdventures_-_Videos.csv,uzT4cCEVSwo,Voltron: Trapped on the Jungle Planet,,success

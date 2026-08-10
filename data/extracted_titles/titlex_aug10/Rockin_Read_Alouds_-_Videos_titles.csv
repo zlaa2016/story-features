@@ -1,0 +1,3 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Rockin_Read_Alouds_-_Videos.csv,6AP51_MdlGw,Ballpark Read Aloud,,failed
+Ballet Stars,Ballet Stars Read Aloud,N/A,Rockin_Read_Alouds_-_Videos.csv,IZTVSsDCQsM,Ballet Stars Read Aloud,,success

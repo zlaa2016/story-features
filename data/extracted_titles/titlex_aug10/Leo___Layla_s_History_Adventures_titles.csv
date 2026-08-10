@@ -1,3 +1,9 @@
 book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
 ,,,Leo___Layla_s_History_Adventures.csv,0cEDHZ6PVWI,Aleksandr Solzhenitsyn: Advocate for Freedom of Speech | Leo & Layla | PragerU Kids,,failed
-N/A,John Adams & Thomas Jefferson: The Founding Fathers’ Friendship and Friction,N/A,Leo___Layla_s_History_Adventures.csv,2aFTXB0EMDY,John Adams & Thomas Jefferson: The Founding Fathers’ Friendship and Friction | PragerU Kids,,failed
+,John Adams & Thomas Jefferson: The Founding Fathers’ Friendship and Friction,,Leo___Layla_s_History_Adventures.csv,2aFTXB0EMDY,John Adams & Thomas Jefferson: The Founding Fathers’ Friendship and Friction | PragerU Kids,,failed
+,Benjamin Franklin: America’s First Great Inventor and Thinker,,Leo___Layla_s_History_Adventures.csv,77vqS7NH2bQ,Benjamin Franklin: America’s First Great Inventor and Thinker | Leo & Layla | PragerU Kids,,success
+,Abraham Lincoln: The President Who Saved the Union,,Leo___Layla_s_History_Adventures.csv,8OGYBVPnxOw,Abraham Lincoln: The President Who Saved the Union | Leo & Layla's History Adventures | PragerU Kids,,failed
+Leo & Layla's History Adventures,John Locke: The Influencer of America's Founding,,Leo___Layla_s_History_Adventures.csv,8rKj9GXz_Lw,John Locke: The Influencer of America's Founding | Leo & Layla's History Adventures | PragerU Kids,,success
+Leo & Layla,Madison & Montesquieu: The Men Who Gave Us Checks and Balances,,Leo___Layla_s_History_Adventures.csv,9CVX2TCN8Bg,Madison & Montesquieu: The Men Who Gave Us Checks and Balances | Leo & Layla | PragerU Kids,,success
+Leo & Layla's History Adventures,Galileo: The Scientist Who Dared to Question,,Leo___Layla_s_History_Adventures.csv,W7OFzil-_Xk,Galileo: The Scientist Who Dared to Question | Leo & Layla's History Adventures | PragerU Kids,,success
+N/A,N/A,N/A,Leo___Layla_s_History_Adventures.csv,ywrScnz817M,John Adams & Thomas Jefferson: The Founding Fathers’ Friendship and Friction | PragerU Kids,,failed

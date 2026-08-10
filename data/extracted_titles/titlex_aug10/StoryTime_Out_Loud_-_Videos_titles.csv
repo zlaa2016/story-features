@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Pokemon - Kid's Rounding Practice,Learn to Round with Pokemon,,StoryTime_Out_Loud_-_Videos.csv,7GchfGT2vCA,Learn to Round with Pokemon - Kid's Rounding Practice,,success
+,,,StoryTime_Out_Loud_-_Videos.csv,AnFeBYHtDO8,"Red Light, Green Light Challenge! - HARD🚦Back to School Brain Break 🚦 Indoor Recess 🚦 PE 🚦GoNoodle",,failed
+N/A,N/A,N/A,StoryTime_Out_Loud_-_Videos.csv,yPgFuUdWF3U,90 Minute Timer for the Classroom - Relaxing Music with no Alarm - Sensory Soothing,,failed
