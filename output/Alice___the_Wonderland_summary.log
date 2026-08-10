@@ -97,3 +97,20 @@
 [2026-01-30 20:44:43] Rate-limited events: 0
 [2026-01-30 20:44:43] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
 [2026-01-30 20:44:43] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-08-04 04:08:52] Playlist URL: https://youtube.com/playlist?list=PLvFfoXxVTays0PiHe_6rFdxkvyKvGFw04
+[2026-08-04 04:08:52] Playlist title: Alice & the Wonderland
+[2026-08-04 04:08:52] Total videos: 1
+[2026-08-04 04:08:52] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 04:08:52] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 04:08:52] Resume enabled. Existing videos: 1
+[2026-08-04 04:08:52] === Summary ===
+[2026-08-04 04:08:52] Processed: 0
+[2026-08-04 04:08:52] Failed: 0
+[2026-08-04 04:08:52] With subtitles: 0
+[2026-08-04 04:08:52] No subtitles: 0
+[2026-08-04 04:08:52] Cleaned transcripts (non-empty): 0
+[2026-08-04 04:08:52] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-08-04 04:08:52] Subtitle language counts: {}
+[2026-08-04 04:08:52] Rate-limited events: 0
+[2026-08-04 04:08:52] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 04:08:52] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

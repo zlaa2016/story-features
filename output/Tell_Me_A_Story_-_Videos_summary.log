@@ -14,3 +14,20 @@
 [2026-02-04 17:01:02] Rate-limited events: 0
 [2026-02-04 17:01:02] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
 [2026-02-04 17:01:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-08-04 05:47:16] Playlist URL: https://www.youtube.com/@tellmeastory4608/videos
+[2026-08-04 05:47:16] Playlist title: Tell Me A Story - Videos
+[2026-08-04 05:47:16] Total videos: 13
+[2026-08-04 05:47:16] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 05:47:16] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 05:47:16] Resume enabled. Existing videos: 13
+[2026-08-04 05:47:16] === Summary ===
+[2026-08-04 05:47:16] Processed: 0
+[2026-08-04 05:47:16] Failed: 0
+[2026-08-04 05:47:16] With subtitles: 0
+[2026-08-04 05:47:16] No subtitles: 0
+[2026-08-04 05:47:16] Cleaned transcripts (non-empty): 0
+[2026-08-04 05:47:16] Transcript source counts: {'manual': 0, 'auto_generated': 0, 'none': 0}
+[2026-08-04 05:47:16] Subtitle language counts: {}
+[2026-08-04 05:47:16] Rate-limited events: 0
+[2026-08-04 05:47:16] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 05:47:16] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,16 @@
+[2026-08-04 08:37:29] Playlist URL: https://youtube.com/playlist?list=PLGlGRMPmoDZ89niBlQ9yNO2pgcYa2GXHM
+[2026-08-04 08:37:29] Playlist title: Story Reading for Kids
+[2026-08-04 08:37:29] Total videos: 6
+[2026-08-04 08:37:29] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 08:37:29] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 08:45:37] === Summary ===
+[2026-08-04 08:45:37] Processed: 6
+[2026-08-04 08:45:37] Failed: 0
+[2026-08-04 08:45:37] With subtitles: 6
+[2026-08-04 08:45:37] No subtitles: 0
+[2026-08-04 08:45:37] Cleaned transcripts (non-empty): 6
+[2026-08-04 08:45:37] Transcript source counts: {'manual': 0, 'auto_generated': 6, 'none': 0}
+[2026-08-04 08:45:37] Subtitle language counts: {'en': 6}
+[2026-08-04 08:45:37] Rate-limited events: 0
+[2026-08-04 08:45:37] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 08:45:37] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

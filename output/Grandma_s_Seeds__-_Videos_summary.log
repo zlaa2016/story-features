@@ -49,3 +49,20 @@
 [2026-02-01 14:29:07] Rate-limited events: 0
 [2026-02-01 14:29:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
 [2026-02-01 14:29:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-08-04 04:54:04] Playlist URL: https://www.youtube.com/@antonijastefek/videos
+[2026-08-04 04:54:04] Playlist title: Grandma’s Seeds  - Videos
+[2026-08-04 04:54:04] Total videos: 84
+[2026-08-04 04:54:04] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 04:54:04] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 04:54:04] Resume enabled. Existing videos: 45
+[2026-08-04 05:43:16] === Summary ===
+[2026-08-04 05:43:16] Processed: 39
+[2026-08-04 05:43:16] Failed: 0
+[2026-08-04 05:43:16] With subtitles: 39
+[2026-08-04 05:43:16] No subtitles: 0
+[2026-08-04 05:43:16] Cleaned transcripts (non-empty): 39
+[2026-08-04 05:43:16] Transcript source counts: {'manual': 0, 'auto_generated': 39, 'none': 0}
+[2026-08-04 05:43:16] Subtitle language counts: {'en': 39}
+[2026-08-04 05:43:16] Rate-limited events: 0
+[2026-08-04 05:43:16] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 05:43:16] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

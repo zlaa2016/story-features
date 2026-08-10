@@ -1,0 +1,16 @@
+[2026-08-04 09:17:59] Playlist URL: https://www.youtube.com/@Dave-the-storyreader/videos
+[2026-08-04 09:17:59] Playlist title: Dave the Story Reader - Videos
+[2026-08-04 09:17:59] Total videos: 604
+[2026-08-04 09:17:59] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 09:17:59] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 23:41:16] === Summary ===
+[2026-08-04 23:41:16] Processed: 604
+[2026-08-04 23:41:16] Failed: 0
+[2026-08-04 23:41:16] With subtitles: 598
+[2026-08-04 23:41:16] No subtitles: 6
+[2026-08-04 23:41:16] Cleaned transcripts (non-empty): 598
+[2026-08-04 23:41:16] Transcript source counts: {'manual': 0, 'auto_generated': 598, 'none': 6}
+[2026-08-04 23:41:16] Subtitle language counts: {'en': 598}
+[2026-08-04 23:41:16] Rate-limited events: 0
+[2026-08-04 23:41:16] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 23:41:16] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

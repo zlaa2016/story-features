@@ -52,3 +52,20 @@
 [2026-02-01 14:29:05] Rate-limited events: 0
 [2026-02-01 14:29:05] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
 [2026-02-01 14:29:05] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-08-04 04:33:27] Playlist URL: https://www.youtube.com/@kgmerlo1306/videos
+[2026-08-04 04:33:27] Playlist title: K G Merlo - Videos
+[2026-08-04 04:33:27] Total videos: 48
+[2026-08-04 04:33:27] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 04:33:27] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 04:33:27] Resume enabled. Existing videos: 34
+[2026-08-04 04:54:03] === Summary ===
+[2026-08-04 04:54:03] Processed: 15
+[2026-08-04 04:54:03] Failed: 0
+[2026-08-04 04:54:03] With subtitles: 15
+[2026-08-04 04:54:03] No subtitles: 0
+[2026-08-04 04:54:03] Cleaned transcripts (non-empty): 15
+[2026-08-04 04:54:03] Transcript source counts: {'manual': 0, 'auto_generated': 15, 'none': 0}
+[2026-08-04 04:54:03] Subtitle language counts: {'en': 15}
+[2026-08-04 04:54:03] Rate-limited events: 0
+[2026-08-04 04:54:03] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 04:54:03] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

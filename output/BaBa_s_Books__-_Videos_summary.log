@@ -1,0 +1,16 @@
+[2026-08-04 23:41:18] Playlist URL: https://www.youtube.com/@BabasBooks/videos
+[2026-08-04 23:41:18] Playlist title: BaBa’s Books  - Videos
+[2026-08-04 23:41:18] Total videos: 101
+[2026-08-04 23:41:18] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 23:41:18] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-05 01:57:59] === Summary ===
+[2026-08-05 01:57:59] Processed: 101
+[2026-08-05 01:57:59] Failed: 0
+[2026-08-05 01:57:59] With subtitles: 101
+[2026-08-05 01:57:59] No subtitles: 0
+[2026-08-05 01:57:59] Cleaned transcripts (non-empty): 101
+[2026-08-05 01:57:59] Transcript source counts: {'manual': 0, 'auto_generated': 101, 'none': 0}
+[2026-08-05 01:57:59] Subtitle language counts: {'en': 101}
+[2026-08-05 01:57:59] Rate-limited events: 0
+[2026-08-05 01:57:59] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-05 01:57:59] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

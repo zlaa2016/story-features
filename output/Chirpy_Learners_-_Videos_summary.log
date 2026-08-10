@@ -14,3 +14,20 @@
 [2026-02-06 18:18:10] Rate-limited events: 0
 [2026-02-06 18:18:10] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
 [2026-02-06 18:18:10] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
+[2026-08-04 05:47:17] Playlist URL: https://www.youtube.com/@chirpylearners/videos
+[2026-08-04 05:47:17] Playlist title: Chirpy Learners - Videos
+[2026-08-04 05:47:17] Total videos: 141
+[2026-08-04 05:47:17] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 05:47:17] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 05:47:17] Resume enabled. Existing videos: 56
+[2026-08-04 07:42:44] === Summary ===
+[2026-08-04 07:42:44] Processed: 85
+[2026-08-04 07:42:44] Failed: 0
+[2026-08-04 07:42:44] With subtitles: 85
+[2026-08-04 07:42:44] No subtitles: 0
+[2026-08-04 07:42:44] Cleaned transcripts (non-empty): 85
+[2026-08-04 07:42:44] Transcript source counts: {'manual': 5, 'auto_generated': 80, 'none': 0}
+[2026-08-04 07:42:44] Subtitle language counts: {'en': 84, 'en-US': 1}
+[2026-08-04 07:42:44] Rate-limited events: 0
+[2026-08-04 07:42:44] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 07:42:44] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

@@ -1,0 +1,16 @@
+[2026-08-04 08:35:26] Playlist URL: https://youtube.com/playlist?list=PLessqtWV0kHTXVRERTKgW7SeVC9bC1BQw
+[2026-08-04 08:35:26] Playlist title: Franklin 🐢
+[2026-08-04 08:35:26] Total videos: 3
+[2026-08-04 08:35:26] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 08:35:26] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 08:37:28] === Summary ===
+[2026-08-04 08:37:28] Processed: 3
+[2026-08-04 08:37:28] Failed: 0
+[2026-08-04 08:37:28] With subtitles: 2
+[2026-08-04 08:37:28] No subtitles: 1
+[2026-08-04 08:37:28] Cleaned transcripts (non-empty): 2
+[2026-08-04 08:37:28] Transcript source counts: {'manual': 0, 'auto_generated': 2, 'none': 1}
+[2026-08-04 08:37:28] Subtitle language counts: {'en': 2}
+[2026-08-04 08:37:28] Rate-limited events: 0
+[2026-08-04 08:37:28] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 08:37:28] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

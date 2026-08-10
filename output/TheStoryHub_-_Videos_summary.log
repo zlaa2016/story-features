@@ -1,0 +1,16 @@
+[2026-08-04 08:45:39] Playlist URL: https://www.youtube.com/@thestoryhub9912/videos
+[2026-08-04 08:45:39] Playlist title: TheStoryHub - Videos
+[2026-08-04 08:45:39] Total videos: 21
+[2026-08-04 08:45:39] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-04 08:45:39] Sleep range: 45-120s, rate-limit sleep: 3600s, retries: 2
+[2026-08-04 09:14:25] === Summary ===
+[2026-08-04 09:14:25] Processed: 21
+[2026-08-04 09:14:25] Failed: 0
+[2026-08-04 09:14:25] With subtitles: 21
+[2026-08-04 09:14:25] No subtitles: 0
+[2026-08-04 09:14:25] Cleaned transcripts (non-empty): 21
+[2026-08-04 09:14:25] Transcript source counts: {'manual': 0, 'auto_generated': 21, 'none': 0}
+[2026-08-04 09:14:25] Subtitle language counts: {'en': 21}
+[2026-08-04 09:14:25] Rate-limited events: 0
+[2026-08-04 09:14:25] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-04 09:14:25] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
