@@ -1,0 +1,16 @@
+[2026-08-12 11:29:57] Playlist URL: https://www.youtube.com/playlist?list=PLdP29OaBckk3GwTaTvNcYcBz876tGtHA6
+[2026-08-12 11:29:57] Playlist title: Emotions and Feelings (Social Emotional)
+[2026-08-12 11:29:57] Total videos: 100
+[2026-08-12 11:29:57] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 11:29:57] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 12:40:30] === Summary ===
+[2026-08-12 12:40:30] Processed: 100
+[2026-08-12 12:40:30] Failed: 0
+[2026-08-12 12:40:30] With subtitles: 94
+[2026-08-12 12:40:30] No subtitles: 6
+[2026-08-12 12:40:30] Cleaned transcripts (non-empty): 94
+[2026-08-12 12:40:30] Transcript source counts: {'manual': 0, 'auto_generated': 94, 'none': 6}
+[2026-08-12 12:40:30] Subtitle language counts: {'en': 94}
+[2026-08-12 12:40:30] Rate-limited events: 0
+[2026-08-12 12:40:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 12:40:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

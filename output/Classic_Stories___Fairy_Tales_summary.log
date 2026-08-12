@@ -1,0 +1,16 @@
+[2026-08-12 09:55:48] Playlist URL: https://youtube.com/playlist?list=PL65ijVzWl9ku0t42Gvj4YPxheNVaQrO2D&si=C3VydvGRpq4OPjbs
+[2026-08-12 09:55:48] Playlist title: Classic Stories / Fairy Tales
+[2026-08-12 09:55:48] Total videos: 46
+[2026-08-12 09:55:48] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 09:55:48] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 10:31:02] === Summary ===
+[2026-08-12 10:31:02] Processed: 46
+[2026-08-12 10:31:02] Failed: 0
+[2026-08-12 10:31:02] With subtitles: 42
+[2026-08-12 10:31:02] No subtitles: 4
+[2026-08-12 10:31:02] Cleaned transcripts (non-empty): 42
+[2026-08-12 10:31:02] Transcript source counts: {'manual': 0, 'auto_generated': 42, 'none': 4}
+[2026-08-12 10:31:02] Subtitle language counts: {'en': 42}
+[2026-08-12 10:31:02] Rate-limited events: 0
+[2026-08-12 10:31:02] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 10:31:02] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

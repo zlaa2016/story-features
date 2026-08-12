@@ -1,0 +1,16 @@
+[2026-08-12 04:33:05] Playlist URL: https://youtube.com/playlist?list=PLCIyuhjHK4eN3AZSP1xFoH3xHVDDfX9jq&si=l7T3xV4Iy6gZkhbH
+[2026-08-12 04:33:05] Playlist title: Diverse Children's Books | Kids Books Read Aloud
+[2026-08-12 04:33:05] Total videos: 31
+[2026-08-12 04:33:05] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 04:33:05] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 04:53:30] === Summary ===
+[2026-08-12 04:53:30] Processed: 31
+[2026-08-12 04:53:30] Failed: 0
+[2026-08-12 04:53:30] With subtitles: 31
+[2026-08-12 04:53:30] No subtitles: 0
+[2026-08-12 04:53:30] Cleaned transcripts (non-empty): 31
+[2026-08-12 04:53:30] Transcript source counts: {'manual': 0, 'auto_generated': 31, 'none': 0}
+[2026-08-12 04:53:30] Subtitle language counts: {'en': 31}
+[2026-08-12 04:53:30] Rate-limited events: 0
+[2026-08-12 04:53:30] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 04:53:30] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

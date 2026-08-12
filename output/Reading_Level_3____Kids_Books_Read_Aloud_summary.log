@@ -1,0 +1,16 @@
+[2026-08-12 04:21:18] Playlist URL: https://youtube.com/playlist?list=PLCIyuhjHK4eNWV4XMKeNZmkCceswbd9VK&si=5nJoYF-WSFgBLTMP
+[2026-08-12 04:21:18] Playlist title: Reading Level 3 |  Kids Books Read Aloud
+[2026-08-12 04:21:18] Total videos: 16
+[2026-08-12 04:21:18] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 04:21:18] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 04:32:07] === Summary ===
+[2026-08-12 04:32:07] Processed: 16
+[2026-08-12 04:32:07] Failed: 0
+[2026-08-12 04:32:07] With subtitles: 16
+[2026-08-12 04:32:07] No subtitles: 0
+[2026-08-12 04:32:07] Cleaned transcripts (non-empty): 16
+[2026-08-12 04:32:07] Transcript source counts: {'manual': 0, 'auto_generated': 16, 'none': 0}
+[2026-08-12 04:32:07] Subtitle language counts: {'en': 16}
+[2026-08-12 04:32:07] Rate-limited events: 0
+[2026-08-12 04:32:07] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 04:32:07] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

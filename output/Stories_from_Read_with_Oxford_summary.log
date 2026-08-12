@@ -1,0 +1,16 @@
+[2026-08-12 11:21:03] Playlist URL: https://youtube.com/playlist?list=PLB5TN0ac12P8QxBoW8qSfmIpZIzqyBKi0&si=ZkmkyjVGmVmIS7ts
+[2026-08-12 11:21:03] Playlist title: Stories from Read with Oxford
+[2026-08-12 11:21:03] Total videos: 12
+[2026-08-12 11:21:03] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 11:21:03] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 11:29:00] === Summary ===
+[2026-08-12 11:29:00] Processed: 12
+[2026-08-12 11:29:00] Failed: 0
+[2026-08-12 11:29:00] With subtitles: 12
+[2026-08-12 11:29:00] No subtitles: 0
+[2026-08-12 11:29:00] Cleaned transcripts (non-empty): 12
+[2026-08-12 11:29:00] Transcript source counts: {'manual': 0, 'auto_generated': 12, 'none': 0}
+[2026-08-12 11:29:00] Subtitle language counts: {'en': 12}
+[2026-08-12 11:29:00] Rate-limited events: 0
+[2026-08-12 11:29:00] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 11:29:00] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

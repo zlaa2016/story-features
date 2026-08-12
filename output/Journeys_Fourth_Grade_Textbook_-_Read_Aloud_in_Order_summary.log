@@ -1,0 +1,16 @@
+[2026-08-12 03:02:26] Playlist URL: https://youtube.com/playlist?list=PLTv1zTWiaNzObrE92QRwEoMzrTX_BCg1O&si=z5Uf_ac5ydXOrt3h
+[2026-08-12 03:02:26] Playlist title: Journeys Fourth Grade Textbook - Read Aloud in Order
+[2026-08-12 03:02:26] Total videos: 25
+[2026-08-12 03:02:26] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 03:02:26] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 03:20:10] === Summary ===
+[2026-08-12 03:20:10] Processed: 25
+[2026-08-12 03:20:10] Failed: 0
+[2026-08-12 03:20:10] With subtitles: 25
+[2026-08-12 03:20:10] No subtitles: 0
+[2026-08-12 03:20:10] Cleaned transcripts (non-empty): 25
+[2026-08-12 03:20:10] Transcript source counts: {'manual': 0, 'auto_generated': 25, 'none': 0}
+[2026-08-12 03:20:10] Subtitle language counts: {'en': 25}
+[2026-08-12 03:20:10] Rate-limited events: 0
+[2026-08-12 03:20:10] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 03:20:10] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

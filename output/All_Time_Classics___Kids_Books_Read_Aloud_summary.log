@@ -1,0 +1,16 @@
+[2026-08-12 04:53:31] Playlist URL: https://youtube.com/playlist?list=PLCIyuhjHK4eO5UcNp8mJ5AZo03vryN3Ae&si=iT6AiAN0apA_dHVU
+[2026-08-12 04:53:31] Playlist title: All Time Classics | Kids Books Read Aloud
+[2026-08-12 04:53:31] Total videos: 7
+[2026-08-12 04:53:31] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 04:53:31] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 04:58:09] === Summary ===
+[2026-08-12 04:58:09] Processed: 7
+[2026-08-12 04:58:09] Failed: 0
+[2026-08-12 04:58:09] With subtitles: 7
+[2026-08-12 04:58:09] No subtitles: 0
+[2026-08-12 04:58:09] Cleaned transcripts (non-empty): 7
+[2026-08-12 04:58:09] Transcript source counts: {'manual': 0, 'auto_generated': 7, 'none': 0}
+[2026-08-12 04:58:09] Subtitle language counts: {'en': 7}
+[2026-08-12 04:58:09] Rate-limited events: 0
+[2026-08-12 04:58:09] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 04:58:09] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

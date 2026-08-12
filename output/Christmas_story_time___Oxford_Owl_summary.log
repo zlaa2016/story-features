@@ -1,0 +1,16 @@
+[2026-08-12 11:15:10] Playlist URL: https://youtube.com/playlist?list=PLB5TN0ac12P9K90oi1dRWxzZvzOyyvVLb&si=nI7_CM8-Ed6NcbCS
+[2026-08-12 11:15:10] Playlist title: Christmas story time | Oxford Owl
+[2026-08-12 11:15:10] Total videos: 9
+[2026-08-12 11:15:10] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 11:15:10] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 11:21:01] === Summary ===
+[2026-08-12 11:21:01] Processed: 9
+[2026-08-12 11:21:01] Failed: 0
+[2026-08-12 11:21:01] With subtitles: 9
+[2026-08-12 11:21:01] No subtitles: 0
+[2026-08-12 11:21:01] Cleaned transcripts (non-empty): 9
+[2026-08-12 11:21:01] Transcript source counts: {'manual': 0, 'auto_generated': 9, 'none': 0}
+[2026-08-12 11:21:01] Subtitle language counts: {'en': 9}
+[2026-08-12 11:21:01] Rate-limited events: 0
+[2026-08-12 11:21:01] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 11:21:01] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

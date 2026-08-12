@@ -1,0 +1,17 @@
+[2026-08-12 12:40:32] Playlist URL: https://www.youtube.com/playlist?list=PLdP29OaBckk2PfbRj5nWOaTN9S895NEDV
+[2026-08-12 12:40:32] Playlist title: Real Alouds
+[2026-08-12 12:40:32] Total videos: 101
+[2026-08-12 12:40:32] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 12:40:32] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 12:41:35] FAILED H71kHF2GDpY: [0;31mERROR:[0m [youtube] H71kHF2GDpY: Video unavailable. It was removed following a copyright removal request by Annick Press
+[2026-08-12 13:51:47] === Summary ===
+[2026-08-12 13:51:47] Processed: 100
+[2026-08-12 13:51:47] Failed: 1
+[2026-08-12 13:51:47] With subtitles: 99
+[2026-08-12 13:51:47] No subtitles: 1
+[2026-08-12 13:51:47] Cleaned transcripts (non-empty): 99
+[2026-08-12 13:51:47] Transcript source counts: {'manual': 0, 'auto_generated': 99, 'none': 1}
+[2026-08-12 13:51:47] Subtitle language counts: {'en': 99}
+[2026-08-12 13:51:47] Rate-limited events: 0
+[2026-08-12 13:51:47] Failure reasons: {'rate_limited': 0, 'unavailable': 1, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 13:51:47] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
