@@ -3,3 +3,14 @@
 [2026-08-12 13:51:49] Total videos: 40
 [2026-08-12 13:51:49] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
 [2026-08-12 13:51:49] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 14:22:49] === Summary ===
+[2026-08-12 14:22:49] Processed: 40
+[2026-08-12 14:22:50] Failed: 0
+[2026-08-12 14:22:50] With subtitles: 38
+[2026-08-12 14:22:50] No subtitles: 2
+[2026-08-12 14:22:50] Cleaned transcripts (non-empty): 38
+[2026-08-12 14:22:50] Transcript source counts: {'manual': 0, 'auto_generated': 38, 'none': 2}
+[2026-08-12 14:22:50] Subtitle language counts: {'en': 38}
+[2026-08-12 14:22:50] Rate-limited events: 0
+[2026-08-12 14:22:50] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 14:22:50] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.

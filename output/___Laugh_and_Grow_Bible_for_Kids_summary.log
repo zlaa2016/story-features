@@ -1,0 +1,16 @@
+[2026-08-12 14:54:53] Playlist URL: https://www.youtube.com/playlist?list=PLbnYidGQDtxNHYcN1zeeFBbColY92VUi8
+[2026-08-12 14:54:53] Playlist title: ✝️ Laugh and Grow Bible for Kids
+[2026-08-12 14:54:53] Total videos: 100
+[2026-08-12 14:54:53] Cookies file: /Users/tzl/repos/story-features-draft/cookies.txt
+[2026-08-12 14:54:53] Sleep range: 20-60s, rate-limit sleep: 1800s, retries: 3
+[2026-08-12 16:07:57] === Summary ===
+[2026-08-12 16:07:57] Processed: 100
+[2026-08-12 16:07:57] Failed: 0
+[2026-08-12 16:07:57] With subtitles: 100
+[2026-08-12 16:07:57] No subtitles: 0
+[2026-08-12 16:07:57] Cleaned transcripts (non-empty): 100
+[2026-08-12 16:07:57] Transcript source counts: {'manual': 0, 'auto_generated': 100, 'none': 0}
+[2026-08-12 16:07:57] Subtitle language counts: {'en': 100}
+[2026-08-12 16:07:57] Rate-limited events: 0
+[2026-08-12 16:07:57] Failure reasons: {'rate_limited': 0, 'unavailable': 0, 'restricted': 0, 'auth_or_cookies': 0, 'other': 0}
+[2026-08-12 16:07:57] Troubleshooting: If rate-limited, reduce parallelism or increase --sleep-min/--sleep-max. If auth/cookies errors, refresh cookies.txt. If unavailable/restricted, the video may be private, removed, or region-locked.
