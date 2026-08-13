@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,The Queen makes a scene,,Dave_the_Story_Reader_-_Videos.csv,9jhBmkVG-MM,The Queen makes a scene. Children’s bedtime story read aloud in an English accent.,,success
+,,,Dave_the_Story_Reader_-_Videos.csv,FLBC037PwJM,￼ do praying mantis bite?,,failed
+Peppa Pig stamps,,,Dave_the_Story_Reader_-_Videos.csv,TArj5y9VAEE,Peppa Pig stamps. Children’s bedtime story read aloud in an English accent.,,success
+N/A,Knight fight,N/A,Dave_the_Story_Reader_-_Videos.csv,mpA8Tkdoyxk,Knight fight. children’s bedtime story read aloud in an English accent. ￼,,success

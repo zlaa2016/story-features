@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,BaBa_s_Books__-_Videos.csv,LZI_7omdubM,Pretzel,,failed
+,,,BaBa_s_Books__-_Videos.csv,Xk7kYZYmjNI,Race Car Count,,failed
+Growing Brave & Trying New Things,You Are Ready! The World Is Waiting,,BaBa_s_Books__-_Videos.csv,jq5h5LohPHg,You Are Ready! The World Is Waiting | Growing Brave & Trying New Things,,success
+CORDUROY,N/A,N/A,BaBa_s_Books__-_Videos.csv,q_esFYIuUFo,CORDUROY,,failed

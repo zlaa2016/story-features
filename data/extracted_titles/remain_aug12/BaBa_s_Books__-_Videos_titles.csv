@@ -1,0 +1,4 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+Pretzel,,,BaBa_s_Books__-_Videos.csv,LZI_7omdubM,Pretzel,,failed
+Race Car Count,Race Car Count,,BaBa_s_Books__-_Videos.csv,Xk7kYZYmjNI,Race Car Count,,success
+N/A,CORDUROY,N/A,BaBa_s_Books__-_Videos.csv,q_esFYIuUFo,CORDUROY,,success

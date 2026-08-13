@@ -1,0 +1,10 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Disney.csv,-jdidKcoHR0,Minnie and Mickey Mouse Fun Puzzle,,failed
+,,,Disney.csv,08AC-EJDiE0,Baby Moana Beach Puzzle,,failed
+,,,Disney.csv,3Ud3dZWGals,Aladdin Princess Jasmine Fun Puzzle,,failed
+,,,Disney.csv,EDn9TVMiM0M,Moana Fun Puzzle,,failed
+,,,Disney.csv,Iuj_aWkiQZo,Bambi and Friends Fun Puzzle,,failed
+,,,Disney.csv,Vys4-GGuvqI,Minnie and Mickey Mouse Car Puzzle - Fun To Watch,,failed
+,,,Disney.csv,W2-OLN_BFEk,Minnie Mouse and Daisy Duck Fun Puzzle,,failed
+The Lion King,A Day With Pumbaa,,Disney.csv,jOp6i_e3ItA,Disney The Lion King - A Day With Pumbaa,,success
+N/A,N/A,N/A,Disney.csv,uuGGxNWbzhg,Minnie Mouse and Daisy Duck  Car Puzzle,,failed

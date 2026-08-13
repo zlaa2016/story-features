@@ -1,0 +1,5 @@
+book_title,story_title,author,source_csv,video_id,video_title,description,extraction_status
+,,,Learn_to_Read___Oxford_Owl.csv,1MAuUjrVtJU,"Dad, Can You Do This?",,failed
+Learn to Read with Phonics,Intro to all the primary sounds,,Learn_to_Read___Oxford_Owl.csv,TjeCYRUT2gM,Learn to Read with Phonics | Intro to all the primary sounds,,success
+Roderick Hunt,,,Learn_to_Read___Oxford_Owl.csv,gvaUWT68HEI,Quiz | Roderick Hunt,,failed
+Learn to Read | Learning English,N/A,N/A,Learn_to_Read___Oxford_Owl.csv,xqGykmB4L7Q,Learn to Read | Learning English,,success
