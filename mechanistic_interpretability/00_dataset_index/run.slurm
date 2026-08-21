@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=mech_index
+#SBATCH --output=logs/mechanistic_interpretability/%x-%j.out
+#SBATCH --error=logs/mechanistic_interpretability/%x-%j.err
+#SBATCH --time=01:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=24G
+
+set -euo pipefail
+source mechanistic_interpretability/shared/slurm_env.sh
+
+run_in_container '"$PYTHON_BIN" -m mechanistic_interpretability.00_dataset_index.build_index \
+  --output-dir mechanistic_interpretability/outputs/00_dataset_index \
+  --source-age-min "${SOURCE_AGE_MIN:-2}" \
+  --source-age-max "${SOURCE_AGE_MAX:-10}" \
+  --minimum-age "${TARGET_AGE_MIN:-2}" \
+  --maximum-age "${TARGET_AGE_MAX:-18}" \
+  --max-summaries "${MAX_SUMMARIES:-3}" && \
+"$PYTHON_BIN" -m mechanistic_interpretability.00_dataset_index.validate \
+  --input-dir mechanistic_interpretability/outputs/00_dataset_index \
+  --minimum-age "${TARGET_AGE_MIN:-2}" \
+  --maximum-age "${TARGET_AGE_MAX:-18}"'
