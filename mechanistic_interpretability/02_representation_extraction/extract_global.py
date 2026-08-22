@@ -55,6 +55,17 @@ def delete_span(text: str, span: tuple[int, int]) -> str:
     return left or right
 
 
+def token_indices_for_span(offsets: list[tuple[int, int]], span: tuple[int, int] | None) -> list[int]:
+    if span is None:
+        return []
+    start, end = span
+    return [
+        index
+        for index, (left, right) in enumerate(offsets)
+        if right > start and left < end and right > left
+    ]
+
+
 def append_eos(encoded: dict[str, Any], tokenizer: Any) -> dict[str, Any]:
     import torch
 
@@ -68,6 +79,8 @@ def append_eos(encoded: dict[str, Any], tokenizer: Any) -> dict[str, Any]:
             suffix = torch.ones((1, 1), dtype=value.dtype)
         elif key == "special_tokens_mask":
             suffix = torch.ones((1, 1), dtype=value.dtype)
+        elif key == "offset_mapping":
+            suffix = torch.zeros((1, 1, 2), dtype=value.dtype)
         elif value.ndim == 2 and value.shape[0] == 1:
             suffix = torch.zeros((1, 1), dtype=value.dtype)
         else:
@@ -82,6 +95,7 @@ def tokenize_without_truncation(text: str, tokenizer: Any) -> dict[str, Any]:
         return_tensors="pt",
         truncation=False,
         return_special_tokens_mask=True,
+        return_offsets_mapping=True,
     )
     return append_eos(dict(encoded), tokenizer)
 
@@ -104,8 +118,10 @@ class GlobalRepresentationExtractor:
         self.transformer_layers = resolve_layers(model, _model_spec(model))
         self.selected_layers = selected_layers
         self.captured: dict[int, tuple[np.ndarray, np.ndarray]] = {}
+        self.captured_details: dict[int, tuple[np.ndarray, np.ndarray]] = {}
         self.last_index = 0
         self.content_mask: Any = None
+        self.detail_token_indices: list[list[int]] = []
         self.handles = [
             self.transformer_layers[layer].register_forward_hook(self._hook(layer))
             for layer in selected_layers
@@ -118,6 +134,16 @@ class GlobalRepresentationExtractor:
             eos = tensor[self.last_index].float().detach().cpu().numpy()
             mean = tensor[mask].float().mean(dim=0).detach().cpu().numpy()
             self.captured[layer] = (eos, mean)
+            if self.detail_token_indices:
+                detail_last = np.stack([
+                    tensor[indices[-1]].float().detach().cpu().numpy()
+                    for indices in self.detail_token_indices
+                ])
+                detail_mean = np.stack([
+                    tensor[indices].float().mean(dim=0).detach().cpu().numpy()
+                    for indices in self.detail_token_indices
+                ])
+                self.captured_details[layer] = (detail_last, detail_mean)
 
         return capture
 
@@ -125,7 +151,12 @@ class GlobalRepresentationExtractor:
         for handle in self.handles:
             handle.remove()
 
-    def encode(self, encoded_cpu: dict[str, Any], device: Any) -> tuple[np.ndarray, np.ndarray]:
+    def encode(
+        self,
+        encoded_cpu: dict[str, Any],
+        device: Any,
+        detail_token_indices: list[list[int]] | None = None,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray | None, np.ndarray | None]:
         import torch
 
         special = encoded_cpu.pop("special_tokens_mask").bool()
@@ -135,7 +166,9 @@ class GlobalRepresentationExtractor:
             content_mask = attention[0]
         self.last_index = int(attention[0].sum().item()) - 1
         self.content_mask = content_mask
+        self.detail_token_indices = detail_token_indices or []
         self.captured = {}
+        self.captured_details = {}
         encoded = {key: value.to(device) for key, value in encoded_cpu.items()}
         backbone = getattr(self.model, "model", self.model)
         with torch.inference_mode():
@@ -146,13 +179,37 @@ class GlobalRepresentationExtractor:
             final_eos = final_state[self.last_index].float().cpu().numpy()
             final_mean = final_state[self.content_mask.to(final_state.device)].float().mean(dim=0).cpu().numpy()
             self.captured[final_layer] = (final_eos, final_mean)
+            if self.detail_token_indices:
+                final_detail_last = np.stack([
+                    final_state[indices[-1]].float().cpu().numpy()
+                    for indices in self.detail_token_indices
+                ])
+                final_detail_mean = np.stack([
+                    final_state[indices].float().mean(dim=0).cpu().numpy()
+                    for indices in self.detail_token_indices
+                ])
+                self.captured_details[final_layer] = (final_detail_last, final_detail_mean)
         missing = set(self.selected_layers) - set(self.captured)
         if missing:
             raise RuntimeError(f"Hooks did not capture layers {sorted(missing)}")
         eos = np.stack([self.captured[layer][0] for layer in self.selected_layers]).astype(np.float16)
         mean = np.stack([self.captured[layer][1] for layer in self.selected_layers]).astype(np.float16)
+        detail_last = None
+        detail_mean = None
+        if self.detail_token_indices:
+            missing_details = set(self.selected_layers) - set(self.captured_details)
+            if missing_details:
+                raise RuntimeError(f"Hooks did not capture detail states at layers {sorted(missing_details)}")
+            detail_last = np.stack(
+                [self.captured_details[layer][0] for layer in self.selected_layers],
+                axis=1,
+            ).astype(np.float16)
+            detail_mean = np.stack(
+                [self.captured_details[layer][1] for layer in self.selected_layers],
+                axis=1,
+            ).astype(np.float16)
         del outputs, final_state, encoded
-        return eos, mean
+        return eos, mean, detail_last, detail_mean
 
 
 def _model_spec(model: Any) -> Any:
@@ -194,7 +251,7 @@ def main() -> None:
     parser.add_argument("--model-key", default="gpt_oss_20b", choices=["qwen3_8b", "gpt_oss_20b", "qwen3_30b_a3b"])
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--dtype", default="bfloat16")
-    parser.add_argument("--attn-implementation", default="sdpa")
+    parser.add_argument("--attn-implementation", default="eager")
     parser.add_argument("--layers", default="0,4,8,12,16,20,-1")
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--limit", type=int, default=0)
@@ -236,6 +293,9 @@ def main() -> None:
     deletion_eos: list[np.ndarray] = []
     deletion_mean: list[np.ndarray] = []
     deletion_metadata: list[dict[str, Any]] = []
+    detail_last_vectors: list[np.ndarray] = []
+    detail_mean_vectors: list[np.ndarray] = []
+    detail_metadata: list[dict[str, Any]] = []
     audit: list[dict[str, Any]] = []
     try:
         for index, record in enumerate(records, start=1):
@@ -255,11 +315,33 @@ def main() -> None:
                         "the experiment forbids truncation"
                     )
                 continue
-            eos, mean = extractor.encode(encoded, device)
+            offsets = [tuple(map(int, pair)) for pair in encoded.pop("offset_mapping")[0].tolist()]
+            spans = locate_segment_spans(str(record["text"]), record.get("segments") or [])
+            detail_indices = [token_indices_for_span(offsets, span) for span in spans]
+            if any(not indices for indices in detail_indices):
+                missing_count = sum(not indices for indices in detail_indices)
+                raise ValueError(f"Could not map {missing_count} details to tokens in {record['record_id']}")
+            eos, mean, record_detail_last, record_detail_mean = extractor.encode(encoded, device, detail_indices)
             vector_row = len(eos_vectors)
             eos_vectors.append(eos)
             mean_vectors.append(mean)
             metadata.append(record_metadata(record, vector_row, token_count))
+            for detail_index, segment in enumerate(record.get("segments") or []):
+                detail_last_vectors.append(record_detail_last[detail_index])
+                detail_mean_vectors.append(record_detail_mean[detail_index])
+                detail_metadata.append({
+                    "detail_row": len(detail_last_vectors) - 1,
+                    "record_id": record["record_id"],
+                    "record_type": record["record_type"],
+                    "story_key": record["story_key"],
+                    "condition": record.get("condition", ""),
+                    "summary_id": record.get("summary_id", 0),
+                    "source_age": record.get("source_age"),
+                    "target_age": record.get("target_age"),
+                    "detail_index": detail_index,
+                    "detail_text": segment.get("text", ""),
+                    "detail_token_count": len(detail_indices[detail_index]),
+                })
             audit.append({
                 "record_id": record["record_id"],
                 "story_key": record["story_key"],
@@ -269,14 +351,14 @@ def main() -> None:
             })
 
             if args.deletion_mode == "all" and record.get("record_type") in deletion_types:
-                spans = locate_segment_spans(str(record["text"]), record.get("segments") or [])
                 if any(span is None for span in spans):
                     raise ValueError(f"Could not locate every detail in {record['record_id']}")
                 for detail_index, span in enumerate(spans):
                     deleted_text = delete_span(str(record["text"]), span)
                     deleted_encoded = tokenize_without_truncation(deleted_text, tokenizer)
                     deleted_count = int(deleted_encoded["input_ids"].shape[1])
-                    deleted_eos_vector, deleted_mean_vector = extractor.encode(deleted_encoded, device)
+                    deleted_encoded.pop("offset_mapping")
+                    deleted_eos_vector, deleted_mean_vector, _, _ = extractor.encode(deleted_encoded, device)
                     deletion_eos.append((eos.astype(np.float32) - deleted_eos_vector.astype(np.float32)).astype(np.float16))
                     deletion_mean.append((mean.astype(np.float32) - deleted_mean_vector.astype(np.float32)).astype(np.float16))
                     deletion_metadata.append({
@@ -306,6 +388,14 @@ def main() -> None:
         context_limit=np.asarray(effective_limit, dtype=np.int32),
     )
     write_csv(metadata_path, pd.DataFrame(metadata))
+    write_npz(
+        args.output_dir / f"contextual_detail_features_{args.shard_id}.npz",
+        last_token_vectors=np.stack(detail_last_vectors),
+        mean_control_vectors=np.stack(detail_mean_vectors),
+        layers=np.asarray(selected_layers, dtype=np.int16),
+        model_key=np.asarray(args.model_key),
+    )
+    write_csv(args.output_dir / f"contextual_detail_metadata_{args.shard_id}.csv", pd.DataFrame(detail_metadata))
     if deletion_eos:
         write_npz(
             args.output_dir / f"deletion_features_{args.shard_id}.npz",
@@ -316,6 +406,7 @@ def main() -> None:
         )
         write_csv(args.output_dir / f"deletion_metadata_{args.shard_id}.csv", pd.DataFrame(deletion_metadata))
     print(f"Wrote {global_path}: {len(eos_vectors)} complete records")
+    print(f"Wrote {len(detail_last_vectors)} contextual detail vectors")
     print(f"Mean pooling is stored only as a same-model control")
     if deletion_eos:
         print(f"Wrote {len(deletion_eos)} leave-one-detail-out influence vectors")

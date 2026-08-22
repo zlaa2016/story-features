@@ -61,7 +61,7 @@ def load_model(
         tokenizer.pad_token = tokenizer.eos_token
     kwargs: dict[str, Any] = {
         "device_map": device_map,
-        "torch_dtype": resolve_dtype(torch, dtype),
+        "dtype": resolve_dtype(torch, dtype),
     }
     if attn_implementation:
         kwargs["attn_implementation"] = attn_implementation
