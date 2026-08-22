@@ -20,6 +20,7 @@ export OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/02_represe
 run_in_container 'PYTHONPATH=. "$PYTHON_BIN" mechanistic_interpretability/02_representation_extraction/extract_global.py \
   --cohort mechanistic_interpretability/outputs/00_dataset_index/cohort.jsonl \
   --model-key "$MODEL_KEY" \
+  --attn-implementation "${ATTN_IMPLEMENTATION:-eager}" \
   --layers "${LAYERS:-0,4,8,12,16,20,-1}" \
   --max-tokens "${MAX_TOKENS:-131072}" \
   --record-types "${RECORD_TYPES:-original,summary}" \
