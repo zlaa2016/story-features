@@ -12,8 +12,11 @@ from scipy.linalg import eigh
 from sklearn.covariance import LedoitWolf
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
+from sklearn.impute import SimpleImputer
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedGroupKFold
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 from mechanistic_interpretability.shared.io import write_csv, write_npz
 from mechanistic_interpretability.shared.research import benjamini_hochberg, write_run_provenance
@@ -101,11 +104,15 @@ def grouped_decoder_auc(
     for train, test in splitter.split(values, labels, groups=stories):
         if len(np.unique(labels[train])) < 2 or len(np.unique(labels[test])) < 2:
             continue
-        classifier = LogisticRegression(
-            C=1.0,
-            class_weight="balanced",
-            max_iter=2000,
-            random_state=seed,
+        classifier = make_pipeline(
+            SimpleImputer(strategy="median"),
+            StandardScaler(),
+            LogisticRegression(
+                C=1.0,
+                class_weight="balanced",
+                max_iter=2000,
+                random_state=seed,
+            ),
         )
         classifier.fit(values[train], labels[train])
         predictions[test] = classifier.predict_proba(values[test])[:, 1]
@@ -371,6 +378,34 @@ def main() -> None:
                             folds=args.decoder_folds,
                             seed=args.seed,
                         )
+                        baseline_columns = [
+                            column
+                            for column in [
+                                "orig_centrality",
+                                "orig_position_norm",
+                                "deleted_token_count",
+                                "source_age",
+                                "target_age",
+                            ]
+                            if column in frame
+                        ]
+                        baseline_values = np.column_stack(
+                            [pd.to_numeric(frame[column], errors="coerce").to_numpy() for column in baseline_columns]
+                        )
+                        baseline_auc = grouped_decoder_auc(
+                            baseline_values,
+                            retained_mask,
+                            labels.loc[indices, "story_key"].astype(str).to_numpy(),
+                            folds=args.decoder_folds,
+                            seed=args.seed,
+                        )
+                        combined_auc = grouped_decoder_auc(
+                            np.column_stack([baseline_values, group_values]),
+                            retained_mask,
+                            labels.loc[indices, "story_key"].astype(str).to_numpy(),
+                            folds=args.decoder_folds,
+                            seed=args.seed,
+                        )
                         base = {
                             "pooling": pooling,
                             "model_layer": int(model_layer),
@@ -393,6 +428,10 @@ def main() -> None:
                             "retained_shrinkage": result.retained_shrinkage,
                             "omitted_shrinkage": result.omitted_shrinkage,
                             "retention_decoder_story_cv_auc_global_pca": decoder_auc,
+                            "baseline_story_cv_auc": baseline_auc,
+                            "baseline_plus_representation_story_cv_auc": combined_auc,
+                            "representation_incremental_auc": combined_auc - baseline_auc,
+                            "baseline_features": "+".join(baseline_columns),
                             **inference,
                         }
                         if "orig_centrality" in frame:
@@ -438,7 +477,7 @@ def main() -> None:
                             centered_values = values[indices] - pca.mean_
                             retained_scores = np.sum((centered_values @ retained_directions) ** 2, axis=1)
                             omitted_scores = np.sum((centered_values @ omitted_directions) ** 2, axis=1)
-                            score_frame = frame[[column for column in ["story_key", "detail_index", "summary_condition", "summary_id", "source_age", "target_age", "retained", "orig_centrality", "orig_position_norm", "best_cosine", "transport_mass"] if column in frame]].copy()
+                            score_frame = frame[[column for column in ["story_key", "detail_index", "summary_condition", "summary_id", "source_age", "target_age", "retained", "orig_centrality", "orig_position_norm", "deleted_token_count", "best_cosine", "transport_mass"] if column in frame]].copy()
                             score_frame["pooling"] = pooling
                             score_frame["model_layer"] = int(model_layer)
                             score_frame["geometry_mode"] = geometry_mode
