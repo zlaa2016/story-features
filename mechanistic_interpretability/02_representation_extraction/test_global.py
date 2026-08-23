@@ -12,6 +12,9 @@ global_extraction = importlib.import_module(
 global_analysis = importlib.import_module(
     "mechanistic_interpretability.02_representation_extraction.analyze_global"
 )
+detail_controls = importlib.import_module(
+    "mechanistic_interpretability.02_representation_extraction.extract_detail_controls"
+)
 
 
 class GlobalRepresentationTests(unittest.TestCase):
@@ -31,11 +34,21 @@ class GlobalRepresentationTests(unittest.TestCase):
         self.assertLess(spans[0][0], spans[1][0])
         self.assertLess(spans[1][0], spans[2][0])
 
+    def test_token_indices_overlap_detail_span(self) -> None:
+        offsets = [(0, 0), (0, 5), (6, 12), (12, 13), (0, 0)]
+        self.assertEqual(global_extraction.token_indices_for_span(offsets, (6, 13)), [2, 3])
+
     def test_cosine_rows(self) -> None:
         left = np.asarray([[1.0, 0.0], [1.0, 1.0]])
         right = np.asarray([[1.0, 0.0], [-1.0, -1.0]])
         result = global_analysis.cosine_rows(left, right)
         np.testing.assert_allclose(result, [1.0, -1.0])
+
+    def test_detail_subsample_includes_endpoints(self) -> None:
+        self.assertEqual(detail_controls.selected_detail_indices(10, 4), [0, 3, 6, 9])
+
+    def test_detail_subsample_keeps_all_when_below_limit(self) -> None:
+        self.assertEqual(detail_controls.selected_detail_indices(3, 4), [0, 1, 2])
 
 
 if __name__ == "__main__":
