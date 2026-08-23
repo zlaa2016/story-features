@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from mechanistic_interpretability.shared.io import parse_int_list, read_jsonl, write_csv, write_npz
-from mechanistic_interpretability.shared.modeling import layer_output_tensor, load_model, resolve_layers
+from mechanistic_interpretability.shared.modeling import MODEL_SPECS, layer_output_tensor, load_model, resolve_layers
 
 
 def resolve_requested_layers(number_of_layers: int, specification: str) -> list[int]:
@@ -248,7 +248,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Extract untruncated whole-record representations and pooling controls.")
     parser.add_argument("--cohort", type=Path, default=Path("mechanistic_interpretability/outputs/00_dataset_index/cohort.jsonl"))
     parser.add_argument("--output-dir", type=Path, default=Path("mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_global"))
-    parser.add_argument("--model-key", default="gpt_oss_20b", choices=["qwen3_8b", "gpt_oss_20b", "qwen3_30b_a3b"])
+    parser.add_argument("--model-key", default="gpt_oss_20b", choices=sorted(MODEL_SPECS))
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--attn-implementation", default="eager")

@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=96G
-#SBATCH --array=0-14
+#SBATCH --array=0-14%4
 
 set -euo pipefail
 source mechanistic_interpretability/shared/slurm_env.sh

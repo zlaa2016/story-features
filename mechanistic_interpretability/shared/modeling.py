@@ -27,6 +27,16 @@ MODEL_SPECS = {
         "Qwen/Qwen3-30B-A3B-Instruct-2507",
         ("model.layers", "model.model.layers", "transformer.h"),
     ),
+    "llama3_1_8b_instruct": ModelSpec(
+        "llama3_1_8b_instruct",
+        "meta-llama/Llama-3.1-8B-Instruct",
+        ("model.layers", "model.model.layers", "transformer.h"),
+    ),
+    "mistral_nemo_12b_instruct": ModelSpec(
+        "mistral_nemo_12b_instruct",
+        "mistralai/Mistral-Nemo-Instruct-2407",
+        ("model.layers", "model.model.layers", "transformer.h"),
+    ),
 }
 
 

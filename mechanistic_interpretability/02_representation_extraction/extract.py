@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from mechanistic_interpretability.shared.io import parse_int_list, read_jsonl, write_csv, write_npz
-from mechanistic_interpretability.shared.modeling import load_model
+from mechanistic_interpretability.shared.modeling import MODEL_SPECS, load_model
 
 
 def locate_segment_spans(text: str, segments: list[dict[str, Any]]) -> list[tuple[int, int] | None]:
@@ -93,7 +93,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Extract per-detail hidden states and router summaries.")
     parser.add_argument("--cohort", type=Path, default=Path("mechanistic_interpretability/outputs/00_dataset_index/cohort.jsonl"))
     parser.add_argument("--output-dir", type=Path, default=Path("mechanistic_interpretability/outputs/02_representation_extraction"))
-    parser.add_argument("--model-key", default="gpt_oss_20b", choices=["qwen3_8b", "gpt_oss_20b", "qwen3_30b_a3b"])
+    parser.add_argument("--model-key", default="gpt_oss_20b", choices=sorted(MODEL_SPECS))
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--layers", default="0,4,8,12,16,20,-1")

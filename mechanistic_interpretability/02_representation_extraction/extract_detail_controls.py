@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from mechanistic_interpretability.shared.io import read_jsonl, write_csv, write_npz
-from mechanistic_interpretability.shared.modeling import layer_output_tensor, load_model, resolve_layers
+from mechanistic_interpretability.shared.modeling import MODEL_SPECS, layer_output_tensor, load_model, resolve_layers
 
 global_extraction = importlib.import_module(
     "mechanistic_interpretability.02_representation_extraction.extract_global"
@@ -152,7 +152,7 @@ def main() -> None:
     parser.add_argument("--cohort", type=Path, default=Path("mechanistic_interpretability/outputs/00_dataset_index/cohort.jsonl"))
     parser.add_argument("--global-input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--model-key", default="gpt_oss_20b", choices=["qwen3_8b", "gpt_oss_20b", "qwen3_30b_a3b"])
+    parser.add_argument("--model-key", default="gpt_oss_20b", choices=sorted(MODEL_SPECS))
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--attn-implementation", default="eager")
