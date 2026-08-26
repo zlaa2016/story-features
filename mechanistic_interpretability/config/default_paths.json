@@ -8,6 +8,9 @@
     "pipeline_output/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/detail_segments_current_subset_local_sentence/detail_segments_summaries.jsonl"
   ],
   "generation_jsonl": [
+    "pipeline_output/age_steering_missing_younger_luna_gpt-5.6-luna_20260825_002423/summary_outputs.jsonl",
+    "pipeline_output/age_steering_complete_lower5_luna_gpt-5.6-luna_20260825_004625/summary_outputs.jsonl",
+    "pipeline_output/age_steering_pm3_ge2_luna_skipstarted_gpt-5.6-luna_20260824_130226/summary_outputs.jsonl",
     "pipeline_output/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/summary_outputs.jsonl",
     "pipeline_output/age_steering_pm3_customer_discrete_remaining_gpt-5.4-mini_20260817_231415/summary_outputs.jsonl",
     "pipeline_output/customer_age_2_10_remaining_cheapest/detail_cleanup/customer_age_2_10_remaining_actual_summary_outputs.jsonl",
