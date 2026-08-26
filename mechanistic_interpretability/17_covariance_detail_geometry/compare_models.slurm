@@ -13,7 +13,7 @@ MODEL_A_NAME="${MODEL_A_NAME:-gpt_oss_20b}"
 MODEL_B_NAME="${MODEL_B_NAME:-qwen3_8b}"
 MODEL_A_DIR="${MODEL_A_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_A_NAME}_detail_controls}"
 MODEL_B_DIR="${MODEL_B_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_B_NAME}_detail_controls}"
-RETENTION_CSV="${RETENTION_CSV:-mechanistic_interpretability/outputs/13_structured_detail_alignment/alignment/original_detail_retention.csv}"
+RETENTION_CSV="${RETENTION_CSV:-mechanistic_interpretability/outputs/13_structured_detail_alignment/original_detail_retention.csv}"
 OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/17_covariance_detail_geometry/${MODEL_A_NAME}_vs_${MODEL_B_NAME}}"
 
 run_in_container 'PYTHONPATH=. "$PYTHON_BIN" -m mechanistic_interpretability.17_covariance_detail_geometry.compare_models \
