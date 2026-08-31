@@ -65,8 +65,11 @@ class StructuredAlignmentTests(unittest.TestCase):
         self.assertTrue(any(row["source_span_length"] > 1 for row in summary_rows))
         self.assertEqual({row["window_length"] for row in window_rows}, {1, 2, 3})
         self.assertEqual(len(original_rows), 4)
+        self.assertIn("summary_centrality_rank", summary_rows[0])
+        self.assertIn("centrality_rank_shift", summary_rows[0])
         self.assertIn("centrality_weighted_semantic_preservation", story_row)
         self.assertIn("retained_minus_omitted_semantic_match", story_row)
+        self.assertIn("mean_centrality_rank_shift", story_row)
 
     def test_transport_can_choose_null(self) -> None:
         similarities = np.asarray([[0.9, 0.1], [0.2, 0.8]], dtype=float)

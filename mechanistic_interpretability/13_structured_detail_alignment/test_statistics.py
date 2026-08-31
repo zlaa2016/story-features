@@ -28,6 +28,26 @@ class StructuredStatisticsTests(unittest.TestCase):
         self.assertIn("within_target_x_distance_raw", terms)
         self.assertNotIn("target_x_distance", terms)
 
+    def test_retention_set_analysis_compares_conditions_and_baselines(self) -> None:
+        rows = []
+        for condition, retained in [("younger", {0, 1}), ("actual", {0, 2})]:
+            for detail_index, centrality in enumerate([1.0, 0.7, 0.4, 0.1]):
+                rows.append(
+                    {
+                        "story_key": "story",
+                        "condition": condition,
+                        "summary_id": 1,
+                        "summary_variant": 1,
+                        "orig_idx": detail_index,
+                        "retained_structured": detail_index in retained,
+                        "centrality_pct": centrality,
+                    }
+                )
+        result = analysis.retention_set_analysis(pd.DataFrame(rows))
+        self.assertEqual((result["row_type"] == "retention_baseline").sum(), 2)
+        pair = result[result["row_type"] == "condition_pair"].iloc[0]
+        self.assertAlmostEqual(pair["retention_jaccard"], 1 / 3)
+
 
 if __name__ == "__main__":
     unittest.main()

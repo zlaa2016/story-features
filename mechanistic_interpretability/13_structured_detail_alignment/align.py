@@ -274,6 +274,8 @@ def process_pair(
     )
     centrality = off_diagonal_centrality(original_embeddings)
     centrality_rank = pd.Series(centrality).rank(method="average", pct=True).to_numpy(float)
+    summary_centrality = off_diagonal_centrality(summary_embeddings)
+    summary_centrality_rank = pd.Series(summary_centrality).rank(method="average", pct=True).to_numpy(float)
     meta = metadata(summary, original)
 
     summary_rows: list[dict[str, Any]] = []
@@ -332,6 +334,12 @@ def process_pair(
                 "nonconsecutive_is_better": bool(nonconsecutive_cosine > float(span_similarity[summary_index, span_index])),
                 "source_mean_centrality": float(np.mean(centrality[span.start : span.end + 1])),
                 "source_mean_centrality_rank": float(np.mean(centrality_rank[span.start : span.end + 1])),
+                "summary_centrality": float(summary_centrality[summary_index]),
+                "summary_centrality_rank": float(summary_centrality_rank[summary_index]),
+                "centrality_rank_shift": float(
+                    summary_centrality_rank[summary_index]
+                    - np.mean(centrality_rank[span.start : span.end + 1])
+                ),
                 "transport_source_index": -1 if is_null else atomic_source,
                 "transport_source_text": "" if is_null else original_details[atomic_source],
                 "transport_source_cosine": args.null_similarity if is_null else float(detail_similarity[atomic_source, summary_index]),
@@ -358,6 +366,11 @@ def process_pair(
                 "orig_position_norm": normalized_position(original_index, n_original),
                 "best_summary_idx": best_summary,
                 "best_cosine": float(detail_similarity[original_index, best_summary]),
+                "best_summary_centrality": float(summary_centrality[best_summary]),
+                "best_summary_centrality_rank": float(summary_centrality_rank[best_summary]),
+                "best_match_centrality_rank_shift": float(
+                    summary_centrality_rank[best_summary] - centrality_rank[original_index]
+                ),
                 "retained_structured": bool(covered[original_index]),
                 "retained_cosine": bool(detail_similarity[original_index, best_summary] >= args.null_similarity),
                 "transport_mass": transport_mass,
@@ -380,6 +393,20 @@ def process_pair(
         if n_original > 1 and np.std(centrality_rank) > 0 and np.std(best_cosines) > 0
         else float("nan")
     )
+    source_aligned_centrality_rank = np.asarray(
+        [row["source_mean_centrality_rank"] for row in summary_rows], dtype=float
+    )
+    summary_aligned_centrality_rank = np.asarray(
+        [row["summary_centrality_rank"] for row in summary_rows], dtype=float
+    )
+    centrality_rank_shift = summary_aligned_centrality_rank - source_aligned_centrality_rank
+    centrality_rank_correlation = (
+        float(np.corrcoef(source_aligned_centrality_rank, summary_aligned_centrality_rank)[0, 1])
+        if n_summary > 1
+        and np.std(source_aligned_centrality_rank) > 0
+        and np.std(summary_aligned_centrality_rank) > 0
+        else float("nan")
+    )
     story_row = {
         **meta,
         "n_original_details": n_original,
@@ -400,6 +427,11 @@ def process_pair(
         "retained_minus_omitted_semantic_match": float(retained_semantic.mean() - omitted_semantic.mean()) if len(retained_semantic) and len(omitted_semantic) else float("nan"),
         "centrality_weighted_semantic_preservation": float(np.dot(centrality_rank, best_cosines) / central_rank_total) if central_rank_total else float("nan"),
         "centrality_semantic_match_correlation": centrality_semantic_correlation,
+        "mean_summary_centrality_rank": float(np.mean(summary_aligned_centrality_rank)),
+        "mean_source_centrality_rank_of_summary": float(np.mean(source_aligned_centrality_rank)),
+        "mean_centrality_rank_shift": float(np.mean(centrality_rank_shift)),
+        "mean_absolute_centrality_rank_shift": float(np.mean(np.abs(centrality_rank_shift))),
+        "source_summary_centrality_rank_correlation": centrality_rank_correlation,
         "order_inversion_rate": inversion_rate(selected_starts),
         "source_overlap_per_summary_detail": overlap / n_summary,
         "age_distance": abs(float(meta["target_age"]) - float(meta["source_age"])) if pd.notna(meta["target_age"]) and pd.notna(meta["source_age"]) else float("nan"),

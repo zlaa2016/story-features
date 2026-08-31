@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from itertools import combinations
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +31,9 @@ METRICS = [
     "retained_minus_omitted_semantic_match",
     "centrality_weighted_semantic_preservation",
     "centrality_semantic_match_correlation",
+    "mean_centrality_rank_shift",
+    "mean_absolute_centrality_rank_shift",
+    "source_summary_centrality_rank_correlation",
     "order_inversion_rate",
 ]
 
@@ -130,7 +134,9 @@ def matched_contrast(frame: pd.DataFrame, outcome: str, iterations: int, seed: i
 
 
 def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
-    work = frame.dropna(subset=["retained_structured", "orig_centrality", "orig_position_norm", "target_age"]).copy()
+    work = frame.dropna(
+        subset=["retained_structured", "orig_centrality", "orig_position_norm", "source_age", "target_age"]
+    ).copy()
     work["group"] = (
         work["story_key"].astype(str)
         + "::"
@@ -147,24 +153,31 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
     centrality_mean = work.groupby("story_key")["orig_centrality"].transform("mean")
     centrality_std = work.groupby("story_key")["orig_centrality"].transform("std").replace(0, np.nan)
     work["z_orig_centrality"] = ((work["orig_centrality"] - centrality_mean) / centrality_std).fillna(0)
-    for column in ["orig_position_norm", "target_age"]:
+    work["age_shift"] = work["target_age"] - work["source_age"]
+    for column in ["orig_position_norm", "source_age", "target_age", "age_shift"]:
         std = work[column].std()
         work[f"z_{column}"] = (work[column] - work[column].mean()) / (std if std else 1.0)
+    work["centrality_x_source_age"] = work["z_orig_centrality"] * work["z_source_age"]
     work["centrality_x_target_age"] = work["z_orig_centrality"] * work["z_target_age"]
-    predictors = ["z_orig_centrality", "centrality_x_target_age", "z_orig_position_norm"]
-    model = ConditionalLogit(
-        work["retained_structured"].astype(int),
-        work[predictors].astype(float),
-        groups=work["group"],
-    )
-    try:
-        fit = model.fit(method="bfgs", maxiter=300, disp=False)
-    except (ValueError, np.linalg.LinAlgError):
-        return pd.DataFrame()
-    confidence = fit.conf_int()
-    converged = bool(getattr(fit, "mle_retvals", {}).get("converged", True))
-    return pd.DataFrame(
-        [
+    work["centrality_x_age_shift"] = work["z_orig_centrality"] * work["z_age_shift"]
+
+    def fit_model(data: pd.DataFrame, predictors: list[str], label: str) -> list[dict[str, Any]]:
+        varying_groups = data.groupby("group")["retained_structured"].transform("nunique").gt(1)
+        data = data[varying_groups].copy()
+        if len(data) < 100 or data["group"].nunique() < 10:
+            return []
+        model = ConditionalLogit(
+            data["retained_structured"].astype(int),
+            data[predictors].astype(float),
+            groups=data["group"],
+        )
+        try:
+            fit = model.fit(method="bfgs", maxiter=300, disp=False)
+        except (ValueError, np.linalg.LinAlgError):
+            return []
+        confidence = fit.conf_int()
+        converged = bool(getattr(fit, "mle_retvals", {}).get("converged", True))
+        return [
             {
                 "term": term,
                 "log_odds": float(fit.params[term]),
@@ -173,14 +186,124 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
                 "p_value": float(fit.pvalues[term]),
                 "ci_low_odds_ratio": float(np.exp(confidence.loc[term, 0])),
                 "ci_high_odds_ratio": float(np.exp(confidence.loc[term, 1])),
-                "n_rows": len(work),
-                "n_groups": work["group"].nunique(),
-                "model": "conditional_logit_story_summary_strata",
+                "n_rows": len(data),
+                "n_groups": data["group"].nunique(),
+                "model": label,
                 "converged": converged,
             }
             for term in predictors
         ]
+
+    rows = fit_model(
+        work,
+        ["z_orig_centrality", "z_orig_position_norm"],
+        "conditional_logit_centrality_baseline",
     )
+    rows.extend(
+        fit_model(
+            work,
+            [
+                "z_orig_centrality",
+                "centrality_x_source_age",
+                "centrality_x_age_shift",
+                "z_orig_position_norm",
+            ],
+            "conditional_logit_developmental_compression",
+        )
+    )
+    for condition, condition_frame in work.groupby("condition", dropna=False):
+        rows.extend(
+            fit_model(
+                condition_frame,
+                ["z_orig_centrality", "centrality_x_source_age", "z_orig_position_norm"],
+                f"conditional_logit_condition_{condition}",
+            )
+        )
+    return pd.DataFrame(rows)
+
+
+def retention_set_analysis(frame: pd.DataFrame) -> pd.DataFrame:
+    required = {
+        "story_key", "condition", "summary_id", "orig_idx", "retained_structured", "centrality_pct"
+    }
+    if not required.issubset(frame.columns):
+        return pd.DataFrame()
+    work = frame.copy()
+    if "summary_variant" not in work:
+        work["summary_variant"] = 1
+    record_columns = ["story_key", "condition", "summary_id", "summary_variant"]
+    records: list[dict[str, Any]] = []
+    output: list[dict[str, Any]] = []
+    for key, detail_frame in work.groupby(record_columns, dropna=False, sort=False):
+        detail_frame = detail_frame.sort_values("orig_idx")
+        indices = detail_frame["orig_idx"].astype(int).to_numpy()
+        retained_mask = detail_frame["retained_structured"].astype(bool).to_numpy()
+        centrality = detail_frame["centrality_pct"].astype(float).to_numpy()
+        n_details = len(indices)
+        retained = set(indices[retained_mask].tolist())
+        retained_count = len(retained)
+        top_central = set(indices[np.argsort(centrality)[-retained_count:]].tolist()) if retained_count else set()
+        first = set(indices[:retained_count].tolist())
+        denominator = max(retained_count, 1)
+        metadata = dict(zip(record_columns, key if isinstance(key, tuple) else (key,)))
+        output.append(
+            {
+                "row_type": "retention_baseline",
+                **metadata,
+                "n_details": n_details,
+                "n_retained": retained_count,
+                "centrality_top_k_precision": len(retained & top_central) / denominator,
+                "first_k_precision": len(retained & first) / denominator,
+                "random_k_expected_precision": retained_count / n_details if n_details else np.nan,
+                "retained_mean_centrality_pct": float(np.mean(centrality[retained_mask])) if retained_count else np.nan,
+                "omitted_mean_centrality_pct": float(np.mean(centrality[~retained_mask])) if (~retained_mask).any() else np.nan,
+            }
+        )
+        records.append(
+            {
+                **metadata,
+                "retained": retained,
+                "centrality": dict(zip(indices.tolist(), centrality.tolist())),
+                "n_details": n_details,
+            }
+        )
+
+    record_frame = pd.DataFrame(records)
+    for (story_key, summary_id), story_records in record_frame.groupby(["story_key", "summary_id"], dropna=False):
+        for (_, left), (_, right) in combinations(story_records.iterrows(), 2):
+            if left["condition"] == right["condition"]:
+                continue
+            left_set = left["retained"]
+            right_set = right["retained"]
+            union = left_set | right_set
+            intersection = left_set & right_set
+            centrality = left["centrality"]
+            weighted_union = sum(centrality[index] for index in union)
+            weighted_intersection = sum(centrality[index] for index in intersection)
+            expected_intersection = (
+                len(left_set) * len(right_set) / left["n_details"] if left["n_details"] else np.nan
+            )
+            expected_union = len(left_set) + len(right_set) - expected_intersection
+            output.append(
+                {
+                    "row_type": "condition_pair",
+                    "story_key": story_key,
+                    "summary_id": summary_id,
+                    "condition_left": left["condition"],
+                    "condition_right": right["condition"],
+                    "n_details": left["n_details"],
+                    "n_retained_left": len(left_set),
+                    "n_retained_right": len(right_set),
+                    "retention_jaccard": len(intersection) / len(union) if union else 1.0,
+                    "centrality_weighted_jaccard": (
+                        weighted_intersection / weighted_union if weighted_union else 1.0
+                    ),
+                    "random_expected_jaccard": (
+                        expected_intersection / expected_union if expected_union else np.nan
+                    ),
+                }
+            )
+    return pd.DataFrame(output)
 
 
 def main() -> None:
@@ -209,6 +332,7 @@ def main() -> None:
     regressions = pd.DataFrame(regression_rows, columns=REGRESSION_COLUMNS)
     contrasts = pd.DataFrame(contrast_rows, columns=CONTRAST_COLUMNS)
     centrality = centrality_selection(details)
+    retention_sets = retention_set_analysis(details)
     if centrality.empty:
         centrality = pd.DataFrame(columns=CENTRALITY_COLUMNS)
     for frame in [regressions, contrasts, centrality]:
@@ -217,10 +341,12 @@ def main() -> None:
     write_csv(args.input_dir / "within_story_age_models.csv", regressions)
     write_csv(args.input_dir / "matched_age_contrasts.csv", contrasts)
     write_csv(args.input_dir / "centrality_selection_model.csv", centrality)
+    write_csv(args.input_dir / "retention_set_comparison.csv", retention_sets)
     write_run_provenance(args.input_dir, args, extra={"story_metric_rows": len(stories), "detail_rows": len(details)})
     print(f"Wrote {len(regressions)} fixed-effect coefficients")
     print(f"Wrote {len(contrasts)} matched-age contrasts")
     print(f"Wrote {len(centrality)} conditional-logit coefficients")
+    print(f"Wrote {len(retention_sets)} retention baseline/set-comparison rows")
 
 
 if __name__ == "__main__":
