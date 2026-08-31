@@ -70,12 +70,23 @@ def condition_label(row: dict[str, Any]) -> str:
     return str(row.get("condition") or row.get("target_age_label") or row.get("age_info_condition") or "").strip()
 
 
+def optional_float(value: Any) -> float | None:
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if np.isfinite(parsed) else None
+
+
 def metadata(row: dict[str, Any], original: dict[str, Any]) -> dict[str, Any]:
+    source_age = row.get("source_age")
+    if optional_float(source_age) is None:
+        source_age = original.get("source_age")
     output = {
         "story_key": row["story_key"],
         "video_id": row.get("video_id") or original.get("video_id"),
         "video_title": row.get("video_title") or original.get("video_title"),
-        "source_age": row.get("source_age", original.get("source_age")),
+        "source_age": source_age,
         "target_age": row.get("target_age"),
         "target_age_range": row.get("target_age_range"),
         "condition": condition_label(row),
@@ -407,6 +418,8 @@ def process_pair(
         and np.std(summary_aligned_centrality_rank) > 0
         else float("nan")
     )
+    source_age = optional_float(meta["source_age"])
+    target_age = optional_float(meta["target_age"])
     story_row = {
         **meta,
         "n_original_details": n_original,
@@ -434,7 +447,7 @@ def process_pair(
         "source_summary_centrality_rank_correlation": centrality_rank_correlation,
         "order_inversion_rate": inversion_rate(selected_starts),
         "source_overlap_per_summary_detail": overlap / n_summary,
-        "age_distance": abs(float(meta["target_age"]) - float(meta["source_age"])) if pd.notna(meta["target_age"]) and pd.notna(meta["source_age"]) else float("nan"),
+        "age_distance": abs(target_age - source_age) if target_age is not None and source_age is not None else float("nan"),
         "age_matched": meta["condition"] == "actual",
     }
     return original_rows, summary_rows, story_row, window_rows

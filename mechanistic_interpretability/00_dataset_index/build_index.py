@@ -144,7 +144,7 @@ def summary_record(
         "condition_skip_reason": condition_spec.skip_reason,
         "summary_id": summary_id,
         "source_age_range": original["source_age_range"],
-        "source_age": row.get("source_age", original["source_age"]),
+        "source_age": row.get("source_age") or original["source_age"],
         "target_age_range": condition_spec.target_spec,
         "target_age": condition_spec.target_age,
         "age_source": original["age_source"],

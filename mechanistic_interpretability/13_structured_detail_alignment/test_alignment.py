@@ -25,6 +25,13 @@ class StructuredAlignmentTests(unittest.TestCase):
     def test_canonical_condition_field_is_recognized(self) -> None:
         self.assertEqual(alignment.condition_label({"condition": "older"}), "older")
 
+    def test_blank_summary_source_age_falls_back_to_original(self) -> None:
+        result = alignment.metadata(
+            {"story_key": "story", "source_age": "", "target_age": 9, "condition": "older"},
+            {"source_age": 6, "video_id": "video"},
+        )
+        self.assertEqual(result["source_age"], 6)
+
     def test_summary_complete_monotonic_alignment(self) -> None:
         original = {
             "story_key": "story",
