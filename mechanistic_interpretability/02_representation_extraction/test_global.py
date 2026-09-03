@@ -53,6 +53,26 @@ class GlobalRepresentationTests(unittest.TestCase):
     def test_detail_subsample_keeps_all_when_below_limit(self) -> None:
         self.assertEqual(detail_controls.selected_detail_indices(3, 4), [0, 1, 2])
 
+    def test_records_follow_global_shard_order(self) -> None:
+        import pandas as pd
+
+        records = [
+            {"record_id": "first", "text": "one"},
+            {"record_id": "second", "text": "two"},
+            {"record_id": "third", "text": "three"},
+        ]
+        metadata = pd.DataFrame({"record_id": ["third", "first"]})
+        selected = detail_controls.records_for_global_shard(records, metadata)
+        self.assertEqual([record["record_id"] for record in selected], ["third", "first"])
+
+    def test_missing_global_shard_record_fails(self) -> None:
+        import pandas as pd
+
+        with self.assertRaises(KeyError):
+            detail_controls.records_for_global_shard(
+                [{"record_id": "present"}], pd.DataFrame({"record_id": ["missing"]})
+            )
+
     def test_isolated_detail_global_weight_change(self) -> None:
         import pandas as pd
 

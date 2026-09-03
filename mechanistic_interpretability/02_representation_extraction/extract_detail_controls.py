@@ -46,6 +46,19 @@ def detail_metadata(record: dict[str, Any], detail_index: int, detail_text: str)
     }
 
 
+def records_for_global_shard(
+    records: list[dict[str, Any]],
+    global_metadata: pd.DataFrame,
+) -> list[dict[str, Any]]:
+    by_record_id = {str(record["record_id"]): record for record in records}
+    record_ids = global_metadata["record_id"].astype(str).tolist()
+    missing = [record_id for record_id in record_ids if record_id not in by_record_id]
+    if missing:
+        preview = ", ".join(missing[:5])
+        raise KeyError(f"{len(missing)} global-shard records are absent from the cohort: {preview}")
+    return [by_record_id[record_id] for record_id in record_ids]
+
+
 def tokenize_detail_batch(texts: list[str], tokenizer: Any) -> dict[str, Any]:
     encoded_rows = []
     eos_token_id = tokenizer.eos_token_id
@@ -167,6 +180,11 @@ def main() -> None:
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--shard-id", default="000")
+    parser.add_argument(
+        "--records-from-global-shard",
+        action="store_true",
+        help="Select exact record IDs and order from global_metadata_<shard-id>.csv.",
+    )
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
@@ -188,8 +206,14 @@ def main() -> None:
     allowed_types = {value.strip() for value in args.record_types.split(",") if value.strip()}
     deletion_types = {value.strip() for value in args.deletion_record_types.split(",") if value.strip()}
     records = [record for record in read_jsonl(args.cohort) if record.get("record_type") in allowed_types]
-    stop = None if args.limit <= 0 else args.start + args.limit
-    records = records[args.start:stop]
+    if args.records_from_global_shard:
+        shard_metadata_path = args.global_input_dir / f"global_metadata_{args.shard_id}.csv"
+        if not shard_metadata_path.exists():
+            raise FileNotFoundError(f"Missing global metadata for shard {args.shard_id}: {shard_metadata_path}")
+        records = records_for_global_shard(records, pd.read_csv(shard_metadata_path, low_memory=False))
+    else:
+        stop = None if args.limit <= 0 else args.start + args.limit
+        records = records[args.start:stop]
     global_lookup, reference_layers = load_global_reference(args.global_input_dir, args.shard_id)
 
     model, tokenizer, device, spec = load_model(

@@ -18,6 +18,10 @@ export MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 export MODE="${MODE:-isolated}"
 export GLOBAL_INPUT_DIR="${GLOBAL_INPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_global_current}"
 export OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_detail_controls}"
+export RECORD_SELECTION_ARG=""
+if [[ "${RECORDS_FROM_GLOBAL_SHARD:-0}" == "1" ]]; then
+  export RECORD_SELECTION_ARG="--records-from-global-shard"
+fi
 
 run_in_container 'PYTHONPATH=. "$PYTHON_BIN" mechanistic_interpretability/02_representation_extraction/extract_detail_controls.py \
   --cohort mechanistic_interpretability/outputs/00_dataset_index/cohort.jsonl \
@@ -35,4 +39,5 @@ run_in_container 'PYTHONPATH=. "$PYTHON_BIN" mechanistic_interpretability/02_rep
   --overflow-policy "${OVERFLOW_POLICY:-error}" \
   --start "$START" \
   --limit "$RECORDS_PER_SHARD" \
-  --shard-id "$(printf "%03d" "$SHARD_ID")"'
+  --shard-id "$(printf "%03d" "$SHARD_ID")" \
+  ${RECORD_SELECTION_ARG:-}'
