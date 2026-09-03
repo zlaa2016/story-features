@@ -15,6 +15,9 @@ global_analysis = importlib.import_module(
 detail_controls = importlib.import_module(
     "mechanistic_interpretability.02_representation_extraction.extract_detail_controls"
 )
+detail_analysis = importlib.import_module(
+    "mechanistic_interpretability.02_representation_extraction.analyze_detail_compression"
+)
 
 
 class GlobalRepresentationTests(unittest.TestCase):
@@ -49,6 +52,45 @@ class GlobalRepresentationTests(unittest.TestCase):
 
     def test_detail_subsample_keeps_all_when_below_limit(self) -> None:
         self.assertEqual(detail_controls.selected_detail_indices(3, 4), [0, 1, 2])
+
+    def test_isolated_detail_global_weight_change(self) -> None:
+        import pandas as pd
+
+        original_metadata = pd.DataFrame({"detail_index": [0, 1], "detail_text": ["first", "second"]})
+        summary_metadata = pd.DataFrame({
+            "record_id": ["summary", "summary"],
+            "story_key": ["story", "story"],
+            "condition": ["older", "older"],
+            "summary_id": [1, 1],
+            "source_age": [6, 6],
+            "target_age": [9, 9],
+            "detail_index": [0, 1],
+            "detail_text": ["first summary", "second summary"],
+        })
+        original_vectors = np.asarray([[1.0, 0.0], [0.0, 1.0]])
+        summary_vectors = np.asarray([[1.0, 0.0], [0.0, 1.0]])
+        original_isolated = np.asarray([[1.0, 0.0], [0.0, 1.0]])
+        summary_isolated = np.asarray([[1.0, 0.0], [0.0, 1.0]])
+        summary_rows, original_rows, story_row = detail_analysis.process_summary(
+            original_metadata,
+            original_vectors,
+            np.asarray([1.0, 0.0]),
+            summary_metadata,
+            summary_vectors,
+            np.asarray([0.0, 1.0]),
+            layer=3,
+            representation="mean",
+            original_isolated=original_isolated,
+            summary_isolated=summary_isolated,
+        )
+        self.assertAlmostEqual(
+            original_rows[0]["isolated_original_detail_global_weight_change"], -1.0
+        )
+        self.assertAlmostEqual(
+            original_rows[1]["isolated_original_detail_global_weight_change"], 1.0
+        )
+        self.assertAlmostEqual(story_row["mean_isolated_original_detail_global_weight_change"], 0.0)
+        self.assertIn("isolated_summary_detail_to_summary_global_cosine", summary_rows[0])
 
 
 if __name__ == "__main__":

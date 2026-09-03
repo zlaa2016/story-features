@@ -188,6 +188,26 @@ def process_summary(
     original_to_summary_global = cosine_to_vector(original_vectors, summary_global)
     summary_to_original_global = cosine_to_vector(summary_vectors, original_global)
     summary_to_summary_global = cosine_to_vector(summary_vectors, summary_global)
+    isolated_original_to_original_global = (
+        cosine_to_vector(original_isolated, original_global)
+        if original_isolated is not None
+        else np.full(len(original_vectors), np.nan)
+    )
+    isolated_original_to_summary_global = (
+        cosine_to_vector(original_isolated, summary_global)
+        if original_isolated is not None
+        else np.full(len(original_vectors), np.nan)
+    )
+    isolated_summary_to_original_global = (
+        cosine_to_vector(summary_isolated, original_global)
+        if summary_isolated is not None
+        else np.full(len(summary_vectors), np.nan)
+    )
+    isolated_summary_to_summary_global = (
+        cosine_to_vector(summary_isolated, summary_global)
+        if summary_isolated is not None
+        else np.full(len(summary_vectors), np.nan)
+    )
     original_context_cosine = (
         np.sum(original_vectors * original_isolated, axis=1)
         if original_isolated is not None
@@ -221,6 +241,12 @@ def process_summary(
             "summary_detail_to_original_global_cosine": float(summary_to_original_global[summary_position]),
             "summary_detail_to_summary_global_cosine": float(summary_to_summary_global[summary_position]),
             "summary_detail_global_weight_change": float(summary_to_summary_global[summary_position] - summary_to_original_global[summary_position]),
+            "isolated_summary_detail_to_original_global_cosine": float(isolated_summary_to_original_global[summary_position]),
+            "isolated_summary_detail_to_summary_global_cosine": float(isolated_summary_to_summary_global[summary_position]),
+            "isolated_summary_detail_global_weight_change": float(
+                isolated_summary_to_summary_global[summary_position]
+                - isolated_summary_to_original_global[summary_position]
+            ),
             "contextual_isolated_cosine": float(summary_context_cosine[summary_position]),
             "contextualization_shift": float(1 - summary_context_cosine[summary_position]),
             "unique_original_detail_index": int(original_metadata.iloc[unique_position]["detail_index"]) if unique_position >= 0 else -1,
@@ -245,6 +271,20 @@ def process_summary(
             "original_detail_to_original_global_cosine": float(original_to_original_global[original_position]),
             "original_detail_to_summary_global_cosine": float(original_to_summary_global[original_position]),
             "original_detail_global_weight_change": float(original_to_summary_global[original_position] - original_to_original_global[original_position]),
+            "isolated_original_detail_to_original_global_cosine": float(
+                isolated_original_to_original_global[original_position]
+            ),
+            "isolated_original_detail_to_summary_global_cosine": float(
+                isolated_original_to_summary_global[original_position]
+            ),
+            "isolated_original_detail_global_weight_change": float(
+                isolated_original_to_summary_global[original_position]
+                - isolated_original_to_original_global[original_position]
+            ),
+            "contextual_minus_isolated_summary_alignment": float(
+                original_to_summary_global[original_position]
+                - isolated_original_to_summary_global[original_position]
+            ),
             "contextual_isolated_cosine": float(original_context_cosine[original_position]),
             "contextualization_shift": float(1 - original_context_cosine[original_position]),
         })
@@ -264,6 +304,20 @@ def process_summary(
         "mean_original_detail_global_weight_change": float(np.mean(original_to_summary_global - original_to_original_global)),
         "centrality_global_weight_change_correlation": safe_correlation(
             original_centrality, original_to_summary_global - original_to_original_global
+        ),
+        "mean_isolated_original_detail_global_weight_change": (
+            float(np.nanmean(isolated_original_to_summary_global - isolated_original_to_original_global))
+            if np.isfinite(isolated_original_to_summary_global).any()
+            else np.nan
+        ),
+        "centrality_isolated_global_weight_change_correlation": safe_correlation(
+            original_centrality,
+            isolated_original_to_summary_global - isolated_original_to_original_global,
+        ),
+        "mean_contextual_minus_isolated_summary_alignment": (
+            float(np.nanmean(original_to_summary_global - isolated_original_to_summary_global))
+            if np.isfinite(isolated_original_to_summary_global).any()
+            else np.nan
         ),
         "chronology_kendall_tau": float(chronology),
         "mean_unique_match_cosine": float(np.nanmean(unique_cosine_for_summary)),
