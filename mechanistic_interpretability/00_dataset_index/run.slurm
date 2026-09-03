@@ -9,13 +9,20 @@
 set -euo pipefail
 source mechanistic_interpretability/shared/slurm_env.sh
 
+REPAIR_FRAGMENT_ARG=""
+if [[ "${REPAIR_TITLE_FRAGMENTS:-0}" == "1" ]]; then
+  REPAIR_FRAGMENT_ARG="--repair-title-fragments"
+fi
+export REPAIR_FRAGMENT_ARG
+
 run_in_container '"$PYTHON_BIN" -m mechanistic_interpretability.00_dataset_index.build_index \
   --output-dir mechanistic_interpretability/outputs/00_dataset_index \
   --source-age-min "${SOURCE_AGE_MIN:-2}" \
   --source-age-max "${SOURCE_AGE_MAX:-10}" \
   --minimum-age "${TARGET_AGE_MIN:-2}" \
   --maximum-age "${TARGET_AGE_MAX:-18}" \
-  --max-summaries "${MAX_SUMMARIES:-3}" && \
+  --max-summaries "${MAX_SUMMARIES:-3}" \
+  ${REPAIR_FRAGMENT_ARG:-} && \
 "$PYTHON_BIN" -m mechanistic_interpretability.00_dataset_index.validate \
   --input-dir mechanistic_interpretability/outputs/00_dataset_index \
   --minimum-age "${TARGET_AGE_MIN:-2}" \

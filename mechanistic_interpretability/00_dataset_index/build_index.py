@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -10,6 +11,30 @@ import pandas as pd
 
 from mechanistic_interpretability.shared.ages import AgeCondition, age_midpoint, relative_conditions
 from mechanistic_interpretability.shared.io import normalize_text, read_jsonl, text_hash, word_count, write_csv, write_jsonl
+
+
+TITLE_FRAGMENT_RE = re.compile(r"^[\"'“”‘’]?(?:mr|mrs|ms|dr|prof|st|mir)\.?[\"'“”‘’]?$", re.IGNORECASE)
+
+
+def repair_title_fragments(segments: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Merge isolated honorifics created by detail segmentation without dropping text."""
+    repaired: list[dict[str, Any]] = []
+    index = 0
+    while index < len(segments):
+        segment = dict(segments[index])
+        text = normalize_text(segment.get("text"))
+        if TITLE_FRAGMENT_RE.fullmatch(text) and index + 1 < len(segments):
+            following = normalize_text(segments[index + 1].get("text"))
+            if following:
+                segment["text"] = f"{text} {following}"
+                index += 1
+        repaired.append(segment)
+        index += 1
+
+    for segment_id, segment in enumerate(repaired, start=1):
+        if "segment_id" in segment:
+            segment["segment_id"] = segment_id
+    return repaired
 
 
 def load_config(path: Path) -> dict[str, Any]:
@@ -73,11 +98,18 @@ def load_catalog(path: Path) -> pd.DataFrame:
     return catalog[keep].drop_duplicates("video_id")
 
 
-def original_record(row: dict[str, Any], catalog_row: dict[str, Any]) -> dict[str, Any] | None:
+def original_record(
+    row: dict[str, Any],
+    catalog_row: dict[str, Any],
+    *,
+    repair_fragments: bool = False,
+) -> dict[str, Any] | None:
     story_key = normalize_text(row.get("story_key"))
     video_id = normalize_text(row.get("video_id"))
     raw_text = normalize_text(row.get("punctuated_story") or row.get("cleaned_story_verbatim"))
     segments = row.get("segments") or []
+    if repair_fragments:
+        segments = repair_title_fragments(segments)
     segmented_text = normalize_text(" ".join(normalize_text(segment.get("text")) for segment in segments))
     if not story_key or not raw_text or not segmented_text or not segments:
         return None
@@ -122,9 +154,13 @@ def summary_record(
     original: dict[str, Any],
     provenance: dict[str, Any],
     condition_spec: AgeCondition,
+    *,
+    repair_fragments: bool = False,
 ) -> dict[str, Any] | None:
     raw_text = normalize_text(row.get("summary_text"))
     segments = row.get("segments") or []
+    if repair_fragments:
+        segments = repair_title_fragments(segments)
     segmented_text = normalize_text(" ".join(normalize_text(segment.get("text")) for segment in segments))
     if not raw_text or not segmented_text or not segments:
         return None
@@ -176,6 +212,11 @@ def main() -> None:
     parser.add_argument("--minimum-age", type=int, default=2)
     parser.add_argument("--maximum-age", type=int, default=18)
     parser.add_argument("--minimum-segment-word-coverage", type=float, default=0.95)
+    parser.add_argument(
+        "--repair-title-fragments",
+        action="store_true",
+        help="Merge isolated honorific segments such as 'Mr.' into the following detail.",
+    )
     args = parser.parse_args()
 
     config = load_config(args.config)
@@ -191,7 +232,11 @@ def main() -> None:
             continue
         for row in read_jsonl(path):
             video_id = normalize_text(row.get("video_id"))
-            record = original_record(row, catalog_map.get(video_id, {}))
+            record = original_record(
+                row,
+                catalog_map.get(video_id, {}),
+                repair_fragments=args.repair_title_fragments,
+            )
             if record is None:
                 continue
             if float(record["segment_word_coverage"]) < args.minimum_segment_word_coverage:
@@ -239,7 +284,13 @@ def main() -> None:
                 continue
             text = normalize_text(row.get("summary_text"))
             source = choose_provenance(provenance.get(text_hash(text), []), condition=condition, summary_id=summary_id)
-            record = summary_record(row, original, source, condition_spec)
+            record = summary_record(
+                row,
+                original,
+                source,
+                condition_spec,
+                repair_fragments=args.repair_title_fragments,
+            )
             if record is None:
                 continue
             if float(record["segment_word_coverage"]) < args.minimum_segment_word_coverage:
