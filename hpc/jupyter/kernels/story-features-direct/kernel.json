@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/ext3/story-features/bin/python",
+    "-m",
+    "ipykernel_launcher",
+    "-f",
+    "{connection_file}"
+  ],
+  "display_name": "story-features direct",
+  "language": "python",
+  "metadata": {
+    "debugger": true
+  }
+}

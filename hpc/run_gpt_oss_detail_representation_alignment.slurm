@@ -19,9 +19,9 @@ export PYTHON_BIN=/ext3/story-features/bin/python
 
 export PYDEPS="/scratch/$USER/story-features-pydeps"
 export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
-export JUPYTER_DATA_DIR="/scratch/$USER/story-features-jupyter"
-mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$JUPYTER_DATA_DIR"
+mkdir -p "$PYDEPS" "$MPLCONFIGDIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 
 export GPT_OSS_CONTEXT_DIR="${GPT_OSS_CONTEXT_DIR:-$PWD/mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_global_current}"
 export GPT_OSS_ISOLATED_DIR="${GPT_OSS_ISOLATED_DIR:-$PWD/mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_detail_controls}"
@@ -57,9 +57,6 @@ fi
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import sys, numpy, pandas, matplotlib, scipy, statsmodels, patsy; print(sys.executable); print(\"dependencies OK; statsmodels\", statsmodels.__version__)"'
-
-./hpc/run_in_singularity.sh \
-  '"$PYTHON_BIN" -m ipykernel install --user --name story-features-direct --display-name "story-features direct"'
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -m jupyter nbconvert \

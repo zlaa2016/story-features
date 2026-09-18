@@ -21,9 +21,9 @@ export PYTHON_BIN=/ext3/story-features/bin/python
 # Writable locations: the image and overlay above are read-only.
 export PYDEPS="/scratch/$USER/story-features-pydeps"
 export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
-export JUPYTER_DATA_DIR="/scratch/$USER/story-features-jupyter"
-mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$JUPYTER_DATA_DIR"
+mkdir -p "$PYDEPS" "$MPLCONFIGDIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 
 # Install only the package missing from the image. Existing numpy, scipy,
 # pandas, and patsy remain supplied by the project environment.
@@ -40,9 +40,6 @@ fi
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import sys, numpy, pandas, matplotlib, scipy, statsmodels, patsy; print(sys.executable); print(\"dependencies OK; statsmodels\", statsmodels.__version__)"'
-
-./hpc/run_in_singularity.sh \
-  '"$PYTHON_BIN" -m ipykernel install --user --name story-features-direct --display-name "story-features direct"'
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -m jupyter nbconvert \
