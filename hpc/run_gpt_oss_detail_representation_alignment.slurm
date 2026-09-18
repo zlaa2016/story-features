@@ -19,7 +19,8 @@ export PYTHON_BIN=/ext3/story-features/bin/python
 
 export PYDEPS="/scratch/$USER/story-features-pydeps"
 export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
-mkdir -p "$PYDEPS" "$MPLCONFIGDIR"
+export JUPYTER_DATA_DIR="/scratch/$USER/story-features-jupyter"
+mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$JUPYTER_DATA_DIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
 
 export GPT_OSS_CONTEXT_DIR="${GPT_OSS_CONTEXT_DIR:-$PWD/mechanistic_interpretability/outputs/02_representation_extraction/gpt_oss_20b_global_current}"
@@ -48,15 +49,24 @@ if ! ./hpc/run_in_singularity.sh \
   ./hpc/run_in_singularity.sh \
     '"$PYTHON_BIN" -m pip install --target "$PYDEPS" --no-deps "statsmodels==0.14.4"'
 fi
+if ! ./hpc/run_in_singularity.sh \
+  '"$PYTHON_BIN" -c "import patsy"' >/dev/null 2>&1; then
+  ./hpc/run_in_singularity.sh \
+    '"$PYTHON_BIN" -m pip install --target "$PYDEPS" --no-deps "patsy==1.0.1"'
+fi
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import sys, numpy, pandas, matplotlib, scipy, statsmodels, patsy; print(sys.executable); print(\"dependencies OK; statsmodels\", statsmodels.__version__)"'
+
+./hpc/run_in_singularity.sh \
+  '"$PYTHON_BIN" -m ipykernel install --user --name story-features-direct --display-name "story-features direct"'
 
 ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -m jupyter nbconvert \
     --to notebook \
     --execute notebooks/gpt_oss_detail_representation_alignment.ipynb \
     --output "$(pwd)/output/gpt_oss_detail_representation_alignment/gpt_oss_detail_representation_alignment.executed.ipynb" \
+    --ExecutePreprocessor.kernel_name=story-features-direct \
     --ExecutePreprocessor.timeout=0'
 
 echo "Completed: output/gpt_oss_detail_representation_alignment/gpt_oss_detail_representation_alignment.executed.ipynb"
