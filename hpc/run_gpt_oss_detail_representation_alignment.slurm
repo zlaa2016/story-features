@@ -19,7 +19,8 @@ export PYTHON_BIN=/ext3/story-features/bin/python
 
 export PYDEPS="/scratch/$USER/story-features-pydeps"
 export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
-mkdir -p "$PYDEPS" "$MPLCONFIGDIR"
+export IPYTHONDIR="/scratch/$USER/.ipython-story-features"
+mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
 export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 
