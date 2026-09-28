@@ -16,6 +16,8 @@ export SIF=/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif
 export OVERLAY="/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro"
 export CONDA_ENV=story-features
 export PYTHON_BIN=/ext3/story-features/bin/python
+export USE_NV=0
+export FAKEROOT=0
 
 export PYDEPS="/scratch/$USER/story-features-pydeps"
 export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
