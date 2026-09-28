@@ -71,11 +71,13 @@ def _load_original_vectors(
     directory: Path,
     metadata_pattern: str,
     feature_prefix: str,
-    array_name: str,
+    primary_array_name: str,
+    control_array_name: str,
     vector_index_name: str,
-) -> tuple[pd.DataFrame, np.ndarray, pd.DataFrame]:
+) -> tuple[pd.DataFrame, np.ndarray, np.ndarray, pd.DataFrame]:
     metadata_blocks: list[pd.DataFrame] = []
     vector_blocks: list[np.ndarray] = []
+    control_vector_blocks: list[np.ndarray] = []
     audits: list[dict] = []
     metadata_paths = sorted(directory.glob(metadata_pattern))
     if not metadata_paths:
@@ -93,16 +95,20 @@ def _load_original_vectors(
             audits.append({"shard": suffix, "status": "no originals", "original_details": 0})
             continue
         with np.load(feature_path, allow_pickle=False) as payload:
-            if array_name not in payload.files:
-                raise KeyError(f"{feature_path} lacks {array_name}; arrays={payload.files}")
+            required_arrays = {primary_array_name, control_array_name}
+            missing_arrays = sorted(required_arrays - set(payload.files))
+            if missing_arrays:
+                raise KeyError(f"{feature_path} lacks {missing_arrays}; arrays={payload.files}")
             layers = payload["layers"]
             layer_position = int(np.argmax(layers))
-            vectors = normalized_rows(payload[array_name][positions, layer_position])
+            vectors = normalized_rows(payload[primary_array_name][positions, layer_position])
+            control_vectors = normalized_rows(payload[control_array_name][positions, layer_position])
         selected = metadata.iloc[positions].copy().reset_index(drop=True)
         selected[vector_index_name] = np.arange(len(vectors)) + sum(map(len, vector_blocks))
         selected["selected_layer"] = int(layers[layer_position])
         metadata_blocks.append(selected)
         vector_blocks.append(vectors)
+        control_vector_blocks.append(control_vectors)
         audits.append({"shard": suffix, "status": "complete", "original_details": len(selected)})
 
     if not metadata_blocks:
@@ -110,6 +116,7 @@ def _load_original_vectors(
     return (
         pd.concat(metadata_blocks, ignore_index=True),
         np.vstack(vector_blocks),
+        np.vstack(control_vector_blocks),
         pd.DataFrame(audits),
     )
 
@@ -140,18 +147,20 @@ def load_analysis_data(
     context_dir: Path, isolated_dir: Path, mpnet_dir: Path
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     retention = load_actual_retention(mpnet_dir)
-    context_meta, context_vectors, context_audit = _load_original_vectors(
+    context_meta, context_vectors, context_last_vectors, context_audit = _load_original_vectors(
         context_dir,
         "contextual_detail_metadata_*.csv",
         "contextual_detail_features_",
         "mean_control_vectors",
+        "last_token_vectors",
         "context_vector_index",
     )
-    isolated_meta, isolated_vectors, isolated_audit = _load_original_vectors(
+    isolated_meta, isolated_vectors, isolated_eos_vectors, isolated_audit = _load_original_vectors(
         isolated_dir,
         "isolated_detail_metadata_*.csv",
         "isolated_detail_features_",
         "mean_vectors",
+        "eos_vectors",
         "isolated_vector_index",
     )
 
@@ -188,6 +197,12 @@ def load_analysis_data(
     ii = details.loc[has_isolated, "isolated_vector_index"].to_numpy(int)
     details.loc[has_isolated, "context_isolated_cosine"] = np.einsum(
         "ij,ij->i", context_vectors[ci], isolated_vectors[ii]
+    )
+    details.loc[has_isolated, "context_mean_last_cosine"] = np.einsum(
+        "ij,ij->i", context_vectors[ci], context_last_vectors[ci]
+    )
+    details.loc[has_isolated, "isolated_mean_eos_cosine"] = np.einsum(
+        "ij,ij->i", isolated_vectors[ii], isolated_eos_vectors[ii]
     )
     details["contextualization_shift"] = 1.0 - details["context_isolated_cosine"]
     details["source_age_centered"] = details["source_age"] - AGE_CENTER
