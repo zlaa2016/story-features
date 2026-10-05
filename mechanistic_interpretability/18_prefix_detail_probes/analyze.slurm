@@ -14,7 +14,9 @@ export FAKEROOT="${FAKEROOT:-0}"
 export PYDEPS="${PYDEPS:-/scratch/$USER/story-features-pydeps}"
 export PYTHONPATH="$PYDEPS:$PWD${PYTHONPATH:+:$PYTHONPATH}"
 export MPLCONFIGDIR="${MPLCONFIGDIR:-/scratch/$USER/.cache/matplotlib}"
-mkdir -p "$PYDEPS" "$MPLCONFIGDIR"
+export IPYTHONDIR="${IPYTHONDIR:-/scratch/$USER/.ipython-story-features}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
+mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 PREFIX_MODE="${PREFIX_MODE:-native}"
@@ -39,3 +41,18 @@ run_in_container 'PYTHONPATH="'"$PYDEPS"':$PWD" "$PYTHON_BIN" \
   --pooling-equivalence-margin "${POOLING_EQUIVALENCE_MARGIN:-0.02}"'
 
 echo "Completed analysis: $OUTPUT_DIR"
+
+export STORY_FEATURES_ROOT="$PWD"
+if [[ "$OUTPUT_DIR" = /* ]]; then
+  export PREFIX_PROBE_ANALYSIS_DIR="$OUTPUT_DIR"
+else
+  export PREFIX_PROBE_ANALYSIS_DIR="$PWD/$OUTPUT_DIR"
+fi
+run_in_container 'PYTHONPATH="'"$PYDEPS"':$PWD" "$PYTHON_BIN" -m jupyter nbconvert \
+  --to notebook \
+  --execute notebooks/gpt_oss_prefix_detail_probe_analysis.ipynb \
+  --output "$PREFIX_PROBE_ANALYSIS_DIR/gpt_oss_prefix_detail_probe_analysis.executed.ipynb" \
+  --ExecutePreprocessor.kernel_name=story-features-direct \
+  --ExecutePreprocessor.timeout=0'
+
+echo "Completed notebook: $OUTPUT_DIR/gpt_oss_prefix_detail_probe_analysis.executed.ipynb"

@@ -241,10 +241,13 @@ def retention_models(joined: pd.DataFrame, metrics_to_test: list[str]) -> tuple[
         aggregate_blocks.append(aggregate)
         if aggregate["story_key"].nunique() < 10:
             continue
-        formula = (
-            'value ~ source_age_centered * C(retention_status, Treatment(reference="retained")) '
-            '+ mean_log_detail_tokens + mean_log_prefix_tokens'
-        )
+        if metric == "isolated_semantic_centrality":
+            formula = 'value ~ source_age_centered * C(retention_status, Treatment(reference="retained"))'
+        else:
+            formula = (
+                'value ~ source_age_centered * C(retention_status, Treatment(reference="retained")) '
+                '+ mean_log_detail_tokens + mean_log_prefix_tokens'
+            )
         model = smf.mixedlm(formula, aggregate, groups=aggregate["story_key"], re_formula="1")
         try:
             fit = model.fit(reml=False, method="lbfgs")
@@ -312,10 +315,14 @@ def pooling_equivalence(metrics: pd.DataFrame, margin: float) -> pd.DataFrame:
         mean = float(difference.mean()) if n else np.nan
         sd = float(difference.std(ddof=1)) if n > 1 else np.nan
         se = sd / np.sqrt(n) if n > 1 else np.nan
-        lower_t = (mean + margin) / se if se and np.isfinite(se) else np.nan
-        upper_t = (mean - margin) / se if se and np.isfinite(se) else np.nan
-        p_lower = 1 - t.cdf(lower_t, n - 1) if np.isfinite(lower_t) else np.nan
-        p_upper = t.cdf(upper_t, n - 1) if np.isfinite(upper_t) else np.nan
+        if se == 0 and np.isfinite(mean):
+            p_lower = 0.0 if mean > -margin else 1.0
+            p_upper = 0.0 if mean < margin else 1.0
+        else:
+            lower_t = (mean + margin) / se if se and np.isfinite(se) else np.nan
+            upper_t = (mean - margin) / se if se and np.isfinite(se) else np.nan
+            p_lower = 1 - t.cdf(lower_t, n - 1) if np.isfinite(lower_t) else np.nan
+            p_upper = t.cdf(upper_t, n - 1) if np.isfinite(upper_t) else np.nan
         rows.append({
             "prefix_condition": condition,
             "n": n,
@@ -406,6 +413,92 @@ def prefix_trajectory_model(metrics: pd.DataFrame, outcome: str) -> pd.DataFrame
     return fixed_effect_table(fit, outcome, "all-prefix OLS; story-clustered SE")
 
 
+def prefix_spline_model(
+    metrics: pd.DataFrame, outcome: str, spline_df: int
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Nonlinear all-prefix trajectories with story-clustered uncertainty."""
+    import statsmodels.api as sm
+    from patsy import build_design_matrices, dmatrix
+
+    final_layer = int(metrics["layer"].max())
+    data = metrics.loc[
+        metrics["layer"].eq(final_layer)
+        & metrics["prefix_condition"].isin(["true", "shuffled", "foreign"])
+    ].dropna(subset=[outcome, "prefix_fraction"]).copy()
+    if "prefix_mode" in data:
+        data = data.loc[data["prefix_mode"].astype(str).eq("all")].copy()
+    conditions = [item for item in ["true", "shuffled", "foreign"] if item in set(data["prefix_condition"])]
+    if data["prefix_index"].nunique() < 4 or data["story_key"].nunique() < 2 or len(conditions) < 2:
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+    data["prefix_condition"] = pd.Categorical(data["prefix_condition"], categories=conditions, ordered=True)
+    rhs = (
+        f'bs(prefix_fraction, df={spline_df}, degree=3, include_intercept=False) * '
+        'C(prefix_condition, Treatment(reference="true")) '
+        '+ target_position_norm + np.log1p(detail_tokens) + np.log1p(prefix_tokens)'
+    )
+    design = dmatrix(rhs, data, return_type="dataframe")
+    fit = sm.OLS(data[outcome].to_numpy(float), design).fit(
+        cov_type="cluster", cov_kwds={"groups": data["story_key"].astype(str).to_numpy()}
+    )
+    coefficients = fixed_effect_table(fit, outcome, "all-prefix cubic spline; story-clustered SE")
+
+    test_rows: list[dict] = []
+    names = list(design.columns)
+    for condition in conditions[1:]:
+        marker = f"[T.{condition}]"
+        selected = [index for index, name in enumerate(names) if marker in name]
+        restriction = np.zeros((len(selected), len(names)), dtype=float)
+        for row, column in enumerate(selected):
+            restriction[row, column] = 1.0
+        if not selected:
+            continue
+        test = fit.wald_test(restriction, scalar=True)
+        test_rows.append({
+            "metric": outcome,
+            "comparison": f"true versus {condition}: entire spline",
+            "df": len(selected),
+            "statistic": float(np.asarray(test.statistic).squeeze()),
+            "p_value": float(np.asarray(test.pvalue).squeeze()),
+        })
+
+    fractions = np.linspace(float(data["prefix_fraction"].min()), float(data["prefix_fraction"].max()), 101)
+    prediction_blocks: list[pd.DataFrame] = []
+    covariance = fit.cov_params().to_numpy(float)
+    parameters = fit.params.to_numpy(float)
+    for condition in conditions:
+        grid = pd.DataFrame({
+            "prefix_fraction": fractions,
+            "prefix_condition": pd.Categorical([condition] * len(fractions), categories=conditions, ordered=True),
+            "target_position_norm": float(data["target_position_norm"].mean()),
+            "detail_tokens": float(data["detail_tokens"].median()),
+            "prefix_tokens": np.maximum(0.0, fractions * float(data["prefix_tokens"].max())),
+        })
+        matrix = np.asarray(build_design_matrices([design.design_info], grid)[0], dtype=float)
+        fitted = matrix @ parameters
+        se = np.sqrt(np.maximum(np.einsum("ij,jk,ik->i", matrix, covariance, matrix), 0.0))
+        prediction_blocks.append(pd.DataFrame({
+            "metric": outcome,
+            "prefix_condition": condition,
+            "prefix_fraction": fractions,
+            "fitted": fitted,
+            "ci95_low": fitted - 1.96 * se,
+            "ci95_high": fitted + 1.96 * se,
+        }))
+    predictions = pd.concat(prediction_blocks, ignore_index=True)
+    tests = pd.DataFrame(test_rows)
+    if not tests.empty:
+        auc = {
+            condition: float(np.trapz(block["fitted"], block["prefix_fraction"]))
+            for condition, block in predictions.groupby("prefix_condition", observed=True)
+        }
+        tests["true_curve_auc"] = auc.get("true", np.nan)
+        tests["comparison_curve_auc"] = tests["comparison"].map(
+            lambda value: auc.get(str(value).split(" versus ", 1)[-1].split(":", 1)[0], np.nan)
+        )
+        tests["true_minus_comparison_auc"] = tests["true_curve_auc"] - tests["comparison_curve_auc"]
+    return coefficients, tests, predictions
+
+
 def plot_distributions(metrics: pd.DataFrame, output: Path) -> None:
     final = metrics.loc[metrics["layer"].eq(metrics["layer"].max())].copy()
     outcomes = ["mean_contextualization_shift", "detail_nll_delta_from_isolated", "readout_output_js"]
@@ -476,6 +569,28 @@ def plot_prefix_trajectory(metrics: pd.DataFrame, output: Path) -> None:
     plt.close(fig)
 
 
+def plot_prefix_splines(predictions: pd.DataFrame, output: Path) -> None:
+    if predictions.empty:
+        return
+    outcomes = list(predictions["metric"].drop_duplicates())
+    colors = {"true": "#4C78A8", "shuffled": "#F28E2B", "foreign": "#9C755F"}
+    fig, axes = plt.subplots(1, len(outcomes), figsize=(5.3 * len(outcomes), 4.5), squeeze=False)
+    for ax, outcome in zip(axes[0], outcomes):
+        data = predictions.loc[predictions["metric"].eq(outcome)]
+        for condition, block in data.groupby("prefix_condition", observed=True):
+            color = colors.get(str(condition), None)
+            ax.plot(block["prefix_fraction"], block["fitted"], label=condition, color=color)
+            ax.fill_between(
+                block["prefix_fraction"], block["ci95_low"], block["ci95_high"],
+                color=color, alpha=0.14,
+            )
+        ax.set(xlabel="Accumulated prefix boundary", ylabel=outcome.replace("_", " "))
+    axes[0, -1].legend(title="prefix order")
+    fig.tight_layout()
+    fig.savefig(output, dpi=180)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input-dir", type=Path, required=True)
@@ -486,6 +601,7 @@ def main() -> None:
         help="TOST margin on 1-cosine units for mean-pooling versus last-token shift.",
     )
     parser.add_argument("--skip-statistics", action="store_true")
+    parser.add_argument("--prefix-spline-df", type=int, default=5)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -505,6 +621,7 @@ def main() -> None:
         "mean_contextualization_shift", "readout_hidden_shift", "readout_relative_l2",
         "detail_nll_delta_from_isolated", "mean_token_js_from_isolated",
         "readout_output_js", "readout_entropy_change",
+        "isolated_semantic_centrality",
     ]
     pooling = pooling_equivalence(metrics, args.pooling_equivalence_margin)
     if args.skip_statistics:
@@ -514,6 +631,9 @@ def main() -> None:
         centrality_aggregate = pd.DataFrame()
         centrality_coefficients = pd.DataFrame()
         trajectory = pd.DataFrame()
+        spline_coefficients = pd.DataFrame()
+        spline_tests = pd.DataFrame()
+        spline_predictions = pd.DataFrame()
     else:
         aggregate, coefficients, tests = retention_models(joined, metrics_to_test)
         centrality_aggregate, centrality_coefficients = centrality_models(
@@ -521,6 +641,26 @@ def main() -> None:
             ["mean_contextualization_shift", "detail_nll_delta_from_isolated", "readout_output_js"],
         )
         trajectory = prefix_trajectory_model(metrics, "mean_contextualization_shift")
+        spline_outputs = [
+            prefix_spline_model(metrics, outcome, args.prefix_spline_df)
+            for outcome in [
+                "mean_contextualization_shift",
+                "detail_nll_delta_from_isolated",
+                "readout_output_js",
+            ]
+        ]
+        spline_coefficients = pd.concat(
+            [item[0] for item in spline_outputs if not item[0].empty], ignore_index=True
+        ) if any(not item[0].empty for item in spline_outputs) else pd.DataFrame()
+        spline_tests = pd.concat(
+            [item[1] for item in spline_outputs if not item[1].empty], ignore_index=True
+        ) if any(not item[1].empty for item in spline_outputs) else pd.DataFrame()
+        spline_predictions = pd.concat(
+            [item[2] for item in spline_outputs if not item[2].empty], ignore_index=True
+        ) if any(not item[2].empty for item in spline_outputs) else pd.DataFrame()
+        if not spline_tests.empty:
+            spline_tests["p_holm"] = holm(spline_tests["p_value"])
+            spline_tests["significant_holm_05"] = spline_tests["p_holm"] < 0.05
 
     metrics.to_csv(args.output_dir / "probe_metrics.csv.gz", index=False)
     joined.to_csv(args.output_dir / "actual_retention_probe_metrics.csv.gz", index=False)
@@ -532,9 +672,13 @@ def main() -> None:
     centrality_aggregate.to_csv(args.output_dir / "actual_retention_centrality_means.csv", index=False)
     centrality_coefficients.to_csv(args.output_dir / "actual_retention_centrality_model_coefficients.csv", index=False)
     trajectory.to_csv(args.output_dir / "prefix_trajectory_coefficients.csv", index=False)
+    spline_coefficients.to_csv(args.output_dir / "prefix_spline_coefficients.csv", index=False)
+    spline_tests.to_csv(args.output_dir / "prefix_spline_tests.csv", index=False)
+    spline_predictions.to_csv(args.output_dir / "prefix_spline_predictions.csv", index=False)
     plot_distributions(metrics, args.output_dir / "probe_metric_distributions.png")
     plot_retention_age(aggregate, args.output_dir / "actual_retention_by_source_age.png")
     plot_prefix_trajectory(metrics, args.output_dir / "all_prefix_trajectories.png")
+    plot_prefix_splines(spline_predictions, args.output_dir / "prefix_spline_trajectories.png")
 
     print(f"Probe rows x layers: {len(metrics):,}")
     print(f"Stories: {metrics['story_key'].nunique():,}")

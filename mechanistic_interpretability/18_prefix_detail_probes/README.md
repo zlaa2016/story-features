@@ -56,5 +56,10 @@ the full ragged target-token hidden-state matrix at every selected layer and is 
 6. a retention × isolated-semantic-centrality mixed model;
 7. for `prefix-mode=all`, story-clustered prefix-trajectory models and plots.
 
+The cubic prefix spline is tested with story-clustered joint Wald tests for the complete true versus
+shuffled and true versus foreign curves. Curve AUC differences report direction. The generated
+analysis notebook is `notebooks/gpt_oss_prefix_detail_probe_analysis.ipynb`; `analyze.slurm`
+executes a copy into the selected analysis output directory.
+
 The semantic-centrality split is computed only from isolated mean-pooled detail representations in
 the final selected layer, preventing preceding-context length from defining centrality.
