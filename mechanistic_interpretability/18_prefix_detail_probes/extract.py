@@ -163,7 +163,14 @@ class CausalProbeExtractor:
         import torch
         import torch.nn.functional as functional
 
-        if not (0 < detail_start < detail_end <= readout_index < len(input_ids)):
+        # A normal detail span ends before the fixed readout.  `readout_only` deliberately uses
+        # the readout sequence itself as the measured span, so its exclusive span end is one past
+        # `readout_index`.  Both layouts are valid.
+        if not (
+            0 < detail_start < detail_end <= len(input_ids)
+            and detail_start <= readout_index < len(input_ids)
+            and detail_end <= readout_index + 1
+        ):
             raise ValueError("Invalid detail/readout positions")
         self.detail_start = detail_start
         self.detail_end = detail_end

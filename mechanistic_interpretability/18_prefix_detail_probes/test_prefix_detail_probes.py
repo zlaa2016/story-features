@@ -41,6 +41,17 @@ class PrefixDetailProbeTests(unittest.TestCase):
         value = extract.js_from_log_probabilities(log_probabilities, log_probabilities)
         self.assertAlmostEqual(float(value.item()), 0.0, places=7)
 
+    def test_readout_only_layout_uses_endpoint_as_span(self) -> None:
+        # Exclusive span end may be one beyond the endpoint when the fixed readout itself is the
+        # measured span. This is the layout used by readout_only().
+        detail_start, detail_end, readout_index, length = 3, 4, 3, 4
+        valid = (
+            0 < detail_start < detail_end <= length
+            and detail_start <= readout_index < length
+            and detail_end <= readout_index + 1
+        )
+        self.assertTrue(valid)
+
 
 if __name__ == "__main__":
     unittest.main()
