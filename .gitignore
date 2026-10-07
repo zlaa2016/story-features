@@ -10,9 +10,9 @@ hartley_api_key.txt
 .env
 
 # Generated run outputs
-pipeline_output/
+results/features/summaries/runs/
 logs/
 *.out
 *.err
-artifacts/perplexity/runs/
-artifacts/perplexity/analysis/
+results/analysis/natural_language/perplexity/runs/
+results/analysis/natural_language/perplexity/analysis/
