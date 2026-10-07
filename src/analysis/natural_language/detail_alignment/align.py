@@ -14,6 +14,7 @@ from scipy.optimize import linprog
 
 from shared.detail_metrics import lexical_preservation
 from shared.io import read_jsonl
+from shared.span_search import Span, candidate_indices, inversion_rate, monotonic_alignment
 
 
 def normalize_rows(values: np.ndarray) -> np.ndarray:
@@ -37,14 +38,6 @@ class Embedder:
             show_progress_bar=False,
         )
         return np.asarray(values, dtype=np.float32)
-
-
-@dataclass(frozen=True)
-class Span:
-    start: int
-    end: int
-    length: int
-    text: str
 
 
 def build_spans(details: list[str], max_span: int) -> list[Span]:
@@ -130,63 +123,8 @@ def unique_summary_records(rows: Iterable[dict[str, Any]]) -> list[dict[str, Any
     return unique
 
 
-def candidate_indices(scores: np.ndarray, spans: list[Span], top_k: int) -> list[list[int]]:
-    by_length: dict[int, list[int]] = {}
-    for index, span in enumerate(spans):
-        by_length.setdefault(span.length, []).append(index)
-    output: list[list[int]] = []
-    for row in scores:
-        selected = set(np.argsort(row)[-min(top_k, len(row)) :].tolist())
-        for indices in by_length.values():
-            selected.add(max(indices, key=lambda idx: float(row[idx])))
-        output.append(sorted(selected))
-    return output
 
 
-def monotonic_alignment(
-    adjusted_scores: np.ndarray,
-    spans: list[Span],
-    *,
-    top_k: int,
-    overlap_penalty: float,
-    reversal_penalty: float,
-) -> list[int]:
-    candidates = candidate_indices(adjusted_scores, spans, top_k)
-    values: list[dict[int, float]] = []
-    parents: list[dict[int, int | None]] = []
-    for summary_index, current_candidates in enumerate(candidates):
-        current_values: dict[int, float] = {}
-        current_parents: dict[int, int | None] = {}
-        for current in current_candidates:
-            base = float(adjusted_scores[summary_index, current])
-            if summary_index == 0:
-                current_values[current] = base
-                current_parents[current] = None
-                continue
-            best_value = -math.inf
-            best_parent: int | None = None
-            for previous, previous_value in values[-1].items():
-                previous_span = spans[previous]
-                current_span = spans[current]
-                overlap = max(0, previous_span.end - current_span.start + 1)
-                reversal = max(0, previous_span.start - current_span.start)
-                value = previous_value + base - overlap_penalty * overlap - reversal_penalty * reversal
-                if value > best_value:
-                    best_value = value
-                    best_parent = previous
-            current_values[current] = best_value
-            current_parents[current] = best_parent
-        values.append(current_values)
-        parents.append(current_parents)
-    current = max(values[-1], key=values[-1].get)
-    path = [current]
-    for summary_index in range(len(values) - 1, 0, -1):
-        parent = parents[summary_index][current]
-        if parent is None:
-            raise RuntimeError("Broken dynamic-programming alignment path")
-        path.append(parent)
-        current = parent
-    return list(reversed(path))
 
 
 def capacitated_transport(
@@ -225,9 +163,6 @@ def capacitated_transport(
     return source_flow, null_flow
 
 
-def inversion_rate(indices: list[int]) -> float:
-    pairs = [(left, right) for pos, left in enumerate(indices) for right in indices[pos + 1 :]]
-    return float(np.mean([left > right for left, right in pairs])) if pairs else 0.0
 
 
 def process_pair(
