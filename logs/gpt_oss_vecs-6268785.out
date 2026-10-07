@@ -1,5 +1,0 @@
-Wrote master: data/processed/master_batch1.csv.gz
-Wrote index:  data/processed/master_batch1_index.csv
-Rows: 2859 | transcripts: 2370 | events: 63
-Loading model: openai/gpt-oss-20b  device_map=auto
-Model input device: cuda:0

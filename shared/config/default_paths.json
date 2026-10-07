@@ -1,0 +1,21 @@
+{
+  "original_detail_jsonl": [
+    "results/features/summaries/runs/customer_age_target_or_source_2_10_preprocess/original_detail_segments_source_or_target_2_10_customer_age.jsonl",
+    "results/features/summaries/runs/customer_age_2_10_min_one_backfill/combined_original_detail_segments.jsonl"
+  ],
+  "summary_detail_jsonl": [
+    "results/features/summaries/runs/customer_age_target_or_source_2_10_cascade_summary_detail_min1/detail_segments_summaries.jsonl",
+    "results/features/summaries/runs/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/detail_segments_current_subset_local_sentence/detail_segments_summaries.jsonl"
+  ],
+  "generation_jsonl": [
+    "results/features/summaries/runs/age_steering_missing_younger_luna_gpt-5.6-luna_20260825_002423/summary_outputs.jsonl",
+    "results/features/summaries/runs/age_steering_complete_lower5_luna_gpt-5.6-luna_20260825_004625/summary_outputs.jsonl",
+    "results/features/summaries/runs/age_steering_pm3_ge2_luna_skipstarted_gpt-5.6-luna_20260824_130226/summary_outputs.jsonl",
+    "results/features/summaries/runs/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/summary_outputs.jsonl",
+    "results/features/summaries/runs/age_steering_pm3_customer_discrete_remaining_gpt-5.4-mini_20260817_231415/summary_outputs.jsonl",
+    "results/features/summaries/runs/customer_age_2_10_remaining_cheapest/detail_cleanup/customer_age_2_10_remaining_actual_summary_outputs.jsonl",
+    "results/features/summaries/runs/customer_age_target_or_source_2_10_cascade_summary_detail_min1/generated_summary_outputs.jsonl"
+  ],
+  "catalog_csv": "data/processed/youtube_catalog.csv.gz",
+  "output_root": "results/analysis/representation/_legacy_mi_outputs"
+}
