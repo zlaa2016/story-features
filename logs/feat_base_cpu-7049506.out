@@ -1,7 +1,0 @@
-Wrote master: data/processed/master_batch1.csv.gz
-Wrote index:  data/processed/master_batch1_index.csv
-Rows: 2860 | transcripts: 2371 | events: 378
-Wrote: artifacts/text_features_batch1_review_samples.csv  rows=378
-Wrote: artifacts/feature_baseline_batch1_review_samples.csv
- n_rows  n_train  n_test  n_classes  accuracy  f1_macro         bins                                                                                                                                                                                                                                               cols_used
-    279      209      70          3  0.757143  0.396825 0-3,4-6,7-12 ttr,root_ttr,log_ttr,hapax_frac,vocab_types,mean_log10_corpus_freq,rare_frac_corpus_le_5,avg_syllables_per_word,flesch_kincaid_grade_est,flesch_reading_ease_est,mean_sentence_length_words,mean_word_length_chars,num_words,num_sentences,num_pronouns
