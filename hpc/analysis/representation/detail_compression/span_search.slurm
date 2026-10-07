@@ -22,7 +22,7 @@ else
   VECTOR_DIR="${ISOLATED_DIR:-$EXTRACTION/${MODEL_KEY}_detail_controls}"
 fi
 export KIND VECTOR_DIR
-test -d "$VECTOR_DIR"
+compgen -G "$VECTOR_DIR/*_detail_metadata_*.csv" >/dev/null || { echo "No detail metadata shards under $VECTOR_DIR" >&2; exit 1; }
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detail_compression/span_search.py \
   --kind "$KIND" \
