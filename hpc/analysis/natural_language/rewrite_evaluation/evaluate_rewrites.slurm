@@ -32,7 +32,7 @@ export AGE_MODEL_DIR="${AGE_MODEL_DIR:-}"
 export PPL_MODEL="${PPL_MODEL:-}"
 export PPL_BATCH_SIZE="${PPL_BATCH_SIZE:-2}"
 export PPL_MAX_LENGTH="${PPL_MAX_LENGTH:-1024}"
-export OUTDIR="${OUTDIR:-artifacts/rewrite_eval/default}"
+export OUTDIR="${OUTDIR:-results/analysis/natural_language/rewrite_evaluation/rewrite_eval/default}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \

@@ -32,7 +32,7 @@ export WORD_AOA_HIGH="${WORD_AOA_HIGH:-9.0}"
 export REASONING="${REASONING:-low}"
 export MAX_LENGTH="${MAX_LENGTH:-64}"
 export BATCH_SIZE="${BATCH_SIZE:-64}"
-export OUTDIR="${OUTDIR:-artifacts/steer/word_vectors/default}"
+export OUTDIR="${OUTDIR:-results/analysis/representation/steering/distilbert/steer/word_vectors/default}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \

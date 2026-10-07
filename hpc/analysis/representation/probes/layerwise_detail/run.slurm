@@ -10,7 +10,7 @@ set -euo pipefail
 source hpc/slurm_env.sh
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 
-RETENTION_CSV="${RETENTION_CSV:-mechanistic_interpretability/outputs/13_structured_detail_alignment/original_detail_retention.csv}"
+RETENTION_CSV="${RETENTION_CSV:-results/analysis/natural_language/detail_alignment/original_detail_retention.csv}"
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/probes/layerwise_detail/run.py \
   --input-dir results/features/representation_extraction/causal_lm/detail_extraction/'"$MODEL_KEY"' \

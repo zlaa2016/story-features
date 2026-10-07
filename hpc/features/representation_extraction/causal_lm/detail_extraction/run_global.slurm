@@ -15,7 +15,7 @@ export RECORDS_PER_SHARD="${RECORDS_PER_SHARD:-250}"
 export SHARD_ID="${SLURM_ARRAY_TASK_ID:-0}"
 export START="$((SHARD_ID * RECORDS_PER_SHARD))"
 export MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
-export OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_KEY}_global}"
+export OUTPUT_DIR="${OUTPUT_DIR:-results/features/representation_extraction/causal_lm/detail_extraction/${MODEL_KEY}_global}"
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/features/representation_extraction/causal_lm/detail_extraction/extract_global.py \
   --cohort results/features/summaries/dataset_index/cohort.jsonl \

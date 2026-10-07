@@ -31,7 +31,7 @@ export TEXT_COL="${TEXT_COL:-transcript_best}"
 export MODEL_NAME="${MODEL_NAME:-roberta-base}"
 export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
 export TASK="${TASK:-regression}"
-export OUTDIR="${OUTDIR:-artifacts/finetuned_age_classifier/roberta_base}"
+export OUTDIR="${OUTDIR:-results/analysis/natural_language/age_classifier/finetuned_age_classifier/roberta_base}"
 export SPLIT_CSV="${SPLIT_CSV:-}"
 export SPLIT_COL="${SPLIT_COL:-split}"
 

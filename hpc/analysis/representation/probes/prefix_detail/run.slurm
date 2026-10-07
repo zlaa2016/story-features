@@ -17,7 +17,7 @@ PREFIX_MODE="${PREFIX_MODE:-native}"
 RECORDS_PER_SHARD="${RECORDS_PER_SHARD:-5}"
 SHARD_ID="${SLURM_ARRAY_TASK_ID:-0}"
 START="$((SHARD_ID * RECORDS_PER_SHARD))"
-OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/18_prefix_detail_probes/${MODEL_KEY}_${PREFIX_MODE}}"
+OUTPUT_DIR="${OUTPUT_DIR:-results/analysis/representation/probes/prefix_detail/${MODEL_KEY}_${PREFIX_MODE}}"
 SAVE_TOKEN_STATES_ARG=""
 if [[ "${SAVE_TOKEN_STATES:-0}" == "1" ]]; then
   SAVE_TOKEN_STATES_ARG="--save-token-states"

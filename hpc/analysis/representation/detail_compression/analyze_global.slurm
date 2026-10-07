@@ -10,8 +10,8 @@ set -euo pipefail
 source hpc/slurm_env.sh
 
 export MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
-export INPUT_DIR="${INPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_KEY}_global}"
-export OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_KEY}_global_analysis}"
+export INPUT_DIR="${INPUT_DIR:-results/features/representation_extraction/causal_lm/detail_extraction/${MODEL_KEY}_global}"
+export OUTPUT_DIR="${OUTPUT_DIR:-results/features/representation_extraction/causal_lm/detail_extraction/${MODEL_KEY}_global_analysis}"
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detail_compression/analyze_global.py \
   --input-dir "$INPUT_DIR" \
