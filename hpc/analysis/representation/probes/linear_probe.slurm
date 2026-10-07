@@ -22,7 +22,7 @@ export BINS="${BINS:-0-3,4-6,7-12}"
 export SEED="${SEED:-42}"
 export SHUFFLE_LABELS="${SHUFFLE_LABELS:-0}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    PROBE_ARGS=(--vectors "$VECTORS" --outdir "$PROBE_OUTDIR" --bins "$BINS" --seed "$SEED"); \
    if [[ -n "${FEATURES_CSV:-}" ]]; then PROBE_ARGS+=(--features-csv "$FEATURES_CSV"); fi; \

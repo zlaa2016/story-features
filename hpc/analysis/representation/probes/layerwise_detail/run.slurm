@@ -7,7 +7,7 @@
 #SBATCH --mem=128G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 
 RETENTION_CSV="${RETENTION_CSV:-mechanistic_interpretability/outputs/13_structured_detail_alignment/original_detail_retention.csv}"

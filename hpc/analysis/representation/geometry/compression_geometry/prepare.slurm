@@ -7,7 +7,7 @@
 #SBATCH --mem=16G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geometry.compression_geometry.prepare \

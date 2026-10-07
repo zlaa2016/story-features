@@ -14,14 +14,14 @@ Use this when running on a local machine or server where `tmux` is available.
 Dry run:
 
 ```bash
-bash hpc/features/summaries/run_tmux_summary_job.shsummaries/run_tmux_summary_job.sh --limit 1 --dry-run
+bash hpc/features/summaries/run_tmux_summary_job.sh --limit 1 --dry-run
 ```
 
 Real run:
 
 ```bash
 export OPENAI_API_KEY="..."
-bash hpc/features/summaries/run_tmux_summary_job.shsummaries/run_tmux_summary_job.sh --limit 50 --model gpt-4o-mini
+bash hpc/features/summaries/run_tmux_summary_job.sh --limit 50 --model gpt-4o-mini
 ```
 
 Reconnect:
@@ -33,7 +33,7 @@ tmux attach -t story_summaries
 Use a custom session name:
 
 ```bash
-SESSION_NAME=story_summaries_batch2 bash hpc/features/summaries/run_tmux_summary_job.shsummaries/run_tmux_summary_job.sh --start 50 --limit 50
+SESSION_NAME=story_summaries_batch2 bash hpc/features/summaries/run_tmux_summary_job.sh --start 50 --limit 50
 ```
 
 ## Slurm: GPT-4o-mini API Baseline
@@ -76,7 +76,7 @@ Recommended GPT-style open-weight check:
 OPEN_WEIGHT_SUMMARY_MODEL_KEY=gpt_oss_20b \
 SUMMARY_START=0 \
 SUMMARY_LIMIT=50 \
-sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 H100/80GB-class GPT-style check:
@@ -85,7 +85,7 @@ H100/80GB-class GPT-style check:
 OPEN_WEIGHT_SUMMARY_MODEL_KEY=gpt_oss_120b \
 SUMMARY_START=0 \
 SUMMARY_LIMIT=50 \
-sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 Current long-context open-weight controls:
@@ -94,14 +94,14 @@ Current long-context open-weight controls:
 OPEN_WEIGHT_SUMMARY_MODEL_KEY=qwen3_8b \
 SUMMARY_START=0 \
 SUMMARY_LIMIT=50 \
-sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 ```bash
 OPEN_WEIGHT_SUMMARY_MODEL_KEY=qwen3_30b_a3b_instruct_2507 \
 SUMMARY_START=0 \
 SUMMARY_LIMIT=50 \
-sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 OLMo 2 paper-family control. These models have 4K context, so long stories may
@@ -111,27 +111,27 @@ be skipped by the overlength policy:
 OPEN_WEIGHT_SUMMARY_MODEL_KEY=olmo_2_7b_instruct \
 SUMMARY_START=0 \
 SUMMARY_LIMIT=50 \
-sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 Dry run without loading the model:
 
 ```bash
 SUMMARY_ARGS="--model-key gpt_oss_20b --start 0 --limit 1 --dry-run" \
-  sbatch hpc/features/summaries/run_open_weight_summaries.slurmsummaries/run_open_weight_summaries.slurm
+  sbatch hpc/features/summaries/run_open_weight_summaries.slurm
 ```
 
 Submit the default open-weight comparison set:
 
 ```bash
-bash hpc/features/summaries/submit_open_weight_summary_models.shsummaries/submit_open_weight_summary_models.sh
+bash hpc/features/summaries/submit_open_weight_summary_models.sh
 ```
 
 Restrict the comparison set:
 
 ```bash
 MODEL_KEYS="gpt_oss_20b qwen3_8b olmo_2_7b_instruct" \
-  bash hpc/features/summaries/submit_open_weight_summary_models.shsummaries/submit_open_weight_summary_models.sh
+  bash hpc/features/summaries/submit_open_weight_summary_models.sh
 ```
 
 List available local model keys:

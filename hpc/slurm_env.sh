@@ -22,8 +22,8 @@ mkdir -p logs/mechanistic_interpretability
 
 run_in_container() {
   local command="$1"
-  if [[ -x hpc/run_in_singularity.shrun_in_singularity.sh ]]; then
-    ./hpc/run_in_singularity.shrun_in_singularity.sh "cd \"$SLURM_SUBMIT_DIR\" && $command"
+  if [[ -x hpc/run_in_singularity.sh ]]; then
+    ./hpc/run_in_singularity.sh "cd \"$SLURM_SUBMIT_DIR\" && $command"
   else
     singularity exec --nv --fakeroot --overlay "$OVERLAY" "$SIF" /bin/bash -lc \
       "cd \"$SLURM_SUBMIT_DIR\" && $command"

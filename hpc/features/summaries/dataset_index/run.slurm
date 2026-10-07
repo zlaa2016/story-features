@@ -7,7 +7,7 @@
 #SBATCH --mem=24G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 REPAIR_FRAGMENT_ARG=""
 if [[ "${REPAIR_TITLE_FRAGMENTS:-0}" == "1" ]]; then

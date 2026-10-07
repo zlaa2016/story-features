@@ -34,7 +34,7 @@ export GPT_OSS_REASONING="${GPT_OSS_REASONING:-low}"
 export HF_HOME="${HF_HOME:-/scratch/$USER/hf}"
 export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$HF_HOME}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    mkdir -p "$VEC_OUTDIR" && \
    "$PYTHON_BIN" src/data_pipeline/cleaning/master_dataset/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \

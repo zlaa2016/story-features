@@ -9,6 +9,6 @@
 #SBATCH --error=logs/mechanistic_interpretability/sae_collect-%A_%a.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 LAYERS=(8 16 24); TASK="$SLURM_ARRAY_TASK_ID"; LAYER_INDEX=$((TASK / 10)); SHARD=$((TASK % 10)); LAYER="${LAYERS[$LAYER_INDEX]}"; START=$((SHARD * 1000))
 run_in_container "PYTHONPATH=src $PYTHON_BIN src/analysis/representation/sparse_autoencoder/collect_activations.py --layer $LAYER --start $START --limit 1000 --shard-id $(printf '%02d' "$SHARD")"

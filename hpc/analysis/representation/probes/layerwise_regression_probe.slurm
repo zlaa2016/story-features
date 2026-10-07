@@ -42,6 +42,6 @@ if [[ -z "${TARGET:-}" ]]; then
   exit 2
 fi
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/analysis/representation/probes/run_layerwise_regression_probe.py --vectors "$VECTORS_NPZ" --features "$FEATURES_CSV" --target "$TARGET" --outdir "$OUTDIR"'

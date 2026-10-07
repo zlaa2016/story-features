@@ -27,7 +27,7 @@ export SLEEP_JITTER_SECS="${SLEEP_JITTER_SECS:-6.0}"
 export TIMEOUT_SECS="${TIMEOUT_SECS:-45}"
 export COOKIE_JSON="${COOKIE_JSON:-}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    EXTRA_ARGS=(); \
    if [[ -n "${MAX_BOOKS:-}" ]]; then EXTRA_ARGS+=(--max-books "$MAX_BOOKS"); fi; \

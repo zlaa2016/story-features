@@ -7,7 +7,7 @@
 #SBATCH --mem=48G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.natural_language.detail_characteristics.extract \
   --cohort results/features/summaries/dataset_index/cohort.jsonl \

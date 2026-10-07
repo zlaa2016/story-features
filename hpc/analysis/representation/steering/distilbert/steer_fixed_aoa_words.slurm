@@ -33,7 +33,7 @@ export WORD_AOA_HIGH="${WORD_AOA_HIGH:-9.0}"
 export SEED="${SEED:-42}"
 export OUTDIR="${OUTDIR:-artifacts/steer/fixed_aoa_words}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/analysis/representation/steering/distilbert/run_fixed_aoa_word_steering.py \
       --vectors "$VECTORS" \

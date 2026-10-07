@@ -7,6 +7,6 @@
 #SBATCH --mem=64G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.natural_language.mobius_integration.analyze \
   --input-dir results/analysis/natural_language/mobius_integration'

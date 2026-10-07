@@ -28,7 +28,7 @@ export COOKIE_JSON="${COOKIE_JSON:-}"
 export CHROME_BINARY="${CHROME_BINARY:-}"
 export CHROMEDRIVER_BINARY="${CHROMEDRIVER_BINARY:-}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    EXTRA_ARGS=(); \
    if [[ -n "${MAX_BOOKS:-}" ]]; then EXTRA_ARGS+=(--max-books "$MAX_BOOKS"); fi; \

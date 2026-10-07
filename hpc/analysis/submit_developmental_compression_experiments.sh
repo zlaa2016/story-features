@@ -16,7 +16,7 @@ submit() {
   "${command[@]}" | cut -d';' -f1
 }
 
-index_job=$(submit "" hpc/features/summaries/dataset_index/run.slurmsummaries/dataset_index/run.slurm)
+index_job=$(submit "" hpc/features/summaries/dataset_index/run.slurm)
 gpt_align_job=$(submit "$index_job" hpc/analysis/natural_language/detail_alignment/run.slurmnatural_language/detail_alignment/run.slurm)
 gpt_align_analysis_job=$(submit "$gpt_align_job" hpc/analysis/natural_language/detail_alignment/analyze.slurmnatural_language/detail_alignment/analyze.slurm)
 detail_characteristics_job=$(submit "$gpt_align_analysis_job" hpc/analysis/natural_language/detail_characteristics/run.slurmnatural_language/detail_characteristics/run.slurm)
@@ -33,14 +33,14 @@ for model in qwen3_8b gpt_oss_20b; do
   export_args="--export=ALL,MODEL_KEY=${model}"
   smoke=$(submit "$index_job" mechanistic_interpretability/01_smoke_test/run.slurm "$export_args")
   extract=$(submit "$smoke" hpc/features/representation_extraction/causal_lm/detail_extraction/run.slurmrepresentation_extraction/causal_lm/detail_extraction/run.slurm "$export_args")
-  native=$(submit "$smoke" hpc/features/summaries/native_generation/run.slurmsummaries/native_generation/run.slurm "$export_args")
+  native=$(submit "$smoke" hpc/features/summaries/native_generation/run.slurm "$export_args")
   probe=$(submit "${extract}:${gpt_align_analysis_job}" hpc/analysis/representation/probes/layerwise_detail/run.slurmrepresentation/probes/layerwise_detail/run.slurm "$export_args")
   probe_jobs[$model]="$probe"
   dissociation_jobs[$model]=$(submit "$extract" hpc/analysis/representation/behavior_vs_representation/run.slurmrepresentation/behavior_vs_representation/run.slurm "$export_args")
   patch_jobs[$model]=$(submit "$probe" hpc/analysis/representation/causal_patching/run.slurmrepresentation/causal_patching/run.slurm "$export_args")
   jacobian_jobs[$model]=$(submit "$probe" hpc/analysis/representation/jacobian/directional_jacobian/run.slurmrepresentation/jacobian/directional_jacobian/run.slurm "$export_args")
 
-  native_prep=$(submit "$native" hpc/features/summaries/native_generation/prepare.slurmsummaries/native_generation/prepare.slurm "$export_args")
+  native_prep=$(submit "$native" hpc/features/summaries/native_generation/prepare.slurm "$export_args")
   native_input="results/features/summaries/native_generation/${model}/alignment_records"
   native_output="results/features/summaries/native_generation/${model}/alignment"
   native_align=$(submit "$native_prep" hpc/analysis/natural_language/detail_alignment/run.slurmnatural_language/detail_alignment/run.slurm \

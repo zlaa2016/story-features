@@ -9,7 +9,7 @@
 #SBATCH --error=logs/mechanistic_interpretability/jlens_fit-%A_%a.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 JLENS_PYTHON="${JLENS_PYTHON:-/scratch/$USER/venvs/jlens/bin/python}"
 SHARD="${SLURM_ARRAY_TASK_ID}"
 START=$((SHARD * 10))

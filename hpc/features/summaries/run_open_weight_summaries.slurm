@@ -44,7 +44,7 @@ echo "Args: ${SUMMARY_ARGS}"
 echo "Job ID: ${SLURM_JOB_ID:-none}"
 echo "Started: $(date)"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && "$PYTHON_BIN" src/features/summaries/generate_open_weight_summaries.py $SUMMARY_ARGS'
 
 echo "Finished: $(date)"

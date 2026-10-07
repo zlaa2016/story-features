@@ -7,7 +7,7 @@
 #SBATCH --mem=64G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 OUTPUT_DIR="${DETAIL_OUTPUT_DIR:-mechanistic_interpretability/outputs/13_structured_detail_alignment}"
 

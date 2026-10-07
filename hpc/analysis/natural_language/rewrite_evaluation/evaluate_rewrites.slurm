@@ -34,7 +34,7 @@ export PPL_BATCH_SIZE="${PPL_BATCH_SIZE:-2}"
 export PPL_MAX_LENGTH="${PPL_MAX_LENGTH:-1024}"
 export OUTDIR="${OUTDIR:-artifacts/rewrite_eval/default}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    EVAL_ARGS=(--input-csv "$INPUT_CSV" --original-col "$ORIGINAL_COL" --rewritten-col "$REWRITTEN_COL" --aoa-lexicon "$AOA_LEXICON" --age-cutoff "$AGE_CUTOFF" --outdir "$OUTDIR"); \
    if [[ -n "${AGE_MODEL_DIR:-}" ]]; then EVAL_ARGS+=(--age-model-dir "$AGE_MODEL_DIR"); fi; \

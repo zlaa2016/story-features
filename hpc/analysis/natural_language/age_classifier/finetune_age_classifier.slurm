@@ -35,7 +35,7 @@ export OUTDIR="${OUTDIR:-artifacts/finetuned_age_classifier/roberta_base}"
 export SPLIT_CSV="${SPLIT_CSV:-}"
 export SPLIT_COL="${SPLIT_COL:-split}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    FT_ARGS=( \
       --master "$MASTER" \

@@ -8,7 +8,7 @@
 #SBATCH --mem=64G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 export USE_NV=0
 export FAKEROOT="${FAKEROOT:-0}"
 export PYDEPS="${PYDEPS:-/scratch/$USER/story-features-pydeps}"

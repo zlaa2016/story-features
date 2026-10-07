@@ -7,7 +7,7 @@
 #SBATCH --mem=64G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 BASE="results/analysis/representation/geometry/compression_geometry/${MODEL_KEY}"
 
