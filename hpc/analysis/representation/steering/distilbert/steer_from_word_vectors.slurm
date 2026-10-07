@@ -16,10 +16,10 @@ export CONDA_ENV="${CONDA_ENV:-story-features}"
 export USE_NV="${USE_NV:-0}"
 export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 
-export STORY_VECTORS="${STORY_VECTORS:-artifacts/distilbert_vectors/story_vectors.npz}"
-export WORD_VECTORS="${WORD_VECTORS:-artifacts/steer/word_vectors/default/word_vectors.npz}"
-export FEATURES="${FEATURES:-artifacts/text_features_batch1.csv}"
-export STORY_AOA_STATS="${STORY_AOA_STATS:-artifacts/corpus_aoa_cutoffs_cleaned_idchecked/story_aoa_stats.csv}"
+export STORY_VECTORS="${STORY_VECTORS:-results/features/representation_extraction/encoder/distilbert_vectors/story_vectors.npz}"
+export WORD_VECTORS="${WORD_VECTORS:-results/analysis/representation/steering/distilbert/steer/word_vectors/default/word_vectors.npz}"
+export FEATURES="${FEATURES:-results/features/eda/text_features_batch1.csv}"
+export STORY_AOA_STATS="${STORY_AOA_STATS:-results/features/eda/corpus_aoa_cutoffs_cleaned_idchecked/story_aoa_stats.csv}"
 export CLEANED_META="${CLEANED_META:-story_wAmazonData_042626/amazon_youtube_batch1_wid.csv}"
 export CLEANED_COL="${CLEANED_COL:-cleaned}"
 export AGE_CUTOFF="${AGE_CUTOFF:-5.0}"
@@ -29,7 +29,7 @@ export STORY_AOA_HIGH_Q="${STORY_AOA_HIGH_Q:-0.67}"
 export CONTROL="${CONTROL:-real}"
 export CONTROL_SEED="${CONTROL_SEED:-42}"
 export SEED="${SEED:-42}"
-export OUTDIR="${OUTDIR:-artifacts/steer/results/default}"
+export OUTDIR="${OUTDIR:-results/analysis/representation/steering/distilbert/steer/results/default}"
 
 ./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \

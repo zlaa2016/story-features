@@ -10,9 +10,9 @@ set -euo pipefail
 source hpc/slurm_env.sh
 
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
-DELETION_DIR="${DELETION_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_KEY}_detail_controls}"
-RETENTION_CSV="${RETENTION_CSV:-mechanistic_interpretability/outputs/13_structured_detail_alignment/original_detail_retention.csv}"
-OUTPUT_DIR="${OUTPUT_DIR:-mechanistic_interpretability/outputs/17_covariance_detail_geometry/${MODEL_KEY}}"
+DELETION_DIR="${DELETION_DIR:-results/features/representation_extraction/causal_lm/detail_extraction/${MODEL_KEY}_detail_controls}"
+RETENTION_CSV="${RETENTION_CSV:-results/analysis/natural_language/detail_alignment/original_detail_retention.csv}"
+OUTPUT_DIR="${OUTPUT_DIR:-results/analysis/representation/geometry/covariance/${MODEL_KEY}}"
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geometry.covariance.analyze \
   --deletion-dir "'"$DELETION_DIR"'" \

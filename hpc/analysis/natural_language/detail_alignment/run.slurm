@@ -11,10 +11,10 @@
 set -euo pipefail
 source hpc/slurm_env.sh
 
-INPUT_BASE="${DETAIL_INPUT_BASE:-mechanistic_interpretability/outputs/00_dataset_index}"
+INPUT_BASE="${DETAIL_INPUT_BASE:-results/features/summaries/dataset_index}"
 ROWS_PER_TASK="${ROWS_PER_TASK:-300}"
 START=$((SLURM_ARRAY_TASK_ID * ROWS_PER_TASK))
-OUTPUT_BASE="${DETAIL_OUTPUT_DIR:-mechanistic_interpretability/outputs/13_structured_detail_alignment}"
+OUTPUT_BASE="${DETAIL_OUTPUT_DIR:-results/analysis/natural_language/detail_alignment}"
 OUTPUT_DIR="${OUTPUT_BASE}/shard_${SLURM_ARRAY_TASK_ID}"
 
 run_in_container '"$PYTHON_BIN" -m analysis.natural_language.detail_alignment.align \

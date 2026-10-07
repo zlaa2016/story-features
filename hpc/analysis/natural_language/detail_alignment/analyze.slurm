@@ -9,7 +9,7 @@
 set -euo pipefail
 source hpc/slurm_env.sh
 
-OUTPUT_DIR="${DETAIL_OUTPUT_DIR:-mechanistic_interpretability/outputs/13_structured_detail_alignment}"
+OUTPUT_DIR="${DETAIL_OUTPUT_DIR:-results/analysis/natural_language/detail_alignment}"
 
 run_in_container '"$PYTHON_BIN" -m analysis.natural_language.detail_alignment.merge_shards \
   --input-dir "'"$OUTPUT_DIR"'"'

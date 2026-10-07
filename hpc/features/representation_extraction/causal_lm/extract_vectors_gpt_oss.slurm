@@ -25,7 +25,7 @@ fi
 export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
 export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
-export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/gpt_oss_vectors}"
+export VEC_OUTDIR="${VEC_OUTDIR:-results/features/representation_extraction/causal_lm/gpt_oss_vectors}"
 export GPT_OSS_MODEL="${GPT_OSS_MODEL:-openai/gpt-oss-20b}"
 export GPT_OSS_UNIT="${GPT_OSS_UNIT:-story}"
 export GPT_OSS_REASONING="${GPT_OSS_REASONING:-low}"

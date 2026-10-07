@@ -19,7 +19,7 @@ export PYTHON_BIN="${PYTHON_BIN:-/ext3/${CONDA_ENV}/bin/python}"
 export BASE="${BASE:-data/amazon_data/all_extracted_titles_with_amazon.xlsx}"
 export MASTER_OUT="${MASTER_OUT:-data/processed/master_stories.parquet}"
 export MASTER_INDEX="${MASTER_INDEX:-data/processed/master_stories_index.csv}"
-export VEC_OUTDIR="${VEC_OUTDIR:-artifacts/distilbert_vectors}"
+export VEC_OUTDIR="${VEC_OUTDIR:-results/features/representation_extraction/encoder/distilbert_vectors}"
 export VEC_UNIT="${VEC_UNIT:-story}"
 export VEC_SEGMENT_AGG="${VEC_SEGMENT_AGG:-mean}"
 

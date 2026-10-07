@@ -20,8 +20,8 @@ mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 PREFIX_MODE="${PREFIX_MODE:-native}"
-INPUT_DIR="${INPUT_DIR:-mechanistic_interpretability/outputs/18_prefix_detail_probes/${MODEL_KEY}_${PREFIX_MODE}}"
-RETENTION_DIR="${RETENTION_DIR:-mechanistic_interpretability/outputs/13_structured_detail_alignment}"
+INPUT_DIR="${INPUT_DIR:-results/analysis/representation/probes/prefix_detail/${MODEL_KEY}_${PREFIX_MODE}}"
+RETENTION_DIR="${RETENTION_DIR:-results/analysis/natural_language/detail_alignment}"
 OUTPUT_DIR="${ANALYSIS_DIR:-output/prefix_detail_probes/${MODEL_KEY}_${PREFIX_MODE}}"
 export MODEL_KEY PREFIX_MODE INPUT_DIR RETENTION_DIR OUTPUT_DIR
 

@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-export OUTDIR="${OUTDIR:-artifacts/layerwise_regression_probe}"
+export OUTDIR="${OUTDIR:-results/analysis/representation/probes/layerwise_regression_probe}"
 mkdir -p logs "$OUTDIR"
 
 export SIF="${SIF:-/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif}"
