@@ -5,16 +5,14 @@
 set -euo pipefail
 
 move() {
-  local old="" new=""
-  if [[ -d "" ]]; then
-    mkdir -p "" && rsync -a --ignore-existing "/" "/" && echo "copied  -> "
+  local old="$1" new="$2"
+  if [[ -d "$old" ]]; then
+    mkdir -p "$new" && rsync -a --ignore-existing "$old/" "$new/" && echo "copied $old -> $new"
   fi
 }
 
 move "mechanistic_interpretability/outputs/00_dataset_index" "results/features/summaries/dataset_index"
 move "mechanistic_interpretability/outputs/03_native_generation" "results/features/summaries/native_generation"
-move "mechanistic_interpretability/outputs/02_representation_extraction/analyze_detail_compression" "results/analysis/representation/detail_compression/analyze_detail_compression"
-move "mechanistic_interpretability/outputs/02_representation_extraction/analyze_global" "results/analysis/representation/detail_compression/analyze_global"
 move "mechanistic_interpretability/outputs/02_representation_extraction" "results/features/representation_extraction/causal_lm/detail_extraction"
 move "mechanistic_interpretability/outputs/13_structured_detail_alignment" "results/analysis/natural_language/detail_alignment"
 move "mechanistic_interpretability/outputs/14_detail_characteristics" "results/analysis/natural_language/detail_characteristics"
