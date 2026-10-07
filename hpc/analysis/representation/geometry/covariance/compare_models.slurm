@@ -7,7 +7,7 @@
 #SBATCH --mem=96G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 MODEL_A_NAME="${MODEL_A_NAME:-gpt_oss_20b}"
 MODEL_B_NAME="${MODEL_B_NAME:-qwen3_8b}"

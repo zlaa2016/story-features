@@ -19,10 +19,10 @@ submit() {
   "${command[@]}" | cut -d';' -f1
 }
 
-index_job="$(submit "" hpc/features/summaries/dataset_index/run.slurmsummaries/dataset_index/run.slurm)"
+index_job="$(submit "" hpc/features/summaries/dataset_index/run.slurm)"
 smoke_job="$(submit "$index_job" mechanistic_interpretability/01_smoke_test/run.slurm)"
 extract_job="$(submit "$smoke_job" hpc/features/representation_extraction/causal_lm/detail_extraction/run.slurmrepresentation_extraction/causal_lm/detail_extraction/run.slurm)"
-generation_job="$(submit "$smoke_job" hpc/features/summaries/native_generation/run.slurmsummaries/native_generation/run.slurm)"
+generation_job="$(submit "$smoke_job" hpc/features/summaries/native_generation/run.slurm)"
 probe_job="$(submit "$extract_job" hpc/analysis/representation/probes/layerwise_detail/run.slurmrepresentation/probes/layerwise_detail/run.slurm)"
 router_job="$(submit "$extract_job" hpc/analysis/representation/router/run.slurmrepresentation/router/run.slurm)"
 dissociation_job="$(submit "$extract_job" hpc/analysis/representation/behavior_vs_representation/run.slurmrepresentation/behavior_vs_representation/run.slurm)"

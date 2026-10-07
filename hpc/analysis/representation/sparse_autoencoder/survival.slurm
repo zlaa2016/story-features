@@ -9,7 +9,7 @@
 #SBATCH --error=logs/mechanistic_interpretability/sae_survival-%A_%a.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 : "${RETENTION_CSV:?Set RETENTION_CSV to original_detail_retention.csv}"
 LAYERS=(8 16 24); LAYER="${LAYERS[$SLURM_ARRAY_TASK_ID]}"
 SAE_KIND="${SAE_KIND:-official}"

@@ -31,7 +31,7 @@ export CONTROL_SEED="${CONTROL_SEED:-42}"
 export SEED="${SEED:-42}"
 export OUTDIR="${OUTDIR:-artifacts/steer/results/default}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/analysis/representation/steering/distilbert/run_story_steering_from_word_vectors.py \
       --story-vectors "$STORY_VECTORS" \

@@ -7,7 +7,7 @@
 #SBATCH --mem=192G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 if [[ -z "${RETENTION_CSV:-}" ]]; then
   echo "Set RETENTION_CSV to original_detail_retention.csv" >&2

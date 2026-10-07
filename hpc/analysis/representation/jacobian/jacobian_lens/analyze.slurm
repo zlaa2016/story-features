@@ -7,5 +7,5 @@
 #SBATCH --error=logs/mechanistic_interpretability/jlens_analyze-%j.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 run_in_container "PYTHONPATH=src $PYTHON_BIN src/analysis/representation/jacobian/jacobian_lens/analyze.py"

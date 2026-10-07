@@ -9,7 +9,7 @@
 #SBATCH --error=logs/mechanistic_interpretability/sae_intervene-%A_%a.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 LAYERS=(8 16 24)
 LAYER_INDEX=$((SLURM_ARRAY_TASK_ID % 3))
 SHARD=$((SLURM_ARRAY_TASK_ID / 3))

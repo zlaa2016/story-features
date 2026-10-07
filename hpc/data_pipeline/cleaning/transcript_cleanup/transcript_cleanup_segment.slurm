@@ -29,7 +29,7 @@ export TRANSCRIPT_SOURCE="${TRANSCRIPT_SOURCE:-all}"
 export MIN_WORDS="${MIN_WORDS:-20}"
 export OVERWRITE="${OVERWRITE:-0}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    EXTRA_ARGS=(); \
    if [[ -n "${OUT_DIR:-}" ]]; then EXTRA_ARGS+=(--out-dir "$OUT_DIR"); fi; \

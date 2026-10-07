@@ -7,7 +7,7 @@
 #SBATCH --mem=32G
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 export MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 export INPUT_DIR="${INPUT_DIR:-mechanistic_interpretability/outputs/02_representation_extraction/${MODEL_KEY}_global}"

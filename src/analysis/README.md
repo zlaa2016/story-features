@@ -107,7 +107,7 @@ From the repository root:
 git pull
 mkdir -p logs/mechanistic_interpretability
 
-sbatch --account=torch_pr_494_general hpc/features/summaries/dataset_index/run.slurmsummaries/dataset_index/run.slurm
+sbatch --account=torch_pr_494_general hpc/features/summaries/dataset_index/run.slurm
 ```
 
 Inspect the dataset-index counts before downloading a model:
@@ -132,7 +132,7 @@ The confirmatory two-model graph submits smoke tests first and keeps every downs
 
 ```bash
 export SBATCH_ARGS="--account=torch_pr_494_general"
-bash hpc/analysis/submit_developmental_compression_experiments.shsubmit_developmental_compression_experiments.sh \
+bash hpc/analysis/submit_developmental_compression_experiments.sh \
   | tee mechanistic_interpretability_job_ids.txt
 ```
 
@@ -142,7 +142,7 @@ For the older single-model graph, use:
 export SBATCH_ARGS="--account=torch_pr_494_general"
 export MODEL_KEY=gpt_oss_20b
 export RETENTION_CSV="results/features/summaries/runs/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/detail_segments_current_subset/analysis_q/original_detail_retention.csv"
-bash hpc/analysis/submit_priority.shsubmit_priority.sh | tee mechanistic_interpretability_job_ids.txt
+bash hpc/analysis/submit_priority.sh | tee mechanistic_interpretability_job_ids.txt
 ```
 
 `02_representation_extraction` and `03_native_generation` run concurrently after the smoke test. Probe-dependent causal experiments remain pending until extraction and probing finish.

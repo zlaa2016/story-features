@@ -7,6 +7,6 @@
 #SBATCH --error=logs/mechanistic_interpretability/jlens_merge-%j.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 JLENS_PYTHON="${JLENS_PYTHON:-/scratch/$USER/venvs/jlens/bin/python}"
 run_in_container "PYTHONPATH=src $JLENS_PYTHON src/analysis/representation/jacobian/jacobian_lens/merge.py"

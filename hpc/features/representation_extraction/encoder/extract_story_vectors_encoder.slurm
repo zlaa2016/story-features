@@ -28,7 +28,7 @@ export STRIDE="${STRIDE:-64}"
 export BATCH_SIZE="${BATCH_SIZE:-16}"
 export OUTDIR="${OUTDIR:-artifacts/steer/story_vectors/default}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/features/representation_extraction/encoder/extract_story_vectors_encoder.py \
       --master "$MASTER" \

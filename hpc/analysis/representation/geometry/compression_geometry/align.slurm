@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:1
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 INPUT_DIR="results/analysis/representation/geometry/compression_geometry/${MODEL_KEY}/records"
 OUTPUT_DIR="results/analysis/representation/geometry/compression_geometry/${MODEL_KEY}/alignment/shard_${SLURM_ARRAY_TASK_ID}"

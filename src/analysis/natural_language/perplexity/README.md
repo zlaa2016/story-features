@@ -194,7 +194,7 @@ export CONDA_ENV=story-features
 export PYTHON_BIN=/ext3/story-features/bin/python
 export USE_NV=0
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$PWD" && "$PYTHON_BIN" src/analysis/natural_language/perplexity/plot_age_geometry.py \
     --age-bins results/analysis/natural_language/perplexity/analysis/age_bins_mean_nll.csv \
     --outdir results/analysis/natural_language/perplexity/figures'

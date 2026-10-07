@@ -26,7 +26,7 @@ export VEC_SEGMENT_AGG="${VEC_SEGMENT_AGG:-mean}"
 # If conda isn't at /opt/conda in your image, set CONDA_SH too.
 # export CONDA_SH="/path/inside/container/to/conda.sh"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    mkdir -p "$VEC_OUTDIR" && \
    "$PYTHON_BIN" src/data_pipeline/cleaning/master_dataset/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \

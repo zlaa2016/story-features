@@ -7,7 +7,7 @@
 #SBATCH --error=logs/mechanistic_interpretability/jlens_setup-%j.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 JLENS_REPO="${JLENS_REPO:-/scratch/$USER/tools/jacobian-lens}"
 JLENS_VENV="${JLENS_VENV:-/scratch/$USER/venvs/jlens}"

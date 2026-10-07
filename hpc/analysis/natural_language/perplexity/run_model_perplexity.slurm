@@ -44,7 +44,7 @@ export OVERLENGTH_POLICY="${OVERLENGTH_POLICY:-skip}"
 export LIMIT="${LIMIT:-0}"
 export CLEANED_ONLY="${CLEANED_ONLY:-0}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    BUILD_ARGS=(--base "$BASE" --transcripts-dir "$TRANSCRIPTS_DIR" --out "$MASTER_OUT" --out-csv "$MASTER_CSV" --out-index "$MASTER_INDEX"); \
    if [[ -n "$TRANSCRIPTS_ZIP" ]]; then BUILD_ARGS+=(--transcripts-zip "$TRANSCRIPTS_ZIP"); fi; \

@@ -9,6 +9,6 @@
 #SBATCH --error=logs/mechanistic_interpretability/jlens_swap-%A_%a.err
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 JLENS_PYTHON="${JLENS_PYTHON:-/scratch/$USER/venvs/jlens/bin/python}"
 run_in_container "PYTHONPATH=src $JLENS_PYTHON src/analysis/representation/jacobian/jacobian_lens/intervene.py --shard-index $SLURM_ARRAY_TASK_ID --num-shards 20 --output results/analysis/representation/jacobian/jacobian_lens/coordinate_swaps_$(printf '%02d' "$SLURM_ARRAY_TASK_ID").jsonl"

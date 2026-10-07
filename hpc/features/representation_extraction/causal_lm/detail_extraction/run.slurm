@@ -9,7 +9,7 @@
 #SBATCH --array=0-14%4
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 export RECORDS_PER_SHARD="${RECORDS_PER_SHARD:-700}"
 export SHARD_ID="${SLURM_ARRAY_TASK_ID:-0}"

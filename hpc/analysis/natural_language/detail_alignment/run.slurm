@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:1
 
 set -euo pipefail
-source hpc/slurm_env.shslurm_env.sh
+source hpc/slurm_env.sh
 
 INPUT_BASE="${DETAIL_INPUT_BASE:-mechanistic_interpretability/outputs/00_dataset_index}"
 ROWS_PER_TASK="${ROWS_PER_TASK:-300}"

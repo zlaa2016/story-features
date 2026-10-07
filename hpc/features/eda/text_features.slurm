@@ -24,7 +24,7 @@ export AOA_WORD_COL="${AOA_WORD_COL:-}"
 export AOA_AGE_COL="${AOA_AGE_COL:-}"
 export AOA_LOOKUP="${AOA_LOOKUP:-}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/data_pipeline/cleaning/master_dataset/build_master_dataset.py --base "$BASE" --out "$MASTER_OUT" --out-index "$MASTER_INDEX" && \
    AOA_ARGS=(); \

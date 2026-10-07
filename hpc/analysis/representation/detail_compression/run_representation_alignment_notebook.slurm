@@ -47,21 +47,21 @@ if [[ ! -f "$MPNET_ALIGNMENT_DIR/original_detail_retention.csv" ]] \
   exit 1
 fi
 
-if ! ./hpc/run_in_singularity.shrun_in_singularity.sh \
+if ! ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import statsmodels"' >/dev/null 2>&1; then
-  ./hpc/run_in_singularity.shrun_in_singularity.sh \
+  ./hpc/run_in_singularity.sh \
     '"$PYTHON_BIN" -m pip install --target "$PYDEPS" --no-deps "statsmodels==0.14.4"'
 fi
-if ! ./hpc/run_in_singularity.shrun_in_singularity.sh \
+if ! ./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import patsy"' >/dev/null 2>&1; then
-  ./hpc/run_in_singularity.shrun_in_singularity.sh \
+  ./hpc/run_in_singularity.sh \
     '"$PYTHON_BIN" -m pip install --target "$PYDEPS" --no-deps "patsy==1.0.1"'
 fi
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -c "import sys, numpy, pandas, matplotlib, scipy, statsmodels, patsy; print(sys.executable); print(\"dependencies OK; statsmodels\", statsmodels.__version__)"'
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   '"$PYTHON_BIN" -m jupyter nbconvert \
     --to notebook \
     --execute notebooks/analysis/representation/detail_compression/gpt_oss_detail_representation_alignment.ipynb \

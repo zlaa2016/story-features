@@ -45,7 +45,7 @@ export REASONING="${REASONING:-low}"
 export OUTDIR="${OUTDIR:-artifacts/decoder_rewrites/default}"
 export REWRITE_PROMPT="${REWRITE_PROMPT:-Rewrite this story for slightly older children using somewhat more advanced vocabulary and sentence structure, while preserving the same plot, characters, and meaning.}"
 
-./hpc/run_in_singularity.shrun_in_singularity.sh \
+./hpc/run_in_singularity.sh \
   'cd "$SLURM_SUBMIT_DIR" && \
    "$PYTHON_BIN" src/analysis/representation/steering/decoder_rewrite/activation_steer_decoder_rewrite.py \
       --master "$MASTER" \
