@@ -1,6 +1,8 @@
 """Contextual-versus-isolated shift for every detail, at every stored layer.
 
 shift = 1 - cos(contextual mean-pooled vector, isolated mean-pooled vector) for the same detail.
+centrality = mean cosine between a detail's contextual vector and the other details' contextual
+vectors in the same text (the definition used in the earlier contextualization notebook).
 Large values mean the detail is represented very differently inside its text than alone.
 Computed for original details and for the details of each younger/actual/older summary,
 for the stories in the shared subset, so it can be set against source age, target age and
@@ -27,6 +29,13 @@ def shift_rows(record_id: str, context, isolated, layer_ids: np.ndarray) -> pd.D
     ctx = ctx_vectors / np.maximum(np.linalg.norm(ctx_vectors, axis=-1, keepdims=True), 1e-12)
     iso = iso_vectors / np.maximum(np.linalg.norm(iso_vectors, axis=-1, keepdims=True), 1e-12)
     cosine = (ctx * iso).sum(axis=-1)                       # [n_details, n_layers]
+    n = len(ctx)
+    if n > 1:
+        similarity = np.einsum("nld,mld->lnm", ctx, ctx)     # [n_layers, n, n]
+        diagonal = np.einsum("lnn->ln", similarity)
+        centrality = ((similarity.sum(axis=2) - diagonal) / (n - 1)).T   # [n_details, n_layers]
+    else:
+        centrality = np.full(cosine.shape, np.nan)
     base = ctx_meta[[c for c in KEEP if c in ctx_meta]].copy()
     base["record_id"] = record_id
     base["context_tokens"] = ctx_meta["tokens"].to_numpy()
@@ -35,6 +44,7 @@ def shift_rows(record_id: str, context, isolated, layer_ids: np.ndarray) -> pd.D
     long["layer"] = np.tile(layer_ids, len(base))
     long["cosine"] = cosine.reshape(-1)
     long["shift"] = 1.0 - long["cosine"]
+    long["centrality"] = centrality.reshape(-1)
     return long
 
 
