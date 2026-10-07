@@ -11,7 +11,15 @@ have younger, actual and older summaries, flat across source age.
 | Representation search (GPT-OSS contextual + isolated) | `src/analysis/representation/detail_compression/span_search.py` | `hpc/analysis/representation/detail_compression/span_search.slurm` |
 | Shared search core | `src/shared/span_search.py` | |
 
-Submit everything: `SBATCH_ARGS="--account=<acct>" bash hpc/analysis/submit_span_search.sh`
+Submit everything (all stories that have all three summaries, no age flattening):
+`NO_FLATTEN=1 SBATCH_ARGS="--account=<acct>" bash hpc/analysis/submit_span_search.sh`
+Leave `NO_FLATTEN` unset to sample flat across source age instead.
+
+Outputs from before the reorganisation are copied into the new `results/` layout with
+`bash hpc/copy_old_outputs.sh`.
+
+Results notebook: `notebooks/analysis/representation/detail_compression/span_search_by_age.ipynb`
+(compression versus source age for all three methods and all three summaries).
 
 ## Outputs
 
