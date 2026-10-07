@@ -15,7 +15,9 @@ EXTRACTION="results/features/representation_extraction/causal_lm/detail_extracti
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 export CONTEXT_DIR="${CONTEXT_DIR:-$EXTRACTION/${MODEL_KEY}_global_current}"
 export ISOLATED_DIR="${ISOLATED_DIR:-$EXTRACTION/${MODEL_KEY}_detail_controls}"
-test -d "$CONTEXT_DIR" && test -d "$ISOLATED_DIR"
+for dir in "$CONTEXT_DIR" "$ISOLATED_DIR"; do
+  compgen -G "$dir/*_detail_metadata_*.csv" >/dev/null || { echo "No detail metadata shards under $dir" >&2; exit 1; }
+done
 
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detail_compression/contextualization_shift.py \
   --context-dir "$CONTEXT_DIR" \
