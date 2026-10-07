@@ -45,3 +45,14 @@ details), `relative_compression` (span_len x summary details / story details; 1 
   `best_unconstrained_span_len` and the existing non-consecutive control in `detail_alignment`.
 - Isolated span vectors are token-weighted averages of isolated detail vectors, not joint encodings.
 - `score - null_score` is the evidence a match beats chance; without it a ratio is not interpretable.
+
+## Running the notebooks on the cluster
+
+Both notebooks read `results/`. `contextual_vs_isolated_by_age.ipynb` also needs the mpnet alignment
+output `results/analysis/natural_language/detail_alignment/original_detail_retention.csv` (copy it from
+`mechanistic_interpretability/outputs/13_structured_detail_alignment` with `hpc/copy_old_outputs.sh`) for
+its retained-versus-omitted sections; without it those sections are skipped.
+
+Execute headless inside the container (see the job in the project notes) with
+`jupyter nbconvert --to notebook --execute <notebook> --ExecutePreprocessor.kernel_name=story-features-direct`
+and set `RESULTS_DIR` to the absolute path of `results/`.
