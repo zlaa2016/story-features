@@ -26,11 +26,10 @@ def details_of(record: dict) -> list[str]:
     return [text for text in (str(item.get("text", "")).strip() for item in record.get("segments", [])) if text]
 
 
-def similarity(embedder: Embedder, summary_details: list[str], source_details: list[str], max_span: int) -> tuple[np.ndarray, list]:
+def embed_spans(embedder: Embedder, source_details: list[str], max_span: int) -> tuple[np.ndarray, list]:
+    """Embed every candidate span of a source once; reused for all three summaries."""
     spans = build_spans(source_details, max_span)
-    summary_vectors = embedder.encode(summary_details)
-    span_vectors = embedder.encode([span.text for span in spans])
-    return summary_vectors @ span_vectors.T, spans
+    return embedder.encode([span.text for span in spans]), spans
 
 
 def main() -> None:
@@ -58,6 +57,14 @@ def main() -> None:
     penalties = [float(v) for v in args.length_penalties.split(",")]
     embedder = Embedder(args.model, args.device, args.batch_size)
 
+    span_cache: dict[str, tuple[np.ndarray, list]] = {}
+
+    def cached_spans(record_id: str, details: list[str]) -> tuple[np.ndarray, list]:
+        # each story's source is also the next story's decoy, so embed it only once
+        if record_id not in span_cache:
+            span_cache[record_id] = embed_spans(embedder, details, args.max_span)
+        return span_cache[record_id]
+
     story_keys = subset["story_key"].tolist()
     detail_frames, summary_rows = [], []
     for position, row in enumerate(subset.itertuples(index=False)):
@@ -67,6 +74,9 @@ def main() -> None:
         if original is None:
             continue
         source = details_of(original)
+        span_vectors, spans = cached_spans(original["record_id"], source)
+        if decoy is not None:
+            decoy_span_vectors, decoy_spans = cached_spans(decoy["record_id"], details_of(decoy))
         source_words = np.asarray([word_count(t) for t in source], dtype=float)
         for condition in CONDITIONS:
             summary = records.get(getattr(row, f"{condition}_record_id"))
@@ -75,10 +85,10 @@ def main() -> None:
             summary_details = details_of(summary)
             if not summary_details or not source:
                 continue
-            sim, spans = similarity(embedder, summary_details, source, args.max_span)
+            summary_vectors = embedder.encode(summary_details)
+            sim = summary_vectors @ span_vectors.T
             if decoy is not None:
-                decoy_details = details_of(decoy)
-                null_sim, null_spans = similarity(embedder, summary_details, decoy_details, args.max_span)
+                null_sim = summary_vectors @ decoy_span_vectors.T
             summary_words = np.asarray([word_count(t) for t in summary_details], dtype=float)
             for penalty in penalties:
                 chosen, scores = search_story(
@@ -88,7 +98,7 @@ def main() -> None:
                 null_scores = None
                 if decoy is not None:
                     null_chosen, null_matrix = search_story(
-                        null_sim, null_spans, length_penalty=penalty, overlap_penalty=args.overlap_penalty,
+                        null_sim, decoy_spans, length_penalty=penalty, overlap_penalty=args.overlap_penalty,
                         reversal_penalty=args.reversal_penalty, top_k=args.top_candidates,
                     )
                     null_scores = np.asarray([null_matrix[i, j] for i, j in enumerate(null_chosen)])
