@@ -9,6 +9,7 @@ have younger, actual and older summaries, flat across source age.
 | Pick the subset | `src/features/summaries/dataset_index/select_flat_subset.py` | `hpc/features/summaries/dataset_index/select_flat_subset.slurm` |
 | Natural-language search (mpnet) | `src/analysis/natural_language/detail_compression/span_search.py` | `hpc/analysis/natural_language/detail_compression/span_search.slurm` |
 | Representation search (GPT-OSS contextual + isolated) | `src/analysis/representation/detail_compression/span_search.py` | `hpc/analysis/representation/detail_compression/span_search.slurm` |
+| Contextual-vs-isolated shift, all layers | `src/analysis/representation/detail_compression/contextualization_shift.py` | `hpc/analysis/representation/detail_compression/contextualization_shift.slurm` |
 | Shared search core | `src/shared/span_search.py` | |
 
 Submit everything (all stories that have all three summaries, no age flattening):
@@ -19,7 +20,10 @@ Outputs from before the reorganisation are copied into the new `results/` layout
 `bash hpc/copy_old_outputs.sh`.
 
 Results notebook: `notebooks/analysis/representation/detail_compression/span_search_by_age.ipynb`
-(compression versus source age for all three methods and all three summaries).
+(compression versus source age for all three methods and all three summaries) and
+`contextual_vs_isolated_by_age.ipynb` (contextualization shift versus source and target age, by layer, linked to span length).
+
+On the current cluster outputs, 138 stories have younger, actual and older summaries (3,056 stories have originals).
 
 ## Outputs
 
