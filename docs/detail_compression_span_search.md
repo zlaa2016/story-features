@@ -56,3 +56,15 @@ its retained-versus-omitted sections; without it those sections are skipped.
 Execute headless inside the container (see the job in the project notes) with
 `jupyter nbconvert --to notebook --execute <notebook> --ExecutePreprocessor.kernel_name=story-features-direct`
 and set `RESULTS_DIR` to the absolute path of `results/`.
+
+## Statistics: does compression change with source age?
+
+`src/analysis/natural_language/detail_compression/age_models.py` reads `details.csv` and `summaries.csv` at one
+length penalty (default 0, none) and writes tables and a forest plot to `results/analysis/natural_language/detail_compression/stats/`.
+It fits mixed models with a random intercept per story (the younger, actual and older summaries of one story are
+repeated measurements), likelihood-ratio tests for the age effect, the age x summary-type interaction and a story-length
+control, a detail-level model with summaries nested in stories, rank-based tests (Spearman with permutation p-values,
+Friedman with Holm-corrected Wilcoxon follow-ups) and a check that matches beat the null search. Compression outcomes are
+on a log2 scale, so a slope of s per year multiplies the span by 2**s per year.
+
+    PYTHONPATH=src python src/analysis/natural_language/detail_compression/age_models.py

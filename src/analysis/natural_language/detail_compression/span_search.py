@@ -42,7 +42,7 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--max-span", type=int, default=10)
     parser.add_argument("--top-candidates", type=int, default=32)
-    parser.add_argument("--length-penalties", default="0,0.1,0.2", help="Comma list, in score-spread units; the search is repeated for each.")
+    parser.add_argument("--length-penalties", default="0", help="Comma list, in score-spread units; the search is repeated for each.")
     parser.add_argument("--overlap-penalty", type=float, default=0.3)
     parser.add_argument("--reversal-penalty", type=float, default=2.5)
     parser.add_argument("--limit", type=int, default=0, help="Use only the first N subset stories (debug).")

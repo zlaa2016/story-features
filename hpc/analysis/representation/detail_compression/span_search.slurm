@@ -31,5 +31,5 @@ run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detai
   --pooling "${POOLING:-mean}" \
   --layers "${LAYERS:-}" \
   --max-span "${MAX_SPAN:-10}" \
-  --length-penalties "${LENGTH_PENALTIES:-0,0.1,0.2}" \
+  --length-penalties "${LENGTH_PENALTIES:-0}" \
   --limit "${LIMIT:-0}"'
