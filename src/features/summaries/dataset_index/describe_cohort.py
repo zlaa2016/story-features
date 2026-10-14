@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import collections
 import glob
 from collections import Counter
 from pathlib import Path
@@ -53,15 +54,23 @@ def main() -> None:
     ages = originals.source_age.dropna().astype(float)
     print("\nstories by source age (years):", dict(sorted(Counter(np.floor(ages)).items())))
     if args.vector_dir:
-        have = set()
+        counts = collections.Counter()
         for path in glob.glob(str(args.vector_dir / "contextual_detail_metadata_*.csv")):
-            have |= set(pd.read_csv(path, usecols=["record_id"])["record_id"])
-        covered = df[df.record_id.isin(have)]
+            counts.update(pd.read_csv(path, usecols=["record_id"])["record_id"].value_counts().to_dict())
+        have = set(counts)
+        covered = df[df.record_id.isin(have)].copy()
         print(f"\nwith contextual vectors ({args.vector_dir.name}): {len(covered):,} of {len(df):,} records ({len(covered) / len(df):.0%}); "
-              f"{covered.story_key.nunique():,} stories; {covered.n_details.sum():,} details")
+              f"{covered.story_key.nunique():,} stories; {int(sum(counts.values())):,} vector rows (details)")
         missing = df[~df.record_id.isin(have)]
         print(f"  records without vectors: {len(missing):,} ({missing.type.value_counts().to_dict()})")
-
+        covered["vector_rows"] = covered.record_id.map(counts)
+        print("\ndo the vectors use the same details as the cohort? (vector rows vs cohort details, per record)")
+        for kind, group in covered.groupby("type"):
+            same = int((group.vector_rows == group.n_details).sum())
+            ratio = (group.vector_rows / group.n_details.clip(lower=1))
+            print(f"  {kind:9s} records {len(group):6,}   same count {same:6,} ({same / len(group):.0%})   "
+                  f"vector rows {int(group.vector_rows.sum()):,} vs cohort details {int(group.n_details.sum()):,}   median ratio {ratio.median():.2f}")
+        print("  a median ratio near 0.5 for summaries means the vectors were extracted from coarser (sentence-level) summary segments")
 
 if __name__ == "__main__":
     main()
