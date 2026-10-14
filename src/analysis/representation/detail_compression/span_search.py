@@ -1,7 +1,9 @@
 """Representation span search with GPT-OSS detail vectors (contextual or isolated).
 
 Same search as the natural-language version, but similarity is cosine between hidden
-states instead of sentence embeddings.
+states instead of sentence embeddings. Every story with vectors for its original and at least one
+summary is used, with every summary: no story is chosen, balanced across age, or required to have
+all three conditions.
 
   contextual: every detail is pooled from a forward pass over its whole text, so a span
               vector is the token-weighted mean of the stored detail vectors (exact for
@@ -23,10 +25,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from shared.cohort_units import NOT_DETAIL_LEVEL, excluded_record_ids, story_units
 from shared.io import word_count, write_csv
 from shared.span_search import pooled_span_vectors, ratio_rows, search_story, span_list, summary_row, unit_rows
 
-CONDITIONS = ("younger", "actual", "older")
 KINDS = {
     # kind: (metadata glob, feature prefix, mean array, primary array, token-count column)
     "contextual": ("contextual_detail_metadata_*.csv", "contextual_detail_features_", "mean_control_vectors", "last_token_vectors", "detail_token_count"),
@@ -34,8 +36,11 @@ KINDS = {
 }
 
 
-def load_details(directory: Path, kind: str, record_ids: set[str], pooling: str, layers: list[int] | None):
-    """Return {record_id: (detail_frame, vectors[n_details, n_layers, D])} and the layer ids."""
+def load_details(directory: Path, kind: str, record_ids: set[str] | None, pooling: str, layers: list[int] | None):
+    """Return {record_id: (detail_frame, vectors[n_details, n_layers, D])} and the layer ids.
+
+    record_ids=None loads every record. Vectors stay in the stored float16 to keep memory down; callers convert per story.
+    """
     pattern, prefix, mean_name, primary_name, token_column = KINDS[kind]
     array_name = mean_name if pooling == "mean" else primary_name
     records: dict[str, tuple[pd.DataFrame, np.ndarray]] = {}
@@ -49,13 +54,13 @@ def load_details(directory: Path, kind: str, record_ids: set[str], pooling: str,
         if not feature_path.exists():
             continue
         metadata = pd.read_csv(metadata_path, low_memory=False).reset_index(drop=True)
-        rows = np.flatnonzero(metadata["record_id"].isin(record_ids).to_numpy())
+        rows = np.arange(len(metadata)) if record_ids is None else np.flatnonzero(metadata["record_id"].isin(record_ids).to_numpy())
         if not len(rows):
             continue
         with np.load(feature_path, allow_pickle=False) as payload:
             shard_layers = payload["layers"]
             keep = np.arange(len(shard_layers)) if layers is None else np.flatnonzero(np.isin(shard_layers, layers))
-            vectors = payload[array_name][rows][:, keep].astype(np.float32)
+            vectors = payload[array_name][rows][:, keep]
             layer_ids = shard_layers[keep] if layer_ids is None else layer_ids
         selected = metadata.iloc[rows].reset_index(drop=True)
         selected["tokens"] = pd.to_numeric(selected[token_column], errors="coerce").fillna(1.0)
@@ -71,7 +76,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--kind", choices=sorted(KINDS), required=True)
     parser.add_argument("--vector-dir", type=Path, required=True)
-    parser.add_argument("--subset", type=Path, default=Path("results/features/summaries/dataset_index/flat_subset.csv"))
+    parser.add_argument("--cohort-metadata", type=Path, default=Path("results/features/summaries/dataset_index/cohort_metadata.csv"))
+    parser.add_argument("--exclude-methods", default=",".join(NOT_DETAIL_LEVEL),
+                        help="Comma list of summary segmentation methods to skip (default: sentence-level, a separate measurement). '' keeps everything.")
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--pooling", choices=["mean", "primary"], default="mean", help="mean = token-weighted mean vectors; primary = last-token (contextual) / EOS (isolated) vectors, averaged over the span.")
     parser.add_argument("--layers", default="", help="Comma list of stored layer ids; default all stored layers.")
@@ -80,34 +87,43 @@ def main() -> None:
     parser.add_argument("--length-penalties", default="0")
     parser.add_argument("--overlap-penalty", type=float, default=0.3)
     parser.add_argument("--reversal-penalty", type=float, default=2.5)
-    parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--limit", type=int, default=0, help="Use only the first N stories (debug only; a real run uses all).")
     parser.add_argument("--no-null", action="store_true")
     args = parser.parse_args()
     output_dir = args.output_dir or Path(f"results/analysis/representation/detail_compression/span_search/{args.kind}_{args.pooling}")
 
-    subset = pd.read_csv(args.subset)
-    if args.limit > 0:
-        subset = subset.head(args.limit)
-    ids = {r for c in CONDITIONS for r in subset[f"{c}_record_id"]} | set(subset["original_record_id"])
     layers = [int(v) for v in args.layers.split(",") if v.strip()] or None
-    records, layer_ids = load_details(args.vector_dir, args.kind, ids, args.pooling, layers)
+    records, layer_ids = load_details(args.vector_dir, args.kind, None, args.pooling, layers)
     penalties = [float(v) for v in args.length_penalties.split(",")]
 
-    # Per-layer mean over every loaded detail vector, used to centre before cosine.
-    stacked = np.concatenate([vectors for _, vectors in records.values()], axis=0)
-    layer_means = stacked.mean(axis=0)
-    del stacked
+    exclude = excluded_record_ids(args.cohort_metadata, [m for m in args.exclude_methods.split(",") if m])
+    pseudo = []
+    for record_id, (frame, _) in records.items():
+        first = frame.iloc[0]
+        pseudo.append({"record_id": record_id, "record_type": first["record_type"], "story_key": str(first["story_key"]),
+                       "condition": first.get("condition"), "summary_id": first.get("summary_id"), "source_age": first.get("source_age")})
+    units = story_units(pseudo, exclude)
+    if args.limit > 0:
+        units = units[: args.limit]
+    print(f"{len(units)} stories, {sum(len(u['summaries']) for u in units)} summaries; {len(exclude)} excluded by segmentation method")
+
+    # Per-layer mean over every loaded detail vector, used to centre before cosine (running sums keep memory flat).
+    layer_sum, count = None, 0
+    for _, vectors in records.values():
+        part = vectors.astype(np.float32).sum(axis=0)
+        layer_sum = part if layer_sum is None else layer_sum + part
+        count += len(vectors)
+    layer_means = layer_sum / count
 
     detail_frames, summary_rows, audit = [], [], []
-    for position, row in enumerate(subset.itertuples(index=False)):
-        original = records.get(row.original_record_id)
-        decoy_row = subset.iloc[(position + 1) % len(subset)]
-        decoy = records.get(decoy_row["original_record_id"]) if not args.no_null and len(subset) > 1 else None
-        for condition in CONDITIONS:
-            record_id = getattr(row, f"{condition}_record_id")
+    for position, unit in enumerate(units):
+        original = records.get(unit["original"]["record_id"])
+        decoy = records.get(units[(position + 1) % len(units)]["original"]["record_id"]) if not args.no_null and len(units) > 1 else None
+        for summary_record in unit["summaries"]:
+            condition, record_id = summary_record["condition"], summary_record["record_id"]
             summary = records.get(record_id)
             if original is None or summary is None:
-                audit.append({"story_key": row.story_key, "condition": condition, "status": "missing_vectors"})
+                audit.append({"story_key": unit["story_key"], "condition": condition, "record_id": record_id, "status": "missing_vectors"})
                 continue
             source_meta, source_vectors = original
             summary_meta, summary_vectors = summary
@@ -118,13 +134,13 @@ def main() -> None:
             summary_tokens = summary_meta["tokens"].to_numpy(float)
             for layer_position, layer in enumerate(layer_ids):
                 centre = layer_means[layer_position]
-                span_vectors = unit_rows(pooled_span_vectors(source_vectors[:, layer_position] - centre, source_tokens, spans))
-                detail_vectors = unit_rows(summary_vectors[:, layer_position] - centre)
+                span_vectors = unit_rows(pooled_span_vectors(source_vectors[:, layer_position].astype(np.float32) - centre, source_tokens, spans))
+                detail_vectors = unit_rows(summary_vectors[:, layer_position].astype(np.float32) - centre)
                 sim = detail_vectors @ span_vectors.T
                 if decoy is not None:
                     decoy_meta, decoy_vectors = decoy
                     decoy_spans = span_list(len(decoy_meta), args.max_span)
-                    decoy_span_vectors = unit_rows(pooled_span_vectors(decoy_vectors[:, layer_position] - centre, decoy_meta["tokens"].to_numpy(float), decoy_spans))
+                    decoy_span_vectors = unit_rows(pooled_span_vectors(decoy_vectors[:, layer_position].astype(np.float32) - centre, decoy_meta["tokens"].to_numpy(float), decoy_spans))
                     null_sim = detail_vectors @ decoy_span_vectors.T
                 for penalty in penalties:
                     chosen, scores = search_story(
@@ -143,15 +159,15 @@ def main() -> None:
                         source_tokens=source_tokens, summary_tokens=summary_tokens, null_scores=null_scores,
                     )
                     meta = {
-                        "story_key": row.story_key, "condition": condition, "record_id": record_id,
-                        "source_age": row.source_age, "layer": int(layer), "length_penalty": penalty,
+                        "story_key": unit["story_key"], "condition": condition, "record_id": record_id,
+                        "source_age": unit["source_age"], "layer": int(layer), "length_penalty": penalty,
                         "kind": args.kind, "pooling": args.pooling,
                     }
                     details = pd.concat([pd.DataFrame([meta] * len(details)), details], axis=1)
                     detail_frames.append(details)
                     summary_rows.append({**meta, **summary_row(details, chosen, spans, len(source_meta))})
-            audit.append({"story_key": row.story_key, "condition": condition, "status": "searched"})
-        print(f"[{position + 1}/{len(subset)}] {row.story_key}", flush=True)
+            audit.append({"story_key": unit["story_key"], "condition": condition, "record_id": record_id, "status": "searched"})
+        print(f"[{position + 1}/{len(units)}] {unit['story_key']}", flush=True)
 
     if not detail_frames:
         raise SystemExit("No story had vectors for the original and a summary; check --vector-dir")

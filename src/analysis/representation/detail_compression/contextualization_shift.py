@@ -5,7 +5,7 @@ centrality = mean cosine between a detail's contextual vector and the other deta
 vectors in the same text (the definition used in the earlier contextualization notebook).
 Large values mean the detail is represented very differently inside its text than alone.
 Computed for original details and for the details of each younger/actual/older summary,
-for the stories in the shared subset, so it can be set against source age, target age and
+for every record that has both vectors (no story selection), so it can be set against source age, target age and
 the span-search compression.
 """
 
@@ -17,7 +17,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analysis.representation.detail_compression.span_search import CONDITIONS, load_details
+from analysis.representation.detail_compression.span_search import load_details
+from shared.cohort_units import CONDITIONS, NOT_DETAIL_LEVEL, excluded_record_ids
 from shared.io import write_csv
 
 KEEP = ["story_key", "record_type", "condition", "summary_id", "source_age", "target_age", "detail_index"]
@@ -26,6 +27,7 @@ KEEP = ["story_key", "record_type", "condition", "summary_id", "source_age", "ta
 def shift_rows(record_id: str, context, isolated, layer_ids: np.ndarray) -> pd.DataFrame:
     ctx_meta, ctx_vectors = context
     iso_meta, iso_vectors = isolated
+    ctx_vectors, iso_vectors = ctx_vectors.astype(np.float32), iso_vectors.astype(np.float32)
     ctx = ctx_vectors / np.maximum(np.linalg.norm(ctx_vectors, axis=-1, keepdims=True), 1e-12)
     iso = iso_vectors / np.maximum(np.linalg.norm(iso_vectors, axis=-1, keepdims=True), 1e-12)
     cosine = (ctx * iso).sum(axis=-1)                       # [n_details, n_layers]
@@ -52,25 +54,34 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--context-dir", type=Path, required=True)
     parser.add_argument("--isolated-dir", type=Path, required=True)
-    parser.add_argument("--subset", type=Path, default=Path("results/features/summaries/dataset_index/flat_subset.csv"))
+    parser.add_argument("--cohort-metadata", type=Path, default=Path("results/features/summaries/dataset_index/cohort_metadata.csv"))
+    parser.add_argument("--exclude-methods", default=",".join(NOT_DETAIL_LEVEL),
+                        help="Comma list of summary segmentation methods to skip (default: sentence-level, which needs no vectors). '' keeps everything.")
     parser.add_argument("--output-dir", type=Path, default=Path("results/analysis/representation/detail_compression/contextualization_shift"))
     parser.add_argument("--layers", default="", help="Comma list of stored layer ids; default all stored layers.")
-    parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--limit", type=int, default=0, help="Use only the first N stories (debug only; a real run uses all).")
     args = parser.parse_args()
 
-    subset = pd.read_csv(args.subset)
-    if args.limit > 0:
-        subset = subset.head(args.limit)
-    ids = set(subset["original_record_id"]) | {r for c in CONDITIONS for r in subset[f"{c}_record_id"]}
     layers = [int(v) for v in args.layers.split(",") if v.strip()] or None
-    context, context_layers = load_details(args.context_dir, "contextual", ids, "mean", layers)
-    isolated, isolated_layers = load_details(args.isolated_dir, "isolated", ids, "mean", layers)
+    context, context_layers = load_details(args.context_dir, "contextual", None, "mean", layers)
+    isolated, isolated_layers = load_details(args.isolated_dir, "isolated", None, "mean", layers)
     if not np.array_equal(context_layers, isolated_layers):
         raise SystemExit(f"Layer mismatch: contextual {context_layers.tolist()} vs isolated {isolated_layers.tolist()}")
 
+    skip = excluded_record_ids(args.cohort_metadata, [m for m in args.exclude_methods.split(",") if m])
+
+    def wanted(frame: pd.DataFrame) -> bool:
+        first = frame.iloc[0]
+        return first["record_type"] == "original" or first.get("condition") in CONDITIONS
+
+    ids = sorted(rid for rid, (frame, _) in context.items() if rid not in skip and wanted(frame))
+    if args.limit > 0:
+        keep = sorted({str(context[rid][0].iloc[0]["story_key"]) for rid in ids})[: args.limit]
+        ids = [rid for rid in ids if str(context[rid][0].iloc[0]["story_key"]) in set(keep)]
+    print(f"{len(ids)} records")
     frames, audit = [], []
-    for record_id in sorted(ids):
-        if record_id not in context or record_id not in isolated:
+    for record_id in ids:
+        if record_id not in isolated:
             audit.append({"record_id": record_id, "status": "missing_vectors"})
             continue
         ctx_meta, iso_meta = context[record_id][0], isolated[record_id][0]

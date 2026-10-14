@@ -1,16 +1,17 @@
 """Does per-detail compression change with source age, and with the age a summary was written for?
 
-Input is the span-search output (details.csv and summaries.csv) at one length penalty. Each story has a
-younger, an actual and an older summary, so the data are nested: summary details within summaries within
-a story. The analyses respect that:
+Input is the span-search output (details.csv and summaries.csv) at one length penalty. Stories can have a
+younger, an actual and an older summary, and more than one summary per condition, but not every story has all of
+them, so the data are nested and unbalanced: summary details within summaries within a story. The analyses respect that:
 
   mixed models   random intercept per story, summaries as the repeated measurements
                  outcome ~ source age * summary type [+ story length]
                  (summary level for three outcomes; detail level with summary nested in story for span length)
   likelihood-ratio tests   age effect, age x summary-type interaction, story-length control (fitted by ML)
   rank-based tests         Spearman correlation of age with compression (story as unit, bootstrap interval and
-                           permutation p-value), Friedman test of younger/actual/older with Holm-corrected
-                           Wilcoxon follow-ups
+                           permutation p-value). The Friedman test of younger/actual/older and its Holm-corrected
+                           Wilcoxon follow-ups are paired designs, so they use only the stories that have all three;
+                           the number is reported, and the mixed models use every story
   chance check             matched span score against the same search on another story's source
 
 Compression outcomes are on a log2 scale: a slope of s per year multiplies the span by 2**s per year.
@@ -118,7 +119,7 @@ def mixed_models(summary_table: pd.DataFrame, detail_table: pd.DataFrame | None 
 def rank_tests(summary_table: pd.DataFrame, n_boot: int = 2000, n_perm: int = 10000, seed: int = 0) -> pd.DataFrame:
     rng = np.random.default_rng(seed)
     rows = []
-    wide = summary_table.pivot(index="story_key", columns="condition", values="mean_log2_span").dropna()
+    wide = summary_table.pivot_table(index="story_key", columns="condition", values="mean_log2_span", aggfunc="mean", observed=True).dropna()
     age = summary_table.drop_duplicates("story_key").set_index("story_key").loc[wide.index, "source_age"].to_numpy()
 
     def spearman(x, y):

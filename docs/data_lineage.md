@@ -35,8 +35,8 @@ original details; imports helper functions from `run_transcript_cleanup_segmenta
 
 1. **The cohort does not read the "current analysis" summary file.** Against it, the config's two files have 69 summaries
    it lacks, and it has 39 they lack.
-2. **Sentence-level summaries in a detail-level cohort.** Everything except the legacy review samples should be segmented into
-   details, and measured segment sizes show which files are:
+2. **Sentence-level summaries in a detail-level cohort.** Everything except the legacy review samples is segmented into details,
+   apart from the sentence-level file, which is intentional. Measured segment sizes:
 
    | File | Segments per record (median) | Words per segment (median) |
    |---|---|---|
@@ -48,9 +48,10 @@ original details; imports helper functions from `run_transcript_cleanup_segmenta
 
    `local_sentence` is sentence splitting, not detail segmentation (about twice the words per segment), so ratios that divide by the
    number of summary details are not comparable. In the cohort config it contributes 148 summaries that exist nowhere else
-   (about 2.6%). `select_flat_subset.py` now drops `local_sentence` by default (`--exclude-methods`;
-   `EXCLUDE_SEGMENTATION_METHODS` in the slurm script). None of the 876 summaries in the existing natural-language span-search results
-   comes from that file. The cohort and the GPT-OSS vectors still contain those 148 summaries.
+   (about 2.6%). It is a deliberate second measurement of compression: how many full-text details each summary *sentence* covers. It is run on its own
+   (`span_search_sentence.slurm`, no vectors) and is no longer a cohort input (`sentence_summary_jsonl` in `default_paths.json`).
+   The detail-level runs skip any summary labelled `local_sentence` (`--exclude-methods`). The cohort currently on the cluster and the
+   GPT-OSS vectors still contain 148 such summaries until the cohort is rebuilt.
 3. **Unlabelled records.** 2,540 of the 6,997 records in the "current analysis" file have no `segmentation_method`. Their segment
    sizes (7 words) match detail segmentation, and 2,422 of them also appear in the cascade file, but only 324 of those with the same
    number of segments, so they come from a different (earlier) segmentation run.

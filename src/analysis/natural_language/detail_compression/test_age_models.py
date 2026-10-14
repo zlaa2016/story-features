@@ -22,10 +22,15 @@ def synthetic(n_stories=120, slope=0.12, seed=0):
             s_rows.append({"story_key": f"s{k}", "condition": cond, "record_id": record, "source_age": age, "length_penalty": 0.0,
                            "n_source_details": n_src, "n_summary_details": n_sum, "mean_log2_word_ratio": rng.normal(1, .3),
                            "mean_score": 2.4 + rng.normal(0, .2), "mean_null_score": 1.8 + rng.normal(0, .2)})
-    return pd.concat(d_rows, ignore_index=True), pd.DataFrame(s_rows)
+    details, summaries = pd.concat(d_rows, ignore_index=True), pd.DataFrame(s_rows)
+    # make the design unbalanced like the real cohort: drop some summaries and duplicate some conditions
+    drop = rng.random(len(summaries)) < 0.2
+    gone = set(summaries.loc[drop, "record_id"])
+    summaries, details = summaries[~summaries.record_id.isin(gone)].copy(), details[~details.record_id.isin(gone)].copy()
+    return details, summaries
 
 
-def test_planted_age_slope_is_recovered_and_tests_run():
+def test_planted_age_slope_is_recovered_on_unbalanced_stories():
     details, summaries = synthetic()
     d, s = models.prepare(details, summaries)
     slopes, lr, fixed, icc = models.mixed_models(s, None)
