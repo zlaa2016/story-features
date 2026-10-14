@@ -27,9 +27,15 @@ def method_audit(metadata: pd.DataFrame) -> pd.DataFrame:
             .rename_axis("segmentation_method").reset_index(name="summaries"))
 
 
-def complete_stories(metadata: pd.DataFrame, conditions: tuple[str, ...] = CONDITIONS, require_method: str = "") -> pd.DataFrame:
+NOT_DETAIL_LEVEL = ("local_sentence",)   # sentence splitting (about 14 words per segment), not detail segmentation (about 6)
+
+
+def complete_stories(metadata: pd.DataFrame, conditions: tuple[str, ...] = CONDITIONS, require_method: str = "",
+                     exclude_methods: tuple[str, ...] = ()) -> pd.DataFrame:
     originals = metadata.loc[metadata["record_type"].eq("original"), ["story_key", "source_age"]].drop_duplicates("story_key")
     summaries = metadata.loc[metadata["record_type"].eq("summary") & metadata["condition"].isin(conditions)].copy()
+    if exclude_methods:
+        summaries = summaries.loc[~summaries["segmentation_method"].fillna("").isin(exclude_methods)]
     if require_method:
         # Summary details from different segmenters are different units (local_sentence gives about half as many
         # segments as api_detail), so compression ratios are only comparable within one method.
@@ -69,16 +75,20 @@ def main() -> None:
     parser.add_argument("--min-bin", type=int, default=5)
     parser.add_argument("--no-flatten", action="store_true", help="Keep every story that has all three conditions.")
     parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument("--exclude-methods", default=",".join(NOT_DETAIL_LEVEL),
+                        help="Comma list of segmentation methods to drop. The default drops sentence-level segmentation so every unit is a detail; pass '' to keep everything.")
     parser.add_argument("--require-method", default="", help="Keep only summaries segmented by this method (for example api_detail); default keeps all.")
     args = parser.parse_args()
 
     metadata = pd.read_csv(args.cohort_metadata, low_memory=False)
     print("Summary segmentation methods in the cohort:")
     print(method_audit(metadata).to_string(index=False))
-    stories = complete_stories(metadata, require_method=args.require_method)
-    if args.require_method:
+    exclude = tuple(m for m in args.exclude_methods.split(",") if m)
+    stories = complete_stories(metadata, require_method=args.require_method, exclude_methods=exclude)
+    if args.require_method or exclude:
         everyone = complete_stories(metadata)
-        print(f"--require-method {args.require_method}: {len(stories)} stories with all three summaries, against {len(everyone)} without the filter")
+        print(f"method filter (require={args.require_method or 'none'}, exclude={','.join(exclude) or 'none'}): "
+              f"{len(stories)} stories with all three summaries, against {len(everyone)} without the filter")
     if stories.empty:
         raise SystemExit("No story has younger, actual and older summaries")
     stories["age_bin"] = (np.floor(stories["source_age"] / args.age_bin_width) * args.age_bin_width).astype(float)
