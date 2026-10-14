@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import sys
 import time
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Optional, Tuple
 
+import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -32,9 +34,27 @@ from shared.amazon_scraper_helpers import (
     load_master_csv,
     merge_input_columns_into_book,
     normalized_title_value,
+    score_amazon_result_text,
     save_master_csv,
     update_master_with_amazon_result,
 )
+
+
+def log_progress(message: str) -> None:
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] {message}", flush=True)
+
+
+def cache_key_for_row(book_title: str, story_title: str, author: str) -> Tuple[str, str, str]:
+    return (
+        normalized_title_value(book_title).casefold(),
+        normalized_title_value(story_title).casefold(),
+        normalized_title_value(author).casefold(),
+    )
+
+
+def clone_cached_result(template: Dict[str, Any]) -> Dict[str, Any]:
+    return copy.deepcopy(template)
 
 
 def setup_driver(
@@ -80,7 +100,13 @@ def setup_driver(
     return driver
 
 
-def search_amazon_book(driver: webdriver.Chrome, search_query: str) -> Optional[str]:
+def search_amazon_book(
+    driver: webdriver.Chrome,
+    search_query: str,
+    book_title: str,
+    story_title: str = "",
+    author: str = "",
+) -> Optional[str]:
     driver.get(amazon_search_url(search_query))
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-component-type='s-search-result']"))
@@ -88,16 +114,43 @@ def search_amazon_book(driver: webdriver.Chrome, search_query: str) -> Optional[
     results = driver.find_elements(By.CSS_SELECTOR, "div[data-component-type='s-search-result']")
     if not results:
         return None
-    first = results[0]
-    for selector in ["h2 a", "a[href*='/dp/']"]:
+    ranked: list[tuple[float, str]] = []
+    for result in results[:10]:
         try:
-            href = first.find_element(By.CSS_SELECTOR, selector).get_attribute("href")
-            if href and "/dp/" in href:
-                return href.split("?")[0].split("ref=")[0]
+            title_el = result.find_element(By.CSS_SELECTOR, "h2")
+            result_title = title_el.text.strip()
         except Exception:
+            result_title = ""
+        try:
+            subtext = result.text[:1000]
+        except Exception:
+            subtext = result_title
+        href = None
+        for selector in ["h2 a", "a[href*='/dp/']"]:
+            try:
+                href = result.find_element(By.CSS_SELECTOR, selector).get_attribute("href")
+                if href and "/dp/" in href:
+                    break
+            except Exception:
+                continue
+        if not href:
+            asin = result.get_attribute("data-asin")
+            href = f"https://www.amazon.com/dp/{asin}" if asin else None
+        if not href:
             continue
-    asin = first.get_attribute("data-asin")
-    return f"https://www.amazon.com/dp/{asin}" if asin else None
+        clean_href = href.split("?")[0].split("ref=")[0]
+        score = score_amazon_result_text(
+            result_title=result_title,
+            result_subtext=subtext,
+            expected_title=book_title,
+            expected_story_title=story_title,
+            expected_author=author,
+        )
+        ranked.append((score, clean_href))
+    if ranked:
+        ranked.sort(key=lambda item: item[0], reverse=True)
+        return ranked[0][1]
+    return None
 
 
 def get_book_details(driver: webdriver.Chrome, book_url: str):
@@ -157,11 +210,32 @@ def process_book_titles(
     cookie_json: Optional[Path],
     chrome_binary: Optional[str],
     chromedriver_binary: Optional[str],
+    allow_existing_input_overlap: bool,
 ) -> int:
     df_titles, title_column = load_title_rows(input_csv, skip_rows=skip_rows, status_column=status_column)
     if pending_only:
         df_titles = choose_rows_for_pending_only(df_titles, output_csv, title_column)
+    completed_video_ids: set[str] = set()
+    if output_csv.exists() and "video_id" in df_titles.columns:
+        existing_output = pd.read_csv(output_csv, low_memory=False)
+        if "video_id" in existing_output.columns:
+            input_ids = df_titles["video_id"].fillna("").astype(str).str.strip()
+            completed_video_ids = set(existing_output["video_id"].fillna("").astype(str).str.strip())
+            overlap_mask = input_ids.isin(completed_video_ids)
+            overlap_count = int(overlap_mask.sum())
+            if overlap_count:
+                sample_ids = input_ids[overlap_mask].head(10).tolist()
+                message = (
+                    f"Input CSV contains {overlap_count} video_id rows already present in {output_csv}. "
+                    f"These rows will be skipped automatically. Sample overlapping video_ids: {sample_ids}"
+                )
+                if not allow_existing_input_overlap:
+                    log_progress(f"WARNING: {message}")
+                else:
+                    log_progress(f"WARNING: {message}")
+                df_titles = df_titles.loc[~overlap_mask].copy().reset_index(drop=True)
     master_df = load_master_csv(master_csv)
+    result_cache: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
     driver = setup_driver(
         headless=headless,
         cookie_json=cookie_json,
@@ -171,12 +245,23 @@ def process_book_titles(
     processed = 0
     failed = 0
     skipped = 0
+    total_rows = len(df_titles)
     try:
-        for _, row in df_titles.iterrows():
+        for row_num, (_, row) in enumerate(df_titles.iterrows(), start=1):
             if max_books is not None and (processed + failed) >= max_books:
                 break
             book_title = normalized_title_value(row.get(title_column))
+            video_id = normalized_title_value(row.get("video_id"))
+            if video_id and video_id in completed_video_ids:
+                log_progress(
+                    f"skip row {row_num}/{total_rows} video_id={video_id} reason=already_written_output"
+                )
+                skipped += 1
+                continue
             if len(book_title) < 3:
+                log_progress(
+                    f"skip row {row_num}/{total_rows} video_id={video_id or '[NA]'} reason=short_book_title"
+                )
                 skipped += 1
                 continue
             story_title = normalized_title_value(row.get("story_title"))
@@ -184,20 +269,76 @@ def process_book_titles(
             video_title = normalized_title_value(row.get("video_title"))
             queries = amazon_search_query_candidates(book_title, story_title, author, video_title)
             primary_label = queries[0] if queries else book_title
+            cache_key = cache_key_for_row(book_title, story_title, author)
+            log_progress(
+                f"start row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                f"book_title={book_title!r} story_title={story_title or '[NA]'} "
+                f"author={author or '[NA]'} queries={len(queries)}"
+            )
             try:
+                cached = result_cache.get(cache_key)
+                if cached is not None:
+                    result = clone_cached_result(cached)
+                    result["extracted_book_title"] = book_title
+                    result["amazon_scrape_run"] = output_csv.stem
+                    result["source_merge_key"] = build_source_merge_key(row, title_column, fallback_title=book_title)
+                    merge_input_columns_into_book(result, row)
+                    new_rows, updated_rows = append_to_csv([result], output_csv)
+                    update_master_with_amazon_result(master_df, row, result)
+                    if video_id and (new_rows > 0 or updated_rows > 0):
+                        completed_video_ids.add(video_id)
+                    log_progress(
+                        f"saved row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                        f"via=cache status={result.get('amazon_match_status','[NA]')} "
+                        f"age={result.get('reading_age','[NA]')} new_rows={new_rows} updated_rows={updated_rows}"
+                    )
+                    if result.get("amazon_match_status") == "FOUND":
+                        processed += 1
+                    else:
+                        failed += 1
+                    continue
                 book_url = None
                 search_query_used = None
                 for query in queries:
-                    book_url = search_amazon_book(driver, query)
+                    log_progress(
+                        f"search row {row_num}/{total_rows} video_id={video_id or '[NA]'} query={query!r}"
+                    )
+                    book_url = search_amazon_book(
+                        driver,
+                        query,
+                        book_title=book_title,
+                        story_title=story_title,
+                        author=author,
+                    )
                     if book_url:
                         search_query_used = query
+                        log_progress(
+                            f"match row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                            f"query={query!r} book_url={book_url}"
+                        )
                         break
                     jittered_sleep(sleep, sleep_jitter)
                 if not book_url:
                     not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
                     not_found["amazon_scrape_run"] = output_csv.stem
-                    append_to_csv([not_found], output_csv)
+                    result_cache[cache_key] = {
+                        "amazon_match_status": not_found.get("amazon_match_status", "NOT_FOUND"),
+                        "amazon_search_query": not_found.get("amazon_search_query", primary_label),
+                        "title": not_found.get("title", f"[NO_AMAZON_MATCH] {book_title}"),
+                        "book_url": not_found.get("book_url", "N/A"),
+                        "reading_age": not_found.get("reading_age", "N/A"),
+                        "reading_age_source": not_found.get("reading_age_source", "N/A"),
+                        "reading_age_customer": not_found.get("reading_age_customer", "N/A"),
+                        "reading_age_publisher": not_found.get("reading_age_publisher", "N/A"),
+                    }
+                    new_rows, updated_rows = append_to_csv([not_found], output_csv)
                     update_master_with_amazon_result(master_df, row, not_found)
+                    if video_id and (new_rows > 0 or updated_rows > 0):
+                        completed_video_ids.add(video_id)
+                    log_progress(
+                        f"saved row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                        f"status=NOT_FOUND new_rows={new_rows} updated_rows={updated_rows}"
+                    )
                     failed += 1
                     continue
                 details = get_book_details(driver, book_url)
@@ -206,21 +347,51 @@ def process_book_titles(
                 details["amazon_match_status"] = "FOUND"
                 details["amazon_scrape_run"] = output_csv.stem
                 details["source_merge_key"] = build_source_merge_key(row, title_column, fallback_title=book_title)
+                result_cache[cache_key] = {
+                    key: copy.deepcopy(value)
+                    for key, value in details.items()
+                    if key != "source_merge_key"
+                }
                 merge_input_columns_into_book(details, row)
-                append_to_csv([details], output_csv)
+                new_rows, updated_rows = append_to_csv([details], output_csv)
                 update_master_with_amazon_result(master_df, row, details)
+                if video_id and (new_rows > 0 or updated_rows > 0):
+                    completed_video_ids.add(video_id)
+                log_progress(
+                    f"saved row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                    f"status=FOUND age={details.get('reading_age','[NA]')} "
+                    f"age_source={details.get('reading_age_source','[NA]')} "
+                    f"new_rows={new_rows} updated_rows={updated_rows}"
+                )
                 processed += 1
-            except Exception:
+            except Exception as exc:
                 not_found = build_not_found_placeholder(row, book_title, primary_label, title_column)
                 not_found["amazon_scrape_run"] = output_csv.stem
-                append_to_csv([not_found], output_csv)
+                result_cache[cache_key] = {
+                    "amazon_match_status": not_found.get("amazon_match_status", "NOT_FOUND"),
+                    "amazon_search_query": not_found.get("amazon_search_query", primary_label),
+                    "title": not_found.get("title", f"[NO_AMAZON_MATCH] {book_title}"),
+                    "book_url": not_found.get("book_url", "N/A"),
+                    "reading_age": not_found.get("reading_age", "N/A"),
+                    "reading_age_source": not_found.get("reading_age_source", "N/A"),
+                    "reading_age_customer": not_found.get("reading_age_customer", "N/A"),
+                    "reading_age_publisher": not_found.get("reading_age_publisher", "N/A"),
+                }
+                new_rows, updated_rows = append_to_csv([not_found], output_csv)
                 update_master_with_amazon_result(master_df, row, not_found)
+                if video_id and (new_rows > 0 or updated_rows > 0):
+                    completed_video_ids.add(video_id)
+                log_progress(
+                    f"error row {row_num}/{total_rows} video_id={video_id or '[NA]'} "
+                    f"exc={type(exc).__name__}: {exc} fallback_status=NOT_FOUND "
+                    f"new_rows={new_rows} updated_rows={updated_rows}"
+                )
                 failed += 1
             jittered_sleep(sleep, sleep_jitter)
     finally:
         driver.quit()
     save_master_csv(master_df, master_csv)
-    print(f"Processed={processed} Failed={failed} Skipped={skipped} Output={output_csv}")
+    log_progress(f"Processed={processed} Failed={failed} Skipped={skipped} Output={output_csv}")
     return 0 if processed > 0 or skipped > 0 else 1
 
 
@@ -239,6 +410,7 @@ def main() -> None:
     ap.add_argument("--chrome-binary", type=str, default=None)
     ap.add_argument("--chromedriver-binary", type=str, default=None)
     ap.add_argument("--show-browser", action="store_true")
+    ap.add_argument("--allow-existing-input-overlap", action="store_true")
     args = ap.parse_args()
     raise SystemExit(
         process_book_titles(
@@ -255,6 +427,7 @@ def main() -> None:
             cookie_json=args.cookie_json,
             chrome_binary=args.chrome_binary,
             chromedriver_binary=args.chromedriver_binary,
+            allow_existing_input_overlap=args.allow_existing_input_overlap,
         )
     )
 

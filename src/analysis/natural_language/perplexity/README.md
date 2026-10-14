@@ -44,7 +44,7 @@ python src/data_pipeline/cleaning/master_dataset/build_master_dataset.py \
 ## 2. Run One Model On HPC
 
 ```bash
-MODEL_KEY=qwen3_8b sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurmnatural_language/perplexity/run_model_perplexity.slurm
+MODEL_KEY=qwen3_8b sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurm
 ```
 
 If using a zip archive on HPC:
@@ -53,7 +53,7 @@ If using a zip archive on HPC:
 TRANSCRIPTS_ZIP=data/processed/cleaned_idchecked.zip \
 TRANSCRIPTS_SOURCE_NAME=cleaned_idchecked \
 MODEL_KEY=qwen3_8b \
-sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurmnatural_language/perplexity/run_model_perplexity.slurm
+sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurm
 ```
 
 The Slurm wrapper rebuilds the master file, prepares the src/analysis/natural_language/perplexity dataset, and
@@ -68,13 +68,13 @@ then scores it. Defaults:
 Useful overrides:
 
 ```bash
-MODEL_KEY=olmo_2_7b_base LIMIT=100 sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurmnatural_language/perplexity/run_model_perplexity.slurm
+MODEL_KEY=olmo_2_7b_base LIMIT=100 sbatch hpc/analysis/natural_language/perplexity/run_model_perplexity.slurm
 ```
 
 ## 3. Submit All Registered Models
 
 ```bash
-bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 ```
 
 By default, this submits every registered model using Torch account
@@ -90,19 +90,19 @@ ACCOUNT=torch_pr_494_general \
 OVERLAY=/scratch/$USER/my_env/overlay-15GB-500K.ext3:ro \
 CONDA_ENV=story-features \
 PYTHON_BIN=/ext3/story-features/bin/python \
-bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 ```
 
 To override walltime or CPU memory at submit time:
 
 ```bash
-TIME=02:00:00 MEM=24G bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+TIME=02:00:00 MEM=24G bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 ```
 
 Use `MODEL_KEYS` only if you need to manually restrict a rerun:
 
 ```bash
-MODEL_KEYS="qwen3_8b olmo_2_7b_base" bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+MODEL_KEYS="qwen3_8b olmo_2_7b_base" bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 ```
 
 To inspect the registry:
@@ -140,7 +140,7 @@ python src/analysis/natural_language/perplexity/analyze_age_order.py \
 To run only long-context models and exclude OLMo 2:
 
 ```bash
-MIN_CONTEXT_LENGTH=32768 bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+MIN_CONTEXT_LENGTH=32768 bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 ```
 
 Quantized checkpoints are not part of this runner. The earlier bitsandbytes

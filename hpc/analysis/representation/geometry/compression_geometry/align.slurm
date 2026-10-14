@@ -2,7 +2,7 @@
 #SBATCH --job-name=causal_geom_align
 #SBATCH --output=logs/mechanistic_interpretability/%x-%A_%a.out
 #SBATCH --error=logs/mechanistic_interpretability/%x-%A_%a.err
-#SBATCH --array=0-19
+#SBATCH --array=0-19%4
 #SBATCH --time=12:00:00
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G

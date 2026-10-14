@@ -72,6 +72,7 @@ class StructuredAlignmentTests(unittest.TestCase):
         self.assertTrue(any(row["source_span_length"] > 1 for row in summary_rows))
         self.assertEqual({row["window_length"] for row in window_rows}, {1, 2, 3})
         self.assertEqual(len(original_rows), 4)
+        self.assertTrue(any(row["retained_grounded_structured"] for row in original_rows))
         self.assertIn("summary_centrality_rank", summary_rows[0])
         self.assertIn("centrality_rank_shift", summary_rows[0])
         self.assertIn("centrality_weighted_semantic_preservation", story_row)
@@ -87,6 +88,33 @@ class StructuredAlignmentTests(unittest.TestCase):
         self.assertAlmostEqual(float(source[:, 1].sum() + null[1]), 1.0)
         self.assertEqual(int(np.argmax(source[:, 0])), 0)
         self.assertEqual(int(np.argmax(source[:, 1])), 1)
+
+    def test_weak_forced_alignment_is_not_grounded_retention(self) -> None:
+        original = {
+            "story_key": "weak",
+            "source_age": 6,
+            "segments": [{"text": "cat left home"}, {"text": "dog searched park"}],
+        }
+        summary = {
+            "story_key": "weak",
+            "target_age": 6,
+            "condition": "actual",
+            "segments": [{"text": "friends returned"}],
+        }
+        args = Namespace(
+            max_span=2,
+            top_candidates=4,
+            length_penalty=0.01,
+            overlap_penalty=0.1,
+            reversal_penalty=1.0,
+            null_similarity=0.8,
+            source_capacity=1.0,
+        )
+        original_rows, summary_rows, _, _ = alignment.process_pair(
+            original, summary, TokenEmbedder(), args
+        )
+        self.assertFalse(summary_rows[0]["alignment_grounded"])
+        self.assertFalse(any(row["retained_grounded_structured"] for row in original_rows))
 
     def test_exact_duplicates_are_removed_but_variants_remain(self) -> None:
         base = {

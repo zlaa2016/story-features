@@ -5,7 +5,7 @@ set -euo pipefail
 # By default this runs every registered model.
 # Set MIN_CONTEXT_LENGTH=32768 for long-context-only runs.
 # Run from the repository root:
-#   bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.shnatural_language/perplexity/submit_all_perplexity.sh
+#   bash hpc/analysis/natural_language/perplexity/submit_all_perplexity.sh
 
 PYTHON_BIN="${PYTHON_BIN:-python}"
 ACCOUNT="${ACCOUNT:-torch_pr_494_general}"
@@ -25,5 +25,5 @@ for key in $MODEL_KEYS; do
     --time="${TIME}" \
     --mem="${MEM}" \
     --export=ALL,MODEL_KEY="${key}" \
-    hpc/analysis/natural_language/perplexity/run_model_perplexity.slurmnatural_language/perplexity/run_model_perplexity.slurm
+    hpc/analysis/natural_language/perplexity/run_model_perplexity.slurm
 done

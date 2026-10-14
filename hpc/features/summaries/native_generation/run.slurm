@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=96G
-#SBATCH --array=0-12
+#SBATCH --array=0-12%4
 
 set -euo pipefail
 source hpc/slurm_env.sh

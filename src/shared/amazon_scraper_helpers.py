@@ -250,6 +250,37 @@ NOISY_VIDEO_FRAGMENTS = [
     "narrated storybooks",
 ]
 
+NON_BOOK_RESULT_HINTS = {
+    "blu-ray",
+    "dvd",
+    "wall decor",
+    "decor",
+    "poster",
+    "puzzle",
+    "toy",
+    "plush",
+    "t-shirt",
+    "shirt",
+    "magazine",
+    "calendar",
+    "sign",
+    "vinyl",
+    "cd",
+    "audiobook cd",
+}
+
+BOOK_RESULT_HINTS = {
+    "paperback",
+    "hardcover",
+    "board book",
+    "kindle",
+    "library binding",
+    "mass market paperback",
+    "spiral-bound",
+    "book",
+    "ebook",
+}
+
 
 def normalize_title_for_query(text: str) -> str:
     text = normalized_title_value(text)
@@ -261,6 +292,51 @@ def normalize_title_for_query(text: str) -> str:
     text = re.sub(r"[^\w\s:'&/,\-!?]", " ", text)
     text = re.sub(r"\s+", " ", text).strip(" -:|,")
     return re.sub(r"\s+", " ", text).strip()
+
+
+def normalized_words(text: str) -> List[str]:
+    return [token for token in re.split(r"[^a-z0-9]+", normalize_title_for_query(text).lower()) if token]
+
+
+def score_amazon_result_text(
+    result_title: str,
+    result_subtext: str,
+    expected_title: str,
+    expected_story_title: str = "",
+    expected_author: str = "",
+) -> float:
+    haystack = f"{result_title} {result_subtext}".strip()
+    haystack_lower = haystack.lower()
+    title_words = set(normalized_words(expected_title))
+    story_words = set(normalized_words(expected_story_title))
+    author_words = set(normalized_words(expected_author))
+    result_words = set(normalized_words(haystack))
+
+    score = 0.0
+    if title_words:
+        score += 8.0 * len(title_words & result_words) / max(len(title_words), 1)
+        if normalize_title_for_query(expected_title).lower() in haystack_lower:
+            score += 4.0
+    if story_words:
+        score += 5.0 * len(story_words & result_words) / max(len(story_words), 1)
+        if normalize_title_for_query(expected_story_title).lower() in haystack_lower:
+            score += 2.0
+    if author_words:
+        score += 3.0 * len(author_words & result_words) / max(len(author_words), 1)
+
+    book_hint_hits = 0
+    non_book_hint_hits = 0
+    for hint in BOOK_RESULT_HINTS:
+        if hint in haystack_lower:
+            book_hint_hits += 1
+            score += 0.75
+    for hint in NON_BOOK_RESULT_HINTS:
+        if hint in haystack_lower:
+            non_book_hint_hits += 1
+            score -= 6.0
+    if non_book_hint_hits and not book_hint_hits:
+        score -= 6.0
+    return score
 
 
 def simplify_video_title_for_query(video_title: str) -> str:
@@ -315,15 +391,20 @@ def amazon_search_query_candidates(book_title: str, story_title: str, author: st
     generic_book = is_generic_title(book_title)
     generic_story = is_generic_title(story_title)
 
+    if author:
+        add(f'"{book_title}" by {author}')
+        add(f"{book_title} by {author}")
+        add(f"{book_title} {author}")
+        add(f'"{book_title}" {author} book')
+        add(f"{book_title} {author} book")
     add(book_title)
     add(f'"{book_title}" book')
     add(f"{book_title} book")
-    if author:
-        add(f"{book_title} {author}")
-        add(f'"{book_title}" {author} book')
 
     if story_title and story_title.lower() not in {"n/a", "nan"}:
         for q in [
+            f'"{story_title}" by {author}' if author else "",
+            f"{story_title} by {author}" if author else "",
             f"{story_title} {author}" if author else story_title,
             story_title,
             f'"{story_title}" book',
@@ -336,14 +417,19 @@ def amazon_search_query_candidates(book_title: str, story_title: str, author: st
             add(q)
     if generic_book and story_title and not generic_story:
         add(story_title)
+        add(f"{story_title} by {author}" if author else story_title)
         add(f"{story_title} {author}" if author else story_title)
         add(f"{story_title} book")
     if video_title and video_title.lower() not in {"n/a", "nan"}:
+        if author:
+            add(f"{video_title} by {author}")
+            add(f'"{video_title}" by {author}')
+            add(f"{video_title} {author}")
         add(video_title)
         add(f"{video_title} book")
-        if author:
-            add(f"{video_title} {author}")
     if generic_book and video_title and video_title.lower() not in {"n/a", "nan"}:
+        if author:
+            add(f"{video_title} by {author}")
         add(video_title)
         add(f"{video_title} book")
     return out
@@ -503,6 +589,27 @@ def parse_reading_age_value(value: str) -> str:
         re.I,
     )
     return match.group(1).strip() if match else value.strip()
+
+
+def extract_reading_age_from_page_text(soup: BeautifulSoup) -> Tuple[str, str]:
+    text = soup.get_text("\n", strip=True)
+    patterns = [
+        (r"Reading age\s*[:\u200e\u200f ]+\s*([^\n]{1,80})", "publisher"),
+        (r"Age range\s*[:\u200e\u200f ]+\s*([^\n]{1,80})", "publisher"),
+        (r"Target age\s*[:\u200e\u200f ]+\s*([^\n]{1,80})", "publisher"),
+        (r"Reading age\s*[:\u200e\u200f ]+\s*([^\n]{1,80}?from customers)", "customer"),
+        (r"Age range\s*[:\u200e\u200f ]+\s*([^\n]{1,80}?from customers)", "customer"),
+    ]
+    for pattern, default_source in patterns:
+        match = re.search(pattern, text, flags=re.I)
+        if not match:
+            continue
+        raw_value = clean_text(match.group(1))
+        source = "customer" if "from customers" in raw_value.lower() else default_source
+        value = parse_reading_age_value(raw_value)
+        if value and value != "N/A":
+            return value, source
+    return "N/A", "N/A"
 
 
 def _extract_review_country(review: Any) -> Optional[str]:
@@ -735,6 +842,15 @@ def extract_book_details_from_soup(
     elif reading_age_publisher != "N/A":
         reading_age = reading_age_publisher
         reading_age_source = "publisher"
+    else:
+        fallback_age, fallback_source = extract_reading_age_from_page_text(soup)
+        if fallback_age != "N/A":
+            reading_age = fallback_age
+            reading_age_source = fallback_source
+            if fallback_source == "customer":
+                reading_age_customer = fallback_age
+            else:
+                reading_age_publisher = fallback_age
 
     average_rating = "N/A"
     rating_section = soup.find(id="averageCustomerReviews")
@@ -808,7 +924,7 @@ def extract_book_details_from_soup(
     }
 
 
-def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
+def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> Tuple[int, int]:
     if csv_file.exists():
         existing_data = pd.read_csv(csv_file, low_memory=False)
     else:
@@ -824,7 +940,6 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
     existing_data = ensure_columns(existing_data, metadata_columns)
     new_books: List[Dict[str, Any]] = []
     updated_rows = 0
-    existing_titles = set(existing_data.get(title_col, pd.Series(dtype=str)).astype(str).str.lower().dropna().tolist())
     for book in books_data:
         row: Dict[str, Any] = {}
         for key, value in book.items():
@@ -845,8 +960,20 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
                     existing_data.at[idx, col] = value
                 updated_rows += 1
                 continue
-        if str(book.get("title", "")).lower() not in existing_titles:
             new_books.append(row)
+            continue
+        video_id = str(row.get("video_id", "")).strip()
+        if video_id and "video_id" in existing_data.columns:
+            matches = existing_data["video_id"].astype(str).str.strip() == video_id
+            if matches.any():
+                idx = existing_data[matches].index[0]
+                for col, value in row.items():
+                    if col not in existing_data.columns:
+                        existing_data = ensure_columns(existing_data, [col])
+                    existing_data.at[idx, col] = value
+                updated_rows += 1
+                continue
+        new_books.append(row)
     pending_new_columns = sorted({col for row in new_books for col in row if col not in existing_data.columns})
     existing_data = ensure_columns(existing_data, pending_new_columns)
     if new_books:
@@ -857,6 +984,7 @@ def append_to_csv(books_data: List[Dict[str, Any]], csv_file: Path) -> None:
         remainder = [col for col in existing_data.columns if col not in priority]
         existing_data = existing_data[priority + remainder]
         existing_data.to_csv(csv_file, index=False)
+    return len(new_books), updated_rows
 
 
 def ensure_columns(df: pd.DataFrame, columns: Iterable[str], fill_value: str = "") -> pd.DataFrame:

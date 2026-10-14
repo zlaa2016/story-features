@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1
-#SBATCH --array=0-9
+#SBATCH --array=0-9%2
 #SBATCH --output=logs/mechanistic_interpretability/jlens_fit-%A_%a.out
 #SBATCH --error=logs/mechanistic_interpretability/jlens_fit-%A_%a.err
 

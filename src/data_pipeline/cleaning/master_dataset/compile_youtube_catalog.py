@@ -11,6 +11,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
+from shared.age_utils import normalize_age_text, parse_age_bounds, parse_age_midpoint
 from shared.amazon_scraper_helpers import ensure_operational_master_schema
 
 
@@ -420,6 +421,12 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
                 df.get(supp_col, pd.Series([None] * len(df))),
             )
         ]
+    if "best_Reading Age" in df.columns:
+        df["best_Reading Age Normalized"] = df["best_Reading Age"].map(normalize_age_text)
+        bounds = df["best_Reading Age"].map(parse_age_bounds)
+        df["best_Reading Age Lower"] = bounds.map(lambda x: x[0] if x else None)
+        df["best_Reading Age Upper"] = bounds.map(lambda x: x[1] if x else None)
+        df["best_Reading Age Midpoint"] = df["best_Reading Age"].map(parse_age_midpoint)
     df["best_amazon_source_table"] = [
         choose_first(amz_src, supp_src)
         for amz_src, supp_src in zip(
@@ -601,6 +608,7 @@ def main() -> None:
     n_success = int(df["has_title_extraction_success"].sum())
     n_left = int(df["needs_title_extraction"].sum())
     n_ready_for_amazon = int(df["ready_for_amazon_search"].sum())
+    n_has_amazon_age = int(df["has_amazon_age"].sum()) if "has_amazon_age" in df.columns else 0
     n_missing_age_after_match = int(df["matched_but_missing_amazon_age"].sum())
     print(f"Wrote: {args.out}")
     print(f"Rows: {len(df)} | unique videos: {df['video_id'].nunique()}")
@@ -608,6 +616,7 @@ def main() -> None:
     print(f"Title extraction attempted: {n_attempted}")
     print(f"Title extraction success: {n_success}")
     print(f"Left to scrape titles: {n_left}")
+    print(f"Videos with Amazon age: {n_has_amazon_age}")
     print(f"Ready for Amazon search: {n_ready_for_amazon}")
     print(f"Matched but missing Amazon age: {n_missing_age_after_match}")
     if args.queue_dir is not None:
