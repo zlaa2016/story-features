@@ -24,7 +24,7 @@ export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
 export IPYTHONDIR="/scratch/$USER/.ipython-story-features"
 mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
-export JUPYTER_PATH="$PWD/env/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 
 export GPT_OSS_CONTEXT_DIR="${GPT_OSS_CONTEXT_DIR:-$PWD/results/features/representation_extraction/causal_lm/detail_extraction/gpt_oss_20b_global_current}"
 export GPT_OSS_ISOLATED_DIR="${GPT_OSS_ISOLATED_DIR:-$PWD/results/features/representation_extraction/causal_lm/detail_extraction/gpt_oss_20b_detail_controls}"
