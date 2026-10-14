@@ -23,3 +23,7 @@ results/analysis/representation/detail_compression/minilm_proxy/
 
 # Local export bundles (cloud uploads)
 exports/
+
+# Job outputs and local analysis outputs (written on the cluster or by notebooks; never tracked)
+results/analysis/natural_language/detail_compression/
+results/analysis/representation/detail_compression/
