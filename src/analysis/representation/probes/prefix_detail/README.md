@@ -63,3 +63,12 @@ executes a copy into the selected analysis output directory.
 
 The semantic-centrality split is computed only from isolated mean-pooled detail representations in
 the final selected layer, preventing preceding-context length from defining centrality.
+
+Both SLURM launchers route Hugging Face, Transformers, Torch, Triton, CUDA, Numba, Python bytecode,
+Matplotlib, IPython, Jupyter, pip, and temporary caches to
+`/scratch/$USER/story-features-runtime`. They do not write caches into the account home directory.
+All Python commands execute through the Singularity wrapper with
+`/ext3/story-features/bin/python`. The analysis launcher does not install packages into an external
+`PYDEPS` directory; required packages must already be installed in the container overlay. Scratch is
+used only for writable caches, model files, experiment inputs, and outputs because the SIF itself is
+read-only.

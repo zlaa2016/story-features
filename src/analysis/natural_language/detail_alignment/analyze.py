@@ -134,9 +134,15 @@ def matched_contrast(frame: pd.DataFrame, outcome: str, iterations: int, seed: i
 
 
 def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
+    retention_column = (
+        "retained_grounded_structured"
+        if "retained_grounded_structured" in frame
+        else "retained_structured"
+    )
     work = frame.dropna(
-        subset=["retained_structured", "orig_centrality", "orig_position_norm", "source_age", "target_age"]
+        subset=[retention_column, "orig_centrality", "orig_position_norm", "source_age", "target_age"]
     ).copy()
+    work["retained_primary"] = work[retention_column].astype(bool)
     work["group"] = (
         work["story_key"].astype(str)
         + "::"
@@ -146,7 +152,7 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
         + "::"
         + work["summary_variant"].astype(str)
     )
-    varying = work.groupby("group")["retained_structured"].transform("nunique").gt(1)
+    varying = work.groupby("group")["retained_primary"].transform("nunique").gt(1)
     work = work[varying].copy()
     if len(work) < 100:
         return pd.DataFrame()
@@ -162,12 +168,12 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
     work["centrality_x_age_shift"] = work["z_orig_centrality"] * work["z_age_shift"]
 
     def fit_model(data: pd.DataFrame, predictors: list[str], label: str) -> list[dict[str, Any]]:
-        varying_groups = data.groupby("group")["retained_structured"].transform("nunique").gt(1)
+        varying_groups = data.groupby("group")["retained_primary"].transform("nunique").gt(1)
         data = data[varying_groups].copy()
         if len(data) < 100 or data["group"].nunique() < 10:
             return []
         model = ConditionalLogit(
-            data["retained_structured"].astype(int),
+            data["retained_primary"].astype(int),
             data[predictors].astype(float),
             groups=data["group"],
         )
@@ -189,6 +195,7 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
                 "n_rows": len(data),
                 "n_groups": data["group"].nunique(),
                 "model": label,
+                "retention_definition": retention_column,
                 "converged": converged,
             }
             for term in predictors
@@ -223,8 +230,13 @@ def centrality_selection(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def retention_set_analysis(frame: pd.DataFrame) -> pd.DataFrame:
+    retention_column = (
+        "retained_grounded_structured"
+        if "retained_grounded_structured" in frame
+        else "retained_structured"
+    )
     required = {
-        "story_key", "condition", "summary_id", "orig_idx", "retained_structured", "centrality_pct"
+        "story_key", "condition", "summary_id", "orig_idx", retention_column, "centrality_pct"
     }
     if not required.issubset(frame.columns):
         return pd.DataFrame()
@@ -237,7 +249,7 @@ def retention_set_analysis(frame: pd.DataFrame) -> pd.DataFrame:
     for key, detail_frame in work.groupby(record_columns, dropna=False, sort=False):
         detail_frame = detail_frame.sort_values("orig_idx")
         indices = detail_frame["orig_idx"].astype(int).to_numpy()
-        retained_mask = detail_frame["retained_structured"].astype(bool).to_numpy()
+        retained_mask = detail_frame[retention_column].astype(bool).to_numpy()
         centrality = detail_frame["centrality_pct"].astype(float).to_numpy()
         n_details = len(indices)
         retained = set(indices[retained_mask].tolist())
@@ -249,6 +261,7 @@ def retention_set_analysis(frame: pd.DataFrame) -> pd.DataFrame:
         output.append(
             {
                 "row_type": "retention_baseline",
+                "retention_definition": retention_column,
                 **metadata,
                 "n_details": n_details,
                 "n_retained": retained_count,
@@ -287,6 +300,7 @@ def retention_set_analysis(frame: pd.DataFrame) -> pd.DataFrame:
             output.append(
                 {
                     "row_type": "condition_pair",
+                    "retention_definition": retention_column,
                     "story_key": story_key,
                     "summary_id": summary_id,
                     "condition_left": left["condition"],

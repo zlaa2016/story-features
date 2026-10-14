@@ -20,3 +20,6 @@ results/analysis/natural_language/perplexity/analysis/
 # Executed notebooks and local notebook outputs
 results/**/*.executed.ipynb
 results/analysis/representation/detail_compression/minilm_proxy/
+
+# Local export bundles (cloud uploads)
+exports/

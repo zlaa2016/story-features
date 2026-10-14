@@ -153,10 +153,10 @@ To run either branch independently:
 
 ```bash
 export SBATCH_ARGS="--account=torch_pr_494_general"
-sbatch $SBATCH_ARGS hpc/analysis/representation/jacobian/jacobian_lens/setup.slurmrepresentation/jacobian/jacobian_lens/setup.slurm
+sbatch $SBATCH_ARGS hpc/analysis/representation/jacobian/jacobian_lens/setup.slurm
 # After setup succeeds:
-bash hpc/analysis/representation/jacobian/jacobian_lens/submit.shrepresentation/jacobian/jacobian_lens/submit.sh
-bash hpc/analysis/representation/sparse_autoencoder/submit.shrepresentation/sparse_autoencoder/submit.sh
+bash hpc/analysis/representation/jacobian/jacobian_lens/submit.sh
+bash hpc/analysis/representation/sparse_autoencoder/submit.sh
 ```
 
 To run only the highest-priority extraction:
@@ -164,7 +164,7 @@ To run only the highest-priority extraction:
 ```bash
 MODEL_KEY=gpt_oss_20b RECORDS_PER_SHARD=700 \
 sbatch --account=torch_pr_494_general \
-  hpc/features/representation_extraction/causal_lm/detail_extraction/run.slurmrepresentation_extraction/causal_lm/detail_extraction/run.slurm
+  hpc/features/representation_extraction/causal_lm/detail_extraction/run.slurm
 ```
 
 Change the array size in `02_representation_extraction/run.slurm` if the canonical cohort has more than 10,500 text records.

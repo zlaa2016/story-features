@@ -46,7 +46,7 @@ Dry run:
 ```bash
 mkdir -p logs/summary_prompt_runs
 SUMMARY_ARGS="--limit 1 --model gpt-4o-mini --dry-run" \
-  sbatch hpc/features/summaries/run_story_summaries.sbatchsummaries/run_story_summaries.sbatch
+  sbatch hpc/features/summaries/run_story_summaries.sbatch
 ```
 
 Real run:
@@ -54,7 +54,7 @@ Real run:
 ```bash
 export OPENAI_API_KEY="..."
 SUMMARY_ARGS="--start 0 --limit 50 --model gpt-4o-mini" \
-  sbatch hpc/features/summaries/run_story_summaries.sbatchsummaries/run_story_summaries.sbatch
+  sbatch hpc/features/summaries/run_story_summaries.sbatch
 ```
 
 Continue with the next batch:
@@ -62,7 +62,7 @@ Continue with the next batch:
 ```bash
 export OPENAI_API_KEY="..."
 SUMMARY_ARGS="--start 50 --limit 50 --model gpt-4o-mini" \
-  sbatch hpc/features/summaries/run_story_summaries.sbatchsummaries/run_story_summaries.sbatch
+  sbatch hpc/features/summaries/run_story_summaries.sbatch
 ```
 
 ## Slurm: Long-Context Open-Weight Summaries

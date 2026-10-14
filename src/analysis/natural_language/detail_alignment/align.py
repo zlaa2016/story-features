@@ -227,6 +227,7 @@ def process_pair(
     summary_rows: list[dict[str, Any]] = []
     window_rows: list[dict[str, Any]] = []
     covered = np.zeros(n_original, dtype=bool)
+    grounded_covered = np.zeros(n_original, dtype=bool)
     selected_starts: list[int] = []
     selected_ends: list[int] = []
     for summary_index, span_index in enumerate(chosen):
@@ -241,6 +242,12 @@ def process_pair(
         atomic_source = int(np.argmax(source_flow[:, summary_index]))
         atomic_mass = float(source_flow[atomic_source, summary_index])
         is_null = float(null_flow[summary_index]) >= atomic_mass
+        alignment_grounded = (
+            not is_null
+            and float(span_similarity[summary_index, span_index]) >= args.null_similarity
+        )
+        if alignment_grounded:
+            grounded_covered[span.start : span.end + 1] = True
         for length in range(1, min(args.max_span, n_original) + 1):
             valid = [idx for idx, candidate in enumerate(spans) if candidate.length == length]
             best = max(valid, key=lambda idx: float(span_similarity[summary_index, idx]))
@@ -271,6 +278,7 @@ def process_pair(
                 "source_text": span.text,
                 "alignment_cosine": float(span_similarity[summary_index, span_index]),
                 "alignment_penalized_score": float(adjusted[summary_index, span_index]),
+                "alignment_grounded": bool(alignment_grounded),
                 "single_detail_cosine": single_best_cosine,
                 "span_gain_over_single": float(span_similarity[summary_index, span_index]) - single_best_cosine,
                 "nonconsecutive_source_indices": json.dumps(nonconsecutive_indices[summary_index]),
@@ -318,6 +326,7 @@ def process_pair(
                     summary_centrality_rank[best_summary] - centrality_rank[original_index]
                 ),
                 "retained_structured": bool(covered[original_index]),
+                "retained_grounded_structured": bool(grounded_covered[original_index]),
                 "retained_cosine": bool(detail_similarity[original_index, best_summary] >= args.null_similarity),
                 "transport_mass": transport_mass,
                 "retained_transport": bool(transport_mass >= 0.5),
@@ -368,6 +377,7 @@ def process_pair(
         "multi_detail_summary_rate": float(np.mean([row["source_span_length"] > 1 for row in summary_rows])),
         "nonconsecutive_fusion_rate": float(np.mean([row["nonconsecutive_is_better"] for row in summary_rows])),
         "source_detail_coverage_rate": float(covered.mean()),
+        "source_grounded_detail_coverage_rate": float(grounded_covered.mean()),
         "source_centrality_coverage": float(np.sum(centrality_rank[covered]) / central_rank_total) if central_rank_total else float("nan"),
         "retained_minus_omitted_centrality": float(np.mean(centrality[covered]) - np.mean(centrality[~covered])) if covered.any() and (~covered).any() else float("nan"),
         "mean_semantic_match_retained": float(retained_semantic.mean()) if len(retained_semantic) else float("nan"),

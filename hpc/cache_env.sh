@@ -20,22 +20,31 @@ _to_scratch() {
   mkdir -p "${!name}" 2>/dev/null || true
 }
 
-_to_scratch XDG_CACHE_HOME "$SCRATCH_ROOT/.cache"
-_to_scratch XDG_DATA_HOME "$SCRATCH_ROOT/.local/share"
+# One runtime folder for every cache, so a single directory holds them all. Model downloads stay where they already are
+# (HF_HOME defaults to /scratch/$USER/hf) so existing downloads are reused.
+RUNTIME_CACHE_ROOT="${RUNTIME_CACHE_ROOT:-$SCRATCH_ROOT/story-features-runtime}"
+export RUNTIME_CACHE_ROOT
+
+_to_scratch XDG_CACHE_HOME "$RUNTIME_CACHE_ROOT/xdg-cache"
+_to_scratch XDG_DATA_HOME "$RUNTIME_CACHE_ROOT/xdg-data"
 _to_scratch HF_HOME "$SCRATCH_ROOT/hf"
 _to_scratch TRANSFORMERS_CACHE "$HF_HOME"
-_to_scratch TORCH_HOME "$SCRATCH_ROOT/.cache/torch"
-_to_scratch SENTENCE_TRANSFORMERS_HOME "$SCRATCH_ROOT/.cache/sentence_transformers"
-_to_scratch PIP_CACHE_DIR "$SCRATCH_ROOT/.cache/pip"
-_to_scratch MPLCONFIGDIR "$SCRATCH_ROOT/.cache/matplotlib"
-_to_scratch NUMBA_CACHE_DIR "$SCRATCH_ROOT/.cache/numba"
-_to_scratch TRITON_CACHE_DIR "$SCRATCH_ROOT/.cache/triton"
-_to_scratch IPYTHONDIR "$SCRATCH_ROOT/.ipython-story-features"
-_to_scratch JUPYTER_DATA_DIR "$SCRATCH_ROOT/.local/share/jupyter"
-_to_scratch JUPYTER_RUNTIME_DIR "$SCRATCH_ROOT/.local/share/jupyter/runtime"
-_to_scratch TMPDIR "$SCRATCH_ROOT/tmp"
-_to_scratch SINGULARITY_CACHEDIR "$SCRATCH_ROOT/.singularity/cache"
-_to_scratch SINGULARITY_TMPDIR "$SCRATCH_ROOT/.singularity/tmp"
+_to_scratch HUGGINGFACE_HUB_CACHE "$HF_HOME/hub"
+_to_scratch TORCH_HOME "$RUNTIME_CACHE_ROOT/torch"
+_to_scratch SENTENCE_TRANSFORMERS_HOME "$RUNTIME_CACHE_ROOT/sentence_transformers"
+_to_scratch PIP_CACHE_DIR "$RUNTIME_CACHE_ROOT/pip"
+_to_scratch MPLCONFIGDIR "$RUNTIME_CACHE_ROOT/matplotlib"
+_to_scratch NUMBA_CACHE_DIR "$RUNTIME_CACHE_ROOT/numba"
+_to_scratch TRITON_CACHE_DIR "$RUNTIME_CACHE_ROOT/triton"
+_to_scratch CUDA_CACHE_PATH "$RUNTIME_CACHE_ROOT/cuda"
+_to_scratch PYTHONPYCACHEPREFIX "$RUNTIME_CACHE_ROOT/pycache"
+_to_scratch IPYTHONDIR "$RUNTIME_CACHE_ROOT/ipython"
+_to_scratch JUPYTER_CONFIG_DIR "$RUNTIME_CACHE_ROOT/jupyter-config"
+_to_scratch JUPYTER_DATA_DIR "$RUNTIME_CACHE_ROOT/jupyter-data"
+_to_scratch JUPYTER_RUNTIME_DIR "$RUNTIME_CACHE_ROOT/jupyter-runtime"
+_to_scratch TMPDIR "$RUNTIME_CACHE_ROOT/tmp"
+_to_scratch SINGULARITY_CACHEDIR "$RUNTIME_CACHE_ROOT/singularity-cache"
+_to_scratch SINGULARITY_TMPDIR "$RUNTIME_CACHE_ROOT/singularity-tmp"
 _to_scratch APPTAINER_CACHEDIR "$SINGULARITY_CACHEDIR"
 _to_scratch APPTAINER_TMPDIR "$SINGULARITY_TMPDIR"
 unset -f _to_scratch

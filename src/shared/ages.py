@@ -35,7 +35,7 @@ def format_age(lower: int, upper: int) -> str:
 def relative_conditions(
     age_range: Any,
     *,
-    minimum_age: int = 3,
+    minimum_age: int = 2,
     maximum_age: int = 18,
 ) -> list[AgeCondition]:
     bounds = parse_age_bounds(age_range)

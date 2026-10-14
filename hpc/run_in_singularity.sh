@@ -46,6 +46,22 @@ fi
 if [[ "$USE_NV" == "1" ]]; then nv_args+=(--nv); fi
 if [[ "$FAKEROOT" == "1" ]]; then fakeroot_args+=(--fakeroot); fi
 
+# Singularity normally inherits host variables, but cache-related behavior has
+# varied across cluster versions. Explicitly inject writable runtime locations
+# so libraries running inside the container never fall back to $HOME.
+container_env_names=(
+  XDG_CACHE_HOME TMPDIR HF_HOME TRANSFORMERS_CACHE HUGGINGFACE_HUB_CACHE
+  TORCH_HOME TRITON_CACHE_DIR CUDA_CACHE_PATH NUMBA_CACHE_DIR
+  PYTHONPYCACHEPREFIX MPLCONFIGDIR IPYTHONDIR JUPYTER_CONFIG_DIR
+  JUPYTER_DATA_DIR PIP_CACHE_DIR XDG_DATA_HOME SENTENCE_TRANSFORMERS_HOME JUPYTER_RUNTIME_DIR
+)
+for env_name in "${container_env_names[@]}"; do
+  if [[ -n "${!env_name:-}" ]]; then
+    printf -v "SINGULARITYENV_${env_name}" '%s' "${!env_name}"
+    export "SINGULARITYENV_${env_name}"
+  fi
+done
+
 cmd="$*"
 
 activation_snippet='
