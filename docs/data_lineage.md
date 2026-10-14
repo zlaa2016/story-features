@@ -26,12 +26,14 @@ Measured with `src/features/summaries/dataset_index/describe_cohort.py` on `resu
 
 | | |
 |---|---|
-| Records | 10,390 (3,696 originals + 6,694 summaries) |
+| Records | 10,390 (3,696 stories + 6,694 summaries) |
 | Original details / words | 274,852 / 2,283,247 (median 64 details and 492 words per story) |
-| Summaries by condition | actual 3,602, older 2,791, younger 301 |
-| Summary details / words | 157,837 / 1,036,511 |
+| Stories with a summary | 3,685 of 3,696 (99.7%); 11 have none |
+| Stories with an actual / older / younger summary | 3,601 / 2,791 / 301 (97.4% / 75.5% / 8.1%) |
+| Stories with two or more conditions / all three | 2,716 / 292 |
+| Stories by conditions present | actual+older 2,415; actual only 888; all three 292; older only 81; actual+younger 6; older+younger 3 |
+| Summaries (one per story per condition, one actual story has two) | 6,694: actual 3,602, older 2,791, younger 301; 157,837 details; 1,036,511 words |
 | Segmentation method of summaries | api_detail 6,689, local_sentence 5 |
-| Stories by conditions present | actual+older 2,415; actual only 888; all three 292; older only 81; others 9; no summary 11 |
 | Stories by source age (years, floor) | 2: 521, 3: 920, 4: 1,093, 5: 634, 6: 321, 7: 110, 8: 44, 9: 23, 10: 30 |
 | Records with vectors in `gpt_oss_20b_global_current` | 8,482 of 10,390 (82%); 640 originals and 1,268 summaries without |
 

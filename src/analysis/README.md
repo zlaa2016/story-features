@@ -89,7 +89,7 @@ The canonical inputs are not the older event-segmentation review samples. They a
 - primary segmented summaries: `results/features/summaries/runs/age_steering_pm3_customer_discrete_resume_gpt-5.4-mini_20260817_080237/detail_segments_current_subset_local_sentence/detail_segments_summaries.jsonl`;
 - completion/backfill summaries: `results/features/summaries/runs/customer_age_target_or_source_2_10_cascade_summary_detail_min1/detail_segments_summaries.jsonl`.
 
-The cohort as rebuilt on Oct 7 holds 3,696 originals with 274,852 original details and 6,694 summaries (3,602 actual, 2,791 older, 301 younger; 157,837 summary details), 10,390 records in all. Only 292 stories have all three conditions, and younger summaries exist mainly for stories whose source lower age is 5 or more, because the lower-bound-minus-three rule must stay above age two; this is recorded rather than converted into a complete-case exclusion. See `docs/data_lineage.md`.
+The cohort as rebuilt on Oct 7 holds 3,696 stories with 274,852 original details. 3,685 stories have a summary: 3,601 have an actual-age summary, 2,791 an older and 301 a younger one (6,694 summaries, one per story per condition, 157,837 summary details). Only 292 stories have all three conditions, and younger summaries exist mainly for stories whose source lower age is 5 or more, because the lower-bound-minus-three rule must stay above age two; this is recorded rather than converted into a complete-case exclusion. See `docs/data_lineage.md`.
 
 The age-grid and variable-compression corpora are exploratory appendix analyses. The primary analysis retains every available valid younger, actual, or older condition and models the resulting unbalanced within-story design.
 
