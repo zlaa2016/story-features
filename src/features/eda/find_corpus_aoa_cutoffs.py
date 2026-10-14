@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# LEGACY (event-segmented pipeline). This script works on the event-segmented review samples
+# (review_events_json / has_events in the master table), not on the detail-segmented stories used by
+# the current experiments (data_pipeline -> features/summaries -> analysis). See docs/data_lineage.md.
 from __future__ import annotations
 
 import argparse

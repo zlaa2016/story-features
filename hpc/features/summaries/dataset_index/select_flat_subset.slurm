@@ -11,7 +11,8 @@ source hpc/slurm_env.sh
 
 # Stories with younger, actual and older summaries, flat across source age.
 # Override with PER_BIN=<n> (stories per age bin) or NO_FLATTEN=1 to keep all complete stories.
+# SEGMENTATION_METHOD=api_detail keeps only summaries segmented by that method (default: all methods).
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/features/summaries/dataset_index/select_flat_subset.py \
   --cohort-metadata results/features/summaries/dataset_index/cohort_metadata.csv \
   --output results/features/summaries/dataset_index/flat_subset.csv \
-  --per-bin "${PER_BIN:-0}" --min-bin "${MIN_BIN:-5}" ${NO_FLATTEN:+--no-flatten}'
+  --per-bin "${PER_BIN:-0}" --min-bin "${MIN_BIN:-5}" --require-method "${SEGMENTATION_METHOD:-}" ${NO_FLATTEN:+--no-flatten}'
