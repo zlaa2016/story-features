@@ -20,6 +20,21 @@ original details; imports helper functions from `run_transcript_cleanup_segmenta
 `features/summaries/cascade_summary_detail_pipeline.py` and `features/summaries/detail_segment_age_steering_subset.py`
 (segment generated summaries into details).
 
+## The cohort as built on the cluster (Oct 7)
+
+Measured with `src/features/summaries/dataset_index/describe_cohort.py` on `results/features/summaries/dataset_index/cohort.jsonl`:
+
+| | |
+|---|---|
+| Records | 10,390 (3,696 originals + 6,694 summaries) |
+| Original details / words | 274,852 / 2,283,247 (median 64 details and 492 words per story) |
+| Summaries by condition | actual 3,602, older 2,791, younger 301 |
+| Summary details / words | 157,837 / 1,036,511 |
+| Segmentation method of summaries | api_detail 6,689, local_sentence 5 |
+| Stories by conditions present | actual+older 2,415; actual only 888; all three 292; older only 81; others 9; no summary 11 |
+| Stories by source age (years, floor) | 2: 521, 3: 920, 4: 1,093, 5: 634, 6: 321, 7: 110, 8: 44, 9: 23, 10: 30 |
+| Records with vectors in `gpt_oss_20b_global_current` | 8,482 of 10,390 (82%); 640 originals and 1,268 summaries without |
+
 ## What the cohort is built from
 
 `shared/config/default_paths.json` lists the inputs of `features/summaries/dataset_index/build_index.py`:
@@ -47,11 +62,10 @@ original details; imports helper functions from `run_transcript_cleanup_segmenta
    | Summaries, `local_sentence` | 11 | 14 |
 
    `local_sentence` is sentence splitting, not detail segmentation (about twice the words per segment), so ratios that divide by the
-   number of summary details are not comparable. In the cohort config it contributes 148 summaries that exist nowhere else
-   (about 2.6%). It is a deliberate second measurement of compression: how many full-text details each summary *sentence* covers. It is run on its own
+   number of summary details are not comparable. In the cohort config it can contribute summaries that exist nowhere else (148 in the earlier build; the cohort
+   rebuilt on Oct 7 contains 5). It is a deliberate second measurement of compression: how many full-text details each summary *sentence* covers. It is run on its own
    (`span_search_sentence.slurm`, no vectors) and is no longer a cohort input (`sentence_summary_jsonl` in `default_paths.json`).
-   The detail-level runs skip any summary labelled `local_sentence` (`--exclude-methods`). The cohort currently on the cluster and the
-   GPT-OSS vectors still contain 148 such summaries until the cohort is rebuilt.
+   The detail-level runs skip any summary labelled `local_sentence` (`--exclude-methods`). The cohort on the cluster (rebuilt Oct 7) contains 5 such summaries.
 3. **Unlabelled records.** 2,540 of the 6,997 records in the "current analysis" file have no `segmentation_method`. Their segment
    sizes (7 words) match detail segmentation, and 2,422 of them also appear in the cascade file, but only 324 of those with the same
    number of segments, so they come from a different (earlier) segmentation run.
