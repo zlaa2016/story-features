@@ -35,13 +35,25 @@ original details; imports helper functions from `run_transcript_cleanup_segmenta
 
 1. **The cohort does not read the "current analysis" summary file.** Against it, the config's two files have 69 summaries
    it lacks, and it has 39 they lack.
-2. **Mixed segmentation units.** 148 summaries in the config exist only as `local_sentence` segments. For summaries present in both
-   files, `local_sentence` has about 0.46 times as many segments as `api_detail` (median), so ratios that divide by the number of
-   summary details are not comparable across the two. Use `SEGMENTATION_METHOD=api_detail` when selecting the compression subset
-   (`select_flat_subset.slurm`), or `--require-method api_detail` on the script. The script prints how many summaries each method
-   contributes before filtering.
-3. **Unlabelled records.** 2,540 of the 6,997 records in the "current analysis" file have no `segmentation_method`, so their
-   method is not recorded.
+2. **Sentence-level summaries in a detail-level cohort.** Everything except the legacy review samples should be segmented into
+   details, and measured segment sizes show which files are:
+
+   | File | Segments per record (median) | Words per segment (median) |
+   |---|---|---|
+   | Originals (consolidated) | 64 | 7 |
+   | Summaries, cascade (`api_detail`) | 24 | 6 |
+   | Summaries, combined "current analysis", labelled `api_detail` | 23 | 6 |
+   | Summaries, combined "current analysis", unlabelled | 20 | 7 |
+   | Summaries, `local_sentence` | 11 | 14 |
+
+   `local_sentence` is sentence splitting, not detail segmentation (about twice the words per segment), so ratios that divide by the
+   number of summary details are not comparable. In the cohort config it contributes 148 summaries that exist nowhere else
+   (about 2.6%). `select_flat_subset.py` now drops `local_sentence` by default (`--exclude-methods`;
+   `EXCLUDE_SEGMENTATION_METHODS` in the slurm script). None of the 876 summaries in the existing natural-language span-search results
+   comes from that file. The cohort and the GPT-OSS vectors still contain those 148 summaries.
+3. **Unlabelled records.** 2,540 of the 6,997 records in the "current analysis" file have no `segmentation_method`. Their segment
+   sizes (7 words) match detail segmentation, and 2,422 of them also appear in the cascade file, but only 324 of those with the same
+   number of segments, so they come from a different (earlier) segmentation run.
 
 Deciding which summary file is canonical is still open.
 

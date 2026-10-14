@@ -38,3 +38,14 @@ def test_require_method_keeps_only_matching_summaries():
     assert "a" not in strict["story_key"].tolist() and "b" in strict["story_key"].tolist()
     audit = select.method_audit(metadata)
     assert audit.set_index("segmentation_method").loc["local_sentence", "summaries"] == 2
+
+
+def test_exclude_methods_drops_sentence_level_summaries():
+    metadata = make_metadata()
+    metadata["segmentation_method"] = ["" if r == "original" else "api_detail" for r in metadata.record_type]
+    metadata.loc[metadata.record_id.str.startswith("a::older"), "segmentation_method"] = "local_sentence"
+    kept = select.complete_stories(metadata, exclude_methods=select.NOT_DETAIL_LEVEL)["story_key"].tolist()
+    assert "a" not in kept and "b" in kept
+    # unlabelled summaries are not dropped by an exclusion rule
+    metadata.loc[metadata.record_type.eq("summary"), "segmentation_method"] = ""
+    assert "a" in select.complete_stories(metadata, exclude_methods=select.NOT_DETAIL_LEVEL)["story_key"].tolist()
