@@ -24,7 +24,7 @@ export MPLCONFIGDIR="/scratch/$USER/.cache/matplotlib"
 export IPYTHONDIR="/scratch/$USER/.ipython-story-features"
 mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 export PYTHONPATH="$PYDEPS${PYTHONPATH:+:$PYTHONPATH}"
-export JUPYTER_PATH="$PWD/env/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 
 # Install only the package missing from the image. Existing numpy, scipy,
 # pandas, and patsy remain supplied by the project environment.

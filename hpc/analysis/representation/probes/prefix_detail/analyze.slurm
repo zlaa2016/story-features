@@ -15,7 +15,7 @@ export PYDEPS="${PYDEPS:-/scratch/$USER/story-features-pydeps}"
 export PYTHONPATH="$PYDEPS:$PWD${PYTHONPATH:+:$PYTHONPATH}"
 export MPLCONFIGDIR="${MPLCONFIGDIR:-/scratch/$USER/.cache/matplotlib}"
 export IPYTHONDIR="${IPYTHONDIR:-/scratch/$USER/.ipython-story-features}"
-export JUPYTER_PATH="$PWD/env/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
+export JUPYTER_PATH="$PWD/hpc/jupyter${JUPYTER_PATH:+:$JUPYTER_PATH}"
 mkdir -p "$PYDEPS" "$MPLCONFIGDIR" "$IPYTHONDIR"
 
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"

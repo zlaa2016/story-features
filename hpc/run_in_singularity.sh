@@ -14,6 +14,10 @@ set -euo pipefail
 #   CONDA_SH : path to conda.sh inside container (auto-detected if unset)
 #   CONDA_ENV: conda env name to activate (default: story)
 #   PYTHON_BIN: explicit python path inside container; adds its dir to PATH
+#   HOME_ON_SCRATCH=1 : make the container's home a folder on /scratch, so nothing can write to the real
+#                        home quota (cache_env.sh already redirects the common caches)
+
+source "$(dirname "${BASH_SOURCE[0]}")/cache_env.sh"
 
 USE_NV="${USE_NV:-1}"
 FAKEROOT="${FAKEROOT:-1}"
@@ -34,6 +38,11 @@ fi
 
 nv_args=()
 fakeroot_args=()
+home_args=()
+if [[ "${HOME_ON_SCRATCH:-0}" == "1" ]]; then
+  mkdir -p "${SCRATCH_ROOT}/home"
+  home_args+=(--home "${SCRATCH_ROOT}/home")
+fi
 if [[ "$USE_NV" == "1" ]]; then nv_args+=(--nv); fi
 if [[ "$FAKEROOT" == "1" ]]; then fakeroot_args+=(--fakeroot); fi
 
@@ -97,6 +106,7 @@ fi
 singularity exec \
   "${fakeroot_args[@]}" \
   "${nv_args[@]}" \
+  "${home_args[@]}" \
   --overlay "${OVERLAY}" \
   "${SIF}" \
   /bin/bash -lc "${activation_snippet}
