@@ -1,20 +1,18 @@
 # Per-detail compression by span search
 
 For each summary detail, find the best consecutive run of source details that matches
-its meaning. The size of that run is the compression of that detail. Run on stories that
-have younger, actual and older summaries, flat across source age.
+its meaning. The size of that run is the compression of that detail. Every story in the cohort with a summary in a confirmatory condition is used, with every summary it has. No story is
+chosen, balanced across age, or required to have all three conditions; the mixed models handle the unbalanced design.
 
 | Step | Code | Slurm |
 |---|---|---|
-| Pick the subset | `src/features/summaries/dataset_index/select_flat_subset.py` | `hpc/features/summaries/dataset_index/select_flat_subset.slurm` |
 | Natural-language search (mpnet) | `src/analysis/natural_language/detail_compression/span_search.py` | `hpc/analysis/natural_language/detail_compression/span_search.slurm` |
+| Sentence-level counterpart (details per summary *sentence*, no vectors) | same script with `--summary-segments` | `hpc/analysis/natural_language/detail_compression/span_search_sentence.slurm` |
 | Representation search (GPT-OSS contextual + isolated) | `src/analysis/representation/detail_compression/span_search.py` | `hpc/analysis/representation/detail_compression/span_search.slurm` |
 | Contextual-vs-isolated shift, all layers | `src/analysis/representation/detail_compression/contextualization_shift.py` | `hpc/analysis/representation/detail_compression/contextualization_shift.slurm` |
 | Shared search core | `src/shared/span_search.py` | |
 
-Submit everything (all stories that have all three summaries, no age flattening):
-`NO_FLATTEN=1 SBATCH_ARGS="--account=<acct>" bash hpc/analysis/submit_span_search.sh`
-Leave `NO_FLATTEN` unset to sample flat across source age instead.
+Submit everything: `SBATCH_ARGS="--account=<acct>" bash hpc/analysis/submit_span_search.sh`
 
 Outputs from before the reorganisation are copied into the new `results/` layout with
 `bash hpc/copy_old_outputs.sh`.
@@ -27,8 +25,7 @@ On the current cluster outputs, 138 stories have younger, actual and older summa
 
 ## Outputs
 
-`results/features/summaries/dataset_index/flat_subset.csv` (+ `_by_age.csv`), and under
-`results/analysis/{natural_language,representation}/detail_compression/span_search/`:
+Under `results/analysis/{natural_language,representation}/detail_compression/span_search/`:
 `details.csv` (one row per summary detail), `summaries.csv` (one row per summary),
 `audit.csv`, `config.json`. Representation runs add `contextual_mean/` and `isolated_mean/`.
 
@@ -68,3 +65,12 @@ Friedman with Holm-corrected Wilcoxon follow-ups) and a check that matches beat 
 on a log2 scale, so a slope of s per year multiplies the span by 2**s per year.
 
     PYTHONPATH=src python src/analysis/natural_language/detail_compression/age_models.py
+
+## No subsetting
+
+There is no subset-selection step. Selecting stories to be flat across age, or only stories with all three summaries, is a
+choice that can shape the effect size, so every story and summary is analysed. The only exclusion is by unit: summaries
+segmented at sentence level (`local_sentence`) are a separate measurement (source details per summary *sentence*, run by
+`span_search_sentence.slurm` straight from the sentence file) and are skipped by the detail-level runs. The paired tests in
+`age_models.py` (Friedman, Wilcoxon) need all three summaries, so they use only the stories that have them and report how many;
+the mixed models use every story.

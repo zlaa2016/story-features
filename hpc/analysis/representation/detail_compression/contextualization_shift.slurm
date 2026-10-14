@@ -10,7 +10,7 @@ set -euo pipefail
 source hpc/slurm_env.sh
 
 # Contextual-vs-isolated shift for original and summary details at every stored layer.
-# CPU only: reuses the stored vectors. Same subset as the span search.
+# CPU only: reuses the stored vectors. Uses every record that has both vectors (no story selection).
 EXTRACTION="results/features/representation_extraction/causal_lm/detail_extraction"
 MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 export CONTEXT_DIR="${CONTEXT_DIR:-$EXTRACTION/${MODEL_KEY}_global_current}"
@@ -22,6 +22,5 @@ done
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detail_compression/contextualization_shift.py \
   --context-dir "$CONTEXT_DIR" \
   --isolated-dir "$ISOLATED_DIR" \
-  --subset "${SUBSET:-results/features/summaries/dataset_index/flat_subset.csv}" \
   --layers "${LAYERS:-}" \
   --limit "${LIMIT:-0}"'

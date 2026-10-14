@@ -27,7 +27,6 @@ compgen -G "$VECTOR_DIR/*_detail_metadata_*.csv" >/dev/null || { echo "No detail
 run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/analysis/representation/detail_compression/span_search.py \
   --kind "$KIND" \
   --vector-dir "$VECTOR_DIR" \
-  --subset "${SUBSET:-results/features/summaries/dataset_index/flat_subset.csv}" \
   --pooling "${POOLING:-mean}" \
   --layers "${LAYERS:-}" \
   --max-span "${MAX_SPAN:-10}" \
