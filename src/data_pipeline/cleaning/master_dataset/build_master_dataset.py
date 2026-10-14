@@ -505,7 +505,7 @@ def main() -> None:
         "--videoid-storyid-map",
         type=Path,
         default=Path("data/amazon_data/all_story_nosub_manual_amazon.csv"),
-        help="Optional mapping table with columns like video_id, story_id (to link review_samples/transcripts_to_clean).",
+        help="Optional mapping table with columns like video_id, story_id (to link the legacy review samples/transcripts_to_clean).",
     )
     ap.add_argument("--output-dir", type=Path, default=Path("output"))
     ap.add_argument("--titles-dir", type=Path, default=Path("data/extracted_titles"))
@@ -522,7 +522,8 @@ def main() -> None:
         default=None,
         help="Label to store in transcript_source_best for text loaded from --transcripts-dir.",
     )
-    ap.add_argument("--review-samples-dir", type=Path, default=Path("review_samples"))
+    ap.add_argument("--review-samples-dir", type=Path, default=Path("data/legacy/review_samples_event_segments"),
+                    help="LEGACY: event-segmented review samples (review_events_json). Not used by the detail-segmented experiments.")
     ap.add_argument("--out", type=Path, default=Path("data/processed/master_stories.parquet"))
     ap.add_argument("--out-csv", type=Path, default=Path("data/processed/master_stories.csv.gz"))
     ap.add_argument("--out-index", type=Path, default=Path("data/processed/master_stories_index.csv"))

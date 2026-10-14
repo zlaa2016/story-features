@@ -27,3 +27,14 @@ def test_flatten_equalises_age_bins():
     stories = select.complete_stories(make_metadata())
     subset = select.flatten_by_age(stories, bin_width=1.0, per_bin=0, min_bin=2, seed=3)
     assert subset["age_bin"].value_counts().to_dict() == {3.0: 2, 8.0: 2}
+
+
+def test_require_method_keeps_only_matching_summaries():
+    metadata = make_metadata()
+    metadata["segmentation_method"] = ["" if r == "original" else "api_detail" for r in metadata.record_type]
+    metadata.loc[metadata.record_id.eq("a::older::1") | metadata.record_id.eq("a::older::2"), "segmentation_method"] = "local_sentence"
+    assert "a" in select.complete_stories(metadata)["story_key"].tolist()
+    strict = select.complete_stories(metadata, require_method="api_detail")
+    assert "a" not in strict["story_key"].tolist() and "b" in strict["story_key"].tolist()
+    audit = select.method_audit(metadata)
+    assert audit.set_index("segmentation_method").loc["local_sentence", "summaries"] == 2

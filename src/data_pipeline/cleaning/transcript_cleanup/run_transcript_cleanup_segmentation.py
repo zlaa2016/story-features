@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# LEGACY (event-segmented pipeline). This script produces the event-segmented review samples. Its helper
+# functions are still imported by run_transcript_cleanup_detail_segmentation.py, which is the current
+# detail-segmentation step. See docs/data_lineage.md.
 from __future__ import annotations
 
 import argparse
@@ -80,6 +83,14 @@ Remove:
 - narrator commentary that is not part of the story
 - subtitle headers like "Kind: captions Language: en"
 - sound-effect markers like [Music], [Applause] when they are not story text
+- framing/setup lines that introduce the moral, lesson, character identity, or theme before the actual story begins
+- promotional or branded story framing such as "I'm now a behavior buddy..." when it functions as series intro rather than story content
+
+Boundary guidance for where the real story starts:
+- Start at the first sentence that belongs to the actual narrative situation, not at the narrator's branded or thematic setup.
+- If the transcript begins with generic framing such as "Once upon a time..." followed by lines explaining what kind of character the narrator is, remove that framing unless it is clearly part of the story world and directly continues as the story narrative.
+- If the opening contains character/theme introduction followed by concrete episodes ("When Mom was busy...", "One day...", "At school..."), prefer starting at the first concrete narrative episode.
+- Keep repeated refrain or verse lines only if they are clearly part of the story itself rather than intro/outro packaging.
 
 Story splitting rules:
 - If the video contains one clear story, return exactly one item in `stories`.
@@ -93,6 +104,7 @@ Requirements for each `cleaned_story_verbatim`:
 - Do NOT add new story content.
 - Do NOT rewrite or paraphrase the story.
 - Do NOT summarize the story.
+- Be conservative about removing intro/outro material, but if a line is story framing rather than narrative content, remove it.
 
 Requirements for each `punctuated_story`:
 - Use the same story content after cleaning.
@@ -255,6 +267,14 @@ def load_title_success_video_ids(
         ids = df.loc[mask, "video_id"].fillna("").astype(str).str.strip()
         video_ids.update(video_id for video_id in ids if video_id)
     return video_ids
+
+
+def load_manifest_video_ids(manifest_csv: Path, video_id_col: str = "video_id") -> Set[str]:
+    df = pd.read_csv(manifest_csv, low_memory=False)
+    if video_id_col not in df.columns:
+        raise ValueError(f"Missing {video_id_col} in manifest: {manifest_csv}")
+    ids = df[video_id_col].fillna("").astype(str).str.strip()
+    return {video_id for video_id in ids if video_id}
 
 
 def _coerce_float(value: Any) -> Optional[float]:
@@ -472,21 +492,23 @@ def call_openai_json(
     client = OpenAI()
     last_err: Optional[Exception] = None
     for attempt in range(1, max_attempts + 1):
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
+        kwargs = {
+            "model": model,
+            "messages": [
                 {
                     "role": "user",
                     "content": prompt if attempt == 1 else (prompt + "\n\nReturn valid JSON only. Do not include any extra text."),
                 }
             ],
-            temperature=temperature,
-            response_format=(
+            "response_format": (
                 {"type": "json_schema", "json_schema": {"name": schema_name, "schema": schema, "strict": True}}
                 if schema is not None
                 else {"type": "json_object"}
             ),
-        )
+        }
+        if temperature != 0.0:
+            kwargs["temperature"] = temperature
+        response = client.chat.completions.create(**kwargs)
         message = response.choices[0].message
         parsed = getattr(message, "parsed", None)
         if isinstance(parsed, dict):
@@ -744,6 +766,8 @@ def main() -> None:
     parser.add_argument("--titles-dir", type=Path, default=None, help="Optional extracted titles directory to filter stories by successful title extraction.")
     parser.add_argument("--require-title-success", action="store_true", help="Keep only stories whose video_id appears in extracted title outputs with extraction_status=success.")
     parser.add_argument("--require-book-metadata", action="store_true", help="When filtering by titles, require a non-N/A book_title or story_title.")
+    parser.add_argument("--manifest-csv", type=Path, default=None, help="Optional CSV manifest used to restrict processing to listed video_ids.")
+    parser.add_argument("--manifest-video-id-col", type=str, default="video_id")
     args = parser.parse_args()
 
     load_api_key(args.key_path)
@@ -760,6 +784,9 @@ def main() -> None:
     stories = assign_story_ids(load_labcomputer_rows(args.input_dir, min_words=args.min_words))
     if args.transcript_source != "all":
         stories = [row for row in stories if row.transcript_source == args.transcript_source]
+    if args.manifest_csv is not None:
+        manifest_ids = load_manifest_video_ids(args.manifest_csv, video_id_col=args.manifest_video_id_col)
+        stories = [row for row in stories if row.video_id in manifest_ids]
     if args.require_title_success:
         titles_dir = args.titles_dir or Path("data/extracted_titles")
         title_video_ids = load_title_success_video_ids(
