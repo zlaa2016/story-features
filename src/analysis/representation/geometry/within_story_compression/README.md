@@ -9,7 +9,7 @@ stories with the same number of units.
 
 Stories are assigned one age each (`--per-age` stories per age, only ages inside the range a story
 covers, narrow-range stories preferred), aggregated by age with story-level bootstrap intervals,
-and tested with a permutation that shuffles ages within strata of number of units.
+and tested with the size-adjusted (partial) Spearman rho against age. Its permutation null shuffles ages within strata of number of units and recomputes the same statistic (`p_partial`); `partial_ci_*` are story-bootstrap intervals.
 `--n-assignments` repeats the random assignment; `age_tests_across_assignments.csv` gives the median.
 
 Views: `isolated` (each detail encoded alone; content structure) and `contextual` (detail states
