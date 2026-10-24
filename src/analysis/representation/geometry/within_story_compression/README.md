@@ -18,6 +18,21 @@ inside the full story; also carries context accumulation, so read position drift
 Outputs per view (`<output-dir>/<view>/`): `story_profiles.csv`, `assignments.csv`,
 `age_summary_rNN.csv`, `age_tests_rNN.csv`, `hypothesis_check_rNN.json`, `fig_*.png`.
 
+## Reading the k(v) profile from 95% down to 20%
+
+`k_age_profile_rNN.csv` and `fig_k_age_profile.png` give beta(v): the age effect on log k(v),
+per year of age, adjusting for log n_units, at every v from 0.20 to 0.95 (raw k, and k relative
+to the random-unit null). `fig_k_shape_by_age_group.png` shows mean k(v), k(v)/k(0.95) and
+k(v)/null by age band.
+
+* beta high at v = 0.95 and falling to about 0 at v = 0.20: older stories start with more
+  components but converge at the low end (the head is similar).
+* beta flat across v: a proportional shift, both drop at the same relative rate.
+* beta growing as v falls: older stories keep a larger low end (the drop is slower).
+
+`FIXED_UNITS=N` subsamples every story to exactly N units (shorter stories are dropped), which
+removes "has more details" as an explanation for a higher start. Use a separate `OUTPUT_DIR`.
+
 Pre-stated hypothesis (older stories reduce to a few gist components despite higher
 dimensionality): partial rho (controlling log n_units) of `kn90` with age > 0 **and** of `alpha`
 with age > 0. The rival, homogeneous young stories, gives `kn90` < 0 with `alpha` > 0 or

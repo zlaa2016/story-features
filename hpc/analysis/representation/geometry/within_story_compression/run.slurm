@@ -34,6 +34,8 @@ run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geomet
   --n-assignments "${N_ASSIGNMENTS:-5}" \
   --min-units "${MIN_UNITS:-20}" \
   --max-units "${MAX_UNITS:-300}" \
+  --fixed-units "${FIXED_UNITS:-0}" \
+  --age-groups "${AGE_GROUPS:-2-3,4-5,6-7,8-12}" \
   --null-draws "${NULL_DRAWS:-10}" \
   --position-components "${POSITION_COMPONENTS:-3}" \
   --permutations "${PERMUTATIONS:-2000}" \

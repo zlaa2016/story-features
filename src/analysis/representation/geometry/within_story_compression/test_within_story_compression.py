@@ -138,6 +138,31 @@ class AssociationTests(unittest.TestCase):
         self.assertGreater(result["partial_ci_low"], 0.0)
 
 
+class AgeProfileTests(unittest.TestCase):
+    def test_profile_recovers_converging_curves(self) -> None:
+        rng = np.random.default_rng(11)
+        count = 300
+        age = rng.integers(2, 13, size=count).astype(float)
+        size = np.exp(rng.normal(4.0, 0.3, size=count))
+        data = {"age": age, "n_units": size}
+        for v in module.V_GRID:
+            label = int(round(v * 100))
+            effect = 0.10 * (v - 0.20) / 0.75
+            log_k = np.log(size) * 0.5 + effect * age + rng.normal(scale=0.05, size=count)
+            data[f"k{label}"] = np.exp(log_k)
+            data[f"kr{label}"] = np.exp(log_k - 0.5 * np.log(size))
+        profile = module.age_profile(pd.DataFrame(data), np.random.default_rng(0), 100)
+        raw = profile[profile["family"] == "raw_k"].set_index("v")["beta_age_per_year"]
+        self.assertAlmostEqual(raw.loc[0.95], 0.10, delta=0.02)
+        self.assertAlmostEqual(raw.loc[0.2], 0.0, delta=0.02)
+        self.assertGreater(raw.loc[0.95] - raw.loc[0.2], 0.06)
+
+    def test_grid_reaches_95_percent(self) -> None:
+        self.assertAlmostEqual(float(module.V_GRID[-1]), 0.95)
+        stats = module.spectrum_stats(np.ones(20), 21)
+        self.assertEqual(stats["k95"], 19.0)
+
+
 class EndToEndTests(unittest.TestCase):
     def test_synthetic_shards_run_through_the_cli(self) -> None:
         rng = np.random.default_rng(4)
@@ -177,6 +202,17 @@ class EndToEndTests(unittest.TestCase):
                          "age_tests_across_assignments.csv", "hypothesis_check_r00.json", "fig_k_curves.png",
                          "fig_incremental_pr.png", "fig_position_drift.png", "run_provenance.json"):
                 self.assertTrue((view_dir / name).exists(), name)
+            for name in ("k_age_profile_r00.csv", "fig_k_shape_by_age_group.png", "fig_k_age_profile.png"):
+                self.assertTrue((view_dir / name).exists(), name)
+            fixed_output = root_path / "fixed"
+            module.main([
+                "--isolated-dir", str(shard_dir), "--views", "isolated",
+                "--age-min", "3", "--age-max", "9", "--per-age", "10", "--min-units", "20", "--fixed-units", "25",
+                "--null-draws", "3", "--permutations", "30", "--bootstrap", "30",
+                "--age-groups", "3-4,5-6,7-9", "--output-dir", str(fixed_output),
+            ])
+            fixed_profiles = pd.read_csv(fixed_output / "isolated" / "story_profiles.csv")
+            self.assertEqual(set(fixed_profiles["n_units"].astype(int)), {25})
             summary = pd.read_csv(view_dir / "age_summary_r00.csv")
             self.assertEqual(sorted(summary["age"].unique().tolist()), [3.0, 6.0, 9.0])
             self.assertEqual(int(summary[summary["stat"] == "k90"]["n_stories"].max()), 10)
