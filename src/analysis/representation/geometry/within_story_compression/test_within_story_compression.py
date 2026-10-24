@@ -151,11 +151,40 @@ class AgeProfileTests(unittest.TestCase):
             log_k = np.log(size) * 0.5 + effect * age + rng.normal(scale=0.05, size=count)
             data[f"k{label}"] = np.exp(log_k)
             data[f"kr{label}"] = np.exp(log_k - 0.5 * np.log(size))
-        profile = module.age_profile(pd.DataFrame(data), np.random.default_rng(0), 100)
-        raw = profile[profile["family"] == "raw_k"].set_index("v")["beta_age_per_year"]
-        self.assertAlmostEqual(raw.loc[0.95], 0.10, delta=0.02)
-        self.assertAlmostEqual(raw.loc[0.2], 0.0, delta=0.02)
-        self.assertGreater(raw.loc[0.95] - raw.loc[0.2], 0.06)
+        for v in module.V_GRID:
+            label = int(round(v * 100))
+            data[f"kcr{label}"] = data[f"kr{label}"]
+        frame = pd.DataFrame(data)
+        profile = module.age_profile(frame, np.random.default_rng(0), 100, permutations=100)
+        raw = profile[(profile["family"] == "raw_k") & (profile["model"] == "M1")].set_index("v")
+        self.assertAlmostEqual(raw.loc[0.95, "beta_age_per_year"], 0.10, delta=0.02)
+        self.assertAlmostEqual(raw.loc[0.2, "beta_age_per_year"], 0.0, delta=0.02)
+        self.assertGreater(raw.loc[0.95, "beta_age_per_year"], raw.loc[0.95, "null_high"])
+        self.assertLess(raw.loc[0.2, "null_low"], 0.0)
+        self.assertGreater(raw.loc[0.2, "null_high"], 0.0)
+        shape = module.profile_shape_test(frame, "k", np.random.default_rng(1), 200)
+        self.assertGreater(shape["shape_statistic_beta95_minus_beta20"], 0.06)
+        self.assertLess(shape["p"], 0.02)
+
+    def test_floor_report_counts_components_at_the_floor(self) -> None:
+        frame = pd.DataFrame({
+            "age": [2.0, 2.0, 3.0, 8.0, 9.0, 9.0],
+            "k20": [1, 2, 2, 4, 5, 1], "head1": [0.4] * 6, "cum2": [0.5] * 6,
+        })
+        report = module.floor_report(frame, "2-3,8-12").set_index("age_group")
+        self.assertAlmostEqual(report.loc["2-3", "share_k20_le2"], 1.0)
+        self.assertAlmostEqual(report.loc["8-12", "share_k20_le2"], 1 / 3)
+
+    def test_covariates_from_detail_text(self) -> None:
+        text = " ".join(chr(97 + (i // 26) % 26) + chr(97 + i % 26) + "x" for i in range(400))
+        details = pd.DataFrame({
+            "story_key": ["a", "a", "b"], "detail_index": [0, 1, 0],
+            "detail_text": [text[:1500], text[1500:], "the cat sat"], "token_count": [10, 20, 3],
+        })
+        covariates = module.story_covariates(details).set_index("story_key")
+        self.assertAlmostEqual(covariates.loc["a", "mean_detail_tokens"], 15.0)
+        self.assertGreater(covariates.loc["a", "lex_ttr"], 0.9)
+        self.assertTrue(np.isnan(covariates.loc["b", "lex_ttr"]))
 
     def test_grid_reaches_95_percent(self) -> None:
         self.assertAlmostEqual(float(module.V_GRID[-1]), 0.95)
@@ -202,7 +231,8 @@ class EndToEndTests(unittest.TestCase):
                          "age_tests_across_assignments.csv", "hypothesis_check_r00.json", "fig_k_curves.png",
                          "fig_incremental_pr.png", "fig_position_drift.png", "run_provenance.json"):
                 self.assertTrue((view_dir / name).exists(), name)
-            for name in ("k_age_profile_r00.csv", "fig_k_shape_by_age_group.png", "fig_k_age_profile.png"):
+            for name in ("k_age_profile_r00.csv", "k_profile_shape_test_r00.json", "floor_report.csv",
+                         "fig_k_shape_by_age_group.png", "fig_k_age_profile.png"):
                 self.assertTrue((view_dir / name).exists(), name)
             fixed_output = root_path / "fixed"
             module.main([
