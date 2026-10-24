@@ -56,7 +56,7 @@ VIEWS = {
 TEST_STATS = [
     "k90", "kn90", "kn50", "kn20", "head1", "head3", "pr", "effrank", "alpha",
     "pr_excess", "head3_excess", "kn90_excess", "alpha_excess", "mean_pairwise_cos",
-    "pr_f100", "prgap_f100", "pr_slope_late", "tau_rel",
+    "prgap_f40", "prgap_f60", "pr_slope_late", "tau_rel",
     "r2_pos", "r2_pos_excess", "head3_detr", "kn90_detr", "alpha_detr", "head3_drop", "pc_pos_absrho",
 ]
 
@@ -410,40 +410,70 @@ def equalize(assigned: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     return output
 
 
+def residualize(values: np.ndarray, design: np.ndarray) -> np.ndarray:
+    coefficients, *_ = np.linalg.lstsq(design, values, rcond=None)
+    return values - design @ coefficients
+
+
+def centered_correlation(left: np.ndarray, right: np.ndarray) -> float:
+    if left.std() == 0 or right.std() == 0:
+        return float("nan")
+    return float(np.corrcoef(left, right)[0, 1])
+
+
 def partial_spearman(age: np.ndarray, stat: np.ndarray, control: np.ndarray) -> float:
     ranks = [rankdata(item) for item in (age, stat, control)]
     design = np.column_stack([np.ones(len(control)), ranks[2]])
-    residuals = []
-    for target in ranks[:2]:
-        coefficients, *_ = np.linalg.lstsq(design, target, rcond=None)
-        residuals.append(target - design @ coefficients)
-    if residuals[0].std() == 0 or residuals[1].std() == 0:
-        return float("nan")
-    return float(np.corrcoef(residuals[0], residuals[1])[0, 1])
+    return centered_correlation(residualize(ranks[0], design), residualize(ranks[1], design))
 
 
-def age_association(frame: pd.DataFrame, stat: str, rng: np.random.Generator, permutations: int) -> dict[str, float]:
-    valid = frame[["age", stat, "n_units"]].replace([np.inf, -np.inf], np.nan).dropna()
+def age_association(
+    frame: pd.DataFrame, stat: str, rng: np.random.Generator, permutations: int, bootstrap: int = 0
+) -> dict[str, float]:
+    """Raw and size-adjusted Spearman association of ``stat`` with age.
+
+    The test statistic is the partial rho (age and stat both residualised on the rank of
+    log n_units).  Its null comes from shuffling ages within strata of n_units and recomputing
+    the same statistic, so the null is centred on zero even when the statistic depends on n.
+    """
+    columns = ["age", stat, "n_units"]
+    valid = frame[columns].replace([np.inf, -np.inf], np.nan).dropna()
+    empty = {"stat": stat, "n": len(valid), "rho": np.nan, "partial_rho": np.nan,
+             "partial_ci_low": np.nan, "partial_ci_high": np.nan, "p_partial": np.nan}
     if len(valid) < 10 or valid["age"].nunique() < 3 or valid[stat].nunique() < 3:
-        return {"stat": stat, "n": len(valid), "rho": np.nan, "partial_rho": np.nan, "p_stratified": np.nan}
-    age_rank = rankdata(valid["age"].to_numpy())
-    stat_rank = rankdata(valid[stat].to_numpy())
-    observed = float(np.corrcoef(age_rank, stat_rank)[0, 1])
-    strata = pd.qcut(valid["n_units"].rank(method="first"), q=min(5, max(2, len(valid) // 20)), labels=False).to_numpy()
+        return empty
+    age = valid["age"].to_numpy(dtype=float)
+    values = valid[stat].to_numpy(dtype=float)
+    size = valid["n_units"].to_numpy(dtype=float)
+    age_rank, stat_rank, size_rank = rankdata(age), rankdata(values), rankdata(np.log(size))
+    design = np.column_stack([np.ones(len(size)), size_rank])
+    stat_residual = residualize(stat_rank, design)
+    observed = centered_correlation(residualize(age_rank, design), stat_residual)
+    strata = pd.qcut(pd.Series(size).rank(method="first"), q=min(5, max(2, len(valid) // 20)), labels=False).to_numpy()
     groups = [np.flatnonzero(strata == value) for value in np.unique(strata)]
     exceed = 0
     for _ in range(permutations):
         permuted = age_rank.copy()
         for members in groups:
             permuted[members] = age_rank[rng.permutation(members)]
-        if abs(float(np.corrcoef(permuted, stat_rank)[0, 1])) >= abs(observed) - 1e-12:
+        statistic = centered_correlation(residualize(permuted, design), stat_residual)
+        if np.isfinite(statistic) and abs(statistic) >= abs(observed) - 1e-12:
             exceed += 1
+    low = high = float("nan")
+    if bootstrap > 0:
+        draws = []
+        for _ in range(bootstrap):
+            pick = rng.integers(0, len(valid), size=len(valid))
+            value = partial_spearman(age[pick], values[pick], np.log(size[pick]))
+            if np.isfinite(value):
+                draws.append(value)
+        if len(draws) > 20:
+            low, high = float(np.quantile(draws, 0.025)), float(np.quantile(draws, 0.975))
     return {
-        "stat": stat,
-        "n": len(valid),
-        "rho": observed,
-        "partial_rho": partial_spearman(valid["age"].to_numpy(), valid[stat].to_numpy(), np.log(valid["n_units"].to_numpy())),
-        "p_stratified": (1 + exceed) / (1 + permutations),
+        "stat": stat, "n": len(valid),
+        "rho": float(np.corrcoef(age_rank, stat_rank)[0, 1]),
+        "partial_rho": observed, "partial_ci_low": low, "partial_ci_high": high,
+        "p_partial": (1 + exceed) / (1 + permutations),
     }
 
 
@@ -642,8 +672,8 @@ def run_view(view_name: str, args: argparse.Namespace) -> None:
             assignment_rows.append({"replicate": replicate, "story_key": story_key, "age": age})
         stats = [name for name in TEST_STATS if name in selected.columns]
         summary = age_summary(selected, stats, rng, args.bootstrap)
-        tests = pd.DataFrame([age_association(selected, name, rng, args.permutations) for name in stats])
-        tests["q_bh"] = benjamini_hochberg(tests["p_stratified"])
+        tests = pd.DataFrame([age_association(selected, name, rng, args.permutations, bootstrap=min(args.bootstrap, 500)) for name in stats])
+        tests["q_bh"] = benjamini_hochberg(tests["p_partial"])
         tests["replicate"] = replicate
         write_csv(output_dir / f"age_summary_r{replicate:02d}.csv", summary)
         write_csv(output_dir / f"age_tests_r{replicate:02d}.csv", tests)
@@ -655,7 +685,8 @@ def run_view(view_name: str, args: argparse.Namespace) -> None:
     combined = pd.concat(association_frames, ignore_index=True)
     across = combined.groupby("stat").agg(
         median_rho=("rho", "median"), median_partial_rho=("partial_rho", "median"),
-        median_p=("p_stratified", "median"), replicates=("replicate", "nunique"),
+        median_ci_low=("partial_ci_low", "median"), median_ci_high=("partial_ci_high", "median"),
+        median_p=("p_partial", "median"), replicates=("replicate", "nunique"),
     ).reset_index()
     write_csv(output_dir / "age_tests_across_assignments.csv", across)
     write_run_provenance(output_dir, args, extra={"view": view_name, "candidate_stories": int(len(stories))})

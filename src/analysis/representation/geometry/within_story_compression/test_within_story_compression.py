@@ -116,6 +116,28 @@ class AssignmentTests(unittest.TestCase):
         self.assertEqual(set(counts.tolist()), {1})
 
 
+class AssociationTests(unittest.TestCase):
+    def frame(self, direct_age_effect: float) -> pd.DataFrame:
+        rng = np.random.default_rng(7)
+        count = 400
+        age = rng.integers(2, 13, size=count).astype(float)
+        size = np.exp(3.0 + 0.12 * age + rng.normal(scale=0.4, size=count))
+        stat = -1.0 * np.log(size) + direct_age_effect * age + rng.normal(scale=0.5, size=count)
+        return pd.DataFrame({"age": age, "n_units": size, "stat": stat})
+
+    def test_size_driven_trend_is_not_reported_as_an_age_effect(self) -> None:
+        result = module.age_association(self.frame(0.0), "stat", np.random.default_rng(0), 400, bootstrap=100)
+        self.assertLess(result["rho"], -0.2)
+        self.assertLess(abs(result["partial_rho"]), 0.15)
+        self.assertGreater(result["p_partial"], 0.05)
+
+    def test_direct_age_effect_survives_size_adjustment(self) -> None:
+        result = module.age_association(self.frame(0.15), "stat", np.random.default_rng(0), 400, bootstrap=100)
+        self.assertGreater(result["partial_rho"], 0.25)
+        self.assertLess(result["p_partial"], 0.01)
+        self.assertGreater(result["partial_ci_low"], 0.0)
+
+
 class EndToEndTests(unittest.TestCase):
     def test_synthetic_shards_run_through_the_cli(self) -> None:
         rng = np.random.default_rng(4)
