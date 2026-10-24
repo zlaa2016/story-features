@@ -25,7 +25,7 @@ with age > 0. The rival, homogeneous young stories, gives `kn90` < 0 with `alpha
 
 ```bash
 git fetch origin && git checkout compress && git pull --ff-only
-SUBSET_CSV=data/exports/age_ranges/flat_videos_D_2-12.csv \
+SUBSET_CSV=data/processed/flat_videos_D_2-12.csv \
 sbatch --account=torch_pr_494_general hpc/analysis/representation/geometry/within_story_compression/run.slurm
 ```
 
