@@ -31,7 +31,7 @@ from shared.io import write_csv, write_json
 from shared.research import benjamini_hochberg, write_run_provenance
 
 
-V_GRID = np.round(np.arange(0.20, 0.901, 0.05), 2)
+V_GRID = np.round(np.arange(0.20, 0.951, 0.05), 2)
 FRACTIONS = np.round(np.arange(0.2, 1.001, 0.1), 1)
 BIG_COST = 1e6
 DEFAULT_ROOT = "results/features/representation_extraction/causal_lm/detail_extraction"
@@ -54,7 +54,7 @@ VIEWS = {
 }
 
 TEST_STATS = [
-    "k90", "kn90", "kn50", "kn20", "head1", "head3", "pr", "effrank", "alpha",
+    "k95", "k90", "k20", "kn95", "kn90", "kn50", "kn20", "kratio_20_95", "logk_slope", "kr20", "kr50", "kr95", "head1", "head3", "pr", "effrank", "alpha",
     "pr_excess", "head3_excess", "kn90_excess", "alpha_excess", "mean_pairwise_cos",
     "prgap_f40", "prgap_f60", "pr_slope_late", "tau_rel",
     "r2_pos", "r2_pos_excess", "head3_detr", "kn90_detr", "alpha_detr", "head3_drop", "pc_pos_absrho",
@@ -235,6 +235,17 @@ def story_profile(
         null_mean = float(np.nanmean([item[name] for item in null_rows])) if null_rows else float("nan")
         row[f"null_{name}"] = null_mean
         row[f"{name}_excess"] = observed[name] - null_mean
+    for v in V_GRID:
+        label = int(round(v * 100))
+        null_k = float(np.nanmean([item[f"k{label}"] for item in null_rows])) if null_rows else float("nan")
+        row[f"null_k{label}"] = null_k
+        row[f"kr{label}"] = observed[f"k{label}"] / null_k if null_k > 0 else float("nan")
+    k_values = np.array([observed[f"k{int(round(v * 100))}"] for v in V_GRID], dtype=float)
+    row["kratio_20_95"] = float(k_values[0] / k_values[-1]) if k_values[-1] > 0 else float("nan")
+    if np.isfinite(k_values).all() and (k_values > 0).all():
+        row["logk_slope"] = float(np.polyfit(V_GRID, np.log(k_values), 1)[0])
+    else:
+        row["logk_slope"] = float("nan")
 
     grid = np.unique(np.round(np.linspace(5, n, 15)).astype(int))
     fraction_sizes = np.array([max(5, int(round(f * n))) for f in FRACTIONS])
@@ -500,6 +511,105 @@ def age_summary(frame: pd.DataFrame, stats: list[str], rng: np.random.Generator,
     return pd.DataFrame(rows)
 
 
+def age_profile(frame: pd.DataFrame, rng: np.random.Generator, draws: int) -> pd.DataFrame:
+    """Age effect on k(v) at every variance level v, controlling for log n_units.
+
+    beta(v) is the OLS coefficient of age in  log k(v) ~ age + log n_units.  Read it as the
+    proportional change in the number of components needed per extra year of age.  It is computed
+    for raw k and for k relative to the random-unit null (kr).  A beta that is large at high v and
+    near zero at low v means older stories start higher but converge at low variance levels; a
+    flat beta means a proportional shift; a beta that grows as v falls means a faster-falling or
+    higher low end for older stories.
+    """
+    rows = []
+    for family, prefix in (("raw_k", "k"), ("k_over_null", "kr")):
+        for v in V_GRID:
+            label = int(round(v * 100))
+            columns = ["age", f"{prefix}{label}", "n_units"]
+            valid = frame[columns].replace([np.inf, -np.inf], np.nan).dropna()
+            valid = valid[valid[f"{prefix}{label}"] > 0]
+            if len(valid) < 10:
+                continue
+            age = valid["age"].to_numpy(dtype=float)
+            response = np.log(valid[f"{prefix}{label}"].to_numpy(dtype=float))
+            size = np.log(valid["n_units"].to_numpy(dtype=float))
+            design = np.column_stack([np.ones(len(valid)), age, size])
+            beta = np.linalg.lstsq(design, response, rcond=None)[0][1]
+            boot = []
+            for _ in range(draws):
+                pick = rng.integers(0, len(valid), size=len(valid))
+                boot.append(np.linalg.lstsq(design[pick], response[pick], rcond=None)[0][1])
+            rows.append({
+                "family": family, "v": float(v), "n_stories": len(valid), "beta_age_per_year": float(beta),
+                "ci_low": float(np.quantile(boot, 0.025)) if boot else np.nan,
+                "ci_high": float(np.quantile(boot, 0.975)) if boot else np.nan,
+            })
+    return pd.DataFrame(rows)
+
+
+def age_groups(frame: pd.DataFrame, spec: str) -> pd.Series:
+    edges = []
+    for part in spec.split(","):
+        low, high = part.split("-")
+        edges.append((float(low), float(high), part))
+    labels = pd.Series(index=frame.index, dtype=object)
+    for low, high, name in edges:
+        labels[(frame["age"] >= low) & (frame["age"] <= high)] = name
+    return labels
+
+
+def make_shape_plots(frame: pd.DataFrame, profile: pd.DataFrame, output_dir: Path, title: str, spec: str) -> None:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    frame = frame.assign(group=age_groups(frame, spec)).dropna(subset=["group"])
+    groups = [part for part in spec.split(",") if (frame["group"] == part).any()]
+    colors = dict(zip(groups, plt.cm.viridis(np.linspace(0, 1, max(len(groups), 2)))))
+    labels = [int(round(v * 100)) for v in V_GRID]
+    figure, axes = plt.subplots(1, 3, figsize=(15, 4))
+    for group in groups:
+        members = frame[frame["group"] == group]
+        count = len(members)
+        raw = np.array([members[f"k{label}"].to_numpy(dtype=float) for label in labels])
+        shape = raw / raw[-1]
+        relative = np.array([members[f"kr{label}"].to_numpy(dtype=float) for label in labels])
+        for axis, values, logged in ((axes[0], raw, True), (axes[1], shape, False), (axes[2], relative, False)):
+            mean = np.nanmean(values, axis=1)
+            error = np.nanstd(values, axis=1) / np.sqrt(max(count, 1))
+            axis.plot(V_GRID, mean, color=colors[group], label=f"ages {group} (n={count})")
+            axis.fill_between(V_GRID, mean - error, mean + error, color=colors[group], alpha=0.15)
+            if logged:
+                axis.set_yscale("log")
+    axes[0].set_title("components needed, k(v)")
+    axes[1].set_title("k(v) / k(0.95): does the drop speed differ?")
+    axes[2].set_title("k(v) / random-unit null k(v)")
+    for axis in axes:
+        axis.set_xlabel("variance explained v")
+    axes[0].legend(fontsize=7)
+    figure.suptitle(title)
+    figure.tight_layout()
+    figure.savefig(output_dir / "fig_k_shape_by_age_group.png", dpi=150)
+    plt.close(figure)
+
+    figure, axis = plt.subplots(figsize=(6, 4))
+    for family, color in (("raw_k", "tab:blue"), ("k_over_null", "tab:orange")):
+        rows = profile[profile["family"] == family].sort_values("v")
+        if rows.empty:
+            continue
+        axis.plot(rows["v"], rows["beta_age_per_year"], color=color, label=family)
+        axis.fill_between(rows["v"], rows["ci_low"], rows["ci_high"], color=color, alpha=0.15)
+    axis.axhline(0, color="black", lw=0.6)
+    axis.set_xlabel("variance explained v")
+    axis.set_ylabel("age effect on log k(v), per year, size-adjusted")
+    axis.set_title("flat = proportional shift; falling toward low v = converge at 20%", fontsize=8)
+    axis.legend()
+    figure.tight_layout()
+    figure.savefig(output_dir / "fig_k_age_profile.png", dpi=150)
+    plt.close(figure)
+
+
 def hypothesis_check(tests: pd.DataFrame) -> dict[str, Any]:
     def partial(name: str) -> float:
         row = tests[tests["stat"] == name]
@@ -607,6 +717,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--n-assignments", type=int, default=1, help="independent random one-story-one-age assignments")
     parser.add_argument("--min-units", type=int, default=20)
     parser.add_argument("--max-units", type=int, default=300, help="thin longer stories evenly to this many units; 0 = no limit")
+    parser.add_argument("--fixed-units", type=int, default=0, help="subsample every story to exactly this many units (stories with fewer are dropped); 0 = off")
+    parser.add_argument("--age-groups", default="2-3,4-5,6-7,8-12", help="age bands for the shape plots")
     parser.add_argument("--null-draws", type=int, default=10)
     parser.add_argument("--position-components", type=int, default=3)
     parser.add_argument("--pool-size", type=int, default=20000)
@@ -643,7 +755,13 @@ def run_view(view_name: str, args: argparse.Namespace) -> None:
 
     rows = []
     for number, story_key in enumerate(stories["story_key"], start=1):
-        matrix, thinned = thin_units(vectors[story_slices[story_key]], args.max_units)
+        story_vectors = vectors[story_slices[story_key]]
+        if args.fixed_units > 0:
+            if len(story_vectors) < args.fixed_units:
+                continue
+            chosen = np.sort(stable_rng(args.seed, f"fixed|{story_key}").choice(len(story_vectors), args.fixed_units, replace=False))
+            story_vectors = story_vectors[chosen]
+        matrix, thinned = thin_units(story_vectors, args.max_units)
         profile = story_profile(
             matrix, dimension_scale, pool, pool_story, story_key,
             stable_rng(args.seed, story_key),
@@ -675,12 +793,15 @@ def run_view(view_name: str, args: argparse.Namespace) -> None:
         tests = pd.DataFrame([age_association(selected, name, rng, args.permutations, bootstrap=min(args.bootstrap, 500)) for name in stats])
         tests["q_bh"] = benjamini_hochberg(tests["p_partial"])
         tests["replicate"] = replicate
+        profile = age_profile(selected, rng, min(args.bootstrap, 500))
+        write_csv(output_dir / f"k_age_profile_r{replicate:02d}.csv", profile)
         write_csv(output_dir / f"age_summary_r{replicate:02d}.csv", summary)
         write_csv(output_dir / f"age_tests_r{replicate:02d}.csv", tests)
         write_json(output_dir / f"hypothesis_check_r{replicate:02d}.json", hypothesis_check(tests))
         association_frames.append(tests)
         if replicate == 0:
             make_plots(selected, summary, output_dir, f"{view_name}, layer {args.layer}")
+            make_shape_plots(selected, profile, output_dir, f"{view_name}, layer {args.layer}", args.age_groups)
     write_csv(output_dir / "assignments.csv", pd.DataFrame(assignment_rows))
     combined = pd.concat(association_frames, ignore_index=True)
     across = combined.groupby("stat").agg(
