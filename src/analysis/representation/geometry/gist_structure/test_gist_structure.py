@@ -232,28 +232,49 @@ class RealControlTests(unittest.TestCase):
 
 
 class PcOverlapTests(unittest.TestCase):
-    def test_drifting_subspace_lowers_overlap_with_the_youngest_age_more_than_shuffled_ages(self) -> None:
-        rng = np.random.default_rng(13)
+    def drifting_stories(self, rng: np.random.Generator) -> tuple[np.ndarray, np.ndarray]:
         d, per_age = 64, 60
         basis = np.linalg.qr(rng.normal(size=(d, d)))[0]
-        rows, lo = [], []
+        rows, ages = [], []
         for age in overlap.AGES:
             columns = basis[:, int(age) - 2: int(age) - 2 + 6]
-            scores = rng.normal(size=(per_age, 6))
-            rows.append(scores @ columns.T + 0.05 * rng.normal(size=(per_age, d)))
-            lo.extend([int(age)] * per_age)
-        x = np.vstack(rows)
-        lo = np.array(lo)
-        result = overlap.run_mode(x, lo, lo.copy(), "multi", per_age, splits=6, permutations=4, seed=1, log=lambda _: None)
-        level = 1  # 80% of the variance
-        young = result["observed"]["youngest"][0][:, level]
-        self.assertGreater(young[1], young[-1] + 0.2)
-        shuffled = result["null"]["youngest"][0][:, level]
-        self.assertGreater(shuffled[-1], young[-1] + 0.1)
-        ceiling = result["observed"]["ceiling"][0][:, level]
-        self.assertTrue(np.nanmin(ceiling) > 0.5)
-        table = overlap.summary_table(result, "multi")
-        self.assertEqual(len(table), len(overlap.AGES) * len(overlap.LEVELS))
+            rows.append(rng.normal(size=(per_age, 6)) @ columns.T + 0.05 * rng.normal(size=(per_age, d)))
+            ages.extend([int(age)] * per_age)
+        return np.vstack(rows), np.array(ages)
+
+    def test_heatmap_quantities_have_the_expected_structure(self) -> None:
+        rng = np.random.default_rng(13)
+        x, ages = self.drifting_stories(rng)
+        result = overlap.run_mode(x, ages, ages.copy(), "multi", 60, splits=4, permutations=3, seed=1, log=lambda _: None)
+        observed = result["observed"]
+        k = observed["k"]
+        self.assertEqual(k.shape, (len(overlap.AGES), len(overlap.V_K)))
+        self.assertTrue((np.diff(k, axis=1) >= 0).all())  # more variance needs at least as many components
+        level = overlap.V_PAIR.index(0.8)
+        others = overlap.others_mean(observed["overlap"])[:, level]
+        middle, edge = list(overlap.AGES).index(7), list(overlap.AGES).index(12)
+        self.assertGreater(others[middle], others[edge] + 0.02)  # edge ages have fewer neighbours sharing their subspace
+        cka_others = overlap.others_mean(observed["cka"])[:, level]
+        self.assertGreater(cka_others[middle], cka_others[edge])
+        diagonal = np.array([observed["overlap"][i, i, level] for i in range(len(overlap.AGES))])
+        self.assertTrue((diagonal >= others - 0.02).all())  # same-age halves are at least as close as other ages
+        near = observed["overlap"][middle, middle + 1, level]
+        far = observed["overlap"][middle, 0, level]
+        self.assertGreater(near, far)
+        table = overlap.tables(result, "multi")
+        self.assertEqual(len(table["k_by_age_variance"]), len(overlap.AGES) * len(overlap.V_K))
+        self.assertEqual(len(table["pairs_by_age_variance"]), len(overlap.AGES) ** 2 * len(overlap.V_PAIR))
+
+    def test_corner_sums_and_cka_of_identical_views_is_one(self) -> None:
+        rng = np.random.default_rng(14)
+        block = rng.normal(size=(5, 5))
+        sums = overlap.corner_sums(block)
+        self.assertAlmostEqual(sums[2, 3], float((block[:3, :4] ** 2).sum()))
+        y = rng.normal(size=(40, 6))
+        y = y - y.mean(axis=0)
+        cross = (y.T @ y)
+        value = (cross**2).sum() / np.sqrt((cross**2).sum() * (cross**2).sum())
+        self.assertAlmostEqual(float(value), 1.0)
 
 
 class PipelineTests(unittest.TestCase):

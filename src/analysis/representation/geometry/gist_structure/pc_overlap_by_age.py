@@ -1,27 +1,28 @@
-"""How much do the principal components of one age's stories overlap with another age's, at several variance levels?
+"""How do the principal components and the geometry of one age's stories relate to every other age's, as the variance captured changes?
 
-For each age a (2..12) take the stories whose stated age range covers a, run PCA on their story
-embeddings, and keep the top k components that capture v of the variance (v = 50%, 80%, 95%).  The
-overlap between two ages is  ||U_a[:k] U_b[:k]^T||_F^2 / k  with k = min(k_a, k_b): 1 means the
-smaller subspace lies inside the larger, a random pair of k-dimensional subspaces gives about k/d.
+For each age a (2..12) take the stories whose stated age range covers a and run PCA on their story
+embeddings.  Three heatmaps put age on the x axis and the share of variance captured on the y axis:
 
-Shown against age: the dimensionality k_a(v), the overlap of each age with the next age, and the
-overlap of each age with the youngest age.
+1. number of PCs needed (k) to capture that share of the variance;
+2. PC overlap: the mean over all other ages b of  ||U_a[:k] U_b[:k]^T||_F^2 / k  (k = the smaller of the
+   two ages' component counts at that variance level).  1 means one subspace lies inside the other;
+   random k-dimensional subspaces give about k/d;
+3. geometry preservation (linear CKA): every story of the collection is projected onto age a's top k
+   PCs and onto age b's top k PCs; CKA between those two projections of the *same* stories says whether
+   the story space has the same geometry seen through the two ages' axes.  Unlike subspace overlap it
+   weighs directions by the variance they carry.  (Plain CKA cannot compare two ages directly because
+   they contain different stories; projecting one common set of stories removes that problem.)  CKA is
+   close to 1 for any pair here, so geometry change is shown as 1 - CKA on a log scale.
 
-Every cell is cut to the same number of stories and every quantity is computed on random half-splits
-(without replacement), so all of them use the same sample size:
+Each heatmap has a companion that shows observed minus a permuted-age null: the same analysis after the
+age ranges are shuffled among stories (content no longer tied to age, but wide-range stories still sit
+in many ages, so sharing between ages is preserved).  Cells are cut to the same size and every number
+comes from random half-splits without replacement.  The diagonal of the supplementary matrices (two
+disjoint halves of one age) is not a ceiling in ``multi`` mode: ages with overlapping stated ranges share
+stories, so neighbouring ages can exceed it.
 
-* observed: overlap between a random half of age a and a random half of the other age; the band is the
-  spread over repeated random splits;
-* ceiling: overlap between the two halves of the *same* age (how similar two samples of one population
-  look; the largest overlap sampling noise permits at this sample size);
-* permuted-age band: the same analysis after the age ranges are shuffled among stories (content no
-  longer tied to age, but wide-range stories still sit in many ages, so sharing between neighbouring
-  ages is preserved).  Observed values outside this band are age-specific structure;
-* chance: k/d, the overlap of random subspaces.
-
-``--mode multi`` uses every story covering the age (as the flat subset is defined); ``--mode disjoint``
-gives each story to one age (balanced matching) so neighbouring ages share no stories.
+``--modes multi`` uses every story covering the age (as the flat subset is defined); ``disjoint`` gives
+each story to one age.
 """
 from __future__ import annotations
 
@@ -33,12 +34,13 @@ from typing import Callable
 
 import numpy as np
 import pandas as pd
-from scipy.stats import spearmanr
 
 base = importlib.import_module("analysis.representation.geometry.within_story_compression.analyze")
 
 AGES = np.arange(2, 13)
-LEVELS = (0.5, 0.8, 0.95)
+V_K = np.round(np.arange(0.10, 0.991, 0.01), 2)
+V_PAIR = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99)
+SHOWN = (0.5, 0.8, 0.95)
 
 
 # --------------------------------------------------------------------------------------
@@ -124,123 +126,194 @@ def subspace_overlap(first: np.ndarray, second: np.ndarray, k: int) -> float:
     return float(np.linalg.norm(first[:k] @ second[:k].T) ** 2 / k)
 
 
-def half_curves(x: np.ndarray, cells: dict[int, np.ndarray], rng: np.random.Generator) -> dict[str, np.ndarray]:
-    """One random split of every age into two halves; k(v), same-age ceiling, overlap with next age and with age 2."""
-    halves = {}
+def corner_sums(block: np.ndarray) -> np.ndarray:
+    """S[i, j] = sum of squares of block[:i + 1, :j + 1]; the numerators for every k at once."""
+    return np.cumsum(np.cumsum(block**2, axis=0), axis=1)
+
+
+def levels_to_k(cumulative: np.ndarray, levels: np.ndarray | tuple[float, ...]) -> np.ndarray:
+    return np.searchsorted(cumulative, np.asarray(levels) - 1e-12) + 1
+
+
+def one_split(x: np.ndarray, centred_all: np.ndarray, cells: dict[int, np.ndarray], rng: np.random.Generator) -> dict[str, np.ndarray]:
+    """One random half-split of every age: k(v), overlap and CKA between every pair of ages at each v.
+
+    Overlap and CKA compare a random half of age a with the *other* random half of age b, so the
+    diagonal (a = b) is the same-age ceiling at this sample size.
+    """
+    pieces = {}
     for age, members in cells.items():
         if len(members) < 20:
             continue
         order = rng.permutation(len(members))
         middle = len(order) // 2
-        halves[age] = (principal_axes(x[members[order[:middle]]]), principal_axes(x[members[order[middle: 2 * middle]]]))
-    shape = (len(AGES), len(LEVELS))
-    out = {name: np.full(shape, np.nan) for name in ("k", "ceiling", "adjacent", "youngest")}
-    first = int(AGES[0])
-    for i, age in enumerate(AGES):
-        if int(age) not in halves:
+        first, cumulative_first = principal_axes(x[members[order[:middle]]])
+        second, cumulative_second = principal_axes(x[members[order[middle: 2 * middle]]])
+        projected = (centred_all @ first.T, centred_all @ second.T)
+        pieces[int(age)] = {
+            "axes": (first, second), "projected": projected, "k_fine": levels_to_k(cumulative_first, V_K),
+            "k_pair": (levels_to_k(cumulative_first, V_PAIR), levels_to_k(cumulative_second, V_PAIR)),
+            "self_sums": (corner_sums(projected[0].T @ projected[0]), corner_sums(projected[1].T @ projected[1])),
+        }
+    count, levels = len(AGES), len(V_PAIR)
+    out = {"k": np.full((count, len(V_K)), np.nan), "overlap": np.full((count, count, levels), np.nan), "cka": np.full((count, count, levels), np.nan)}
+    for i, age_a in enumerate(AGES):
+        if int(age_a) not in pieces:
             continue
-        (axes_a, cumulative_a), (axes_b, cumulative_b) = halves[int(age)]
-        for j, level in enumerate(LEVELS):
-            k_a, k_b = components_at(cumulative_a, level), components_at(cumulative_b, level)
-            out["k"][i, j] = k_a
-            out["ceiling"][i, j] = subspace_overlap(axes_a, axes_b, min(k_a, k_b))
-            for target, name in ((int(age) + 1, "adjacent"), (first, "youngest")):
-                if target in halves and target != int(age):
-                    other_axes, other_cumulative = halves[target][1]
-                    out[name][i, j] = subspace_overlap(axes_a, other_axes, min(k_a, components_at(other_cumulative, level)))
+        a = pieces[int(age_a)]
+        out["k"][i] = a["k_fine"]
+        for j, age_b in enumerate(AGES):
+            if int(age_b) not in pieces:
+                continue
+            b = pieces[int(age_b)]
+            overlap_sums = corner_sums(a["axes"][0] @ b["axes"][1].T)
+            cross_sums = corner_sums(a["projected"][0].T @ b["projected"][1])
+            for v in range(levels):
+                width = int(min(a["k_pair"][0][v], b["k_pair"][1][v], overlap_sums.shape[0], overlap_sums.shape[1]))
+                out["overlap"][i, j, v] = overlap_sums[width - 1, width - 1] / width
+                denominator = np.sqrt(a["self_sums"][0][width - 1, width - 1] * b["self_sums"][1][width - 1, width - 1])
+                out["cka"][i, j, v] = cross_sums[width - 1, width - 1] / denominator if denominator > 0 else np.nan
     return out
 
 
-def summarise_draws(draws: list[dict[str, np.ndarray]]) -> dict[str, tuple[np.ndarray, np.ndarray, np.ndarray]]:
-    return {name: (np.nanmean(stack := np.stack([d[name] for d in draws]), axis=0), np.nanquantile(stack, 0.025, axis=0), np.nanquantile(stack, 0.975, axis=0))
-            for name in draws[0]}
+def mean_over(draws: list[dict[str, np.ndarray]]) -> dict[str, np.ndarray]:
+    return {name: np.nanmean(np.stack([draw[name] for draw in draws]), axis=0) for name in draws[0]}
 
 
 def run_mode(x: np.ndarray, lo: np.ndarray, hi: np.ndarray, mode: str, per_age: int, splits: int, permutations: int, seed: int,
              log: Callable[[str], None] = print) -> dict[str, object]:
     rng = np.random.default_rng(seed)
     build = multi_cells if mode == "multi" else disjoint_cells
+    centred_all = x - x.mean(axis=0)
     cells = equal_cells(build, lo, hi, per_age, rng)
     log(f"[{mode}] stories per age: {[len(cells[int(a)]) for a in AGES]}")
-    observed = summarise_draws([half_curves(x, cells, rng) for _ in range(splits)])
-    null_draws = []
-    for _ in range(permutations):
-        order = rng.permutation(len(lo))
-        null_draws.append(half_curves(x, equal_cells(build, lo[order], hi[order], per_age, rng), rng))
-    null = summarise_draws(null_draws) if null_draws else None
+    observed = mean_over([one_split(x, centred_all, cells, rng) for _ in range(splits)])
+    null = None
+    if permutations:
+        draws = []
+        for _ in range(permutations):
+            order = rng.permutation(len(lo))
+            draws.append(one_split(x, centred_all, equal_cells(build, lo[order], hi[order], per_age, rng), rng))
+        null = mean_over(draws)
+        null["k_sd"] = np.nanstd(np.stack([d["k"] for d in draws]), axis=0)
     return {"cells": {int(a): len(cells[int(a)]) for a in AGES}, "observed": observed, "null": null, "dimension": x.shape[1]}
+
+
+def others_mean(matrix: np.ndarray) -> np.ndarray:
+    """Mean over the other ages b != a of a (ages x ages x levels) matrix -> (ages x levels)."""
+    masked = matrix.copy()
+    for i in range(masked.shape[0]):
+        masked[i, i] = np.nan
+    return np.nanmean(masked, axis=1)
 
 
 # --------------------------------------------------------------------------------------
 # Output
 # --------------------------------------------------------------------------------------
-def summary_table(result: dict[str, object], mode: str) -> pd.DataFrame:
-    rows = []
+def tables(result: dict[str, object], mode: str) -> dict[str, pd.DataFrame]:
+    observed, null = result["observed"], result["null"]
+    k_rows, pair_rows = [], []
     for i, age in enumerate(AGES):
-        for j, level in enumerate(LEVELS):
-            row = {"mode": mode, "age": int(age), "variance_level": level, "n_stories": result["cells"][int(age)]}
-            for name in ("k", "ceiling", "adjacent", "youngest"):
-                mean, low, high = result["observed"][name]
-                row[f"{name}_mean"], row[f"{name}_lo"], row[f"{name}_hi"] = mean[i, j], low[i, j], high[i, j]
-                if result["null"] is not None:
-                    mean, low, high = result["null"][name]
-                    row[f"null_{name}_mean"], row[f"null_{name}_lo"], row[f"null_{name}_hi"] = mean[i, j], low[i, j], high[i, j]
-            row["chance_k_over_d"] = row["k_mean"] / result["dimension"]
-            rows.append(row)
-    return pd.DataFrame(rows)
+        for index, level in enumerate(V_K):
+            row = {"mode": mode, "age": int(age), "variance": float(level), "k": observed["k"][i, index]}
+            if null is not None:
+                row["k_null_mean"] = null["k"][i, index]
+                row["k_null_sd"] = null["k_sd"][i, index]
+            k_rows.append(row)
+        for v, level in enumerate(V_PAIR):
+            for j, other in enumerate(AGES):
+                row = {"mode": mode, "age": int(age), "other_age": int(other), "variance": float(level),
+                       "overlap": observed["overlap"][i, j, v], "cka": observed["cka"][i, j, v]}
+                if null is not None:
+                    row["overlap_null_mean"], row["cka_null_mean"] = null["overlap"][i, j, v], null["cka"][i, j, v]
+                pair_rows.append(row)
+    return {"k_by_age_variance": pd.DataFrame(k_rows), "pairs_by_age_variance": pd.DataFrame(pair_rows)}
 
 
-def trend_report(result: dict[str, object]) -> dict[str, dict[str, float]]:
-    """Spearman of each curve with age, observed and for the mean of the permuted-age null."""
-    report: dict[str, dict[str, float]] = {}
-    for name in ("k", "adjacent", "youngest"):
-        for j, level in enumerate(LEVELS):
-            entry = {}
-            for label, bundle in (("observed", result["observed"]), ("permuted_age", result["null"])):
-                if bundle is None:
-                    continue
-                values = bundle[name][0][:, j]
-                ok = np.isfinite(values)
-                entry[f"{label}_spearman_with_age"] = float(spearmanr(AGES[ok], values[ok]).statistic) if ok.sum() > 3 else float("nan")
-            report[f"{name}@{int(level * 100)}%"] = entry
-    return report
+def heatmap(axis, matrix: np.ndarray, rows: list[str], title: str, cmap: str, diverging: bool = False, log: bool = False, vmin=None, vmax=None, label: str = ""):
+    import matplotlib.pyplot as plt
+    from matplotlib.colors import LogNorm
+
+    if diverging:
+        limit = max(float(np.nanmax(np.abs(matrix))), 1e-9)
+        image = axis.imshow(matrix, aspect="auto", origin="lower", cmap=cmap, vmin=-limit, vmax=limit)
+    elif log:
+        low = vmin if vmin is not None else max(float(np.nanmin(matrix)), 1.0)
+        image = axis.imshow(matrix, aspect="auto", origin="lower", cmap=cmap, norm=LogNorm(vmin=low, vmax=vmax if vmax is not None else float(np.nanmax(matrix))))
+    else:
+        image = axis.imshow(matrix, aspect="auto", origin="lower", cmap=cmap, vmin=vmin, vmax=vmax)
+    axis.set_xticks(range(len(AGES)))
+    axis.set_xticklabels([str(int(a)) for a in AGES], fontsize=8.5)
+    step = max(1, len(rows) // 10)
+    axis.set_yticks(range(0, len(rows), step))
+    axis.set_yticklabels(rows[::step], fontsize=8.5)
+    axis.set_xlabel("age")
+    axis.set_ylabel("share of variance captured")
+    axis.set_title(title, fontsize=10, loc="left")
+    colorbar = plt.colorbar(image, ax=axis, shrink=0.9)
+    colorbar.set_label(label, fontsize=8.5)
+    return image
 
 
-def plot(result: dict[str, object], path: Path, title: str, subtitle: str, note: str) -> None:
+def plot_main(result: dict[str, object], path: Path, title: str, subtitle: str, note: str) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    rows = [("k", "components needed (k)"), ("adjacent", "overlap with the next age"), ("youngest", "overlap with age 2")]
-    figure, axes = plt.subplots(3, 3, figsize=(15, 11.2), facecolor="#fcfcfb", sharex=True)
-    for r, (name, ylabel) in enumerate(rows):
-        for j, level in enumerate(LEVELS):
-            axis = axes[r][j]
-            mean, low, high = result["observed"][name]
-            if result["null"] is not None:
-                null_mean, null_low, null_high = result["null"][name]
-                axis.fill_between(AGES, null_low[:, j], null_high[:, j], color="#c9c8c3", alpha=0.75, lw=0, label="permuted ages (no age signal)")
-            axis.fill_between(AGES, low[:, j], high[:, j], color="#2a5db0", alpha=0.2, lw=0)
-            axis.plot(AGES, mean[:, j], color="#2a5db0", lw=2.2, marker="o", ms=4, label="observed (random halves)")
-            if name != "k":
-                axis.plot(AGES, result["observed"]["ceiling"][0][:, j], color="#2b2b29", lw=1.4, ls=":", label="ceiling: two halves of the same age")
-                axis.plot(AGES, result["observed"]["k"][0][:, j] / result["dimension"], color="#8a8a85", lw=1.0, ls="--", label="chance (k/d)")
-                axis.set_ylim(0, 1.02)
-            axis.set_xticks(AGES)
-            if r == 0:
-                axis.set_title(f"PCs capturing {int(level * 100)}% of the variance", fontsize=11, loc="left")
-            if j == 0:
-                axis.set_ylabel(ylabel, fontsize=9.5)
-            if r == 2:
-                axis.set_xlabel("age")
-            for side in ("top", "right"):
-                axis.spines[side].set_visible(False)
-    axes[0][0].legend(fontsize=7.5, loc="best")
-    axes[1][0].legend(fontsize=7.5, loc="lower left")
+    observed, null = result["observed"], result["null"]
+    fine_rows = [f"{int(round(v * 100))}%" for v in V_K]
+    pair_rows = [f"{int(round(v * 100))}%" for v in V_PAIR]
+    figure, axes = plt.subplots(3, 2, figsize=(13.5, 14), facecolor="#fcfcfb")
+    heatmap(axes[0][0], observed["k"].T, fine_rows, "1. number of PCs needed", "Blues", log=True, label="PCs (log scale)")
+    heatmap(axes[1][0], others_mean(observed["overlap"]).T, pair_rows, "2. PC overlap with all other ages (mean)", "Blues", vmin=0, vmax=1, label="overlap")
+    change = np.maximum(1.0 - others_mean(observed["cka"]), 1e-4)
+    heatmap(axes[2][0], change.T, pair_rows, "3. geometry change vs all other ages (1 - mean linear CKA; 0 = preserved)", "Blues", log=True, vmin=float(np.nanmin(change)), vmax=float(np.nanmax(change)), label="1 - CKA (log scale)")
+    if null is not None:
+        heatmap(axes[0][1], (observed["k"] - null["k"]).T, fine_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="PCs")
+        heatmap(axes[1][1], (others_mean(observed["overlap"]) - others_mean(null["overlap"])).T, pair_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="overlap")
+        heatmap(axes[2][1], ((1.0 - others_mean(observed["cka"])) - (1.0 - others_mean(null["cka"]))).T, pair_rows, "observed minus permuted-age null (red = more geometry change)", "RdBu_r", diverging=True, label="1 - CKA")
+    else:
+        for row in axes:
+            row[1].axis("off")
     figure.suptitle(f"{title}\n{subtitle}", fontsize=12, x=0.01, ha="left")
-    figure.text(0.01, 0.008, note, fontsize=8.2, color="#6b6b66", wrap=True)
-    figure.tight_layout(rect=(0, 0.04, 1, 0.94))
+    figure.text(0.01, 0.006, note, fontsize=8.2, color="#6b6b66", wrap=True)
+    figure.tight_layout(rect=(0, 0.03, 1, 0.945))
+    figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+
+def plot_matrices(result: dict[str, object], path: Path, title: str) -> None:
+    """Supplement: the full age x age matrices at three variance levels (diagonal = same-age ceiling)."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    observed = result["observed"]
+    figure, axes = plt.subplots(2, len(SHOWN), figsize=(5 * len(SHOWN), 9.4), facecolor="#fcfcfb")
+    for column, level in enumerate(SHOWN):
+        v = V_PAIR.index(level)
+        for row, (name, label) in enumerate((("overlap", "PC overlap"), ("cka", "geometry change, 1 - CKA"))):
+            axis = axes[row][column]
+            if name == "cka":
+                from matplotlib.colors import LogNorm
+
+                values = np.maximum(1.0 - observed[name][:, :, v], 1e-4)
+                image = axis.imshow(values, origin="lower", cmap="Blues", norm=LogNorm(vmin=1e-3, vmax=0.1))
+            else:
+                image = axis.imshow(observed[name][:, :, v], origin="lower", cmap="Blues", vmin=0, vmax=1)
+            axis.set_xticks(range(len(AGES)))
+            axis.set_xticklabels([str(int(a)) for a in AGES], fontsize=8)
+            axis.set_yticks(range(len(AGES)))
+            axis.set_yticklabels([str(int(a)) for a in AGES], fontsize=8)
+            axis.set_xlabel("other age")
+            axis.set_ylabel("age")
+            axis.set_title(f"{label} at {int(level * 100)}% of the variance", fontsize=10, loc="left")
+            plt.colorbar(image, ax=axis, shrink=0.85)
+    figure.suptitle(title, fontsize=12, x=0.01, ha="left")
+    figure.text(0.01, 0.008, "Diagonal: two disjoint random halves of the same age. Off-diagonal: a half of one age vs a half of another; ages whose stated ranges overlap share stories, so neighbours can exceed the diagonal.", fontsize=8.2, color="#6b6b66")
+    figure.tight_layout(rect=(0, 0.03, 1, 0.95))
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
 
@@ -254,10 +327,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--layer", type=int, default=-1, help="distilbert: index into the 7 stored hidden states; gpt_oss: model layer, -1 = last stored")
     parser.add_argument("--flat-csv", type=Path, default=Path("data/processed/flat_videos_D_2-12.csv"))
     parser.add_argument("--standardize", action="store_true", help="divide each dimension by its standard deviation (tames rogue dimensions in LLM states)")
-    parser.add_argument("--modes", default="multi", help="multi, disjoint or both; disjoint needs many stories (about 40 per age with 571 stories is too few to read)")
+    parser.add_argument("--modes", default="multi", help="multi, disjoint or both; disjoint needs many stories")
     parser.add_argument("--per-age", type=int, default=500, help="stories per age at most; all ages are cut to the smallest age")
-    parser.add_argument("--splits", type=int, default=40, help="random half-splits for the observed curves")
-    parser.add_argument("--permutations", type=int, default=30, help="permuted-age draws for the null band")
+    parser.add_argument("--splits", type=int, default=30, help="random half-splits averaged for the observed heatmaps")
+    parser.add_argument("--permutations", type=int, default=20, help="permuted-age draws for the null")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-dir", type=Path, default=Path("results/analysis/representation/geometry/gist_structure/pc_overlap"))
     return parser.parse_args(argv)
@@ -274,22 +347,22 @@ def main(argv: list[str] | None = None) -> None:
         label = f"GPT-OSS {args.vector_key}, layer {args.layer}"
     x, lo, hi = story_table(ids, vectors, args.flat_csv, args.standardize)
     print(f"{len(x)} stories with embeddings and an age range ({label}); dimension {x.shape[1]}", flush=True)
-    tables, trends = [], {}
     for mode in [item.strip() for item in args.modes.split(",") if item.strip()]:
         result = run_mode(x, lo, hi, mode, args.per_age, args.splits, args.permutations, args.seed)
-        tables.append(summary_table(result, mode))
-        trends[mode] = trend_report(result)
+        for name, table in tables(result, mode).items():
+            table.to_csv(args.output_dir / f"{name}_{mode}.csv", index=False)
         size = next(iter(result["cells"].values()))
         what = ("every story whose stated range covers the age, so stories sit in several ages" if mode == "multi"
-                else "each story assigned to one age, so neighbouring ages share no stories")
-        plot(result, args.output_dir / f"fig_pc_overlap_{mode}.png",
-             f"PC overlap between ages at several variance levels ({label})",
-             f"{size} stories per age ({size // 2} per half); {what}",
-             "Overlap = ||U_a U_b^T||^2 / k, k = the smaller number of components; 1 = one subspace lies inside the other. All curves use random half-splits of equal size. "
-             "Blue band: spread over repeated splits. Grey band: same analysis with age ranges shuffled among stories. Dotted: two halves of the same age.")
-    pd.concat(tables, ignore_index=True).to_csv(args.output_dir / "pc_overlap_by_age.csv", index=False)
-    (args.output_dir / "pc_overlap_trends.json").write_text(json.dumps(trends, indent=2))
-    print(json.dumps(trends, indent=2))
+                else "each story assigned to one age, so ages share no stories")
+        plot_main(result, args.output_dir / f"fig_age_by_variance_{mode}.png",
+                  f"Age by variance captured ({label})", f"{size} stories per age ({size // 2} per half); {what}",
+                  "PC overlap = ||U_a U_b^T||^2 / k (k = smaller component count; 1 = one subspace inside the other); geometry change = 1 - linear CKA between all stories projected through each age's top k PCs. "
+                  "Left: mean over all other ages. Right: observed minus the same analysis with age ranges shuffled among stories. Rows at or below about 30% variance use only 1-3 components, so differences there are coarse (integer k).")
+        plot_matrices(result, args.output_dir / f"fig_age_by_age_matrices_{mode}.png", f"Age x age overlap and CKA at 50 / 80 / 95% of the variance ({label}; {size} stories per age)")
+        observed = result["observed"]
+        print(json.dumps({"mode": mode, "mean_k_at_80pct": float(np.nanmean(observed["k"][:, list(V_K).index(0.8)])),
+                          "mean_other_age_overlap_at_80pct": float(np.nanmean(others_mean(observed["overlap"])[:, V_PAIR.index(0.8)])),
+                          "mean_other_age_cka_at_80pct": float(np.nanmean(others_mean(observed["cka"])[:, V_PAIR.index(0.8)]))}))
 
 
 if __name__ == "__main__":
