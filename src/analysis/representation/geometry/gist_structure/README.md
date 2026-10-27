@@ -87,16 +87,18 @@ Details are expressed as deviations from their own story's mean (theme removed) 
   story's own gist subspace).
 Every trend statistic gets a permutation null from shuffling band labels within topic x size strata.
 
-## PC overlap between ages (`pc_overlap_by_age.py`)
+## Age by variance captured (`pc_overlap_by_age.py`)
 
-The most direct view of age against the spectrum: for each age 2-12 (every flat-list story whose stated
-range covers it), PCA of the story embeddings; the top components that capture 50 / 80 / 95% of the
-variance; and the overlap `||U_a U_b^T||^2 / k` between ages. Plotted against age: the number of components,
-the overlap with the next age, and the overlap with age 2. All cells are cut to the same size and every
-number comes from random half-splits, so a same-age ceiling (two halves of one age), a permuted-age band
-(age ranges shuffled among stories) and the chance level k/d are directly comparable to the observed curve.
-`--source distilbert` runs on the local story vectors; `--source gpt_oss_global` on the cluster's
-whole-story GPT-OSS vectors (`run_pc_overlap.slurm`). This is between-story structure, not within-story gist.
+Age on the x axis, share of variance captured on the y axis, one heatmap per quantity: (1) the number of
+PCs needed, (2) PC overlap with all other ages (mean of `||U_a U_b^T||^2 / k`), (3) geometry change with all
+other ages (1 - linear CKA between all stories projected through each age's top k PCs; CKA itself is near
+1 everywhere, so it is shown as 1 - CKA on a log scale). Each has a companion panel of observed minus a
+permuted-age null (age ranges shuffled among stories, which keeps the sharing of wide-range stories between
+ages). A supplementary figure gives the full age x age matrices at 50/80/95%. Cells are cut to one size and
+everything is computed on random half-splits. Rows at or below about 30% variance use 1-3 components, so
+differences there are coarse. `--source distilbert` runs on the local story vectors; `--source gpt_oss_global`
+on the cluster's whole-story GPT-OSS vectors (`run_pc_overlap.slurm`). This is between-story structure, not
+within-story gist.
 
 ## Hypotheses and what would falsify them
 
