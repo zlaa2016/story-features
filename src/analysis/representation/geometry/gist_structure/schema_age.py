@@ -370,6 +370,25 @@ def make_plots(summary: dict[str, Any], band_names: list[str], band_mid: dict[st
     plt.close(figure)
 
 
+def make_schema_age_spectrum(summary: dict[str, Any], band_names: list[str], band_mid: dict[str, float], output_dir: Path) -> None:
+    """Age on x, number of components on y: the band's held-out schema curve and how it changes with age."""
+    grid = tuple(M_GRID[: len(summary["bands"][band_names[0]]["E"])])
+    ages = np.array([band_mid[band] for band in band_names])
+    reconstruction = np.array([summary["bands"][band]["R"] for band in band_names]).T
+    held_out = np.array([summary["bands"][band]["E"] for band in band_names]).T
+    panels = [
+        {"matrix": reconstruction, "title": "held-out reconstruction of stories by the band's top m components",
+         "ylabel": "held-out reconstruction", "line_title": "same, one line per band"},
+        {"matrix": held_out, "title": "same, beyond the column-shuffle null",
+         "ylabel": "excess held-out reconstruction", "line_title": "same, one line per band"},
+        {"matrix": held_out - held_out[:, [0]], "title": "excess minus the youngest band (what changes with age)", "diverging": True,
+         "cmap": "RdBu_r", "ylabel": "difference from youngest band", "line_title": "same, one line per band", "zero": True},
+    ]
+    note = ("Each column is an age band; its subspace is fitted on the other stories of the band (stories held out). "
+            "Dimensionality is where a curve levels off: curves that rise later belong to bands with more shared dimensions.")
+    ws.draw_age_by_spectrum(panels, ages, grid, output_dir / "fig_schema_age_by_spectrum.png", "Schema spectrum by age band", note)
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--isolated-dir", type=Path, default=Path(f"{base.DEFAULT_ROOT}/gpt_oss_20b_detail_controls"))
@@ -435,6 +454,7 @@ def main(argv: list[str] | None = None) -> None:
     effects = ws.age_effects(story_frame, outcomes, rng, argparse.Namespace(bootstrap=args.effect_draws, permutations=args.effect_permutations))
     write_csv(args.output_dir / "schema_story_age_effects.csv", effects)
     make_plots(summary, band_names, band_mid, args.output_dir)
+    make_schema_age_spectrum(summary, band_names, band_mid, args.output_dir)
     write_run_provenance(args.output_dir, args, extra={"stories": int(len(table)), "bands": band_names})
 
 

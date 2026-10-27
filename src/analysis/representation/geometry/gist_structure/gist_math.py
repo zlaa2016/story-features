@@ -124,6 +124,24 @@ def saturation_scalars(excess: np.ndarray, grid: Sequence[int], n: int, prefix: 
     return output
 
 
+def cumulative_spectrum(z: np.ndarray, ranks: Sequence[int] = M_GRID) -> np.ndarray:
+    """In-sample share of the story's own variance explained by its top m components, for each m."""
+    centered = z - z.mean(axis=0)
+    values = np.clip(np.linalg.eigvalsh(centered @ centered.T)[::-1], 0.0, None)
+    total = float(values.sum())
+    if total <= 0:
+        return np.full(len(ranks), np.nan)
+    cumulative = np.cumsum(values) / total
+    return np.array([cumulative[min(m, len(cumulative)) - 1] for m in ranks])
+
+
+def excess_spectrum(z: np.ndarray, rng: np.random.Generator, null_draws: int, ranks: Sequence[int] = M_GRID) -> tuple[np.ndarray, np.ndarray]:
+    """(in-sample cumulative variance, the same under the column-permutation null)."""
+    real = cumulative_spectrum(z, ranks)
+    null = np.nanmean([cumulative_spectrum(rng.permuted(z, axis=0), ranks) for _ in range(max(null_draws, 1))], axis=0)
+    return real, null
+
+
 def segment_cost_matrix(gram: np.ndarray) -> np.ndarray:
     """cost[i, j] = within-segment sum of squares of units i..j-1 (from an uncentred Gram matrix)."""
     n = len(gram)

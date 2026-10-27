@@ -58,6 +58,10 @@ def unit_measures(z: np.ndarray, rng: np.random.Generator, cfg: argparse.Namespa
         out[f"oosR_m{m}"] = float(value)
         out[f"oosE_m{m}"] = float(gain)
     out.update(gm.saturation_scalars(excess, gm.M_GRID, n, "gist"))
+    spectrum, spectrum_null = gm.excess_spectrum(z, rng, cfg.null_draws)
+    for m, value, reference in zip(gm.M_GRID, spectrum, spectrum_null):
+        out[f"cum_r{m}"] = float(value)
+        out[f"cumexc_r{m}"] = float(value - reference)
 
     ks = [k for k in gm.EVENT_KS if k <= max(2, n // 3)]
     _, _, event = gm.event_excess(z @ z.T, rng, cfg.null_draws, ks)
@@ -267,6 +271,84 @@ def hypothesis_check(effects: pd.DataFrame) -> dict[str, Any]:
 # --------------------------------------------------------------------------------------
 # Plots
 # --------------------------------------------------------------------------------------
+def age_values(frame: pd.DataFrame) -> pd.Series:
+    """Age axis for the spectrum figures: the band midpoint, or integer ages when the data are continuous."""
+    ages = frame["band_mid"].astype(float)
+    return ages.round() if ages.nunique() > 12 else ages
+
+
+def spectrum_by_age(frame: pd.DataFrame, prefix: str, ranks: tuple[int, ...] = gm.M_GRID) -> tuple[np.ndarray, np.ndarray]:
+    """Mean of ``<prefix><m>`` over the stories at each age: (sorted ages, matrix of shape ranks x ages)."""
+    ages = age_values(frame)
+    ordered = np.sort(ages.unique())
+    matrix = np.array([[frame.loc[ages == age, f"{prefix}{m}"].mean() for age in ordered] for m in ranks])
+    return ordered, matrix
+
+
+def draw_age_by_spectrum(panels: list[dict[str, Any]], ages: np.ndarray, ranks: tuple[int, ...], path: Path, title: str, note: str) -> None:
+    """Heatmaps (age on x, component rank on y) over line plots of the same curves (one line per age)."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    count = len(panels)
+    figure, axes = plt.subplots(2, count, figsize=(5.4 * count, 8.2), facecolor="#fcfcfb")
+    shades = plt.cm.Blues(np.linspace(0.3, 0.95, max(len(ages), 2)))
+    for column, panel in enumerate(panels):
+        matrix = panel["matrix"]
+        heat = axes[0][column]
+        if panel.get("diverging"):
+            limit = max(float(np.nanmax(np.abs(matrix))), 1e-6)
+            image = heat.imshow(matrix, aspect="auto", origin="lower", cmap=panel["cmap"], vmin=-limit, vmax=limit)
+        else:
+            image = heat.imshow(matrix, aspect="auto", origin="lower", cmap="Blues")
+        heat.set_xticks(range(len(ages)))
+        heat.set_xticklabels([f"{age:g}" for age in ages], fontsize=8)
+        heat.set_yticks(range(len(ranks)))
+        heat.set_yticklabels([str(m) for m in ranks], fontsize=8)
+        heat.set_xlabel("age")
+        heat.set_ylabel("number of components m")
+        heat.set_title(panel["title"], fontsize=10, loc="left")
+        figure.colorbar(image, ax=heat, shrink=0.85)
+        line = axes[1][column]
+        curves = panel["lines"] if panel.get("lines") is not None else matrix
+        for index, age in enumerate(ages):
+            line.plot(ranks, curves[:, index], color=shades[index], lw=2, label=f"age {age:g}")
+        line.set_xscale("log")
+        line.set_xlabel("number of components m")
+        line.set_ylabel(panel["ylabel"], fontsize=9)
+        line.set_title(panel["line_title"], fontsize=10, loc="left")
+        if panel.get("zero"):
+            line.axhline(0, color="#6b6b66", lw=0.8)
+        if column == 0:
+            line.legend(fontsize=7, ncol=2)
+    figure.suptitle(title, fontsize=12, x=0.01, ha="left")
+    figure.text(0.01, 0.005, note, fontsize=8.5, color="#6b6b66")
+    figure.tight_layout(rect=(0, 0.02, 1, 0.95))
+    figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+
+def make_age_spectrum_figure(frame: pd.DataFrame, output_dir: Path, title: str = "Variance spectrum by age") -> None:
+    """The headline result: how a story's own spectrum and held-out gist curve change with age."""
+    ages, cumulative = spectrum_by_age(frame, "cum_r")
+    _, held_out = spectrum_by_age(frame, "oosE_m")
+    change = held_out - held_out[:, [0]]
+    panels = [
+        {"matrix": cumulative, "title": "variance explained by the top m components (story's own spectrum)",
+         "ylabel": "cumulative variance explained", "line_title": "same, one line per age"},
+        {"matrix": held_out, "title": "held-out gist curve: reconstruction of left-out details, beyond the null",
+         "ylabel": "excess held-out reconstruction", "line_title": "same, one line per age"},
+        {"matrix": change, "title": "held-out gist curve minus the youngest age (what changes with age)", "diverging": True,
+         "cmap": "RdBu_r", "ylabel": "difference from youngest age", "line_title": "same, one line per age", "zero": True},
+    ]
+    note = ("Each column of a heatmap is one age (mean over its stories, equal numbers per band when the matched selection is used). "
+            "Left: the story's own spectrum (in-sample). Middle: how much of left-out details the top m components generalise to, minus a column-shuffle null. "
+            "Right: the middle panel relative to the youngest age; red = older stories reconstruct better with m components.")
+    draw_age_by_spectrum(panels, ages, gm.M_GRID, output_dir / "fig_age_by_spectrum.png", title, note)
+
+
 def make_plots(frame: pd.DataFrame, effects: pd.DataFrame, output_dir: Path) -> None:
     import matplotlib
 
@@ -474,6 +556,7 @@ def run_one(args: argparse.Namespace, fixed_units: int) -> None:
     write_csv(output_dir / "band_summary.csv", band_summary(frame, outcomes, rng, min(args.bootstrap, 200)))
     write_json(output_dir / "hypothesis_check.json", hypothesis_check(effects))
     make_plots(frame, effects, output_dir)
+    make_age_spectrum_figure(frame, output_dir, f"{label}: variance spectrum and gist curve by age")
     write_run_provenance(output_dir, args, extra={"label": label, "stories": int(len(frame)), "duplicate_threshold": threshold})
 
 
