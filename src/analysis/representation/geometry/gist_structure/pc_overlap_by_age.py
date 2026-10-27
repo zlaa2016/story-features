@@ -230,7 +230,8 @@ def tables(result: dict[str, object], mode: str) -> dict[str, pd.DataFrame]:
     return {"k_by_age_variance": pd.DataFrame(k_rows), "pairs_by_age_variance": pd.DataFrame(pair_rows)}
 
 
-def heatmap(axis, matrix: np.ndarray, rows: list[str], title: str, cmap: str, diverging: bool = False, log: bool = False, vmin=None, vmax=None, label: str = ""):
+def heatmap(axis, matrix: np.ndarray, rows: list[str], title: str, cmap: str, diverging: bool = False, log: bool = False, vmin=None, vmax=None, label: str = "",
+            contours: tuple[float, ...] = ()):
     import matplotlib.pyplot as plt
     from matplotlib.colors import LogNorm
 
@@ -250,6 +251,9 @@ def heatmap(axis, matrix: np.ndarray, rows: list[str], title: str, cmap: str, di
     axis.set_xlabel("age")
     axis.set_ylabel("share of variance captured")
     axis.set_title(title, fontsize=10, loc="left")
+    if contours:
+        lines = axis.contour(matrix, levels=list(contours), colors="white", linewidths=0.9)
+        axis.clabel(lines, fmt="%g", fontsize=8)
     colorbar = plt.colorbar(image, ax=axis, shrink=0.9)
     colorbar.set_label(label, fontsize=8.5)
     return image
@@ -264,21 +268,47 @@ def plot_main(result: dict[str, object], path: Path, title: str, subtitle: str, 
     observed, null = result["observed"], result["null"]
     fine_rows = [f"{int(round(v * 100))}%" for v in V_K]
     pair_rows = [f"{int(round(v * 100))}%" for v in V_PAIR]
-    figure, axes = plt.subplots(3, 2, figsize=(13.5, 14), facecolor="#fcfcfb")
-    heatmap(axes[0][0], observed["k"].T, fine_rows, "1. number of PCs needed", "Blues", log=True, label="PCs (log scale)")
-    heatmap(axes[1][0], others_mean(observed["overlap"]).T, pair_rows, "2. PC overlap with all other ages (mean)", "Blues", vmin=0, vmax=1, label="overlap")
+    figure = plt.figure(figsize=(13.5, 14.5), facecolor="#fcfcfb")
+    grid = figure.add_gridspec(3, 2)
+    top = figure.add_subplot(grid[0, :])
+    heatmap(top, observed["k"].T, fine_rows, "1. number of PCs needed to capture each share of the variance (each age on its own; white lines = 2, 5, 10, 25, 50, 100 PCs)",
+            "viridis", log=True, label="PCs (log scale)", contours=(2, 5, 10, 25, 50, 100))
+    middle_left, middle_right = figure.add_subplot(grid[1, 0]), figure.add_subplot(grid[1, 1])
+    bottom_left, bottom_right = figure.add_subplot(grid[2, 0]), figure.add_subplot(grid[2, 1])
+    heatmap(middle_left, others_mean(observed["overlap"]).T, pair_rows, "2. PC overlap with all other ages (mean)", "viridis", vmin=0, vmax=1, label="overlap")
     change = np.maximum(1.0 - others_mean(observed["cka"]), 1e-4)
-    heatmap(axes[2][0], change.T, pair_rows, "3. geometry change vs all other ages (1 - mean linear CKA; 0 = preserved)", "Blues", log=True, vmin=float(np.nanmin(change)), vmax=float(np.nanmax(change)), label="1 - CKA (log scale)")
+    heatmap(bottom_left, change.T, pair_rows, "3. geometry change vs all other ages (1 - mean linear CKA; 0 = preserved)", "viridis",
+            log=True, vmin=float(np.nanmin(change)), vmax=float(np.nanmax(change)), label="1 - CKA (log scale)")
     if null is not None:
-        heatmap(axes[0][1], (observed["k"] - null["k"]).T, fine_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="PCs")
-        heatmap(axes[1][1], (others_mean(observed["overlap"]) - others_mean(null["overlap"])).T, pair_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="overlap")
-        heatmap(axes[2][1], ((1.0 - others_mean(observed["cka"])) - (1.0 - others_mean(null["cka"]))).T, pair_rows, "observed minus permuted-age null (red = more geometry change)", "RdBu_r", diverging=True, label="1 - CKA")
+        heatmap(middle_right, (others_mean(observed["overlap"]) - others_mean(null["overlap"])).T, pair_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="overlap")
+        heatmap(bottom_right, ((1.0 - others_mean(observed["cka"])) - (1.0 - others_mean(null["cka"]))).T, pair_rows,
+                "observed minus permuted-age null (red = more geometry change)", "RdBu_r", diverging=True, label="1 - CKA")
     else:
-        for row in axes:
-            row[1].axis("off")
+        middle_right.axis("off")
+        bottom_right.axis("off")
     figure.suptitle(f"{title}\n{subtitle}", fontsize=12, x=0.01, ha="left")
     figure.text(0.01, 0.006, note, fontsize=8.2, color="#6b6b66", wrap=True)
     figure.tight_layout(rect=(0, 0.03, 1, 0.945))
+    figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+
+def plot_components_vs_null(result: dict[str, object], path: Path, title: str) -> None:
+    """Supplement for row 1: observed number of PCs minus the permuted-age null, and the relative change from the age average."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    observed, null = result["observed"], result["null"]
+    rows = [f"{int(round(v * 100))}%" for v in V_K]
+    figure, axes = plt.subplots(1, 2, figsize=(14, 5.6), facecolor="#fcfcfb")
+    relative = observed["k"] / np.nanmean(observed["k"], axis=0, keepdims=True) - 1.0
+    heatmap(axes[0], relative.T, rows, "PCs needed relative to the average over ages at the same variance share", "RdBu_r", diverging=True, label="relative change")
+    if null is not None:
+        heatmap(axes[1], (observed["k"] - null["k"]).T, rows, "observed minus permuted-age null (PCs)", "RdBu_r", diverging=True, label="PCs")
+    figure.suptitle(title, fontsize=11.5, x=0.01, ha="left")
+    figure.tight_layout(rect=(0, 0, 1, 0.94))
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
 
@@ -300,9 +330,9 @@ def plot_matrices(result: dict[str, object], path: Path, title: str) -> None:
                 from matplotlib.colors import LogNorm
 
                 values = np.maximum(1.0 - observed[name][:, :, v], 1e-4)
-                image = axis.imshow(values, origin="lower", cmap="Blues", norm=LogNorm(vmin=1e-3, vmax=0.1))
+                image = axis.imshow(values, origin="lower", cmap="viridis", norm=LogNorm(vmin=1e-3, vmax=0.1))
             else:
-                image = axis.imshow(observed[name][:, :, v], origin="lower", cmap="Blues", vmin=0, vmax=1)
+                image = axis.imshow(observed[name][:, :, v], origin="lower", cmap="viridis", vmin=0, vmax=1)
             axis.set_xticks(range(len(AGES)))
             axis.set_xticklabels([str(int(a)) for a in AGES], fontsize=8)
             axis.set_yticks(range(len(AGES)))
@@ -358,6 +388,7 @@ def main(argv: list[str] | None = None) -> None:
                   f"Age by variance captured ({label})", f"{size} stories per age ({size // 2} per half); {what}",
                   "PC overlap = ||U_a U_b^T||^2 / k (k = smaller component count; 1 = one subspace inside the other); geometry change = 1 - linear CKA between all stories projected through each age's top k PCs. "
                   "Left: mean over all other ages. Right: observed minus the same analysis with age ranges shuffled among stories. Rows at or below about 30% variance use only 1-3 components, so differences there are coarse (integer k).")
+        plot_components_vs_null(result, args.output_dir / f"fig_pcs_relative_and_null_{mode}.png", f"Number of PCs: relative to the age average and to the permuted-age null ({label})")
         plot_matrices(result, args.output_dir / f"fig_age_by_age_matrices_{mode}.png", f"Age x age overlap and CKA at 50 / 80 / 95% of the variance ({label}; {size} stories per age)")
         observed = result["observed"]
         print(json.dumps({"mode": mode, "mean_k_at_80pct": float(np.nanmean(observed["k"][:, list(V_K).index(0.8)])),
