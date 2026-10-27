@@ -100,6 +100,16 @@ differences there are coarse. `--source distilbert` runs on the local story vect
 on the cluster's whole-story GPT-OSS vectors (`run_pc_overlap.slurm`). This is between-story structure, not
 within-story gist.
 
+### Story-level source and the 500-most-viewed run
+The cleaned stories live in `data/exports/story_level_export/story_level_export.jsonl` (13,094 stories with cleaned text,
+detail segments, stated age and YouTube/Amazon metadata; `exports/` is gitignored, so it is local). `embed_story_level_distilbert.py`
+embeds every story whose video is in the flat list (3,485 stories, about 3.5 minutes on a laptop GPU) with the same sentence-chunk,
+token-mean pooling as `scripts/extract_vectors_distilbert.py`, and `pc_overlap_by_age.py --source story_distilbert --select popular`
+puts the 500 most-viewed stories covering each age into that age. A story counts in every age its range covers (966 distinct
+stories fill the 5,500 slots; `--select random` gives about 2,490). The permuted-age null shuffles the age ranges among all stories
+and rebuilds the same cells, so it keeps the story pool, popularity, range widths and (about) the sharing of stories between ages and
+breaks only the link between a story's content and its age. `fig_previous_age_*.png` compares each age with the previous one.
+
 ## Hypotheses and what would falsify them
 
 * **H1 (within story).** Older stories need fewer gists *relative to their own size*: negative age
