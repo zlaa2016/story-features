@@ -87,6 +87,17 @@ Details are expressed as deviations from their own story's mean (theme removed) 
   story's own gist subspace).
 Every trend statistic gets a permutation null from shuffling band labels within topic x size strata.
 
+## PC overlap between ages (`pc_overlap_by_age.py`)
+
+The most direct view of age against the spectrum: for each age 2-12 (every flat-list story whose stated
+range covers it), PCA of the story embeddings; the top components that capture 50 / 80 / 95% of the
+variance; and the overlap `||U_a U_b^T||^2 / k` between ages. Plotted against age: the number of components,
+the overlap with the next age, and the overlap with age 2. All cells are cut to the same size and every
+number comes from random half-splits, so a same-age ceiling (two halves of one age), a permuted-age band
+(age ranges shuffled among stories) and the chance level k/d are directly comparable to the observed curve.
+`--source distilbert` runs on the local story vectors; `--source gpt_oss_global` on the cluster's
+whole-story GPT-OSS vectors (`run_pc_overlap.slurm`). This is between-story structure, not within-story gist.
+
 ## Hypotheses and what would falsify them
 
 * **H1 (within story).** Older stories need fewer gists *relative to their own size*: negative age

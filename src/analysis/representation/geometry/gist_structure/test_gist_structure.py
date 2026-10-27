@@ -14,6 +14,7 @@ select = importlib.import_module("analysis.representation.geometry.gist_structur
 within = importlib.import_module("analysis.representation.geometry.gist_structure.within_story")
 schema = importlib.import_module("analysis.representation.geometry.gist_structure.schema_age")
 calibrate = importlib.import_module("analysis.representation.geometry.gist_structure.calibrate")
+overlap = importlib.import_module("analysis.representation.geometry.gist_structure.pc_overlap_by_age")
 
 
 def gist_story(rng: np.random.Generator, n: int, gists: int, noise: float, d: int = 128, blocky: bool = True) -> np.ndarray:
@@ -230,6 +231,31 @@ class RealControlTests(unittest.TestCase):
         self.assertGreater(gist["split_half_rho"], 0.3)
 
 
+class PcOverlapTests(unittest.TestCase):
+    def test_drifting_subspace_lowers_overlap_with_the_youngest_age_more_than_shuffled_ages(self) -> None:
+        rng = np.random.default_rng(13)
+        d, per_age = 64, 60
+        basis = np.linalg.qr(rng.normal(size=(d, d)))[0]
+        rows, lo = [], []
+        for age in overlap.AGES:
+            columns = basis[:, int(age) - 2: int(age) - 2 + 6]
+            scores = rng.normal(size=(per_age, 6))
+            rows.append(scores @ columns.T + 0.05 * rng.normal(size=(per_age, d)))
+            lo.extend([int(age)] * per_age)
+        x = np.vstack(rows)
+        lo = np.array(lo)
+        result = overlap.run_mode(x, lo, lo.copy(), "multi", per_age, splits=6, permutations=4, seed=1, log=lambda _: None)
+        level = 1  # 80% of the variance
+        young = result["observed"]["youngest"][0][:, level]
+        self.assertGreater(young[1], young[-1] + 0.2)
+        shuffled = result["null"]["youngest"][0][:, level]
+        self.assertGreater(shuffled[-1], young[-1] + 0.1)
+        ceiling = result["observed"]["ceiling"][0][:, level]
+        self.assertTrue(np.nanmin(ceiling) > 0.5)
+        table = overlap.summary_table(result, "multi")
+        self.assertEqual(len(table), len(overlap.AGES) * len(overlap.LEVELS))
+
+
 class PipelineTests(unittest.TestCase):
     def test_select_then_within_story_then_schema_on_synthetic_shards(self) -> None:
         rng = np.random.default_rng(8)
@@ -264,7 +290,7 @@ class PipelineTests(unittest.TestCase):
             ])
             for label in ("all_units", "fixed_25"):
                 for name in ("story_gist_profiles.csv", "age_effects.csv", "band_summary.csv", "hypothesis_check.json",
-                             "fig_gist_curves_by_band.png"):
+                             "fig_gist_curves_by_band.png", "fig_age_by_spectrum.png"):
                     self.assertTrue((within_dir / label / name).exists(), f"{label}/{name}")
             for name in ("real_data_merge_control.csv", "split_half_reliability.csv", "real_data_validation.json", "inclusion_by_band.csv"):
                 self.assertTrue((within_dir / "all_units" / name).exists(), name)
@@ -281,7 +307,8 @@ class PipelineTests(unittest.TestCase):
                 "--transfer-m", "2,4,8", "--effect-draws", "20", "--effect-permutations", "20", "--output-dir", str(schema_dir),
             ])
             for name in ("schema_band_curves.csv", "schema_dimensions.csv", "schema_dimension_bootstrap.csv", "schema_transfer.csv",
-                         "schema_trend_tests.json", "story_schema_share.csv", "schema_story_age_effects.csv", "fig_schema_dimensionality.png"):
+                         "schema_trend_tests.json", "story_schema_share.csv", "schema_story_age_effects.csv", "fig_schema_dimensionality.png",
+                         "fig_schema_age_by_spectrum.png"):
                 self.assertTrue((schema_dir / name).exists(), name)
             dimensions = pd.read_csv(schema_dir / "schema_dimensions.csv")
             self.assertEqual(len(dimensions), 4)
