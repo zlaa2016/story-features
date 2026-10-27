@@ -72,7 +72,14 @@ def load_gpt_oss_global(directory: Path, key: str, layer: int) -> tuple[np.ndarr
     return np.asarray(ids)[keep], vectors[keep]
 
 
-def story_table(ids: np.ndarray, vectors: np.ndarray, flat_csv: Path, standardize: bool) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def load_story_level(path: Path, layer: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Story-level DistilBERT vectors from ``embed_story_level_distilbert.py``: video ids (repeated for multi-story videos), vectors, log views."""
+    payload = np.load(path, allow_pickle=False)
+    return payload["video_id"].astype(str), payload["vectors"][:, layer, :].astype(np.float32), payload["log_views"].astype(float)
+
+
+def story_table(ids: np.ndarray, vectors: np.ndarray, flat_csv: Path, standardize: bool, popularity: np.ndarray | None = None
+                ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray | None]:
     flat = pd.read_csv(flat_csv, low_memory=False).drop_duplicates("video_id")
     flat["video_id"] = flat["video_id"].astype(str)
     frame = pd.DataFrame({"video_id": ids, "row": np.arange(len(ids))}).merge(flat[["video_id", "range_lower", "range_upper"]], on="video_id", how="inner")
@@ -80,30 +87,35 @@ def story_table(ids: np.ndarray, vectors: np.ndarray, flat_csv: Path, standardiz
     x = base.normalize_rows(vectors[frame["row"].to_numpy()]).astype(np.float64)
     if standardize:
         x = x / (x.std(axis=0) + 1e-6)
-    return x, frame["range_lower"].to_numpy(dtype=int), frame["range_upper"].to_numpy(dtype=int)
+    pop = None if popularity is None else np.nan_to_num(popularity[frame["row"].to_numpy()], nan=float(np.nanmin(popularity)))
+    return x, frame["range_lower"].to_numpy(dtype=int), frame["range_upper"].to_numpy(dtype=int), pop
 
 
 # --------------------------------------------------------------------------------------
 # Cells, PCs, overlaps
 # --------------------------------------------------------------------------------------
-def multi_cells(lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator) -> dict[int, np.ndarray]:
+def multi_cells(lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator, pop: np.ndarray | None = None) -> dict[int, np.ndarray]:
+    """Stories whose stated range covers each age; the ``per_age`` most popular when ``pop`` is given, else a random ``per_age``."""
     cells = {}
     for age in AGES:
         members = np.flatnonzero((lo <= age) & (hi >= age))
-        cells[int(age)] = np.sort(rng.choice(members, per_age, replace=False)) if len(members) > per_age else members
+        if len(members) > per_age:
+            members = np.sort(members[np.argsort(-pop[members], kind="stable")[:per_age]]) if pop is not None else np.sort(rng.choice(members, per_age, replace=False))
+        cells[int(age)] = members
     return cells
 
 
-def disjoint_cells(lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator) -> dict[int, np.ndarray]:
+def disjoint_cells(lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator, pop: np.ndarray | None = None) -> dict[int, np.ndarray]:
     assigned = base.assign_ages(np.clip(lo, AGES[0], AGES[-1]), np.clip(hi, AGES[0], AGES[-1]), AGES, per_age, rng)
     return {int(age): np.flatnonzero(assigned == age) for age in AGES}
 
 
-def equal_cells(build: Callable[..., dict[int, np.ndarray]], lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator) -> dict[int, np.ndarray]:
+def equal_cells(build: Callable[..., dict[int, np.ndarray]], lo: np.ndarray, hi: np.ndarray, per_age: int, rng: np.random.Generator,
+                pop: np.ndarray | None = None) -> dict[int, np.ndarray]:
     """Cells of exactly the same size for every age (the size of the smallest age, at most ``per_age``)."""
-    first = build(lo, hi, per_age, rng)
+    first = build(lo, hi, per_age, rng, pop)
     size = min(len(members) for members in first.values())
-    return build(lo, hi, size, rng)
+    return build(lo, hi, size, rng, pop)
 
 
 def principal_axes(rows: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
@@ -181,22 +193,44 @@ def mean_over(draws: list[dict[str, np.ndarray]]) -> dict[str, np.ndarray]:
 
 
 def run_mode(x: np.ndarray, lo: np.ndarray, hi: np.ndarray, mode: str, per_age: int, splits: int, permutations: int, seed: int,
-             log: Callable[[str], None] = print) -> dict[str, object]:
+             log: Callable[[str], None] = print, pop: np.ndarray | None = None) -> dict[str, object]:
     rng = np.random.default_rng(seed)
     build = multi_cells if mode == "multi" else disjoint_cells
     centred_all = x - x.mean(axis=0)
-    cells = equal_cells(build, lo, hi, per_age, rng)
-    log(f"[{mode}] stories per age: {[len(cells[int(a)]) for a in AGES]}")
+    cells = equal_cells(build, lo, hi, per_age, rng, pop)
+    unique = len(set(np.concatenate(list(cells.values())).tolist()))
+    log(f"[{mode}] stories per age: {[len(cells[int(a)]) for a in AGES]}; unique stories across ages: {unique}")
     observed = mean_over([one_split(x, centred_all, cells, rng) for _ in range(splits)])
     null = None
     if permutations:
         draws = []
         for _ in range(permutations):
             order = rng.permutation(len(lo))
-            draws.append(one_split(x, centred_all, equal_cells(build, lo[order], hi[order], per_age, rng), rng))
+            draws.append(one_split(x, centred_all, equal_cells(build, lo[order], hi[order], per_age, rng, pop), rng))
         null = mean_over(draws)
         null["k_sd"] = np.nanstd(np.stack([d["k"] for d in draws]), axis=0)
-    return {"cells": {int(a): len(cells[int(a)]) for a in AGES}, "observed": observed, "null": null, "dimension": x.shape[1]}
+        others_overlap = np.stack([others_mean(d["overlap"]) for d in draws])
+        others_change = np.stack([1.0 - others_mean(d["cka"]) for d in draws])
+        null["overlap_others_mean"], null["overlap_others_sd"] = np.nanmean(others_overlap, axis=0), np.nanstd(others_overlap, axis=0)
+        null["change_others_mean"], null["change_others_sd"] = np.nanmean(others_change, axis=0), np.nanstd(others_change, axis=0)
+        previous_overlap = np.stack([previous_age(d["overlap"]) for d in draws])
+        previous_change = np.stack([1.0 - previous_age(d["cka"]) for d in draws])
+        null["overlap_prev_mean"], null["overlap_prev_sd"] = np.nanmean(previous_overlap, axis=0), np.nanstd(previous_overlap, axis=0)
+        null["change_prev_mean"], null["change_prev_sd"] = np.nanmean(previous_change, axis=0), np.nanstd(previous_change, axis=0)
+    return {"cells": {int(a): len(cells[int(a)]) for a in AGES}, "unique_stories": unique, "observed": observed, "null": null, "dimension": x.shape[1]}
+
+
+def standardised(observed: np.ndarray, null_mean: np.ndarray, null_sd: np.ndarray, floor: float) -> np.ndarray:
+    """(observed - null mean) / null sd: how many permutation standard deviations the observed value is from the shuffled-age value."""
+    return np.clip((observed - null_mean) / np.maximum(null_sd, floor), -6, 6)
+
+
+def previous_age(matrix: np.ndarray) -> np.ndarray:
+    """Value for age a against age a-1 from a (ages x ages x levels) matrix -> (ages x levels); age 2 has no previous age."""
+    out = np.full((matrix.shape[0], matrix.shape[2]), np.nan)
+    for i in range(1, matrix.shape[0]):
+        out[i] = matrix[i, i - 1]
+    return out
 
 
 def others_mean(matrix: np.ndarray) -> np.ndarray:
@@ -280,15 +314,49 @@ def plot_main(result: dict[str, object], path: Path, title: str, subtitle: str, 
     heatmap(bottom_left, change.T, pair_rows, "3. geometry change vs all other ages (1 - mean linear CKA; 0 = preserved)", "viridis",
             log=True, vmin=float(np.nanmin(change)), vmax=float(np.nanmax(change)), label="1 - CKA (log scale)")
     if null is not None:
-        heatmap(middle_right, (others_mean(observed["overlap"]) - others_mean(null["overlap"])).T, pair_rows, "observed minus permuted-age null", "RdBu_r", diverging=True, label="overlap")
-        heatmap(bottom_right, ((1.0 - others_mean(observed["cka"])) - (1.0 - others_mean(null["cka"]))).T, pair_rows,
-                "observed minus permuted-age null (red = more geometry change)", "RdBu_r", diverging=True, label="1 - CKA")
+        z_overlap = standardised(others_mean(observed["overlap"]), null["overlap_others_mean"], null["overlap_others_sd"], 0.005)
+        z_change = standardised(1.0 - others_mean(observed["cka"]), null["change_others_mean"], null["change_others_sd"], 5e-4)
+        heatmap(middle_right, z_overlap.T, pair_rows, "overlap vs permuted-age null (SDs; red = more overlap than shuffled ages)", "RdBu_r", diverging=True, label="standard deviations")
+        heatmap(bottom_right, z_change.T, pair_rows, "geometry change vs permuted-age null (SDs; red = more change than shuffled ages)", "RdBu_r", diverging=True, label="standard deviations")
     else:
         middle_right.axis("off")
         bottom_right.axis("off")
     figure.suptitle(f"{title}\n{subtitle}", fontsize=12, x=0.01, ha="left")
     figure.text(0.01, 0.006, note, fontsize=8.2, color="#6b6b66", wrap=True)
     figure.tight_layout(rect=(0, 0.03, 1, 0.945))
+    figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+
+def plot_previous_age(result: dict[str, object], path: Path, title: str, note: str) -> None:
+    """Age a against age a-1: PC overlap and geometry change, with the standardised difference from the permuted-age null."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    observed, null = result["observed"], result["null"]
+    pair_rows = [f"{int(round(v * 100))}%" for v in V_PAIR]
+    figure, axes = plt.subplots(2, 2, figsize=(13.5, 9.8), facecolor="#fcfcfb")
+    overlap = previous_age(observed["overlap"])
+    change = np.maximum(1.0 - previous_age(observed["cka"]), 1e-4)
+    heatmap(axes[0][0], overlap.T, pair_rows, "PC overlap with the previous age (age a vs a-1)", "viridis", vmin=0, vmax=1, label="overlap")
+    heatmap(axes[1][0], change.T, pair_rows, "geometry change vs the previous age (1 - linear CKA)", "viridis", log=True,
+            vmin=float(np.nanmin(change)), vmax=float(np.nanmax(change)), label="1 - CKA (log scale)")
+    if null is not None:
+        heatmap(axes[0][1], standardised(overlap, null["overlap_prev_mean"], null["overlap_prev_sd"], 0.005).T, pair_rows,
+                "overlap vs permuted-age null (SDs; red = more overlap than shuffled ages)", "RdBu_r", diverging=True, label="standard deviations")
+        heatmap(axes[1][1], standardised(1.0 - previous_age(observed["cka"]), null["change_prev_mean"], null["change_prev_sd"], 5e-4).T, pair_rows,
+                "geometry change vs permuted-age null (SDs; red = more change than shuffled ages)", "RdBu_r", diverging=True, label="standard deviations")
+    else:
+        axes[0][1].axis("off")
+        axes[1][1].axis("off")
+    for row in axes:
+        for axis in row:
+            axis.set_xlim(0.5, len(AGES) - 0.5)
+    figure.suptitle(title, fontsize=12, x=0.01, ha="left")
+    figure.text(0.01, 0.008, note, fontsize=8.2, color="#6b6b66", wrap=True)
+    figure.tight_layout(rect=(0, 0.035, 1, 0.95))
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
 
@@ -306,7 +374,8 @@ def plot_components_vs_null(result: dict[str, object], path: Path, title: str) -
     relative = observed["k"] / np.nanmean(observed["k"], axis=0, keepdims=True) - 1.0
     heatmap(axes[0], relative.T, rows, "PCs needed relative to the average over ages at the same variance share", "RdBu_r", diverging=True, label="relative change")
     if null is not None:
-        heatmap(axes[1], (observed["k"] - null["k"]).T, rows, "observed minus permuted-age null (PCs)", "RdBu_r", diverging=True, label="PCs")
+        heatmap(axes[1], standardised(observed["k"], null["k"], null["k_sd"], 0.25).T, rows,
+                "PCs needed vs permuted-age null (SDs; negative = fewer PCs than shuffled ages)", "RdBu_r", diverging=True, label="standard deviations")
     figure.suptitle(title, fontsize=11.5, x=0.01, ha="left")
     figure.tight_layout(rect=(0, 0, 1, 0.94))
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
@@ -350,7 +419,9 @@ def plot_matrices(result: dict[str, object], path: Path, title: str) -> None:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--source", choices=["distilbert", "gpt_oss_global"], default="distilbert")
+    parser.add_argument("--source", choices=["distilbert", "story_distilbert", "gpt_oss_global"], default="distilbert")
+    parser.add_argument("--story-npz", type=Path, default=None, help="story_distilbert source: story_vectors npz from embed_story_level_distilbert.py")
+    parser.add_argument("--select", choices=["popular", "random"], default="popular", help="which stories fill each age: the most viewed (needs story-level vectors) or a random sample")
     parser.add_argument("--npz", type=Path, default=Path("artifacts/distilbert_vectors_events/story_vectors.npz"), help="distilbert source: story_vectors.npz")
     parser.add_argument("--global-dir", type=Path, default=Path(f"{base.DEFAULT_ROOT}/gpt_oss_20b_global_current"), help="gpt_oss_global source: folder with global_features_*.npz")
     parser.add_argument("--vector-key", default="mean_vectors", help="gpt_oss_global: mean_vectors or eos_vectors")
@@ -369,25 +440,32 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> None:
     args = parse_args(argv)
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    popularity = None
     if args.source == "distilbert":
         ids, vectors = load_distilbert(args.npz, args.layer)
         label = f"DistilBERT story vectors, hidden state {args.layer}"
+    elif args.source == "story_distilbert":
+        ids, vectors, views = load_story_level(args.story_npz, args.layer)
+        popularity = views if args.select == "popular" else None
+        label = f"DistilBERT story-level vectors, hidden state {args.layer}, " + ("most-viewed stories per age" if popularity is not None else "random stories per age")
     else:
         ids, vectors = load_gpt_oss_global(args.global_dir, args.vector_key, args.layer)
         label = f"GPT-OSS {args.vector_key}, layer {args.layer}"
-    x, lo, hi = story_table(ids, vectors, args.flat_csv, args.standardize)
+    x, lo, hi, pop = story_table(ids, vectors, args.flat_csv, args.standardize, popularity)
     print(f"{len(x)} stories with embeddings and an age range ({label}); dimension {x.shape[1]}", flush=True)
     for mode in [item.strip() for item in args.modes.split(",") if item.strip()]:
-        result = run_mode(x, lo, hi, mode, args.per_age, args.splits, args.permutations, args.seed)
+        result = run_mode(x, lo, hi, mode, args.per_age, args.splits, args.permutations, args.seed, pop=pop)
         for name, table in tables(result, mode).items():
             table.to_csv(args.output_dir / f"{name}_{mode}.csv", index=False)
         size = next(iter(result["cells"].values()))
         what = ("every story whose stated range covers the age, so stories sit in several ages" if mode == "multi"
                 else "each story assigned to one age, so ages share no stories")
         plot_main(result, args.output_dir / f"fig_age_by_variance_{mode}.png",
-                  f"Age by variance captured ({label})", f"{size} stories per age ({size // 2} per half); {what}",
+                  f"Age by variance captured ({label})", f"{size} stories per age ({size // 2} per half), {result['unique_stories']} distinct stories in total; {what}",
                   "PC overlap = ||U_a U_b^T||^2 / k (k = smaller component count; 1 = one subspace inside the other); geometry change = 1 - linear CKA between all stories projected through each age's top k PCs. "
-                  "Left: mean over all other ages. Right: observed minus the same analysis with age ranges shuffled among stories. Rows at or below about 30% variance use only 1-3 components, so differences there are coarse (integer k).")
+                  "Left: mean over all other ages. Right: observed value minus the mean of 20 permuted-age analyses, in units of the permutation standard deviation (negative = lower than shuffled ages). Rows at or below about 30% variance use only 1-3 components, so differences there are coarse (integer k).")
+        plot_previous_age(result, args.output_dir / f"fig_previous_age_{mode}.png", f"Each age against the previous age ({label}; {size} stories per age)",
+                          "Overlap = ||U_a U_(a-1)^T||^2 / k; geometry change = 1 - linear CKA of all stories projected through each age's top k PCs. Right: observed minus the mean of the permuted-age analyses, in permutation standard deviations.")
         plot_components_vs_null(result, args.output_dir / f"fig_pcs_relative_and_null_{mode}.png", f"Number of PCs: relative to the age average and to the permuted-age null ({label})")
         plot_matrices(result, args.output_dir / f"fig_age_by_age_matrices_{mode}.png", f"Age x age overlap and CKA at 50 / 80 / 95% of the variance ({label}; {size} stories per age)")
         observed = result["observed"]
