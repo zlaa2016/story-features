@@ -1,0 +1,57 @@
+{
+  "unit": "story",
+  "design": "flat",
+  "baseline": "baseline_stories_span_lt8.csv",
+  "ages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cell_size": 2553,
+  "equal_cells": true,
+  "target_per_age": 2553,
+  "by_age": {
+    "2": {
+      "candidates": 4585,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "3": {
+      "candidates": 7580,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "4": {
+      "candidates": 8814,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "5": {
+      "candidates": 8741,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "6": {
+      "candidates": 7155,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "7": {
+      "candidates": 4936,
+      "selected": 2553,
+      "short_of_target": 0
+    },
+    "8": {
+      "candidates": 3296,
+      "selected": 2553,
+      "short_of_target": 0
+    }
+  },
+  "distinct_stories": 5141,
+  "distinct_videos": 4542,
+  "restricted_to_available_vectors": false
+}

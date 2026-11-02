@@ -176,6 +176,17 @@ def available_stories(args: argparse.Namespace, dirs: dict[str, list[Path]]) -> 
     return found
 
 
+SPECTRAL_DATA = Path("data/processed/spectral_age")
+
+
+def baseline_path(args: argparse.Namespace) -> Path:
+    """The story baseline the batch was built from (named in its summary.json) unless ``--baseline-csv`` is given."""
+    if args.baseline_csv:
+        return args.baseline_csv
+    name = json.loads((args.batch_dir / "summary.json").read_text()).get("baseline") or "baseline_stories_span_lt7.csv"
+    return SPECTRAL_DATA / name
+
+
 def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: list[int]) -> Path:
     out = args.output_dir / "selection"
     if not args.reselect_available:
@@ -183,9 +194,12 @@ def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: lis
         for name in ("subset_stories.csv", "membership.csv", "summary.json"):
             (out / name).write_bytes((args.batch_dir / name).read_bytes())
         return out
-    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"story_key": str, "video_id": str})
+    baseline = pd.read_csv(baseline_path(args), low_memory=False, dtype={"story_key": str, "video_id": str})
     available = available_stories(args, dirs)
-    membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells)
+    if json.loads((args.batch_dir / "summary.json").read_text()).get("design") == "flat":
+        membership, subset, summary = subsets.solve_flat(baseline, ages, available, None, None, baseline_path(args).name)
+    else:
+        membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells)
     summary["stories_with_vectors"] = len(available)
     subsets.write_batch(out, membership, subset, summary)
     return out
@@ -408,7 +422,7 @@ def plot_within(profile_frame, k_mean, k_rel, result, out: Path, ages, label, ar
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--batch-dir", type=Path, required=True, help="batch folder from subsets.py select")
-    parser.add_argument("--baseline-csv", type=Path, default=Path("data/processed/spectral_age/baseline_stories_span_lt7.csv"))
+    parser.add_argument("--baseline-csv", type=Path, default=None, help="default: the baseline named in the batch's summary.json")
     parser.add_argument("--model-key", choices=sorted(MODEL_DIRS), default="gpt_oss_20b")
     parser.add_argument("--extraction-root", type=Path, default=Path(base.DEFAULT_ROOT))
     parser.add_argument("--global-dir", type=Path, default=None, help="override <root>/<model global dir>")
@@ -480,7 +494,7 @@ def check_coverage(args, dirs, ages: np.ndarray) -> None:
         report[f"stories_with_{view}_detail_vectors"] = len(found)
     batch = pd.read_csv(args.batch_dir / "subset_stories.csv", dtype={"story_key": str})
     membership = pd.read_csv(args.batch_dir / "membership.csv", dtype={"story_key": str})
-    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"story_key": str})
+    baseline = pd.read_csv(baseline_path(args), low_memory=False, dtype={"story_key": str})
     report["batch_story_key_examples"] = batch["story_key"].head(3).tolist()
     for name, keys in (("batch", set(batch["story_key"])), ("baseline", set(baseline["story_key"]))):
         report[f"{name}_stories"] = len(keys)

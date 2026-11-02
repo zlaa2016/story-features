@@ -4,13 +4,16 @@ The unit is the **story** (``story_key``, e.g. ``abc123__story02``): a video can
 text, details and vectors.  A story inherits its video's stated age range and view count.
 
 ``baseline`` keeps every story whose stated age range is narrow (``upper - lower <= max_span``, 6 = under 7 ages).
-``select`` then builds a flat batch from it: for each age the ``per_age`` most-viewed stories whose range covers that age
+``select`` then builds a batch from it: for each age the ``per_age`` most-viewed stories whose range covers that age
 (a wide-range story sits in every age it covers).  With ``equal`` (the default) every age is cut to the smallest age's
 size, so all ages are compared at the same sample size.  The batch folder holds everything a run needs:
 
 * ``subset_stories.csv``  union of the selected stories with their range, views and the ages they serve
 * ``membership.csv``      one row per (age, story) with the popularity rank inside that age
 * ``summary.json``        candidates, selected size and shortfall per age
+
+``flat`` builds the other kind of design: the largest set of stories whose coverage is *exactly equal* at every age (a story
+counts at every age its range covers), solved as an integer program.  ``select`` takes the top-N stories per age instead.
 
 The pipeline can rerun ``select`` on the stories that actually have vectors (``--available``), writing the batch it really
 ran on into the run folder.
@@ -68,6 +71,48 @@ def select_flat(baseline: pd.DataFrame, ages: list[int], per_age: int, available
     return membership, subset, summary
 
 
+def solve_flat(baseline: pd.DataFrame, ages: list[int], available: set[str] | None = None, prefer_videos: set[str] | None = None,
+               target: int | None = None, baseline_name: str = "") -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+    """The largest set of stories whose coverage is exactly the same at every age (a *flat* design), most-viewed first.
+
+    Every story covers the consecutive ages of its stated range, so the coverage matrix has the consecutive-ones property
+    (totally unimodular): the linear program has integer solutions.  Step 1 maximises the common coverage N (``target`` caps
+    it); step 2 fixes N and picks the stories that maximise preference (stories of ``prefer_videos``, e.g. videos already
+    queued for extraction) and then popularity.  A cell is every selected story covering that age, so all cells have N stories.
+    """
+    from scipy.optimize import LinearConstraint, Bounds, linprog, milp
+
+    pool = baseline if available is None else baseline[baseline["story_key"].astype(str).isin(available)]
+    pool = pool[(pool["range_upper"] >= min(ages)) & (pool["range_lower"] <= max(ages))].reset_index(drop=True)
+    cover = np.array([(pool["range_lower"].to_numpy() <= age) & (pool["range_upper"].to_numpy() >= age) for age in ages], dtype=float)
+    count = len(pool)
+    relaxed = linprog(np.r_[np.zeros(count), -1.0], A_eq=np.hstack([cover, -np.ones((len(ages), 1))]), b_eq=np.zeros(len(ages)),
+                      bounds=[(0, 1)] * count + [(0, None)], method="highs")
+    common = int(np.floor(-relaxed.fun + 1e-9))
+    if target is not None:
+        common = min(common, target)
+    weight = pool["log_views"].rank(pct=True).to_numpy()
+    if prefer_videos:
+        weight = weight + 10.0 * pool["video_id"].astype(str).isin(prefer_videos).to_numpy()
+    solved = milp(-weight, constraints=LinearConstraint(cover, common * np.ones(len(ages)), common * np.ones(len(ages))),
+                  integrality=np.ones(count), bounds=Bounds(0, 1))
+    if solved.status != 0:
+        raise RuntimeError(f"flat design infeasible at N={common}: {solved.message}")
+    chosen = pool[solved.x > 0.5].copy()
+    parts = []
+    for age in ages:
+        cell = chosen[(chosen["range_lower"] <= age) & (chosen["range_upper"] >= age)].sort_values(["log_views", "story_key"], ascending=[False, True], kind="stable")
+        parts.append(pd.DataFrame({"age": age, "story_key": cell["story_key"].to_numpy(), "rank": np.arange(1, len(cell) + 1), "log_views": cell["log_views"].to_numpy()}))
+    membership = pd.concat(parts, ignore_index=True)
+    ages_of = membership.groupby("story_key")["age"].agg(lambda a: ";".join(str(int(v)) for v in sorted(a))).rename("ages").reset_index()
+    subset = ages_of.merge(chosen.drop_duplicates("story_key"), on="story_key", how="left")
+    summary = {"unit": "story", "design": "flat", "baseline": baseline_name, "ages": [int(a) for a in ages], "cell_size": int(common), "equal_cells": True,
+               "target_per_age": int(common), "by_age": {int(a): {"candidates": int(c), "selected": int(common), "short_of_target": 0} for a, c in zip(ages, cover.sum(axis=1))},
+               "distinct_stories": int(len(subset)), "distinct_videos": int(subset["video_id"].nunique()),
+               "restricted_to_available_vectors": available is not None}
+    return membership, subset, summary
+
+
 def write_batch(directory: Path, membership: pd.DataFrame, subset: pd.DataFrame, summary: dict) -> None:
     directory.mkdir(parents=True, exist_ok=True)
     membership.to_csv(directory / "membership.csv", index=False)
@@ -92,6 +137,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     pick.add_argument("--keep-unequal", action="store_true", help="do not cut every age to the smallest age")
     pick.add_argument("--available", type=Path, default=None, help="text/csv of story_keys that have vectors (column story_key or one key per line)")
     pick.add_argument("--output-dir", type=Path, required=True)
+    flat = sub.add_parser("flat", help="largest flat-coverage design over the ages (equal coverage at every age)")
+    flat.add_argument("--baseline", type=Path, required=True)
+    flat.add_argument("--age-min", type=int, default=2)
+    flat.add_argument("--age-max", type=int, default=8)
+    flat.add_argument("--target", type=int, default=None, help="cap the common coverage")
+    flat.add_argument("--prefer-videos", type=Path, default=None, help="csv with video_id: prefer stories of these videos (e.g. already queued for extraction)")
+    flat.add_argument("--available", type=Path, default=None)
+    flat.add_argument("--output-dir", type=Path, required=True)
     return parser.parse_args(argv)
 
 
@@ -112,6 +165,12 @@ def main(argv: list[str] | None = None) -> None:
     baseline = pd.read_csv(args.baseline, low_memory=False, dtype={"story_key": str, "video_id": str})
     ages = list(range(args.age_min, args.age_max + 1))
     available = read_available(args.available) if args.available else None
+    if args.command == "flat":
+        prefer = set(pd.read_csv(args.prefer_videos, dtype=str)["video_id"]) if args.prefer_videos else None
+        membership, subset, summary = solve_flat(baseline, ages, available, prefer, args.target, args.baseline.name)
+        write_batch(args.output_dir, membership, subset, summary)
+        print(json.dumps({k: v for k, v in summary.items() if k != "by_age"}))
+        return
     membership, subset, summary = select_flat(baseline, ages, args.per_age, available, equal=not args.keep_unequal)
     write_batch(args.output_dir, membership, subset, summary)
     print(json.dumps({k: v for k, v in summary.items() if k != "by_age"}))

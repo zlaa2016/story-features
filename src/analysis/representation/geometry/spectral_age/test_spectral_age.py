@@ -45,6 +45,31 @@ class SubsetTests(unittest.TestCase):
         self.assertTrue(summary["restricted_to_available_vectors"])
 
 
+class FlatDesignTests(unittest.TestCase):
+    def test_flat_design_has_equal_coverage_at_every_age_and_is_maximal(self) -> None:
+        baseline = make_baseline(np.random.default_rng(6), 150)
+        ages = [3, 4, 5, 6]
+        membership, subset, summary = subsets.solve_flat(baseline, ages)
+        sizes = membership.groupby("age").size()
+        self.assertEqual(sizes.nunique(), 1)
+        self.assertEqual(int(sizes.iloc[0]), summary["cell_size"])
+        covering = {a: ((subset["range_lower"] <= a) & (subset["range_upper"] >= a)).sum() for a in ages}
+        self.assertEqual(set(covering.values()), {summary["cell_size"]})
+        again = subsets.solve_flat(baseline, ages, target=summary["cell_size"] + 1)[2]
+        self.assertEqual(again["cell_size"], summary["cell_size"])  # the cap above the optimum changes nothing
+
+    def test_preferred_videos_are_chosen_first_and_availability_limits_the_pool(self) -> None:
+        baseline = make_baseline(np.random.default_rng(7), 150)
+        prefer = set(baseline["video_id"].iloc[:40])
+        _, subset, _ = subsets.solve_flat(baseline, [3, 4, 5], prefer_videos=prefer)
+        _, plain, _ = subsets.solve_flat(baseline, [3, 4, 5])
+        self.assertGreaterEqual(subset["video_id"].isin(prefer).sum(), plain["video_id"].isin(prefer).sum())
+        available = set(baseline["story_key"].iloc[:50])
+        membership, _, summary = subsets.solve_flat(baseline, [3, 4, 5], available=available)
+        self.assertTrue(set(membership["story_key"]) <= available)
+        self.assertTrue(summary["restricted_to_available_vectors"])
+
+
 class MeasureTests(unittest.TestCase):
     def test_twonn_recovers_low_dimension(self) -> None:
         rng = np.random.default_rng(2)
@@ -84,6 +109,26 @@ def write_shards(root: Path, rng: np.random.Generator, baseline: pd.DataFrame, d
     np.savez(detail_dir / "isolated_detail_features_000.npz", mean_vectors=np.stack([stacked, stacked * 0.5], axis=1), layers=layers)
     pd.DataFrame(detail_rows).to_csv(detail_dir / "isolated_detail_metadata_000.csv", index=False)
     return global_dir, detail_dir
+
+
+class FlatPipelineTests(unittest.TestCase):
+    def test_flat_batch_is_reselected_on_available_stories_and_runs(self) -> None:
+        rng = np.random.default_rng(8)
+        baseline = make_baseline(rng, 120)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            global_dir, detail_dir = write_shards(root, rng, baseline.iloc[:90])  # vectors exist for 90 of 120 stories
+            baseline.to_csv(root / "base.csv", index=False)
+            membership, subset, summary = subsets.solve_flat(baseline, [3, 4, 5, 6], baseline_name="base.csv")
+            subsets.write_batch(root / "batch", membership, subset, summary)
+            out = root / "out"
+            run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--global-dir", str(global_dir), "--detail-dir", str(detail_dir),
+                      "--reselect-available", "--standardize", "--splits", "2", "--permutations", "2", "--reduce-dim", "16", "--trend-permutations", "10", "--output-dir", str(out)])
+            chosen = json.loads((out / "selection/summary.json").read_text())
+            self.assertEqual(chosen["design"], "flat")
+            self.assertLess(chosen["cell_size"], summary["cell_size"])
+            self.assertTrue(set(pd.read_csv(out / "selection/membership.csv")["story_key"]) <= set(baseline["story_key"].iloc[:90]))
+            self.assertTrue((out / "fig_spectrum_by_age.png").exists())
 
 
 class MultiFolderTests(unittest.TestCase):

@@ -24,6 +24,13 @@ covers that age. The 800 batch has the same size at every age; the 400 batch kee
 | `batch_top800_ages2-8` | 800 per age, ages 2-8 | 800 | 2,134 stories (1,737 videos) |
 | `batch_top400_ages2-12` | 400 per age, ages 2-12 | 400 (age 12: 374) | 1,738 stories (1,441 videos); only 374 narrow-range stories cover age 12 |
 
+| `batch_flat_ages2-8_span_lt8` | flat design, ages 2-8, range under 8 (`upper - lower <= 7`) | 2,553 (same at every age) | 5,141 stories (4,542 videos) |
+
+`batch_flat_*` is a different design: the largest set of stories whose coverage is *exactly equal* at every age (a story counts at every age its range covers),
+solved as an integer program (`subsets.py flat`, `baseline_stories_span_lt8.csv`); a cell is every selected story covering the age. Stories of videos already queued
+for extraction are preferred, then the most viewed. Its 2,521 videos outside the first extraction list are in `extraction_videos_flat_extra.csv`.
+With `--reselect-available` the flat design is solved again on the stories that have vectors, so the run uses the largest flat set the vectors allow.
+
 Each holds `subset_stories.csv`, `membership.csv` (age, story_key, rank), `summary.json`. Rebuild with `python -m analysis.representation.geometry.spectral_age.subsets baseline|select ...`
 (`baseline` needs the local `data/exports/`).
 
@@ -33,7 +40,7 @@ git fetch origin && git checkout compress && git pull --ff-only
 # 1. which batch stories have vectors (prints and writes vector_coverage.json)
 STEPS=check RESELECT=0 BATCH=batch_top800_ages2-8 MODEL_KEY=gpt_oss_20b sbatch --account=torch_pr_494_general hpc/analysis/representation/geometry/spectral_age/run.slurm
 # 2. the real runs (RESELECT=1 rebuilds the batch on stories that have vectors and saves it under <output>/selection/)
-for B in batch_top800_ages2-8 batch_top400_ages2-12; do for M in gpt_oss_20b qwen3_8b; do
+for B in batch_top800_ages2-8 batch_top400_ages2-12 batch_flat_ages2-8_span_lt8; do for M in gpt_oss_20b qwen3_8b; do
   BATCH=$B MODEL_KEY=$M sbatch --account=torch_pr_494_general hpc/analysis/representation/geometry/spectral_age/run.slurm
 done; done
 ```
@@ -57,6 +64,12 @@ MODEL_KEY=qwen3_8b COHORT_NAME=spectral_age_cohort_part2.jsonl START_OFFSET=936 
 # GPT-OSS: only the batch videos that have no vectors yet
 R=results/features/representation_extraction/causal_lm/detail_extraction
 MODEL_KEY=gpt_oss_20b COHORT_NAME=spectral_age_cohort_gpt_oss.jsonl EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+```
+Extra videos of the flat batch (2,521 videos, 2,784 stories; shard ids from 300 so nothing collides):
+```bash
+D=data/processed/spectral_age; R=results/features/representation_extraction/causal_lm/detail_extraction
+MODEL_KEY=qwen3_8b VIDEOS_CSV=$D/extraction_videos_flat_extra.csv SUPPLEMENT=$D/supplement_cohort_flat_extra.jsonl.gz COHORT_NAME=spectral_age_cohort_flat_extra.jsonl SHARD_OFFSET=300 bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+MODEL_KEY=gpt_oss_20b VIDEOS_CSV=$D/extraction_videos_flat_extra.csv SUPPLEMENT=$D/supplement_cohort_flat_extra.jsonl.gz COHORT_NAME=spectral_age_cohort_flat_extra_gpt_oss.jsonl SHARD_OFFSET=300 EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
 ```
 Qwen3-8B reads up to 32k tokens (`MAX_TOKENS=32768`, longer stories skipped and reported).
 
