@@ -37,3 +37,13 @@ done; done
 Outputs in `results/analysis/representation/geometry/spectral_age/<model>/<batch>_<detail view>/`: `fig_spectrum_by_age.png`
 (the three heatmaps), `pooled/`, `within_<view>/`, `selection/` (the exact videos the run used), `run_args.json`.
 `DETAIL_VIEW=contextual` repeats B and C on in-context detail states.
+
+## Extracting vectors for a new model (Qwen) on the batch videos only
+The cluster has no Qwen vectors in the layout `run.py` reads. `submit_extraction.sh` cuts the cohort to the batch videos
+(`filter_cohort.py`, original stories only, missing videos listed in `spectral_age_cohort.missing_videos.csv`) and submits two chained
+array jobs: whole-story + contextual detail vectors (`extract_global.py`) and isolated detail vectors (`extract_detail_controls.py`).
+Outputs: `<root>/qwen3_8b_spectral_global/` and `<root>/qwen3_8b_spectral_detail_controls/`, which `MODEL_KEY=qwen3_8b` reads by default.
+```bash
+MODEL_KEY=qwen3_8b bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+```
+Qwen3-8B reads up to 32k tokens (`MAX_TOKENS=32768`, longer stories skipped and reported).

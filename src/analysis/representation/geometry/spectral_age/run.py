@@ -37,7 +37,7 @@ base = overlap.base
 
 MODEL_DIRS = {
     "gpt_oss_20b": {"global": "gpt_oss_20b_global_current", "isolated": "gpt_oss_20b_detail_controls"},
-    "qwen3_8b": {"global": "qwen3_8b_aug27_global", "isolated": "qwen3_8b_aug27_detail_controls"},
+    "qwen3_8b": {"global": "qwen3_8b_spectral_global", "isolated": "qwen3_8b_spectral_detail_controls"},
 }
 STATS = ["k50", "k80", "k90", "kn50", "kn80", "kn90", "k90_over_k50", "pr", "effrank", "alpha", "head3", "twonn"]
 
