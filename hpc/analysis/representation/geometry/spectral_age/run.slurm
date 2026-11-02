@@ -37,4 +37,4 @@ run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geomet
   --splits "${SPLITS:-20}" \
   --permutations "${PERMUTATIONS:-20}" \
   --reduce-dim "${REDUCE_DIM:-256}" \
-  --output-dir "'"$OUTPUT_DIR"'" '"$RESELECT_ARG"''
+  --output-dir "'"$OUTPUT_DIR"'" '"$RESELECT_ARG $EXTRA_ARGS"''
