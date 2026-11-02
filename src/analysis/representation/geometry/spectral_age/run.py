@@ -58,13 +58,21 @@ def load_global_by_story(directory: Path, key: str, layer: int) -> tuple[np.ndar
     rows: list[np.ndarray] = []
     for feature_path in sorted(directory.glob("global_features_*.npz")):
         suffix = feature_path.stem.removeprefix("global_features_")
-        metadata = pd.read_csv(directory / f"global_metadata_{suffix}.csv", low_memory=False)
-        with np.load(feature_path, allow_pickle=False) as payload:
-            array = payload[key]
-            layers = payload["layers"].astype(int).tolist()
-            position = len(layers) - 1 if layer == -1 else layers.index(layer)
-            chosen = np.flatnonzero(metadata["record_type"].astype(str).eq("original").to_numpy())
-            rows.append(array[chosen, position, :].astype(np.float32))
+        metadata_path = directory / f"global_metadata_{suffix}.csv"
+        if not metadata_path.exists():
+            print(f"[warn] skipping {feature_path.name}: no metadata yet (shard still being written?)", flush=True)
+            continue
+        metadata = pd.read_csv(metadata_path, low_memory=False)
+        try:
+            with np.load(feature_path, allow_pickle=False) as payload:
+                array = payload[key]
+                layers = payload["layers"].astype(int).tolist()
+                position = len(layers) - 1 if layer == -1 else layers.index(layer)
+                chosen = np.flatnonzero(metadata["record_type"].astype(str).eq("original").to_numpy())
+                rows.append(array[chosen, position, :].astype(np.float32))
+        except (OSError, ValueError, EOFError) as error:
+            print(f"[warn] skipping unreadable {feature_path.name}: {error}", flush=True)
+            continue
         ids.extend(metadata.iloc[chosen]["story_key"].astype(str).tolist())
     if not rows:
         return np.array([], dtype=str), np.zeros((0, 0), dtype=np.float32)
