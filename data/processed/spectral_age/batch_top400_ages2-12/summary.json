@@ -1,0 +1,77 @@
+{
+  "target_per_age": 400,
+  "ages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "equal_cells": true,
+  "cell_size": 341,
+  "by_age": {
+    "2": {
+      "candidates": 4010,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "3": {
+      "candidates": 6658,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "4": {
+      "candidates": 7849,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "5": {
+      "candidates": 7790,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "6": {
+      "candidates": 6383,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "7": {
+      "candidates": 4410,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "8": {
+      "candidates": 2920,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "9": {
+      "candidates": 976,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "10": {
+      "candidates": 640,
+      "selected": 341,
+      "short_of_target": 0
+    },
+    "11": {
+      "candidates": 384,
+      "selected": 341,
+      "short_of_target": 16
+    },
+    "12": {
+      "candidates": 341,
+      "selected": 341,
+      "short_of_target": 59
+    }
+  },
+  "distinct_videos": 1517,
+  "restricted_to_available_vectors": false
+}
