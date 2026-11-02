@@ -38,12 +38,25 @@ Outputs in `results/analysis/representation/geometry/spectral_age/<model>/<batch
 (the three heatmaps), `pooled/`, `within_<view>/`, `selection/` (the exact videos the run used), `run_args.json`.
 `DETAIL_VIEW=contextual` repeats B and C on in-context detail states.
 
-## Extracting vectors for a new model (Qwen) on the batch videos only
-The cluster has no Qwen vectors in the layout `run.py` reads. `submit_extraction.sh` cuts the cohort to the batch videos
-(`filter_cohort.py`, original stories only, missing videos listed in `spectral_age_cohort.missing_videos.csv`) and submits two chained
-array jobs: whole-story + contextual detail vectors (`extract_global.py`) and isolated detail vectors (`extract_detail_controls.py`).
-Outputs: `<root>/qwen3_8b_spectral_global/` and `<root>/qwen3_8b_spectral_detail_controls/`, which `MODEL_KEY=qwen3_8b` reads by default.
+## Extracting vectors for batch videos the cluster lacks
+`cohort.jsonl` was built with an age filter and an older story set, so it misses many batch videos. `build_supplement_cohort.py` (run locally,
+needs `data/exports/`) writes cohort-format records for every batch video to `data/processed/spectral_age/supplement_cohort.jsonl.gz`.
+`filter_cohort.py` then writes `spectral_age_cohort*.jsonl`: the cohort's own batch records first (same order as before), then supplement
+records for videos the cohort lacks; `--exclude-dirs` removes videos a model already has vectors for; videos found nowhere go to
+`*.missing_videos.csv`. `submit_extraction.sh` submits two chained array jobs (whole-story + in-context details with `extract_global.py`, isolated
+details with `extract_detail_controls.py`) into `<root>/<model>_spectral_global/` and `<root>/<model>_spectral_detail_controls/`.
+`run.py` reads every folder listed in `MODEL_DIRS` that exists (first folder wins when a video is in several).
+
 ```bash
-MODEL_KEY=qwen3_8b bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+# Qwen, continuing the first 10 shards (records 0-935 were already submitted from the cohort alone); new shard ids start at 100
+MODEL_KEY=qwen3_8b COHORT_NAME=spectral_age_cohort_part2.jsonl START_OFFSET=936 SHARD_OFFSET=100 bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+# GPT-OSS: only the batch videos that have no vectors yet
+R=results/features/representation_extraction/causal_lm/detail_extraction
+MODEL_KEY=gpt_oss_20b COHORT_NAME=spectral_age_cohort_gpt_oss.jsonl EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
 ```
 Qwen3-8B reads up to 32k tokens (`MAX_TOKENS=32768`, longer stories skipped and reported).
+
+## Caution: detail granularity differs between sources
+Stories already on the cluster were segmented by the older detail prompt (about one sentence per detail); the supplement's segments come from the
+newer run (about 3 sentences per detail). Within-story spectra (B, C) depend on the number of units, so the reported `kn` (k / (units - 1)), the size-adjusted
+trend tests and `story_profiles.csv` (`n_units`) must be read with that in mind; panel A (whole-story vectors) does not depend on segmentation.

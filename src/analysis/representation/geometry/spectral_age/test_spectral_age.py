@@ -82,6 +82,27 @@ def write_shards(root: Path, rng: np.random.Generator, baseline: pd.DataFrame, d
     return global_dir, detail_dir
 
 
+class MultiFolderTests(unittest.TestCase):
+    def test_folders_are_combined_and_first_folder_wins(self) -> None:
+        rng = np.random.default_rng(5)
+        full = make_baseline(rng, 40)
+        with tempfile.TemporaryDirectory() as tmp:
+            first, second = Path(tmp) / "a", Path(tmp) / "b"
+            first.mkdir()
+            second.mkdir()
+            global_a, detail_a = write_shards(first, rng, full.iloc[:25])
+            global_b, detail_b = write_shards(second, rng, full.iloc[15:])  # videos 15-24 are in both
+            ids, vectors = run.whole_story([global_a, global_b, Path(tmp) / "missing"], "mean_vectors", -1)
+            self.assertEqual(sorted(ids.tolist()), sorted(full["video_id"].tolist()))
+            self.assertEqual(len(vectors), 40)
+            details = run.detail_table([detail_a, detail_b], "isolated")
+            overlapped = details[details["video_id"].isin(full["video_id"].iloc[15:25])]
+            self.assertEqual(set(overlapped["folder"]), {str(detail_a)})
+            loaded = run.detail_vectors(details, "isolated", -1, None)
+            self.assertEqual(loaded.shape[0], len(details))
+            self.assertTrue(np.isfinite(loaded).all() and np.abs(loaded).sum(axis=1).min() > 0)
+
+
 class PipelineTests(unittest.TestCase):
     def test_pipeline_runs_end_to_end_on_synthetic_shards(self) -> None:
         rng = np.random.default_rng(4)

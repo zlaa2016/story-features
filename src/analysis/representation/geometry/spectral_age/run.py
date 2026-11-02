@@ -35,9 +35,12 @@ from analysis.representation.geometry.spectral_age import subsets
 overlap = importlib.import_module("analysis.representation.geometry.gist_structure.pc_overlap_by_age")
 base = overlap.base
 
+# Folders read per model (all that exist are combined, the first folder wins when a video is in several).  The
+# "spectral" folders hold the batch videos extracted by submit_extraction.sh.
 MODEL_DIRS = {
-    "gpt_oss_20b": {"global": "gpt_oss_20b_global_current", "isolated": "gpt_oss_20b_detail_controls"},
-    "qwen3_8b": {"global": "qwen3_8b_spectral_global", "isolated": "qwen3_8b_spectral_detail_controls"},
+    "gpt_oss_20b": {"global": ["gpt_oss_20b_global_current", "gpt_oss_20b_spectral_global"],
+                    "isolated": ["gpt_oss_20b_detail_controls", "gpt_oss_20b_spectral_detail_controls"]},
+    "qwen3_8b": {"global": ["qwen3_8b_spectral_global"], "isolated": ["qwen3_8b_spectral_detail_controls"]},
 }
 STATS = ["k50", "k80", "k90", "kn50", "kn80", "kn90", "k90_over_k50", "pr", "effrank", "alpha", "head3", "twonn"]
 
@@ -45,6 +48,51 @@ STATS = ["k50", "k80", "k90", "kn50", "kn80", "kn90", "k90_over_k50", "pr", "eff
 # --------------------------------------------------------------------------------------
 # Primitives
 # --------------------------------------------------------------------------------------
+def usable(folders: list[Path]) -> list[Path]:
+    return [folder for folder in folders if folder.exists() and any(folder.glob("*_metadata_*.csv"))]
+
+
+def whole_story(folders: list[Path], key: str, layer: int) -> tuple[np.ndarray, np.ndarray]:
+    ids: list[np.ndarray] = []
+    vectors: list[np.ndarray] = []
+    for folder in usable(folders):
+        found_ids, found_vectors = overlap.load_gpt_oss_global(folder, key, layer)
+        ids.append(found_ids)
+        vectors.append(found_vectors)
+    if not ids:
+        raise FileNotFoundError(f"No whole-story vectors under {[str(f) for f in folders]}")
+    all_ids, all_vectors = np.concatenate(ids), np.concatenate(vectors)
+    keep = ~pd.Series(all_ids).duplicated().to_numpy()
+    return all_ids[keep], all_vectors[keep]
+
+
+def detail_table(folders: list[Path], view: str) -> pd.DataFrame:
+    parts = []
+    for index, folder in enumerate(usable(folders)):
+        try:
+            table = base.load_metadata(folder, view)
+        except FileNotFoundError:
+            continue
+        table["folder"] = str(folder)
+        parts.append(table)
+    if not parts:
+        raise FileNotFoundError(f"No {view} detail vectors under {[str(f) for f in folders]}")
+    table = pd.concat(parts, ignore_index=True)
+    table["video_id"] = table["video_id"].astype(str)
+    first_folder = table.groupby("video_id")["folder"].transform("first")
+    return table[table["folder"] == first_folder].reset_index(drop=True)
+
+
+def detail_vectors(details: pd.DataFrame, view: str, layer: int, key: str | None) -> np.ndarray:
+    out: np.ndarray | None = None
+    for folder, group in details.groupby("folder", sort=False):
+        found = base.load_vectors(Path(folder), view, group, layer, key)
+        if out is None:
+            out = np.zeros((len(details), found.shape[1]), dtype=np.float32)
+        out[details.index.get_indexer(group.index)] = found
+    return out
+
+
 def twonn(rows: np.ndarray, limit: int = 1500, seed: int = 0) -> float:
     """TwoNN intrinsic dimension (Facco et al.): maximum likelihood on the ratio of the two nearest-neighbour distances."""
     if len(rows) > limit:
@@ -99,11 +147,10 @@ def heat(axis, matrix: np.ndarray, ages: np.ndarray, title: str) -> None:
 # Selection and loading
 # --------------------------------------------------------------------------------------
 def available_videos(args: argparse.Namespace, dirs: dict[str, Path]) -> set[str]:
-    ids, _ = overlap.load_gpt_oss_global(dirs["global"], args.vector_key, args.layer)
+    ids, _ = whole_story(dirs["global"], args.vector_key, args.layer)
     found = set(ids.tolist())
     if args.run_within:
-        details = base.load_metadata(dirs["detail"], args.detail_view)
-        found &= set(details["video_id"].astype(str))
+        found &= set(detail_table(dirs[args.detail_view], args.detail_view)["video_id"])
     return found
 
 
@@ -132,7 +179,7 @@ def popularity_for(ids: np.ndarray, subset: pd.DataFrame) -> np.ndarray:
 # --------------------------------------------------------------------------------------
 def run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
     subset = pd.read_csv(selection / "subset_videos.csv", dtype={"video_id": str})
-    ids, vectors = overlap.load_gpt_oss_global(dirs["global"], args.vector_key, args.layer)
+    ids, vectors = whole_story(dirs["global"], args.vector_key, args.layer)
     x, lo, hi, pop = overlap.story_table(ids, vectors, selection / "subset_videos.csv", args.standardize, popularity_for(ids, subset))
     overlap.AGES = ages
     out = args.output_dir / "pooled"
@@ -180,12 +227,11 @@ def story_cells(stories: pd.DataFrame, membership: pd.DataFrame, ages: np.ndarra
 def run_within(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
     overlap.AGES = ages
     membership = pd.read_csv(selection / "membership.csv", dtype={"video_id": str})
-    details = base.load_metadata(dirs["detail"], args.detail_view)
-    details["video_id"] = details["video_id"].astype(str)
+    details = detail_table(dirs[args.detail_view], args.detail_view)
     stories = base.build_story_table(details, selection / "subset_videos.csv", int(ages.min()), int(ages.max()), args.min_units)
     stories = stories[stories["video_id"].isin(membership["video_id"])].reset_index(drop=True)
     details = thinned_details(details[details["story_key"].isin(stories["story_key"])], args.max_units)
-    vectors = base.normalize_rows(base.load_vectors(dirs["detail"], args.detail_view, details, args.layer, args.detail_key))
+    vectors = base.normalize_rows(detail_vectors(details, args.detail_view, args.layer, args.detail_key))
     scale = vectors[np.random.default_rng(args.seed).choice(len(vectors), min(len(vectors), 60000), replace=False)].std(axis=0) + 1e-6 if args.standardize else np.ones(vectors.shape[1])
     out = args.output_dir / f"within_{args.detail_view}"
     out.mkdir(parents=True, exist_ok=True)
@@ -351,8 +397,9 @@ def main(argv: list[str] | None = None) -> None:
     args.run_within = "within" in steps
     root = args.extraction_root
     model_dirs = MODEL_DIRS[args.model_key]
-    dirs = {"global": args.global_dir or root / model_dirs["global"],
-            "detail": args.detail_dir or (root / model_dirs["isolated"] if args.detail_view == "isolated" else root / model_dirs["global"])}
+    dirs = {"global": [args.global_dir] if args.global_dir else [root / name for name in model_dirs["global"]],
+            "isolated": [args.detail_dir] if args.detail_dir and args.detail_view == "isolated" else [root / name for name in model_dirs["isolated"]]}
+    dirs["contextual"] = [args.detail_dir] if args.detail_dir and args.detail_view == "contextual" else dirs["global"]
     if "check" in steps:
         check_coverage(args, dirs, ages)
         return
@@ -372,14 +419,14 @@ def main(argv: list[str] | None = None) -> None:
 
 def check_coverage(args, dirs, ages: np.ndarray) -> None:
     """Which batch / baseline videos have whole-story and detail vectors (run this first on the cluster)."""
-    ids, _ = overlap.load_gpt_oss_global(dirs["global"], args.vector_key, args.layer)
+    ids, _ = whole_story(dirs["global"], args.vector_key, args.layer)
     whole = set(ids.tolist())
-    report: dict[str, object] = {"model": args.model_key, "videos_with_whole_story_vectors": len(whole)}
+    report: dict[str, object] = {"model": args.model_key, "folders_used": {name: [str(f) for f in usable(folders)] for name, folders in dirs.items()},
+                                 "videos_with_whole_story_vectors": len(whole)}
     detail_sets = {}
-    for view, folder in (("isolated", dirs["detail"] if args.detail_view == "isolated" else dirs["global"].parent / MODEL_DIRS[args.model_key]["isolated"]),
-                         ("contextual", dirs["global"])):
+    for view in ("isolated", "contextual"):
         try:
-            detail_sets[view] = set(base.load_metadata(folder, view)["video_id"].astype(str))
+            detail_sets[view] = set(detail_table(dirs[view], view)["video_id"])
         except (FileNotFoundError, KeyError) as error:
             report[f"{view}_detail_vectors"] = f"unavailable: {error}"
     for view, found in detail_sets.items():

@@ -21,9 +21,11 @@ export COHORT="${COHORT:-$ROOT/spectral_age_cohort.jsonl}"
 export GLOBAL_DIR="${GLOBAL_DIR:-$ROOT/${MODEL_KEY}_spectral_global}"
 export DETAIL_DIR="${DETAIL_DIR:-$ROOT/${MODEL_KEY}_spectral_detail_controls}"
 export RECORDS_PER_SHARD="${RECORDS_PER_SHARD:-100}"
-export SHARD_ID="${SLURM_ARRAY_TASK_ID:-0}"
-export START="$((SHARD_ID * RECORDS_PER_SHARD))"
-SHARD="$(printf "%03d" "$SHARD_ID")"
+TASK="${SLURM_ARRAY_TASK_ID:-0}"
+export START_OFFSET="${START_OFFSET:-0}"     # first cohort record this submission is responsible for
+export SHARD_OFFSET="${SHARD_OFFSET:-0}"     # shard ids start here, so a later submission never touches earlier shard files
+export START="$((START_OFFSET + TASK * RECORDS_PER_SHARD))"
+SHARD="$(printf "%03d" "$((SHARD_OFFSET + TASK))")"
 
 if [[ "$STAGE" == "global" ]]; then
   run_in_container 'PYTHONPATH=src "$PYTHON_BIN" src/features/representation_extraction/causal_lm/detail_extraction/extract_global.py \
