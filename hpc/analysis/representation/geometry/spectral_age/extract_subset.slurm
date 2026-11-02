@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=spectral_extract
+#SBATCH --account=torch_pr_494_general
 #SBATCH --output=logs/mechanistic_interpretability/%x-%A_%a.out
 #SBATCH --error=logs/mechanistic_interpretability/%x-%A_%a.err
 #SBATCH --time=12:00:00
