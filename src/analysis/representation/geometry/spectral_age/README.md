@@ -87,3 +87,13 @@ The final flat set's 286 extra videos (shard ids from 500):
 D=data/processed/spectral_age; R=results/features/representation_extraction/causal_lm/detail_extraction
 MODEL_KEY=gpt_oss_20b VIDEOS_CSV=$D/extraction_videos_flat_extra2.csv SUPPLEMENT=$D/supplement_cohort_flat_extra2.jsonl.gz COHORT_NAME=spectral_age_cohort_flat_extra2_gpt_oss.jsonl SHARD_OFFSET=500 EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
 ```
+
+## Curve-level age test (`age_tests.py`)
+One test per panel on the whole "PCs needed vs share of variance" curve: T = mean over variance levels 20-95% of the age association of k(v).
+B (within story): size-adjusted Spearman rho of k(v) / (units - 1) with the story's age midpoint, permuting ages within strata of story length (2,000 draws).
+A (pooled): Spearman rho across ages of k(v), every age at the smallest cell size, permuted-age null (200 draws). T > 0: older ages need more PCs. Stories and ages are
+treated as independent and no correction is applied (one test per panel). Written to `<run>/within_<view>/age_curve_test.json` and `<run>/pooled/age_curve_test.json`,
+with `fig_age_curve_test.png` showing the association at each level. On a finished run the within-story test alone can be rerun without vectors:
+```bash
+PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests --profiles results/analysis/representation/geometry/spectral_age/gpt_oss_20b/batch_flat_ages2-8_span_lt8_isolated/within_isolated/story_profiles.csv
+```

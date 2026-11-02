@@ -30,7 +30,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analysis.representation.geometry.spectral_age import subsets
+from analysis.representation.geometry.spectral_age import age_tests, subsets
 
 overlap = importlib.import_module("analysis.representation.geometry.gist_structure.pc_overlap_by_age")
 base = overlap.base
@@ -261,6 +261,9 @@ def _run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> di
         rows.append({"age": age, "n_stories": len(members), "pr": stats["pr"], "effrank": stats["effrank"], "alpha": stats["alpha"],
                      "k80": int(overlap.components_at(cumulative, 0.8)), "twonn": twonn(x[members])})
     pd.DataFrame(rows).to_csv(out / "other_reductions_by_age.csv", index=False)
+    test = age_tests.pooled_curve_test(x, lo, hi, pop, ages, args.per_age, overlap.multi_cells, args.curve_vmin, args.curve_vmax, args.pooled_curve_permutations, args.seed)
+    age_tests.save(test, out)
+    print(f"[pooled] curve-level age test: T = {test['T']:.3f}, p = {test['p_two_sided']:.4g} ({test['stories_per_age']} stories per age)", flush=True)
     return {"k": result["observed"]["k"], "cells": result["cells"]}
 
 
@@ -333,6 +336,9 @@ def run_within(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
                          "mean_k_over_units": k_rel[i, j], "n_stories": len(values)})
         rows[-1]["mean_units"] = float(members["n_units"].mean())
     pd.DataFrame(rows).to_csv(out / "k_by_age_variance_within.csv", index=False)
+    test = age_tests.within_curve_test(profile_frame, args.curve_vmin, args.curve_vmax, args.curve_permutations, args.seed)
+    age_tests.save(test, out)
+    print(f"[within:{args.detail_view}] curve-level age test: T = {test['T']:.3f}, p = {test['p_two_sided']:.4g} ({test['n_stories']} stories)", flush=True)
     frame = profile_frame.rename(columns={"age_mid": "age"})
     trends = [base.age_association(frame, stat, rng, args.trend_permutations, bootstrap=200) for stat in STATS if stat in frame.columns]
     pd.DataFrame(trends).to_csv(out / "age_trend_within.csv", index=False)
@@ -451,6 +457,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--pool-rows", type=int, default=40, help="rows per story kept for the pooled within-story deviations")
     parser.add_argument("--reduce-dim", type=int, default=256)
     parser.add_argument("--trend-permutations", type=int, default=500)
+    parser.add_argument("--curve-vmin", type=float, default=0.2, help="lowest variance level in the curve-level age test")
+    parser.add_argument("--curve-vmax", type=float, default=0.95)
+    parser.add_argument("--curve-permutations", type=int, default=2000, help="permutations for the within-story curve test")
+    parser.add_argument("--pooled-curve-permutations", type=int, default=200, help="permuted-age draws for the pooled curve test")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-dir", type=Path, required=True)
     return parser.parse_args(argv)

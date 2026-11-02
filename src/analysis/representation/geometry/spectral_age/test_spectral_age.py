@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analysis.representation.geometry.spectral_age import run, subsets
+from analysis.representation.geometry.spectral_age import age_tests, run, subsets
 
 
 def make_baseline(rng: np.random.Generator, count: int = 90) -> pd.DataFrame:
@@ -70,6 +70,43 @@ class FlatDesignTests(unittest.TestCase):
         self.assertTrue(summary["restricted_to_available_vectors"])
 
 
+def synthetic_profiles(rng: np.random.Generator, count: int, slope: float) -> pd.DataFrame:
+    ages = rng.integers(2, 9, count).astype(float)
+    units = rng.integers(25, 120, count).astype(float)
+    frame = {"age_mid": ages, "n_units": units}
+    for v in range(10, 100):
+        base = 1 + (v / 100) * 0.35 * units * (1 + slope * (ages - 5))
+        frame[f"k_{v}"] = np.maximum(1, np.round(base + rng.normal(0, 1.5, count)))
+    return pd.DataFrame(frame)
+
+
+class CurveTestTests(unittest.TestCase):
+    def test_within_story_curve_test_detects_a_planted_age_effect_and_not_a_null(self) -> None:
+        rng = np.random.default_rng(10)
+        effect = age_tests.within_curve_test(synthetic_profiles(rng, 300, 0.08), permutations=300)
+        self.assertGreater(effect["T"], 0.2)
+        self.assertLess(effect["p_two_sided"], 0.01)
+        null = age_tests.within_curve_test(synthetic_profiles(rng, 300, 0.0), permutations=300)
+        self.assertGreater(null["p_two_sided"], 0.05)
+        self.assertEqual(effect["levels_used"], len([v for v in effect["curve"].values() if v is not None]))
+
+    def test_pooled_curve_test_detects_dimensions_growing_with_age(self) -> None:
+        from analysis.representation.geometry.gist_structure import pc_overlap_by_age as overlap
+
+        rng = np.random.default_rng(11)
+        count, dim = 900, 40
+        lo = rng.integers(2, 8, count)
+        hi = lo + rng.integers(0, 2, count)
+        age = (lo + hi) / 2
+        scores = np.stack([rng.normal(size=count) * (rng.random(count) < (0.2 + 0.1 * (age - 2) / 6 * k)) for k in range(1, dim + 1)], axis=1)
+        x = scores @ rng.normal(size=(dim, dim)) + 0.05 * rng.normal(size=(count, dim))
+        overlap.AGES = np.arange(2, 9)
+        result = age_tests.pooled_curve_test(x, lo, hi, rng.random(count), np.arange(2, 9), 60, overlap.multi_cells, permutations=30)
+        self.assertEqual(result["panel"], "A pooled")
+        self.assertTrue(np.isfinite(result["T"]))
+        self.assertGreaterEqual(result["p_two_sided"], 1 / 31)
+
+
 class MeasureTests(unittest.TestCase):
     def test_twonn_recovers_low_dimension(self) -> None:
         rng = np.random.default_rng(2)
@@ -129,6 +166,7 @@ class FlatPipelineTests(unittest.TestCase):
             self.assertLess(chosen["cell_size"], summary["cell_size"])
             self.assertTrue(set(pd.read_csv(out / "selection/membership.csv")["story_key"]) <= set(baseline["story_key"].iloc[:90]))
             self.assertTrue((out / "fig_spectrum_by_age.png").exists())
+            self.assertTrue((out / "within_isolated/age_curve_test.json").exists())
 
 
 class MultiFolderTests(unittest.TestCase):
@@ -169,7 +207,8 @@ class PipelineTests(unittest.TestCase):
                       "--trend-permutations", "20", "--output-dir", str(out)])
             for name in ("fig_spectrum_by_age.png", "selection/membership.csv", "pooled/fig_age_by_variance.png", "pooled/other_reductions_by_age.csv",
                          "within_isolated/story_profiles.csv", "within_isolated/k_by_age_variance_within.csv", "within_isolated/age_trend_within.csv",
-                         "within_isolated/fig_within_and_pooled_within.png", "within_isolated/k_by_age_variance_within_pooled.csv"):
+                         "within_isolated/fig_within_and_pooled_within.png", "within_isolated/k_by_age_variance_within_pooled.csv",
+                         "within_isolated/age_curve_test.json", "within_isolated/fig_age_curve_test.png", "pooled/age_curve_test.json"):
                 self.assertTrue((out / name).exists(), name)
             k = pd.read_csv(out / "within_isolated/k_by_age_variance_within.csv")
             at_90 = k[np.isclose(k["variance"], 0.9)].set_index("age")["mean_k"]
