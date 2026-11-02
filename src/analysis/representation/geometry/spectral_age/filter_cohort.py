@@ -1,4 +1,4 @@
-"""Cut the cohort file down to the records of the videos in the spectral-age batches.
+"""Cut the cohort file down to the records of the videos holding the spectral-age batch stories (every story of those videos).
 
 The extractors (``extract_global.py``, ``extract_detail_controls.py``) read a cohort jsonl and shard it with
 ``--start/--limit``.  Running a model on only the batch videos (original stories) is a few thousand records instead
@@ -18,12 +18,9 @@ import json
 from pathlib import Path
 
 
-def batch_videos(batch_dirs: list[Path]) -> set[str]:
-    wanted: set[str] = set()
-    for batch in batch_dirs:
-        with open(batch / "subset_videos.csv", newline="", encoding="utf-8") as handle:
-            wanted |= {row["video_id"] for row in csv.DictReader(handle)}
-    return wanted
+def wanted_videos(path: Path) -> set[str]:
+    with open(path, newline="", encoding="utf-8") as handle:
+        return {row["video_id"] for row in csv.DictReader(handle)}
 
 
 def videos_with_vectors(directories: list[Path]) -> set[str]:
@@ -43,12 +40,13 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--cohort", type=Path, default=Path("results/features/summaries/dataset_index/cohort.jsonl"))
     parser.add_argument("--supplement", type=Path, default=Path("data/processed/spectral_age/supplement_cohort.jsonl.gz"))
-    parser.add_argument("--batch-dirs", type=Path, nargs="+", default=[Path("data/processed/spectral_age/batch_top800_ages2-8"), Path("data/processed/spectral_age/batch_top400_ages2-12")])
+    parser.add_argument("--videos", type=Path, default=Path("data/processed/spectral_age/extraction_videos.csv"),
+                        help="videos whose stories are extracted (a superset of every batch's stories; frozen so shard boundaries stay valid)")
     parser.add_argument("--exclude-dirs", type=Path, nargs="*", default=[], help="skip videos that already have global vectors in these folders")
     parser.add_argument("--record-types", default="original")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
-    wanted = batch_videos(args.batch_dirs) - videos_with_vectors(args.exclude_dirs)
+    wanted = wanted_videos(args.videos) - videos_with_vectors(args.exclude_dirs)
     types = {t.strip() for t in args.record_types.split(",")}
     from_cohort: set[str] = set()
     counts = {"cohort": 0, "supplement": 0}

@@ -16,8 +16,8 @@ C. within-pooled  every story's details are centred on that story's own mean (th
 Other reductions reported next to PCA: participation ratio, entropy effective rank, spectral decay
 exponent and the TwoNN intrinsic dimension (nonlinear manifold dimension).
 
-Input: a batch folder from ``subsets.py select`` (``subset_videos.csv`` + ``membership.csv``).  With
-``--reselect-available`` the batch is rebuilt on the videos that really have vectors and the batch
+Input: a batch folder from ``subsets.py select`` (``subset_stories.csv`` + ``membership.csv``; the unit is the story).  With
+``--reselect-available`` the batch is rebuilt on the stories that really have vectors and the batch
 actually run on is written to ``<output-dir>/selection/``.
 """
 from __future__ import annotations
@@ -52,13 +52,34 @@ def usable(folders: list[Path]) -> list[Path]:
     return [folder for folder in folders if folder.exists() and any(folder.glob("*_metadata_*.csv"))]
 
 
+def load_global_by_story(directory: Path, key: str, layer: int) -> tuple[np.ndarray, np.ndarray]:
+    """Whole-story vectors of the original records in one folder, keyed by ``story_key``."""
+    ids: list[str] = []
+    rows: list[np.ndarray] = []
+    for feature_path in sorted(directory.glob("global_features_*.npz")):
+        suffix = feature_path.stem.removeprefix("global_features_")
+        metadata = pd.read_csv(directory / f"global_metadata_{suffix}.csv", low_memory=False)
+        with np.load(feature_path, allow_pickle=False) as payload:
+            array = payload[key]
+            layers = payload["layers"].astype(int).tolist()
+            position = len(layers) - 1 if layer == -1 else layers.index(layer)
+            chosen = np.flatnonzero(metadata["record_type"].astype(str).eq("original").to_numpy())
+            rows.append(array[chosen, position, :].astype(np.float32))
+        ids.extend(metadata.iloc[chosen]["story_key"].astype(str).tolist())
+    if not rows:
+        return np.array([], dtype=str), np.zeros((0, 0), dtype=np.float32)
+    return np.asarray(ids), np.concatenate(rows)
+
+
 def whole_story(folders: list[Path], key: str, layer: int) -> tuple[np.ndarray, np.ndarray]:
+    """One vector per story (``story_key``) from every usable folder; the first folder wins when a story is in several."""
     ids: list[np.ndarray] = []
     vectors: list[np.ndarray] = []
     for folder in usable(folders):
-        found_ids, found_vectors = overlap.load_gpt_oss_global(folder, key, layer)
-        ids.append(found_ids)
-        vectors.append(found_vectors)
+        found_ids, found_vectors = load_global_by_story(folder, key, layer)
+        if len(found_ids):
+            ids.append(found_ids)
+            vectors.append(found_vectors)
     if not ids:
         raise FileNotFoundError(f"No whole-story vectors under {[str(f) for f in folders]}")
     all_ids, all_vectors = np.concatenate(ids), np.concatenate(vectors)
@@ -79,7 +100,8 @@ def detail_table(folders: list[Path], view: str) -> pd.DataFrame:
         raise FileNotFoundError(f"No {view} detail vectors under {[str(f) for f in folders]}")
     table = pd.concat(parts, ignore_index=True)
     table["video_id"] = table["video_id"].astype(str)
-    first_folder = table.groupby("video_id")["folder"].transform("first")
+    table["story_key"] = table["story_key"].astype(str)
+    first_folder = table.groupby("story_key")["folder"].transform("first")
     return table[table["folder"] == first_folder].reset_index(drop=True)
 
 
@@ -146,11 +168,11 @@ def heat(axis, matrix: np.ndarray, ages: np.ndarray, title: str) -> None:
 # --------------------------------------------------------------------------------------
 # Selection and loading
 # --------------------------------------------------------------------------------------
-def available_videos(args: argparse.Namespace, dirs: dict[str, Path]) -> set[str]:
+def available_stories(args: argparse.Namespace, dirs: dict[str, list[Path]]) -> set[str]:
     ids, _ = whole_story(dirs["global"], args.vector_key, args.layer)
     found = set(ids.tolist())
     if args.run_within:
-        found &= set(detail_table(dirs[args.detail_view], args.detail_view)["video_id"])
+        found &= set(detail_table(dirs[args.detail_view], args.detail_view)["story_key"])
     return found
 
 
@@ -158,29 +180,34 @@ def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: lis
     out = args.output_dir / "selection"
     if not args.reselect_available:
         out.mkdir(parents=True, exist_ok=True)
-        for name in ("subset_videos.csv", "membership.csv", "summary.json"):
+        for name in ("subset_stories.csv", "membership.csv", "summary.json"):
             (out / name).write_bytes((args.batch_dir / name).read_bytes())
         return out
-    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"video_id": str})
-    available = available_videos(args, dirs)
+    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"story_key": str, "video_id": str})
+    available = available_stories(args, dirs)
     membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=True)
-    summary["videos_with_vectors"] = len(available)
+    summary["stories_with_vectors"] = len(available)
     subsets.write_batch(out, membership, subset, summary)
     return out
 
 
-def popularity_for(ids: np.ndarray, subset: pd.DataFrame) -> np.ndarray:
-    lookup = subset.drop_duplicates("video_id").set_index("video_id")["log_views"]
-    return pd.Series(ids).map(lookup).to_numpy(dtype=float)
+def pooled_table(ids: np.ndarray, vectors: np.ndarray, subset: pd.DataFrame, standardize: bool) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Unit-normalised (optionally standardised) story vectors with each story's range and popularity."""
+    frame = pd.DataFrame({"story_key": ids, "row": np.arange(len(ids))}).merge(
+        subset.drop_duplicates("story_key")[["story_key", "range_lower", "range_upper", "log_views"]], on="story_key", how="inner")
+    x = base.normalize_rows(vectors[frame["row"].to_numpy()]).astype(np.float64)
+    if standardize:
+        x = x / (x.std(axis=0) + 1e-6)
+    return x, frame["range_lower"].to_numpy(dtype=int), frame["range_upper"].to_numpy(dtype=int), frame["log_views"].to_numpy(dtype=float)
 
 
 # --------------------------------------------------------------------------------------
 # A. pooled whole-story spectrum
 # --------------------------------------------------------------------------------------
 def run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
-    subset = pd.read_csv(selection / "subset_videos.csv", dtype={"video_id": str})
+    subset = pd.read_csv(selection / "subset_stories.csv", dtype={"story_key": str, "video_id": str})
     ids, vectors = whole_story(dirs["global"], args.vector_key, args.layer)
-    x, lo, hi, pop = overlap.story_table(ids, vectors, selection / "subset_videos.csv", args.standardize, popularity_for(ids, subset))
+    x, lo, hi, pop = pooled_table(ids, vectors, subset, args.standardize)
     overlap.AGES = ages
     out = args.output_dir / "pooled"
     out.mkdir(parents=True, exist_ok=True)
@@ -216,20 +243,25 @@ def thinned_details(details: pd.DataFrame, maximum: int) -> pd.DataFrame:
 
 
 def story_cells(stories: pd.DataFrame, membership: pd.DataFrame, ages: np.ndarray) -> dict[int, np.ndarray]:
-    index = {video: np.flatnonzero(stories["video_id"].astype(str).to_numpy() == video) for video in stories["video_id"].astype(str).unique()}
+    position = {key: i for i, key in enumerate(stories["story_key"].astype(str))}
     cells = {}
     for age in ages:
-        videos = membership.loc[membership["age"] == age].sort_values("rank")["video_id"].astype(str)
-        cells[int(age)] = np.concatenate([index[v] for v in videos if v in index] or [np.array([], dtype=int)]).astype(int)
+        keys = membership.loc[membership["age"] == age].sort_values("rank")["story_key"].astype(str)
+        cells[int(age)] = np.array([position[k] for k in keys if k in position], dtype=int)
     return cells
 
 
 def run_within(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
     overlap.AGES = ages
-    membership = pd.read_csv(selection / "membership.csv", dtype={"video_id": str})
+    membership = pd.read_csv(selection / "membership.csv", dtype={"story_key": str})
+    subset = pd.read_csv(selection / "subset_stories.csv", dtype={"story_key": str, "video_id": str})
     details = detail_table(dirs[args.detail_view], args.detail_view)
-    stories = base.build_story_table(details, selection / "subset_videos.csv", int(ages.min()), int(ages.max()), args.min_units)
-    stories = stories[stories["video_id"].isin(membership["video_id"])].reset_index(drop=True)
+    stories = (details.groupby("story_key", sort=True).agg(n_details=("detail_index", "size"), video_id=("video_id", "first")).reset_index()
+               .merge(subset[["story_key", "range_lower", "range_upper"]], on="story_key"))
+    stories = stories[(stories["n_details"] >= args.min_units) & stories["story_key"].isin(membership["story_key"])].copy()
+    stories["age_lo"] = np.maximum(stories["range_lower"].astype(int), int(ages.min()))
+    stories["age_hi"] = np.minimum(stories["range_upper"].astype(int), int(ages.max()))
+    stories = stories.reset_index(drop=True)
     details = thinned_details(details[details["story_key"].isin(stories["story_key"])], args.max_units)
     vectors = base.normalize_rows(detail_vectors(details, args.detail_view, args.layer, args.detail_key))
     scale = vectors[np.random.default_rng(args.seed).choice(len(vectors), min(len(vectors), 60000), replace=False)].std(axis=0) + 1e-6 if args.standardize else np.ones(vectors.shape[1])
@@ -362,7 +394,7 @@ def plot_within(profile_frame, k_mean, k_rel, result, out: Path, ages, label, ar
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--batch-dir", type=Path, required=True, help="batch folder from subsets.py select")
-    parser.add_argument("--baseline-csv", type=Path, default=Path("data/processed/spectral_age/baseline_span_lt7.csv"))
+    parser.add_argument("--baseline-csv", type=Path, default=Path("data/processed/spectral_age/baseline_stories_span_lt7.csv"))
     parser.add_argument("--model-key", choices=sorted(MODEL_DIRS), default="gpt_oss_20b")
     parser.add_argument("--extraction-root", type=Path, default=Path(base.DEFAULT_ROOT))
     parser.add_argument("--global-dir", type=Path, default=None, help="override <root>/<model global dir>")
@@ -372,7 +404,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--detail-key", default=None)
     parser.add_argument("--layer", type=int, default=-1)
     parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within")
-    parser.add_argument("--reselect-available", action="store_true", help="rebuild the batch on the videos that have vectors")
+    parser.add_argument("--reselect-available", action="store_true", help="rebuild the batch on the stories that have vectors")
     parser.add_argument("--standardize", action="store_true")
     parser.add_argument("--per-age", type=int, default=None, help="default: the batch's own target")
     parser.add_argument("--splits", type=int, default=20)
@@ -406,7 +438,7 @@ def main(argv: list[str] | None = None) -> None:
     selection = prepare_selection(args, dirs, [int(a) for a in ages])
     chosen = json.loads((selection / "summary.json").read_text())
     ages = np.array(chosen["ages"], dtype=int)
-    print(f"selection: {chosen['cell_size']} videos per age, {chosen['distinct_videos']} distinct; by age {[v['selected'] for v in chosen['by_age'].values()]}", flush=True)
+    print(f"selection: {chosen['cell_size']} stories per age, {chosen['distinct_stories']} distinct stories ({chosen['distinct_videos']} videos); by age {[v['selected'] for v in chosen['by_age'].values()]}", flush=True)
     label = f"{args.model_key}, layer {args.layer}"
     results = {}
     if "pooled" in steps:
@@ -418,30 +450,31 @@ def main(argv: list[str] | None = None) -> None:
 
 
 def check_coverage(args, dirs, ages: np.ndarray) -> None:
-    """Which batch / baseline videos have whole-story and detail vectors (run this first on the cluster)."""
+    """Which batch / baseline stories have whole-story and detail vectors (run this first on the cluster)."""
     ids, _ = whole_story(dirs["global"], args.vector_key, args.layer)
     whole = set(ids.tolist())
     report: dict[str, object] = {"model": args.model_key, "folders_used": {name: [str(f) for f in usable(folders)] for name, folders in dirs.items()},
-                                 "videos_with_whole_story_vectors": len(whole)}
+                                 "stories_with_whole_story_vectors": len(whole), "whole_story_key_examples": sorted(whole)[:3]}
     detail_sets = {}
     for view in ("isolated", "contextual"):
         try:
-            detail_sets[view] = set(detail_table(dirs[view], view)["video_id"])
+            detail_sets[view] = set(detail_table(dirs[view], view)["story_key"])
         except (FileNotFoundError, KeyError) as error:
             report[f"{view}_detail_vectors"] = f"unavailable: {error}"
     for view, found in detail_sets.items():
-        report[f"videos_with_{view}_detail_vectors"] = len(found)
-    batch = pd.read_csv(args.batch_dir / "subset_videos.csv", dtype={"video_id": str})
-    membership = pd.read_csv(args.batch_dir / "membership.csv", dtype={"video_id": str})
-    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"video_id": str})
-    for name, videos in (("batch", set(batch["video_id"])), ("baseline", set(baseline["video_id"]))):
-        report[f"{name}_videos"] = len(videos)
-        report[f"{name}_with_whole_story"] = len(videos & whole)
+        report[f"stories_with_{view}_detail_vectors"] = len(found)
+    batch = pd.read_csv(args.batch_dir / "subset_stories.csv", dtype={"story_key": str})
+    membership = pd.read_csv(args.batch_dir / "membership.csv", dtype={"story_key": str})
+    baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"story_key": str})
+    report["batch_story_key_examples"] = batch["story_key"].head(3).tolist()
+    for name, keys in (("batch", set(batch["story_key"])), ("baseline", set(baseline["story_key"]))):
+        report[f"{name}_stories"] = len(keys)
+        report[f"{name}_with_whole_story"] = len(keys & whole)
         for view, found in detail_sets.items():
-            report[f"{name}_with_{view}_details"] = len(videos & found)
+            report[f"{name}_with_{view}_details"] = len(keys & found)
     per_age = {}
     for age in ages:
-        cell = set(membership.loc[membership["age"] == age, "video_id"])
+        cell = set(membership.loc[membership["age"] == age, "story_key"])
         per_age[int(age)] = {"cell": len(cell), "whole": len(cell & whole), **{view: len(cell & found) for view, found in detail_sets.items()}}
     report["batch_cells_covered_by_age"] = per_age
     text = json.dumps(report, indent=2)

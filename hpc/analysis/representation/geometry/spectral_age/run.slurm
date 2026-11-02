@@ -10,7 +10,7 @@
 # and one saved batch.  CPU only.  Variables: MODEL_KEY (gpt_oss_20b|qwen3_8b), BATCH (folder name under
 # data/processed/spectral_age/), DETAIL_VIEW (isolated|contextual), STEPS (check|pooled,within), RESELECT=1
 # GLOBAL_DIR / DETAIL_DIR override the vector folders.
-# (rebuild the batch on videos that have vectors; the batch actually used is written to <output>/selection/).
+# (rebuild the batch on stories that have vectors; the batch actually used is written to <output>/selection/).
 set -euo pipefail
 source hpc/slurm_env.sh
 

@@ -1,4 +1,5 @@
 {
+  "unit": "story",
   "target_per_age": 800,
   "ages": [
     2,
@@ -13,41 +14,42 @@
   "cell_size": 800,
   "by_age": {
     "2": {
-      "candidates": 4010,
+      "candidates": 4536,
       "selected": 800,
       "short_of_target": 0
     },
     "3": {
-      "candidates": 6658,
+      "candidates": 7476,
       "selected": 800,
       "short_of_target": 0
     },
     "4": {
-      "candidates": 7849,
+      "candidates": 8699,
       "selected": 800,
       "short_of_target": 0
     },
     "5": {
-      "candidates": 7790,
+      "candidates": 8608,
       "selected": 800,
       "short_of_target": 0
     },
     "6": {
-      "candidates": 6383,
+      "candidates": 7022,
       "selected": 800,
       "short_of_target": 0
     },
     "7": {
-      "candidates": 4410,
+      "candidates": 4803,
       "selected": 800,
       "short_of_target": 0
     },
     "8": {
-      "candidates": 2920,
+      "candidates": 3163,
       "selected": 800,
       "short_of_target": 0
     }
   },
-  "distinct_videos": 2135,
+  "distinct_stories": 2134,
+  "distinct_videos": 1737,
   "restricted_to_available_vectors": false
 }

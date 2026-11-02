@@ -19,14 +19,17 @@ from pathlib import Path
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--master", type=Path, default=Path("data/exports/story_level_export/story_level_export.jsonl"))
-    parser.add_argument("--batch-dirs", type=Path, nargs="+", default=[Path("data/processed/spectral_age/batch_top800_ages2-8"), Path("data/processed/spectral_age/batch_top400_ages2-12")])
+    parser.add_argument("--videos", type=Path, default=Path("data/processed/spectral_age/extraction_videos.csv"))
+    parser.add_argument("--ranges", type=Path, default=Path("data/exports/age_ranges/video_age_ranges.csv"))
     parser.add_argument("--output", type=Path, default=Path("data/processed/spectral_age/supplement_cohort.jsonl.gz"))
     args = parser.parse_args(argv)
+    with open(args.videos, newline="", encoding="utf-8") as handle:
+        wanted = {row["video_id"] for row in csv.DictReader(handle)}
     ranges: dict[str, tuple[int, int, str]] = {}
-    for batch in args.batch_dirs:
-        with open(batch / "subset_videos.csv", newline="", encoding="utf-8") as handle:
-            for row in csv.DictReader(handle):
-                ranges[row["video_id"]] = (int(row["range_lower"]), int(row["range_upper"]), row["range_text"])
+    with open(args.ranges, newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            if row["video_id"] in wanted and row["range_lower"] and row["range_upper"]:
+                ranges[row["video_id"]] = (int(float(row["range_lower"])), int(float(row["range_upper"])), row["range_text"])
     written = skipped = 0
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with open(args.master, encoding="utf-8") as source, gzip.open(args.output, "wt", encoding="utf-8", compresslevel=9) as target:

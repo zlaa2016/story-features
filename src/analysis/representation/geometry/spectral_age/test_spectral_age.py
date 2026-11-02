@@ -15,28 +15,32 @@ def make_baseline(rng: np.random.Generator, count: int = 90) -> pd.DataFrame:
     lower = rng.integers(2, 7, count)
     upper = lower + rng.integers(0, 3, count)
     views = rng.integers(10, 10_000, count)
-    return pd.DataFrame({"video_id": [f"v{i:03d}" for i in range(count)], "range_lower": lower, "range_upper": upper, "range_text": "x",
-                         "view_count": views, "log_views": np.log1p(views), "n_stories": 1, "story_ids": "", "channel": "c"})
+    video = [f"v{i // 2:03d}" if i % 5 == 0 else f"v{i:03d}" for i in range(count)]  # some videos hold two stories
+    ordinal = pd.Series(video).groupby(video).cumcount() + 1
+    story_key = [f"{v}__story{n:02d}" for v, n in zip(video, ordinal)]
+    return pd.DataFrame({"story_key": story_key, "story_id": [f"{i:06d}" for i in range(count)], "video_id": video, "story_title": "t", "range_lower": lower,
+                         "range_upper": upper, "range_text": "x", "view_count": views, "log_views": np.log1p(views), "n_substories": 1, "channel": "c"})
 
 
 class SubsetTests(unittest.TestCase):
     def test_top_viewed_covering_each_age_and_equal_cells(self) -> None:
         baseline = make_baseline(np.random.default_rng(0))
         membership, subset, summary = subsets.select_flat(baseline, [3, 4, 5], per_age=1000)
+        self.assertEqual(summary["unit"], "story")
         sizes = membership.groupby("age").size()
         self.assertEqual(sizes.nunique(), 1)
         self.assertEqual(int(sizes.iloc[0]), min(v["candidates"] for v in summary["by_age"].values()))
         for age, group in membership.groupby("age"):
             covering = baseline[(baseline["range_lower"] <= age) & (baseline["range_upper"] >= age)]
-            self.assertTrue(set(group["video_id"]) <= set(covering["video_id"]))
-            expected = covering.sort_values(["log_views", "video_id"], ascending=[False, True]).head(len(group))
-            self.assertEqual(set(group["video_id"]), set(expected["video_id"]))
+            self.assertTrue(set(group["story_key"]) <= set(covering["story_key"]))
+            expected = covering.sort_values(["log_views", "story_key"], ascending=[False, True]).head(len(group))
+            self.assertEqual(set(group["story_key"]), set(expected["story_key"]))
 
     def test_shortfall_is_reported_and_available_filter_applies(self) -> None:
         baseline = make_baseline(np.random.default_rng(1))
-        available = set(baseline["video_id"].iloc[:30])
+        available = set(baseline["story_key"].iloc[:30])
         membership, _, summary = subsets.select_flat(baseline, [3, 4], per_age=400, available=available)
-        self.assertTrue(set(membership["video_id"]) <= available)
+        self.assertTrue(set(membership["story_key"]) <= available)
         self.assertGreater(summary["by_age"][3]["short_of_target"], 0)
         self.assertTrue(summary["restricted_to_available_vectors"])
 
@@ -69,9 +73,9 @@ def write_shards(root: Path, rng: np.random.Generator, baseline: pd.DataFrame, d
         n = int(rng.integers(25, 40))
         details = rng.normal(size=(n, rank)) @ rng.normal(size=(rank, d)) + 0.05 * rng.normal(size=(n, d))
         story_vectors.append(details.mean(axis=0))
-        story_rows.append({"record_id": f"s{number}::original", "record_type": "original", "video_id": row["video_id"], "story_key": f"s{number}"})
+        story_rows.append({"record_id": f"{row['story_key']}::original", "record_type": "original", "video_id": row["video_id"], "story_key": row["story_key"]})
         detail_vectors.append(details)
-        detail_rows += [{"record_id": f"s{number}::original", "record_type": "original", "story_key": f"s{number}", "video_id": row["video_id"],
+        detail_rows += [{"record_id": f"{row['story_key']}::original", "record_type": "original", "story_key": row["story_key"], "video_id": row["video_id"],
                          "source_age": float(age), "detail_index": i} for i in range(n)]
     whole = np.stack(story_vectors).astype(np.float16)
     np.savez(global_dir / "global_features_000.npz", mean_vectors=np.stack([whole, whole * 0.5], axis=1), layers=layers)
@@ -93,10 +97,10 @@ class MultiFolderTests(unittest.TestCase):
             global_a, detail_a = write_shards(first, rng, full.iloc[:25])
             global_b, detail_b = write_shards(second, rng, full.iloc[15:])  # videos 15-24 are in both
             ids, vectors = run.whole_story([global_a, global_b, Path(tmp) / "missing"], "mean_vectors", -1)
-            self.assertEqual(sorted(ids.tolist()), sorted(full["video_id"].tolist()))
+            self.assertEqual(sorted(ids.tolist()), sorted(full["story_key"].tolist()))
             self.assertEqual(len(vectors), 40)
             details = run.detail_table([detail_a, detail_b], "isolated")
-            overlapped = details[details["video_id"].isin(full["video_id"].iloc[15:25])]
+            overlapped = details[details["story_key"].isin(full["story_key"].iloc[15:25])]
             self.assertEqual(set(overlapped["folder"]), {str(detail_a)})
             loaded = run.detail_vectors(details, "isolated", -1, None)
             self.assertEqual(loaded.shape[0], len(details))
