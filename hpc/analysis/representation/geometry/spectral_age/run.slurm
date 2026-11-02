@@ -9,6 +9,7 @@
 # Spectral change from details to gist by age (pooled, within-story, within-story pooled) for one model
 # and one saved batch.  CPU only.  Variables: MODEL_KEY (gpt_oss_20b|qwen3_8b), BATCH (folder name under
 # data/processed/spectral_age/), DETAIL_VIEW (isolated|contextual), STEPS (check|pooled,within), RESELECT=1
+# GLOBAL_DIR / DETAIL_DIR override the vector folders.
 # (rebuild the batch on videos that have vectors; the batch actually used is written to <output>/selection/).
 set -euo pipefail
 source hpc/slurm_env.sh
@@ -17,6 +18,9 @@ MODEL_KEY="${MODEL_KEY:-gpt_oss_20b}"
 BATCH="${BATCH:-batch_top800_ages2-8}"
 DETAIL_VIEW="${DETAIL_VIEW:-isolated}"
 OUTPUT_DIR="${OUTPUT_DIR:-results/analysis/representation/geometry/spectral_age/${MODEL_KEY}/${BATCH}_${DETAIL_VIEW}}"
+EXTRA_ARGS=""
+if [[ -n "${GLOBAL_DIR:-}" ]]; then EXTRA_ARGS="$EXTRA_ARGS --global-dir $GLOBAL_DIR"; fi
+if [[ -n "${DETAIL_DIR:-}" ]]; then EXTRA_ARGS="$EXTRA_ARGS --detail-dir $DETAIL_DIR"; fi
 RESELECT_ARG=""
 if [[ "${RESELECT:-1}" == "1" ]]; then
   RESELECT_ARG="--reselect-available"
