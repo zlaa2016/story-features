@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import os
@@ -85,7 +86,20 @@ def write_csv(path: Path, frame: pd.DataFrame) -> None:
     with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=path.parent, delete=False) as handle:
         temporary = Path(handle.name)
         try:
-            frame.to_csv(handle, index=False)
+            try:
+                frame.to_csv(handle, index=False)
+            except csv.Error:
+                # Python 3.10's csv module cannot write a NUL character in a text field ("need to escape, but no escapechar set"):
+                # drop NULs, and if that is not the cause quote every field and escape with a backslash
+                handle.seek(0)
+                handle.truncate()
+                cleaned = frame.replace("\x00", "", regex=True)
+                try:
+                    cleaned.to_csv(handle, index=False)
+                except csv.Error:
+                    handle.seek(0)
+                    handle.truncate()
+                    cleaned.to_csv(handle, index=False, quoting=csv.QUOTE_ALL, escapechar="\\")
             handle.flush()
             os.fsync(handle.fileno())
         except Exception:

@@ -320,7 +320,17 @@ def main() -> None:
             detail_indices = [token_indices_for_span(offsets, span) for span in spans]
             if any(not indices for indices in detail_indices):
                 missing_count = sum(not indices for indices in detail_indices)
-                raise ValueError(f"Could not map {missing_count} details to tokens in {record['record_id']}")
+                if args.overflow_policy == "error":
+                    raise ValueError(f"Could not map {missing_count} details to tokens in {record['record_id']}")
+                print(f"[skip] could not map {missing_count} details to tokens in {record['record_id']}", flush=True)
+                audit.append({
+                    "record_id": record["record_id"],
+                    "story_key": record["story_key"],
+                    "status": "unmapped_details",
+                    "token_count": token_count,
+                    "effective_context_limit": effective_limit,
+                })
+                continue
             eos, mean, record_detail_last, record_detail_mean = extractor.encode(encoded, device, detail_indices)
             vector_row = len(eos_vectors)
             eos_vectors.append(eos)

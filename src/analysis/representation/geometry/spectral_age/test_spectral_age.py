@@ -45,6 +45,27 @@ class SubsetTests(unittest.TestCase):
         self.assertTrue(summary["restricted_to_available_vectors"])
 
 
+class WriteCsvTests(unittest.TestCase):
+    def test_falls_back_when_the_csv_module_rejects_a_field(self) -> None:
+        import csv
+        from unittest import mock
+
+        from shared.io import write_csv
+
+        real, calls = pd.DataFrame.to_csv, {"n": 0}
+
+        def flaky(self, *args, **kwargs):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                raise csv.Error("need to escape, but no escapechar set")
+            return real(self, *args, **kwargs)
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(pd.DataFrame, "to_csv", flaky):
+            write_csv(Path(tmp) / "t.csv", pd.DataFrame({"a": ["x\x00y", "ok"], "b": [1, 2]}))
+            back = pd.read_csv(Path(tmp) / "t.csv")
+        self.assertEqual(back["a"].tolist(), ["xy", "ok"])
+
+
 class RandomDesignTests(unittest.TestCase):
     def test_random_draw_is_per_age_seeded_restricted_and_keeps_small_ages_whole(self) -> None:
         baseline = make_baseline(np.random.default_rng(12), 120)
