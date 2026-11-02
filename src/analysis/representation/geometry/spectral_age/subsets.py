@@ -77,8 +77,8 @@ def solve_flat(baseline: pd.DataFrame, ages: list[int], available: set[str] | No
 
     Every story covers the consecutive ages of its stated range, so the coverage matrix has the consecutive-ones property
     (totally unimodular): the linear program has integer solutions.  Step 1 maximises the common coverage N (``target`` caps
-    it); step 2 fixes N and picks the stories that maximise preference (stories of ``prefer_videos``, e.g. videos already
-    queued for extraction) and then popularity.  A cell is every selected story covering that age, so all cells have N stories.
+    it); step 2 fixes N, keeps as many stories as possible, and among those picks the ones that maximise preference (stories of
+    ``prefer_videos``, e.g. videos already queued for extraction) and then popularity.  A cell is every selected story covering that age, so all cells have N stories.
     """
     from scipy.optimize import LinearConstraint, Bounds, linprog, milp
 
@@ -94,10 +94,16 @@ def solve_flat(baseline: pd.DataFrame, ages: list[int], available: set[str] | No
     weight = pool["log_views"].rank(pct=True).to_numpy()
     if prefer_videos:
         weight = weight + 10.0 * pool["video_id"].astype(str).isin(prefer_videos).to_numpy()
-    solved = milp(-weight, constraints=LinearConstraint(cover, common * np.ones(len(ages)), common * np.ones(len(ages))),
-                  integrality=np.ones(count), bounds=Bounds(0, 1))
+    exact = LinearConstraint(cover, common * np.ones(len(ages)), common * np.ones(len(ages)))
+    # step 2a: as many stories as possible at that coverage; step 2b: among those, the preferred / most viewed
+    most = milp(-np.ones(count), constraints=exact, integrality=np.ones(count), bounds=Bounds(0, 1))
+    if most.status != 0:
+        raise RuntimeError(f"flat design infeasible at N={common}: {most.message}")
+    total = int(round(-most.fun))
+    constraints = [exact, LinearConstraint(np.ones((1, count)), total, total)]
+    solved = milp(-weight, constraints=constraints, integrality=np.ones(count), bounds=Bounds(0, 1))
     if solved.status != 0:
-        raise RuntimeError(f"flat design infeasible at N={common}: {solved.message}")
+        raise RuntimeError(f"flat design infeasible at {total} stories: {solved.message}")
     chosen = pool[solved.x > 0.5].copy()
     parts = []
     for age in ages:

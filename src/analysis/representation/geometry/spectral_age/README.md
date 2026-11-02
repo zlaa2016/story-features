@@ -22,11 +22,11 @@ every age its range covers. Stories covering each age: 4,585 / 7,580 / 8,814 / 8
 |---|---|---|---|
 | `batch_top800_ages2-8` | 800 most-viewed stories per age, ages 2-8 | 800 at every age | 2,113 |
 | `batch_top400_ages2-12` | 400 most-viewed stories per age, ages 2-12 | 400 at every age | 1,740 |
-| `batch_flat_ages2-8_span_lt8` | flat design: equal coverage at every age, ages 2-8 | 2,553 at every age | 5,141 |
+| `batch_flat_ages2-8_span_lt8` | flat design: equal coverage at every age, ages 2-8 | 2,553 at every age | 5,287 |
 
 `batch_flat_*` is a different design: the largest set of stories whose coverage is *exactly equal* at every age (a story counts at every age its range covers),
-solved as an integer program (`subsets.py flat`, `baseline_stories_span_lt8.csv`); a cell is every selected story covering the age. Stories of videos already queued
-for extraction are preferred, then the most viewed. Its stories' videos outside the first extraction list are in `extraction_videos_flat_extra.csv`; the 400 batch needs 25 more videos (`extraction_videos_top400_extra.csv`).
+solved as an integer program (`subsets.py flat`, `baseline_stories_span_lt8.csv`); a cell is every selected story covering the age. As many stories as possible are kept at that coverage (5,287 of the 11,633 stories touching ages 2-8; age 8 has only 3,296 and the ranges force the rest out); among those,
+stories of videos already queued for extraction are preferred, then the most viewed. Its stories' videos outside the first extraction list are in `extraction_videos_flat_extra.csv`; the 400 batch needs 25 more videos (`extraction_videos_top400_extra.csv`) and the final flat set 286 more (`extraction_videos_flat_extra2.csv`).
 With `--reselect-available` the flat design is solved again on the stories that have vectors, so the run uses the largest flat set the vectors allow.
 
 Each holds `subset_stories.csv`, `membership.csv` (age, story_key, rank), `summary.json`. Rebuild with `python -m analysis.representation.geometry.spectral_age.subsets baseline|select ...`
@@ -80,4 +80,10 @@ The 400 batch's 25 extra videos (27 stories; shard ids from 400):
 ```bash
 D=data/processed/spectral_age; R=results/features/representation_extraction/causal_lm/detail_extraction
 MODEL_KEY=gpt_oss_20b VIDEOS_CSV=$D/extraction_videos_top400_extra.csv SUPPLEMENT=$D/supplement_cohort_top400_extra.jsonl.gz COHORT_NAME=spectral_age_cohort_top400_extra_gpt_oss.jsonl SHARD_OFFSET=400 EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+```
+
+The final flat set's 286 extra videos (shard ids from 500):
+```bash
+D=data/processed/spectral_age; R=results/features/representation_extraction/causal_lm/detail_extraction
+MODEL_KEY=gpt_oss_20b VIDEOS_CSV=$D/extraction_videos_flat_extra2.csv SUPPLEMENT=$D/supplement_cohort_flat_extra2.jsonl.gz COHORT_NAME=spectral_age_cohort_flat_extra2_gpt_oss.jsonl SHARD_OFFSET=500 EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
 ```
