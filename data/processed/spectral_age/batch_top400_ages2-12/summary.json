@@ -14,57 +14,57 @@
     11,
     12
   ],
-  "equal_cells": true,
-  "cell_size": 374,
+  "equal_cells": false,
+  "cell_size": 400,
   "by_age": {
     "2": {
       "candidates": 4536,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "3": {
       "candidates": 7476,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "4": {
       "candidates": 8699,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "5": {
       "candidates": 8608,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "6": {
       "candidates": 7022,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "7": {
       "candidates": 4803,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "8": {
       "candidates": 3163,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "9": {
       "candidates": 1040,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "10": {
       "candidates": 700,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "11": {
       "candidates": 423,
-      "selected": 374,
+      "selected": 400,
       "short_of_target": 0
     },
     "12": {
@@ -73,7 +73,7 @@
       "short_of_target": 26
     }
   },
-  "distinct_stories": 1642,
-  "distinct_videos": 1365,
+  "distinct_stories": 1738,
+  "distinct_videos": 1441,
   "restricted_to_available_vectors": false
 }

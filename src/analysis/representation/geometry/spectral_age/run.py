@@ -185,7 +185,7 @@ def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: lis
         return out
     baseline = pd.read_csv(args.baseline_csv, low_memory=False, dtype={"story_key": str, "video_id": str})
     available = available_stories(args, dirs)
-    membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=True)
+    membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells)
     summary["stories_with_vectors"] = len(available)
     subsets.write_batch(out, membership, subset, summary)
     return out
@@ -205,6 +205,17 @@ def pooled_table(ids: np.ndarray, vectors: np.ndarray, subset: pd.DataFrame, sta
 # A. pooled whole-story spectrum
 # --------------------------------------------------------------------------------------
 def run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
+    """Panel A.  By default every age keeps its own cell size (the batch's target where enough stories exist); ``--equal-cells`` cuts all ages to the smallest."""
+    original = overlap.equal_cells
+    if not args.equal_cells:
+        overlap.equal_cells = lambda build, lo, hi, per_age, rng, pop=None: build(lo, hi, per_age, rng, pop)
+    try:
+        return _run_pooled(args, dirs, selection, ages, label)
+    finally:
+        overlap.equal_cells = original
+
+
+def _run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
     subset = pd.read_csv(selection / "subset_stories.csv", dtype={"story_key": str, "video_id": str})
     ids, vectors = whole_story(dirs["global"], args.vector_key, args.layer)
     x, lo, hi, pop = pooled_table(ids, vectors, subset, args.standardize)
@@ -214,9 +225,10 @@ def run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
     result = overlap.run_mode(x, lo, hi, "multi", args.per_age, args.splits, args.permutations, args.seed, pop=pop)
     for name, table in overlap.tables(result, "multi").items():
         table.to_csv(out / f"{name}.csv", index=False)
-    size = next(iter(result["cells"].values()))
+    sizes = sorted(set(result["cells"].values()))
+    size = f"{sizes[0]}-{sizes[-1]}" if len(sizes) > 1 else str(sizes[0])
     overlap.plot_main(result, out / "fig_age_by_variance.png", f"Age by variance captured, pooled stories ({label})",
-                      f"{size} most-viewed stories per age ({size // 2} per half), {result['unique_stories']} distinct stories",
+                      f"{size} most-viewed stories per age (cells split in halves), {result['unique_stories']} distinct stories",
                       "A. One whole-story vector per story; each age pools the stories whose stated range covers it.")
     rows = []
     cells = overlap.equal_cells(overlap.multi_cells, lo, hi, args.per_age, np.random.default_rng(args.seed), pop)
@@ -346,8 +358,10 @@ def split_once(reduced: np.ndarray, rows_of_story: dict[int, np.ndarray], cells:
 
 def within_pooled(reduced, rows_of_story, cells, args, ages) -> dict:
     rng = np.random.default_rng(args.seed + 1)
+    if args.equal_cells:
+        size = min(len(m) for m in cells.values())
+        cells = {a: m[:size] for a, m in cells.items()}
     size = min(len(m) for m in cells.values())
-    cells = {a: m[:size] for a, m in cells.items()}
     observed = overlap.mean_over([split_once(reduced, rows_of_story, cells, rng, ages) for _ in range(args.splits)])
     null = None
     if args.permutations:
@@ -404,6 +418,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--detail-key", default=None)
     parser.add_argument("--layer", type=int, default=-1)
     parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within")
+    parser.add_argument("--equal-cells", action="store_true", help="cut every age to the smallest age's size (default: each age keeps its own size)")
     parser.add_argument("--reselect-available", action="store_true", help="rebuild the batch on the stories that have vectors")
     parser.add_argument("--standardize", action="store_true")
     parser.add_argument("--per-age", type=int, default=None, help="default: the batch's own target")

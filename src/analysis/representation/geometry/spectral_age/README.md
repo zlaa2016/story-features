@@ -16,12 +16,13 @@ Also reported: participation ratio, entropy effective rank, spectral decay expon
 The unit is the **story** (`story_key`, e.g. `abc123__story02`); a video can hold several stories, each with its own text, details and vectors,
 and a story inherits its video's stated range and view count. `data/processed/spectral_age/baseline_stories_span_lt7.csv`: 11,683 stories
 (10,562 videos) whose stated range has `upper - lower <= 6` (under 7). Batches come from it: for each age, the most-viewed stories whose range
-covers that age; every age is cut to the smallest age.
+covers that age. The 800 batch has the same size at every age; the 400 batch keeps 400 wherever 400 exist (only age 12 is short, 374) and was built with `--keep-unequal`.
+`run.py` keeps each age's own size by default; `EQUAL_CELLS=1` (`--equal-cells`) cuts all ages to the smallest as a sensitivity run (cell size changes k a little).
 
 | Batch folder | Target | Cell size | Distinct |
 |---|---|---|---|
 | `batch_top800_ages2-8` | 800 per age, ages 2-8 | 800 | 2,134 stories (1,737 videos) |
-| `batch_top400_ages2-12` | 400 per age, ages 2-12 | 374 | 1,642 stories (1,365 videos); only 374 narrow-range stories cover age 12 |
+| `batch_top400_ages2-12` | 400 per age, ages 2-12 | 400 (age 12: 374) | 1,738 stories (1,441 videos); only 374 narrow-range stories cover age 12 |
 
 Each holds `subset_stories.csv`, `membership.csv` (age, story_key, rank), `summary.json`. Rebuild with `python -m analysis.representation.geometry.spectral_age.subsets baseline|select ...`
 (`baseline` needs the local `data/exports/`).

@@ -21,6 +21,8 @@ OUTPUT_DIR="${OUTPUT_DIR:-results/analysis/representation/geometry/spectral_age/
 EXTRA_ARGS=""
 if [[ -n "${GLOBAL_DIR:-}" ]]; then EXTRA_ARGS="$EXTRA_ARGS --global-dir $GLOBAL_DIR"; fi
 if [[ -n "${DETAIL_DIR:-}" ]]; then EXTRA_ARGS="$EXTRA_ARGS --detail-dir $DETAIL_DIR"; fi
+EQUAL_ARG=""
+if [[ "${EQUAL_CELLS:-0}" == "1" ]]; then EQUAL_ARG="--equal-cells"; fi
 RESELECT_ARG=""
 if [[ "${RESELECT:-1}" == "1" ]]; then
   RESELECT_ARG="--reselect-available"
@@ -37,4 +39,4 @@ run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geomet
   --splits "${SPLITS:-20}" \
   --permutations "${PERMUTATIONS:-20}" \
   --reduce-dim "${REDUCE_DIM:-256}" \
-  --output-dir "'"$OUTPUT_DIR"'" '"$RESELECT_ARG $EXTRA_ARGS"''
+  --output-dir "'"$OUTPUT_DIR"'" '"$RESELECT_ARG $EXTRA_ARGS $EQUAL_ARG"''

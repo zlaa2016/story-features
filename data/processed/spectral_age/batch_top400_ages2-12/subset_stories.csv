@@ -1,8 +1,9 @@
 story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_views,view_count,ages,n_substories,channel
 -30DDHlyhYU__story01,6885.0,-30DDHlyhYU,Ruby Valentine and the Sweet Surprise,5,9,5 - 9 years,8.81314100828505,6721,9,1,Storytime Now!
+-3XwPkl1_v8__story01,15.0,-3XwPkl1_v8,The Frustrating Book (Mo Willems),4,8,4 - 8 years,11.37667036642411,87261,8,1,Miss Pam Reads
 -5ou2QWVpEk__story01,21.0,-5ou2QWVpEk,,5,8,"5 - 8 years, from customers",12.374384016400764,236660,7;8,1,StoryTime at Awnie's House
 -8H3R6NwzAQ__story01,31.0,-8H3R6NwzAQ,Incredible You,4,8,4 - 8 years,12.06193665092094,173153,8,1,CBeebies
--D2Ep_3Ljn4__story01,40.0,-D2Ep_3Ljn4,Dr. Dread and the Chair of a Thousand Farts,7,12,7 - 12 years,8.672314828283538,5838,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+-D2Ep_3Ljn4__story01,40.0,-D2Ep_3Ljn4,Dr. Dread and the Chair of a Thousand Farts,7,12,7 - 12 years,8.672314828283538,5838,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 -Eq1FLi5RHA__story01,6890.0,-Eq1FLi5RHA,"Hello, World! Solar System",2,3,2 - 3 years,12.63967159288211,308559,2,1,Mr Storytime
 -KoqP0RqQLg__story01,61.0,-KoqP0RqQLg,What If You Had an Animal Nose?,5,8,"5 - 8 years, from customers",12.425762238792869,249137,7;8,1,Jessica Maxwell
 -P05nRsnjjU__story01,69.0,-P05nRsnjjU,My Monsterpiece,4,8,4 - 8 years,11.741724991060597,125708,8,1,StoryTime at Awnie's House
@@ -13,7 +14,7 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 -XUkWoRpeR4__story01,98.0,-XUkWoRpeR4,,5,8,"5 - 8 years, from customers",13.047137549913849,463766,6;7;8,1,Brightly Storytime
 -dVdRkqJeBE__story01,114.0,-dVdRkqJeBE,The Rough-Face Girl,5,9,"5 - 9 years, from customers",11.652122030158518,114934,8;9,1,Creative Read Alouds
 -eEGvrwH3v0__story01,117.0,-eEGvrwH3v0,The Incredibles,3,8,"3 - 8 years, from customers",12.512026762769404,271583,7;8,1,EGTV Storybooks
--elR0jxWos4__story01,120.0,-elR0jxWos4,SpongeBob Fired and Back to Work,2,5,2 - 5 years,13.198223813096424,539405,2;3;4,1,Kids Stories 4 You
+-elR0jxWos4__story01,120.0,-elR0jxWos4,SpongeBob Fired and Back to Work,2,5,2 - 5 years,13.198223813096424,539405,2;3;4;5,1,Kids Stories 4 You
 -j7Z8G_ydVY__story01,133.0,-j7Z8G_ydVY,"The Fairies, the Dragon, and the Goblins",5,10,5 - 10 years,9.664913054191375,15754,9;10,1,Kids Story Time with Jack & Jill
 -n7dwrSwSFQ__story01,142.0,-n7dwrSwSFQ,,4,6,"4 - 6 years, from customers",13.586703499225536,795481,4;5;6,1,StoryTime at Awnie's House
 -oMJQTJmJlc__story01,145.0,-oMJQTJmJlc,Vain Valentine,7,12,7 - 12 years,8.641532465671846,5661,10;11;12,1,ALL NEW DOB ENTERTAINMENT
@@ -42,7 +43,9 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 0PjyUkWth8A__story01,267.0,0PjyUkWth8A,Incredible Ned,7,9,7 - 9 years,10.364986368165066,31728,9,1,Miss Sofie's Story Time - Kids Books Read Aloud
 0QnhSgI5HpQ__story01,269.0,0QnhSgI5HpQ,Baboo the Unusual Bee,6,12,6 - 12 years,11.317299799692758,82231,9;10;11;12,1,CBeebies
 0RtJqSm4apg__story01,6929.0,0RtJqSm4apg,The Ever-Living Tree: The Life and Times of a Coast Redwood,8,10,8 - 10 years,10.142622556268384,25402,9;10,1,MrsMorrisReads
-0VmnMYll4LA__story01,288.0,0VmnMYll4LA,Dicta (The Elves and the Shoemaker),8,12,8 - 12 years,4.48863636973214,88,12,1,Storytime with T.Q. Townsend
+0V5UHxnXJxM__story01,285.0,0V5UHxnXJxM,Llama Llama Learns to Swim,2,5,"2 - 5 years, from customers",12.3020734958576,220151,2,1,The Joyful Bookshelf
+0VmnMYll4LA__story01,288.0,0VmnMYll4LA,Dicta (The Elves and the Shoemaker),8,12,8 - 12 years,4.48863636973214,88,11;12,1,Storytime with T.Q. Townsend
+0_4eusxzgfM__story01,305.0,0_4eusxzgfM,Elastigirl and the Screen Slaver,5,8,5 - 8 years,11.431943149336693,92220,8,1,Kids Stories 4 You
 0cT7mad7z0Q__story01,314.0,0cT7mad7z0Q,Noah Prime and the Antarctic Cotillion,10,14,10 - 14 years,5.41610040220442,224,11;12,2,EVPLibrary
 0cT7mad7z0Q__story02,315.0,0cT7mad7z0Q,The Noah Files: Stress Turns Him into an Animal,10,14,10 - 14 years,5.41610040220442,224,11;12,2,EVPLibrary
 0eVFuZK70PU__story01,318.0,0eVFuZK70PU,Mr. Hermit Miser and the Neighborly Pumpkin,6,12,6 - 12 years,7.699842407396986,2207,10;11;12,1,Bookroot Readings
@@ -74,17 +77,20 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 231xUcptky4__story01,530.0,231xUcptky4,Eggs One to Ten: Who Will the Babies Be?,1,7,Baby - 7 years,12.155831429093428,190199,7,1,Vooks
 2361,531.0,WSh8OJLNCZE,,12,18,12 - 18 years,10.907056292517344,54559,12,2,Little Cozy Nook
 24e98WPwYHg__story01,533.0,24e98WPwYHg,,2,5,"2 - 5 years, from customers",13.4228353097845,675247,2;3;4;5,1,Little Cozy Nook
+25Hmu3vLpaY__story01,534.0,25Hmu3vLpaY,The Very Last Leaf,5,9,"5 - 9 years, from customers",8.688959234270676,5936,9,1,Storytime With K - Kid Story Read Alouds
 25ZLlZyC-yQ__story01,6969.0,25ZLlZyC-yQ,"Keep the Lights Burning, Abbie",7,10,7 - 10 years,10.214495450291404,27295,9;10,1,Reading Rainbow (Official)
 29G-dsKA5jE__story01,545.0,29G-dsKA5jE,Mr Fobe’s Fear (Hell’s Bells),7,12,7 - 12 years,8.549853973655786,5165,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 2B5TlQ1IMWg__story01,552.0,2B5TlQ1IMWg,Please Don’t Turn the Page (Time-Travel Book),4,7,4 - 7 years,13.870282793811253,1056299,4;5;6;7,1,Storytime Hullabaloo Hi
 2DrOKtTVbcU__story01,558.0,2DrOKtTVbcU,Kermit the Hermit,5,10,"5 - 10 years, from customers",9.532278933106054,13797,9;10,1,Mr. Paulson Reads
 2LU2daQ2exs__story01,572.0,2LU2daQ2exs,,4,8,"4 - 8 years, from customers",11.75266651263167,127091,8,1,Brightly Storytime
 2NDqO7G66mU__story01,573.0,2NDqO7G66mU,The very inappropriate word,5,8,5 - 8 years,12.462937198888628,258573,7;8,1,Riko's Reading Room
-2Oa0x0hlpmU__story01,582.0,2Oa0x0hlpmU,What Does Daddy Do?,5,8,5 - 8 years,12.115261330639996,182637,8,1,CBeebies
+2Oa0x0hlpmU__story01,582.0,2Oa0x0hlpmU,What Does Daddy Do?,5,8,5 - 8 years,12.115261330639996,182637,7;8,1,CBeebies
+2SN6jGGha84__story01,6983.0,2SN6jGGha84,Horrid Henry's Sick Day,7,10,7 - 10 years,7.352441100243583,1559,10,1,Dave the Story Reader
 2XrHikIHstE__story01,609.0,2XrHikIHstE,Monty Monopolises the Bricks,7,12,7 - 12 years,8.429672593886743,4580,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 2Z_Ur-fyEpU__story01,613.0,2Z_Ur-fyEpU,Save Camp Everfree (Equestria Girls),8,12,8 - 12 years,8.600246746551523,5432,10;11;12,1,Kids Story Time with Jack & Jill
 2_iLkW5NGAM__story01,617.0,2_iLkW5NGAM,Beavers: Building by Henry Cole,8,12,8 - 12 years,6.113682179832232,451,11;12,1,Little Listeners - Let's Read Together
 2c2qC5ZH4lk__story01,621.0,2c2qC5ZH4lk,Fussy Frankie and the Giant Vegetables,7,12,7 - 12 years,8.621192781434722,5547,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+2dKRXvS_i3k__story01,625.0,2dKRXvS_i3k,Dr. Patricia Bath and the Eye Probe,4,9,"4 - 9 years, from customers",8.65834547117212,5757,9,1,Riko's Reading Room
 2hazRFmfEzo__story01,640.0,2hazRFmfEzo,Worry Shy,6,12,6 - 12 years,5.902633333401366,365,11;12,1,Storytime with Shamita
 2hiRaivFniE__story01,641.0,2hiRaivFniE,There Was an Old Lady Who Swallowed a Cactus,1,3,Baby - 3 years,12.494640575494302,266902,2,1,Mrs. K's Book Worm Adventures
 2iQI0UEfs3U__story01,642.0,2iQI0UEfs3U,"The Rat, the Crow, and the Clockmaker’s Proposal",8,12,8 - 12 years,5.517452896464707,248,11;12,1,EVPLibrary
@@ -104,7 +110,7 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 3IpNdYzMxRo__story01,745.0,3IpNdYzMxRo,Antonyms (Brian P. Cleary),7,11,7 - 11 years,8.43663368355782,4612,10;11,1,Rockin Read Alouds
 3IpdG2MckQg__story01,746.0,3IpdG2MckQg,The Nutcracker Christmas Eve Adventure,2,5,"2 - 5 years, from customers",13.481401925827916,715975,2;3;4;5,1,Vooks
 3KXnS5ZL32Y__story01,751.0,3KXnS5ZL32Y,The World According to Humphrey,6,9,"6 - 9 years, from customers",10.724434104027946,45452,9,1,MrsMorrisReads
-3Lb78hnnpmQ__story01,755.0,3Lb78hnnpmQ,Texas Tanner's Ruckus on the Ranch,3,7,3 - 7 years,13.123834295074325,500735,3;6;7,1,Vooks
+3Lb78hnnpmQ__story01,755.0,3Lb78hnnpmQ,Texas Tanner's Ruckus on the Ranch,3,7,3 - 7 years,13.123834295074325,500735,3;4;5;6;7,1,Vooks
 3VaFKTdwbZQ__story01,766.0,3VaFKTdwbZQ,Zayn Finds Free Fun,8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
 3VaFKTdwbZQ__story02,767.0,3VaFKTdwbZQ,Shells Pop-Up Book Facts,8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
 3VaFKTdwbZQ__story03,768.0,3VaFKTdwbZQ,Waffles in the Sand,8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
@@ -112,14 +118,15 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 3VaFKTdwbZQ__story05,770.0,3VaFKTdwbZQ,Molly’s Happy Day,8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
 3VaFKTdwbZQ__story06,771.0,3VaFKTdwbZQ,Definitely Not an Octopus (Disguise Game),8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
 3VaFKTdwbZQ__story07,772.0,3VaFKTdwbZQ,Under the Sea (Counting & Movements),8,12,8 - 12 years,13.442407116517202,688593,8;9;10;11;12,7,Vooks
-3ZAtKDaFU6c__story01,786.0,3ZAtKDaFU6c,,2,4,"2 - 4 years, from customers",12.99918958770766,442054,2,1,Storytime with Mimi&Me
+3ZAtKDaFU6c__story01,786.0,3ZAtKDaFU6c,,2,4,"2 - 4 years, from customers",12.99918958770766,442054,2;3,1,Storytime with Mimi&Me
 3Z_zmJ2Him4__story01,789.0,3Z_zmJ2Him4,Mikey’s Party Food Choice,6,11,"6 - 11 years, from customers",11.561753723652153,105003,8;9;10;11,4,Vooks
 3Z_zmJ2Him4__story02,790.0,3Z_zmJ2Him4,Chelsea’s Chinese New Year,6,11,"6 - 11 years, from customers",11.561753723652153,105003,8;9;10;11,4,Vooks
 3Z_zmJ2Him4__story03,791.0,3Z_zmJ2Him4,Po’s Lucky Chinese New Year (beginning scenes),6,11,"6 - 11 years, from customers",11.561753723652153,105003,8;9;10;11,4,Vooks
 3Z_zmJ2Him4__story04,792.0,3Z_zmJ2Him4,Kora Cooks Pansit (Filipino Family Kitchen),6,11,"6 - 11 years, from customers",11.561753723652153,105003,8;9;10;11,4,Vooks
 3dkM025Pp5M__story01,804.0,3dkM025Pp5M,Diary of an 8-bit Warrior (Part 1),7,11,7 - 11 years,10.03902318532882,22902,9;10;11,1,StoryTime Out Loud
 3eyP-nEFMYs__story01,810.0,3eyP-nEFMYs,54 Things Wrong with Gwendolyn Rogers (Chapters 1-2),8,12,8 - 12 years,6.794586580876499,892,11;12,1,EVPLibrary
-3iLOXyxNA5M__story01,813.0,3iLOXyxNA5M,Ralph and Felix in a video game,7,11,7 - 11 years,7.126087273299125,1243,11,1,The Book Keepers
+3f1sVrjLd4M__story01,811.0,3f1sVrjLd4M,Miss Nelson Is Missing,3,7,"3 - 7 years, from customers",12.097557158179049,179432,7,1,Riggan Reads
+3iLOXyxNA5M__story01,813.0,3iLOXyxNA5M,Ralph and Felix in a video game,7,11,7 - 11 years,7.126087273299125,1243,10;11,1,The Book Keepers
 3lfClAMKEQY__story01,822.0,3lfClAMKEQY,Alfie McQuinn and March Catch the Jewels,9,12,"9 - 12 years, from customers",6.450470422144176,632,11;12,1,EVPLibrary
 3sz5ybGYqlo__story01,844.0,3sz5ybGYqlo,Patrick’s First Award,5,10,5 - 10 years,8.984317679911129,7976,9;10,1,The Book Keepers
 3v07mV-r8cs__story01,7050.0,3v07mV-r8cs,Cinderella,2,5,"2 - 5 years, from customers",12.760147395946756,348065,2,1,Brightly Storytime
@@ -135,42 +142,47 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 4CxtYAfc4C4__story01,898.0,4CxtYAfc4C4,"Polar Bear, Polar Bear: What Do You Hear?",1,3,"1 - 3 years, from customers",15.286166287901718,4352087,2;3,1,Miss Pam Reads
 4Lep4X-RaAE__story01,932.0,4Lep4X-RaAE,May’s Garden and Mother’s Day Surprise,3,9,3 - 9 years,10.516671188955687,36925,9,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 4MzYk2nVcSw__story01,937.0,4MzYk2nVcSw,I Am Superman (origin story),5,9,5 - 9 years,10.266288692954795,28746,9,1,Brightly Storytime
-4NJArpdeNic__story01,938.0,4NJArpdeNic,The Case of the Missing Bees,9,11,"9 - 11 years, from customers",8.654168646443315,5733,10;11,1,C. Smith
+4NJArpdeNic__story01,938.0,4NJArpdeNic,The Case of the Missing Bees,9,11,"9 - 11 years, from customers",8.654168646443315,5733,9;10;11,1,C. Smith
 4O6A1F2gk1w__story01,940.0,4O6A1F2gk1w,Mr. Ferris and His Wheel,5,9,"5 - 9 years, from customers",10.16411954826133,25954,9,1,Mr. Paulson Reads
 4Or_RZAHYfQ__story01,942.0,4Or_RZAHYfQ,The Frog Prince,4,10,4 - 10 years,9.50651131182387,13446,9;10,1,Rockin Read Alouds
+4Pv1XxX4JWc__story01,945.0,4Pv1XxX4JWc,The Hundred and One Dalmatians,1,4,"1 - 4 years, from customers",12.325086035101782,225276,2,1,RAD
 4V7cAHScNaw__story01,961.0,4V7cAHScNaw,Wreck at Ada's Reef,8,12,8 - 12 years,5.337538079701318,207,11;12,1,EVPLibrary
 4XO3xz0GiCc__story01,968.0,4XO3xz0GiCc,Coat of Many Colors,2,8,"2 - 8 years, from customers",11.509941015929268,99701,8,1,Grandma's House
 4avD7hEafng__story01,986.0,4avD7hEafng,Henry and Mudge,4,7,"4 - 7 years, from customers",12.806512256555608,364583,7,1,Reading Pioneers Academy
 4bTeSoETDZU__story01,987.0,4bTeSoETDZU,Circumference and the Sword in the Cone,7,10,7 - 10 years,10.157780872842554,25790,9;10,1,Miss Pam Reads
+4c7jEgigUxs__story01,989.0,4c7jEgigUxs,,3,7,"3 - 7 years, from customers",12.135811112489508,186429,7,1,StoryTime at Awnie's House
 4cdI_TxvkTc__story01,991.0,4cdI_TxvkTc,Unicorn and Horse,2,6,"2 - 6 years, from customers",14.643693311801592,2289154,2;3;4;5;6,1,Vooks
-4k3b6BM70EQ__story01,7090.0,4k3b6BM70EQ,Turning Red,2,5,2 - 5 years,13.186314225896153,533019,2;3;4,1,Read along with Ms Duckie 
+4k3b6BM70EQ__story01,7090.0,4k3b6BM70EQ,Turning Red,2,5,2 - 5 years,13.186314225896153,533019,2;3;4;5,1,Read along with Ms Duckie 
 4nB0QpwRgV4__story01,1012.0,4nB0QpwRgV4,Marvin K. Mooney Will You Please Go Now,1,6,"1 - 6 years, from customers",12.523627791223545,274752,2,1,Dr. Seuss
+4nH1FGYYA3E__story01,1013.0,4nH1FGYYA3E,,2,4,"2 - 4 years, from customers",12.325969002105568,225475,2,1,Storytime with Mimi&Me
 4o6UObvan_4__story01,1016.0,4o6UObvan_4,"Hey, That's My Monster!",3,7,"3 - 7 years, from customers",16.84085129272096,20601022,3;4;5;6;7,1,StoryTime at Awnie's House
 4oJSGvTfzcs__story01,1017.0,4oJSGvTfzcs,The Dinosaur That Pooped a Planet,3,6,"3 - 6 years, from customers",13.828712033757236,1013288,3;4;5;6,1,Storyvision Studios UK
 4qcMvz2XTHU__story01,1021.0,4qcMvz2XTHU,Maddie's Fridge,5,9,"5 - 9 years, from customers",9.809506489065232,18205,9,1,Mahla's Story Time
 4xbgmrvVGHE__story01,1034.0,4xbgmrvVGHE,Green Eggs and Ham,2,6,"2 - 6 years, from customers",13.712758858606264,902350,2;3;4;5;6,1,Dr. Seuss
 5-9ljf-XK9U__story01,1046.0,5-9ljf-XK9U,"Pancakes, Pancakes!",2,5,"2 - 5 years, from customers",13.88425086422598,1071157,2;3;4;5,1,Buddy Son Storytime
 50McWj1PRvY__story01,7111.0,50McWj1PRvY,Vivi and Venezuela,11,17,11 - 17 years,15.151950851670328,3805472,11;12,1,PragerU Kids
-5140,1050.0,kMKMjj5H5_M,,8,12,8 - 12 years,4.852030263919617,127,12,2,Mokena Library Children's Department
+5140,1050.0,kMKMjj5H5_M,,8,12,8 - 12 years,4.852030263919617,127,11;12,2,Mokena Library Children's Department
 546,1059.0,9pTTeEmW_gQ,,6,10,"6 - 10 years, from customers",11.625208961400444,111882,8;9;10,2,Fresh Reading
 559kgL3kueA__story01,7122.0,559kgL3kueA,The Cat in the Hat: Birthday Party Edition,4,8,"4 - 8 years, from customers",12.827210803446036,372208,7;8,2,Dr. Seuss
 559kgL3kueA__story02,7123.0,559kgL3kueA,Happy Birthday to You!,4,8,"4 - 8 years, from customers",12.827210803446036,372208,7;8,2,Dr. Seuss
 56E8GZouZIs__story01,1064.0,56E8GZouZIs,Big Seven Division Strategy: 888 ÷ 4 (and practice battles),8,10,"8 - 10 years, from customers",8.259458195332408,3863,10,1,StoryTime Out Loud
 5HmoQOWwcWI__story01,1088.0,5HmoQOWwcWI,Dancing in Baila,5,10,5 - 10 years,9.075207697984686,8735,9;10,1,Kids Story Time with Jack & Jill
 5ISKUMy1980__story01,1091.0,5ISKUMy1980,Too Much Glue,4,6,"4 - 6 years, from customers",14.976801201232448,3194052,4;5;6,1,StorylineOnline
-5KgGF6v1dgE__story01,1097.0,5KgGF6v1dgE,Aubrey’s Confession (The Best Liars in Riverview),8,12,8 - 12 years,4.9344739331306915,138,12,1,EVPLibrary
+5JRRS3rGMoU__story01,1095.0,5JRRS3rGMoU,What If You Had Animal Teeth,5,8,"5 - 8 years, from customers",11.38932177210828,88372,8,1,Jessica Maxwell
+5KgGF6v1dgE__story01,1097.0,5KgGF6v1dgE,Aubrey’s Confession (The Best Liars in Riverview),8,12,8 - 12 years,4.9344739331306915,138,11;12,1,EVPLibrary
 5Na0iBjpspw__story01,7130.0,5Na0iBjpspw,Pete the Cat and the Missing Cupcakes,2,6,"2 - 6 years, from customers",13.723956515037246,912511,2;3;4;5;6,1,Miss Pam Reads
 5Nxjk0u1N5M__story01,1102.0,5Nxjk0u1N5M,My Brother Charlie,4,8,"4 - 8 years, from customers",14.123651659880244,1360892,4;5;6;7;8,1,StorylineOnline
 5Q24roWqelo__story01,1110.0,5Q24roWqelo,Tango the Little Bird,3,8,3 - 8 years,11.655500837241668,115323,8,1,StoryTime at Awnie's House
-5RDxkDD43qg__story01,1113.0,5RDxkDD43qg,Snow,3,8,"3 - 8 years, from customers",12.937952439372806,415796,7;8,1,StoryTime at Awnie's House
-5ViuIAIVFE0__story01,1124.0,5ViuIAIVFE0,Ralph Finds His Way,3,7,3 - 7 years,12.938236191442734,415914,7,1,EGTV Storybooks
+5RDxkDD43qg__story01,1113.0,5RDxkDD43qg,Snow,3,8,"3 - 8 years, from customers",12.937952439372806,415796,6;7;8,1,StoryTime at Awnie's House
+5TsEdR8-f-k__story01,1119.0,5TsEdR8-f-k,,10,11,"10 - 11 years, from customers",4.406719247264253,81,11,1,Mokena Library Children's Department
+5ViuIAIVFE0__story01,1124.0,5ViuIAIVFE0,Ralph Finds His Way,3,7,3 - 7 years,12.938236191442734,415914,6;7,1,EGTV Storybooks
 5XzuvPExmGw__story01,1133.0,5XzuvPExmGw,Mystery in Paris: Help Wanted at the Souvenir Shop,7,10,7 - 10 years,11.029990586345086,61696,9;10,1,Miss Pam Reads
 5YbSwroHr1s__story01,1134.0,5YbSwroHr1s,Finding Nemo: Into the Ocean and Back,1,3,"1 - 3 years, from customers",13.996626388161973,1198553,2;3,1,EGTV Storybooks
 5a3YmXvJha4__story01,1139.0,5a3YmXvJha4,A Very Crusty Christmas,5,10,5 - 10 years,7.917536353943631,2744,10,1,Storytime With K - Kid Story Read Alouds
 5bTNsRCOOu0__story01,7136.0,5bTNsRCOOu0,Dreamers,9,12,9 - 12 years,3.4011973816621555,29,12,1,Loveland Public Library
 5iFihyeslz0__story01,1156.0,5iFihyeslz0,What If You Had Animal Coats?,4,8,4 - 8 years,12.766964761469517,350446,7;8,1,Jessica Maxwell
 5jOtEISVZCQ__story01,1167.0,5jOtEISVZCQ,Jules Ver(n) Prophecy Treasure Hunt,10,14,10 - 14 years,5.849324779946859,346,11;12,1,Mokena Library Children's Department
-5jS5Z74ltFg__story01,1168.0,5jS5Z74ltFg,Love in the Library,7,10,"7 - 10 years, from customers",8.732304571033183,6199,10,1,Read Aloud with Mr. Paul
+5jS5Z74ltFg__story01,1168.0,5jS5Z74ltFg,Love in the Library,7,10,"7 - 10 years, from customers",8.732304571033183,6199,9;10,1,Read Aloud with Mr. Paul
 5lzoyaP15Rg__story01,1175.0,5lzoyaP15Rg,Little Blue Trucks Halloween,1,3,"1 - 3 years, from customers",12.634687713537035,307025,2,1,StoryTime Out Loud
 5qutWeu6Z7o__story01,7142.0,5qutWeu6Z7o,"Happy Valentine's Day, Mouse",1,3,"1 - 3 years, from customers",12.617688797122844,301850,2,1,Storytime Now!
 5u7WrGPcJHU__story01,7143.0,5u7WrGPcJHU,Joseph Forgives His Brothers,8,11,8 - 11 years,10.438430013409498,34146,9;10;11,1,PragerU Kids
@@ -184,7 +196,7 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 62KvfgPah4I__story01,1218.0,62KvfgPah4I,Creepy Carrots,6,9,6 - 9 years,14.341139273325828,1691521,6;7;8;9,3,Book League Storytime Adventures
 62KvfgPah4I__story02,1219.0,62KvfgPah4I,Creepy Underwear,6,9,6 - 9 years,14.341139273325828,1691521,6;7;8;9,3,Book League Storytime Adventures
 62KvfgPah4I__story03,1220.0,62KvfgPah4I,Creepy Crayon,6,9,6 - 9 years,14.341139273325828,1691521,6;7;8;9,3,Book League Storytime Adventures
-637wlXDelyI__story01,7150.0,637wlXDelyI,How to Catch a Turkey,2,6,"2 - 6 years, from customers",13.115391127662246,496525,2;3;6,1,StoryTime Out Loud
+637wlXDelyI__story01,7150.0,637wlXDelyI,How to Catch a Turkey,2,6,"2 - 6 years, from customers",13.115391127662246,496525,2;3;4;5;6,1,StoryTime Out Loud
 652i-V9ysaU__story01,1227.0,652i-V9ysaU,Marcus Makes a Movie,9,12,"9 - 12 years, from customers",7.988542982737695,2946,10;11;12,1,EVPLibrary
 66TvZSloor0__story01,1232.0,66TvZSloor0,,1,5,"1 - 5 years, from customers",12.75530615219242,346384,2,1,Brightly Storytime
 67fWaxbGa0I__story01,1233.0,67fWaxbGa0I,Groovy Love Quotes (Pete the Cat),4,8,4 - 8 years,12.817041297507412,368442,7;8,1,Kids Stories 4 You
@@ -193,7 +205,8 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 6E67n1vZZjQ__story01,1254.0,6E67n1vZZjQ,Arnie the Doughnut,4,8,"4 - 8 years, from customers",17.16740266781183,28556714,4;5;6;7;8,1,StorylineOnline
 6FPIy6RrmUE__story01,1258.0,6FPIy6RrmUE,Caleb's Backpack,5,10,5 - 10 years,8.04237800517328,3109,10,1,Read For Fun  
 6P-Y_M9q7RM__story01,1281.0,6P-Y_M9q7RM,Kindness Is My Superpower,3,6,"3 - 6 years, from customers",14.93571080737652,3065467,3;4;5;6,1,Reading Pioneers Academy
-6WOSIB7Izag__story01,1296.0,6WOSIB7Izag,I Want to Go Home,8,12,8 - 12 years,4.290459441148391,72,12,1,K G Merlo
+6SHmN-wXykU__story01,1288.0,6SHmN-wXykU,The Curious Garden,3,6,"3 - 6 years, from customers",12.906503237536375,402923,6,1,Mr. Paulson Reads
+6WOSIB7Izag__story01,1296.0,6WOSIB7Izag,I Want to Go Home,8,12,8 - 12 years,4.290459441148391,72,11;12,1,K G Merlo
 6XPoa16RpSI__story01,1300.0,6XPoa16RpSI,The Legend of the Poinsettia,5,9,"5 - 9 years, from customers",9.82395721357932,18470,9,1,Fresh Reading
 6aRFWgV0TSQ__story01,1309.0,6aRFWgV0TSQ,What Is an Adverb?,7,11,7 - 11 years,6.068425588244111,431,11,1,Rockin Read Alouds
 6c2PG5WMoC0__story01,7172.0,6c2PG5WMoC0,Hidden Figures: The True Story of Four Black Women and the Space Race,9,12,"9 - 12 years, from customers",10.35602706803022,31445,9;10;11;12,1,CSUF Future Titans Read
@@ -219,9 +232,10 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 7aSpu1GLA3w__story01,1458.0,7aSpu1GLA3w,When You Reach Me,10,12,"10 - 12 years, from customers",6.61472560020376,745,11;12,1,EVPLibrary
 7aZopbeOa_c__story01,1459.0,7aZopbeOa_c,Franken-Teddy,7,12,7 - 12 years,8.132706489693264,3403,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 7d-5q6dAuSw__story01,1464.0,7d-5q6dAuSw,Olivia Sharp and the Lost Best Friend Pizza Monster,8,12,8 - 12 years,9.0825070004663,8799,9;10;11;12,1,Readers are Leaders
+7f52A9a9reY__story01,1469.0,7f52A9a9reY,Pete the Cat and the Space Chase,4,8,4 - 8 years,11.475171675358313,96294,8,1,Miss Pam Reads
 7gmYADliKnY__story01,1472.0,7gmYADliKnY,Rey Montague and the Computer-Designed Ship,5,10,"5 - 10 years, from customers",8.932740634865914,7575,9;10,1,Riko's Reading Room
 7j0OY3236jw__story01,1480.0,7j0OY3236jw,Harry the Dirty Dog,2,6,"2 - 6 years, from customers",16.291133749490143,11889113,2;3;4;5;6,1,StorylineOnline
-7nbTJBG6wRw__story01,1492.0,7nbTJBG6wRw,"Olivia Sharp, Agent for Secrets",8,12,8 - 12 years,8.657302899400882,5751,10;11;12,1,Readers are Leaders
+7nbTJBG6wRw__story01,1492.0,7nbTJBG6wRw,"Olivia Sharp, Agent for Secrets",8,12,8 - 12 years,8.657302899400882,5751,9;10;11;12,1,Readers are Leaders
 7ojVd_kJdxI__story01,1495.0,7ojVd_kJdxI,Pierre the Penguin in the Museum,2,7,"2 - 7 years, from customers",12.540467726356187,279418,2;7,1,Vooks
 7rHH-7FvhyY__story01,1503.0,7rHH-7FvhyY,The Sword in the Stone (King Arthur),10,13,10 - 13 years,8.182838710766026,3578,10;11;12,1,Storytime With K - Kid Story Read Alouds
 7zhKLtD24Y8__story01,1534.0,7zhKLtD24Y8,The Tale of Tom Kitten,3,7,3 - 7 years,12.168920990399306,192705,7,1,Beatrix Potter
@@ -235,9 +249,9 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 8CGgNmpyFjs__story06,1579.0,8CGgNmpyFjs,A Whole New Garden,3,8,"3 - 8 years, from customers",13.548869561300936,765947,3;4;5;6;7;8,7,Vooks
 8CGgNmpyFjs__story07,1580.0,8CGgNmpyFjs,I Love You for Always (Letters from Birds),3,8,"3 - 8 years, from customers",13.548869561300936,765947,3;4;5;6;7;8,7,Vooks
 8Mnk5B8nu2g__story01,1590.0,8Mnk5B8nu2g,Creepy Carrots and Jasper Rabbit,6,9,6 - 9 years,10.489077361672273,35920,9,1,Book League Storytime Adventures
-8b1_X6V7j0E__story01,1599.0,8b1_X6V7j0E,Animal Movement Call-and-Response,1,3,"1 - 3 years, from customers",13.040005157667345,460470,2,1,MovingStories
+8b1_X6V7j0E__story01,1599.0,8b1_X6V7j0E,Animal Movement Call-and-Response,1,3,"1 - 3 years, from customers",13.040005157667345,460470,2;3,1,MovingStories
 8bpXikqUvXw__story01,1600.0,8bpXikqUvXw,Lotus and Feather,3,5,3 - 5 years,14.350287251152766,1707066,3;4;5,1,StorylineOnline
-8dVLXaFpUYI__story01,1601.0,8dVLXaFpUYI,Gamer (graphic novel),8,12,8 - 12 years,4.6443908991413725,103,12,1,Mokena Library Children's Department
+8dVLXaFpUYI__story01,1601.0,8dVLXaFpUYI,Gamer (graphic novel),8,12,8 - 12 years,4.6443908991413725,103,11;12,1,Mokena Library Children's Department
 8mKE7xOxaoA__story01,1609.0,8mKE7xOxaoA,10 Apples Up on Top,2,5,"2 - 5 years, from customers",13.458344064663518,699655,2;3;4;5,1,Dr. Seuss
 8t-p4OMJJMk__story01,1622.0,8t-p4OMJJMk,Little I and the Lost Dot,5,8,5 - 8 years,12.74023581786037,341203,7;8,5,Vooks
 8t-p4OMJJMk__story02,1623.0,8t-p4OMJJMk,The Mighty Silent E (Ed’s Story),5,8,5 - 8 years,12.74023581786037,341203,7;8,5,Vooks
@@ -267,7 +281,7 @@ story_key,story_id,video_id,story_title,range_lower,range_upper,range_text,log_v
 9G18UA311QA__story03,1719.0,9G18UA311QA,Sammy and Benji Burrito Box,2,7,"2 - 7 years, from customers",15.528398702626085,5544952,2;3;4;5;6;7,4,Vooks
 9G18UA311QA__story04,1720.0,9G18UA311QA,Mikey’s Birthday Food Choice (Fried Rice & Marinara),2,7,"2 - 7 years, from customers",15.528398702626085,5544952,2;3;4;5;6;7,4,Vooks
 9Jum4epESU8__story01,1731.0,9Jum4epESU8,Gruesome Giselda and the Creepy Crawlies,7,12,7 - 12 years,8.368461137615839,4308,10;11;12,1,ALL NEW DOB ENTERTAINMENT
-9KAaNe_BK5E__story01,1733.0,9KAaNe_BK5E,Statue of Liberty — Otto and Smidge,3,8,3 - 8 years,13.1316025643655,504640,3;4;6;7;8,1,PragerU Kids
+9KAaNe_BK5E__story01,1733.0,9KAaNe_BK5E,Statue of Liberty — Otto and Smidge,3,8,3 - 8 years,13.1316025643655,504640,3;4;5;6;7;8,1,PragerU Kids
 9L4cFzgpsa4__story01,1737.0,9L4cFzgpsa4,Mr. Pence and the Ball Cupboard,7,12,7 - 12 years,7.955425088912672,2850,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 9QNYvf3X67U__story01,1752.0,9QNYvf3X67U,The Library Dragon,6,9,6 - 9 years,10.67505304523018,43262,9,1,Miss Pam Reads
 9ay5SwdfjZk__story01,1782.0,9ay5SwdfjZk,Unicorn and Horse,3,7,"3 - 7 years, from customers",14.289905780034625,1607041,3;4;5;6;7,1,Vooks
@@ -293,24 +307,28 @@ AbFVIEqOsBo__story01,1904.0,AbFVIEqOsBo,The Terrible Triplets,7,12,7 - 12 years,
 Ada7ZnnKqsQ__story01,1907.0,Ada7ZnnKqsQ,,1,6,"1 - 6 years, from customers",14.08596279564902,1310556,2;3;4;5;6,1,Little Cozy Nook
 AdrhM-ZhRyw__story01,1908.0,AdrhM-ZhRyw,Grandmother’s Bowl in Nagasaki,6,11,6 - 11 years,6.12029741895095,454,11,1,Literally Cultured
 Ah2lKLD14ys__story01,1925.0,Ah2lKLD14ys,Tony Sar’s Helium Balloon Puppets,5,8,"5 - 8 years, from customers",11.685289274216844,118810,8,1,StoryTime Out Loud
-AiyEVZQ4ypY__story01,1931.0,AiyEVZQ4ypY,,3,7,"3 - 7 years, from customers",13.03750676814347,459321,6;7,1,Vooks
+AiyEVZQ4ypY__story01,1931.0,AiyEVZQ4ypY,,3,7,"3 - 7 years, from customers",13.03750676814347,459321,3;6;7,1,Vooks
 AjsFA4I4tPc__story01,1933.0,AjsFA4I4tPc,Horton Hears a Who,1,7,"1 - 7 years, from customers",13.315690813374816,606639,2;3;4;5;6;7,1,Dr. Seuss
 AkabZhjKdMw__story01,1934.0,AkabZhjKdMw,"Remember to Dream, Ebere",2,7,"2 - 7 years, from customers",13.610346895335695,814513,2;3;4;5;6;7,1,StorylineOnline
+Alonu5yywjI__story01,1939.0,Alonu5yywjI,Coco (Family Mystery),6,8,6 - 8 years,11.42203749277649,91311,8,1,Young Readers
 AlqlbLdAYOw__story01,1941.0,AlqlbLdAYOw,A Bad Case of Stripes,3,7,"3 - 7 years, from customers",12.316463985344422,223342,7,1,Mr. Paulson Reads
 Anvh2Xu_fBI__story01,1954.0,Anvh2Xu_fBI,First Day of School at Pet Shop,7,10,7 - 10 years,11.257504043096436,77458,9;10,1,Kids Stories 4 You
 Ao9groPqSOM__story01,7289.0,Ao9groPqSOM,Father Frost and Marusha,7,12,7 - 12 years,5.8971538676367405,363,11;12,1,Super Great Kids' Stories
-Aqu8sfoPKPQ__story01,1965.0,Aqu8sfoPKPQ,No Purchase Necessary (Ch. 1-5),8,12,8 - 12 years,4.624972813284271,101,12,1,EVPLibrary
+Aqu8sfoPKPQ__story01,1965.0,Aqu8sfoPKPQ,No Purchase Necessary (Ch. 1-5),8,12,8 - 12 years,4.624972813284271,101,11;12,1,EVPLibrary
 AtAKBZNJZpo__story01,1971.0,AtAKBZNJZpo,"Push, Dig, Scoop",8,10,"8 - 10 years, from customers",7.502186486602924,1811,10,1,Storytime With K - Kid Story Read Alouds
+AwixoGkJ-SE__story01,7301.0,AwixoGkJ-SE,Amelia Bedelia’s First Valentine,3,8,"3 - 8 years, from customers",11.426768268519051,91744,8,1,Mrs. K's Book Worm Adventures
 AwvGmludEzE__story01,1982.0,AwvGmludEzE,Super Mom,7,12,7 - 12 years,8.156510226079966,3485,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+B0TIeshtX5I__story01,1987.0,B0TIeshtX5I,The Three Billy Goats Gruff,3,6,"3 - 6 years, from customers",12.925481938079008,410643,6,1,StorylineOnline
 B6SrbWwVKAs__story01,1994.0,B6SrbWwVKAs,The Elves and the Shoemaker,2,6,"2 - 6 years, from customers",14.94300407309298,3087906,2;3;4;5;6,1,StorylineOnline
 BDPJB8hJq7M__story01,1999.0,BDPJB8hJq7M,What If You Had Dinosaur Parts?,6,8,6 - 8 years,12.19228300394662,197260,7;8,1,Jessica Maxwell
-BJQF6JiaL7Y__story01,7311.0,BJQF6JiaL7Y,The Best Friend Sleepover,8,12,8 - 12 years,7.315883504509785,1503,11;12,1,Chaz Stories
+BJQF6JiaL7Y__story01,7311.0,BJQF6JiaL7Y,The Best Friend Sleepover,8,12,8 - 12 years,7.315883504509785,1503,10;11;12,1,Chaz Stories
 BKZ9goanoWU__story01,2015.0,BKZ9goanoWU,Sam the Speedy Sloth,2,5,"2 - 5 years, from customers",12.492799261678918,266411,2,1,StoryTime at Awnie's House
 BNGUnk8JeLE__story01,2025.0,BNGUnk8JeLE,Sylvester and the Magic Pebble,3,7,"3 - 7 years, from customers",15.258565142545734,4233607,3;4;5;6;7,1,StorylineOnline
 BNqbHLUQPEY__story01,2028.0,BNqbHLUQPEY,Alice in Wonderland,8,12,8 - 12 years,6.104793232414985,447,11;12,1,Fairytale Media
-BVhT45lRsW8__story01,2050.0,BVhT45lRsW8,Hiku the Grumpy Penguin,2,6,2 - 6 years,13.1536856723219,515908,2;3;4;6,1,Vooks
+BQZ2vzBPDMk__story01,2038.0,BQZ2vzBPDMk,,2,6,"2 - 6 years, from customers",12.376203530446718,237091,2,1,Brightly Storytime
+BVhT45lRsW8__story01,2050.0,BVhT45lRsW8,Hiku the Grumpy Penguin,2,6,2 - 6 years,13.1536856723219,515908,2;3;4;5;6,1,Vooks
 BYZK4VMxBTI__story01,2061.0,BYZK4VMxBTI,Carla’s Glasses,5,7,5 - 7 years,13.79819042672333,982828,5;6;7,1,StorylineOnline
-Bg8UH5px6x0__story01,2083.0,Bg8UH5px6x0,Mrs. Splat and the Bubblegum Escape,7,12,7 - 12 years,8.753213480544126,6330,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+Bg8UH5px6x0__story01,2083.0,Bg8UH5px6x0,Mrs. Splat and the Bubblegum Escape,7,12,7 - 12 years,8.753213480544126,6330,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 BgH8PbrSEEo__story01,2084.0,BgH8PbrSEEo,The Gift of Being Different,6,9,"6 - 9 years, from customers",9.991681563272044,21843,9,1,StoryTimeFamily
 BjnlrkpGJb4__story01,2096.0,BjnlrkpGJb4,Lightning McQueen and Radiator Springs,2,4,"2 - 4 years, from customers",13.811872949882964,996368,2;3;4,1,EGTV Storybooks
 BlNAwSDatUc__story01,2100.0,BlNAwSDatUc,,1,3,"1 - 3 years, from customers",14.678609352062436,2370494,2;3,1,Oceanhouse Media
@@ -325,20 +343,21 @@ Bs-osdR33Ao__story07,2126.0,Bs-osdR33Ao,Lunch with Wanda Belch,5,7,"5 - 7 years,
 Bs-osdR33Ao__story08,2127.0,Bs-osdR33Ao,Custodian Fester Smudge,5,7,"5 - 7 years, from customers",13.461430815005018,701818,5;6;7,9,StoryTime Out Loud
 Bs-osdR33Ao__story09,2128.0,Bs-osdR33Ao,Dr. BN Payne Dental Check,5,7,"5 - 7 years, from customers",13.461430815005018,701818,5;6;7,9,StoryTime Out Loud
 C-msx4fz_sU__story01,2149.0,C-msx4fz_sU,The Legend of Old Befana,4,9,"4 - 9 years, from customers",11.22826548805077,75226,9,1,Mrs. K's Book Worm Adventures
-C9-9PicpLLc__story01,2164.0,C9-9PicpLLc,"Which Way to Anywhere (excelsia prologue + Earth setup, Chapters 1–2)",8,12,8 - 12 years,4.812184355372417,122,12,1,EVPLibrary
+C9-9PicpLLc__story01,2164.0,C9-9PicpLLc,"Which Way to Anywhere (excelsia prologue + Earth setup, Chapters 1–2)",8,12,8 - 12 years,4.812184355372417,122,11;12,1,EVPLibrary
 C9-VQdx-jsU__story01,2165.0,C9-VQdx-jsU,How to Be a Ninja (Teenage Mutant Ninja Turtles),8,12,8 - 12 years,10.606882049547623,40411,9;10;11;12,1,Read along with Ms Duckie 
 CDZ3Di1iefw__story01,2175.0,CDZ3Di1iefw,Memoirs of a Tortoise,6,9,6 - 9 years,9.52704712346858,13725,9,1,Mrs. K's Book Worm Adventures
 CEPw4CEGc1o__story01,2177.0,CEPw4CEGc1o,Sammy and Benji’s Bad Day Box,5,8,5 - 8 years,13.760960386759116,946910,5;6;7;8,1,Vooks
 CGuG5yz9kUI__story01,2184.0,CGuG5yz9kUI,"Donuts, the Whole Story",6,9,6 - 9 years,11.208165050983697,73729,9,1,StoryTime at Awnie's House
 CL0RJVrnhwc__story01,2194.0,CL0RJVrnhwc,Bad Kitty Does Not Like Candy,7,10,"7 - 10 years, from customers",11.682794813824945,118514,8;9;10,1,Grandma's House
-CLU9y_cu2w0__story01,2195.0,CLU9y_cu2w0,Miss Palava and the School Play,7,12,7 - 12 years,8.652423140676342,5723,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+CLU9y_cu2w0__story01,2195.0,CLU9y_cu2w0,Miss Palava and the School Play,7,12,7 - 12 years,8.652423140676342,5723,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 CQTCOluFQ6Y__story01,2208.0,CQTCOluFQ6Y,Coral Reef Food Chains (Chapters 1–3),7,10,7 - 10 years,8.00736706798333,3002,10,1,Rockin Read Alouds
 CRESdo_B-iQ__story01,2211.0,CRESdo_B-iQ,Walt Disney's Mickey Mouse: The Best Neighbor Contest,12,15,12 - 15 years,8.446770727119691,4659,12,1,Chaz Stories
 CRYcFIqp_eY__story01,7326.0,CRYcFIqp_eY,My No No No Day,2,4,"2 - 4 years, from customers",14.61929306785932,2233974,2;3;4,1,PINK THUMB  Learning Channel
 CSCIASDC96M__story01,2215.0,CSCIASDC96M,Playtime Bravery and Friendship,2,6,"2 - 6 years, from customers",14.34734807756643,1702056,2;3;4;5;6,1,Vooks
+CSsRRahPo1A__story01,2218.0,CSsRRahPo1A,,4,9,"4 - 9 years, from customers",8.731820582962108,6196,9,1,Mrs. K's Book Worm Adventures
 CX7k_QN29y8__story01,7332.0,CX7k_QN29y8,The Five Chinese Brothers,4,7,"4 - 7 years, from customers",12.375815420117268,236999,7,1,Mrs. Clark's Reading Corner
 CYuFYmf40cY__story01,2228.0,CYuFYmf40cY,Missing on Superstition Mountain (Chapter 1-7 excerpt),8,12,8 - 12 years,5.793013608384144,327,11;12,1,EVPLibrary
-CbIhpLWLvhk__story01,2238.0,CbIhpLWLvhk,Simon’s Secret Name and the Ghostly House,8,12,8 - 12 years,5.030437921392435,152,12,1,EVPLibrary
+CbIhpLWLvhk__story01,2238.0,CbIhpLWLvhk,Simon’s Secret Name and the Ghostly House,8,12,8 - 12 years,5.030437921392435,152,11;12,1,EVPLibrary
 Cc7-f_pzsu0__story01,2239.0,Cc7-f_pzsu0,Dr. Seuss ABCs (Beginner Book),1,3,"1 - 3 years, from customers",14.317632211846478,1652222,2;3,1,Dr. Seuss
 CeBt2oYR2KQ__story01,2247.0,CeBt2oYR2KQ,Mowgli: Boy Raised by Wolves (Intro/Setup),8,12,8 - 12 years,2.6390573296152584,13,12,1,Fairytale Media
 CfeK4o1l-kA__story01,2253.0,CfeK4o1l-kA,,6,10,"6 - 10 years, from customers",11.974468403298095,158651,8;9;10,1,Vooks
@@ -368,6 +387,9 @@ DMasgNi_lX4__story01,2348.0,DMasgNi_lX4,Friday the 13th from the Black Lagoon (C
 DRH4qyvYFrk__story01,2353.0,DRH4qyvYFrk,My Room Is a Zoo,3,5,"3 - 5 years, from customers",13.311554617133906,604135,3;4;5,1,Storytime With Faye
 DRNvxgXtSIw__story01,7402.0,DRNvxgXtSIw,The Pigeon Finds a Hot Dog!,2,6,2 - 6 years,13.895597264669838,1083380,2;3;4;5;6,1,Storytime Now!
 DWnJqRq8fnM__story01,2369.0,DWnJqRq8fnM,From Wheat to Bread,5,9,5 - 9 years,9.884100838735938,19615,9,1,Bookroot Readings
+DZuttFMhL1M__story01,2373.0,DZuttFMhL1M,"Narwhal, superb lyrebird, three-banded armadillo (superpower animals)",4,8,4 - 8 years,11.467656095522694,95573,8,3,Jessica Maxwell
+DZuttFMhL1M__story02,2374.0,DZuttFMhL1M,"Alpine ibex, colugo/kalugo, electric eel, hairy frog, giant cuttlefish",4,8,4 - 8 years,11.467656095522694,95573,8,3,Jessica Maxwell
+DZuttFMhL1M__story03,2375.0,DZuttFMhL1M,Leopard sea cucumber (ambush defense),4,8,4 - 8 years,11.467656095522694,95573,8,3,Jessica Maxwell
 DaVNTh40y0U__story01,7415.0,DaVNTh40y0U,Little Einsteins' Pirate Treasure,6,9,6 - 9 years,11.213400204674606,74116,9,1,Storytime With K - Kid Story Read Alouds
 DcJMEDR-87w__story01,2380.0,DcJMEDR-87w,I Am Rosa Parks,4,7,"4 - 7 years, from customers",13.452856345201209,695826,4;5;6;7,1,Mrs. Clark's Reading Corner
 Dgg6QK7-_Dw__story01,2387.0,Dgg6QK7-_Dw,The Legend of the Poinsettia,5,9,"5 - 9 years, from customers",10.859940861562688,52048,9,1,Mrs. K's Book Worm Adventures
@@ -386,16 +408,29 @@ E3Kz6K_wn94__story01,2445.0,E3Kz6K_wn94,"Brushy, Brushy Tooth Story",1,2,"1 - 2 
 E6nRLY3mjxs__story01,2457.0,E6nRLY3mjxs,Louise and Tabitha (cat about town),2,6,"2 - 6 years, from customers",14.209783264168289,1483304,2;3;4;5;6,1,Vooks
 EAMDa-udC_I__story01,7449.0,EAMDa-udC_I,Squirrel's New Year's Resolution,5,7,"5 - 7 years, from customers",14.1235017470719,1360688,5;6;7,1,Storytime Now!
 EC7Kq1OVY38__story01,2468.0,EC7Kq1OVY38,,7,9,"7 - 9 years, from customers",10.898570980375382,54098,9,1,Apus The Bird of Paradise
+EEA63Q_oVRU__story01,7454.0,EEA63Q_oVRU,Never Let a Unicorn Scribble,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story02,7455.0,EEA63Q_oVRU,I Am Not Scared,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story03,7456.0,EEA63Q_oVRU,Old McDonald Had a Truck,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story04,7457.0,EEA63Q_oVRU,Louise and Tabitha,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story05,7458.0,EEA63Q_oVRU,Who's That Dog?,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story06,7459.0,EEA63Q_oVRU,It's a Firefly Night,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story07,7460.0,EEA63Q_oVRU,Shapes,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story08,7461.0,EEA63Q_oVRU,The Cow That Jack Milked,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story09,7462.0,EEA63Q_oVRU,I Am a Mosquito and I Love It,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story10,7463.0,EEA63Q_oVRU,Flamingo Flamingo,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story11,7464.0,EEA63Q_oVRU,So Few of Me,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
+EEA63Q_oVRU__story12,7465.0,EEA63Q_oVRU,The Stick,3,6,"3 - 6 years, from customers",12.926920106232387,411234,6,12,Vooks
 EFoz5AYsYqU__story01,2477.0,EFoz5AYsYqU,,6,10,"6 - 10 years, from customers",8.970304952991755,7865,9;10,1,William's Planet & Family Story Book Time
 EHYNHWfoKf0__story01,2482.0,EHYNHWfoKf0,Elisa and Her Seagull,6,8,6 - 8 years,11.81397775636018,135127,8,1,Vooks
 EJDH4qt8heE__story01,7477.0,EJDH4qt8heE,We March,4,8,4 - 8 years,11.958604382691696,156154,8,1,Netflix Jr.
 EN2CR67c9FI__story01,2496.0,EN2CR67c9FI,Ember and Wade Save the Shop,6,8,6 - 8 years,11.840767712988406,138796,8,1,Young Readers
 EPeoV-Zof10__story01,2508.0,EPeoV-Zof10,Yehuda and Mina in Theresienstadt,12,17,12 - 17 years,7.147559271189454,1270,12,2,StoryCorps
 ESC7OkFTMR4__story01,2514.0,ESC7OkFTMR4,Louie and the Crooks,9,12,9 - 12 years,5.860786223465865,350,11;12,1,AudioAdventures
+EYCYRzomUgk__story01,2521.0,EYCYRzomUgk,Kai and Ray vs. the Burglars,5,9,"5 - 9 years, from customers",8.751790892775563,6321,9,1,Storytime With K - Kid Story Read Alouds
 E_3OEj2gZ0g__story01,2527.0,E_3OEj2gZ0g,Jumanji Game Brings Mischief,5,10,"5 - 10 years, from customers",7.840312983320164,2540,10,1,Mr. Paulson Reads
 EahOQhbpHOE__story01,7505.0,EahOQhbpHOE,Ratoncito Pérez and King Booby,7,12,7 - 12 years,5.683579767338681,293,11;12,1,Super Great Kids' Stories
 Efht9spfIC4__story01,2542.0,Efht9spfIC4,Pongo and Padita vs. Kruella (Twilight Bark),7,9,7 - 9 years,12.492577775656972,266352,7;8;9,1,Learn English on a Daily Basis
-EhZ5h3sOEB4__story01,2546.0,EhZ5h3sOEB4,The Chameleon's Wishes,2,4,"2 - 4 years, from customers",13.093140518727424,485599,2;3,1,MovingStories
+EhZ5h3sOEB4__story01,2546.0,EhZ5h3sOEB4,The Chameleon's Wishes,2,4,"2 - 4 years, from customers",13.093140518727424,485599,2;3;4,1,MovingStories
 EldIXkzI0dY__story01,2549.0,EldIXkzI0dY,When Pigasso Met Mootisse,2,6,"2 - 6 years, from customers",14.997225176576686,3259958,2;3;4;5;6,1,StorylineOnline
 EmFuYwa7usw__story01,7509.0,EmFuYwa7usw,Tina Turtle and the Crow,7,12,7 - 12 years,6.300785794663244,544,11;12,1,Super Great Kids' Stories
 EmMnaSkeKqQ__story01,2551.0,EmMnaSkeKqQ,The Snail and the Whale,2,4,"2 - 4 years, from customers",14.108435363243617,1340341,2;3;4,1,Storyvision Studios UK
@@ -407,6 +442,7 @@ EtbzQyfpGiE__story01,7518.0,EtbzQyfpGiE,The Ruby Tale Channel: Orange Foods Chal
 EtiVz_Lo6i8__story01,7520.0,EtiVz_Lo6i8,Zootopia: The Big Case,4,6,4 - 6 years,13.244333191813537,564859,4;5;6,1,Miss Pam Reads
 EuTlQCGxE5Y__story01,7522.0,EuTlQCGxE5Y,The Tale of Peter Rabbit,1,3,"Baby - 3 years, from customers",14.330718166794677,1673985,2;3,1,Beatrix Potter
 EyVxEZh5LpM__story01,7528.0,EyVxEZh5LpM,Mickey and Goofy’s Adventure in India,6,10,6 - 10 years,9.371948887172596,11753,9;10,1,InspiredFigment’s Audio & Video Archives
+Eyt0XBaXGrI__story01,7529.0,Eyt0XBaXGrI,Scooby-Doo and the Tiki Curse,4,8,4 - 8 years,11.423875648136718,91479,8,1,Kids Stories 4 You
 F-n_HgSO6gg__story01,7533.0,F-n_HgSO6gg,How Rabbit Got His Long Ears and Short Front Legs,7,12,7 - 12 years,6.661854740545311,781,11;12,1,Super Great Kids' Stories
 F0lixBclhM4__story01,7535.0,F0lixBclhM4,Lil Poo,2,7,2 - 7 years,17.032508260263896,24953090,2;3;4;5;6;7,1,Vooks
 F7oMoWcdTUI__story01,2611.0,F7oMoWcdTUI,Henny Penny (The Sky Is Falling),7,10,7 - 10 years,9.776165413960776,17608,9;10,1,Grandma Mo Story Time
@@ -426,14 +462,14 @@ FTFBvRiGQeE__story01,2684.0,FTFBvRiGQeE,Miss Tutu(l)age vs. the Trouble Twins,7,
 FTG5SlsSkkI__story01,2685.0,FTG5SlsSkkI,The Tale of Squirrel Nutkin,3,7,3 - 7 years,12.61180438475577,300079,7,1,Beatrix Potter
 FU-XDpc82iM__story01,2686.0,FU-XDpc82iM,,4,7,"4 - 7 years, from customers",12.603028317530898,297457,7,1,Storytime Hullabaloo Hi
 F_zVUKJh0N8__story01,2694.0,F_zVUKJh0N8,A Pig Parade Is a Terrible Idea,5,10,"5 - 10 years, from customers",8.272315147956022,3913,10,1,Northeast Regional Library
-FfXijL4sEfo__story01,2706.0,FfXijL4sEfo,,2,5,2 - 5 years,13.109646864194,493681,2;3,1,Netflix Jr.
+FfXijL4sEfo__story01,2706.0,FfXijL4sEfo,,2,5,2 - 5 years,13.109646864194,493681,2;3;4;5,1,Netflix Jr.
 FgwmxMEiJ2U__story01,2710.0,FgwmxMEiJ2U,Knots on a Counting Rope,4,8,4 - 8 years,14.46847460239048,1921226,4;5;6;7;8,1,StorylineOnline
-FmWC8O_s-MY__story01,2715.0,FmWC8O_s-MY,Medio Pollito (Half-Chick) and the Wind Vane,5,9,5 - 9 years,12.94263844645764,417749,7;8;9,1,Little Cozy Nook
+FmWC8O_s-MY__story01,2715.0,FmWC8O_s-MY,Medio Pollito (Half-Chick) and the Wind Vane,5,9,5 - 9 years,12.94263844645764,417749,6;7;8;9,1,Little Cozy Nook
 FnDuyqbPIIs__story01,2717.0,FnDuyqbPIIs,Arthur's New Puppy,2,8,"2 - 8 years, from customers",11.671739539962145,117211,8,1,Reading Pioneers Academy
 FshGeNn3oNg__story01,2727.0,FshGeNn3oNg,Camp Spongebob,5,10,5 - 10 years,8.422442854870427,4547,10,1,Storytime With K - Kid Story Read Alouds
 G0Lm3X1gz2Q__story01,2740.0,G0Lm3X1gz2Q,Chapel of Old Saint Paul and the Heroes of 9/11,9,12,9 - 12 years,9.624368710744834,15128,9;10;11;12,1,William's Planet & Family Story Book Time
 G0kJtoEtVto__story01,2741.0,G0kJtoEtVto,,4,10,"4 - 10 years, from customers",11.846543632608537,139600,8;9;10,1,Brightly Storytime
-G4EJXWvjU8I__story01,2751.0,G4EJXWvjU8I,Kubo and the Two Strings,8,12,8 - 12 years,8.674880467251832,5853,10;11;12,1,Grandma's House
+G4EJXWvjU8I__story01,2751.0,G4EJXWvjU8I,Kubo and the Two Strings,8,12,8 - 12 years,8.674880467251832,5853,9;10;11;12,1,Grandma's House
 GmU8RSguPLI__story01,2790.0,GmU8RSguPLI,,4,7,"4 - 7 years, from customers",14.643097718258437,2287791,4;5;6;7,1,Mrs. K's Book Worm Adventures
 GokWQ-trXmg__story01,7573.0,GokWQ-trXmg,Horrid Henry's Sports Day,8,12,8 - 12 years,6.63200177739563,758,11;12,1,Dave the Story Reader
 GryKOWel38A__story01,2805.0,GryKOWel38A,Alex and the Enchanted Apartment (Night Books),8,12,"8 - 12 years, from customers",6.670766320845874,788,11;12,1,EVPLibrary
@@ -454,7 +490,7 @@ HgWrZdkO_UU__story01,2962.0,HgWrZdkO_UU,"Flossy Finn, the Dolphin Dentist",4,8,4
 Hh-ju18EoG0__story01,2963.0,Hh-ju18EoG0,Gabe and the Right Monster,3,7,"3 - 7 years, from customers",16.37817075884349,12970274,3;4;5;6;7,1,StorylineOnline
 HmlMW7UC1k4__story01,7631.0,HmlMW7UC1k4,The Boy Who Makes a Million Mistakes,4,8,4 - 8 years,12.721829092780856,334980,7;8,1,Storytime With Faye
 HmzW4L_4nts__story01,2975.0,HmzW4L_4nts,Alistair and Brexit,11,17,11 - 17 years,10.873546513618466,52761,11;12,1,PragerU Kids
-Hq5ssAzsK-c__story01,7632.0,Hq5ssAzsK-c,There Was an Old Lady Who Swallowed a Frog,3,6,"3 - 6 years, from customers",13.056796060571235,468267,3;6,1,Storytime Now!
+Hq5ssAzsK-c__story01,7632.0,Hq5ssAzsK-c,There Was an Old Lady Who Swallowed a Frog,3,6,"3 - 6 years, from customers",13.056796060571235,468267,3;4;6,1,Storytime Now!
 Hr3-hs1ZrNE__story01,7633.0,Hr3-hs1ZrNE,Pete the Cat: Rocking in My School Shoes,2,6,"2 - 6 years, from customers",12.869698323152948,388363,2,8,PINK THUMB  Learning Channel
 Hr3-hs1ZrNE__story02,7634.0,Hr3-hs1ZrNE,Pete the Cat and the Bedtime Blues,2,6,"2 - 6 years, from customers",12.869698323152948,388363,2,8,PINK THUMB  Learning Channel
 Hr3-hs1ZrNE__story03,7635.0,Hr3-hs1ZrNE,Pete the Cat and His Magic Sunglasses,2,6,"2 - 6 years, from customers",12.869698323152948,388363,2,8,PINK THUMB  Learning Channel
@@ -465,6 +501,8 @@ Hr3-hs1ZrNE__story07,7639.0,Hr3-hs1ZrNE,Pete the Cat and the Missing Cupcakes,2,
 Hr3-hs1ZrNE__story08,7640.0,Hr3-hs1ZrNE,Pete the Cat in the Cool Cat Boogie,2,6,"2 - 6 years, from customers",12.869698323152948,388363,2,8,PINK THUMB  Learning Channel
 Hr_O3p3zQhU__story01,2976.0,Hr_O3p3zQhU,The Strangers (Greystone Secrets) — Chapters 1-5 excerpt,10,11,"10 - 11 years, from customers",5.099866427824199,163,11,4,EVPLibrary
 Hr_O3p3zQhU__story02,2977.0,Hr_O3p3zQhU,The Strangers (Greystone Secrets) — Chapters 2 excerpt,10,11,"10 - 11 years, from customers",5.099866427824199,163,11,4,EVPLibrary
+Hr_O3p3zQhU__story03,2978.0,Hr_O3p3zQhU,The Strangers (Greystone Secrets) — Chapters 3 excerpt,10,11,"10 - 11 years, from customers",5.099866427824199,163,11,4,EVPLibrary
+Hr_O3p3zQhU__story04,2979.0,Hr_O3p3zQhU,The Strangers (Greystone Secrets) — Chapters 4-5 excerpt,10,11,"10 - 11 years, from customers",5.099866427824199,163,11,4,EVPLibrary
 HuEUTaacy_o__story01,2981.0,HuEUTaacy_o,Just Snow Already!,3,5,3 - 5 years,13.607352905051782,812078,3;4;5,1,StorylineOnline
 Hy5sFTgbEXU__story01,2984.0,Hy5sFTgbEXU,"The Babysitter’s Club: Logan and Marianne (Book Eight, Chapters 1-16)",8,11,"8 - 11 years, from customers",11.904805377434386,147975,8;9;10;11,1,Apus The Bird of Paradise
 I31vI7152ew__story01,2990.0,I31vI7152ew,Henry Holton Takes the Ice,5,8,5 - 8 years,14.94022324831033,3079331,5;6;7;8,1,StorylineOnline
@@ -499,7 +537,7 @@ IXI0iPBrO-w__story01,7696.0,IXI0iPBrO-w,The Girl Who Never Makes Mistakes,5,8,"5
 IetZiaOXi8k__story01,3071.0,IetZiaOXi8k,Spidey Bugs Out,6,10,6 - 10 years,11.244928365834843,76490,9;10,1,Marvel HQ
 InQM75SetLw__story01,3077.0,InQM75SetLw,Our School Is a Family,4,10,4 - 10 years,7.461065514354283,1738,10,1,Counselor Jones Corner 
 IoOFL_Gz_C4__story01,3078.0,IoOFL_Gz_C4,Brave Irene,3,8,"3 - 8 years, from customers",15.095587369611083,3596915,3;4;5;6;7;8,1,StorylineOnline
-IzS2t3i2AUs__story01,3087.0,IzS2t3i2AUs,,7,12,"7 - 12 years, from customers",7.180069874302796,1312,11;12,1,Mokena Library Children's Department
+IzS2t3i2AUs__story01,3087.0,IzS2t3i2AUs,,7,12,"7 - 12 years, from customers",7.180069874302796,1312,10;11;12,1,Mokena Library Children's Department
 J4lfs7FTox4__story01,7708.0,J4lfs7FTox4,A Letter from Your Teacher on the First Day of School,4,10,4 - 10 years,7.7752758464868625,2380,10,1,William's Planet & Family Story Book Time
 J5Q12FvqK6w__story01,3100.0,J5Q12FvqK6w,Shopping with Daddy,3,7,3 - 7 years,12.800804580554876,362508,7,1,Vooks
 J6aMnCFvrUA__story01,3102.0,J6aMnCFvrUA,Pete the Cat Plays Hide and Seek,4,8,4 - 8 years,12.39090355127291,240602,7;8,1,Miss Pam Reads
@@ -511,12 +549,13 @@ JBQQXSBzZk8__story01,3120.0,JBQQXSBzZk8,Maverick in the Big Game,5,10,5 - 10 yea
 JBiUZyb2Ab8__story01,3122.0,JBiUZyb2Ab8,Chicken Little and the Sky Is Falling,1,4,"Baby - 4 years, from customers",12.446934300087964,254468,2,1,Little Cozy Nook
 JE_9rx4C3M0__story01,3128.0,JE_9rx4C3M0,"Baby Bear, What Do You See?",1,3,"1 - 3 years, from customers",12.809902155284618,365821,2,1,MovingStories
 JGQkt1xYhII__story01,3133.0,JGQkt1xYhII,Chicken Little and the Falling Sky,4,8,4 - 8 years,12.250108669519784,209003,7;8,1,EGTV Storybooks
-JI8SvlbG2fI__story01,3136.0,JI8SvlbG2fI,What If You Had an Animal Tongue?,4,8,4 - 8 years,13.148582628966244,513282,4;6;7;8,1,Jessica Maxwell
+JI8SvlbG2fI__story01,3136.0,JI8SvlbG2fI,What If You Had an Animal Tongue?,4,8,4 - 8 years,13.148582628966244,513282,4;5;6;7;8,1,Jessica Maxwell
 JN6ARHB4hc8__story01,7741.0,JN6ARHB4hc8,A Mother and Daughter Reunite,4,10,4 - 10 years,8.304742269640771,4042,10,1,StoryCorps
 JP8Idoccmco__story01,3151.0,JP8Idoccmco,Ty’s One-Man Band,7,9,7 - 9 years,10.720112633296456,45256,9,1,Reading Rainbow (Official)
 JT3b3sGIjYs__story01,7746.0,JT3b3sGIjYs,Holly Jolly Harmony,8,12,8 - 12 years,11.611901644052832,110403,8;9;10;11;12,1,Kids Stories 4 You
-JTnimozUFxE__story01,7748.0,JTnimozUFxE,Humphrey the Egg Explorer,4,8,4 - 8 years,12.899769674895554,400219,7;8,1,StoryTime at Awnie's House
+JTnimozUFxE__story01,7748.0,JTnimozUFxE,Humphrey the Egg Explorer,4,8,4 - 8 years,12.899769674895554,400219,6;7;8,1,StoryTime at Awnie's House
 JTo7_J5TAfE__story01,3157.0,JTo7_J5TAfE,Dash and Violet’s Secret Mischief,8,11,8 - 11 years,11.303808085389113,81129,9;10;11,1,EGTV Storybooks
+JZ4GBrD7Rxw__story01,3166.0,JZ4GBrD7Rxw,The Fish and His Puffy Temper,3,7,3 - 7 years,12.15350485510695,189757,7,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 JZLQwpLki9s__story01,3169.0,JZLQwpLki9s,Uprooted (memoir),8,12,8 - 12 years,5.493061443340548,242,11;12,1,Mokena Library Children's Department
 Jfsmu-8WIZI__story01,3182.0,Jfsmu-8WIZI,,2,5,"2 - 5 years, from customers",13.801785802925606,986368,2;3;4;5,1,Oceanhouse Media
 JvKaVLLXa30__story01,3191.0,JvKaVLLXa30,Rent Party Jazz,6,9,6 - 9 years,14.46845274112209,1921184,6;7;8;9,1,StorylineOnline
@@ -533,7 +572,8 @@ KLjLDxVvt7Q__story01,3221.0,KLjLDxVvt7Q,Cruel Clarissa,7,12,7 - 12 years,8.51016
 KNVzAU8fyms__story01,7782.0,KNVzAU8fyms,The Candy Cane Fiasco,4,8,4 - 8 years,11.513295396537108,100036,8,1,Mrs. K's Book Worm Adventures
 KQD-xBhDmPU__story01,7793.0,KQD-xBhDmPU,Just Try One Bite,3,6,"3 - 6 years, from customers",13.377135819856523,645083,3;4;5;6,1,Gigi's Magic Mailbox
 KUDnjHrdpIo__story01,3236.0,KUDnjHrdpIo,The Emperor's New Clothes,8,12,8 - 12 years,9.176680170483548,9668,9;10;11;12,1,Bedtime Stories with Dessi!
-KW4jNVK8K2c__story01,7805.0,KW4jNVK8K2c,Dumbo,7,11,7 - 11 years,7.142036574706803,1263,11,1,Reading Time With Nana
+KVCxFAwe-b0__story01,7804.0,KVCxFAwe-b0,The Witch's Supermarket,7,10,"7 - 10 years, from customers",7.242082359256962,1396,10,1,Rockin Read Alouds
+KW4jNVK8K2c__story01,7805.0,KW4jNVK8K2c,Dumbo,7,11,7 - 11 years,7.142036574706803,1263,10;11,1,Reading Time With Nana
 KX0KnaVuWTE__story01,3248.0,KX0KnaVuWTE,The Fisherman and His Wife,8,12,8 - 12 years,12.777814613263438,354269,8;9;10;11;12,1,Little Cozy Nook
 KXpUHkn68sg__story01,3251.0,KXpUHkn68sg,Billie Jean and the Magic Beans,12,18,12 years and up,5.393627546352362,219,12,1,Memphis Public Libraries
 KXzDp2gfrmQ__story01,7808.0,KXzDp2gfrmQ,Opposites: It's Food for Thought,1,3,1 - 3 years,13.77074119951066,956217,2;3,1,Vooks
@@ -568,7 +608,7 @@ M-aceEquCtY__story01,3358.0,M-aceEquCtY,Carla's Sandwich,5,8,"5 - 8 years, from 
 MBzYzaQBpdw__story01,7961.0,MBzYzaQBpdw,A Tale by Fire,7,12,7 - 12 years,9.20190489315508,9915,9;10;11;12,1,MissEmsBookworm Read Aloud
 MD9qDcnWilk__story01,7963.0,MD9qDcnWilk,My Brother Martin: A Sister Remembers Growing Up with the Rev. Dr. Martin Luther King Jr.,6,11,6 - 11 years,11.764827498355212,128646,8;9;10;11,1,MrsMorrisReads
 MHEhJ-EY4u4__story01,3389.0,MHEhJ-EY4u4,The Night I Followed the Dog,4,8,"4 - 8 years, from customers",15.504616584843705,5414637,4;5;6;7;8,1,StorylineOnline
-MW3yz80Intk__story01,3401.0,MW3yz80Intk,,9,12,"9 - 12 years, from customers",4.927253685157205,137,12,1,Mokena Library Children's Department
+MW3yz80Intk__story01,3401.0,MW3yz80Intk,,9,12,"9 - 12 years, from customers",4.927253685157205,137,11;12,1,Mokena Library Children's Department
 MmGYptaxaOk__story01,3414.0,MmGYptaxaOk,Lord Grandiose and Lady Leonia,7,12,7 - 12 years,8.313607139317558,4078,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 MmdPgYVISOM__story01,3415.0,MmdPgYVISOM,Big Mac and Gertie’s Deep Breathing Rhyme,3,9,3 - 9 years,10.773420160432131,47734,9,1,Buddy Son Storytime
 Mq23H5kXu6Y__story01,7984.0,Mq23H5kXu6Y,Felix and the Math Test,11,17,11 - 17 years,11.570826380865066,105960,11;12,1,PragerU Kids
@@ -580,16 +620,16 @@ NA8xyDZ9hmE__story01,3465.0,NA8xyDZ9hmE,Pete Won't Eat,4,8,4 - 8 years,12.078210
 NHB_mH3bEsI__story01,8026.0,NHB_mH3bEsI,SpongeBob's Secret Valentine,5,10,5 - 10 years,11.72000467288991,123007,8;9;10,1,Grandma's House
 NHJAVkwPKIo__story01,3476.0,NHJAVkwPKIo,Velma Gratch and the Way Cool Butterfly,5,7,"5 - 7 years, from customers",14.35180858776366,1709665,5;6;7,1,StorylineOnline
 NJjSdQuCn7I__story01,8032.0,NJjSdQuCn7I,Ox Cart Man,3,9,"3 - 9 years, from customers",10.049447637979664,23142,9,1,Miss Pam Reads
-NKqlubLMubQ__story01,3480.0,NKqlubLMubQ,,8,12,8 - 12 years,4.927253685157205,137,12,1,Mokena Library Children's Department
-NPpZI-usLlk__story01,3495.0,NPpZI-usLlk,The Friend Who Changed My Life,9,11,"9 - 11 years, from customers",8.793612071589308,6591,10;11,1,C. Smith
+NKqlubLMubQ__story01,3480.0,NKqlubLMubQ,,8,12,8 - 12 years,4.927253685157205,137,11;12,1,Mokena Library Children's Department
+NPpZI-usLlk__story01,3495.0,NPpZI-usLlk,The Friend Who Changed My Life,9,11,"9 - 11 years, from customers",8.793612071589308,6591,9;10;11,1,C. Smith
 NZ9-AFLhEWs__story01,3501.0,NZ9-AFLhEWs,Mufaro's Beautiful Daughters,3,9,"3 - 9 years, from customers",10.764096426983004,47291,9,1,321READ
-NbJP4LXCTEw__story01,3504.0,NbJP4LXCTEw,,10,12,"10 - 12 years, from customers",4.584967478670572,97,12,1,Mokena Library Children's Department
+NbJP4LXCTEw__story01,3504.0,NbJP4LXCTEw,,10,12,"10 - 12 years, from customers",4.584967478670572,97,11;12,1,Mokena Library Children's Department
 Ne7Iz-9ehXE__story01,3517.0,Ne7Iz-9ehXE,April’s Spring and Earth Day Egg Drop,3,9,3 - 9 years,10.950139657828984,56961,9,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 NkS1xxKJbQE__story01,8050.0,NkS1xxKJbQE,Aladdin and the Magic Lamp,8,12,8 - 12 years,9.094143577573671,8902,9;10;11;12,1,
 NpXulYSO_Ys__story01,8051.0,NpXulYSO_Ys,Who Bob What Pants,5,10,5 - 10 years,9.226213721132472,10159,9;10,1,Storytime With K - Kid Story Read Alouds
 NqBzMd3FGJg__story01,3533.0,NqBzMd3FGJg,Being Frank,5,7,5 - 7 years,14.936990054347154,3069391,5;6;7,1,StorylineOnline
 NrzOqOk8hYA__story01,3539.0,NrzOqOk8hYA,Molly and the St Patrick's Surprise,6,9,6 - 9 years,10.680998859207012,43520,9,1,Mrs. K's Book Worm Adventures
-Nul5L6f99mo__story01,8054.0,Nul5L6f99mo,Aladdin and His Magical Lamp,8,12,8 - 12 years,4.700480365792417,109,12,1,Dave the Story Reader
+Nul5L6f99mo__story01,8054.0,Nul5L6f99mo,Aladdin and His Magical Lamp,8,12,8 - 12 years,4.700480365792417,109,11;12,1,Dave the Story Reader
 NvzdHZcuCwA__story01,3552.0,NvzdHZcuCwA,Shine (Little Sea Star),8,12,8 - 12 years,3.1354942159291497,22,12,1,Story Time with Nana Heather
 NwqdoLVuNKE__story01,3564.0,NwqdoLVuNKE,"No, David!",2,5,"2 - 5 years, from customers",13.519035271607889,743433,2;3;4;5,1,Miss Pam Reads
 NzUcm1lGhrI__story01,3572.0,NzUcm1lGhrI,Grandma’s Medicine,6,9,"6 - 9 years, from customers",12.157953256340894,190603,7;8;9,3,Storyvision Studios UK
@@ -598,7 +638,7 @@ NzUcm1lGhrI__story03,3574.0,NzUcm1lGhrI,Crane for Grandma + Great Idea,6,9,"6 - 
 O0eVxK4h9Ww__story01,8064.0,O0eVxK4h9Ww,Meet June,4,9,4 - 9 years,9.838575628358983,18742,9,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 O16YYis3CD4__story01,8066.0,O16YYis3CD4,The Berenstain Bears and the Wishing Star,4,8,4 - 8 years,12.95559543361714,423197,6;7;8,1,Little Cozy Nook
 O4ermaeRrDc__story01,8073.0,O4ermaeRrDc,Horses,8,10,8 - 10 years,9.397898195565384,12062,9;10,1,Bookroot Readings
-O5gia39y5uo__story01,3589.0,O5gia39y5uo,All Are Welcome Here,2,6,"2 - 6 years, from customers",12.92599319922529,410853,2,1,Buddy Son Storytime
+O5gia39y5uo__story01,3589.0,O5gia39y5uo,All Are Welcome Here,2,6,"2 - 6 years, from customers",12.92599319922529,410853,2;6,1,Buddy Son Storytime
 O8m6Hk5Wfbg__story01,8076.0,O8m6Hk5Wfbg,The Curious Case of Miss Gorgon,7,12,7 - 12 years,8.224163512637862,3729,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 O9lWrJZXFs4__story01,3593.0,O9lWrJZXFs4,The Survivor Tree,6,9,"6 - 9 years, from customers",11.194082908268824,72698,9,1,William's Planet & Family Story Book Time
 OFX3Amjvr90__story01,3604.0,OFX3Amjvr90,"Oh, the Thinks You Can Think!",1,5,"1 - 5 years, from customers",12.953073340316145,422131,2,1,Little Cozy Nook
@@ -618,10 +658,12 @@ OSpA7Y0yYnw__story01,8099.0,OSpA7Y0yYnw,The Custodian from the Black Lagoon,7,10
 OTOaOdCrrik__story01,8100.0,OTOaOdCrrik,Where Do Kitties Go in the Rain?,4,8,4 - 8 years,15.517446335714492,5484553,4;5;6;7;8,1,Vooks
 OWo5tQPr15A__story01,3659.0,OWo5tQPr15A,The Very Last Leaf,5,9,"5 - 9 years, from customers",12.05870888239189,172595,8;9,1,StoryTime Out Loud
 O_E5nuzXLS8__story01,3666.0,O_E5nuzXLS8,No More Noisy Nights,5,7,5 - 7 years,15.382107981755498,4790320,5;6;7,1,StorylineOnline
+OasAbRklXfE__story01,3672.0,OasAbRklXfE,Punctuation Takes a Vacation,6,9,"6 - 9 years, from customers",8.711937268208748,6074,9,1,William's Planet & Family Story Book Time
 Ocdk0ZzSbeI__story01,3680.0,Ocdk0ZzSbeI,Stacy Superstar: The World's Worst Singer,7,12,7 - 12 years,8.580731212220226,5327,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 Ocg-XluROI4__story01,3681.0,Ocg-XluROI4,From Sheep to Sweater,5,9,5 - 9 years,8.98894529119609,8013,9,1,Bookroot Readings
 OjFYIiks0pk__story01,3686.0,OjFYIiks0pk,Pinch Penny John,9,12,9 - 12 years,6.583409222158765,722,11;12,1,Creative Read Alouds
 Or8FM69ibfo__story01,3697.0,Or8FM69ibfo,,5,9,"5 - 9 years, from customers",9.361859019615093,11635,9,1,Book League Storytime Adventures
+Os7ZORX6_gE__story01,8114.0,Os7ZORX6_gE,The Rainbow Fish,2,6,"2 - 6 years, from customers",12.321706707128277,224516,2,1,PINK THUMB  Learning Channel
 P2PvXbVvqCc__story01,3703.0,P2PvXbVvqCc,The Mess That We Made,5,7,5 - 7 years,13.506046300183538,733839,5;6;7,1,StorylineOnline
 PBSrdK2uorI__story01,3712.0,PBSrdK2uorI,How I Became a Pirate,3,6,"3 - 6 years, from customers",13.745720940588168,932589,3;4;5;6,1,StoryTime at Awnie's House
 PDBlKll8c9o__story01,3716.0,PDBlKll8c9o,Never Let a Unicorn Scribble,3,6,"3 - 6 years, from customers",13.226197128149533,554707,3;4;5;6,1,StoryTime at Awnie's House
@@ -634,8 +676,8 @@ PN7KWVDAvnQ__story01,8140.0,PN7KWVDAvnQ,Coyote and the Big Old Tree,8,12,8 - 12 
 PO5L67vpAD4__story01,8141.0,PO5L67vpAD4,Shir and Israel's History,11,17,11 - 17 years,12.07619741812335,175640,11;12,1,PragerU Kids
 POnOLQOCn6o__story01,8143.0,POnOLQOCn6o,Donuts: The Whole Story,6,9,6 - 9 years,14.102515651317406,1332430,6;7;8;9,1,Vooks
 PPyf9kMvDoI__story01,3740.0,PPyf9kMvDoI,What Do You Hear? Animal Sounds,1,3,"1 - 3 years, from customers",14.175350488046163,1433099,2;3,1,MovingStories
-PSA4oY4JvNY__story01,3744.0,PSA4oY4JvNY,Kindness Gets a Thumbs Up,2,6,"2 - 6 years, from customers",13.101284776399824,489570,2;3;6,1,StoryTime at Awnie's House
-PVsiFx9ZyFo__story01,3752.0,PVsiFx9ZyFo,Flat Stanley: His Original Adventure,6,8,"6 - 8 years, from customers",12.13981531475193,187177,8,1,Daniel Riley English Teacher
+PSA4oY4JvNY__story01,3744.0,PSA4oY4JvNY,Kindness Gets a Thumbs Up,2,6,"2 - 6 years, from customers",13.101284776399824,489570,2;3;4;5;6,1,StoryTime at Awnie's House
+PVsiFx9ZyFo__story01,3752.0,PVsiFx9ZyFo,Flat Stanley: His Original Adventure,6,8,"6 - 8 years, from customers",12.13981531475193,187177,7;8,1,Daniel Riley English Teacher
 PXCu5MpaPSQ__story01,3755.0,PXCu5MpaPSQ,The Worst Halloween Book in the Whole Entire World,5,8,"5 - 8 years, from customers",11.832469510570752,137649,8,1,StoryTime at Awnie's House
 PXIluYvvh1A__story01,8150.0,PXIluYvvh1A,The Little Engine That Could,1,4,"1 - 4 years, from customers",12.458662371384444,257470,2,1,Read Aloud with Mr. Paul
 PZdhZdmvsuk__story01,3764.0,PZdhZdmvsuk,Stone Soup,4,8,"4 - 8 years, from customers",12.075656395805796,175545,8,1,Bookroot Readings
@@ -643,7 +685,7 @@ PaJ5upkdB3w__story01,3769.0,PaJ5upkdB3w,"Oh, Do Not Open This Book",4,7,"4 - 7 y
 Pd_Nwwdh_uw__story01,8157.0,Pd_Nwwdh_uw,The Penguin Who Wanted to Sparkle,7,9,7 - 9 years,10.622107529069105,41031,9,1,Miss Pam Reads
 PgrCDqQbgCE__story01,8160.0,PgrCDqQbgCE,The Red Beast,5,9,5 - 9 years,11.36383363422765,86148,9,1,MissEmsBookworm Read Aloud
 PkdX73Onf04__story01,3794.0,PkdX73Onf04,A Squash and a Squeeze,2,4,"2 - 4 years, from customers",13.746186202971309,933023,2;3;4,1,MissEmsBookworm Read Aloud
-PnpXzdyc2Qw__story01,8174.0,PnpXzdyc2Qw,Whales,9,12,9 - 12 years,7.278628942320682,1448,11;12,1,Storytime With K - Kid Story Read Alouds
+PnpXzdyc2Qw__story01,8174.0,PnpXzdyc2Qw,Whales,9,12,9 - 12 years,7.278628942320682,1448,10;11;12,1,Storytime With K - Kid Story Read Alouds
 Pnups0Rbe-I__story01,3798.0,Pnups0Rbe-I,The Lion King: Simba Returns,12,18,12 years and up,13.362184678667193,635510,12,1,EGTV Storybooks
 PoGjX26SaC8__story01,3799.0,PoGjX26SaC8,The Bridges of Trust,6,12,6 - 12 years,0.6931471805599453,1,12,1,Sherry Aunty's Stories
 PqPFI9kDMgo__story01,3802.0,PqPFI9kDMgo,Fresh Juice,4,8,4 - 8 years,13.516085134826236,741243,4;5;6;7;8,1,StorylineOnline
@@ -651,15 +693,15 @@ PyWMbUVZNio__story01,8192.0,PyWMbUVZNio,Oh Otto,9,12,9 - 12 years,7.417580402414
 PyxEVs21WWs__story01,3819.0,PyxEVs21WWs,Sleeping Beauty (A Brother’s Grimm fairy tale),4,10,4 - 10 years,8.87570644462861,7155,9;10,1,Mrs. K's Book Worm Adventures
 Q3o10qdiuyI__story01,3829.0,Q3o10qdiuyI,Night of the Ninjas,6,9,"6 - 9 years, from customers",10.252558660448129,28354,9,1,The Story Harbor
 QBTsOV7q1CE__story01,3843.0,QBTsOV7q1CE,Harry Goes to Sea (Chapters 1–6),7,9,7 - 9 years,9.512073267650624,13521,9,1,Jennifer Wentworth
-QBx7Q2KtSQU__story01,3844.0,QBx7Q2KtSQU,Total Eclipse of Me: A Stellar Friendship Story,4,8,"4 - 8 years, from customers",12.151157008901794,189312,8,2,Storytime with Tristan
-QBx7Q2KtSQU__story02,3845.0,QBx7Q2KtSQU,P.S. Safety Note about Totality,4,8,"4 - 8 years, from customers",12.151157008901794,189312,8,2,Storytime with Tristan
-QKHUMtVXBn4__story01,8203.0,QKHUMtVXBn4,Cedric's Tale,4,8,4 - 8 years,12.078773222353592,176093,8,1,StoryTime at Awnie's House
+QBx7Q2KtSQU__story01,3844.0,QBx7Q2KtSQU,Total Eclipse of Me: A Stellar Friendship Story,4,8,"4 - 8 years, from customers",12.151157008901794,189312,7;8,2,Storytime with Tristan
+QBx7Q2KtSQU__story02,3845.0,QBx7Q2KtSQU,P.S. Safety Note about Totality,4,8,"4 - 8 years, from customers",12.151157008901794,189312,7;8,2,Storytime with Tristan
+QKHUMtVXBn4__story01,8203.0,QKHUMtVXBn4,Cedric's Tale,4,8,4 - 8 years,12.078773222353592,176093,7;8,1,StoryTime at Awnie's House
 QM4_fZQP90E__story01,3873.0,QM4_fZQP90E,Horace Henway Brushes It Off,4,8,4 - 8 years,11.615373744181005,110787,8,1,StoryTime at Awnie's House
 QT5INvoX6_s__story01,8210.0,QT5INvoX6_s,Trolls: Out of Branch's Bunker,5,9,5 - 9 years,11.621896455014252,111512,8;9,1,Storytime Now!
 QVxM2qe5Lhs__story01,3897.0,QVxM2qe5Lhs,,3,7,"3 - 7 years, from customers",12.737521148329185,340278,7,1,StoryTime at Awnie's House
 QZn1SCPtOw4__story01,3905.0,QZn1SCPtOw4,The Sour Grape,5,8,"5 - 8 years, from customers",13.903533339978033,1092012,5;6;7;8,1,StoryTime Out Loud
 QaYapOIzjHk__story01,3914.0,QaYapOIzjHk,The Tale of Benjamin Bunny,1,5,"1 - 5 years, from customers",12.521025711007857,274038,2,1,Beatrix Potter
-QcSQzfn9C8c__story01,3921.0,QcSQzfn9C8c,Hank's Pranks,7,12,7 - 12 years,8.656781205623291,5748,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+QcSQzfn9C8c__story01,3921.0,QcSQzfn9C8c,Hank's Pranks,7,12,7 - 12 years,8.656781205623291,5748,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 QdUHy6Y029o__story01,8219.0,QdUHy6Y029o,Antarctic Journal: Four Months at the Bottom of the World,8,12,8 - 12 years,10.538979136857908,37758,9;10;11;12,1,MrsMorrisReads
 Qi0EK0snTLY__story01,3932.0,Qi0EK0snTLY,A Simple Christmas on the Farm,4,10,"4 - 10 years, from customers",9.537411412656336,13868,9;10,1,The Story Harbor
 QitquEL48Co__story01,3934.0,QitquEL48Co,Trombone Shorty (origin story),3,8,"3 - 8 years, from customers",14.74430637432968,2531458,3;4;5;6;7;8,1,StorylineOnline
@@ -673,32 +715,36 @@ QssSYFi2slI__story01,8264.0,QssSYFi2slI,Food for Thought,1,3,1 - 3 years,13.3622
 QuS51lce2tg__story01,8267.0,QuS51lce2tg,Clifford’s First Snow Day,4,8,4 - 8 years,12.394144305415807,241383,7;8,1,Grandma's House
 QwCxW7Nx4Ec__story01,3972.0,QwCxW7Nx4Ec,I Need My Monster,3,6,"3 - 6 years, from customers",16.86353338597665,21073636,3;4;5;6,1,StorylineOnline
 Qx9KI8jB7g8__story01,8272.0,Qx9KI8jB7g8,Henry's Freedom Box,6,9,"6 - 9 years, from customers",12.525867295397004,275368,7;8;9,1,Storytime Now!
+Qy-ZI6I5x7g__story01,8274.0,Qy-ZI6I5x7g,A Dog's Day,7,10,7 - 10 years,7.157735484249907,1283,10,1,Lewis Kirk
 QzUyHgy-CPs__story01,8275.0,QzUyHgy-CPs,The Giraffe That Walked to Paris,8,12,8 - 12 years,9.942852486058383,20802,9;10;11;12,1,The Joyful Bookshelf
 R1rlp7qVXWM__story01,3986.0,R1rlp7qVXWM,Falling Up,3,9,"3 - 9 years, from customers",9.478074806618269,13069,9,1,Mr. Paulson Reads
 R4ffQhDvsqc__story01,8291.0,R4ffQhDvsqc,Moon's on Fire,4,10,4 - 10 years,12.57004887013038,287807,7;8;9;10,1,Vooks
 R7n3-CLEPCM__story01,8296.0,R7n3-CLEPCM,Mr Brown Can Do It,1,3,"1 - 3 years, from customers",13.119561455685307,498600,2;3,1,Dr. Seuss
+RP_FK2tnsxs__story01,4017.0,RP_FK2tnsxs,ABC Animals Song (The Caterpillar),1,2,"1 - 2 years, from customers",12.32770603682217,225867,2,1,MovingStories
 RSGvIzjDuHE__story01,4020.0,RSGvIzjDuHE,Misconception and the CAC Paper-Mâché Statue,7,12,7 - 12 years,8.516392871245468,4995,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 Rf4Tg5ys9AI__story01,4028.0,Rf4Tg5ys9AI,,2,4,"2 - 4 years, from customers",15.428132396322498,5015944,2;3;4,1,Oceanhouse Media
 RjMBxiSGkxY__story01,4044.0,RjMBxiSGkxY,Five Little Monkeys Jumping on the Bed,1,3,"1 - 3 years, from customers",12.621996206200883,303153,2,1,Grandma's House
 Rv35SCH1hZc__story01,4058.0,Rv35SCH1hZc,School of the Dead (Tony Gilbert),8,12,8 - 12 years,5.886104031450156,359,11;12,1,EVPLibrary
 RyLT0u2lLvU__story01,4059.0,RyLT0u2lLvU,The Great Pasta Escape,3,8,"3 - 8 years, from customers",12.416102588099,246742,7;8,1,Mrs. K's Book Worm Adventures
-RzalLqzq3yo__story01,4060.0,RzalLqzq3yo,Salty Seagull,9,12,9 - 12 years,7.150701457592526,1274,11;12,1,Book League Storytime Adventures
+RzalLqzq3yo__story01,4060.0,RzalLqzq3yo,Salty Seagull,9,12,9 - 12 years,7.150701457592526,1274,10;11;12,1,Book League Storytime Adventures
 S9IZCjfZxH0__story01,4072.0,S9IZCjfZxH0,So Much Slime,5,7,5 - 7 years,14.86547692205992,2857554,5;6;7,1,StorylineOnline
 SCnKCWiGn30__story01,8387.0,SCnKCWiGn30,She Sells Seashells: A Tongue-Twister Story,4,10,4 - 10 years,8.016317898503415,3029,10,1,Riko's Reading Room
 SE4W0SlgD24__story01,8388.0,SE4W0SlgD24,Little Sock,1,5,Baby - 5 years,12.732536354559604,338586,2,2,Vooks
 SE4W0SlgD24__story02,8389.0,SE4W0SlgD24,Little Sock Makes a Friend,1,5,Baby - 5 years,12.732536354559604,338586,2,2,Vooks
-SOaEIiHT4tI__story01,4089.0,SOaEIiHT4tI,Prince Cinders,4,8,"4 - 8 years, from customers",12.11773311420665,183089,8,1,Mr. Paulson Reads
+SGyENCISTUM__story01,8391.0,SGyENCISTUM,Once Upon a Poodle,5,6,5 - 6 years,12.893169057052962,397586,6,1,StoryTime at Awnie's House
+SOaEIiHT4tI__story01,4089.0,SOaEIiHT4tI,Prince Cinders,4,8,"4 - 8 years, from customers",12.11773311420665,183089,7;8,1,Mr. Paulson Reads
 SQnX6IAvK-w__story01,8399.0,SQnX6IAvK-w,"Goodnight, Goodnight, Construction Site",2,3,"2 - 3 years, from customers",13.530298765191038,751854,2;3,1,StoryTime Out Loud
 SRJqmRPcOII__story01,4093.0,SRJqmRPcOII,We Are Not Friends,2,6,"2 - 6 years, from customers",13.334961925082556,618443,2;3;4;5;6,1,Vooks
 SSAOV7DdGgk__story01,4094.0,SSAOV7DdGgk,Charlie Crowe in the Snow,2,6,2 - 6 years,12.978873996754466,433164,2;6,1,Storyvision Studios UK
 SSB-n6FPJNY__story01,4095.0,SSB-n6FPJNY,Don't Let the Pigeon Drive the Bus,2,5,"2 - 5 years, from customers",12.604043071876076,297759,2,1,5 Minutes With Uncle Ben
-STbdTqlCQJA__story01,4099.0,STbdTqlCQJA,Dolly’s Hair Decisions,1,5,Baby - 5 years,13.175431994972698,527250,2;3;4,1,CBeebies
+STbdTqlCQJA__story01,4099.0,STbdTqlCQJA,Dolly’s Hair Decisions,1,5,Baby - 5 years,13.175431994972698,527250,2;3;4;5,1,CBeebies
 SVfBvbqDhw0__story01,4104.0,SVfBvbqDhw0,Tandy’s Tantrums,7,12,7 - 12 years,8.901638932300326,7343,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 S_l-XyboUF4__story01,4110.0,S_l-XyboUF4,If You Give a Dog a Donut,2,5,"2 - 5 years, from customers",13.553428653629409,769447,2;3;4;5,1,5 Minutes With Uncle Ben
 SbsqRgTMpqg__story01,4111.0,SbsqRgTMpqg,"Oh, the Things You Can Think Up",1,5,"1 - 5 years, from customers",12.55777474534986,284296,2,1,Dr. Seuss
 SdzB3rxiyVE__story01,8412.0,SdzB3rxiyVE,Pete the Cat Screams for Ice Cream,3,5,"3 - 5 years, from customers",14.048564835386998,1262449,3;4;5,1,PINK THUMB  Learning Channel
 SgOpoiMFwp4__story01,8414.0,SgOpoiMFwp4,Leno the Lamp Is Afraid of the Dark,3,8,3 - 8 years,12.567530134845295,287083,7;8,1,KiddoStories
 SpiTLNJZJcw__story01,8424.0,SpiTLNJZJcw,Just Grandma and Me,1,4,"1 - 4 years, from customers",13.623092603649935,824961,2;3;4,1,Oceanhouse Media
+SpxCWW_neLg__story01,4123.0,SpxCWW_neLg,The Gruffalo’s Child,2,4,"2 - 4 years, from customers",12.375680389904051,236967,2,1,Reading Pioneers Academy
 SpzQIfsLm-0__story01,4124.0,SpzQIfsLm-0,Dory the Elf and Randy the Reindeer,3,8,3 - 8 years,11.604775118600108,109619,8,1,StoryTime at Awnie's House
 Stnwxy9dt1c__story01,8428.0,Stnwxy9dt1c,Pete the Cat and His Magic Sunglasses,2,6,"2 - 6 years, from customers",13.685450846361071,878042,2;3;4;5;6,1,Kids Stories 4 You
 SuWzCWtCWuQ__story01,4138.0,SuWzCWtCWuQ,Chelsea’s Chinese New Year,3,8,"3 - 8 years, from customers",12.4063569026983,244349,7;8,5,Vooks
@@ -707,13 +753,13 @@ SuWzCWtCWuQ__story03,4140.0,SuWzCWtCWuQ,Chinese New Year Day and the Parade,3,8,
 SuWzCWtCWuQ__story04,4141.0,SuWzCWtCWuQ,Po’s Chinese New Year Lucky Rules,3,8,"3 - 8 years, from customers",12.4063569026983,244349,7;8,5,Vooks
 SuWzCWtCWuQ__story05,4142.0,SuWzCWtCWuQ,"Morning Rules, Offerings, Red Envelopes, and Wishes",3,8,"3 - 8 years, from customers",12.4063569026983,244349,7;8,5,Vooks
 SvLP_CBkckk__story01,8430.0,SvLP_CBkckk,How I Met My Monster,3,7,"3 - 7 years, from customers",15.02064538687805,3337208,3;4;5;6;7,1,StoryTime at Awnie's House
-SxwoWIUftV0__story01,8434.0,SxwoWIUftV0,Pete the Cat and the Cool Cat Boogie,2,7,"2 - 7 years, from customers",12.936067533583584,415013,2;7,1,Kids Stories 4 You
+SxwoWIUftV0__story01,8434.0,SxwoWIUftV0,Pete the Cat and the Cool Cat Boogie,2,7,"2 - 7 years, from customers",12.936067533583584,415013,2;6;7,1,Kids Stories 4 You
 T0LBHiesfbQ__story01,8442.0,T0LBHiesfbQ,Shapes Are Everywhere,3,6,3 - 6 years,15.193955946330757,3968726,3;4;5;6,4,Vooks
 T0LBHiesfbQ__story02,8443.0,T0LBHiesfbQ,Breakfast Shapes,3,6,3 - 6 years,15.193955946330757,3968726,3;4;5;6,4,Vooks
 T0LBHiesfbQ__story03,8444.0,T0LBHiesfbQ,Opposites,3,6,3 - 6 years,15.193955946330757,3968726,3;4;5;6,4,Vooks
 T0LBHiesfbQ__story04,8445.0,T0LBHiesfbQ,Lines,3,6,3 - 6 years,15.193955946330757,3968726,3;4;5;6,4,Vooks
 T18NCobS43c__story01,4157.0,T18NCobS43c,Library Lion,3,6,"3 - 6 years, from customers",16.334989151331747,12422117,3;4;5;6,1,StorylineOnline
-T1rq7683FhQ__story01,8447.0,T1rq7683FhQ,The Cat in the Hat Comes Back,1,6,"1 - 6 years, from customers",13.097707914123912,487822,2;3;6,1,Dr. Seuss
+T1rq7683FhQ__story01,8447.0,T1rq7683FhQ,The Cat in the Hat Comes Back,1,6,"1 - 6 years, from customers",13.097707914123912,487822,2;3;4;6,1,Dr. Seuss
 T4PPwotYtWg__story01,8454.0,T4PPwotYtWg,The Rules of the Classroom,4,9,4 - 9 years,11.918483902056442,150013,8;9,1,PINK THUMB  Learning Channel
 T4SkoRQQ1rE__story01,8455.0,T4SkoRQQ1rE,Farley and the Lost Bone,6,12,6 - 12 years,7.954021087278037,2846,10;11;12,1,Storytime Now!
 T5f0Sncb2NI__story01,4163.0,T5f0Sncb2NI,How Much Is a Million?,5,10,"5 - 10 years, from customers",10.760176888919194,47106,9;10,1,Rockin Read Alouds
@@ -728,6 +774,7 @@ TFBEoVeBvlk__story01,8492.0,TFBEoVeBvlk,Kate Shelley and the Midnight Express,7,
 TJoFdgvmyzA__story01,8503.0,TJoFdgvmyzA,Walter the Baker,5,7,5 - 7 years,12.720463904855515,334523,7,1,Buddy Son Storytime
 TLNjZtb7Q7A__story01,4181.0,TLNjZtb7Q7A,The Little Mermaid (Ariel and Eric vs. Ursula),4,9,"4 - 9 years, from customers",9.35218709620442,11523,9,1,EGTV Storybooks
 TMnGkOEMehg__story01,8517.0,TMnGkOEMehg,Robin Hood and the Silver Arrow,7,12,"7 - 12 years, from customers",7.549082710812286,1898,10;11;12,1,Super Great Kids' Stories
+TNAOVFRrBX8__story01,8518.0,TNAOVFRrBX8,In a People House,1,5,"1 - 5 years, from customers",12.378962362031496,237746,2,1,Dr. Seuss
 TP3GHOb5k5Y__story01,8524.0,TP3GHOb5k5Y,The Planets Visit Earth,2,5,"2 - 5 years, from customers",15.192119163227945,3961443,2;3;4;5,22,Vooks
 TP3GHOb5k5Y__story02,8525.0,TP3GHOb5k5Y,Old MacDonald Had a Truck,2,5,"2 - 5 years, from customers",15.192119163227945,3961443,2;3;4;5,22,Vooks
 TP3GHOb5k5Y__story03,8526.0,TP3GHOb5k5Y,How to Potty Train a Dinosaur,2,5,"2 - 5 years, from customers",15.192119163227945,3961443,2;3;4;5,22,Vooks
@@ -751,14 +798,15 @@ TP3GHOb5k5Y__story20,8543.0,TP3GHOb5k5Y,The Day Punctuation Came to Town,2,5,"2 
 TP3GHOb5k5Y__story21,8544.0,TP3GHOb5k5Y,Flamingo Flamenco,2,5,"2 - 5 years, from customers",15.192119163227945,3961443,2;3;4;5,22,Vooks
 TP3GHOb5k5Y__story22,8545.0,TP3GHOb5k5Y,Nom Nom Colors,2,5,"2 - 5 years, from customers",15.192119163227945,3961443,2;3;4;5,22,Vooks
 TQ4q_33fltk__story01,8548.0,TQ4q_33fltk,Life in North Korea,4,8,"4 - 8 years, from customers",12.359385831900523,233137,7;8,1,PragerU Kids
+TQhd13_lfsQ__story01,8550.0,TQhd13_lfsQ,The Smart Cookie,4,8,"4 - 8 years, from customers",11.466640659766432,95476,8,1,Miss Pam Reads
 TSTa2H6VVS4__story01,8559.0,TSTa2H6VVS4,SpongeBob Love Pants,5,10,5 - 10 years,11.059566540852568,63548,9;10,1,Grandma's House
-TT-F-dxAUQE__story01,8561.0,TT-F-dxAUQE,The Very Impatient Caterpillar,3,6,"3 - 6 years, from customers",13.096926587983054,487441,3;6,1,StoryTime at Awnie's House
+TT-F-dxAUQE__story01,8561.0,TT-F-dxAUQE,The Very Impatient Caterpillar,3,6,"3 - 6 years, from customers",13.096926587983054,487441,3;4;6,1,StoryTime at Awnie's House
 TT1rswOtk0E__story01,8562.0,TT1rswOtk0E,The Easter Bunny's Assistant,4,7,"4 - 7 years, from customers",12.29324984210431,218217,7,1,StoryTime at Awnie's House
 TUIwindzGtY__story01,8565.0,TUIwindzGtY,Sam's First Word,4,8,4 - 8 years,14.847889022613938,2807735,4;5;6;7;8,1,StoryTime at Awnie's House
 TUoQNYbfspg__story01,8569.0,TUoQNYbfspg,Pete the Cat: Trick or Pete,4,6,"4 - 6 years, from customers",13.006550649416337,445320,6,1,Kids Stories 4 You
 TZyBGZY6560__story01,4198.0,TZyBGZY6560,The Tooth,5,6,5 - 6 years,14.82949081856392,2756550,5;6,1,StorylineOnline
 T_TKd0z1Yts__story01,13080.0,T_TKd0z1Yts,Paperboy,10,12,"10 - 12 years, from customers",8.064636475774222,3179,10;11;12,1,EVPLibrary
-Tc-UkEFKXc8__story01,4208.0,Tc-UkEFKXc8,Hyacinth and the Secrets Beneath (Ch. 1–2 excerpt),8,12,8 - 12 years,4.174387269895637,64,12,1,EVPLibrary
+Tc-UkEFKXc8__story01,4208.0,Tc-UkEFKXc8,Hyacinth and the Secrets Beneath (Ch. 1–2 excerpt),8,12,8 - 12 years,4.174387269895637,64,11;12,1,EVPLibrary
 TfPSqmL2DkQ__story01,4216.0,TfPSqmL2DkQ,101 Dalmatians: The Stolen Puppies Escape,7,9,7 - 9 years,10.22918769217543,27699,9,1,Chaz Stories
 To07TjBnrNY__story01,4219.0,To07TjBnrNY,Maddi's Fridge,5,9,"5 - 9 years, from customers",16.227123762755582,11151936,5;6;7;8;9,1,StorylineOnline
 Tt6GI7TUFYs__story01,8598.0,Tt6GI7TUFYs,The Good Dinosaur,9,12,9 - 12 years,7.950854857719988,2837,10;11;12,1,The Book Keepers
@@ -768,17 +816,20 @@ U0rVuSERIHM__story01,4231.0,U0rVuSERIHM,Photon Alliance Tournament Adventure,12,
 U5GvrMhIVqw__story01,4240.0,U5GvrMhIVqw,Potty Training,1,3,"1 - 3 years, from customers",13.094657078218948,486336,2;3,1,5 Minutes With Uncle Ben
 U77EgAHQo2c__story01,4246.0,U77EgAHQo2c,Don’t Turn the Page (Nessie),4,7,4 - 7 years,14.217599305911367,1494943,4;5;6;7,1,MissEmsBookworm Read Aloud
 UC6Xdhoa0Js__story01,8636.0,UC6Xdhoa0Js,The Twelve Months,7,13,7 - 13 years,6.559615237493242,705,11;12,1,Super Great Kids' Stories
-UGSOmOLKg5c__story01,8644.0,UGSOmOLKg5c,"No, David!",2,5,"2 - 5 years, from customers",12.995736096456543,440530,2,1,PINK THUMB  Learning Channel
+UGSOmOLKg5c__story01,8644.0,UGSOmOLKg5c,"No, David!",2,5,"2 - 5 years, from customers",12.995736096456543,440530,2;3,1,PINK THUMB  Learning Channel
+UHyZndYggp0__story01,8649.0,UHyZndYggp0,Pretty Brown Face,1,5,"1 - 5 years, from customers",12.301928131173694,220119,2,2,Netflix Jr.
+UHyZndYggp0__story02,8650.0,UHyZndYggp0,Brown Boy Joy,1,5,"1 - 5 years, from customers",12.301928131173694,220119,2,2,Netflix Jr.
 UIEPij3AnpM__story01,8651.0,UIEPij3AnpM,Turkey's Valentine Surprise,4,7,"4 - 7 years, from customers",12.155163487878974,190072,7,1,StoryTime Out Loud
 UM8oN4yzJqw__story01,8661.0,UM8oN4yzJqw,The Most Magnificent Thing,3,7,"3 - 7 years, from customers",13.80539456338963,989934,3;4;5;6;7,1,Mr. Paulson Reads
 USVgkMrtHqA__story01,8674.0,USVgkMrtHqA,Pete the Cat: I Love My White Shoes,2,5,"2 - 5 years, from customers",16.023107049442153,9093832,2;3;4;5,1,
 UV-i8l7OdVo__story01,8683.0,UV-i8l7OdVo,Pablo Picasso,4,9,"4 - 9 years, from customers",11.642259310206168,113806,8;9,1,Riko's Reading Room
 UXdJfDWwt0A__story01,8686.0,UXdJfDWwt0A,My Olive Tree,4,8,4 - 8 years,11.81445126924266,135191,8,1,Brightly Storytime
-UYUQzzULHg4__story01,8690.0,UYUQzzULHg4,Over and Under the Snow,3,7,"3 - 7 years, from customers",13.147785479949752,512873,3;4;6;7,1,Vooks
+UYUQzzULHg4__story01,8690.0,UYUQzzULHg4,Over and Under the Snow,3,7,"3 - 7 years, from customers",13.147785479949752,512873,3;4;5;6;7,1,Vooks
+U_-rP-oaRpY__story01,8695.0,U_-rP-oaRpY,Say Something!,3,7,"3 - 7 years, from customers",12.084769044951242,177152,7,1,TheGivingProjectforChildren
 UczxQzeOlMc__story01,4277.0,UczxQzeOlMc,Mice Twice,4,8,4 - 8 years,14.55234107549693,2089302,4;5;6;7;8,1,StorylineOnline
 Ulp7U4STuUY__story01,8730.0,Ulp7U4STuUY,Does a Bear Poo in the Woods?,4,8,4 - 8 years,14.380365170690748,1759191,4;5;6;7;8,1,Vooks
 Uo3PnlQWxAs__story01,8732.0,Uo3PnlQWxAs,The Pigeon Has to Go to School,3,6,"3 - 6 years, from customers",13.546616218893057,764223,3;4;5;6,1,The Joyful Bookshelf
-UpHqIFuy-tA__story01,4283.0,UpHqIFuy-tA,Harriet Hurry and the Speeding Daughters,7,12,7 - 12 years,8.706655856361559,6042,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+UpHqIFuy-tA__story01,4283.0,UpHqIFuy-tA,Harriet Hurry and the Speeding Daughters,7,12,7 - 12 years,8.706655856361559,6042,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 UpSJCMo9h60__story01,8734.0,UpSJCMo9h60,Paw Patrol: The Spooky Cabin,3,7,3 - 7 years,12.525645749916624,275307,7,1,Storytime With K - Kid Story Read Alouds
 UrElYjbllTk__story01,4290.0,UrElYjbllTk,What Do You Do With a Problem?,4,8,"4 - 8 years, from customers",12.19329131116544,197459,7;8,1,Mr. Paulson Reads
 UspVgTliAVw__story01,4292.0,UspVgTliAVw,John Henry (folk tale),4,8,4 - 8 years,12.320075210871872,224150,7;8,1,Little Cozy Nook
@@ -793,15 +844,17 @@ V9Am7jJMHDY__story01,8770.0,V9Am7jJMHDY,SpongeBob and the Recycling Center,5,10,
 VBwxeUSnMWM__story01,4350.0,VBwxeUSnMWM,Stellaluna,1,5,"1 - 5 years, from customers",12.850696376349232,381053,2,1,The Joyful Bookshelf
 VEARtdNVh_k__story01,4352.0,VEARtdNVh_k,Marvelosissimo Counts Big Numbers (Crayola Factory Millions),5,10,"5 - 10 years, from customers",10.799289821982947,48985,9;10,1,Reading Rainbow (Official)
 VGYvK6OYCck__story01,8778.0,VGYvK6OYCck,The Big Halloween Scare,5,10,5 - 10 years,7.806696372521179,2456,10,1,The Book Keepers
-VKpCiDW70wk__story01,8781.0,VKpCiDW70wk,Baba Yaga and Masha,7,11,7 - 11 years,7.3938782901077555,1625,11,1,Super Great Kids' Stories
+VGbRzz26_HM__story01,8779.0,VGbRzz26_HM,Hair Love,6,11,6 - 11 years,4.127134385045092,61,11,1,Irvington Public Library NJ
+VKpCiDW70wk__story01,8781.0,VKpCiDW70wk,Baba Yaga and Masha,7,11,7 - 11 years,7.3938782901077555,1625,10;11,1,Super Great Kids' Stories
 VLRIvyWUzxs__story01,4367.0,VLRIvyWUzxs,Stellaluna,1,5,"1 - 5 years, from customers",15.669825802738336,6387322,2;3;4;5,1,StorylineOnline
 VNLYy2F4VAE__story01,4371.0,VNLYy2F4VAE,Lights on Glow-in-the-Dark Deep Ocean Creatures,7,9,7 - 9 years,9.169830828637972,9602,9,1,Mrs. K's Book Worm Adventures
 VNlVk44U_o4__story01,4372.0,VNlVk44U_o4,Arthur Turns Green,6,9,6 - 9 years,9.424887076064874,12392,9,1,Story Time
-VOzVzrbT5cM__story01,4379.0,VOzVzrbT5cM,Quiet vs. Loud (Leslie Patricelli),1,3,"1 - 3 years, from customers",13.03557815665763,458436,2,1,5 Minutes With Uncle Ben
+VOzVzrbT5cM__story01,4379.0,VOzVzrbT5cM,Quiet vs. Loud (Leslie Patricelli),1,3,"1 - 3 years, from customers",13.03557815665763,458436,2;3,1,5 Minutes With Uncle Ben
 VRN1WV9pAI0__story01,4385.0,VRN1WV9pAI0,Claudia Kishi and the New Girl (BSC Book 9),8,11,"8 - 11 years, from customers",11.606078774947706,109762,8;9;10;11,1,Apus The Bird of Paradise
 VVLf5t8ToRA__story01,8799.0,VVLf5t8ToRA,The Three Billy Goats Gruff,2,5,"2 - 5 years, from customers",14.020951946461452,1228066,2;3;4;5,1,Buddy Son Storytime
 VdwvfoQJu6s__story01,8832.0,VdwvfoQJu6s,Rudy the Rutabaga,3,8,3 - 8 years,12.397287869494248,242143,7;8,1,StoryTime at Awnie's House
 ViVaoPI89ZA__story01,8845.0,ViVaoPI89ZA,Creepy Carrots!,3,6,"3 - 6 years, from customers",13.527053518636553,749418,3;4;5;6,1,StoryTime Out Loud
+VlEsO_hqJZ4__story01,8853.0,VlEsO_hqJZ4,Pumpkin Jack,3,6,"3 - 6 years, from customers",12.925430797585102,410622,6,1,StoryTime at Awnie's House
 VlgZatb9A3U__story01,8854.0,VlgZatb9A3U,Tarzan Goes Bananas,12,17,12 - 17 years,7.5652752818989315,1929,12,1,Kids Story Time with Jack & Jill
 VnH9hvA6XBY__story01,4402.0,VnH9hvA6XBY,Fanny’s Funny Faces,7,12,7 - 12 years,8.608312784783722,5476,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 VnsbPkIZ284__story01,8878.0,VnsbPkIZ284,The Mouse Princess,6,11,6 - 11 years,6.431331081933479,620,11,1,Super Great Kids' Stories
@@ -821,6 +874,7 @@ WGcI3Pk-VSE__story01,4459.0,WGcI3Pk-VSE,Little Girl Big Dream: Olympian Samantha
 WLZWyasxaI8__story01,4469.0,WLZWyasxaI8,How I Met My Monster,3,7,"3 - 7 years, from customers",15.384549927876332,4802032,3;4;5;6;7,1,StorylineOnline
 WQrmaLhBtnQ__story01,8928.0,WQrmaLhBtnQ,The Ash Lad and the Troll,7,13,7 - 13 years,6.792344427470809,890,11;12,1,Super Great Kids' Stories
 WSh8OJLNCZE__story01,4485.0,WSh8OJLNCZE,Tom Sawyer: Fence Painting and Pirate Treasure,12,18,12 - 18 years,10.907056292517344,54559,12,1,Little Cozy Nook
+WZSwP1BAFis__story01,4505.0,WZSwP1BAFis,,2,7,"2 - 7 years, from customers",12.105976028991888,180949,7,1,Kids Stories 4 You
 WdO1UkaNUI8__story01,8946.0,WdO1UkaNUI8,F the Fish,7,12,7 - 12 years,8.312626025674962,4074,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 WfM9RlGrEtM__story01,4514.0,WfM9RlGrEtM,Halloween Hustle,3,6,"3 - 6 years, from customers",14.398596748480976,1791558,3;4;5;6,1,StorylineOnline
 WheCKXxCBB4__story01,4516.0,WheCKXxCBB4,Elena’s Curveball,8,12,8 - 12 years,5.796057750765372,328,11;12,1,Mokena Library Children's Department
@@ -834,9 +888,10 @@ WpffYUE41nU__story01,8972.0,WpffYUE41nU,Unfinished Business,8,12,8 - 12 years,8.
 WqtlP-hzcfU__story01,8976.0,WqtlP-hzcfU,Kako and the Lost Song,7,12,7 - 12 years,6.480044561926653,651,11;12,1,Super Great Kids' Stories
 WrCUUsbLM7I__story01,8978.0,WrCUUsbLM7I,Owen and Mzee: The True Story of a Remarkable Friendship,4,8,"4 - 8 years, from customers",11.753484482852825,127195,8,1,MrsMorrisReads
 WyCRGf_cloE__story01,4523.0,WyCRGf_cloE,Toots the Animal Song,1,3,"1 - 3 years, from customers",14.394309733887738,1783894,2;3,1,5 Minutes With Uncle Ben
+X-TII9-RewU__story01,4525.0,X-TII9-RewU,I Am Not Going to Get Up Today,3,7,"3 - 7 years, from customers",12.079023057690694,176137,7,1,Miss Sofie's Story Time - Kids Books Read Aloud
 X-kcL8O3WWQ__story01,9003.0,X-kcL8O3WWQ,The Boy Who Cried Wolf,6,11,6 - 11 years,6.901737206656574,993,11,1,Dave the Story Reader
 X1aw-HpWBT8__story01,4527.0,X1aw-HpWBT8,The Busy Life of Ernestine Buckmeister,5,7,5 - 7 years,14.477313603524154,1938283,5;6;7,1,StorylineOnline
-X4rUGYnW7w0__story01,9023.0,X4rUGYnW7w0,Mr. Lemoncello's Fantabulous Finale,8,12,8 - 12 years,4.852030263919617,127,12,1,EVPLibrary
+X4rUGYnW7w0__story01,9023.0,X4rUGYnW7w0,Mr. Lemoncello's Fantabulous Finale,8,12,8 - 12 years,4.852030263919617,127,11;12,1,EVPLibrary
 X5Irl_oWD6M__story01,9025.0,X5Irl_oWD6M,The Cat in the Hat,2,6,"2 - 6 years, from customers",14.771385398494028,2600944,2;3;4;5;6,1,Dr. Seuss
 X8aH9A3FUHY__story01,9033.0,X8aH9A3FUHY,SpongeBob Round Pants,5,10,5 - 10 years,12.645117586901534,310244,7;8;9;10,1,Kids Stories 4 You
 XFAzEXNPYN8__story01,9060.0,XFAzEXNPYN8,Five Little Pumpkins,2,5,"2 - 5 years, from customers",13.560784746096855,775128,2;3;4;5,1,Kids Stories 4 You
@@ -851,13 +906,14 @@ Xb3bXKAkeek__story01,4577.0,Xb3bXKAkeek,Here Comes the Garbage Barge,4,8,4 - 8 y
 XedcACaRG5c__story01,9094.0,XedcACaRG5c,Cars Racing Days,2,6,"2 - 6 years, from customers",12.738496342637548,340610,2,1,Young Readers
 Xh4Bi_QGJcM__story01,4586.0,Xh4Bi_QGJcM,Yeshin and the Golden Slippers (Chinese Cinderella),4,8,4 - 8 years,11.80590846265906,134041,8,1,Rockin Read Alouds
 XhpEZ3oN0Uw__story01,4592.0,XhpEZ3oN0Uw,Henry Box Brown’s Freedom Box,6,9,"6 - 9 years, from customers",9.658609509075912,15655,9,1,StoryTime Out Loud
-XlHJ8C5j7_s__story01,4605.0,XlHJ8C5j7_s,Marianne Saves the Day (Babysitters Club Book 3) — Marianne’s Storyline,8,11,"8 - 11 years, from customers",11.38822354896805,88275,9;10;11,1,Apus The Bird of Paradise
+XlHJ8C5j7_s__story01,4605.0,XlHJ8C5j7_s,Marianne Saves the Day (Babysitters Club Book 3) — Marianne’s Storyline,8,11,"8 - 11 years, from customers",11.38822354896805,88275,8;9;10;11,1,Apus The Bird of Paradise
 Xm9i1kVTj6M__story01,4607.0,Xm9i1kVTj6M,Statue of Liberty: Liberty for Everyone,4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
 Xm9i1kVTj6M__story02,4608.0,Xm9i1kVTj6M,Mount Rushmore: The Secret Hall of Records,4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
 Xm9i1kVTj6M__story03,4609.0,Xm9i1kVTj6M,Liberty Bell: Cracks and Freedom,4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
 Xm9i1kVTj6M__story04,4610.0,Xm9i1kVTj6M,Arlington National Cemetery: The Lesson of Sacrifice,4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
 Xm9i1kVTj6M__story05,4611.0,Xm9i1kVTj6M,White House & Washington Monument: Presidential Service,4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
-XoYeSXfONkw__story01,4617.0,XoYeSXfONkw,Surf's Up (SpongeBob and Sandy),5,10,5 - 10 years,11.444839325135002,93417,9;10,1,Read To Me Kids
+Xm9i1kVTj6M__story06,4612.0,Xm9i1kVTj6M,"Hoover Dam: Work Hard, Share Power",4,6,"4 - 6 years, from customers",12.944847853112336,418673,6,6,PragerU Kids
+XoYeSXfONkw__story01,4617.0,XoYeSXfONkw,Surf's Up (SpongeBob and Sandy),5,10,5 - 10 years,11.444839325135002,93417,8;9;10,1,Read To Me Kids
 Xohxq8PkP2Y__story01,4618.0,Xohxq8PkP2Y,Kamala Harris Biography,8,12,8 - 12 years,5.552959584921617,257,11;12,1,William's Planet & Family Story Book Time
 Xv7Y90uxB7s__story01,9143.0,Xv7Y90uxB7s,How the Raven Brought Light to the World,7,11,7 - 11 years,7.542213463193403,1885,10;11,1,Super Great Kids' Stories
 XvGuvEvhyLg__story01,9144.0,XvGuvEvhyLg,The Day the Crayons Came Home,3,7,"3 - 7 years, from customers",15.233841958636914,4130222,3;4;5;6;7,1,StoryTime Out Loud
@@ -873,8 +929,10 @@ YAubThKPC4c__story01,9189.0,YAubThKPC4c,"The Man, the Tiger, and the Rabbit",7,1
 YDogbiJF5yQ__story01,9194.0,YDogbiJF5yQ,Love Monster,1,4,"1 - 4 years, from customers",13.172980443200856,525959,2;3;4,1,StoryTime at Awnie's House
 YE0wEnotf7o__story01,9197.0,YE0wEnotf7o,Frozen Fever: Little Brothers,8,12,8 - 12 years,9.418573310554638,12314,9;10;11;12,1,Storytime With K - Kid Story Read Alouds
 YEqjzIn0mkU__story01,9202.0,YEqjzIn0mkU,The Soldier's Luck,4,8,4 - 8 years,11.712063167817591,122034,8,1,Hungarian Folk Tales
+YHgbWH1OsyM__story01,4645.0,YHgbWH1OsyM,,2,4,"2 - 4 years, from customers",12.307098279148423,221260,2,1,Young Readers
 YK2FLcFORZI__story01,9223.0,YK2FLcFORZI,Puppy Dog Pals: Hawaii — Pugo Surfs Up,7,10,7 - 10 years,9.064852065227576,8645,9;10,1,Kids Story Time with Jack & Jill
-YLGPGYW3q6w__story01,9225.0,YLGPGYW3q6w,Dream What Dreams You Might,4,8,4 - 8 years,12.900416609658889,400478,7;8,1,Vooks
+YLGPGYW3q6w__story01,9225.0,YLGPGYW3q6w,Dream What Dreams You Might,4,8,4 - 8 years,12.900416609658889,400478,6;7;8,1,Vooks
+YLTzno3syNk__story01,4647.0,YLTzno3syNk,,8,11,8 - 11 years,4.382026634673881,79,11,1,Fairytale Media
 YMLt9PN0akM__story01,9227.0,YMLt9PN0akM,Summer Green to Autumn Gold: Uncovering Leaves as Hidden Colors,5,10,5 - 10 years,8.103796712981794,3306,10,1,Storytime With K - Kid Story Read Alouds
 YN-xqxYVRWI__story01,4648.0,YN-xqxYVRWI,Miss Seve’s Detention Rampage,7,12,7 - 12 years,8.625509334899697,5571,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 YOBK-ts6WMc__story01,9234.0,YOBK-ts6WMc,Cars: Mater in Paris,6,12,"6 - 12 years, from customers",8.321664807135,4111,10;11;12,1,MyBooks
@@ -888,18 +946,19 @@ Ya6AsX03NWQ__story01,4665.0,Ya6AsX03NWQ,Billions to Burn (Prologue: Burn Magazin
 Ya6AsX03NWQ__story02,4666.0,Ya6AsX03NWQ,Billions to Burn (Zeus Jones and the Burn Mystery),8,12,8 - 12 years,3.367295829986474,28,12,2,EVPLibrary
 YbyG3aGFhyU__story01,9278.0,YbyG3aGFhyU,Dumbo,7,11,7 - 11 years,7.595889917718538,1989,10;11,1,The Book Keepers
 YcLWQicqOvI__story01,4673.0,YcLWQicqOvI,"No, No, No Girl vs the Word Game",7,12,7 - 12 years,8.496582237512113,4897,10;11;12,1,ALL NEW DOB ENTERTAINMENT
-YdBoQE63dn4__story01,4677.0,YdBoQE63dn4,Brad the Most Spoiled Boy,7,12,7 - 12 years,8.649623978596727,5707,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+YdBoQE63dn4__story01,4677.0,YdBoQE63dn4,Brad the Most Spoiled Boy,7,12,7 - 12 years,8.649623978596727,5707,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 YeKy5tIW-8g__story01,4678.0,YeKy5tIW-8g,Last Day Blues,6,9,"6 - 9 years, from customers",9.914130712634607,20213,9,1,Read Aloud with Mr. Paul
 YfU2qyWssiI__story01,4681.0,YfU2qyWssiI,Rainforest Explorers: Orangutans,7,9,7 - 9 years,11.866086241449104,142355,8;9,1,Storytime with Mimi&Me
 YjT3pHnR3E8__story01,9299.0,YjT3pHnR3E8,PAW Patrol Halloween Heroes,2,4,"2 - 4 years, from customers",12.572370639048629,288476,2,1,Storytime With K - Kid Story Read Alouds
 YoMYcBz9z-g__story01,4718.0,YoMYcBz9z-g,Red Rooster and the Moo,1,2,Baby - 2 years,15.07123570629836,3510382,2,1,Vooks
+YqxwvB6GlOs__story01,9314.0,YqxwvB6GlOs,Seriously Do Not Open This Book,4,7,4 - 7 years,12.152903909390108,189643,7,1,Storytime Hullabaloo Hi
 YxQL2socaG0__story01,4744.0,YxQL2socaG0,The Very Hungry Caterpillar,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
 YxQL2socaG0__story02,4745.0,YxQL2socaG0,Llama Llama Loves to Read,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
 YxQL2socaG0__story03,4746.0,YxQL2socaG0,Uni the Unicorn,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
 YxQL2socaG0__story04,4747.0,YxQL2socaG0,Peep and Hoot: The Owly Song,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
 YxQL2socaG0__story05,4748.0,YxQL2socaG0,How to Cheer Up Dad,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
 YxQL2socaG0__story06,4749.0,YxQL2socaG0,Good Night Goon,5,8,5 - 8 years,13.732808066199032,920624,5;6;7;8,6,Brightly Storytime
-Z1EQfPv_EAg__story01,4752.0,Z1EQfPv_EAg,There's a Rocket in My Pocket,1,5,"1 - 5 years, from customers",13.064153587532834,471725,2;3,1,Dr. Seuss
+Z1EQfPv_EAg__story01,4752.0,Z1EQfPv_EAg,There's a Rocket in My Pocket,1,5,"1 - 5 years, from customers",13.064153587532834,471725,2;3;4,1,Dr. Seuss
 Z6JzL9B6jKc__story01,9340.0,Z6JzL9B6jKc,Never Let a Unicorn Wear a Tutu,3,6,"3 - 6 years, from customers",13.7964999969008,981168,3;4;5;6,1,StoryTime at Awnie's House
 Z7Bb6OmMKWk__story01,9343.0,Z7Bb6OmMKWk,Agent P's 100th Battle,7,12,7 - 12 years,9.300455261418444,10942,9;10;11;12,1,AudioAdventures
 ZEqo3JPvdaQ__story01,9366.0,ZEqo3JPvdaQ,"Finding Dory, Dory's Story",7,10,7 - 10 years,11.01541085526391,60803,9;10,1,Storytime With K - Kid Story Read Alouds
@@ -922,22 +981,23 @@ ZoKTjdAJFxo__story01,4815.0,ZoKTjdAJFxo,,4,10,"4 - 10 years, from customers",14.
 ZoPgbQ7JiR0__story01,9477.0,ZoPgbQ7JiR0,The Very Quiet Cricket,1,4,"1 - 4 years, from customers",13.524876131601502,747788,2;3;4,1,Buddy Son Storytime
 ZpHTWY-pnxA__story01,9480.0,ZpHTWY-pnxA,Green Eggs and Ham,5,8,5 - 8 years,13.028428451504697,455170,6;7;8,1,Dr. Seuss
 Zq039lAzXnA__story01,4818.0,Zq039lAzXnA,June’s Father’s Day Beach Surprise,4,9,4 - 9 years,9.273972232220956,10656,9,1,Mrs. K's Book Worm Adventures
-Zq0kSVEvF8Q__story01,4819.0,Zq0kSVEvF8Q,,10,12,"10 - 12 years, from customers",5.043425116919247,154,12,1,Mokena Library Children's Department
+Zq0kSVEvF8Q__story01,4819.0,Zq0kSVEvF8Q,,10,12,"10 - 12 years, from customers",5.043425116919247,154,11;12,1,Mokena Library Children's Department
 Zr99Sh-wHFI__story01,4821.0,Zr99Sh-wHFI,You're Strong With Me (Mama Giraffe and her daughter),5,8,5 - 8 years,11.566665264222712,105520,8,1,CBeebies
 Zt95PhoGafs__story01,9482.0,Zt95PhoGafs,Nora and the Ackee Fruit,7,13,7 - 13 years,6.450470422144176,632,11;12,1,Super Great Kids' Stories
 ZtLwji0bxvU__story01,9488.0,ZtLwji0bxvU,Pete the Cat: Valentine's Day Is Cool,3,6,"3 - 6 years, from customers",13.81077034086603,995270,3;4;5;6,1,Kids Stories 4 You
 ZwSZ-WCFovo__story01,9491.0,ZwSZ-WCFovo,Show Me the Bunny,5,10,5 - 10 years,8.46168048148598,4729,10,1,The Book Keepers
 ZyBzCA3mIsQ__story01,4836.0,ZyBzCA3mIsQ,Gabe the Monster and Emma's Bedtime,3,7,"3 - 7 years, from customers",13.343932890570208,624016,3;4;5;6;7,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
+_0FyE38Kn9c__story01,9493.0,_0FyE38Kn9c,The Sour Grape,5,8,"5 - 8 years, from customers",11.39211284475348,88619,8,1,Miss Pam Reads
 _2vAl6Oqx4o__story01,9496.0,_2vAl6Oqx4o,Let's Celebrate President's Day,4,9,4 - 9 years,10.380746051458171,32232,9,1,Miss Pam Reads
 _3Etg0hk4U0__story01,9497.0,_3Etg0hk4U0,Dinosaurs Before Dark,5,8,"5 - 8 years, from customers",11.950212185401348,154849,8,1,The Story Harbor
 _49PW1pTJLo__story01,4852.0,_49PW1pTJLo,,3,9,"3 - 9 years, from customers",10.52495074379763,37232,9,1,Bookroot Readings
 _6w7NdeEOUM__story01,4855.0,_6w7NdeEOUM,The Unteachables (Chapter 1–2),10,12,"10 - 12 years, from customers",3.295836866004329,26,12,1,EVPLibrary
 _B0ym0rLx7Y__story01,9502.0,_B0ym0rLx7Y,"Kibungu, the Beast of the Rainforest",7,13,7 - 13 years,6.71174039505618,821,11;12,1,Super Great Kids' Stories
-_LsR8Wrytt4__story01,9544.0,_LsR8Wrytt4,A Chain Story,7,13,7 - 13 years,4.6913478822291435,108,12,1,Super Great Kids' Stories
+_LsR8Wrytt4__story01,9544.0,_LsR8Wrytt4,A Chain Story,7,13,7 - 13 years,4.6913478822291435,108,11;12,1,Super Great Kids' Stories
 _Ny1rrKb0ZM__story01,9552.0,_Ny1rrKb0ZM,Firebird,5,10,"5 - 10 years, from customers",7.615791072035833,2029,10,1,William's Planet & Family Story Book Time
 _PbJSbtjyR0__story01,9560.0,_PbJSbtjyR0,One Green Apple,6,9,"6 - 9 years, from customers",9.23815007261545,10281,9,1,William's Planet & Family Story Book Time
 _RAIDsIuaqg__story01,9564.0,_RAIDsIuaqg,Fox in Socks,1,6,"1 - 6 years, from customers",13.257968867600624,572614,2;3;4;5;6,1,Dr. Seuss
-_T0WVsukhXM__story01,4875.0,_T0WVsukhXM,The Foot Book,1,4,"1 - 4 years, from customers",13.063351953683863,471347,2;3,1,Dr. Seuss
+_T0WVsukhXM__story01,4875.0,_T0WVsukhXM,The Foot Book,1,4,"1 - 4 years, from customers",13.063351953683863,471347,2;3;4,1,Dr. Seuss
 _Xx9m2cV0uI__story01,9578.0,_Xx9m2cV0uI,Cinderella,10,12,10 - 12 years,9.813617548107086,18280,10;11;12,1,Read Aloud with Mr. Paul
 _dTG7ofQCQs__story01,4881.0,_dTG7ofQCQs,,3,7,"3 - 7 years, from customers",13.652523283516006,849601,3;4;5;6;7,1,Little Cozy Nook
 _fyV53Ye-jU__story01,9594.0,_fyV53Ye-jU,Old McDonald Had a Truck,4,8,4 - 8 years,13.478334273559572,713782,4;5;6;7;8,12,Vooks
@@ -970,7 +1030,7 @@ a5gAfpX0mo0__story01,4928.0,a5gAfpX0mo0,Creepy Carrots,6,9,6 - 9 years,14.828146
 a5gAfpX0mo0__story02,4929.0,a5gAfpX0mo0,Creepy Pair of Underwear,6,9,6 - 9 years,14.828146206844794,2752846,6;7;8;9,3,StoryTime Out Loud
 a5gAfpX0mo0__story03,4930.0,a5gAfpX0mo0,Creepy Crayon,6,9,6 - 9 years,14.828146206844794,2752846,6;7;8;9,3,StoryTime Out Loud
 a67fCWS-J3U__story01,9644.0,a67fCWS-J3U,Picasso the Pony,7,12,7 - 12 years,8.188133414510478,3597,10;11;12,1,ALL NEW DOB ENTERTAINMENT
-a8km0cyHoNY__story01,4937.0,a8km0cyHoNY,Pinky the Pig and the Walking Snowman,4,8,4 - 8 years,12.14241373741961,187664,8,1,StoryTime at Awnie's House
+a8km0cyHoNY__story01,4937.0,a8km0cyHoNY,Pinky the Pig and the Walking Snowman,4,8,4 - 8 years,12.14241373741961,187664,7;8,1,StoryTime at Awnie's House
 a9K-sAKdk2Y__story01,4941.0,a9K-sAKdk2Y,The Empty Pot,4,7,"4 - 7 years, from customers",15.102337284026856,3621276,4;5;6;7,1,StorylineOnline
 aKKWTBrD5J0__story01,4960.0,aKKWTBrD5J0,Thomas and the Christmas Tree,8,12,8 - 12 years,8.937612591306213,7612,9;10;11;12,1,William's Planet & Family Story Book Time
 aVCbljmqcpM__story01,4972.0,aVCbljmqcpM,Spring: An Alphabet Acrostic,7,9,7 - 9 years,9.69873632077599,16296,9,1,Bookroot Readings
@@ -979,10 +1039,10 @@ aVxHbRO0G7E__story01,4976.0,aVxHbRO0G7E,Walter the Wasp and the Bully of the Yea
 aaZ3qvNFOoY__story01,9671.0,aaZ3qvNFOoY,Joy to the World: Christmas Around the Globe,4,10,4 - 10 years,8.045267716607803,3118,10,1,Books Beyond Borders
 abN2aP_Dzd0__story01,4986.0,abN2aP_Dzd0,"Thank You, Mr. Falker",6,9,"6 - 9 years, from customers",15.623355952177974,6097295,6;7;8;9,1,StorylineOnline
 acmZh6xFVEo__story01,9678.0,acmZh6xFVEo,Medusa's Maze,8,10,8 - 10 years,10.243596027166284,28101,9;10,1,DC Kids
-ai-hgXbULLE__story01,9687.0,ai-hgXbULLE,The Golden Pipe,7,11,7 - 11 years,7.30854279753919,1492,11,1,
+ai-hgXbULLE__story01,9687.0,ai-hgXbULLE,The Golden Pipe,7,11,7 - 11 years,7.30854279753919,1492,10;11,1,
 aj5blyIVwco__story01,9691.0,aj5blyIVwco,Frog Fight,12,18,12 years and up,7.9391588179567965,2804,12,1,Storytime With K - Kid Story Read Alouds
 ajd_XQ2sk2Q__story01,9692.0,ajd_XQ2sk2Q,Everyone Belongs,3,8,"3 - 8 years, from customers",12.981700329155194,434390,6;7;8,1,Brightly Storytime
-amlApgJR0yw__story01,9699.0,amlApgJR0yw,Greedy Python,4,6,4 - 6 years,13.112525140268426,495104,6,1,Buddy Son Storytime
+amlApgJR0yw__story01,9699.0,amlApgJR0yw,Greedy Python,4,6,4 - 6 years,13.112525140268426,495104,4;5;6,1,Buddy Son Storytime
 anfDyqZdJj4__story01,9704.0,anfDyqZdJj4,The New Baby,2,3,"2 - 3 years, from customers",14.280359675510224,1591773,2;3,1,Oceanhouse Media
 auyJEe35Db8__story01,4995.0,auyJEe35Db8,,3,7,"3 - 7 years, from customers",12.963292613790708,426467,6;7,1,Kids Books Read Aloud
 b-ZuJWfSd_Y__story01,9732.0,b-ZuJWfSd_Y,Does a Camel Cook Spaghetti?,3,6,3 - 6 years,13.761292992059476,947225,3;4;5;6,4,Vooks
@@ -1010,10 +1070,10 @@ bTIs4ugA7QE__story01,5040.0,bTIs4ugA7QE,Sammy the Seasick Pirate,5,9,5 - 9 years
 bTnAdG-MCAQ__story01,5042.0,bTnAdG-MCAQ,Who’s That Cat / Who’s That Dog,1,3,"Baby - 3 years, from customers",14.517137186178678,2017030,2;3,1,Vooks
 bU5mU_1b_wA__story01,5043.0,bU5mU_1b_wA,Trish the Troll,7,12,7 - 12 years,8.507950610049305,4953,10;11;12,1,ALL NEW DOB ENTERTAINMENT
 bVEqDmp9Rhg__story01,9802.0,bVEqDmp9Rhg,The Monster Nian,7,13,7 - 13 years,6.682108597449809,797,11;12,1,Super Great Kids' Stories
-bVeWG9q4ZXQ__story01,5046.0,bVeWG9q4ZXQ,Beauty and the Beast,2,5,"2 - 5 years, from customers",13.096867091955422,487412,2;3,1,EGTV Storybooks
-bW41OFVHSF8__story01,5048.0,bW41OFVHSF8,Pinball and Beginnings (Nelson Thomas siblings),10,12,"10 - 12 years, from customers",7.389563953677635,1618,11;12,3,EVPLibrary
-bW41OFVHSF8__story02,5049.0,bW41OFVHSF8,Bird’s Day (Bernadette assembles a desk),10,12,"10 - 12 years, from customers",7.389563953677635,1618,11;12,3,EVPLibrary
-bW41OFVHSF8__story03,5050.0,bW41OFVHSF8,God of Basketball (Cash),10,12,"10 - 12 years, from customers",7.389563953677635,1618,11;12,3,EVPLibrary
+bVeWG9q4ZXQ__story01,5046.0,bVeWG9q4ZXQ,Beauty and the Beast,2,5,"2 - 5 years, from customers",13.096867091955422,487412,2;3;4,1,EGTV Storybooks
+bW41OFVHSF8__story01,5048.0,bW41OFVHSF8,Pinball and Beginnings (Nelson Thomas siblings),10,12,"10 - 12 years, from customers",7.389563953677635,1618,10;11;12,3,EVPLibrary
+bW41OFVHSF8__story02,5049.0,bW41OFVHSF8,Bird’s Day (Bernadette assembles a desk),10,12,"10 - 12 years, from customers",7.389563953677635,1618,10;11;12,3,EVPLibrary
+bW41OFVHSF8__story03,5050.0,bW41OFVHSF8,God of Basketball (Cash),10,12,"10 - 12 years, from customers",7.389563953677635,1618,10;11;12,3,EVPLibrary
 bX7Pd78qzos__story01,5053.0,bX7Pd78qzos,How Santa Got His Job,5,8,"5 - 8 years, from customers",11.604401029297891,109578,8,1,Mr. Paulson Reads
 bXoMD9Jw22Y__story01,5056.0,bXoMD9Jw22Y,,3,7,"3 - 7 years, from customers",12.407931271487053,244734,7,1,Stories and Crafts
 bY4FWXqxTlc__story01,5057.0,bY4FWXqxTlc,The Three Little Pigs and the Somewhat Bad Wolf,2,6,"2 - 6 years, from customers",14.489219534817696,1961498,2;3;4;5;6,1,StorylineOnline
@@ -1024,8 +1084,8 @@ biEGYZ9HH7k__story01,5081.0,biEGYZ9HH7k,Mufaro's Beautiful Daughters,3,9,"3 - 9 
 biFzrnpRRg4__story01,5082.0,biFzrnpRRg4,Mighty Mouse Adventure,6,12,"6 - 12 years, from customers",6.386879319362645,593,11;12,1,AudioAdventures
 bkYn1h69eKM__story01,5087.0,bkYn1h69eKM,Similes and Metaphors (Book Read-Aloud),7,11,7 - 11 years,7.792348924113037,2421,10;11,1,Riko's Reading Room
 blS50WSEX38__story01,5088.0,blS50WSEX38,Zarina and the Rogue Pirate Fairy,8,12,8 - 12 years,8.991313336173812,8032,9;10;11;12,1,MyBooks
-bo39vMABeEo__story01,5093.0,bo39vMABeEo,Animal Alphabet (Unicorn & ABC Primer),2,5,2 - 5 years,13.128015374732616,502833,2;3;4,2,Vooks
-bo39vMABeEo__story02,5094.0,bo39vMABeEo,The Letter Bee & the Missing Vowels (Consonants vs Vowels),2,5,2 - 5 years,13.128015374732616,502833,2;3,2,Vooks
+bo39vMABeEo__story01,5093.0,bo39vMABeEo,Animal Alphabet (Unicorn & ABC Primer),2,5,2 - 5 years,13.128015374732616,502833,2;3;4;5,2,Vooks
+bo39vMABeEo__story02,5094.0,bo39vMABeEo,The Letter Bee & the Missing Vowels (Consonants vs Vowels),2,5,2 - 5 years,13.128015374732616,502833,2;3;4;5,2,Vooks
 bs3PvIeSgU8__story01,9836.0,bs3PvIeSgU8,Dinosaur Rocket,4,10,4 - 10 years,8.615951963439501,5518,10,2,Gigi's Magic Mailbox
 bs3PvIeSgU8__story02,9837.0,bs3PvIeSgU8,Otter in Space,4,10,4 - 10 years,8.615951963439501,5518,10,2,Gigi's Magic Mailbox
 buGDbGjcP-4__story01,9850.0,buGDbGjcP-4,There Was a Cold Lady Who Swallowed Some Snow,2,6,"2 - 6 years, from customers",13.250473350656424,568338,2;3;4;5;6,1,StoryTime at Awnie's House
@@ -1033,6 +1093,10 @@ butxBmjTM0U__story01,9852.0,butxBmjTM0U,"How Big Are Your Worries, Little Bear?"
 bwg81XQ5kGk__story01,9861.0,bwg81XQ5kGk,"Pretty Please, Do Not Open This Book",4,7,4 - 7 years,13.051758493036775,465914,6;7,1,Storytime Hullabaloo Hi
 c-lvs3FE82U__story01,5110.0,c-lvs3FE82U,David Gets in Trouble,2,5,"2 - 5 years, from customers",14.337134865501602,1684761,2;3;4;5,1,5 Minutes With Uncle Ben
 c5lo4DAWwYk__story01,9885.0,c5lo4DAWwYk,Dear Mrs. LaRue: Letters from Obedience School,4,9,"4 - 9 years, from customers",9.65669147255669,15625,9,1,Mrs. K's Book Worm Adventures
+c8-kNphfY14__story01,5114.0,c8-kNphfY14,The Digger and the Flower,2,4,"2 - 4 years, from customers",12.36801290763226,235157,2,4,Vooks
+c8-kNphfY14__story02,5115.0,c8-kNphfY14,The Boy Who Grew a Forest (Jadav Paying),2,4,"2 - 4 years, from customers",12.36801290763226,235157,2,4,Vooks
+c8-kNphfY14__story03,5116.0,c8-kNphfY14,Malachi (Mouse Mystery),2,4,"2 - 4 years, from customers",12.36801290763226,235157,2,4,Vooks
+c8-kNphfY14__story04,5117.0,c8-kNphfY14,The End (Zer0) / Earth Planets Birthday,2,4,"2 - 4 years, from customers",12.36801290763226,235157,2,4,Vooks
 cFIlIS-OPEU__story01,9911.0,cFIlIS-OPEU,Why the Corn Doll Has No Face,7,13,7 - 13 years,6.699500340161678,811,11;12,1,Super Great Kids' Stories
 cJqkteBxjuw__story01,9923.0,cJqkteBxjuw,The Pigeon Has to Go to School,3,6,"3 - 6 years, from customers",13.973107293315824,1170693,3;4;5;6,1,Mrs. K's Book Worm Adventures
 cKNHEYvovyA__story01,9925.0,cKNHEYvovyA,Curious George: Mother's Day Surprise,6,9,6 - 9 years,8.940891067785461,7637,9,1,Mrs. K's Book Worm Adventures
@@ -1040,17 +1104,18 @@ cKaQXmRvpvw__story01,5125.0,cKaQXmRvpvw,A Bad Case of Stripes,3,7,"3 - 7 years, 
 cLXtt2JVcmE__story01,5128.0,cLXtt2JVcmE,Sal and Gabby Break the Universe (Chapter 1-2 excerpt),8,12,8 - 12 years,7.509335266016592,1824,10;11;12,1,EVPLibrary
 cMgc_3Gm8CQ__story01,9927.0,cMgc_3Gm8CQ,The 11th Hour,6,11,"6 - 11 years, from customers",8.8934354408475,7283,9;10;11,1,Riko's Reading Room
 cMrxxZ5rjBw__story01,9929.0,cMrxxZ5rjBw,How to Catch a Groundhog,4,8,"4 - 8 years, from customers",11.53277711067283,102004,8,1,Mrs. K's Book Worm Adventures
-cS0l0jhenuE__story01,5133.0,cS0l0jhenuE,Purple Moose Love Poem + Duck/Monster Guessing,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story02,5134.0,cS0l0jhenuE,Unicorn Captured and the Friendship Between Horse and Unicorn,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story03,5135.0,cS0l0jhenuE,Little Sock Finds a Friend in Sock City,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story04,5136.0,cS0l0jhenuE,Craig and the Two Birthday Parties,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story05,5137.0,cS0l0jhenuE,Julia Hikes Pancake Peak and Finds Tagalong Friends,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story06,5138.0,cS0l0jhenuE,Made for Me (A Parent’s Love Poem to a Child),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story07,5139.0,cS0l0jhenuE,Little Miss Planted a Kiss,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story08,5140.0,cS0l0jhenuE,Louise and Tabitha (Cat Romance),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
-cS0l0jhenuE__story09,5141.0,cS0l0jhenuE,Rosie Finds a Friend (Colby the Mouse and Puddles the Gosling),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2,9,Vooks
+cPPQdDwTUvE__story01,9936.0,cPPQdDwTUvE,Here We Are,1,5,"1 - 5 years, from customers",12.340577314367708,228793,2,1,Brightly Storytime
+cS0l0jhenuE__story01,5133.0,cS0l0jhenuE,Purple Moose Love Poem + Duck/Monster Guessing,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story02,5134.0,cS0l0jhenuE,Unicorn Captured and the Friendship Between Horse and Unicorn,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story03,5135.0,cS0l0jhenuE,Little Sock Finds a Friend in Sock City,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story04,5136.0,cS0l0jhenuE,Craig and the Two Birthday Parties,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story05,5137.0,cS0l0jhenuE,Julia Hikes Pancake Peak and Finds Tagalong Friends,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story06,5138.0,cS0l0jhenuE,Made for Me (A Parent’s Love Poem to a Child),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story07,5139.0,cS0l0jhenuE,Little Miss Planted a Kiss,1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story08,5140.0,cS0l0jhenuE,Louise and Tabitha (Cat Romance),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
+cS0l0jhenuE__story09,5141.0,cS0l0jhenuE,Rosie Finds a Friend (Colby the Mouse and Puddles the Gosling),1,3,"Baby - 3 years, from customers",13.036243239506764,458741,2;3,9,Vooks
 cWTEo8ATMc0__story01,9945.0,cWTEo8ATMc0,It Started with a P,4,9,"4 - 9 years, from customers",10.07949756671628,23848,9,1,Brightly Storytime
-ccLXL4WmGnY__story01,9955.0,ccLXL4WmGnY,"Lion, Vulture and Hyena",7,13,7 - 13 years,4.795790545596741,120,12,1,Super Great Kids' Stories
+ccLXL4WmGnY__story01,9955.0,ccLXL4WmGnY,"Lion, Vulture and Hyena",7,13,7 - 13 years,4.795790545596741,120,11;12,1,Super Great Kids' Stories
 cdCCA1M_2z8__story01,5168.0,cdCCA1M_2z8,Andrew decides never to go pee,3,7,"3 - 7 years, from customers",12.272314402837152,213696,7,1,Reading Pioneers Academy
 cgo-MSXKOx4__story01,9960.0,cgo-MSXKOx4,Puss in Boots,7,13,7 - 13 years,6.98933526597456,1084,11;12,1,Super Great Kids' Stories
 chBJS-nwujo__story01,5181.0,chBJS-nwujo,,4,7,"4 - 7 years, from customers",14.170399307607358,1426021,4;5;6;7,1,StoryTime at Awnie's House
@@ -1074,7 +1139,7 @@ d1oHVOgmNNo__story01,9984.0,d1oHVOgmNNo,The Old Woman and Her Pig,7,13,7 - 13 ye
 d6u6ERK4Gpo__story01,9992.0,d6u6ERK4Gpo,"The Old Woman, the Wolf, and the Tiger",7,13,7 - 13 years,5.3981627015177525,220,11;12,1,Super Great Kids' Stories
 d74tIWKn1Vk__story01,9993.0,d74tIWKn1Vk,Pete the Cat and the Missing Cupcakes,2,6,"2 - 6 years, from customers",14.508772231969594,2000228,2;3;4;5;6,1,Kids Stories 4 You
 dCTvd_YaJ_Q__story01,10005.0,dCTvd_YaJ_Q,The Book Smugglers,8,12,8 - 12 years,5.111987788356544,165,11;12,1,EVPLibrary
-dOMPe92kv1o__story01,10035.0,dOMPe92kv1o,Captain America and the Atomic Bomb,8,12,8 - 12 years,8.710454688248527,6065,10;11;12,1,AudioAdventures
+dOMPe92kv1o__story01,10035.0,dOMPe92kv1o,Captain America and the Atomic Bomb,8,12,8 - 12 years,8.710454688248527,6065,9;10;11;12,1,AudioAdventures
 dPUW1t9Gu4s__story01,5258.0,dPUW1t9Gu4s,The Kissing Hand,2,5,"2 - 5 years, from customers",15.394694396511506,4850994,2;3;4;5,1,StorylineOnline
 dRWxy6Ag6E0__story01,10042.0,dRWxy6Ag6E0,Scaredy-Cat Splat,4,8,4 - 8 years,11.98717008847322,160679,8,1,StoryTime at Awnie's House
 dRxo4rKr-CA__story01,10043.0,dRxo4rKr-CA,Do Not Open This Book Ever,4,7,4 - 7 years,13.807463265184944,991984,4;5;6;7,1,Storytime Hullabaloo Hi
@@ -1105,7 +1170,7 @@ eTVTkFmNybs__story01,10174.0,eTVTkFmNybs,The Day the Crayons Quit,3,6,"3 - 6 yea
 eUPelktmwgc__story01,10177.0,eUPelktmwgc,As Cool as It Gets,4,8,"4 - 8 years, from customers",11.88106938801211,144504,8,1,StoryTime Out Loud
 eYsMPx5qo8o__story01,5350.0,eYsMPx5qo8o,Rodeo Red,4,8,4 - 8 years,13.56130581388486,775532,4;5;6;7;8,1,StorylineOnline
 ek_Lr6SdXaU__story01,5355.0,ek_Lr6SdXaU,Remy Becomes a Chef in Paris,5,8,5 - 8 years,11.675894293248367,117699,8,1,EGTV Storybooks
-encn109IgAU__story01,5360.0,encn109IgAU,King Derwin and the Oobleck,4,9,"4 - 9 years, from customers",11.430955902102978,92129,9,1,The Great Amazing Book Show
+encn109IgAU__story01,5360.0,encn109IgAU,King Derwin and the Oobleck,4,9,"4 - 9 years, from customers",11.430955902102978,92129,8;9,1,The Great Amazing Book Show
 eqVIWZfjGQc__story01,10191.0,eqVIWZfjGQc,Alligators Are Unfriendly,6,10,6 - 10 years,9.082961442646353,8803,9;10,1,Mr. Paulson Reads
 erNIAPzJVds__story01,5363.0,erNIAPzJVds,I Can Read with My Eyes Shut,2,6,"2 - 6 years, from customers",12.977855390355424,432723,2;6,1,Dr. Seuss
 etdExmg9yzw__story01,10206.0,etdExmg9yzw,Colors Locked,3,6,3 - 6 years,13.207893157370938,544646,3;4;5;6,4,Vooks
@@ -1113,14 +1178,14 @@ etdExmg9yzw__story02,10207.0,etdExmg9yzw,Nom Nom Colors,3,6,3 - 6 years,13.20789
 etdExmg9yzw__story03,10208.0,etdExmg9yzw,Colors on the Farm,3,6,3 - 6 years,13.207893157370938,544646,3;4;5;6,4,Vooks
 etdExmg9yzw__story04,10209.0,etdExmg9yzw,Buzzy and Friends: Colors Plus Lots and Lots,3,6,3 - 6 years,13.207893157370938,544646,3;4;5;6,4,Vooks
 eu_IY63mhEY__story01,10214.0,eu_IY63mhEY,Zombies for Halloween,8,12,8 - 12 years,11.72145068726082,123185,8;9;10;11;12,1,Grandma's House
-eugLpq1HRH4__story01,5369.0,eugLpq1HRH4,The Last Human (XR935),8,12,8 - 12 years,7.313220387090301,1499,11;12,1,EVPLibrary
+eugLpq1HRH4__story01,5369.0,eugLpq1HRH4,The Last Human (XR935),8,12,8 - 12 years,7.313220387090301,1499,10;11;12,1,EVPLibrary
 eyCfutfL4K0__story01,10227.0,eyCfutfL4K0,Scaredy Squirrel Has a Birthday Party,4,8,"4 - 8 years, from customers",11.85481159143552,140759,8,1,Clever Brains
-f0AJsr5RjeE__story01,10240.0,f0AJsr5RjeE,I Will Surprise My Friend!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story02,10241.0,f0AJsr5RjeE,Are You Ready to Play Outside?,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story03,10242.0,f0AJsr5RjeE,Watch Me Throw the Ball!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story04,10243.0,f0AJsr5RjeE,Elephants Cannot Dance!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story05,10244.0,f0AJsr5RjeE,Pigs Make Me Sneeze!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story06,10245.0,f0AJsr5RjeE,Today I Will Fly!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story01,10240.0,f0AJsr5RjeE,I Will Surprise My Friend!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story02,10241.0,f0AJsr5RjeE,Are You Ready to Play Outside?,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story03,10242.0,f0AJsr5RjeE,Watch Me Throw the Ball!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story04,10243.0,f0AJsr5RjeE,Elephants Cannot Dance!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story05,10244.0,f0AJsr5RjeE,Pigs Make Me Sneeze!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story06,10245.0,f0AJsr5RjeE,Today I Will Fly!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;4;6,25,Book League Storytime Adventures
 f0AJsr5RjeE__story07,10246.0,f0AJsr5RjeE,My Friend Is Sad,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
 f0AJsr5RjeE__story08,10247.0,f0AJsr5RjeE,I Am Invited to a Party!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
 f0AJsr5RjeE__story09,10248.0,f0AJsr5RjeE,There Is a Bird on Your Head!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
@@ -1132,14 +1197,14 @@ f0AJsr5RjeE__story14,10253.0,f0AJsr5RjeE,I Really Like Slop!,3,6,"3 - 6 years, f
 f0AJsr5RjeE__story15,10254.0,f0AJsr5RjeE,The Thank You Book,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
 f0AJsr5RjeE__story16,10255.0,f0AJsr5RjeE,I Am Going!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
 f0AJsr5RjeE__story17,10256.0,f0AJsr5RjeE,Can I Play Too?,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story18,10257.0,f0AJsr5RjeE,We Are in a Book!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story19,10258.0,f0AJsr5RjeE,I Broke My Trunk!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story20,10259.0,f0AJsr5RjeE,Should I Share My Ice Cream?,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story21,10260.0,f0AJsr5RjeE,Happy Pig Day!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story22,10261.0,f0AJsr5RjeE,Listen to My Trumpet!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story23,10262.0,f0AJsr5RjeE,Let's Go for a Drive!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story24,10263.0,f0AJsr5RjeE,A Big Guy Took My Ball!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
-f0AJsr5RjeE__story25,10264.0,f0AJsr5RjeE,I'm a Frog!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story18,10257.0,f0AJsr5RjeE,We Are in a Book!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story19,10258.0,f0AJsr5RjeE,I Broke My Trunk!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story20,10259.0,f0AJsr5RjeE,Should I Share My Ice Cream?,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story21,10260.0,f0AJsr5RjeE,Happy Pig Day!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story22,10261.0,f0AJsr5RjeE,Listen to My Trumpet!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story23,10262.0,f0AJsr5RjeE,Let's Go for a Drive!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story24,10263.0,f0AJsr5RjeE,A Big Guy Took My Ball!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
+f0AJsr5RjeE__story25,10264.0,f0AJsr5RjeE,I'm a Frog!,3,6,"3 - 6 years, from customers",13.056569668848518,468161,3;6,25,Book League Storytime Adventures
 f13aaTam3Lg__story01,10265.0,f13aaTam3Lg,"Brown Bear, Brown Bear, What Do You See?",1,3,"1 - 3 years, from customers",15.04439877932612,3417427,2;3,1,MovingStories
 f2Eh0iLo7b4__story01,5383.0,f2Eh0iLo7b4,Henry and Ella’s Big Jar of Kindness,4,8,4 - 8 years,12.600419507704451,296682,7;8,1,Book League Storytime Adventures
 f8DTh76RcfI__story01,5397.0,f8DTh76RcfI,SpongeBob’s Mom Day,5,10,5 - 10 years,12.649873459903912,311723,7;8;9;10,1,Kids Stories 4 You
@@ -1152,12 +1217,13 @@ fC4GN0sEJi8__story01,5409.0,fC4GN0sEJi8,The Night Before Mother’s Day,2,6,"2 -
 fJ0rhaiwp50__story01,5424.0,fJ0rhaiwp50,,2,5,"2 - 5 years, from customers",12.675719961303804,319885,2,1,StoryTime at Awnie's House
 fLkygsksF2U__story01,10292.0,fLkygsksF2U,The Four Dragons and China's Four Great Rivers,7,13,7 - 13 years,6.723832440821209,831,11;12,1,Super Great Kids' Stories
 fNyPq3ysK-U__story01,10296.0,fNyPq3ysK-U,The Witch,4,8,4 - 8 years,12.232865490112902,205430,7;8,1,Hungarian Folk Tales
-fOVeX4VcW9E__story01,10297.0,fOVeX4VcW9E,Little Critter: Being Thankful,2,6,"2 - 6 years, from customers",13.10892954620294,493327,2;3;6,1,Grandma's House
-fQi3cfVBJng__story01,10302.0,fQi3cfVBJng,The Gingerbread Man,7,13,7 - 13 years,7.1891677384203225,1324,11;12,1,Super Great Kids' Stories
+fOVeX4VcW9E__story01,10297.0,fOVeX4VcW9E,Little Critter: Being Thankful,2,6,"2 - 6 years, from customers",13.10892954620294,493327,2;3;4;5;6,1,Grandma's House
+fQi3cfVBJng__story01,10302.0,fQi3cfVBJng,The Gingerbread Man,7,13,7 - 13 years,7.1891677384203225,1324,10;11;12,1,Super Great Kids' Stories
 fR0FKbXBBwQ__story01,5435.0,fR0FKbXBBwQ,Wings of Wonder: Bats,8,12,8 - 12 years,6.115892125483034,452,11;12,1,William's Planet & Family Story Book Time
 fRuOdTqxBPU__story01,5437.0,fRuOdTqxBPU,White Socks Only,4,8,4 - 8 years,14.89894727797065,2954816,4;5;6;7;8,1,StorylineOnline
 fSIPYPCi254__story01,5438.0,fSIPYPCi254,Wilma Rudolph’s Journey to Olympic Gold,5,9,"5 - 9 years, from customers",12.027854657568955,167351,8;9,1,Mrs. Clark's Reading Corner
 fXZB8zauCJw__story01,5451.0,fXZB8zauCJw,One Kitten for Kim,7,9,7 - 9 years,12.510903090564474,271278,7;8;9,1,StoryTime at Awnie's House
+fXrsrrLIehk__story01,10320.0,fXrsrrLIehk,I Am Rosa Parks,4,7,"4 - 7 years, from customers",12.101384126254416,180120,7,1,Storytime Now!
 fYeooRFVQJo__story01,5452.0,fYeooRFVQJo,Jima Puddleduck and the Fox Gentleman,3,7,3 - 7 years,12.343096058946818,229370,7,1,Beatrix Potter
 faOBeDR80D0__story01,5456.0,faOBeDR80D0,Miguel and the Legends of Dia de los Muertos,1,4,"1 - 4 years, from customers",13.760306468481936,946291,2;3;4,2,Learn English on a Daily Basis
 faOBeDR80D0__story02,5457.0,faOBeDR80D0,Miguel's Alebrijes Classroom Project,1,4,"1 - 4 years, from customers",13.760306468481936,946291,2;3;4,2,Learn English on a Daily Basis
@@ -1166,11 +1232,12 @@ fh3qhrKvlzw__story01,10350.0,fh3qhrKvlzw,The Owl of the Oak,7,13,7 - 13 years,6.
 fjIiyUjhTdE__story01,10354.0,fjIiyUjhTdE,"Thank You, Sarah: The Woman Who Saved Thanksgiving",5,9,"5 - 9 years, from customers",9.268609280100158,10599,9,1,Mrs. K's Book Worm Adventures
 fkzvq4AndHE__story01,10358.0,fkzvq4AndHE,"El Cangrejo, the Crab King",7,13,7 - 13 years,5.3471075307174685,209,11;12,1,Super Great Kids' Stories
 fnfQ7ElV-u0__story01,10370.0,fnfQ7ElV-u0,Green Eggs and Ham,5,8,5 - 8 years,12.700113184635343,327784,7;8,1,Little Cozy Nook
-fpHtrZVE4Ew__story01,10375.0,fpHtrZVE4Ew,Firefly Summer,9,12,"9 - 12 years, from customers",7.123672785204607,1240,11;12,1,Storytime With K - Kid Story Read Alouds
-fpoPLS5HL6U__story01,5466.0,fpoPLS5HL6U,"Oh, Say Can You Say (Dr. Seuss tongue twisters and rhymes)",3,7,"3 - 7 years, from customers",12.890337999183236,396462,7,1,Dr. Seuss
+fpHtrZVE4Ew__story01,10375.0,fpHtrZVE4Ew,Firefly Summer,9,12,"9 - 12 years, from customers",7.123672785204607,1240,10;11;12,1,Storytime With K - Kid Story Read Alouds
+fpoPLS5HL6U__story01,5466.0,fpoPLS5HL6U,"Oh, Say Can You Say (Dr. Seuss tongue twisters and rhymes)",3,7,"3 - 7 years, from customers",12.890337999183236,396462,6;7,1,Dr. Seuss
+fteQDgu4unk__story01,10387.0,fteQDgu4unk,Truck or Treat,1,3,"1 - 3 years, from customers",12.329364921857026,226242,2,1,Chaz Stories
 fxZAyG12DjI__story01,10397.0,fxZAyG12DjI,The Magical Adventures of Detective Sam,5,11,5 - 11 years,6.1092475827643655,449,11,1,Reading Pioneers Academy
 fz46k6lDPC8__story01,10399.0,fz46k6lDPC8,Llama Llama Red Pajama,1,3,"1 - 3 years, from customers",12.896355728475468,398855,2,1,Miss Pam Reads
-g-JL585E37I__story01,10405.0,g-JL585E37I,"Grow Up, David!",3,7,"3 - 7 years, from customers",12.995007164763315,440209,6;7,1,Miss Pam Reads
+g-JL585E37I__story01,10405.0,g-JL585E37I,"Grow Up, David!",3,7,"3 - 7 years, from customers",12.995007164763315,440209,3;6;7,1,Miss Pam Reads
 g053GhR1Yh0__story01,10407.0,g053GhR1Yh0,I Wish You Happiness,1,6,"Baby - 6 years, from customers",12.606963976515008,298630,2,1,StoryTime at Awnie's House
 g2iveYB9g-k__story01,10416.0,g2iveYB9g-k,Dear Aunt Natalie,5,10,5 - 10 years,10.915506558619144,55022,9;10,1,StoryTime at Awnie's House
 g6EE970KxNU__story01,10426.0,g6EE970KxNU,A White Bear for the King,7,13,7 - 13 years,6.214608098422191,499,11;12,1,Super Great Kids' Stories
@@ -1187,8 +1254,10 @@ gIQhxayNX1o__story01,5499.0,gIQhxayNX1o,Guji Guji,2,4,"2 - 4 years, from custome
 gPkrhIEoOJg__story01,10456.0,gPkrhIEoOJg,The Day the Crayons Quit,3,6,"3 - 6 years, from customers",15.368399705978565,4725101,3;4;5;6,1,StoryTime Out Loud
 gRhydboXqbY__story01,10460.0,gRhydboXqbY,Hidden Figures: The True Story of Four Black Women and the Space Race,6,10,"6 - 10 years, from customers",9.928228944424577,20500,9;10,1,StoryTime Out Loud
 gUdjog3RG7I__story01,10466.0,gUdjog3RG7I,Easter Bunny on Strike,4,10,4 - 10 years,9.98506753952855,21699,9;10,1,Mrs. K's Book Worm Adventures
+gXxQd5GDBHU__story01,10473.0,gXxQd5GDBHU,Llama Llama Mad at Mama,2,4,"2 - 4 years, from customers",12.318628711014764,223826,2,1,PINK THUMB  Learning Channel
 gYgRn-FQ27o__story01,5538.0,gYgRn-FQ27o,Narwhal and Jelly and the Blankie,5,8,"5 - 8 years, from customers",11.504832807572772,99193,8,1,Buddy Son Storytime
-gl0xSs2z-yQ__story01,5566.0,gl0xSs2z-yQ,The Best Time to Read,8,11,"8 - 11 years, from customers",7.2115567333138015,1354,11,1,Mr. Klein's Story Time
+gbCK_kE8AJ8__story01,5543.0,gbCK_kE8AJ8,Amber and the Blue Flame,2,5,"2 - 5 years, from customers",12.354945134469098,232104,2,1,Read along with Ms Duckie 
+gl0xSs2z-yQ__story01,5566.0,gl0xSs2z-yQ,The Best Time to Read,8,11,"8 - 11 years, from customers",7.2115567333138015,1354,10;11,1,Mr. Klein's Story Time
 gxFmfP6YDXY__story01,10514.0,gxFmfP6YDXY,Scaredy Cat Splat,4,8,4 - 8 years,12.989923959786598,437977,6;7;8,1,Grandma's House
 h8ca_wbo57A__story01,10546.0,h8ca_wbo57A,A Little Thanksgiving Spot,4,9,"4 - 9 years, from customers",11.863659798371888,142010,8;9,1,StoryTime at Awnie's House
 hFvXF7Gc9hk__story01,10561.0,hFvXF7Gc9hk,The Pigeon Needs a Bath,2,6,"2 - 6 years, from customers",15.26751142973135,4271652,2;3;4;5;6,1,Mrs. K's Book Worm Adventures
@@ -1201,11 +1270,13 @@ hMg80RmpmJc__story01,10581.0,hMg80RmpmJc,Sleepy Heads,1,3,"1 - 3 years, from cus
 hPXRt9a76dA__story01,10585.0,hPXRt9a76dA,A Dinosaur Story,3,9,3 - 9 years,10.504053326800506,36462,9,1,Mr. Paulson Reads
 hRoGdk6Beos__story01,5602.0,hRoGdk6Beos,The School Bus Driver from the Black Lagoon,7,10,7 - 10 years,8.300031711779575,4023,10,1,StoryTime Out Loud
 hV96PzMU1sg__story01,10599.0,hV96PzMU1sg,"Brown Bear, Brown Bear, What Do You See?",1,3,"1 - 3 years, from customers",12.98859652849072,437396,2,1,Mr. Klein's Story Time
-hY1NnsGtyhA__story01,10604.0,hY1NnsGtyhA,Pete the Cat: Too Cool for School,2,5,"2 - 5 years, from customers",13.01208635104605,447792,2,1,Kids Stories 4 You
+hY1NnsGtyhA__story01,10604.0,hY1NnsGtyhA,Pete the Cat: Too Cool for School,2,5,"2 - 5 years, from customers",13.01208635104605,447792,2;3,1,Kids Stories 4 You
 hZZ2xiWr_DQ__story01,5613.0,hZZ2xiWr_DQ,,2,7,"2 - 7 years, from customers",12.980730686269377,433969,2;6;7,1,StoryTime at Awnie's House
 hbsCs1lDAV8__story01,5621.0,hbsCs1lDAV8,Frozen: A Royal Sleepover,8,12,8 - 12 years,8.52615293278771,5044,10;11;12,1,Chaz Stories
 hcyxHMA1oWs__story01,5622.0,hcyxHMA1oWs,There Was an Old Lady Who Swallowed Fly Guy,5,7,"5 - 7 years, from customers",12.99720596776722,441178,6;7,1,Reading Pioneers Academy
+hhi4J9rmFxM__story01,5633.0,hhi4J9rmFxM,I Want My Hat Back,2,6,"2 - 6 years, from customers",12.307175108535253,221277,2,1,CBeebies
 hkz51Td9k5A__story01,5641.0,hkz51Td9k5A,Firefly Night,2,5,"2 - 5 years, from customers",15.178975295052451,3909715,2;3;4;5,1,Vooks
+hnAcVnKk6fk__story01,5644.0,hnAcVnKk6fk,Benny’s Diwali,4,8,4 - 8 years,11.45009215579866,93909,8,1,Literally Cultured
 hnrEmrPhjWY__story01,10623.0,hnrEmrPhjWY,A Friend Indeed,9,13,9 - 13 years,11.54020010710511,102764,9;10;11;12,1,Kids Stories 4 You
 howtu6_cOrs__story01,10625.0,howtu6_cOrs,The Zimwi,7,13,7 - 13 years,5.796057750765372,328,11;12,1,Super Great Kids' Stories
 hpTKZTcipoI__story01,5647.0,hpTKZTcipoI,The Babysitter's Club: The Truth About Stacy (Book Two),8,12,"8 - 12 years, from customers",11.553097648408986,104098,8;9;10;11;12,1,Apus The Bird of Paradise
@@ -1225,7 +1296,8 @@ iMUO7oxWOVk__story01,10698.0,iMUO7oxWOVk,Nom Nom Shapes,1,3,1 - 3 years,14.28960
 iMUO7oxWOVk__story02,10699.0,iMUO7oxWOVk,Nom Nom Colors,1,3,1 - 3 years,14.289601447968028,1606552,2;3,3,Vooks
 iMUO7oxWOVk__story03,10700.0,iMUO7oxWOVk,Nom Nom Opposites,1,3,1 - 3 years,14.289601447968028,1606552,2;3,3,Vooks
 iOCD9CwUMiE__story01,10705.0,iOCD9CwUMiE,Inside Out: Journey into the Mind,9,12,"9 - 12 years, from customers",11.965102388500348,157172,9;10;11;12,1,Kids Stories 4 You
-iRuMam-EdRI__story01,10732.0,iRuMam-EdRI,Turkeys on Strike,4,10,4 - 10 years,8.669227347271736,5820,10,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
+iRl1dIvOm2o__story01,10731.0,iRl1dIvOm2o,Mater and the Easter Buggy,3,7,3 - 7 years,12.108928284643689,181484,7,1,Kids Stories 4 You
+iRuMam-EdRI__story01,10732.0,iRuMam-EdRI,Turkeys on Strike,4,10,4 - 10 years,8.669227347271736,5820,9;10,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 iU4louZXiSw__story01,10740.0,iU4louZXiSw,The Man in the Red Bandana,4,10,"4 - 10 years, from customers",10.107040454085334,24514,9;10,1,William's Planet & Family Story Book Time
 iW8g3gRzvpo__story01,10747.0,iW8g3gRzvpo,Pete the Cat’s Groovy Guide to Kindness,4,8,4 - 8 years,11.955345901671802,155646,8,1,Miss Pam Reads
 iWqzq6_VcIA__story01,10750.0,iWqzq6_VcIA,The Tale of the Two Dragons,7,13,7 - 13 years,6.152732694704104,469,11;12,1,Super Great Kids' Stories
@@ -1253,7 +1325,7 @@ j7DFrIZhGEs__story06,5762.0,j7DFrIZhGEs,Who Am I? Safari Animals,5,10,5 - 10 yea
 j7DFrIZhGEs__story07,5763.0,j7DFrIZhGEs,Max's Lost Puppy,5,10,5 - 10 years,14.649007334284256,2301351,5;6;7;8;9;10,8,Vooks
 j7DFrIZhGEs__story08,5764.0,j7DFrIZhGEs,Pick the Foods by Color (Greenie),5,10,5 - 10 years,14.649007334284256,2301351,5;6;7;8;9;10,8,Vooks
 jA9bzjd6hPw__story01,5771.0,jA9bzjd6hPw,Tai Singh and the National Park Service Camp Cook,7,13,"7 - 13 years, from customers",8.323851131338817,4120,10;11;12,1,Literally Cultured
-jDLXCfTtb-8__story01,10823.0,jDLXCfTtb-8,Inch Boy,7,13,7 - 13 years,7.085901464365611,1194,11;12,1,Super Great Kids' Stories
+jDLXCfTtb-8__story01,10823.0,jDLXCfTtb-8,Inch Boy,7,13,7 - 13 years,7.085901464365611,1194,10;11;12,1,Super Great Kids' Stories
 jFl6Fx4-cig__story01,5783.0,jFl6Fx4-cig,Underwear Forest Campfire Night,2,5,2 - 5 years,15.281861165127596,4333391,2;3;4;5,4,Vooks
 jFl6Fx4-cig__story02,5784.0,jFl6Fx4-cig,The Boy and the Stick (Imagination Lives in You),2,5,2 - 5 years,15.281861165127596,4333391,2;3;4;5,4,Vooks
 jFl6Fx4-cig__story03,5785.0,jFl6Fx4-cig,Buzzy's Big Bedtime Book (Part 1 & Part 2),2,5,2 - 5 years,15.281861165127596,4333391,2;3;4;5,4,Vooks
@@ -1264,18 +1336,25 @@ jQ3EgpkW8wA__story01,10844.0,jQ3EgpkW8wA,Lily's Purple Plastic Purse,3,7,"3 - 7 
 jQLaDXnNHGw__story01,10845.0,jQLaDXnNHGw,Pumpkins on Strike,4,10,4 - 10 years,8.958154135209242,7770,9;10,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 jRNt8rvFsYw__story01,5809.0,jRNt8rvFsYw,,10,12,"10 - 12 years, from customers",2.995732273553991,19,12,1,Mokena Library Children's Department
 jURwC3HopXw__story01,10870.0,jURwC3HopXw,SpongeBob SquarePants and the Haunted Houseboat,3,7,3 - 7 years,12.42690953855246,249423,7,1,Kids Stories 4 You
+jWxJEMo2tiM__story01,10876.0,jWxJEMo2tiM,Kate Who Tamed the Wind,4,8,4 - 8 years,11.445823661429491,93509,8,1,Brightly Storytime
+jY_VgAbLHUs__story01,5811.0,jY_VgAbLHUs,King Lion,3,7,3 - 7 years,12.120433054484549,183584,7,1,CBeebies
 jYtFJfI9KMA__story01,5812.0,jYtFJfI9KMA,If I Ran for President,4,8,4 - 8 years,14.712310166020004,2451743,4;5;6;7;8,1,StorylineOnline
 j_gjWrRgsL4__story01,10898.0,j_gjWrRgsL4,Pete the Cat and the Cool Caterpillar,2,6,"2 - 6 years, from customers",12.499853582043777,268297,2,1,Kids Stories 4 You
-ja37jgbacOs__story01,10900.0,ja37jgbacOs,F Is for Flag,2,5,"2 - 5 years, from customers",13.02402481667993,453170,2,1,The Joyful Bookshelf
-jhhg4ErJ8u8__story01,10921.0,jhhg4ErJ8u8,The Last Map Maker,8,12,"8 - 12 years, from customers",4.812184355372417,122,12,1,EVPLibrary
-jiZpxqYbTF8__story01,10924.0,jiZpxqYbTF8,Pixie Hollow Games: Team Spirit,6,11,6 - 11 years,8.684739462628038,5911,10;11,1,Storytime With K - Kid Story Read Alouds
+ja37jgbacOs__story01,10900.0,ja37jgbacOs,F Is for Flag,2,5,"2 - 5 years, from customers",13.02402481667993,453170,2;3,1,The Joyful Bookshelf
+jhhg4ErJ8u8__story01,10921.0,jhhg4ErJ8u8,The Last Map Maker,8,12,"8 - 12 years, from customers",4.812184355372417,122,11;12,1,EVPLibrary
+jiZpxqYbTF8__story01,10924.0,jiZpxqYbTF8,Pixie Hollow Games: Team Spirit,6,11,6 - 11 years,8.684739462628038,5911,9;10;11,1,Storytime With K - Kid Story Read Alouds
+jo8TWTK1Txs__story01,10935.0,jo8TWTK1Txs,The Good Dinosaur: The Journey Home,3,6,"3 - 6 years, from customers",12.88319460540193,393640,6,1,Miss Pam Reads
 jp3cemzfRzY__story01,10937.0,jp3cemzfRzY,The Colors Mix,2,5,"2 - 5 years, from customers",15.280152036210028,4325991,2;3;4;5,1,Buddy Son Storytime
 jrdaPy8el9g__story01,10942.0,jrdaPy8el9g,Where's My Mom?,4,9,4 - 9 years,10.817315253638798,49876,9,1,Miss Pam Reads
 js0kiWy6pKw__story01,10943.0,js0kiWy6pKw,"Holi, the Festival of Colors",6,12,6 - 12 years,6.697034247666484,809,11;12,1,Tiny Tales with Tia - Where Stories Come to Life
 jsXZv1Tvi90__story01,10945.0,jsXZv1Tvi90,The Dinosaur Who Discovered Hamburgers,3,5,"3 - 5 years, from customers",15.15139807378976,3803369,3;4;5,1,StoryTime at Awnie's House
 jtcGFWStz5o__story01,10955.0,jtcGFWStz5o,The Little Old Lady Who Was Not Afraid of Anything,2,6,"2 - 6 years, from customers",12.455472464337763,256650,2,1,StoryTime Out Loud
+jvcs20KHezs__story01,10962.0,jvcs20KHezs,I Love You and Cheese Pizza,3,7,"3 - 7 years, from customers",12.120961280555802,183681,7,1,Mrs. K's Book Worm Adventures
 jzDZVFdQmJ4__story01,5836.0,jzDZVFdQmJ4,A Kid's Book About Death (read-aloud),5,9,5 - 9 years,9.17926241640532,9693,9,1,Miss Pam Reads
 jziAYVAOYdY__story01,5838.0,jziAYVAOYdY,The Great Egg Escape,4,7,"4 - 7 years, from customers",13.312444748809725,604673,4;5;6;7,1,StoryTime Out Loud
+k1l_kVYcHEk__story01,10980.0,k1l_kVYcHEk,Oxcart Man,3,9,"3 - 9 years, from customers",8.7558950816463,6347,9,1,The Story Harbor
+k25ZxQYq1Y0__story01,10981.0,k25ZxQYq1Y0,Little Red Riding Hood,2,5,"2 - 5 years, from customers",12.327249914254573,225764,2,1,Bedtime Stories with Dessi!
+k2FAvHkt82g__story01,5847.0,k2FAvHkt82g,All the Teeth,1,3,"1 - 3 years, from customers",12.364144200100668,234249,2,1,Dr. Seuss
 k4y3Q6mNJVY__story01,5850.0,k4y3Q6mNJVY,The Frindle Files (Storytelling excerpt),8,12,8 - 12 years,6.610696044717759,742,11;12,1,EVPLibrary
 k9UtYtbCQrk__story01,10989.0,k9UtYtbCQrk,I Am Perfectly Designed,4,8,4 - 8 years,13.611025597433017,815066,4;5;6;7;8,1,Netflix Jr.
 k9oVkJz85hU__story01,10990.0,k9oVkJz85hU,Esther Morris Gets Women the Vote,7,9,7 - 9 years,10.876083000620753,52895,9,1,MrsMorrisReads
@@ -1285,38 +1364,40 @@ kF-qI-SPjOY__story01,10996.0,kF-qI-SPjOY,Mickey Mouse Clubhouse: Minnie's Valent
 kHaztwAE2Dc__story01,5878.0,kHaztwAE2Dc,At the Stroke of Good Night,1,5,"Baby - 5 years, from customers",12.457018116865948,257047,2,1,Vooks
 kIaKtsWJYLU__story01,11001.0,kIaKtsWJYLU,The Magic Mill,4,8,4 - 8 years,12.443000751815,253469,7;8,1,Hungarian Folk Tales
 kIxSV8d-67o__story01,11002.0,kIxSV8d-67o,The Magical Bird and Witch Hazel,8,12,8 - 12 years,2.6390573296152584,13,12,1,Fairytale Media
-kMKMjj5H5_M__story01,5883.0,kMKMjj5H5_M,,8,12,8 - 12 years,4.852030263919617,127,12,1,Mokena Library Children's Department
+kMKMjj5H5_M__story01,5883.0,kMKMjj5H5_M,,8,12,8 - 12 years,4.852030263919617,127,11;12,1,Mokena Library Children's Department
 kMpJuwsQ4D0__story01,5886.0,kMpJuwsQ4D0,The Magician’s Hat,4,7,"4 - 7 years, from customers",13.58557272772149,794582,4;5;6;7,1,StorylineOnline
 kN6WYisrGc8__story01,5888.0,kN6WYisrGc8,Too Cute to Spook,3,7,"3 - 7 years, from customers",13.249690060569352,567893,3;4;5;6;7,1,StoryTime at Awnie's House
-kW-P3HulT3s__story01,5902.0,kW-P3HulT3s,Boastful Barnabas,7,12,7 - 12 years,8.766394277049736,6414,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+kW-P3HulT3s__story01,5902.0,kW-P3HulT3s,Boastful Barnabas,7,12,7 - 12 years,8.766394277049736,6414,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 kWz0b0biGO0__story01,11045.0,kWz0b0biGO0,I Am Leonardo da Vinci,5,9,5 - 9 years,10.397238225511654,32768,9,1,Riko's Reading Room
 kZagbh5TOdk__story01,5909.0,kZagbh5TOdk,"Grow Up, David",3,7,"3 - 7 years, from customers",14.670501465123811,2351352,3;4;5;6;7,1,5 Minutes With Uncle Ben
 kaCgYJ6jXto__story01,11059.0,kaCgYJ6jXto,The Canoe Race,7,13,7 - 13 years,6.927557906278317,1019,11;12,1,Super Great Kids' Stories
 kaDjAn_WkAQ__story01,11061.0,kaDjAn_WkAQ,What Should I Do When I Feel Worried?,4,9,4 - 9 years,11.744441865944374,126050,8;9,1,StoryTime at Awnie's House
 keMVytu1LRc__story01,11072.0,keMVytu1LRc,Sister Switch,8,12,8 - 12 years,8.016317898503415,3029,10;11;12,1,The Book Keepers
+kh2KRoqsUlI__story01,11076.0,kh2KRoqsUlI,While We Can't Hug,1,5,Baby - 5 years,12.355681598741878,232275,2,1,StoryTime at Awnie's House
 khjP6HEsCck__story01,11080.0,khjP6HEsCck,Ms. Marvel and the Teleporting Dog,6,10,6 - 10 years,10.778914622355282,47997,9;10,1,Marvel HQ
 km2R-_bwAZk__story01,5920.0,km2R-_bwAZk,"Panda Bear, What Do You See?",1,3,"1 - 3 years, from customers",13.995151023843889,1196786,2;3,1,MovingStories
 ko306WcHRns__story01,11097.0,ko306WcHRns,Roaring Rockets,2,4,"2 - 4 years, from customers",12.591236401999844,293970,2,1,StoryTimeFamily
 kvKZkzsyzk8__story01,11121.0,kvKZkzsyzk8,Tiddling the Thirsty Frog,7,13,7 - 13 years,5.659482215759621,286,11;12,1,Super Great Kids' Stories
 kwTKZq9m6IM__story01,11125.0,kwTKZq9m6IM,Too Much Glue,4,6,"4 - 6 years, from customers",14.554848813700495,2094548,4;5;6,1,StoryTime at Awnie's House
 kwkz53DhOxw__story01,11126.0,kwkz53DhOxw,Cinderella,6,10,6 - 10 years,9.214730720277476,10043,9;10,1,Rockin Read Alouds
-kyCqNlpi0rI__story01,5928.0,kyCqNlpi0rI,Arusha and the End of Time (Chapter One),9,12,"9 - 12 years, from customers",7.084226422097916,1192,11;12,1,EVPLibrary
-kyu-vchuLV8__story01,11134.0,kyu-vchuLV8,Pete the Cat: Scuba-Cat,2,5,"2 - 5 years, from customers",13.06224812583684,470827,2;3,1,Kids Stories 4 You
+kyCqNlpi0rI__story01,5928.0,kyCqNlpi0rI,Arusha and the End of Time (Chapter One),9,12,"9 - 12 years, from customers",7.084226422097916,1192,10;11;12,1,EVPLibrary
+kyu-vchuLV8__story01,11134.0,kyu-vchuLV8,Pete the Cat: Scuba-Cat,2,5,"2 - 5 years, from customers",13.06224812583684,470827,2;3;4,1,Kids Stories 4 You
 kzAVoCQDmlM__story01,11135.0,kzAVoCQDmlM,Bad King John and the Village of Goam,7,13,7 - 13 years,7.408530566894626,1649,10;11;12,1,Super Great Kids' Stories
 l3BVRZAwzAc__story01,5929.0,l3BVRZAwzAc,Zombies Don't Eat Veggies,4,8,4 - 8 years,14.737629472936174,2514612,4;5;6;7;8,1,StorylineOnline
 l5nthi3fZBA__story01,11150.0,l5nthi3fZBA,The Mixed-Up Chameleon,2,4,"2 - 4 years, from customers",12.957080632083825,423826,2,1,Miss Pam Reads
-lB3rkG2Lepo__story01,11175.0,lB3rkG2Lepo,Coco Chanel,4,9,"4 - 9 years, from customers",11.372317664958343,86882,9,1,StoryTimeFamily
+lB3rkG2Lepo__story01,11175.0,lB3rkG2Lepo,Coco Chanel,4,9,"4 - 9 years, from customers",11.372317664958343,86882,8;9,1,StoryTimeFamily
 lDoEcK1odqw__story01,11183.0,lDoEcK1odqw,Writing Freedom,8,10,"8 - 10 years, from customers",10.761280150015972,47158,9;10,1,MrsMorrisReads
 lG6NU8OM3rw__story01,11194.0,lG6NU8OM3rw,The Boy and the Rainbow,12,18,12 years and up,5.003946305945459,148,12,1,Katie's Storytime
 lG7un3q2OIk__story01,5944.0,lG7un3q2OIk,Bonnie Bossy-Pants (World's Worst Children 3),7,12,7 - 12 years,8.828201089171515,6823,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 lJTp0dpZ89g__story01,11198.0,lJTp0dpZ89g,The Sleeping Beauty,8,12,8 - 12 years,9.00724451596575,8161,9;10;11;12,1,Read Aloud with Mr. Paul
 lOSmLWHSOLo__story01,5954.0,lOSmLWHSOLo,,8,10,"8 - 10 years, from customers",10.60289012725858,40250,9;10,1,Brightly Storytime
-lSddZVhehKc__story01,5965.0,lSddZVhehKc,,2,7,"2 - 7 years, from customers",12.321858131857114,224550,7,1,StoryTime at Awnie's House
+lSddZVhehKc__story01,5965.0,lSddZVhehKc,,2,7,"2 - 7 years, from customers",12.321858131857114,224550,2;7,1,StoryTime at Awnie's House
 lVErVqN4UIY__story01,5969.0,lVErVqN4UIY,Reed Island (Island Made of Books),8,12,8 - 12 years,9.28126471031288,10734,9;10;11;12,1,StoryTimeFamily
 lVkx3JFxPck__story01,5973.0,lVkx3JFxPck,The Very Hungry Caterpillar Lunch Colors,1,3,Baby - 3 years,12.743562595318007,342340,2,1,MovingStories
 lZYW9i1p-_k__story01,5978.0,lZYW9i1p-_k,I Am Rebel (Rebel tells Chapter One: Home),9,12,9 - 12 years,3.044522437723423,20,12,1,EVPLibrary
 lc7PmDd20_k__story01,5986.0,lc7PmDd20_k,Pirate Ship Plan,8,12,"8 - 12 years, from customers",6.873163834212518,965,11;12,1,AudioAdventures
 lcAFq_yl6kg__story01,5987.0,lcAFq_yl6kg,,5,10,"5 - 10 years, from customers",9.925151192172155,20437,9;10,1,Tu ē Yo Reading Adventures
+lcyvq713ySU__story01,5991.0,lcyvq713ySU,J is for Junth,8,11,8 - 11 years,4.330733340286331,75,11,1,Lauren Martin Books
 leeZifoc8U8__story01,5994.0,leeZifoc8U8,Phineas and Ferb: Haunted Hayride,7,12,7 - 12 years,9.497247143960212,13322,9;10;11;12,1,Grandma's House
 lf-BazCbxuc__story01,11254.0,lf-BazCbxuc,"Pete the Cat: Rock On, Mom and Dad",2,5,"2 - 5 years, from customers",12.468656116739345,260056,2,1,Kids Stories 4 You
 lgGAxPHlRgE__story01,11255.0,lgGAxPHlRgE,Horrid Henry and the Secret Club,8,12,8 - 12 years,6.759255270663693,861,11;12,1,Dave the Story Reader
@@ -1330,7 +1411,7 @@ lt_6LWDpyn0__story01,6015.0,lt_6LWDpyn0,Arthur's Teacher Trouble,6,9,6 - 9 years
 luq8qPKcef0__story01,11277.0,luq8qPKcef0,The Giant Tree,4,8,4 - 8 years,12.643530484674512,309752,7;8,1,Hungarian Folk Tales
 lvWfacLkrrQ__story01,11279.0,lvWfacLkrrQ,The Good Fox,8,12,8 - 12 years,6.059123195581797,427,11;12,1,Reading Pioneers Academy
 m-tDLQ-7VuM__story01,11290.0,m-tDLQ-7VuM,Encyclopedia Brown and the Case of Natty Nat,8,12,8 - 12 years,6.028278520230698,414,11;12,1,Chaz Stories
-m0h3eWtdaUg__story01,11324.0,m0h3eWtdaUg,Leo Learns About Prejudice,6,12,6 - 12 years,11.402340213006235,89530,9;10;11;12,1,PragerU Kids
+m0h3eWtdaUg__story01,11324.0,m0h3eWtdaUg,Leo Learns About Prejudice,6,12,6 - 12 years,11.402340213006235,89530,8;9;10;11;12,1,PragerU Kids
 m2VCkHajA6U__story01,11335.0,m2VCkHajA6U,"Young, Proud, and Sangji",7,13,7 - 13 years,7.709756864454165,2229,10;11;12,1,CSUF Future Titans Read
 m4RHCRyiRXQ__story01,11343.0,m4RHCRyiRXQ,E.T. the Extraterrestrial,2,5,2 - 5 years,12.584002103443815,291851,2,1,StoryTimeFamily
 m5T8LGaY-80__story01,11345.0,m5T8LGaY-80,I Promise,3,7,"3 - 7 years, from customers",12.266537254545243,212465,7,1,Buddy Son Storytime
@@ -1339,12 +1420,12 @@ m9gQe5ZenI4__story01,11358.0,m9gQe5ZenI4,The Jungle Book: Mowgli's Rainy Day,8,1
 mAG1j_Z850E__story01,6029.0,mAG1j_Z850E,No Mirrors in My Nana's House,5,7,5 - 7 years,15.020093576071904,3335367,5;6;7,1,StorylineOnline
 mC632qmmIHo__story01,11364.0,mC632qmmIHo,Miss Joyce Gives the Best High Fives,6,11,"6 - 11 years, from customers",6.246106765481563,515,11,1,Counselor Jones Corner 
 mDc0QK43OlU__story01,11368.0,mDc0QK43OlU,The Whatever Virus,8,12,8 - 12 years,2.6390573296152584,13,12,1,Enraged2Engaged
-mDnizlTyG3E__story01,11370.0,mDnizlTyG3E,A Little Spot of Anxiety,4,8,"4 - 8 years, from customers",12.086703352432416,177495,8,1,StoryTime at Awnie's House
+mDnizlTyG3E__story01,11370.0,mDnizlTyG3E,A Little Spot of Anxiety,4,8,"4 - 8 years, from customers",12.086703352432416,177495,7;8,1,StoryTime at Awnie's House
 mGOBqyoqPH8__story01,11375.0,mGOBqyoqPH8,I Want to Be Big,4,8,4 - 8 years,14.23150998478734,1515884,4;5;6;7;8,1,Vooks
 mIXVfBSfMPo__story01,11379.0,mIXVfBSfMPo,Liva at Last,8,12,8 - 12 years,6.661854740545311,781,11;12,1,EVPLibrary
 mKZJjmf3Wug__story01,11388.0,mKZJjmf3Wug,Dolphin Tale,6,10,"6 - 10 years, from customers",10.59403134722596,39895,9;10,1,Miss Pam Reads
 mNpzQMsFrwM__story01,6033.0,mNpzQMsFrwM,If You Give a Pig a Pancake,2,5,"2 - 5 years, from customers",13.245983565910224,565792,2;3;4;5,1,5 Minutes With Uncle Ben
-mPH0QTHELVw__story01,11401.0,mPH0QTHELVw,The Foolish Tortoise,2,6,"2 - 6 years, from customers",13.190156596262396,535071,2;3;4;6,1,Buddy Son Storytime
+mPH0QTHELVw__story01,11401.0,mPH0QTHELVw,The Foolish Tortoise,2,6,"2 - 6 years, from customers",13.190156596262396,535071,2;3;4;5;6,1,Buddy Son Storytime
 mPp6Erg77fs__story01,11403.0,mPp6Erg77fs,The Widow's Broom,4,9,"4 - 9 years, from customers",9.749695141856147,17148,9,1,Mr. Klein's Story Time
 mQY0OSEvxAk__story01,11408.0,mQY0OSEvxAk,Greeny Grows a Garden,4,10,4 - 10 years,10.88809092459237,53534,9;10,2,Vooks
 mQY0OSEvxAk__story02,11409.0,mQY0OSEvxAk,Ten Little Fish,4,10,4 - 10 years,10.88809092459237,53534,9;10,2,Vooks
@@ -1358,10 +1439,12 @@ mcOQFKJMyyQ__story01,6051.0,mcOQFKJMyyQ,,1,3,"1 - 3 years, from customers",13.33
 mcV2oQLgWw8__story01,6052.0,mcV2oQLgWw8,,1,2,"1 - 2 years, from customers",14.172183101900126,1428567,2,1,Brightly Storytime
 mfTE2SJssAI__story01,6060.0,mfTE2SJssAI,Harold the Rabbit Grows Up,4,10,"4 - 10 years, from customers",9.346181594887597,11454,9;10,1,Mr. Paulson Reads
 mfnBW7P51eE__story01,11443.0,mfnBW7P51eE,Zoom the Supersonic Tortoise,7,12,7 - 12 years,8.137980454452139,3421,10;11;12,1,ALL NEW DOB ENTERTAINMENT
-mfqB6cHmhEE__story01,11444.0,mfqB6cHmhEE,Anthula and the Kallikantzaroi,7,13,7 - 13 years,7.24422751560335,1399,11;12,1,Super Great Kids' Stories
+mfqB6cHmhEE__story01,11444.0,mfqB6cHmhEE,Anthula and the Kallikantzaroi,7,13,7 - 13 years,7.24422751560335,1399,10;11;12,1,Super Great Kids' Stories
 mhO7XgpkvUQ__story01,6066.0,mhO7XgpkvUQ,,4,9,"4 - 9 years, from customers",11.935975055835396,152660,8;9,1,StoryTime at Awnie's House
 mhWcYyNwZQ0__story01,6067.0,mhWcYyNwZQ0,Bambi’s Life in the Forest,1,4,"1 - 4 years, from customers",12.647940397196727,311121,2,1,EGTV Storybooks
+miNCBjBcrTw__story01,11448.0,miNCBjBcrTw,Goldilocks and the Three Pandas,2,6,"2 - 6 years, from customers",12.318280166853372,223748,2,1,Storytime Now!
 miVdhUScYII__story01,6071.0,miVdhUScYII,Pete the Cat: Making New Friends (Secret Agent Meow),4,8,4 - 8 years,11.619220543787833,111214,8,1,Miss Pam Reads
+mipAzGI8tco__story01,6073.0,mipAzGI8tco,Butter Battle: War of the Sides,2,8,"2 - 8 years, from customers",11.390407487146906,88468,8,1,Mr. Paulson Reads
 mlzH8v90AzI__story01,6080.0,mlzH8v90AzI,The Story of Te Fiti’s Heart (Moana),8,12,8 - 12 years,11.703578881883718,121003,8;9;10;11;12,1,Chaz Stories
 mqLB9pbJprU__story01,6090.0,mqLB9pbJprU,I Don’t Want to Be a Frog,2,5,"2 - 5 years, from customers",13.467690578564492,706225,2;3;4;5,1,Grandma's House
 mqSKzIaLGGY__story01,11457.0,mqSKzIaLGGY,The Ram in the Chili Patch,7,13,7 - 13 years,6.555356891810665,702,11;12,1,Super Great Kids' Stories
@@ -1374,9 +1457,11 @@ mzy69gP_CDg__story01,6106.0,mzy69gP_CDg,"Lines, Squiggles, Letters, Words",8,12,
 n-dHeNfXtgc__story01,11473.0,n-dHeNfXtgc,Don't Let the Pigeon Drive the Bus!,2,5,"2 - 5 years, from customers",14.648773531330407,2300813,2;3;4;5,1,Reading Pioneers Academy
 n0Ekab5oo7Q__story01,6109.0,n0Ekab5oo7Q,Naughty Ninja Takes a Bath,3,7,"3 - 7 years, from customers",12.329714042981294,226321,7,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 n0V_5nFcxfI__story01,6110.0,n0V_5nFcxfI,Nate the Great and the Earth Day Robot,6,9,6 - 9 years,10.609427554894824,40514,9,1,Miss Pam Reads
-n1XnFWctnNI__story01,11477.0,n1XnFWctnNI,Shantae Keys and the New Year's Peas,4,8,4 - 8 years,12.125702801019884,184554,8,1,Storytime Now!
+n1XnFWctnNI__story01,11477.0,n1XnFWctnNI,Shantae Keys and the New Year's Peas,4,8,4 - 8 years,12.125702801019884,184554,7;8,1,Storytime Now!
+n4g-NThArz4__story01,11485.0,n4g-NThArz4,Just Hold On to Me,4,10,4 - 10 years,7.393263094763838,1624,10,1,StoryCorps
 n59qc_Yf89U__story01,11487.0,n59qc_Yf89U,Pete the Cat's Groovy Imagination,3,7,"3 - 7 years, from customers",12.362071616215047,233764,7,1,Miss Pam Reads
-n9hFMDtkVjU__story01,6118.0,n9hFMDtkVjU,,10,12,"10 - 12 years, from customers",4.6443908991413725,103,12,1,Mokena Library Children's Department
+n807nLI4Msw__story01,11498.0,n807nLI4Msw,A Very Funny Dad,5,8,"5 - 8 years, from customers",11.4448607340561,93419,8,1,Buddy Son Storytime
+n9hFMDtkVjU__story01,6118.0,n9hFMDtkVjU,,10,12,"10 - 12 years, from customers",4.6443908991413725,103,11;12,1,Mokena Library Children's Department
 nbVjW9mvWz0__story01,6138.0,nbVjW9mvWz0,Don't Turn the Page,4,7,4 - 7 years,14.647453997385805,2297779,4;5;6;7,1,Storytime Hullabaloo Hi
 nmrmag2A8eg__story01,6152.0,nmrmag2A8eg,Stanley’s Christmas Adventure,6,10,6 - 10 years,10.24643875525505,28181,9;10,1,Readers are Leaders
 nrC_HipMBQ0__story01,6163.0,nrC_HipMBQ0,Hilarious Homonyms (Sound-Alike Sentences),4,10,"4 - 10 years, from customers",7.955074273262696,2849,10,1,Mr. Paulson Reads
@@ -1401,6 +1486,7 @@ oxoJQBaA1Uo__story01,6274.0,oxoJQBaA1Uo,Specs for Rex,4,8,4 - 8 years,11.8477606
 oy9OlB88Wso__story01,11515.0,oy9OlB88Wso,Inside Out: Welcome to Headquarters,9,12,"9 - 12 years, from customers",10.580302078475176,39351,9;10;11;12,1,Storytime With K - Kid Story Read Alouds
 oypUXU3RrNs__story01,11517.0,oypUXU3RrNs,One Fish Two Fish Red Fish Blue Fish,1,5,"1 - 5 years, from customers",12.508988098622543,270759,2,1,Miss Pam Reads
 ozLHvjqaqE0__story01,6278.0,ozLHvjqaqE0,Playtime With Rules,1,3,"1 - 3 years, from customers",12.684484575727696,322701,2,1,5 Minutes With Uncle Ben
+p-MMfMYP_yc__story01,11520.0,p-MMfMYP_yc,"The Yuckiest, Stinkiest, Best Valentine Ever",3,8,"3 - 8 years, from customers",11.465802410401045,95396,8,1,Storytime Now!
 p6vERe2vmMM__story01,6295.0,p6vERe2vmMM,The Scarecrow and the Crows,3,7,"3 - 7 years, from customers",12.439736662169704,252643,7,1,Buddy Son Storytime
 p74N9uIlctk__story01,11531.0,p74N9uIlctk,The Hummingbird and the Forest Fire,7,13,7 - 13 years,6.568077911411976,711,11;12,1,Super Great Kids' Stories
 p7XUg3t-Q_E__story01,11532.0,p7XUg3t-Q_E,Anancy and the Five Potatoes,7,13,7 - 13 years,6.812345094177479,908,11;12,1,Super Great Kids' Stories
@@ -1428,19 +1514,22 @@ psCzO1TlJlU__story01,6352.0,psCzO1TlJlU,,3,6,"3 - 6 years, from customers",14.68
 ptqXRP057Mg__story01,11676.0,ptqXRP057Mg,Donald Leaves His Nephews with Scrooge McDuck,8,12,8 - 12 years,9.53625709465788,13852,9;10;11;12,1,MyBooks
 ptq_tIzC53E__story01,11677.0,ptq_tIzC53E,"You and Me, We're Opposites",4,8,4 - 8 years,13.676346187007743,870084,4;5;6;7;8,1,Vooks
 pyKPvDBi2yA__story01,6356.0,pyKPvDBi2yA,Please Don’t Turn the Page Again,4,7,4 - 7 years,12.284380002198915,216290,7,1,Storytime Hullabaloo Hi
-pykboCUtJ3E__story01,6357.0,pykboCUtJ3E,,7,9,"7 - 9 years, from customers",11.370393690148406,86715,9,1,Apus The Bird of Paradise
-q1cR-SjGshw__story01,11695.0,q1cR-SjGshw,Robo Pete,2,5,"2 - 5 years, from customers",13.103247834011936,490532,2;3,1,Kids Stories 4 You
+pykboCUtJ3E__story01,6357.0,pykboCUtJ3E,,7,9,"7 - 9 years, from customers",11.370393690148406,86715,8;9,1,Apus The Bird of Paradise
+q1cR-SjGshw__story01,11695.0,q1cR-SjGshw,Robo Pete,2,5,"2 - 5 years, from customers",13.103247834011936,490532,2;3;4;5,1,Kids Stories 4 You
 q2jJQjfd0Vw__story01,11702.0,q2jJQjfd0Vw,Electric,2,8,2 - 8 years,11.66462457071542,116380,8,1,StoryTime at Awnie's House
+q2voQz6IEPE__story01,6359.0,q2voQz6IEPE,I Am Not Going to Get Up Today,3,7,"3 - 7 years, from customers",12.10001744418967,179874,7,1,Dr. Seuss
 q8aobgA-3HA__story01,11718.0,q8aobgA-3HA,Falling Out of Time,8,12,8 - 12 years,5.53338948872752,252,11;12,1,EVPLibrary
 q9gIesVjHVQ__story01,11722.0,q9gIesVjHVQ,Santa Needs a New Butt,6,10,6 - 10 years,9.613736674915236,14968,9;10,1,Gigi's Magic Mailbox
 qA_OaL1Wq84__story01,6365.0,qA_OaL1Wq84,Tick-Tock Turkey and the Disappearing Sandwich,8,12,8 - 12 years,2.995732273553991,19,12,1,Fairytale Media
 qAvcBswf_xY__story01,11726.0,qAvcBswf_xY,Green Eggs and Ham,2,5,"2 - 5 years, from customers",13.57379562106463,785279,2;3;4;5,1,Miss Pam Reads
-qCiq677sPok__story01,11729.0,qCiq677sPok,The Buer,7,13,7 - 13 years,7.13966033596492,1260,11;12,1,Super Great Kids' Stories
-qE0FTns5yX0__story01,6372.0,qE0FTns5yX0,If I Had a Sleepy Sloth,4,8,4 - 8 years,12.11497109699988,182584,8,1,CBeebies
+qCiq677sPok__story01,11729.0,qCiq677sPok,The Buer,7,13,7 - 13 years,7.13966033596492,1260,10;11;12,1,Super Great Kids' Stories
+qE0FTns5yX0__story01,6372.0,qE0FTns5yX0,If I Had a Sleepy Sloth,4,8,4 - 8 years,12.11497109699988,182584,7;8,1,CBeebies
 qG5o7LhnNSg__story01,6376.0,qG5o7LhnNSg,Bug Sandwich,1,4,1 - 4 years,12.737206651029949,340171,2,1,Storytime With Faye
 qIDk7ewh_rk__story01,11746.0,qIDk7ewh_rk,The Cat in the Hat,2,6,"2 - 6 years, from customers",13.305429656823538,600446,2;3;4;5;6,1,Miss Pam Reads
 qITsQKHAZy8__story01,6381.0,qITsQKHAZy8,The House That Jane Built,6,9,6 - 9 years,14.89206808518486,2934559,6;7;8;9,1,StorylineOnline
-qLfM1ZJsDJA__story01,11750.0,qLfM1ZJsDJA,The Pelican Bird,4,8,4 - 8 years,12.081812428149489,176629,8,1,Hungarian Folk Tales
+qLY6rJyDrQU__story01,6385.0,qLY6rJyDrQU,Amelia’s Big Strong Apple Tree and the Bridge of Seeds,4,9,4 - 9 years,8.70930004894499,6058,9,1,Bedtime Stories with Dessi!
+qLfM1ZJsDJA__story01,11750.0,qLfM1ZJsDJA,The Pelican Bird,4,8,4 - 8 years,12.081812428149489,176629,7;8,1,Hungarian Folk Tales
+qM6wfJ7csI4__story01,11751.0,qM6wfJ7csI4,Curious George,2,6,"2 - 6 years, from customers",12.354768474674469,232063,2,1,Little Cozy Nook
 qRwBH0ASJks__story01,6410.0,qRwBH0ASJks,Winter Dance,12,17,12 - 17 years,8.557759153162898,5206,12,1,StoryTime Out Loud
 qS6jHzvg6qg__story01,6411.0,qS6jHzvg6qg,Energy: where it comes from,2,7,2 - 7 years,14.58410374368382,2156729,2;3;4;5;6;7,7,Vooks
 qS6jHzvg6qg__story02,6412.0,qS6jHzvg6qg,Little Red and Hazel (forest seasonal friends),2,7,2 - 7 years,14.58410374368382,2156729,2;3;4;5;6;7,7,Vooks
@@ -1450,12 +1539,13 @@ qS6jHzvg6qg__story05,6415.0,qS6jHzvg6qg,Fossils and dinosaur bones (imagining ex
 qS6jHzvg6qg__story06,6416.0,qS6jHzvg6qg,Family animals groups (what groups are called),2,7,2 - 7 years,14.58410374368382,2156729,2;3;4;5;6;7,7,Vooks
 qS6jHzvg6qg__story07,6417.0,qS6jHzvg6qg,Question-and-answer animals (who am I?),2,7,2 - 7 years,14.58410374368382,2156729,2;3;4;5;6;7,7,Vooks
 qT9ywNsqYNk__story01,6419.0,qT9ywNsqYNk,The Very Hungry Caterpillar,1,3,Baby - 3 years,12.840146344383609,377054,2,1,MovingStories
+qTmnAwHtfgg__story01,11764.0,qTmnAwHtfgg,Cars 3: Back on Track,3,7,3 - 7 years,12.086466699381589,177453,7,1,Storytime With K - Kid Story Read Alouds
 qUmy_51Mv4I__story01,6422.0,qUmy_51Mv4I,"Godzilla, Mechagodzilla, and Mothra",9,12,9 - 12 years,10.07263943528144,23685,9;10;11;12,1,Cosmic Toys
 qVFfpSWvLic__story01,11767.0,qVFfpSWvLic,Surf's Up,5,10,5 - 10 years,8.891649112650057,7270,9;10,1,The Book Keepers
 qVIQQHEeMq8__story01,6426.0,qVIQQHEeMq8,Top-Secret Trip to Hula Island,9,12,9 - 12 years,6.535241271013659,688,11;12,1,AudioAdventures
 q_zaVJTuML0__story01,6441.0,q_zaVJTuML0,David Goes to School,1,3,Baby - 3 years,13.767139306038857,952779,2;3,2,5 Minutes With Uncle Ben
 q_zaVJTuML0__story02,6442.0,q_zaVJTuML0,David Gets in Trouble,1,3,Baby - 3 years,13.767139306038857,952779,2;3,2,5 Minutes With Uncle Ben
-qch8dml-p4w__story01,6444.0,qch8dml-p4w,Going Down Home with Daddy,4,8,4 - 8 years,13.186801893541569,533279,4;6;7;8,1,StorylineOnline
+qch8dml-p4w__story01,6444.0,qch8dml-p4w,Going Down Home with Daddy,4,8,4 - 8 years,13.186801893541569,533279,4;5;6;7;8,1,StorylineOnline
 qjcNhGC_OXw__story01,11795.0,qjcNhGC_OXw,That Monster on the Block,3,7,"3 - 7 years, from customers",12.27468877939375,214204,7,1,StoryTime Out Loud
 qpPgyRWJrBA__story01,11811.0,qpPgyRWJrBA,Sticks,4,6,"4 - 6 years, from customers",14.62491650195661,2246572,4;5;6,1,StoryTime at Awnie's House
 qt2M1EmXWvE__story01,11822.0,qt2M1EmXWvE,Puss in Boots,9,11,9 - 11 years,7.485491608030754,1781,10;11,1,Super Great Kids' Stories
@@ -1474,8 +1564,9 @@ r9wV9MeK5n4__story01,11889.0,r9wV9MeK5n4,There Was a Cold Lady Who Swallowed Som
 rBAyKweZ2MI__story01,6472.0,rBAyKweZ2MI,Calvin Can’t Fly,3,7,"3 - 7 years, from customers",13.222887215170628,552874,3;4;5;6;7,1,StorylineOnline
 rCZ4RaCkgN4__story01,11899.0,rCZ4RaCkgN4,Boo Stew,5,10,"5 - 10 years, from customers",14.139962988129804,1383272,5;6;7;8;9;10,1,StoryTime at Awnie's House
 rG3c8LIcNCU__story01,11910.0,rG3c8LIcNCU,The Biggest Snowman Ever,2,6,"2 - 6 years, from customers",13.43089899533252,680714,2;3;4;5;6,1,Storytime Now!
+rIsF28oyTxs__story01,11922.0,rIsF28oyTxs,Have Yourself a Cheesy Little Christmas,4,8,"4 - 8 years, from customers",11.474486046526732,96228,8,1,StoryTime Out Loud
 rMCJ7it5QD4__story01,11929.0,rMCJ7it5QD4,Pop,4,7,"4 - 7 years, from customers",13.633039790038891,833208,4;5;6;7,1,StoryTime at Awnie's House
-rMP65AOEnFY__story01,11930.0,rMP65AOEnFY,Pete the Cat: Play Ball,3,6,"3 - 6 years, from customers",13.10641690557464,492089,3;6,1,Kids Stories 4 You
+rMP65AOEnFY__story01,11930.0,rMP65AOEnFY,Pete the Cat: Play Ball,3,6,"3 - 6 years, from customers",13.10641690557464,492089,3;4;5;6,1,Kids Stories 4 You
 rNZypPJ4Ss8__story01,11935.0,rNZypPJ4Ss8,The Blue Dolly,9,12,9 - 12 years,5.733341276897746,308,11;12,1,AudioAdventures
 rPAltHc9z5s__story01,6482.0,rPAltHc9z5s,The Fantastic Four and the Cosmic Rays,12,18,"12+ years, from customers",7.237778191923443,1390,12,1,Read along with Ms Duckie 
 rVilLVu0UMY__story01,6491.0,rVilLVu0UMY,Cora’s World Wonder House,4,7,"4 - 7 years, from customers",14.631043941110567,2260380,4;5;6;7,1,Little Cozy Nook
@@ -1488,7 +1579,7 @@ rjqeA_e7GME__story01,6517.0,rjqeA_e7GME,Miss SPI and the Trike of Terror,7,12,7 
 rpnbbypO4wQ__story01,6523.0,rpnbbypO4wQ,Frederick Douglass: Words Set Me Free,5,9,5 - 9 years,8.911934336161426,7419,9,1,Lauren Martin Books
 rsgEv5l_gzY__story01,11979.0,rsgEv5l_gzY,Turkey Trouble,3,6,"3 - 6 years, from customers",13.363186519653306,636147,3;4;5;6,1,StoryTime Out Loud
 rwSGBzeg0pM__story01,11986.0,rwSGBzeg0pM,The Story of the Leprechaun,3,4,"3 - 4 years, from customers",13.331372303904624,616227,3;4,1,Storytime Now!
-rwhmwzqjQHQ__story01,6536.0,rwhmwzqjQHQ,Pete the Cat and His Four Groovy Buttons,2,5,"2 - 5 years, from customers",13.03258307958005,457065,2,1,5 Minutes With Uncle Ben
+rwhmwzqjQHQ__story01,6536.0,rwhmwzqjQHQ,Pete the Cat and His Four Groovy Buttons,2,5,"2 - 5 years, from customers",13.03258307958005,457065,2;3,1,5 Minutes With Uncle Ben
 rxoKRUlc4Tw__story01,11988.0,rxoKRUlc4Tw,Mr. Goat's Valentine,5,7,5 - 7 years,12.20508716009888,199802,7,1,Storytime Now!
 s0Ju-AaUdrU__story01,6545.0,s0Ju-AaUdrU,My Little Pony: Pony Pirate Party,8,12,8 - 12 years,8.500657222776137,4917,10;11;12,1,Storytime With K - Kid Story Read Alouds
 s0WJ4OL_ZJ8__story01,11991.0,s0WJ4OL_ZJ8,Maddi's Fridge,5,9,"5 - 9 years, from customers",9.14569517848265,9373,9,1,Read Aloud with Mr. Paul
@@ -1499,6 +1590,7 @@ s1q40XKplBo__story03,6555.0,s1q40XKplBo,"Speech Writing, Debates, and Posters to
 s1q40XKplBo__story04,6556.0,s1q40XKplBo,Ballot Count and Doughnut Victory,7,10,7 - 10 years,8.590815331286851,5381,10,4,Funny Gateway
 s2iyD0HxMn8__story01,6560.0,s2iyD0HxMn8,Spider-Man Overview (Golden Book),12,18,"12+ years, from customers",8.336150816120663,4171,12,1,Storytime With K - Kid Story Read Alouds
 s6AOrm86yUo__story01,11999.0,s6AOrm86yUo,Pete the Cat and His Magic Sunglasses,2,6,"2 - 6 years, from customers",13.406877436998371,664557,2;3;4;5;6,1,Miss Pam Reads
+s7qoNZF3pq4__story01,12002.0,s7qoNZF3pq4,The Goat Soldiers,4,8,4 - 8 years,11.393037715957789,88701,8,1,Hungarian Folk Tales
 s7rheOMZvsc__story01,6576.0,s7rheOMZvsc,,1,4,"1 - 4 years, from customers",13.383445281537618,649166,2;3;4,1,Brightly Storytime
 sAi0rURYqy8__story01,12007.0,sAi0rURYqy8,The Stranger and Hunk McNeil,8,12,8 - 12 years,7.690743163541872,2187,10;11;12,1,AudioAdventures
 sBq_kUfb0Pw__story01,6580.0,sBq_kUfb0Pw,Frank (Honesty is the Best Policy),5,7,5 - 7 years,13.703767494893642,894273,5;6;7,1,StoryTime at Awnie's House
@@ -1513,6 +1605,7 @@ sRAx_KU_Tgc__story01,6598.0,sRAx_KU_Tgc,The Babysitter's Club: Christie's Big Da
 sRgUoOZ4YD0__story01,12061.0,sRgUoOZ4YD0,The Very Stuffed Turkey,3,5,3 - 5 years,13.22910433980696,556322,3;4;5,1,Grandma's House
 sTwggQjRKCE__story01,6602.0,sTwggQjRKCE,George's Marvellous Medicine,6,10,"6 - 10 years, from customers",12.967095740679568,428092,6;7;8;9;10,1,Storyvision Studios UK
 sU9J3_Z6ZbE__story01,6603.0,sU9J3_Z6ZbE,Pizza Corner Mitzvah (Melissa and Jane),5,10,5 - 10 years,8.455743229100015,4701,10,1,TheGivingProjectforChildren
+sVMTCFH5pj8__story01,12068.0,sVMTCFH5pj8,Horrid Henry: Perfect Peter's Horrid Day,7,10,7 - 10 years,7.114769448366463,1229,10,1,Dave the Story Reader
 sVfpBXSf5Rs__story01,12069.0,sVfpBXSf5Rs,The Grouchy Ladybug,4,8,4 - 8 years,12.756812011480111,346906,7;8,1,Miss Pam Reads
 sYycriayU0k__story01,12079.0,sYycriayU0k,Luke Learns the Force,7,10,7 - 10 years,8.047509510981422,3125,10,1,Kids Story Time with Jack & Jill
 scXOlYfc7oo__story01,12088.0,scXOlYfc7oo,Tad,1,3,"1 - 3 years, from customers",12.74898106804298,344200,2,1,Vooks
@@ -1522,6 +1615,7 @@ sevUkevdXSQ__story01,12100.0,sevUkevdXSQ,Hide and Geek,8,12,8 - 12 years,6.24222
 sfq0JpXfMh0__story01,12102.0,sfq0JpXfMh0,The Cool Bean,5,7,"5 - 7 years, from customers",12.703195818034946,328796,7,1,StoryTime Out Loud
 sgvNjZUgSVo__story01,12105.0,sgvNjZUgSVo,Dick Whittington,9,12,9 - 12 years,7.780303087908373,2392,10;11;12,1,Lewis Kirk
 shfF1wZOGo4__story01,12108.0,shfF1wZOGo4,Super Fly Guy,5,7,"5 - 7 years, from customers",12.44517221974846,254020,7,1,Reading Pioneers Academy
+skAnk9AhI_o__story01,12112.0,skAnk9AhI_o,Fly Guy and the Frankenfly,5,7,"5 - 7 years, from customers",12.082270908775394,176710,7,1,Reading Pioneers Academy
 slJkSLeHXUU__story01,6613.0,slJkSLeHXUU,Memoirs of a Hamster (Night-by-Night),4,7,"4 - 7 years, from customers",13.929455125005752,1120689,4;5;6;7,1,StorylineOnline
 snAqsqTFCCo__story01,12133.0,snAqsqTFCCo,Coco: Miguel's Music,6,9,6 - 9 years,11.650145047851764,114707,8;9,1,Storytime With K - Kid Story Read Alouds
 sqs5DoAB3Qo__story01,12143.0,sqs5DoAB3Qo,The Hereafter Hilton,8,10,8 - 10 years,7.635786861395585,2070,10,1,Short Stories
@@ -1536,13 +1630,13 @@ taZIYvYOqcU__story01,12196.0,taZIYvYOqcU,If You Think There's Nothing to Do,1,6,
 tcgn59pCz64__story01,12206.0,tcgn59pCz64,Boo Afraid of the Dark,4,8,4 - 8 years,12.44172957691257,253147,7;8,3,Vooks
 tcgn59pCz64__story02,12207.0,tcgn59pCz64,Little Sock and Sock City,4,8,4 - 8 years,12.44172957691257,253147,7;8,3,Vooks
 tcgn59pCz64__story03,12208.0,tcgn59pCz64,Louise and Tabitha,4,8,4 - 8 years,12.44172957691257,253147,7;8,3,Vooks
-teS96lciw1w__story01,12211.0,teS96lciw1w,There's a Wocket in My Pocket,1,5,"1 - 5 years, from customers",13.101533943122242,489692,2;3,1,Little Cozy Nook
+teS96lciw1w__story01,12211.0,teS96lciw1w,There's a Wocket in My Pocket,1,5,"1 - 5 years, from customers",13.101533943122242,489692,2;3;4;5,1,Little Cozy Nook
 tge8wyDt_1U__story01,12220.0,tge8wyDt_1U,"Twinkle, Twinkle, Little Star",2,5,"2 - 5 years, from customers",13.454633942209435,697064,2;3;4;5,1,Kids Stories 4 You
 tkuJKT5lRxA__story01,12235.0,tkuJKT5lRxA,Ralph Breaks the Internet,7,10,7 - 10 years,8.295798110636145,4006,10,1,Kids Story Time with Jack & Jill
 tuwA9wmwrbA__story01,12264.0,tuwA9wmwrbA,Spider-Man and Spider-Woman,12,18,12 years and up,7.650168700845001,2100,12,1,AudioAdventures
 tvqIPwP3Oxk__story01,12268.0,tvqIPwP3Oxk,The Mighty Silent E,5,8,5 - 8 years,13.61113233142808,815153,5;6;7;8,1,Vooks
 txSsFiVA0tY__story01,12272.0,txSsFiVA0tY,Who Pooped on Me?,3,5,"3 - 5 years, from customers",14.670918584721363,2352333,3;4;5,1,StoryTime at Awnie's House
-tzXraNjtX9o__story01,6664.0,tzXraNjtX9o,,1,6,"1 - 6 years, from customers",13.183001175604543,531256,2;3;4;6,1,Little Cozy Nook
+tzXraNjtX9o__story01,6664.0,tzXraNjtX9o,,1,6,"1 - 6 years, from customers",13.183001175604543,531256,2;3;4;5;6,1,Little Cozy Nook
 u1DLPxsa4d4__story01,12284.0,u1DLPxsa4d4,Mouse's First Spring,4,8,4 - 8 years,11.942647318334672,153682,8,1,The Joyful Bookshelf
 u268JqF6iLQ__story01,12287.0,u268JqF6iLQ,The Tortoise and the Hidden Spring,6,12,6 - 12 years,8.505120610181969,4939,10;11;12,1,Story Light
 u4DAnNNkd6w__story01,6666.0,u4DAnNNkd6w,Ratatouille: Remy Becomes a Chef,8,10,8 - 10 years,11.281371646296048,79329,9;10,1,EGTV Storybooks
@@ -1571,17 +1665,17 @@ vd_EwARxe6Q__story01,6726.0,vd_EwARxe6Q,Lightning McQueen’s Spy Adventure (Car
 vnR5HDfR3JI__story01,12497.0,vnR5HDfR3JI,I Am Peace,2,7,"2 - 7 years, from customers",12.617827928940528,301892,2;7,1,Storytime Now!
 voCCKkf_63g__story01,6729.0,voCCKkf_63g,Babysitters Club Book Four: Claudia & the Genius,8,12,"8 - 12 years, from customers",10.804278785363332,49230,9;10;11;12,1,Apus The Bird of Paradise
 vujbTOuzg2Q__story01,12500.0,vujbTOuzg2Q,Sulwe,3,8,"3 - 8 years, from customers",14.332805609779506,1677483,3;4;5;6;7;8,1,Netflix Jr.
-w2DaVc5KJus__story01,12511.0,w2DaVc5KJus,The Very Last Leaf,5,9,"5 - 9 years, from customers",13.113720131942742,495696,6;7;8;9,1,Mrs. K's Book Worm Adventures
+w2DaVc5KJus__story01,12511.0,w2DaVc5KJus,The Very Last Leaf,5,9,"5 - 9 years, from customers",13.113720131942742,495696,5;6;7;8;9,1,Mrs. K's Book Worm Adventures
 w2Z26EjRsqk__story01,6739.0,w2Z26EjRsqk,The Lotus Seed’s Journey,6,9,6 - 9 years,9.927741044336832,20490,9,1,Reading Rainbow (Official)
 w2qVPIDc09I__story01,12514.0,w2qVPIDc09I,Longhorn Canyon,8,12,8 - 12 years,7.62608275807238,2050,10;11;12,1,AudioAdventures
-wAP9QmiRYQc__story01,6742.0,wAP9QmiRYQc,The Gruffalo’s Child,2,6,"2 - 6 years, from customers",13.057406635491306,468553,2;3;6,1,Miss Sofie's Story Time - Kids Books Read Aloud
+wAP9QmiRYQc__story01,6742.0,wAP9QmiRYQc,The Gruffalo’s Child,2,6,"2 - 6 years, from customers",13.057406635491306,468553,2;3;4;6,1,Miss Sofie's Story Time - Kids Books Read Aloud
 wAXA3QFI7Wc__story01,6743.0,wAXA3QFI7Wc,Mickey's Missing Picnic,12,15,12 - 15 years,8.879750798513125,7184,12,1,Chaz Stories
 wDPTY95rJRQ__story01,12538.0,wDPTY95rJRQ,Squirrels in Antarctica,4,8,"4 - 8 years, from customers",12.396680608367769,241996,7;8,1,StoryTime at Awnie's House
 wIyThim8OSg__story01,12556.0,wIyThim8OSg,Funny Honey Christmas,5,10,"5 - 10 years, from customers",9.52039529527969,13634,9;10,1,Chaz Stories
-wKeBqea9bxo__story01,6748.0,wKeBqea9bxo,Honey the Hogger,7,12,7 - 12 years,8.65434302956347,5734,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+wKeBqea9bxo__story01,6748.0,wKeBqea9bxo,Honey the Hogger,7,12,7 - 12 years,8.65434302956347,5734,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 wNfC_VmvZOY__story01,12568.0,wNfC_VmvZOY,A Teacher in the Wild,6,8,"6 - 8 years, from customers",12.714055231692017,332386,7;8,1,StoryTime at Awnie's House
-wap8eGKiiV8__story01,12607.0,wap8eGKiiV8,The Mountain Witch and the Three Lucky Charms,7,13,7 - 13 years,7.257707677160043,1418,11;12,1,Super Great Kids' Stories
-wbsjZR_A6Zo__story01,12610.0,wbsjZR_A6Zo,Rumble at the Rust Bucket,6,12,"6 - 12 years, from customers",8.693831965074693,5965,10;11;12,1,Chaz Stories
+wap8eGKiiV8__story01,12607.0,wap8eGKiiV8,The Mountain Witch and the Three Lucky Charms,7,13,7 - 13 years,7.257707677160043,1418,10;11;12,1,Super Great Kids' Stories
+wbsjZR_A6Zo__story01,12610.0,wbsjZR_A6Zo,Rumble at the Rust Bucket,6,12,"6 - 12 years, from customers",8.693831965074693,5965,9;10;11;12,1,Chaz Stories
 wdQIc5UfY3Q__story01,12613.0,wdQIc5UfY3Q,The Big Halloween Scare,5,10,5 - 10 years,8.149890544402423,3462,10,1,The Book Keepers
 weKSBPNks60__story01,12616.0,weKSBPNks60,"The School for Good and Evil: Chapter One, The Princess and the Witch",9,12,"9 - 12 years, from customers",4.007333185232471,54,12,1,EVPLibrary
 x2drQkCYfNE__story01,6772.0,x2drQkCYfNE,,6,11,"6 - 11 years, from customers",8.941545475242885,7642,9;10;11,1,Read Aloud with Mr. Paul
@@ -1593,13 +1687,13 @@ xMueZ-0JOvI__story01,12658.0,xMueZ-0JOvI,Rescue Kitty,8,12,8 - 12 years,5.880532
 xQ6V4VPq-I4__story01,12680.0,xQ6V4VPq-I4,The Big Toe,7,11,"7 - 11 years, from customers",10.093859947519794,24193,9;10;11,1,Grandma's House
 xXmBKWG3owM__story01,6789.0,xXmBKWG3owM,Aladdin and the Magic Lamp,2,5,"2 - 5 years, from customers",12.382925107384846,238690,2,1,EGTV Storybooks
 xcXo0Pc7GPo__story01,12709.0,xcXo0Pc7GPo,Arnie the Donut,7,10,7 - 10 years,13.87306789222489,1059245,7;8;9;10,1,StoryTime at Awnie's House
-xcZBuPZ76wM__story01,12710.0,xcZBuPZ76wM,Pete the Cat: Five Little Ducks,4,8,4 - 8 years,13.19171964951994,535908,4;6;7;8,1,Kids Stories 4 You
+xcZBuPZ76wM__story01,12710.0,xcZBuPZ76wM,Pete the Cat: Five Little Ducks,4,8,4 - 8 years,13.19171964951994,535908,4;5;6;7;8,1,Kids Stories 4 You
 xcelaphZOGg__story01,6792.0,xcelaphZOGg,,2,4,"2 - 4 years, from customers",13.435081418127318,683567,2;3;4,1,Little Cozy Nook
 xe3fnfAA43c__story01,6794.0,xe3fnfAA43c,Dusty Races the Wings Around the Globe Rally,2,5,"2 - 5 years, from customers",12.761126615607097,348406,2,1,EGTV Storybooks
 xec0MvTNegc__story01,12712.0,xec0MvTNegc,I Was So Mad,2,4,"2 - 4 years, from customers",15.190866562794575,3956484,2;3;4,1,Oceanhouse Media
 xfHASFLvh7U__story01,6796.0,xfHASFLvh7U,Joe Gardner's Jazz Dreams and the Lost Soul 22,6,8,6 - 8 years,11.60809017964956,109983,8,1,Young Readers
 xoiS5ZFtqVg__story01,6803.0,xoiS5ZFtqVg,Quackenstein Hatches a Family,3,5,3 - 5 years,15.618606360796148,6068404,3;4;5,1,StorylineOnline
-xqhGZe2sPII__story01,12746.0,xqhGZe2sPII,SpongeBob Slapshot,5,10,5 - 10 years,12.147107895364268,188547,8;9;10,1,Kids Stories 4 You
+xqhGZe2sPII__story01,12746.0,xqhGZe2sPII,SpongeBob Slapshot,5,10,5 - 10 years,12.147107895364268,188547,7;8;9;10,1,Kids Stories 4 You
 xtii1VK4Az0__story01,12758.0,xtii1VK4Az0,Cinder Smelly,8,12,8 - 12 years,6.373319789577012,585,11;12,3,Rockin Read Alouds
 xtii1VK4Az0__story02,12759.0,xtii1VK4Az0,Little Red Riding Hound,8,12,8 - 12 years,6.373319789577012,585,11;12,3,Rockin Read Alouds
 xtii1VK4Az0__story03,12760.0,xtii1VK4Az0,Jack Russell and the Beanstalk,8,12,8 - 12 years,6.373319789577012,585,11;12,3,Rockin Read Alouds
@@ -1609,13 +1703,14 @@ xwiPrkI_lxQ__story02,12767.0,xwiPrkI_lxQ,Halloween Counting to Ten,6,12,6 - 12 y
 xwiPrkI_lxQ__story03,12768.0,xwiPrkI_lxQ,Halloween Trick-or-Treating Count,6,12,6 - 12 years,7.830425617820331,2515,10;11;12,4,William's Planet & Family Story Book Time
 xwiPrkI_lxQ__story04,12769.0,xwiPrkI_lxQ,Counting Halloween Bats to Ten,6,12,6 - 12 years,7.830425617820331,2515,10;11;12,4,William's Planet & Family Story Book Time
 y0fz_OPt8gg__story01,12784.0,y0fz_OPt8gg,St. George and the Dragon,5,11,5 - 11 years,5.3612921657094255,212,11,1,Dave the Story Reader
-y3Pk_vZs2Aw__story01,6816.0,y3Pk_vZs2Aw,Kung Fu Kylie,7,12,7 - 12 years,8.683385366280309,5903,10;11;12,1,ALL NEW DOB ENTERTAINMENT
+y3Pk_vZs2Aw__story01,6816.0,y3Pk_vZs2Aw,Kung Fu Kylie,7,12,7 - 12 years,8.683385366280309,5903,9;10;11;12,1,ALL NEW DOB ENTERTAINMENT
 yP3S1fHc3IQ__story01,6829.0,yP3S1fHc3IQ,One Fish Two Fish (Dr. Seuss),1,5,"1 - 5 years, from customers",15.07285160248802,3516059,2;3;4;5,1,Dr. Seuss
-yQF2BvwJ7zY__story01,6830.0,yQF2BvwJ7zY,David Is Naughty on Christmas (N/A to Santa),3,6,"3 - 6 years, from customers",13.102758450564126,490292,3;6,1,5 Minutes With Uncle Ben
+yQF2BvwJ7zY__story01,6830.0,yQF2BvwJ7zY,David Is Naughty on Christmas (N/A to Santa),3,6,"3 - 6 years, from customers",13.102758450564126,490292,3;4;5;6,1,5 Minutes With Uncle Ben
 yU8OJWAZmZo__story01,6831.0,yU8OJWAZmZo,Snappsy the Alligator’s Party,3,7,"3 - 7 years, from customers",15.201253266952104,3997793,3;4;5;6;7,1,StorylineOnline
 yc4WZIEZCe8__story01,12818.0,yc4WZIEZCe8,Snow Fluff: The Polar Cub Expedition,5,10,5 - 10 years,9.169205828617628,9596,9;10,1,MissEmsBookworm Read Aloud
-ycxq0NYnv6g__story01,12822.0,ycxq0NYnv6g,Pete at the Beach,3,6,"3 - 6 years, from customers",13.159541621521708,518938,3;4;6,1,Kids Stories 4 You
+ycxq0NYnv6g__story01,12822.0,ycxq0NYnv6g,Pete at the Beach,3,6,"3 - 6 years, from customers",13.159541621521708,518938,3;4;5;6,1,Kids Stories 4 You
 yh2T9rFBuBg__story01,12833.0,yh2T9rFBuBg,The Sword in the Stone,7,12,7 - 12 years,6.883462586413092,975,11;12,1,The Book Keepers
+yj5Kcd6pb3Q__story01,12842.0,yj5Kcd6pb3Q,A Jillion Ways to Say Goodbye to Your Pet,4,10,4 - 10 years,7.166265974133638,1294,10,1,Reading Pioneers Academy
 ymnovd-vg44__story01,12853.0,ymnovd-vg44,Dinosaurs Before Dark: Dinosaur Valley,5,8,"5 - 8 years, from customers",11.66524303711032,116452,8,1,Brightly Storytime
 yoVa05nvDrc__story01,12859.0,yoVa05nvDrc,The Enormous Turnip,7,13,7 - 13 years,6.175867270105761,480,11;12,1,Super Great Kids' Stories
 yqhEfuI2woE__story01,12863.0,yqhEfuI2woE,Colors Blocked,2,6,"2 - 6 years, from customers",14.194274337362003,1460477,2;3;4;5;6,1,Vooks
@@ -1626,7 +1721,7 @@ yuBWnn94muA__story04,12877.0,yuBWnn94muA,The Animals’ Vacation,3,7,"3 - 7 year
 yuBWnn94muA__story05,12878.0,yuBWnn94muA,My Little Golden Book About Sharks,3,7,"3 - 7 years, from customers",12.47541252373409,261819,7,7,Brightly Storytime
 yuBWnn94muA__story06,12879.0,yuBWnn94muA,Baby Penguins Everywhere,3,7,"3 - 7 years, from customers",12.47541252373409,261819,7,7,Brightly Storytime
 yuBWnn94muA__story07,12880.0,yuBWnn94muA,How Do Lions Say I Love You?,3,7,"3 - 7 years, from customers",12.47541252373409,261819,7,7,Brightly Storytime
-yykVNwyrz1k__story01,12895.0,yykVNwyrz1k,One,3,6,3 - 6 years,13.177010640943871,528083,3;4;6,1,Vooks
+yykVNwyrz1k__story01,12895.0,yykVNwyrz1k,One,3,6,3 - 6 years,13.177010640943871,528083,3;4;5;6,1,Vooks
 yzDXoPzVWtc__story01,12898.0,yzDXoPzVWtc,Pete the Cat and the Bad Banana,3,6,"3 - 6 years, from customers",13.35126312995886,628607,3;4;5;6,1,Kids Stories 4 You
 z2lPsxyO9XM__story01,6846.0,z2lPsxyO9XM,Cheers on Strike (Chair Strike),4,10,4 - 10 years,12.02118179091554,166238,8;9;10,1,Triple A Readers 📚 Kids Read-Aloud Books 📚
 zCkOocQGtDU__story01,12959.0,zCkOocQGtDU,A Tale of Two Beasts,2,7,"2 - 7 years, from customers",12.200507187057292,198889,7,1,StoryTimeFamily
@@ -1635,7 +1730,8 @@ z_sctyoRKpg__story01,12970.0,z_sctyoRKpg,Alex's Super Trike,5,10,5 - 10 years,8.
 zeFEZXVL08s__story01,6874.0,zeFEZXVL08s,The World Is Not a Rectangle (Zaha Hadid),5,10,5 - 10 years,9.77218225175814,17538,9;10,1,Literally Cultured
 zkpm8mglxwc__story01,13016.0,zkpm8mglxwc,Ferdinand and the Vanilla Ice Cream,4,10,4 - 10 years,9.040619097157968,8438,9;10,1,MissEmsBookworm Read Aloud
 zmTeKf-Yf4E__story01,13018.0,zmTeKf-Yf4E,One Fish Two Fish Red Fish Blue Fish,1,5,"1 - 5 years, from customers",13.64490015709833,843149,2;3;4;5,1,Dr. Seuss
-zmd8wc5mtQE__story01,13019.0,zmd8wc5mtQE,Down on the Farm,8,12,8 - 12 years,8.779865100863852,6501,10;11;12,1,The Book Keepers
+zmd8wc5mtQE__story01,13019.0,zmd8wc5mtQE,Down on the Farm,8,12,8 - 12 years,8.779865100863852,6501,9;10;11;12,1,The Book Keepers
+zpUmp4qqwbg__story01,13028.0,zpUmp4qqwbg,Diary of a Fly,4,8,"4 - 8 years, from customers",11.418394981123996,90979,8,1,Mr. Paulson Reads
 zrfFfAemAs4__story01,6881.0,zrfFfAemAs4,The Lion King: Simba’s Rise,2,4,"2 - 4 years, from customers",12.683008441689688,322225,2,1,EGTV Storybooks
 zuHSI0n-4y4__story01,6883.0,zuHSI0n-4y4,Gritty Ninja,4,10,4 - 10 years,8.939449862164238,7626,9;10,1,Book League Storytime Adventures
 zwNtIt_KTFo__story01,13044.0,zwNtIt_KTFo,Green Eggs and Ham,5,8,5 - 8 years,11.60674362317278,109835,8,1,Read Aloud with Mr. Paul
