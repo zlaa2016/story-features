@@ -45,6 +45,26 @@ class SubsetTests(unittest.TestCase):
         self.assertTrue(summary["restricted_to_available_vectors"])
 
 
+class RandomDesignTests(unittest.TestCase):
+    def test_random_draw_is_per_age_seeded_restricted_and_keeps_small_ages_whole(self) -> None:
+        baseline = make_baseline(np.random.default_rng(12), 120)
+        source = set(baseline["video_id"].iloc[:80])
+        first = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=1)
+        again = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=1)
+        other = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=2)
+        self.assertTrue(first[0].equals(again[0]))
+        self.assertFalse(first[0].equals(other[0]))
+        membership, subset, summary = first
+        self.assertEqual(summary["design"], "random")
+        self.assertTrue(set(subset["video_id"]) <= source)
+        for age, found in summary["by_age"].items():
+            self.assertEqual(found["selected"], min(12, found["candidates"]))
+            covering = baseline[baseline["video_id"].isin(source) & (baseline["range_lower"] <= age) & (baseline["range_upper"] >= age)]
+            self.assertTrue(set(membership.loc[membership["age"] == age, "story_key"]) <= set(covering["story_key"]))
+        available = set(baseline["story_key"].iloc[:30])
+        self.assertTrue(set(subsets.select_random(baseline, [3, 4], 50, available=available)[0]["story_key"]) <= available)
+
+
 class FlatDesignTests(unittest.TestCase):
     def test_flat_design_has_equal_coverage_at_every_age_and_is_maximal(self) -> None:
         baseline = make_baseline(np.random.default_rng(6), 150)
@@ -167,6 +187,47 @@ class FlatPipelineTests(unittest.TestCase):
             self.assertTrue(set(pd.read_csv(out / "selection/membership.csv")["story_key"]) <= set(baseline["story_key"].iloc[:90]))
             self.assertTrue((out / "fig_spectrum_by_age.png").exists())
             self.assertTrue((out / "within_isolated/age_curve_test.json").exists())
+
+
+class RandomPipelineTests(unittest.TestCase):
+    def test_random_batch_runs_pooled_within_and_whole_vs_detail_overlap(self) -> None:
+        rng = np.random.default_rng(13)
+        baseline = make_baseline(rng, 120)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            global_dir, detail_dir = write_shards(root, rng, baseline.iloc[:90])
+            baseline.to_csv(root / "base.csv", index=False)
+            membership, subset, summary = subsets.select_random(baseline, [3, 4, 5, 6], 20, baseline_name="base.csv")
+            subsets.write_batch(root / "batch", membership, subset, summary)
+            out = root / "out"
+            run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--global-dir", str(global_dir), "--detail-dir", str(detail_dir),
+                      "--reselect-available", "--standardize", "--steps", "pooled,within,compare", "--splits", "2", "--permutations", "2", "--reduce-dim", "16",
+                      "--trend-permutations", "10", "--compare-draws", "3", "--output-dir", str(out)])
+            chosen = json.loads((out / "selection/summary.json").read_text())
+            self.assertEqual(chosen["design"], "random")
+            self.assertTrue(set(pd.read_csv(out / "selection/membership.csv")["story_key"]) <= set(baseline["story_key"].iloc[:90]))
+            table = pd.read_csv(out / "compare_isolated/overlap_whole_vs_detail.csv")
+            self.assertEqual(set(table["detail_pcs"]), {"raw", "story_centred"})
+            self.assertTrue(((table["overlap"] >= 0) & (table["overlap"] <= 1 + 1e-9)).all())
+            self.assertTrue((out / "compare_isolated/fig_whole_vs_detail_overlap.png").exists())
+            self.assertTrue((out / "pooled/fig_age_by_variance.png").exists())
+
+    def test_compare_alone_runs_and_whole_story_pcs_match_the_stories_own_details(self) -> None:
+        rng = np.random.default_rng(14)
+        baseline = make_baseline(rng, 100)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            global_dir, detail_dir = write_shards(root, rng, baseline)
+            baseline.to_csv(root / "base.csv", index=False)
+            membership, subset, summary = subsets.select_random(baseline, [3, 4, 5], 40, baseline_name="base.csv")
+            subsets.write_batch(root / "batch", membership, subset, summary)
+            out = root / "out"
+            run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--global-dir", str(global_dir), "--detail-dir", str(detail_dir),
+                      "--steps", "compare", "--compare-draws", "4", "--output-dir", str(out)])
+            self.assertFalse((out / "fig_spectrum_by_age.png").exists())
+            table = pd.read_csv(out / "compare_isolated/overlap_whole_vs_detail.csv")
+            raw = table[table["detail_pcs"] == "raw"]
+            self.assertTrue((raw["overlap"] > raw["chance"]).mean() > 0.8)  # the whole-story mean sits in the span of the details
 
 
 class MultiFolderTests(unittest.TestCase):

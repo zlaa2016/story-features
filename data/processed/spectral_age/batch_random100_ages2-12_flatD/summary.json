@@ -1,0 +1,83 @@
+{
+  "unit": "story",
+  "design": "random",
+  "baseline": "baseline_stories_span_lt8.csv",
+  "source_videos": "source_flat_D_2-12_videos.csv",
+  "seed": 42,
+  "target_per_age": 100,
+  "ages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "equal_cells": false,
+  "cell_size": 100,
+  "by_age": {
+    "2": {
+      "candidates": 867,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "3": {
+      "candidates": 814,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "4": {
+      "candidates": 581,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "5": {
+      "candidates": 610,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "6": {
+      "candidates": 659,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "7": {
+      "candidates": 482,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "8": {
+      "candidates": 600,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "9": {
+      "candidates": 564,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "10": {
+      "candidates": 526,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "11": {
+      "candidates": 433,
+      "selected": 100,
+      "short_of_target": 0
+    },
+    "12": {
+      "candidates": 404,
+      "selected": 100,
+      "short_of_target": 0
+    }
+  },
+  "distinct_stories": 841,
+  "distinct_videos": 791,
+  "restricted_to_available_vectors": false
+}

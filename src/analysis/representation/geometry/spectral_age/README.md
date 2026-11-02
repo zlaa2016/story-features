@@ -97,3 +97,13 @@ with `fig_age_curve_test.png` showing the association at each level. On a finish
 ```bash
 PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests --profiles results/analysis/representation/geometry/spectral_age/gpt_oss_20b/batch_flat_ages2-8_span_lt8_isolated/within_isolated/story_profiles.csv
 ```
+
+## Random subset and whole-story vs detail PC overlap
+
+`batch_random100_ages2-12_flatD` draws up to 100 random stories per age (2-12) from the videos of the flat 2-12 set
+(`source_flat_D_2-12_videos.csv`, range under 8) that have vectors; an age with fewer keeps all of them and the real counts are in
+`<output>/selection/summary.json`.  Run with `STEPS=pooled,within,compare` for panels A and B (and C) plus step D:
+
+* `compare_<view>/fig_whole_vs_detail_overlap.png` and `overlap_whole_vs_detail.csv`: the PCs of the whole-story vectors against the PCs
+  of the same stories' segmented detail vectors (raw pooled, and story-centred), as subspace overlap at each share of variance, with the
+  details of other stories as the null and `chance` = width / dimension.
