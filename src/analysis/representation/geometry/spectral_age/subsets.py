@@ -12,8 +12,8 @@ size, so all ages are compared at the same sample size.  The batch folder holds 
 * ``membership.csv``      one row per (age, story) with the popularity rank inside that age
 * ``summary.json``        candidates, selected size and shortfall per age
 
-``random`` draws up to ``per_age`` stories at random (not by popularity) for every age from the stories that have vectors,
-optionally restricted to the videos of a saved source list (e.g. the flat 2-12 video set); an age with fewer stories keeps all of them.
+``random`` draws up to ``per_age`` stories at random (not by popularity) for every age from the stories that have vectors;
+an age with fewer stories keeps all of them.
 
 ``flat`` builds the other kind of design: the largest set of stories whose coverage is *exactly equal* at every age (a story
 counts at every age its range covers), solved as an integer program.  ``select`` takes the top-N stories per age instead.
@@ -74,12 +74,10 @@ def select_flat(baseline: pd.DataFrame, ages: list[int], per_age: int, available
     return membership, subset, summary
 
 
-def select_random(baseline: pd.DataFrame, ages: list[int], per_age: int, available: set[str] | None = None, source_videos: set[str] | None = None,
-                  seed: int = 42, baseline_name: str = "", source_name: str = "") -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+def select_random(baseline: pd.DataFrame, ages: list[int], per_age: int, available: set[str] | None = None,
+                  seed: int = 42, baseline_name: str = "") -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     """Up to ``per_age`` randomly drawn stories per age (a wide-range story can be drawn for several ages); ages with fewer keep every story."""
     pool = baseline
-    if source_videos is not None:
-        pool = pool[pool["video_id"].astype(str).isin(source_videos)]
     if available is not None:
         pool = pool[pool["story_key"].astype(str).isin(available)]
     pool = pool.sort_values("story_key", kind="stable").reset_index(drop=True)
@@ -94,9 +92,9 @@ def select_random(baseline: pd.DataFrame, ages: list[int], per_age: int, availab
     chosen = membership.groupby("story_key")["age"].agg(lambda s: ";".join(str(int(a)) for a in sorted(s))).rename("ages").reset_index()
     subset = chosen.merge(baseline.drop_duplicates("story_key"), on="story_key", how="left")
     sizes = [v["selected"] for v in summary_ages.values()]
-    summary = {"unit": "story", "design": "random", "baseline": baseline_name, "source_videos": source_name, "seed": seed, "target_per_age": per_age,
+    summary = {"unit": "story", "design": "random", "baseline": baseline_name, "seed": seed, "target_per_age": per_age,
                "ages": [int(a) for a in ages], "equal_cells": False, "cell_size": int(min(sizes)) if sizes else 0, "by_age": summary_ages,
-               "distinct_stories": int(len(subset)), "distinct_videos": int(subset["video_id"].nunique()), "restricted_to_available_vectors": available is not None}
+               "distinct_stories": int(len(subset)), "restricted_to_available_vectors": available is not None}
     return membership, subset, summary
 
 
@@ -172,12 +170,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     pick.add_argument("--keep-unequal", action="store_true", help="do not cut every age to the smallest age")
     pick.add_argument("--available", type=Path, default=None, help="text/csv of story_keys that have vectors (column story_key or one key per line)")
     pick.add_argument("--output-dir", type=Path, required=True)
-    rand = sub.add_parser("random", help="random per-age batch (not by popularity), optionally from a saved video list")
+    rand = sub.add_parser("random", help="random per-age batch of stories (not by popularity)")
     rand.add_argument("--baseline", type=Path, required=True)
     rand.add_argument("--age-min", type=int, default=2)
     rand.add_argument("--age-max", type=int, default=12)
     rand.add_argument("--per-age", type=int, required=True)
-    rand.add_argument("--source-videos", type=Path, default=None, help="csv with video_id: draw only from the stories of these videos")
     rand.add_argument("--seed", type=int, default=42)
     rand.add_argument("--available", type=Path, default=None)
     rand.add_argument("--output-dir", type=Path, required=True)
@@ -210,8 +207,7 @@ def main(argv: list[str] | None = None) -> None:
     ages = list(range(args.age_min, args.age_max + 1))
     available = read_available(args.available) if args.available else None
     if args.command == "random":
-        source = set(pd.read_csv(args.source_videos, dtype=str)["video_id"]) if args.source_videos else None
-        membership, subset, summary = select_random(baseline, ages, args.per_age, available, source, args.seed, args.baseline.name, args.source_videos.name if args.source_videos else "")
+        membership, subset, summary = select_random(baseline, ages, args.per_age, available, args.seed, args.baseline.name)
         write_batch(args.output_dir, membership, subset, summary)
         print(json.dumps({k: v for k, v in summary.items() if k != "by_age"}))
         print({age: item["selected"] for age, item in summary["by_age"].items()})

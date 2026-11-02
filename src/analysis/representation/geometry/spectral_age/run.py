@@ -213,9 +213,7 @@ def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: lis
     if batch.get("design") == "flat":
         membership, subset, summary = subsets.solve_flat(baseline, ages, available, None, None, baseline_path(args).name)
     elif batch.get("design") == "random":
-        source_name = batch.get("source_videos") or ""
-        source = set(pd.read_csv(SPECTRAL_DATA / source_name, dtype=str)["video_id"]) if source_name else None
-        membership, subset, summary = subsets.select_random(baseline, ages, args.per_age, available, source, int(batch.get("seed", args.seed)), baseline_path(args).name, source_name)
+        membership, subset, summary = subsets.select_random(baseline, ages, args.per_age, available, int(batch.get("seed", args.seed)), baseline_path(args).name)
     else:
         membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells, baseline_name=baseline_path(args).name)
     summary["stories_with_vectors"] = len(available)

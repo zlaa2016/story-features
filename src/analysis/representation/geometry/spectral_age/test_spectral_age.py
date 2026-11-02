@@ -48,18 +48,16 @@ class SubsetTests(unittest.TestCase):
 class RandomDesignTests(unittest.TestCase):
     def test_random_draw_is_per_age_seeded_restricted_and_keeps_small_ages_whole(self) -> None:
         baseline = make_baseline(np.random.default_rng(12), 120)
-        source = set(baseline["video_id"].iloc[:80])
-        first = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=1)
-        again = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=1)
-        other = subsets.select_random(baseline, [3, 4, 5, 6], 12, source_videos=source, seed=2)
+        first = subsets.select_random(baseline, [3, 4, 5, 6], 12, seed=1)
+        again = subsets.select_random(baseline, [3, 4, 5, 6], 12, seed=1)
+        other = subsets.select_random(baseline, [3, 4, 5, 6], 12, seed=2)
         self.assertTrue(first[0].equals(again[0]))
         self.assertFalse(first[0].equals(other[0]))
         membership, subset, summary = first
         self.assertEqual(summary["design"], "random")
-        self.assertTrue(set(subset["video_id"]) <= source)
         for age, found in summary["by_age"].items():
             self.assertEqual(found["selected"], min(12, found["candidates"]))
-            covering = baseline[baseline["video_id"].isin(source) & (baseline["range_lower"] <= age) & (baseline["range_upper"] >= age)]
+            covering = baseline[(baseline["range_lower"] <= age) & (baseline["range_upper"] >= age)]
             self.assertTrue(set(membership.loc[membership["age"] == age, "story_key"]) <= set(covering["story_key"]))
         available = set(baseline["story_key"].iloc[:30])
         self.assertTrue(set(subsets.select_random(baseline, [3, 4], 50, available=available)[0]["story_key"]) <= available)
