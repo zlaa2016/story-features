@@ -8,10 +8,9 @@ records instead of the whole cohort.  Videos of a batch that the cohort does not
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from pathlib import Path
-
-import pandas as pd
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -23,7 +22,8 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     wanted = set()
     for batch in args.batch_dirs:
-        wanted |= set(pd.read_csv(batch / "subset_videos.csv", dtype={"video_id": str})["video_id"])
+        with open(batch / "subset_videos.csv", newline="", encoding="utf-8") as handle:
+            wanted |= {row["video_id"] for row in csv.DictReader(handle)}
     types = {t.strip() for t in args.record_types.split(",")}
     found: set[str] = set()
     kept = 0
@@ -37,7 +37,10 @@ def main(argv: list[str] | None = None) -> None:
                 found.add(video)
                 kept += 1
     missing = sorted(wanted - found)
-    pd.DataFrame({"video_id": missing}).to_csv(args.output.with_suffix(".missing_videos.csv"), index=False)
+    with open(args.output.with_suffix(".missing_videos.csv"), "w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["video_id"])
+        writer.writerows([[video] for video in missing])
     print(json.dumps({"batch_videos": len(wanted), "videos_in_cohort": len(found), "missing_from_cohort": len(missing), "records_written": kept, "output": str(args.output)}))
 
 

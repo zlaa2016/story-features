@@ -9,8 +9,8 @@ export COHORT="$ROOT/spectral_age_cohort.jsonl"
 PERSHARD="${RECORDS_PER_SHARD:-100}"
 export RECORDS_PER_SHARD="$PERSHARD"
 
-source hpc/slurm_env.sh
-run_in_container 'PYTHONPATH=src "$PYTHON_BIN" -m analysis.representation.geometry.spectral_age.filter_cohort --output "$COHORT"'
+# stdlib-only script: runs directly on the login node (no container, no SLURM_SUBMIT_DIR needed)
+PYTHONPATH=src python3 -m analysis.representation.geometry.spectral_age.filter_cohort --output "$COHORT"
 RECORDS=$(wc -l < "$COHORT")
 SHARDS=$(( (RECORDS + PERSHARD - 1) / PERSHARD ))
 echo "$RECORDS records -> $SHARDS shards of $PERSHARD"
