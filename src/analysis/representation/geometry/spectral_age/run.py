@@ -191,7 +191,7 @@ def baseline_path(args: argparse.Namespace) -> Path:
     """The story baseline the batch was built from (named in its summary.json) unless ``--baseline-csv`` is given."""
     if args.baseline_csv:
         return args.baseline_csv
-    name = json.loads((args.batch_dir / "summary.json").read_text()).get("baseline") or "baseline_stories_span_lt7.csv"
+    name = json.loads((args.batch_dir / "summary.json").read_text()).get("baseline") or "baseline_stories_span_lt8.csv"
     return SPECTRAL_DATA / name
 
 
@@ -207,7 +207,7 @@ def prepare_selection(args: argparse.Namespace, dirs: dict[str, Path], ages: lis
     if json.loads((args.batch_dir / "summary.json").read_text()).get("design") == "flat":
         membership, subset, summary = subsets.solve_flat(baseline, ages, available, None, None, baseline_path(args).name)
     else:
-        membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells)
+        membership, subset, summary = subsets.select_flat(baseline, ages, args.per_age, available, equal=args.equal_cells, baseline_name=baseline_path(args).name)
     summary["stories_with_vectors"] = len(available)
     subsets.write_batch(out, membership, subset, summary)
     return out
@@ -475,7 +475,7 @@ def main(argv: list[str] | None = None) -> None:
     selection = prepare_selection(args, dirs, [int(a) for a in ages])
     chosen = json.loads((selection / "summary.json").read_text())
     ages = np.array(chosen["ages"], dtype=int)
-    print(f"selection: {chosen['cell_size']} stories per age, {chosen['distinct_stories']} distinct stories ({chosen['distinct_videos']} videos); by age {[v['selected'] for v in chosen['by_age'].values()]}", flush=True)
+    print(f"selection: {chosen['cell_size']} stories per age, {chosen['distinct_stories']} distinct stories; by age {[v['selected'] for v in chosen['by_age'].values()]}", flush=True)
     label = f"{args.model_key}, layer {args.layer}"
     results = {}
     if "pooled" in steps:

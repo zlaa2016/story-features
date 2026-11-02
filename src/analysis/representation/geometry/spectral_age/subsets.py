@@ -52,8 +52,8 @@ def build_baseline(master_jsonl: Path, ranges_csv: Path, max_span: int = DEFAULT
     return frame.sort_values("story_key").reset_index(drop=True)
 
 
-def select_flat(baseline: pd.DataFrame, ages: list[int], per_age: int, available: set[str] | None = None, equal: bool = True
-                ) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+def select_flat(baseline: pd.DataFrame, ages: list[int], per_age: int, available: set[str] | None = None, equal: bool = True,
+                baseline_name: str = "") -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     pool = baseline if available is None else baseline[baseline["story_key"].astype(str).isin(available)]
     pool = pool.sort_values(["log_views", "story_key"], ascending=[False, True], kind="stable")
     candidates = {age: pool[(pool["range_lower"] <= age) & (pool["range_upper"] >= age)] for age in ages}
@@ -66,7 +66,7 @@ def select_flat(baseline: pd.DataFrame, ages: list[int], per_age: int, available
     membership = pd.concat(parts, ignore_index=True)
     chosen = membership.groupby("story_key")["age"].agg(lambda s: ";".join(str(int(a)) for a in sorted(s))).rename("ages").reset_index()
     subset = chosen.merge(baseline.drop_duplicates("story_key"), on="story_key", how="left")
-    summary = {"unit": "story", "target_per_age": per_age, "ages": [int(a) for a in ages], "equal_cells": equal, "cell_size": int(size), "by_age": summary_ages,
+    summary = {"unit": "story", "design": "top_per_age", "baseline": baseline_name, "target_per_age": per_age, "ages": [int(a) for a in ages], "equal_cells": equal, "cell_size": int(size), "by_age": summary_ages,
                "distinct_stories": int(len(subset)), "distinct_videos": int(subset["video_id"].nunique()), "restricted_to_available_vectors": available is not None}
     return membership, subset, summary
 
@@ -171,7 +171,7 @@ def main(argv: list[str] | None = None) -> None:
         write_batch(args.output_dir, membership, subset, summary)
         print(json.dumps({k: v for k, v in summary.items() if k != "by_age"}))
         return
-    membership, subset, summary = select_flat(baseline, ages, args.per_age, available, equal=not args.keep_unequal)
+    membership, subset, summary = select_flat(baseline, ages, args.per_age, available, equal=not args.keep_unequal, baseline_name=args.baseline.name)
     write_batch(args.output_dir, membership, subset, summary)
     print(json.dumps({k: v for k, v in summary.items() if k != "by_age"}))
     print({age: item["selected"] for age, item in summary["by_age"].items()})

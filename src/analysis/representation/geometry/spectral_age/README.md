@@ -13,22 +13,20 @@ Also reported: participation ratio, entropy effective rank, spectral decay expon
 (`other_reductions_by_age.csv`, `story_profiles.csv`, `age_trend_within.csv` with size-adjusted partial rho against age).
 
 ## Subsets (saved first, `subsets.py`)
-The unit is the **story** (`story_key`, e.g. `abc123__story02`); a video can hold several stories, each with its own text, details and vectors,
-and a story inherits its video's stated range and view count. `data/processed/spectral_age/baseline_stories_span_lt7.csv`: 11,683 stories
-(10,562 videos) whose stated range has `upper - lower <= 6` (under 7). Batches come from it: for each age, the most-viewed stories whose range
-covers that age. The 800 batch has the same size at every age; the 400 batch keeps 400 wherever 400 exist (only age 12 is short, 374) and was built with `--keep-unequal`.
-`run.py` keeps each age's own size by default; `EQUAL_CELLS=1` (`--equal-cells`) cuts all ages to the smallest as a sensitivity run (cell size changes k a little).
+The unit is the **story** (`story_key`, e.g. `abc123__story02`); a story inherits its video's stated range and view count. One rule for every batch:
+the stated range must be under 8 (`upper - lower <= 7`). `data/processed/spectral_age/baseline_stories_span_lt8.csv` is that pool: 11,828 stories, all with
+cleaned text and detail segments (9,353 have at least 20 details, the minimum for the within-story panels B and C; the others still count in panel A). A story counts at
+every age its range covers. Stories covering each age: 4,585 / 7,580 / 8,814 / 8,741 / 7,155 / 4,936 / 3,296 / 1,135 / 789 / 464 / 404 for ages 2-12.
 
-| Batch folder | Target | Cell size | Distinct |
+| Batch folder | Design | Cell size | Distinct stories |
 |---|---|---|---|
-| `batch_top800_ages2-8` | 800 per age, ages 2-8 | 800 | 2,134 stories (1,737 videos) |
-| `batch_top400_ages2-12` | 400 per age, ages 2-12 | 400 (age 12: 374) | 1,738 stories (1,441 videos); only 374 narrow-range stories cover age 12 |
-
-| `batch_flat_ages2-8_span_lt8` | flat design, ages 2-8, range under 8 (`upper - lower <= 7`) | 2,553 (same at every age) | 5,141 stories (4,542 videos) |
+| `batch_top800_ages2-8` | 800 most-viewed stories per age, ages 2-8 | 800 at every age | 2,113 |
+| `batch_top400_ages2-12` | 400 most-viewed stories per age, ages 2-12 | 400 at every age | 1,740 |
+| `batch_flat_ages2-8_span_lt8` | flat design: equal coverage at every age, ages 2-8 | 2,553 at every age | 5,141 |
 
 `batch_flat_*` is a different design: the largest set of stories whose coverage is *exactly equal* at every age (a story counts at every age its range covers),
 solved as an integer program (`subsets.py flat`, `baseline_stories_span_lt8.csv`); a cell is every selected story covering the age. Stories of videos already queued
-for extraction are preferred, then the most viewed. Its 2,521 videos outside the first extraction list are in `extraction_videos_flat_extra.csv`.
+for extraction are preferred, then the most viewed. Its stories' videos outside the first extraction list are in `extraction_videos_flat_extra.csv`; the 400 batch needs 25 more videos (`extraction_videos_top400_extra.csv`).
 With `--reselect-available` the flat design is solved again on the stories that have vectors, so the run uses the largest flat set the vectors allow.
 
 Each holds `subset_stories.csv`, `membership.csv` (age, story_key, rank), `summary.json`. Rebuild with `python -m analysis.representation.geometry.spectral_age.subsets baseline|select ...`
@@ -77,3 +75,9 @@ Qwen3-8B reads up to 32k tokens (`MAX_TOKENS=32768`, longer stories skipped and 
 Stories already on the cluster were segmented by the older detail prompt (about one sentence per detail); the supplement's segments come from the
 newer run (about 3 sentences per detail). Within-story spectra (B, C) depend on the number of units, so the reported `kn` (k / (units - 1)), the size-adjusted
 trend tests and `story_profiles.csv` (`n_units`) must be read with that in mind; panel A (whole-story vectors) does not depend on segmentation.
+
+The 400 batch's 25 extra videos (27 stories; shard ids from 400):
+```bash
+D=data/processed/spectral_age; R=results/features/representation_extraction/causal_lm/detail_extraction
+MODEL_KEY=gpt_oss_20b VIDEOS_CSV=$D/extraction_videos_top400_extra.csv SUPPLEMENT=$D/supplement_cohort_top400_extra.jsonl.gz COHORT_NAME=spectral_age_cohort_top400_extra_gpt_oss.jsonl SHARD_OFFSET=400 EXCLUDE_DIRS="$R/gpt_oss_20b_global_current" bash hpc/analysis/representation/geometry/spectral_age/submit_extraction.sh
+```
