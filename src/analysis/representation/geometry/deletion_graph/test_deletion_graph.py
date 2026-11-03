@@ -93,6 +93,22 @@ class GraphMathTests(unittest.TestCase):
         graph = graph_math.thresholded(np.triu(rng.random((10, 10)), 1), 0.2)
         self.assertEqual(int((graph > 0).sum()), int(round(0.2 * 45)))
 
+    def test_efficiency_of_a_unit_chain(self) -> None:
+        graph = np.zeros((3, 3))
+        graph[0, 1] = graph[1, 2] = 1.0
+        self.assertAlmostEqual(graph_math.efficiency(graph), 2.5 / 6, places=9)  # pairs 0-1 and 1-2 at distance 1, 0-2 at distance 2, three backward pairs unreachable
+
+    def test_efficiency_prefers_the_stronger_route(self) -> None:
+        weak = np.zeros((4, 4))
+        weak[0, 1] = weak[1, 2] = weak[2, 3] = 0.1
+        strong = weak * 10
+        self.assertAlmostEqual(graph_math.efficiency(strong), 10 * graph_math.efficiency(weak), places=9)
+
+    def test_depth_is_unweighted_edge_count(self) -> None:
+        graph = np.zeros((5, 5))
+        graph[0, 1], graph[1, 2], graph[2, 4], graph[0, 3] = 9.0, 0.1, 5.0, 100.0
+        self.assertEqual(graph_math.longest_path_edges(graph), 3)
+
     def test_pagerank_sums_to_one(self) -> None:
         ranks = graph_math.pagerank(graph_math.thresholded(decaying(9), 0.3))
         self.assertAlmostEqual(ranks.sum(), 1.0, places=8)

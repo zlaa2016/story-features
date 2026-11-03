@@ -9,10 +9,18 @@ stories with different numbers of details and different overall weight scales:
 * measures are scale free (shares, ratios, Gini, slopes, ranks) except ``mean_weight``,
 * the thresholded graph keeps the strongest ``keep`` share of pairs, so its density is the same in every story and only
   its shape is compared.
+
+Standard graph algorithms (PageRank, shortest paths, components, DAG longest path, Kamada-Kawai layout) come from NetworkX; the
+lag adjustment, Gini, lag profile and singular-value measures are specific to this analysis and written here.
 """
 from __future__ import annotations
 
 import numpy as np
+
+try:
+    import networkx as nx
+except ImportError as error:  # pragma: no cover - a clear message beats a bare ModuleNotFoundError on the cluster
+    raise ImportError("graph_math needs networkx (pip install networkx); it supplies PageRank, shortest paths, components, longest path and the layout") from error
 
 EPSILON = 1e-12
 
@@ -114,58 +122,35 @@ def thresholded(weights: np.ndarray, keep: float) -> np.ndarray:
     return graph
 
 
+def to_digraph(graph: np.ndarray) -> "nx.DiGraph":
+    """Directed graph with every detail as a node (isolated ones too); edge ``weight`` = coupling, ``distance`` = 1 / coupling."""
+    digraph = nx.DiGraph()
+    digraph.add_nodes_from(range(graph.shape[0]))
+    for i, j in zip(*np.nonzero(graph > 0)):
+        digraph.add_edge(int(i), int(j), weight=float(graph[i, j]), distance=1.0 / float(graph[i, j]))
+    return digraph
+
+
 def longest_path_edges(graph: np.ndarray) -> int:
     """Number of edges on the longest directed path (the graph is a DAG: edges only go forward)."""
-    n = graph.shape[0]
-    depth = np.zeros(n, dtype=int)
-    for j in range(n):
-        sources = np.nonzero(graph[:j, j] > 0)[0]
-        if sources.size:
-            depth[j] = depth[sources].max() + 1
-    return int(depth.max())
+    return int(nx.dag_longest_path_length(to_digraph(graph), weight=None))
 
 
 def weak_components(graph: np.ndarray) -> int:
-    n = graph.shape[0]
-    parent = list(range(n))
-
-    def find(x: int) -> int:
-        while parent[x] != x:
-            parent[x] = parent[parent[x]]
-            x = parent[x]
-        return x
-
-    for i, j in zip(*np.nonzero(graph > 0)):
-        parent[find(int(i))] = find(int(j))
-    return len({find(i) for i in range(n)})
+    return int(nx.number_weakly_connected_components(to_digraph(graph)))
 
 
-def pagerank(graph: np.ndarray, damping: float = 0.85, iterations: int = 200) -> np.ndarray:
-    n = graph.shape[0]
-    out = graph.sum(axis=1)
-    transition = np.where(out[:, None] > 0, graph / np.maximum(out[:, None], EPSILON), 1.0 / n)
-    rank = np.full(n, 1.0 / n)
-    for _ in range(iterations):
-        updated = (1 - damping) / n + damping * rank @ transition
-        if np.abs(updated - rank).sum() < 1e-10:
-            rank = updated
-            break
-        rank = updated
-    return rank / rank.sum()
+def pagerank(graph: np.ndarray, damping: float = 0.85) -> np.ndarray:
+    ranks = nx.pagerank(to_digraph(graph), alpha=damping, weight="weight")
+    return np.array([ranks[i] for i in range(graph.shape[0])])
 
 
 def efficiency(graph: np.ndarray) -> float:
     """Mean inverse shortest-path distance over ordered pairs, with edge distance 1 / weight (strong coupling = short)."""
     n = graph.shape[0]
-    distance = np.full((n, n), np.inf)
-    mask = graph > 0
-    distance[mask] = 1.0 / graph[mask]
-    np.fill_diagonal(distance, 0.0)
-    for k in range(n):
-        distance = np.minimum(distance, distance[:, [k]] + distance[[k], :])
-    off_diagonal = ~np.eye(n, dtype=bool)
-    reciprocal = np.where(np.isfinite(distance[off_diagonal]), 1.0 / np.maximum(distance[off_diagonal], EPSILON), 0.0)
-    return float(reciprocal.mean())
+    lengths = dict(nx.all_pairs_dijkstra_path_length(to_digraph(graph), weight="distance"))
+    total = sum(1.0 / length for source, reached in lengths.items() for target, length in reached.items() if target != source)
+    return float(total / (n * (n - 1)))
 
 
 def coupling_dissimilarity(weights: np.ndarray, edges: str = "excess") -> np.ndarray:
@@ -181,24 +166,13 @@ def coupling_dissimilarity(weights: np.ndarray, edges: str = "excess") -> np.nda
     return dissimilarity
 
 
-def layout_2d(dissimilarity: np.ndarray, iterations: int = 300) -> np.ndarray:
-    """Metric multidimensional scaling in 2D (classical start, then SMACOF stress majorisation): distances between points follow
-    ``dissimilarity``.  The result is rotated so the first detail sits left of the last one."""
+def layout_2d(dissimilarity: np.ndarray) -> np.ndarray:
+    """Kamada-Kawai layout (networkx): distances between points follow ``dissimilarity``.  Rotated so the first detail sits left of the last."""
     n = dissimilarity.shape[0]
-    centring = np.eye(n) - 1.0 / n
-    gram = -0.5 * centring @ (dissimilarity ** 2) @ centring
-    values, vectors = np.linalg.eigh(gram)
-    order = np.argsort(values)[::-1][:2]
-    points = vectors[:, order] * np.sqrt(np.maximum(values[order], 1e-12))
-    for _ in range(iterations):
-        distance = np.linalg.norm(points[:, None, :] - points[None, :, :], axis=-1)
-        ratio = np.where(distance > EPSILON, dissimilarity / np.maximum(distance, EPSILON), 0.0)
-        np.fill_diagonal(ratio, 0.0)
-        updated = (np.diag(ratio.sum(axis=1)) - ratio) @ points / n
-        if np.abs(updated - points).max() < 1e-7:
-            points = updated
-            break
-        points = updated
+    complete = nx.complete_graph(n)
+    distances = {i: {j: float(dissimilarity[i, j]) for j in range(n)} for i in range(n)}
+    positions = nx.kamada_kawai_layout(complete, dist=distances, scale=1.0)
+    points = np.array([positions[i] for i in range(n)])
     points = points - points.mean(axis=0)
     direction = points[-1] - points[0]
     angle = -np.arctan2(direction[1], direction[0])
