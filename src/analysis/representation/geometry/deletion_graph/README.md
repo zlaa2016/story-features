@@ -26,6 +26,11 @@ story has the same density and only its shape is compared.
 | `front_loading` | share of weight coming from the first third |
 | `depth_frac`, `components_frac` | longest dependency chain / (n-1); fragmentation of the thresholded graph |
 | `pagerank_entropy`, `efficiency` | spread of centrality; how short the strong paths are |
+| `max_clique_frac`, `n_maximal_cliques`, `clustering`, `transitivity`, `max_core_frac` | cliques and triangles of the strong-edge graph (undirected projection): groups of details that all affect each other |
+| `n_communities_frac`, `modularity` | whether the strong edges form separate communities (greedy modularity) |
+| `degree_assortativity` | whether highly connected details link to other highly connected ones |
+| `sources_frac`, `sinks_frac`, `feedforward_share`, `reduction_frac` | directed structure: details that only move others / are only moved; share of two-step chains that also have a direct shortcut; share of edges left after transitive reduction (1 = pure chain) |
+| `*_z` | each of the structure measures against shuffles that keep the decay with distance but move which pairs are strong (0 = what distance alone gives) |
 | `sv_participation`, `sv_top_share`, `sv_entropy_rank` | how many independent dependency "modes" the matrix has |
 
 **Pictures** (`plot_story_graphs.py`, `plot.slurm`): one PNG per story. Left, the details are placed in the plane so that strongly coupled details are

@@ -3,7 +3,7 @@
 #SBATCH --account=torch_pr_494_general
 #SBATCH --output=logs/mechanistic_interpretability/%x-%j.out
 #SBATCH --error=logs/mechanistic_interpretability/%x-%j.err
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 

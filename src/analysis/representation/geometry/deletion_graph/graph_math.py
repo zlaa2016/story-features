@@ -188,6 +188,87 @@ def top_pairs(weights: np.ndarray, k: int, edges: str = "excess") -> list[tuple[
     return [(int(rows[o]), int(cols[o]), float(upper(weights)[rows[o], cols[o]]), float(ranking[rows[o], cols[o]])) for o in order]
 
 
+def undirected(graph: np.ndarray) -> "nx.Graph":
+    """Undirected projection of the (forward) graph: every detail a node, an edge wherever either direction has weight."""
+    projection = nx.Graph()
+    projection.add_nodes_from(range(graph.shape[0]))
+    for i, j in zip(*np.nonzero(graph > 0)):
+        projection.add_edge(int(i), int(j), weight=float(graph[i, j]))
+    return projection
+
+
+def structure_measures(graph: np.ndarray) -> dict[str, float]:
+    """Standard graph-structure measures of a thresholded story graph.
+
+    Cliques, clustering, core number, communities and assortativity use the undirected projection; sources, sinks, feed-forward share and
+    transitive reduction use the directed acyclic graph.  Counts are also given as shares of the number of details so stories of different
+    length can be compared.  Because the graph keeps a fixed share of pairs, density is the same in every story and these describe how
+    the kept edges are arranged (compare with the lag-preserving null in ``null_z``).
+    """
+    n = graph.shape[0]
+    flat, directed = undirected(graph), to_digraph(graph)
+    edges = flat.number_of_edges()
+    cliques = [len(c) for c in nx.find_cliques(flat)]
+    adjacency = (graph > 0).astype(np.float64)
+    two_step = adjacency @ adjacency
+    paths = two_step.sum()
+    reduction = nx.transitive_reduction(directed).number_of_edges() / edges if edges else float("nan")
+    degrees = [d for _, d in flat.degree()]
+    if edges:
+        communities = list(nx.community.greedy_modularity_communities(flat, weight="weight"))
+        modularity = float(nx.community.modularity(flat, communities, weight="weight")) if len(communities) > 1 else 0.0
+        core = max(nx.core_number(flat).values())
+    else:
+        communities, modularity, core = [{i} for i in range(n)], float("nan"), 0
+    try:
+        assortativity = float(nx.degree_assortativity_coefficient(flat)) if len(set(degrees)) > 1 else float("nan")
+    except (ValueError, ZeroDivisionError):
+        assortativity = float("nan")
+    return {
+        "max_clique": float(max(cliques)),
+        "max_clique_frac": max(cliques) / n,
+        "n_maximal_cliques": float(len(cliques)),
+        "clustering": float(nx.average_clustering(flat)),
+        "transitivity": float(nx.transitivity(flat)),
+        "max_core_frac": core / n,
+        "n_communities_frac": len(communities) / n,
+        "modularity": modularity,
+        "degree_assortativity": assortativity,
+        "sources_frac": sum(1 for v in directed if directed.in_degree(v) == 0 and directed.out_degree(v) > 0) / n,
+        "sinks_frac": sum(1 for v in directed if directed.out_degree(v) == 0 and directed.in_degree(v) > 0) / n,
+        "feedforward_share": float((adjacency * two_step).sum() / paths) if paths else float("nan"),
+        "reduction_frac": float(reduction),
+    }
+
+
+def lag_permuted(weights: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    """The same matrix with the weights shuffled among pairs of the same lag: the decay with distance is kept, which pairs are strong is not."""
+    matrix = upper(weights)
+    shuffled = np.zeros_like(matrix)
+    n = matrix.shape[0]
+    for lag in range(1, n):
+        values = np.diagonal(matrix, offset=lag).copy()
+        rng.shuffle(values)
+        rows = np.arange(n - lag)
+        shuffled[rows, rows + lag] = values
+    return shuffled
+
+
+NULL_MEASURES = ["max_clique_frac", "clustering", "transitivity", "modularity", "feedforward_share", "reduction_frac", "depth_frac", "pagerank_entropy", "efficiency"]
+
+
+def null_z(weights: np.ndarray, keep: float, draws: int, rng: np.random.Generator) -> dict[str, float]:
+    """Each measure in ``NULL_MEASURES`` minus its mean over lag-preserving shuffles, in null standard deviations (0 = what distance alone gives)."""
+    observed = graph_measures(weights, keep)
+    sims = [graph_measures(lag_permuted(weights, rng), keep) for _ in range(draws)]
+    out = {}
+    for name in NULL_MEASURES:
+        values = np.array([m[name] for m in sims], dtype=np.float64)
+        spread = np.nanstd(values)
+        out[f"{name}_z"] = float((observed[name] - np.nanmean(values)) / spread) if spread > 1e-9 else float("nan")
+    return out
+
+
 def graph_measures(weights: np.ndarray, keep: float = 0.2) -> dict[str, float]:
     """All measures of one story's coupling matrix (n >= 4 details)."""
     matrix = upper(weights)
@@ -219,6 +300,7 @@ def graph_measures(weights: np.ndarray, keep: float = 0.2) -> dict[str, float]:
         "efficiency": efficiency(graph),
     }
     measures.update(spectral(matrix))
+    measures.update(structure_measures(graph))
     return measures
 
 
@@ -238,4 +320,25 @@ MEASURE_LABELS = {
     "sv_participation": "singular-value participation ratio",
     "sv_top_share": "top singular-value share",
     "sv_entropy_rank": "singular-value entropy rank",
+    "max_clique_frac": "largest clique / n (strong-edge graph)",
+    "n_maximal_cliques": "number of maximal cliques",
+    "clustering": "average clustering coefficient",
+    "transitivity": "transitivity (closed triangles)",
+    "max_core_frac": "highest k-core / n",
+    "n_communities_frac": "communities / n",
+    "modularity": "modularity of the best communities",
+    "degree_assortativity": "degree assortativity",
+    "sources_frac": "share of details that only move others",
+    "sinks_frac": "share of details that are only moved",
+    "feedforward_share": "share of two-step paths with a direct shortcut",
+    "reduction_frac": "edges left after transitive reduction",
+    "max_clique_frac_z": "largest clique vs distance-only null (SD)",
+    "clustering_z": "clustering vs distance-only null (SD)",
+    "transitivity_z": "transitivity vs distance-only null (SD)",
+    "modularity_z": "modularity vs distance-only null (SD)",
+    "feedforward_share_z": "shortcut share vs distance-only null (SD)",
+    "reduction_frac_z": "transitive reduction vs distance-only null (SD)",
+    "depth_frac_z": "longest chain vs distance-only null (SD)",
+    "pagerank_entropy_z": "PageRank entropy vs distance-only null (SD)",
+    "efficiency_z": "efficiency vs distance-only null (SD)",
 }

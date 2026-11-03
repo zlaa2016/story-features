@@ -138,6 +138,61 @@ class PositionBiasTests(unittest.TestCase):
         self.assertEqual(int(np.argmax(out)), 12)   # the second-to-last detail: one close partner, so the highest raw mean
 
 
+class StructureTests(unittest.TestCase):
+    def test_complete_graph_is_one_big_clique(self) -> None:
+        graph = np.triu(np.ones((7, 7)), 1)
+        measures = graph_math.structure_measures(graph)
+        self.assertEqual(measures["max_clique"], 7.0)
+        self.assertAlmostEqual(measures["clustering"], 1.0)
+        self.assertAlmostEqual(measures["transitivity"], 1.0)
+        self.assertAlmostEqual(measures["max_core_frac"], 6 / 7)
+        self.assertAlmostEqual(measures["reduction_frac"], 6 / 21)       # only the chain edges survive the transitive reduction
+
+    def test_chain_has_no_triangles_and_no_shortcuts(self) -> None:
+        measures = graph_math.structure_measures(chain(8))
+        self.assertEqual(measures["max_clique"], 2.0)
+        self.assertEqual(measures["transitivity"], 0.0)
+        self.assertEqual(measures["feedforward_share"], 0.0)
+        self.assertEqual(measures["reduction_frac"], 1.0)
+        self.assertAlmostEqual(measures["sources_frac"], 1 / 8)
+        self.assertAlmostEqual(measures["sinks_frac"], 1 / 8)
+
+    def test_two_blocks_give_two_communities_and_high_modularity(self) -> None:
+        graph = np.zeros((12, 12))
+        for block in (range(0, 6), range(6, 12)):
+            for i in block:
+                for j in block:
+                    if i < j:
+                        graph[i, j] = 1.0
+        graph[5, 6] = 0.2
+        measures = graph_math.structure_measures(graph)
+        self.assertEqual(measures["max_clique"], 6.0)
+        self.assertAlmostEqual(measures["n_communities_frac"], 2 / 12)
+        self.assertGreater(measures["modularity"], 0.4)
+
+    def test_lag_permutation_keeps_each_lag_s_weights(self) -> None:
+        rng = np.random.default_rng(0)
+        matrix = np.triu(rng.random((14, 14)), 1)
+        shuffled = graph_math.lag_permuted(matrix, rng)
+        for lag in range(1, 14):
+            self.assertTrue(np.allclose(np.sort(np.diagonal(matrix, lag)), np.sort(np.diagonal(shuffled, lag))))
+        self.assertFalse(np.allclose(matrix, shuffled))
+
+    def test_structureless_graph_is_near_the_null_but_planted_cliques_are_not(self) -> None:
+        rng = np.random.default_rng(1)
+        random = np.triu(rng.random((24, 24)), 1)
+        z = graph_math.null_z(random, 0.15, 40, rng)
+        self.assertLess(abs(z["clustering_z"]), 3.0)
+        planted = np.triu(rng.random((24, 24)) * 0.3, 1)
+        for i in range(8):
+            for j in range(i + 1, 8):
+                planted[i, j] = 1.0                                   # a tight group of 8 details that all affect each other
+        zp = graph_math.null_z(planted, 0.15, 40, rng)
+        self.assertGreater(zp["max_clique_frac_z"], 3.0)
+        self.assertGreater(zp["clustering_z"], 2.0)
+        self.assertGreater(zp["clustering_z"], z["clustering_z"] + 2.0)
+
+
 class AnalyzeTests(unittest.TestCase):
     def test_partial_association_removes_a_length_effect(self) -> None:
         rng = np.random.default_rng(1)
