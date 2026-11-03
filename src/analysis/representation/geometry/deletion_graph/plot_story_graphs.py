@@ -9,9 +9,9 @@ Right panel: the full coupling matrix (row = deleted detail, column = detail tha
 
 Two kinds of central detail are marked, both read straight from the graph:
 
-* **source hub** - the detail whose deletion moves later details the most beyond what distance predicts (highest mean outgoing
+* **key source** - the detail whose deletion moves later details the most beyond what distance predicts (highest mean outgoing
   weight over its later partners, each pair taken relative to the average pair at its lag);
-* **integrator** - the detail moved most by earlier deletions beyond what distance predicts (same, incoming).
+* **key impacted** - the detail moved most by earlier deletions beyond what distance predicts (same, incoming).
 
 These are centrality roles, not validated gists.  Whether they match what people keep when they recall a story is a separate test.
 Outputs: ``<output-dir>/<story_key>.png``, ``story_nodes.csv`` (every node's strengths, PageRank and role) and ``story_edges.csv`` (every drawn pair: who changed whom, how much, and the two details' text).
@@ -29,7 +29,7 @@ from analysis.representation.geometry.deletion_graph.analyze import load_shards
 from analysis.representation.geometry.deletion_graph.graph_math import (
     coupling_dissimilarity, excess_matrix, layout_2d, pagerank, strengths, thresholded, top_pairs, upper)
 
-HUB_COLOR, INTEGRATOR_COLOR, BOTH_COLOR, PLAIN_COLOR = "#d95f02", "#1b6ca8", "#7b3294", "#9a9a9a"
+SOURCE_COLOR, IMPACTED_COLOR, BOTH_COLOR, PLAIN_COLOR = "#d95f02", "#1b6ca8", "#7b3294", "#9a9a9a"
 
 
 def node_table(weights: np.ndarray, keep: float = 0.2, top_k: int = 3) -> pd.DataFrame:
@@ -39,16 +39,16 @@ def node_table(weights: np.ndarray, keep: float = 0.2, top_k: int = 3) -> pd.Dat
     raw_out, raw_in = strengths(weights, adjust=False)
     out_strength, in_strength = np.append(out, 0.0), np.insert(incoming, 0, 0.0)   # last has no later partner, first no earlier one
     ranks = pagerank(thresholded(weights, keep))
-    hubs = set(np.argsort(-out_strength, kind="stable")[:top_k].tolist())
-    integrators = set(np.argsort(-in_strength, kind="stable")[:top_k].tolist())
-    roles = ["source hub + integrator" if i in hubs and i in integrators else "source hub" if i in hubs
-             else "integrator" if i in integrators else "" for i in range(n)]
+    sources = set(np.argsort(-out_strength, kind="stable")[:top_k].tolist())
+    impacted = set(np.argsort(-in_strength, kind="stable")[:top_k].tolist())
+    roles = ["key source + key impacted" if i in sources and i in impacted else "key source" if i in sources
+             else "key impacted" if i in impacted else "" for i in range(n)]
     return pd.DataFrame({"detail_index": np.arange(n), "out_strength": out_strength, "in_strength": in_strength,
                          "out_raw": np.append(raw_out, 0.0), "in_raw": np.insert(raw_in, 0, 0.0), "pagerank": ranks, "role": roles})
 
 
 def node_color(role: str) -> str:
-    return BOTH_COLOR if "+" in role else HUB_COLOR if role == "source hub" else INTEGRATOR_COLOR if role == "integrator" else PLAIN_COLOR
+    return BOTH_COLOR if "+" in role else SOURCE_COLOR if role == "key source" else IMPACTED_COLOR if role == "key impacted" else PLAIN_COLOR
 
 
 def draw_story(weights: np.ndarray, nodes: pd.DataFrame, title: str, path: Path, keep: float = 0.2,
@@ -91,7 +91,7 @@ def draw_story(weights: np.ndarray, nodes: pd.DataFrame, title: str, path: Path,
         theta = np.linspace(0, np.pi, 40)
         for i, j in order:
             centre, radius = (i + j) / 2, (j - i) / 2
-            color = HUB_COLOR if roles[i] and "hub" in roles[i] else INTEGRATOR_COLOR if roles[j] and "integrator" in roles[j] else PLAIN_COLOR
+            color = SOURCE_COLOR if roles[i] and "source" in roles[i] else IMPACTED_COLOR if roles[j] and "impacted" in roles[j] else PLAIN_COLOR
             axis.plot(centre - radius * np.cos(theta), radius * 0.9 * np.sin(theta), color=color, linewidth=0.4 + 3.6 * graph[i, j] / peak,
                       alpha=0.25 + 0.6 * graph[i, j] / peak, solid_capstyle="round")
         axis.scatter(np.arange(n), np.zeros(n), s=size, c=[node_color(role) for role in roles], edgecolors="black", linewidths=0.6, zorder=3)
@@ -104,7 +104,7 @@ def draw_story(weights: np.ndarray, nodes: pd.DataFrame, title: str, path: Path,
     axis.axis("off")
     from matplotlib.lines import Line2D
     axis.legend(handles=[Line2D([], [], marker="o", linestyle="", color=c, markeredgecolor="black", label=label)
-                         for c, label in [(HUB_COLOR, "source hub"), (INTEGRATOR_COLOR, "integrator"), (BOTH_COLOR, "both"), (PLAIN_COLOR, "other")]],
+                         for c, label in [(SOURCE_COLOR, "key source"), (IMPACTED_COLOR, "key impacted"), (BOTH_COLOR, "both"), (PLAIN_COLOR, "other")]],
                 loc="upper right", fontsize=8, frameon=False)
 
     shown = upper(weights)
@@ -176,7 +176,7 @@ def main() -> None:
     parser.add_argument("--layout", choices=["2d", "arc"], default="2d", help="2d: closer = more coupled; arc: details in story order on a line")
     parser.add_argument("--pairs", type=int, default=6, help="strongest effects listed under each picture")
     parser.add_argument("--edges", choices=["excess", "raw"], default="excess", help="rank the drawn arcs by weight beyond what distance predicts, or by raw weight")
-    parser.add_argument("--top-k", type=int, default=3, help="how many source hubs and integrators to mark per story")
+    parser.add_argument("--top-k", type=int, default=3, help="how many key sources and key impacted to mark per story")
     args = parser.parse_args()
 
     metadata, matrices, layer = load_shards(args.input_dir, args.view, args.distance, args.layer)

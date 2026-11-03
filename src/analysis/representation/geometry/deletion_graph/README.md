@@ -32,7 +32,7 @@ story has the same density and only its shape is compared.
 close (multidimensional scaling of `1 / (1 + coupling)`) and each arrow is a strong forward effect: deleting its tail detail changed its head
 (darker and thicker = stronger; `--layout arc` puts the details in story order on a line instead). Right, the full matrix. Under the picture, the
 strongest effects with the text of both details ("deleting A changed B") and the marked details. Marked nodes are centrality roles read off the
-graph, not validated gists: a **source hub** is a detail whose deletion moves later details more than distance predicts, an **integrator** is moved more than
+graph, not validated gists: a **key source** is a detail whose deletion moves later details more than distance predicts, an **key impacted** is moved more than
 distance predicts by earlier deletions; node size is total coupling beyond distance. `story_edges.csv` lists every drawn pair with both texts and
 `story_nodes.csv` every node's strengths and role.
 
