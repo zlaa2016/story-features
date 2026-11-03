@@ -166,17 +166,17 @@ class AnalyzeTests(unittest.TestCase):
 
 
 class PlotTests(unittest.TestCase):
-    def test_roles_find_the_hub_and_the_integrator(self) -> None:
+    def test_roles_find_the_key_source_and_the_key_impacted(self) -> None:
         from analysis.representation.geometry.deletion_graph import plot_story_graphs
 
         n = 10
         hub = np.zeros((n, n))
         hub[0, 1:] = 1.0                                  # detail 0 moves everything
-        self.assertEqual(plot_story_graphs.node_table(hub, 0.3, 1).loc[0, "role"], "source hub")
+        self.assertEqual(plot_story_graphs.node_table(hub, 0.3, 1).loc[0, "role"], "key source")
         sink = np.zeros((n, n))
         sink[:-1, n - 1] = 1.0                            # everything moves the last detail
         table = plot_story_graphs.node_table(sink, 0.3, 1)
-        self.assertEqual(table.loc[n - 1, "role"], "integrator")
+        self.assertEqual(table.loc[n - 1, "role"], "key impacted")
         self.assertEqual(table.loc[0, "out_strength"], 1.0 / (n - 1))
         both = np.zeros((n, n))
         both[0, 1:] = 1.0
