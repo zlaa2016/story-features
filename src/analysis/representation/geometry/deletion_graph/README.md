@@ -26,11 +26,13 @@ story has the same density and only its shape is compared.
 | `pagerank_entropy`, `efficiency` | spread of centrality; how short the strong paths are |
 | `sv_participation`, `sv_top_share`, `sv_entropy_rank` | how many independent dependency "modes" the matrix has |
 
-**Pictures** (`plot_story_graphs.py`, `plot.slurm`): one PNG per story with the details in story order, arcs for the strongest forward
-dependencies (the same share of pairs in every story), the full matrix beside it, and the details under it. Marked nodes: **source hub** (deleting
-it moves later details more than distance predicts) and **integrator** (moved more than distance predicts by earlier deletions); node size
-is its total coupling beyond distance. These are centrality roles read off the graph, not validated gists; whether they match what people keep when
-recalling the story is a separate test. `story_nodes.csv` lists every node's strengths, PageRank and role.
+**Pictures** (`plot_story_graphs.py`, `plot.slurm`): one PNG per story. Left, the details are placed in the plane so that strongly coupled details are
+close (multidimensional scaling of `1 / (1 + coupling)`) and each arrow is a strong forward effect: deleting its tail detail changed its head
+(darker and thicker = stronger; `--layout arc` puts the details in story order on a line instead). Right, the full matrix. Under the picture, the
+strongest effects with the text of both details ("deleting A changed B") and the marked details. Marked nodes are centrality roles read off the
+graph, not validated gists: a **source hub** is a detail whose deletion moves later details more than distance predicts, an **integrator** is moved more than
+distance predicts by earlier deletions; node size is total coupling beyond distance. `story_edges.csv` lists every drawn pair with both texts and
+`story_nodes.csv` every node's strengths and role.
 
 **Confounds to keep in mind.** Deleting a longer detail shifts later positions more, so run `--view`/`--distance` variants and
 compare with `n_details` and `token_count` (the age tests partial out the number of details). Details that alternate in the text are

@@ -181,5 +181,61 @@ class PlotTests(unittest.TestCase):
             self.assertGreater(labelled.stat().st_size, 5000)
 
 
+class LayoutTests(unittest.TestCase):
+    @staticmethod
+    def two_blocks(n: int = 16) -> np.ndarray:
+        """Details 0-7 and 8-15 form two tightly coupled groups, with only weak coupling between the groups."""
+        matrix = np.zeros((n, n))
+        for i in range(n):
+            for j in range(i + 1, n):
+                matrix[i, j] = 1.0 if (i < n // 2) == (j < n // 2) else 0.05
+        return matrix
+
+    def test_layout_separates_coupled_groups(self) -> None:
+        weights = self.two_blocks()
+        points = graph_math.layout_2d(graph_math.coupling_dissimilarity(weights, "raw"))
+        distance = np.linalg.norm(points[:, None] - points[None], axis=-1)
+        within = np.mean([distance[i, j] for i in range(16) for j in range(i + 1, 16) if (i < 8) == (j < 8)])
+        between = np.mean([distance[i, j] for i in range(8) for j in range(8, 16)])
+        self.assertLess(within * 2, between)
+
+    def test_layout_distances_follow_the_dissimilarity(self) -> None:
+        from scipy import stats
+
+        dissimilarity = graph_math.coupling_dissimilarity(decaying(12, 0.6) + np.triu(np.full((12, 12), 0.02), 1), "raw")
+        points = graph_math.layout_2d(dissimilarity)
+        rows, cols = np.triu_indices(12, 1)
+        rho = stats.spearmanr(np.linalg.norm(points[rows] - points[cols], axis=1), dissimilarity[rows, cols])[0]
+        self.assertGreater(rho, 0.9)
+
+    def test_layout_is_oriented_first_left_of_last(self) -> None:
+        points = graph_math.layout_2d(graph_math.coupling_dissimilarity(self.two_blocks(), "raw"))
+        self.assertLess(points[0, 0], points[-1, 0])
+        self.assertAlmostEqual(points[-1, 1], points[0, 1], places=6)
+
+    def test_top_pairs_are_ranked_and_forward(self) -> None:
+        matrix = decaying(10, 0.5)
+        matrix[2, 7] = 5.0
+        best = graph_math.top_pairs(matrix, 3, "excess")[0]
+        self.assertEqual((best[0], best[1]), (2, 7))
+        self.assertTrue(all(i < j for i, j, _, _ in graph_math.top_pairs(matrix, 5, "raw")))
+
+    def test_drawing_in_both_layouts_and_edge_table(self) -> None:
+        from analysis.representation.geometry.deletion_graph import plot_story_graphs
+
+        weights = self.two_blocks(12)
+        nodes = plot_story_graphs.node_table(weights, 0.2, 2)
+        texts = [f"Detail {i + 1} about the fox and the river and the long way home." for i in range(12)]
+        with tempfile.TemporaryDirectory() as folder:
+            for layout in ("2d", "arc"):
+                target = Path(folder) / f"{layout}.png"
+                plot_story_graphs.draw_story(weights, nodes, "t", target, texts=texts, layout=layout)
+                self.assertGreater(target.stat().st_size, 5000)
+        table = plot_story_graphs.edge_table(weights, "s", 0.2, "excess", texts)
+        self.assertEqual(len(table), int(round(0.2 * 66)))
+        self.assertTrue({"source_text", "target_text"} <= set(table.columns))
+        self.assertTrue((table["source"] < table["target"]).all())
+
+
 if __name__ == "__main__":
     unittest.main()

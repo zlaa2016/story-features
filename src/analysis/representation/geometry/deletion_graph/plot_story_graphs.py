@@ -1,7 +1,8 @@
 """One picture per story: the directed deletion-coupling graph with its central details highlighted.
 
-Left panel: details in story order along a line; each arc is a strong forward edge (deleting the earlier detail moved the later
-one), thicker = stronger.  Only the strongest ``keep`` share of pairs is drawn, the same share in every story.  ``--edges excess``
+Left panel (``--layout 2d``, default): the details are placed in the plane so that strongly coupled details are close
+(multidimensional scaling of ``1 / (1 + coupling)``); each arrow is a strong forward effect (deleting the tail detail changed the head), darker and thicker =
+stronger.  ``--layout arc`` puts the details in story order on a line instead, with arcs.  Only the strongest ``keep`` share of pairs is drawn, the same share in every story.  ``--edges excess``
 (default) ranks pairs by how much they exceed what their distance alone predicts, which shows the structure; ``--edges raw`` ranks by
 absolute weight, which is dominated by neighbouring details.
 Right panel: the full coupling matrix (row = deleted detail, column = detail that moved).
@@ -13,7 +14,7 @@ Two kinds of central detail are marked, both read straight from the graph:
 * **integrator** - the detail moved most by earlier deletions beyond what distance predicts (same, incoming).
 
 These are centrality roles, not validated gists.  Whether they match what people keep when they recall a story is a separate test.
-Outputs: ``<output-dir>/<story_key>.png`` and ``story_nodes.csv`` (every node's strengths, PageRank and role).
+Outputs: ``<output-dir>/<story_key>.png``, ``story_nodes.csv`` (every node's strengths, PageRank and role) and ``story_edges.csv`` (every drawn pair: who changed whom, how much, and the two details' text).
 """
 from __future__ import annotations
 
@@ -25,7 +26,8 @@ import numpy as np
 import pandas as pd
 
 from analysis.representation.geometry.deletion_graph.analyze import load_shards
-from analysis.representation.geometry.deletion_graph.graph_math import excess_matrix, pagerank, strengths, thresholded, upper
+from analysis.representation.geometry.deletion_graph.graph_math import (
+    coupling_dissimilarity, excess_matrix, layout_2d, pagerank, strengths, thresholded, top_pairs, upper)
 
 HUB_COLOR, INTEGRATOR_COLOR, BOTH_COLOR, PLAIN_COLOR = "#d95f02", "#1b6ca8", "#7b3294", "#9a9a9a"
 
@@ -50,40 +52,58 @@ def node_color(role: str) -> str:
 
 
 def draw_story(weights: np.ndarray, nodes: pd.DataFrame, title: str, path: Path, keep: float = 0.2,
-               texts: list[str] | None = None, edges: str = "excess") -> None:
+               texts: list[str] | None = None, edges: str = "excess", layout: str = "2d", pairs: int = 6) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyArrowPatch
 
     n = weights.shape[0]
-    graph = thresholded(excess_matrix(weights) if edges == "excess" else weights, keep)
+    ranking = excess_matrix(weights) if edges == "excess" else upper(weights)
+    graph = thresholded(ranking, keep)
     peak = graph.max() if graph.max() > 0 else 1.0
     roles = nodes["role"].tolist()
-    figure = plt.figure(figsize=(15, 6.2 if texts is None else 7.4))
-    arcs = figure.add_axes([0.04, 0.30 if texts else 0.12, 0.60, 0.62])
-    matrix = figure.add_axes([0.70, 0.30 if texts else 0.12, 0.27, 0.62])
-
-    theta = np.linspace(0, np.pi, 40)
+    bottom = 0.36 if texts else 0.08
+    figure = plt.figure(figsize=(15, 8.6 if texts else 6.6))
+    axis = figure.add_axes([0.03, bottom, 0.62, 0.84 - bottom + 0.08])
+    matrix = figure.add_axes([0.72, bottom, 0.25, 0.84 - bottom + 0.08])
     rows, cols = np.nonzero(graph)
-    for i, j in sorted(zip(rows, cols), key=lambda pair: graph[pair]):
-        centre, radius = (i + j) / 2, (j - i) / 2
-        color = HUB_COLOR if roles[i] and "hub" in roles[i] else INTEGRATOR_COLOR if roles[j] and "integrator" in roles[j] else PLAIN_COLOR
-        arcs.plot(centre - radius * np.cos(theta), radius * 0.9 * np.sin(theta), color=color,
-                  linewidth=0.4 + 3.6 * graph[i, j] / peak, alpha=0.25 + 0.6 * graph[i, j] / peak, solid_capstyle="round")
+    order = sorted(zip(rows, cols), key=lambda pair: graph[pair])
     total = (nodes["out_strength"] + nodes["in_strength"]).to_numpy()
-    size = 40 + 340 * total / max(total.max(), 1e-12)
-    arcs.scatter(np.arange(n), np.zeros(n), s=size, c=[node_color(role) for role in roles], edgecolors="black", linewidths=0.6, zorder=3)
-    for i, role in enumerate(roles):
-        arcs.annotate(str(i + 1), (i, 0), xytext=(0, -13), textcoords="offset points", ha="center", fontsize=7,
-                      fontweight="bold" if role else "normal")
-    arcs.set_xlim(-1, n)
-    height = max([0.9 * (j - i) / 2 for i, j in zip(rows, cols)] + [1.0])
-    arcs.set_ylim(-0.12 * height - 0.5, height * 1.08)
-    arcs.axis("off")
-    arcs.set_title(f"forward dependencies ({edges} ranking; an arc means deleting the left detail moved the right one; node size = coupling beyond distance)", fontsize=9)
+    size = 60 + 320 * total / max(total.max(), 1e-12)
+    if layout == "2d":
+        points = layout_2d(coupling_dissimilarity(weights, edges))
+        for i, j in order:
+            strength = graph[i, j] / peak
+            axis.add_patch(FancyArrowPatch(points[i], points[j], connectionstyle="arc3,rad=0.12", arrowstyle="-|>", mutation_scale=9 + 8 * strength,
+                                           linewidth=0.5 + 3.2 * strength, color=plt.cm.plasma_r(0.15 + 0.8 * strength), alpha=0.35 + 0.55 * strength,
+                                           shrinkA=6, shrinkB=7, zorder=2))
+        axis.scatter(points[:, 0], points[:, 1], s=size, c=[node_color(role) for role in roles], edgecolors="black", linewidths=0.6, zorder=3)
+        for i in range(n):
+            axis.annotate(str(i + 1), points[i], ha="center", va="center", fontsize=7, fontweight="bold", color="white" if roles[i] else "black", zorder=4)
+        pad = 0.08 * np.ptp(points, axis=0).max()
+        axis.set_xlim(points[:, 0].min() - pad, points[:, 0].max() + pad)
+        axis.set_ylim(points[:, 1].min() - pad, points[:, 1].max() + pad)
+        axis.set_aspect("equal")
+        axis.set_title(f"details placed so that closer = more coupled; an arrow means deleting its tail detail changed its head ({edges} ranking, darker/thicker = stronger)", fontsize=9)
+    else:
+        theta = np.linspace(0, np.pi, 40)
+        for i, j in order:
+            centre, radius = (i + j) / 2, (j - i) / 2
+            color = HUB_COLOR if roles[i] and "hub" in roles[i] else INTEGRATOR_COLOR if roles[j] and "integrator" in roles[j] else PLAIN_COLOR
+            axis.plot(centre - radius * np.cos(theta), radius * 0.9 * np.sin(theta), color=color, linewidth=0.4 + 3.6 * graph[i, j] / peak,
+                      alpha=0.25 + 0.6 * graph[i, j] / peak, solid_capstyle="round")
+        axis.scatter(np.arange(n), np.zeros(n), s=size, c=[node_color(role) for role in roles], edgecolors="black", linewidths=0.6, zorder=3)
+        for i, role in enumerate(roles):
+            axis.annotate(str(i + 1), (i, 0), xytext=(0, -13), textcoords="offset points", ha="center", fontsize=7, fontweight="bold" if role else "normal")
+        height = max([0.9 * (j - i) / 2 for i, j in zip(rows, cols)] + [1.0])
+        axis.set_xlim(-1, n)
+        axis.set_ylim(-0.12 * height - 0.5, height * 1.08)
+        axis.set_title(f"forward dependencies in story order ({edges} ranking; an arc means deleting the left detail moved the right one)", fontsize=9)
+    axis.axis("off")
     from matplotlib.lines import Line2D
-    arcs.legend(handles=[Line2D([], [], marker="o", linestyle="", color=c, markeredgecolor="black", label=label)
+    axis.legend(handles=[Line2D([], [], marker="o", linestyle="", color=c, markeredgecolor="black", label=label)
                          for c, label in [(HUB_COLOR, "source hub"), (INTEGRATOR_COLOR, "integrator"), (BOTH_COLOR, "both"), (PLAIN_COLOR, "other")]],
                 loc="upper right", fontsize=8, frameon=False)
 
@@ -101,12 +121,31 @@ def draw_story(weights: np.ndarray, nodes: pd.DataFrame, title: str, path: Path,
     figure.suptitle(title, fontsize=11)
 
     if texts:
+        strongest = top_pairs(weights, pairs, edges)
+        lines = [f"Strongest effects ({'beyond what distance predicts' if edges == 'excess' else 'raw weight'}): deleting A changed B"]
+        for i, j, weight, value in strongest:
+            lines.append(f"  {i + 1:>2} -> {j + 1:<2} (x{value:.1f})  A: " + textwrap.shorten(texts[i], 70, placeholder="...") + "   B: " + textwrap.shorten(texts[j], 70, placeholder="..."))
         marked = [i for i, role in enumerate(roles) if role]
-        lines = [f"{i + 1}  [{roles[i]}]  " + textwrap.shorten(texts[i], 150, placeholder="...") for i in marked]
-        figure.text(0.04, 0.02, "\n".join(textwrap.fill(line, 165, subsequent_indent="      ") for line in lines), fontsize=7, va="bottom", family="monospace")
+        lines.append("Marked details (centrality roles, not validated gists):")
+        lines.extend(f"  {i + 1:>2} [{roles[i]}]  " + textwrap.shorten(texts[i], 140, placeholder="...") for i in marked)
+        figure.text(0.03, 0.015, "\n".join(lines), fontsize=6.8, va="bottom", family="monospace")
     path.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(path, dpi=140)
     plt.close(figure)
+
+
+def edge_table(weights: np.ndarray, story_key: str, keep: float, edges: str, texts: list[str] | None) -> pd.DataFrame:
+    """Every kept forward pair of one story: who changed whom, by how much, and what the two details say."""
+    n = weights.shape[0]
+    ranking = excess_matrix(weights) if edges == "excess" else upper(weights)
+    graph = thresholded(ranking, keep)
+    rows, cols = np.nonzero(graph)
+    frame = pd.DataFrame({"story_key": story_key, "source": rows + 1, "target": cols + 1, "lag": cols - rows,
+                          "weight": upper(weights)[rows, cols], "excess": excess_matrix(weights)[rows, cols]})
+    if texts and len(texts) == n:
+        frame["source_text"] = [texts[i] for i in rows]
+        frame["target_text"] = [texts[j] for j in cols]
+    return frame.sort_values("excess" if edges == "excess" else "weight", ascending=False)
 
 
 def detail_texts(cohorts: list[Path], wanted: set[str]) -> dict[str, list[str]]:
@@ -134,6 +173,8 @@ def main() -> None:
     parser.add_argument("--distance", choices=["cos", "rel"], default="cos")
     parser.add_argument("--layer", type=int, default=None)
     parser.add_argument("--keep", type=float, default=0.2)
+    parser.add_argument("--layout", choices=["2d", "arc"], default="2d", help="2d: closer = more coupled; arc: details in story order on a line")
+    parser.add_argument("--pairs", type=int, default=6, help="strongest effects listed under each picture")
     parser.add_argument("--edges", choices=["excess", "raw"], default="excess", help="rank the drawn arcs by weight beyond what distance predicts, or by raw weight")
     parser.add_argument("--top-k", type=int, default=3, help="how many source hubs and integrators to mark per story")
     args = parser.parse_args()
@@ -153,7 +194,7 @@ def main() -> None:
         chosen = pool.index.tolist()[:args.n_stories]
     texts = detail_texts(args.cohort, set(chosen)) if args.cohort else {}
 
-    tables = []
+    tables, edge_frames = [], []
     for key in chosen:
         weights = matrices[metadata.loc[key, "key"]]
         nodes = node_table(weights, args.keep, args.top_k)
@@ -161,10 +202,12 @@ def main() -> None:
         if info is not None and key in info.index and pd.notna(info.loc[key, "range_lower"]):
             label += f", stated age {int(info.loc[key, 'range_lower'])}-{int(info.loc[key, 'range_upper'])}"
         draw_story(weights, nodes, label + f", layer {layer}, {args.view}/{args.distance})", args.output_dir / f"{key}.png", args.keep,
-                   texts.get(key) if texts.get(key) and len(texts[key]) == len(nodes) else None, args.edges)
+                   texts.get(key) if texts.get(key) and len(texts[key]) == len(nodes) else None, args.edges, args.layout, args.pairs)
+        edge_frames.append(edge_table(weights, key, args.keep, args.edges, texts.get(key)))
         tables.append(nodes.assign(story_key=key, detail_text=texts.get(key, [""] * len(nodes)) if len(texts.get(key, [])) == len(nodes) else ""))
     if tables:
         pd.concat(tables, ignore_index=True).to_csv(args.output_dir / "story_nodes.csv", index=False)
+        pd.concat(edge_frames, ignore_index=True).to_csv(args.output_dir / "story_edges.csv", index=False)
     print(f"drew {len(chosen)} stories into {args.output_dir}")
 
 
