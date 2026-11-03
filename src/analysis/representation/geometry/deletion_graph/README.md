@@ -10,7 +10,7 @@ a later deletion, so entries with j < i must be ~0 (`causal_floor` in the output
 only the upper triangle is used.
 
 **Measures** (`graph_math.graph_measures`), all comparable across stories of different length:
-node strengths average over the partners a node can actually have (detail 1 has n-1 later partners, the last has one); all but
+node strengths average over the partners a node can actually have (detail 1 has n-1 later partners, the last has one) and are taken relative to the average pair at the same lag (without this, details near the end look like hubs only because their few partners are close); all but
 `mean_weight` are scale free; the thresholded graph (path, components, PageRank, efficiency) keeps the strongest 20% of pairs, so every
 story has the same density and only its shape is compared.
 
@@ -26,6 +26,12 @@ story has the same density and only its shape is compared.
 | `pagerank_entropy`, `efficiency` | spread of centrality; how short the strong paths are |
 | `sv_participation`, `sv_top_share`, `sv_entropy_rank` | how many independent dependency "modes" the matrix has |
 
+**Pictures** (`plot_story_graphs.py`, `plot.slurm`): one PNG per story with the details in story order, arcs for the strongest forward
+dependencies (the same share of pairs in every story), the full matrix beside it, and the details under it. Marked nodes: **source hub** (deleting
+it moves later details more than distance predicts) and **integrator** (moved more than distance predicts by earlier deletions); node size
+is its total coupling beyond distance. These are centrality roles read off the graph, not validated gists; whether they match what people keep when
+recalling the story is a separate test. `story_nodes.csv` lists every node's strengths, PageRank and role.
+
 **Confounds to keep in mind.** Deleting a longer detail shifts later positions more, so run `--view`/`--distance` variants and
 compare with `n_details` and `token_count` (the age tests partial out the number of details). Details that alternate in the text are
 often related (cause/effect), so coupling mixes position, content and structure; a replacement control (swap detail i for a
@@ -36,6 +42,7 @@ length-matched unrelated sentence) and a shuffled-order null are the natural nex
 ```bash
 MODEL_KEY=qwen3_8b BATCH=batch_top100_ages2-12 bash hpc/analysis/representation/geometry/deletion_graph/submit.sh
 MODEL_KEY=qwen3_8b BATCH=batch_top100_ages2-12 sbatch --account=torch_pr_494_general hpc/analysis/representation/geometry/deletion_graph/analyze.slurm
+MODEL_KEY=qwen3_8b BATCH=batch_top100_ages2-12 sbatch --account=torch_pr_494_general hpc/analysis/representation/geometry/deletion_graph/plot.slurm
 ```
 
 Extraction writes `<detail_extraction>/<model>_deletion_graph_<batch>/deletion_graph_NNN.npz` (+ metadata and audit csv; the audit lists
