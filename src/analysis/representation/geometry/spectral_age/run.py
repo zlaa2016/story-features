@@ -16,7 +16,7 @@ C. within-pooled  every story's details are centred on that story's own mean (th
 D. halves      (step ``halves``) each story's details are split at random into two halves, each half gets its own PCA and the
                two sets of PCs are compared (subspace overlap at each share of variance); the mean over the stories at an
                age is the panel.  Details are never pooled across stories.  The null compares a half of the story with a
-               half of another story of that age.  ``fig_four_panels.png`` puts A (PCs; PC overlap between ages), B and
+               half of another story of that age.  ``fig_four_panels.png`` puts A (PCs; PC overlap between two halves of the stories at an age), B and
                D side by side.
 
 Other reductions reported next to PCA: participation ratio, entropy effective rank, spectral decay
@@ -522,7 +522,7 @@ def plot_halves(observed, null_mean, null_sd, path: Path, ages, label: str, args
 
 
 def plot_overview(args, ages: np.ndarray, label: str) -> None:
-    """The four panels in one figure, read from the step outputs: 1 whole-story PCs, 2 per-story detail PCs, 3 whole-story PC overlap between ages,
+    """The four panels in one figure, read from the step outputs: 1 whole-story PCs, 2 per-story detail PCs, 3 whole-story PC overlap between two halves of the stories at an age,
     4 PC overlap between halves of a story's details."""
     import matplotlib
 
@@ -535,7 +535,7 @@ def plot_overview(args, ages: np.ndarray, label: str) -> None:
         return
     overlap.AGES = ages
     k_whole = pd.read_csv(needed[0]).query("mode == 'multi'").pivot(index="age", columns="variance", values="k").reindex(ages)
-    pairs = pd.read_csv(needed[1]).query("mode == 'multi' and age != other_age")
+    pairs = pd.read_csv(needed[1]).query("mode == 'multi' and age == other_age")  # the two random halves of the stories at an age
     between = pairs.groupby(["age", "variance"])["overlap"].mean().unstack().reindex(ages)
     k_story = pd.read_csv(needed[2]).pivot(index="age", columns="variance", values="mean_k").reindex(ages)
     half = pd.read_csv(needed[3]).pivot(index="age", columns="variance", values="overlap").reindex(ages)
@@ -544,7 +544,7 @@ def plot_overview(args, ages: np.ndarray, label: str) -> None:
     grid = figure.add_gridspec(2, 2)
     heat(figure.add_subplot(grid[0, 0]), k_whole.to_numpy(), ages, "1. each story one vector, PCA over the stories of an age: PCs needed")
     heat(figure.add_subplot(grid[0, 1]), k_story.to_numpy(), ages, "2. each detail one vector, PCA within each story: PCs needed (mean over stories)")
-    overlap.heatmap(figure.add_subplot(grid[1, 0]), between.to_numpy().T, pair_rows, "3. whole-story PCs: overlap of an age's PCs with the other ages", "viridis", vmin=0, vmax=1, label="overlap")
+    overlap.heatmap(figure.add_subplot(grid[1, 0]), between.to_numpy().T, pair_rows, "3. whole-story PCs within an age: overlap between two random halves of the stories", "viridis", vmin=0, vmax=1, label="overlap")
     overlap.heatmap(figure.add_subplot(grid[1, 1]), half.to_numpy().T, [f"{int(round(v * 100))}%" for v in half.columns], "4. details within a story: overlap between two halves' PCs (mean over stories)",
                     "viridis", vmin=0, vmax=1, label="overlap")
     figure.suptitle(f"Whole stories vs details by age ({label}; {args.detail_view} details)", fontsize=12, x=0.01, ha="left")
@@ -568,7 +568,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--vector-key", default="mean_vectors", help="whole-story array: mean_vectors or eos_vectors")
     parser.add_argument("--detail-key", default=None)
     parser.add_argument("--layer", type=int, default=-1)
-    parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within, halves")
+    parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within, halves; overview alone redraws fig_four_panels.png from saved outputs")
     parser.add_argument("--equal-cells", action="store_true", help="cut every age to the smallest age's size (default: each age keeps its own size)")
     parser.add_argument("--reselect-available", action="store_true", help="rebuild the batch on the stories that have vectors")
     parser.add_argument("--standardize", action="store_true")
@@ -606,6 +606,10 @@ def main(argv: list[str] | None = None) -> None:
     dirs["contextual"] = [args.detail_dir] if args.detail_dir and args.detail_view == "contextual" else dirs["global"]
     if "check" in steps:
         check_coverage(args, dirs, ages)
+        return
+    if steps == {"overview"}:  # redraw the four panels from the saved step outputs
+        chosen = json.loads((args.output_dir / "selection" / "summary.json").read_text())
+        plot_overview(args, np.array(chosen["ages"], dtype=int), f"{args.model_key}, layer {args.layer}")
         return
     selection = prepare_selection(args, dirs, [int(a) for a in ages])
     chosen = json.loads((selection / "summary.json").read_text())

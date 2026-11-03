@@ -105,6 +105,6 @@ PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests
 
 1. each story one vector, PCA over the stories of an age: PCs needed per share of variance (A);
 2. each detail one vector, PCA within each story: PCs needed, averaged over the stories at each age (B);
-3. whole-story PCs: overlap of an age's PCs with the other ages (A);
+3. whole-story PCs within an age: PC overlap between two random halves of the stories at that age (A's half-split, the diagonal of the age-by-age overlap);
 4. details within a story: each story's details are split at random into two halves, each half gets its own PCA, and the overlap of the two sets of PCs is averaged over the stories at each age
    (`halves_<view>/fig_halves_overlap.png`, `overlap_halves.csv`; null = a half of another story of that age).  Details are never pooled across stories.

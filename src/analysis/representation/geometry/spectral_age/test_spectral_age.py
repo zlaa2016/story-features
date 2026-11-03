@@ -230,6 +230,9 @@ class RandomPipelineTests(unittest.TestCase):
             self.assertTrue((out / "halves_isolated/fig_halves_overlap.png").exists())
             self.assertTrue((out / "pooled/fig_age_by_variance.png").exists())
             self.assertTrue((out / "fig_four_panels.png").exists())
+            (out / "fig_four_panels.png").unlink()
+            run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--steps", "overview", "--output-dir", str(out)])
+            self.assertTrue((out / "fig_four_panels.png").exists())
 
     def test_halves_alone_runs_and_halves_of_a_story_share_axes(self) -> None:
         rng = np.random.default_rng(14)
