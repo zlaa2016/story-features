@@ -108,3 +108,13 @@ PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests
 3. whole-story PCs within an age: PC overlap between two random halves of the stories at that age (A's half-split, the diagonal of the age-by-age overlap);
 4. details within a story: each story's details are split at random into two halves, each half gets its own PCA, and the overlap of the two sets of PCs is averaged over the stories at each age
    (`halves_<view>/fig_halves_overlap.png`, `overlap_halves.csv`; null = a half of another story of that age).  Details are never pooled across stories.
+
+### Top-5 PC age test
+
+Next to the curve-level tests each step writes one test on the first 5 PCs only, `age_top5_test.json` (rho, two-sided permutation p, null mean/sd):
+
+* `pooled/`: Spearman rho across ages between age and the share of variance in the first 5 PCs of the pooled whole-story vectors (every age at the smallest cell size; permuted-age null).
+* `within_<view>/`: size-adjusted Spearman rho between a story's age midpoint and the share of its own variance in its first 5 detail PCs (story length ranked out, ages shuffled inside strata of story length).
+* `halves_<view>/`: the same for the overlap of the first 5 PCs of two halves of a story's details; `overlap_halves_top5.csv` has the per-age means and the other-story null.
+
+One test per panel, no multiple-comparison correction; stories at several ages are used once per cell, so read neighbouring ages as non-independent.

@@ -153,8 +153,9 @@ def spectrum_row(rows: np.ndarray) -> dict[str, float]:
     total = float(values.sum())
     out: dict[str, float] = {"n_units": float(n)}
     if total <= 0:
-        return {**out, **{f"k_{int(round(v * 100))}": np.nan for v in overlap.V_K}}
+        return {**out, "top5_share": np.nan, **{f"k_{int(round(v * 100))}": np.nan for v in overlap.V_K}}
     cumulative = np.cumsum(values) / total
+    out["top5_share"] = float(cumulative[min(age_tests.TOP_PCS, len(cumulative)) - 1])
     ks = overlap.levels_to_k(cumulative, overlap.V_K)
     for v, k in zip(overlap.V_K, ks):
         out[f"k_{int(round(v * 100))}"] = float(k)
@@ -275,6 +276,9 @@ def _run_pooled(args, dirs, selection: Path, ages: np.ndarray, label: str) -> di
     pd.DataFrame(rows).to_csv(out / "other_reductions_by_age.csv", index=False)
     test = age_tests.pooled_curve_test(x, lo, hi, pop, ages, args.per_age, overlap.multi_cells, args.curve_vmin, args.curve_vmax, args.pooled_curve_permutations, args.seed)
     age_tests.save(test, out)
+    top = age_tests.pooled_share_test(x, lo, hi, pop, ages, args.per_age, overlap.multi_cells, args.pooled_curve_permutations, args.seed)
+    age_tests.save_top(top, out, "age_top5_test.json")
+    print(f"[pooled] top-{age_tests.TOP_PCS} age test: rho = {top['T']:.3f}, p = {top['p_two_sided']:.4g}", flush=True)
     print(f"[pooled] curve-level age test: T = {test['T']:.3f}, p = {test['p_two_sided']:.4g} ({test['stories_per_age']} stories per age)", flush=True)
     return {"k": result["observed"]["k"], "cells": result["cells"]}
 
@@ -349,6 +353,9 @@ def run_within(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
     pd.DataFrame(rows).to_csv(out / "k_by_age_variance_within.csv", index=False)
     test = age_tests.within_curve_test(profile_frame, args.curve_vmin, args.curve_vmax, args.curve_permutations, args.seed)
     age_tests.save(test, out)
+    top = age_tests.within_scalar_test(profile_frame, "top5_share", args.curve_permutations, args.seed)
+    age_tests.save_top(top, out, "age_top5_test.json")
+    print(f"[within:{args.detail_view}] top-{age_tests.TOP_PCS} age test: rho = {top['T']:.3f}, p = {top['p_two_sided']:.4g} ({top['n_stories']} stories)", flush=True)
     print(f"[within:{args.detail_view}] curve-level age test: T = {test['T']:.3f}, p = {test['p_two_sided']:.4g} ({test['n_stories']} stories)", flush=True)
     frame = profile_frame.rename(columns={"age_mid": "age"})
     trends = [base.age_association(frame, stat, rng, args.trend_permutations, bootstrap=200) for stat in STATS if stat in frame.columns]
@@ -473,6 +480,8 @@ def run_halves(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
     rng = np.random.default_rng(args.seed + 2)
     shape = (args.halves_splits, len(ages), len(levels))
     observed, null = np.full(shape, np.nan), np.full(shape, np.nan)
+    top = age_tests.TOP_PCS
+    story_top, age_top, age_top_null = np.full((args.halves_splits, len(keys)), np.nan), np.full((args.halves_splits, len(ages)), np.nan), np.full((args.halves_splits, len(ages)), np.nan)
     for t in range(args.halves_splits):
         halves = []
         for key in keys:
@@ -484,6 +493,7 @@ def run_halves(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
                 pair.append((axes[: args.halves_axes].astype(np.float32), cumulative))
             halves.append(pair)
         own = np.array([axes_overlap(*h[0], *h[1], args.halves_axes) for h in halves])
+        story_top[t] = [overlap.subspace_overlap(h[0][0], h[1][0], top) for h in halves]
         for i, age in enumerate(ages):
             members = cells[int(age)]
             if len(members) < 5:
@@ -491,11 +501,22 @@ def run_halves(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
             observed[t, i] = np.nanmean(own[members], axis=0)
             partners = [rng.choice(members[members != m]) for m in members]
             null[t, i] = np.nanmean([axes_overlap(*halves[m][0], *halves[p][1], args.halves_axes) for m, p in zip(members, partners)], axis=0)
+            age_top[t, i] = story_top[t, members].mean()
+            age_top_null[t, i] = np.mean([overlap.subspace_overlap(halves[m][0][0], halves[p][1][0], top) for m, p in zip(members, partners)])
         print(f"[halves] split {t + 1}/{args.halves_splits}", flush=True)
     mean_obs, mean_null, sd_null = np.nanmean(observed, axis=0), np.nanmean(null, axis=0), np.nanstd(null, axis=0)
     records = [{"age": int(age), "n_stories": len(cells[int(age)]), "variance": v, "overlap": mean_obs[i, j], "null_mean": mean_null[i, j], "null_sd": sd_null[i, j]}
                for i, age in enumerate(ages) for j, v in enumerate(levels)]
     pd.DataFrame(records).to_csv(out / "overlap_halves.csv", index=False)
+    pd.DataFrame({"age": ages, "n_stories": [len(cells[int(a)]) for a in ages], f"overlap_top{top}": np.nanmean(age_top, axis=0),
+                  "null_mean": np.nanmean(age_top_null, axis=0), "null_sd": np.nanstd(age_top_null, axis=0)}).to_csv(out / f"overlap_halves_top{top}.csv", index=False)
+    subset = pd.read_csv(selection / "subset_stories.csv", dtype={"story_key": str}).drop_duplicates("story_key").set_index("story_key")
+    lower = np.maximum(subset.loc[keys, "range_lower"].to_numpy(dtype=int), int(ages.min()))
+    upper = np.minimum(subset.loc[keys, "range_upper"].to_numpy(dtype=int), int(ages.max()))
+    frame = pd.DataFrame({"story_key": keys, "age_mid": (lower + upper) / 2, "n_units": [len(rows_of[k]) for k in keys], f"top{top}_overlap": np.nanmean(story_top, axis=0)})
+    test = age_tests.within_scalar_test(frame, f"top{top}_overlap", args.curve_permutations, args.seed, panel="4 details within a story (halves)")
+    age_tests.save_top(test, out, f"age_top{top}_test.json")
+    print(f"[halves] top-{top} age test: rho = {test['T']:.3f}, p = {test['p_two_sided']:.4g} ({test['n_stories']} stories)", flush=True)
     np.savez(out / "overlap_halves.npz", ages=ages, levels=np.array(levels), observed=mean_obs, null_mean=mean_null, null_sd=sd_null)
     plot_halves(mean_obs, mean_null, sd_null, out / "fig_halves_overlap.png", ages, label, args)
     return {}

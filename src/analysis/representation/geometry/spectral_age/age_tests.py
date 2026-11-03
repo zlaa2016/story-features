@@ -11,6 +11,9 @@ Instead of one test per variance level, a single statistic summarises the curve:
   of that age's pooled stories; every age keeps the same number of stories (the smallest cell).  The null reshuffles the age ranges
   among stories (as in the permuted-age null of the heatmaps) and recomputes T.
 
+Top-5 test: the same two designs applied to one scalar, the share of variance captured by the first 5 PCs (and, for the within-story
+overlap, the overlap of the first 5 PCs of two halves of a story), so each panel gets a single test with no choice of variance range.
+
 T > 0 means older ages need more PCs (a less compressed curve), T < 0 fewer.  The p-value is two-sided, (1 + #{|T*| >= |T|}) / (1 + draws).
 Levels where k is constant (for example k = 1 at low v) have no association and are skipped.  Stories (B) and ages (A) are treated as
 independent; no correction is applied because this is a single test per panel.
@@ -117,6 +120,64 @@ def pooled_curve_test(x: np.ndarray, lo: np.ndarray, hi: np.ndarray, pop: np.nda
             "curve": {f"{v:.2f}": (float(r) if np.isfinite(r) else None) for v, r in zip(levels, curve)}}
 
 
+TOP_PCS = 5
+
+
+def top_share(x: np.ndarray, members: np.ndarray, n_pcs: int = TOP_PCS) -> float:
+    """Share of the variance of the pooled rows (rows of ``x`` in ``members``) captured by their first ``n_pcs`` PCs."""
+    rows = x[members]
+    rows = rows - rows.mean(axis=0)
+    values = np.clip(np.linalg.eigvalsh(rows @ rows.T)[::-1], 0.0, None)
+    return float(values[:n_pcs].sum() / values.sum())
+
+
+def within_scalar_test(frame: pd.DataFrame, column: str, permutations: int = 2000, seed: int = 42, panel: str = "within story", n_pcs: int = TOP_PCS) -> dict:
+    """Age test of one per-story number (stories are the units): Spearman rho with the age midpoint, story length ranked out and
+    ages shuffled inside strata of story length (as in ``within_curve_test``)."""
+    frame = frame.dropna(subset=["age_mid", "n_units", column]).reset_index(drop=True)
+    units = frame["n_units"].to_numpy(dtype=float)
+    age_rank = rankdata(frame["age_mid"].to_numpy(dtype=float))
+    project = residualiser(np.column_stack([np.ones(len(frame)), rankdata(np.log(units))]))
+    value = (project @ rankdata(frame[column].to_numpy(dtype=float)))[:, None]
+    norm = np.linalg.norm(value, axis=0)
+    observed = float(column_correlations(project @ age_rank, value, norm)[0])
+    size_rank = rankdata(units, method="ordinal")
+    strata = pd.qcut(size_rank, q=min(5, max(2, len(frame) // 20)), labels=False)
+    groups = [np.flatnonzero(strata == level) for level in np.unique(strata)]
+    rng = np.random.default_rng(seed)
+    null = np.empty(permutations)
+    for draw in range(permutations):
+        permuted = age_rank.copy()
+        for members in groups:
+            permuted[members] = age_rank[rng.permutation(members)]
+        null[draw] = column_correlations(project @ permuted, value, norm)[0]
+    return {"panel": panel, "statistic": f"size-adjusted Spearman rho(age midpoint, {column}); first {n_pcs} PCs", "T": observed,
+            "p_two_sided": float((1 + np.sum(np.abs(null) >= abs(observed) - 1e-12)) / (1 + permutations)), "null_mean": float(null.mean()),
+            "null_sd": float(null.std()), "n_stories": int(len(frame)), "permutations": permutations}
+
+
+def pooled_share_test(x: np.ndarray, lo: np.ndarray, hi: np.ndarray, pop: np.ndarray, ages: np.ndarray, per_age: int, multi_cells,
+                      permutations: int = 200, seed: int = 42, n_pcs: int = TOP_PCS) -> dict:
+    """Age test across ages of the share of variance in the first PCs of the pooled stories (panel A); ages are the units, as in ``pooled_curve_test``."""
+    rng = np.random.default_rng(seed)
+
+    def statistic(lo_values: np.ndarray, hi_values: np.ndarray) -> tuple[float, np.ndarray, int]:
+        first = multi_cells(lo_values, hi_values, per_age, rng, pop)
+        size = min(len(members) for members in first.values())
+        cells = multi_cells(lo_values, hi_values, size, rng, pop)
+        shares = np.array([top_share(x, cells[int(age)], n_pcs) for age in ages])
+        return float(spearman_over_ages(ages.astype(float), shares[:, None])[0]), shares, size
+
+    observed, shares, size = statistic(lo, hi)
+    null = np.empty(permutations)
+    for draw in range(permutations):
+        order = rng.permutation(len(lo))
+        null[draw] = statistic(lo[order], hi[order])[0]
+    return {"panel": "A pooled", "statistic": f"Spearman rho across ages between age and the share of variance in the first {n_pcs} PCs", "T": observed,
+            "p_two_sided": float((1 + np.sum(np.abs(null) >= abs(observed) - 1e-12)) / (1 + permutations)), "null_mean": float(null.mean()), "null_sd": float(null.std()),
+            "n_ages": int(len(ages)), "stories_per_age": int(size), "permutations": permutations, "share_by_age": {str(int(a)): float(v) for a, v in zip(ages, shares)}}
+
+
 def plot_curve(result: dict, path: Path) -> None:
     import matplotlib
 
@@ -135,6 +196,11 @@ def plot_curve(result: dict, path: Path) -> None:
     figure.tight_layout()
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
+
+
+def save_top(result: dict, folder: Path, name: str) -> None:
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / name).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 
 
 def save(result: dict, folder: Path) -> None:

@@ -230,6 +230,9 @@ class RandomPipelineTests(unittest.TestCase):
             self.assertTrue((out / "halves_isolated/fig_halves_overlap.png").exists())
             self.assertTrue((out / "pooled/fig_age_by_variance.png").exists())
             self.assertTrue((out / "fig_four_panels.png").exists())
+            for folder in ("pooled", "within_isolated"):
+                self.assertTrue(np.isfinite(json.loads((out / folder / "age_top5_test.json").read_text())["T"]))
+            self.assertTrue((out / "halves_isolated/age_top5_test.json").exists())
             (out / "fig_four_panels.png").unlink()
             run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--steps", "overview", "--output-dir", str(out)])
             self.assertTrue((out / "fig_four_panels.png").exists())
