@@ -98,12 +98,13 @@ with `fig_age_curve_test.png` showing the association at each level. On a finish
 PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests --profiles results/analysis/representation/geometry/spectral_age/gpt_oss_20b/batch_flat_ages2-8_span_lt8_isolated/within_isolated/story_profiles.csv
 ```
 
-## Random subset and whole-story vs detail PC overlap
+## Random subset and the four panels
 
 `batch_random100_ages2-12` draws up to 100 random stories per age (2-12) from the stories with vectors (stated range under 8); an age with fewer keeps all of them and the real counts are in
-`<output>/selection/summary.json`.  Run with `STEPS=pooled,within,compare` for panels A and B (and C) plus step D:
+`<output>/selection/summary.json`.  Run with `STEPS=pooled,within,halves`; `fig_four_panels.png` in the output folder shows:
 
-* `compare_<view>/fig_whole_vs_detail_overlap.png` and `overlap_whole_vs_detail.csv`: for each story at an age, the PCs of its own detail
-  vectors (as in B, never pooled across stories) against the PCs of the whole-story vectors of that age, as subspace overlap at each share
-  of variance, averaged over the stories.  The null pairs the whole-story PCs with the own-detail PCs of stories outside that age;
-  `chance` = width / dimension.
+1. each story one vector, PCA over the stories of an age: PCs needed per share of variance (A);
+2. each detail one vector, PCA within each story: PCs needed, averaged over the stories at each age (B);
+3. whole-story PCs: overlap of an age's PCs with the other ages (A);
+4. details within a story: each story's details are split at random into two halves, each half gets its own PCA, and the overlap of the two sets of PCs is averaged over the stories at each age
+   (`halves_<view>/fig_halves_overlap.png`, `overlap_halves.csv`; null = a half of another story of that age).  Details are never pooled across stories.

@@ -9,7 +9,7 @@
 
 # Spectral change from details to gist by age (pooled, within-story, within-story pooled) for one model
 # and one saved batch.  CPU only.  Variables: MODEL_KEY (gpt_oss_20b|qwen3_8b), BATCH (folder name under
-# data/processed/spectral_age/), DETAIL_VIEW (isolated|contextual), STEPS (check | any of pooled,within,compare), RESELECT=1
+# data/processed/spectral_age/), DETAIL_VIEW (isolated|contextual), STEPS (check | any of pooled,within,halves), RESELECT=1
 # GLOBAL_DIR / DETAIL_DIR override the vector folders.
 # (rebuild the batch on stories that have vectors; the batch actually used is written to <output>/selection/).
 set -euo pipefail

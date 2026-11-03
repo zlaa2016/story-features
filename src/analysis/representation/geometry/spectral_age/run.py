@@ -13,10 +13,11 @@ C. within-pooled  every story's details are centred on that story's own mean (th
                age's shared gist axes.  PC overlap between ages (half-split, permuted-age null) says
                whether those axes are the same across ages.
 
-D. compare     (step ``compare``) for each story at an age, the PCs of its own detail vectors (as in B, never pooled across
-               stories) against the PCs of the whole-story vectors of that age (A), as subspace overlap at each share of
-               variance, averaged over the stories.  The null pairs the whole-story PCs with the own-detail PCs of
-               stories outside that age: it says how much of the overlap is specific to the story.
+D. halves      (step ``halves``) each story's details are split at random into two halves, each half gets its own PCA and the
+               two sets of PCs are compared (subspace overlap at each share of variance); the mean over the stories at an
+               age is the panel.  Details are never pooled across stories.  The null compares a half of the story with a
+               half of another story of that age.  ``fig_four_panels.png`` puts A (PCs; PC overlap between ages), B and
+               D side by side.
 
 Other reductions reported next to PCA: participation ratio, entropy effective rank, spectral decay
 exponent and the TwoNN intrinsic dimension (nonlinear manifold dimension).
@@ -439,79 +440,68 @@ def plot_within(profile_frame, k_mean, result, out: Path, ages, label, args) -> 
 
 
 # --------------------------------------------------------------------------------------
-# D. whole-story PCs against segmented-detail PCs
+# D. PC overlap between two halves of a story's details
 # --------------------------------------------------------------------------------------
-def axes_overlap(first: np.ndarray, cumulative_first: np.ndarray, second: np.ndarray, cumulative_second: np.ndarray, keep: int) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """Mean squared cosine between the leading axes of two bases at every share of variance, with the widths used."""
+def axes_overlap(first: np.ndarray, cumulative_first: np.ndarray, second: np.ndarray, cumulative_second: np.ndarray, keep: int) -> np.ndarray:
+    """Mean squared cosine between the leading axes of two bases at every share of variance."""
     levels = overlap.V_PAIR
     sums = overlap.corner_sums(first[:keep] @ second[:keep].T)
     k_first, k_second = overlap.levels_to_k(cumulative_first, levels), overlap.levels_to_k(cumulative_second, levels)
     width = np.array([int(min(k_first[j], k_second[j], *sums.shape)) for j in range(len(levels))])
-    return np.array([sums[w - 1, w - 1] / w for w in width]), k_first, k_second, width
+    return np.array([sums[w - 1, w - 1] / w for w in width])
 
 
-def run_compare(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
-    """Per story: its own detail PCs (as in B) against the whole-story PCs of the age; averaged over the stories at each age."""
+def run_halves(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
+    """Each story's details are split at random into two halves, each half gets its own PCA, and the two sets of PCs are compared;
+    the mean over the stories at an age is the panel.  The null compares a half of the story with a half of another story of that age."""
     overlap.AGES = ages
     membership = pd.read_csv(selection / "membership.csv", dtype={"story_key": str})
-    ids, whole = whole_story(dirs["global"], args.vector_key, args.layer)
     details = detail_table(dirs[args.detail_view], args.detail_view)
     counts = details.groupby("story_key").size()
-    keys = sorted(set(membership["story_key"]) & set(ids.tolist()) & set(counts[counts >= args.min_units].index))
+    keys = sorted(set(membership["story_key"]) & set(counts[counts >= args.min_units].index))
     details = thinned_details(details[details["story_key"].isin(keys)], args.max_units)
     vectors = base.normalize_rows(detail_vectors(details, args.detail_view, args.layer, args.detail_key)).astype(np.float64)
-    position = {key: i for i, key in enumerate(ids.tolist())}
-    stories = base.normalize_rows(whole[[position[k] for k in keys]]).astype(np.float64)
     if args.standardize:
-        scale = vectors.std(axis=0) + 1e-6
-        vectors, stories = vectors / scale, stories / scale
+        vectors = vectors / (vectors.std(axis=0) + 1e-6)
     rows_of = details.groupby("story_key", sort=False).indices
     levels = overlap.V_PAIR
-    out = args.output_dir / f"compare_{args.detail_view}"
+    out = args.output_dir / f"halves_{args.detail_view}"
     out.mkdir(parents=True, exist_ok=True)
-    print(f"[compare:{args.detail_view}] {len(keys)} stories with whole-story and detail vectors, {len(details)} detail rows; dimension {vectors.shape[1]}", flush=True)
-
-    story_axes = []  # each story's own detail PCs (centred on the story, as in B)
-    for key in keys:
-        axes, cumulative = overlap.principal_axes(vectors[rows_of[key]])
-        story_axes.append((axes[: args.compare_axes].astype(np.float32), cumulative))
-
-    def story_overlap(axes_whole, cumulative_whole, index: int) -> tuple[np.ndarray, np.ndarray]:
-        axes, cumulative = story_axes[index]
-        values, _, _, width = axes_overlap(axes_whole, cumulative_whole, axes, cumulative, args.compare_axes)
-        return values, width
-
+    print(f"[halves:{args.detail_view}] {len(keys)} stories, {len(details)} detail rows; {args.halves_splits} random splits", flush=True)
+    in_cell = {int(a): set(membership.loc[membership["age"] == a, "story_key"]) for a in ages}
+    cells = {a: np.array([i for i, k in enumerate(keys) if k in members], dtype=int) for a, members in in_cell.items()}
     rng = np.random.default_rng(args.seed + 2)
-    shape = (len(ages), len(levels))
-    observed, null_mean, null_sd, chance = (np.full(shape, np.nan) for _ in range(4))
-    records = []
-    for i, age in enumerate(ages):
-        in_cell = set(membership.loc[membership["age"] == age, "story_key"])
-        members = np.array([i_story for i_story, k in enumerate(keys) if k in in_cell], dtype=int)
-        others = np.setdiff1d(np.arange(len(keys)), members)
-        if len(members) < 5:
-            print(f"[compare] age {int(age)}: only {len(members)} stories, skipped", flush=True)
-            continue
-        axes_whole, cumulative_whole = overlap.principal_axes(stories[members])
-        per_story = [story_overlap(axes_whole, cumulative_whole, m) for m in members]
-        observed[i] = np.nanmean([v for v, _ in per_story], axis=0)
-        chance[i] = np.mean([w for _, w in per_story], axis=0) / vectors.shape[1]
-        if len(others) >= 1:  # each member's details replaced by another story's, outside this age's cell
-            draws = [np.nanmean([story_overlap(axes_whole, cumulative_whole, j)[0] for j in rng.choice(others, len(members), replace=len(others) < len(members))], axis=0)
-                     for _ in range(args.compare_draws)]
-            null_mean[i], null_sd[i] = np.mean(draws, axis=0), np.std(draws, axis=0)
-        k_whole = overlap.levels_to_k(cumulative_whole, levels)
-        for j, v in enumerate(levels):
-            records.append({"age": int(age), "n_stories": len(members), "variance": v, "k_whole": int(k_whole[j]), "overlap": observed[i, j],
-                            "null_mean": null_mean[i, j], "null_sd": null_sd[i, j], "chance": chance[i, j]})
-        print(f"[compare] age {int(age)}: {len(members)} stories, mean overlap at 80% {observed[i, 7]:.3f} (null {null_mean[i, 7]:.3f})", flush=True)
-    pd.DataFrame(records).to_csv(out / "overlap_whole_vs_detail.csv", index=False)
-    np.savez(out / "overlap_whole_vs_detail.npz", ages=ages, levels=np.array(levels), observed=observed, null_mean=null_mean, null_sd=null_sd, chance=chance)
-    plot_compare(observed, null_mean, null_sd, out / "fig_whole_vs_detail_overlap.png", ages, label, args)
+    shape = (args.halves_splits, len(ages), len(levels))
+    observed, null = np.full(shape, np.nan), np.full(shape, np.nan)
+    for t in range(args.halves_splits):
+        halves = []
+        for key in keys:
+            rows = rng.permutation(rows_of[key])
+            cut = len(rows) // 2
+            pair = []
+            for part in (rows[:cut], rows[cut:]):
+                axes, cumulative = overlap.principal_axes(vectors[part])
+                pair.append((axes[: args.halves_axes].astype(np.float32), cumulative))
+            halves.append(pair)
+        own = np.array([axes_overlap(*h[0], *h[1], args.halves_axes) for h in halves])
+        for i, age in enumerate(ages):
+            members = cells[int(age)]
+            if len(members) < 5:
+                continue
+            observed[t, i] = np.nanmean(own[members], axis=0)
+            partners = [rng.choice(members[members != m]) for m in members]
+            null[t, i] = np.nanmean([axes_overlap(*halves[m][0], *halves[p][1], args.halves_axes) for m, p in zip(members, partners)], axis=0)
+        print(f"[halves] split {t + 1}/{args.halves_splits}", flush=True)
+    mean_obs, mean_null, sd_null = np.nanmean(observed, axis=0), np.nanmean(null, axis=0), np.nanstd(null, axis=0)
+    records = [{"age": int(age), "n_stories": len(cells[int(age)]), "variance": v, "overlap": mean_obs[i, j], "null_mean": mean_null[i, j], "null_sd": sd_null[i, j]}
+               for i, age in enumerate(ages) for j, v in enumerate(levels)]
+    pd.DataFrame(records).to_csv(out / "overlap_halves.csv", index=False)
+    np.savez(out / "overlap_halves.npz", ages=ages, levels=np.array(levels), observed=mean_obs, null_mean=mean_null, null_sd=sd_null)
+    plot_halves(mean_obs, mean_null, sd_null, out / "fig_halves_overlap.png", ages, label, args)
     return {}
 
 
-def plot_compare(observed, null_mean, null_sd, path: Path, ages, label: str, args) -> None:
+def plot_halves(observed, null_mean, null_sd, path: Path, ages, label: str, args) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -521,13 +511,45 @@ def plot_compare(observed, null_mean, null_sd, path: Path, ages, label: str, arg
     rows = [f"{int(round(v * 100))}%" for v in overlap.V_PAIR]
     figure = plt.figure(figsize=(13.5, 5), facecolor="#fcfcfb")
     grid = figure.add_gridspec(1, 2)
-    overlap.heatmap(figure.add_subplot(grid[0, 0]), observed.T, rows, "overlap of each story's own detail PCs (as in B) with the whole-story PCs of the age, mean over stories",
+    overlap.heatmap(figure.add_subplot(grid[0, 0]), observed.T, rows, "PC overlap between two halves of a story's details, mean over the stories at each age",
                     "viridis", vmin=0, vmax=1, label="mean squared cosine")
     z = overlap.standardised(observed, null_mean, null_sd, 0.005)
-    overlap.heatmap(figure.add_subplot(grid[0, 1]), z.T, rows, "vs other stories' own detail PCs (SDs; red = more than other stories)", "RdBu_r", diverging=True, label="SD")
-    figure.suptitle(f"Whole-story PCs vs each story's own detail PCs ({label}; {args.detail_view} details)", fontsize=12, x=0.01, ha="left")
+    overlap.heatmap(figure.add_subplot(grid[0, 1]), z.T, rows, "vs a half of another story of that age (SDs; red = more than other stories)", "RdBu_r", diverging=True, label="SD")
+    figure.suptitle(f"Within-story detail PC overlap by age ({label}; {args.detail_view} details)", fontsize=12, x=0.01, ha="left")
     figure.tight_layout(rect=(0, 0, 1, 0.94))
     figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+
+def plot_overview(args, ages: np.ndarray, label: str) -> None:
+    """The four panels in one figure, read from the step outputs: 1 whole-story PCs, 2 per-story detail PCs, 3 whole-story PC overlap between ages,
+    4 PC overlap between halves of a story's details."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    pooled, within, halves = args.output_dir / "pooled", args.output_dir / f"within_{args.detail_view}", args.output_dir / f"halves_{args.detail_view}"
+    needed = [pooled / "k_by_age_variance.csv", pooled / "pairs_by_age_variance.csv", within / "k_by_age_variance_within.csv", halves / "overlap_halves.csv"]
+    if not all(path.exists() for path in needed):
+        return
+    overlap.AGES = ages
+    k_whole = pd.read_csv(needed[0]).query("mode == 'multi'").pivot(index="age", columns="variance", values="k").reindex(ages)
+    pairs = pd.read_csv(needed[1]).query("mode == 'multi' and age != other_age")
+    between = pairs.groupby(["age", "variance"])["overlap"].mean().unstack().reindex(ages)
+    k_story = pd.read_csv(needed[2]).pivot(index="age", columns="variance", values="mean_k").reindex(ages)
+    half = pd.read_csv(needed[3]).pivot(index="age", columns="variance", values="overlap").reindex(ages)
+    pair_rows = [f"{int(round(v * 100))}%" for v in between.columns]
+    figure = plt.figure(figsize=(14, 10), facecolor="#fcfcfb")
+    grid = figure.add_gridspec(2, 2)
+    heat(figure.add_subplot(grid[0, 0]), k_whole.to_numpy(), ages, "1. each story one vector, PCA over the stories of an age: PCs needed")
+    heat(figure.add_subplot(grid[0, 1]), k_story.to_numpy(), ages, "2. each detail one vector, PCA within each story: PCs needed (mean over stories)")
+    overlap.heatmap(figure.add_subplot(grid[1, 0]), between.to_numpy().T, pair_rows, "3. whole-story PCs: overlap of an age's PCs with the other ages", "viridis", vmin=0, vmax=1, label="overlap")
+    overlap.heatmap(figure.add_subplot(grid[1, 1]), half.to_numpy().T, [f"{int(round(v * 100))}%" for v in half.columns], "4. details within a story: overlap between two halves' PCs (mean over stories)",
+                    "viridis", vmin=0, vmax=1, label="overlap")
+    figure.suptitle(f"Whole stories vs details by age ({label}; {args.detail_view} details)", fontsize=12, x=0.01, ha="left")
+    figure.tight_layout(rect=(0, 0, 1, 0.96))
+    figure.savefig(args.output_dir / "fig_four_panels.png", dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
 
 
@@ -546,7 +568,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--vector-key", default="mean_vectors", help="whole-story array: mean_vectors or eos_vectors")
     parser.add_argument("--detail-key", default=None)
     parser.add_argument("--layer", type=int, default=-1)
-    parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within, compare")
+    parser.add_argument("--steps", default="pooled,within", help="comma list of pooled, within, halves")
     parser.add_argument("--equal-cells", action="store_true", help="cut every age to the smallest age's size (default: each age keeps its own size)")
     parser.add_argument("--reselect-available", action="store_true", help="rebuild the batch on the stories that have vectors")
     parser.add_argument("--standardize", action="store_true")
@@ -562,8 +584,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--curve-vmax", type=float, default=0.95)
     parser.add_argument("--curve-permutations", type=int, default=2000, help="permutations for the within-story curve test")
     parser.add_argument("--pooled-curve-permutations", type=int, default=200, help="permuted-age draws for the pooled curve test")
-    parser.add_argument("--compare-draws", type=int, default=10, help="other-story draws for the whole-story vs detail PC overlap null")
-    parser.add_argument("--compare-axes", type=int, default=300, help="leading detail axes kept for that overlap")
+    parser.add_argument("--halves-splits", type=int, default=8, help="random half splits of each story's details for the within-story PC overlap")
+    parser.add_argument("--halves-axes", type=int, default=150, help="leading axes of each half kept for that overlap")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-dir", type=Path, required=True)
     return parser.parse_args(argv)
@@ -576,7 +598,7 @@ def main(argv: list[str] | None = None) -> None:
     ages = np.array(summary["ages"], dtype=int)
     args.per_age = args.per_age or int(summary["target_per_age"])
     steps = {s.strip() for s in args.steps.split(",") if s.strip()}
-    args.run_within = bool(steps & {"within", "compare"})  # both need detail vectors
+    args.run_within = bool(steps & {"within", "halves"})  # both need detail vectors
     root = args.extraction_root
     model_dirs = MODEL_DIRS[args.model_key]
     dirs = {"global": [args.global_dir] if args.global_dir else [root / name for name in model_dirs["global"]],
@@ -595,8 +617,9 @@ def main(argv: list[str] | None = None) -> None:
         results["pooled"] = run_pooled(args, dirs, selection, ages, label)
     if "within" in steps:
         results.update(run_within(args, dirs, selection, ages, label))
-    if "compare" in steps:
-        run_compare(args, dirs, selection, ages, label)
+    if "halves" in steps:
+        run_halves(args, dirs, selection, ages, label)
+    plot_overview(args, ages, label)
     if results:
         plot_summary(results, ages, args.output_dir / "fig_spectrum_by_age.png", label, args)
     (args.output_dir / "run_args.json").write_text(json.dumps({k: str(v) for k, v in vars(args).items()}, indent=2) + "\n")
