@@ -6,7 +6,8 @@ story, and relates them to age using a batch folder (``membership.csv`` and ``su
 
 Outputs in ``--output-dir``: ``story_measures.csv`` (one row per story), ``age_summary.csv`` (per age: median and quartiles),
 ``age_tests.csv`` (Spearman of each measure with age, raw and with the number of details partialled out, two age definitions),
-``causal_check.csv`` (the lower-triangle noise floor against the upper-triangle signal) and ``fig_measures_by_age.png``.
+``causal_check.csv`` (the lower-triangle noise floor against the upper-triangle signal), ``fig_measures_by_age.png`` and
+``fig_measures_vs_null_by_age.png`` (the ``*_z`` measures: each structure measure against shuffles that keep the decay with distance).
 """
 from __future__ import annotations
 
@@ -18,7 +19,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from analysis.representation.geometry.deletion_graph.graph_math import MEASURE_LABELS, graph_measures
+from analysis.representation.geometry.deletion_graph.graph_math import MEASURE_LABELS, graph_measures, null_z
 
 
 def load_shards(directory: Path, view: str, distance: str, layer: int | None) -> tuple[pd.DataFrame, dict[str, np.ndarray], int]:
@@ -40,11 +41,14 @@ def load_shards(directory: Path, view: str, distance: str, layer: int | None) ->
     return pd.concat(metadata, ignore_index=True), matrices, int(chosen)
 
 
-def story_table(metadata: pd.DataFrame, matrices: dict[str, np.ndarray], keep: float) -> pd.DataFrame:
+def story_table(metadata: pd.DataFrame, matrices: dict[str, np.ndarray], keep: float, null_draws: int = 0, seed: int = 42) -> pd.DataFrame:
+    rng = np.random.default_rng(seed)
     rows = []
     for _, record in metadata.iterrows():
         weights = matrices[record["key"]]
         measures = graph_measures(weights, keep)
+        if null_draws > 0:
+            measures.update(null_z(weights, keep, null_draws, rng))
         lower = np.tril(weights, -1)
         upper = np.triu(weights, 1)
         rows.append({
@@ -73,6 +77,8 @@ def association(frame: pd.DataFrame, measure: str, age: str) -> dict[str, float]
 
 
 def plot_by_age(summary: pd.DataFrame, measures: list[str], path: Path) -> None:
+    if not measures:
+        return
     import matplotlib
 
     matplotlib.use("Agg")
@@ -102,11 +108,12 @@ def main() -> None:
     parser.add_argument("--view", choices=["mean", "last"], default="mean")
     parser.add_argument("--distance", choices=["cos", "rel"], default="cos")
     parser.add_argument("--layer", type=int, default=None, help="layer number (default: the last one saved)")
-    parser.add_argument("--keep", type=float, default=0.2, help="share of strongest pairs kept for the path and PageRank measures")
+    parser.add_argument("--keep", type=float, default=0.2, help="share of strongest pairs kept for the path, centrality, clique and community measures")
+    parser.add_argument("--null-draws", type=int, default=30, help="lag-preserving shuffles per story for the *_z measures (0 = skip)")
     args = parser.parse_args()
 
     metadata, matrices, layer = load_shards(args.input_dir, args.view, args.distance, args.layer)
-    table = story_table(metadata, matrices, args.keep)
+    table = story_table(metadata, matrices, args.keep, args.null_draws)
     membership = pd.read_csv(args.batch / "membership.csv")
     stories = pd.read_csv(args.batch / "subset_stories.csv", low_memory=False)[["story_key", "range_lower", "range_upper", "view_count"]]
     table = table.merge(stories.drop_duplicates("story_key"), on="story_key", how="left")
@@ -128,7 +135,8 @@ def main() -> None:
     table[["story_key", "n_details", "causal_floor", "signal_median"]].assign(
         floor_over_signal=lambda f: f["causal_floor"] / f["signal_median"].replace(0, np.nan)
     ).to_csv(args.output_dir / "causal_check.csv", index=False)
-    plot_by_age(summary, measures, args.output_dir / "fig_measures_by_age.png")
+    plot_by_age(summary, [m for m in measures if not m.endswith("_z")], args.output_dir / "fig_measures_by_age.png")
+    plot_by_age(summary, [m for m in measures if m.endswith("_z")], args.output_dir / "fig_measures_vs_null_by_age.png")
     (args.output_dir / "run.json").write_text(json.dumps({
         "stories": int(len(table)), "layer": layer, "view": args.view, "distance": args.distance, "keep": args.keep,
         "batch": str(args.batch), "median_floor_over_signal": float(np.nanmedian(table["causal_floor"] / table["signal_median"].replace(0, np.nan))),
