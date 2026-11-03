@@ -115,6 +115,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(len(table), 90)
         self.assertEqual(curves.shape[0], 90)
         results = run.summarize(table, curves, pd.DataFrame(membership))
+        self.assertTrue(all(float(c) > 0 for c in results["prefix"].columns[1:]))      # only position columns, not membership extras such as rank
         tests = results["tests"]
         midpoint = tests[tests["age_definition"].str.startswith("midpoint")].set_index("measure")
         self.assertGreater(midpoint.loc["cos_mean", "rho"], 0.7)            # planted: older stories' details say more about the whole

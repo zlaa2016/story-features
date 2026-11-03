@@ -98,7 +98,7 @@ def summarize(table: pd.DataFrame, curves: pd.DataFrame, membership: pd.DataFram
     for measure in MEASURES:
         tests.append({"measure": measure, "age_definition": "membership (story counted at every batch age)", **association(by_age.rename(columns={"age": "age_value"}), measure, "age_value")})
         tests.append({"measure": measure, "age_definition": "midpoint of the stated range (one row per story)", **association(table, measure, "age_mid")})
-    prefix = membership.merge(curves, on="story_key", how="inner").drop(columns=["story_key"]).groupby("age").mean().reset_index()
+    prefix = membership[["age", "story_key"]].merge(curves, on="story_key", how="inner").drop(columns=["story_key"]).groupby("age").mean().reset_index()
     return {"summary": summary, "tests": pd.DataFrame(tests), "prefix": prefix}
 
 
@@ -123,7 +123,7 @@ def plot_by_age(summary: pd.DataFrame, prefix: pd.DataFrame, output_dir: Path) -
     figure.savefig(output_dir / "fig_overlap_by_age.png", dpi=140)
     plt.close(figure)
 
-    grid = prefix.set_index("age")
+    grid = prefix.set_index("age")           # columns: relative positions along the story only
     figure, axis = plt.subplots(figsize=(7, 4.2))
     image = axis.imshow(grid.to_numpy().T, aspect="auto", origin="lower", cmap="RdBu_r", vmin=-np.abs(grid.to_numpy()).max(), vmax=np.abs(grid.to_numpy()).max())
     axis.set_xticks(range(len(grid)), [str(int(a)) for a in grid.index])
