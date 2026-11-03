@@ -4,7 +4,8 @@
 cannot move earlier details, so the lower triangle is numerical noise.  Every measure is built to be comparable across
 stories with different numbers of details and different overall weight scales:
 
-* node strengths average over the partners a node can actually have (detail 1 has n-1 later partners, detail n-1 has one),
+* node strengths average over the partners a node can actually have (detail 1 has n-1 later partners, detail n-1 has one) and
+  are taken relative to the average pair at the same lag, so position in the story does not make a detail a hub,
 * measures are scale free (shares, ratios, Gini, slopes, ranks) except ``mean_weight``,
 * the thresholded graph keeps the strongest ``keep`` share of pairs, so its density is the same in every story and only
   its shape is compared.
@@ -74,9 +75,26 @@ def spectral(weights: np.ndarray) -> dict[str, float]:
     }
 
 
-def strengths(weights: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Mean outgoing weight per source (over its later partners) and mean incoming weight per target (over its earlier partners)."""
+def excess_matrix(weights: np.ndarray) -> np.ndarray:
+    """Each pair's weight divided by the average pair at the same lag: 1 = as strong as distance alone predicts."""
     matrix = upper(weights)
+    n = matrix.shape[0]
+    excess = np.zeros_like(matrix)
+    for lag in range(1, n):
+        diagonal = np.diagonal(matrix, offset=lag)
+        if diagonal.mean() > EPSILON:
+            rows = np.arange(n - lag)
+            excess[rows, rows + lag] = diagonal / diagonal.mean()
+    return excess
+
+
+def strengths(weights: np.ndarray, adjust: bool = True) -> tuple[np.ndarray, np.ndarray]:
+    """Mean outgoing weight per source (over its later partners) and mean incoming weight per target (over its earlier partners).
+
+    With ``adjust`` (default) each pair is first divided by the average pair at the same lag, so a detail is not a "hub" merely
+    because it sits near the end (few, close partners) or the start of the story; 1 means as coupled as distance predicts.
+    """
+    matrix = excess_matrix(weights) if adjust else upper(weights)
     n = matrix.shape[0]
     out = np.array([matrix[i, i + 1:].mean() for i in range(n - 1)])
     incoming = np.array([matrix[:j, j].mean() for j in range(1, n)])

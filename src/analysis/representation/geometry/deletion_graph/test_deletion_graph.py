@@ -103,6 +103,25 @@ class GraphMathTests(unittest.TestCase):
             graph_math.graph_measures(chain(3))
 
 
+class PositionBiasTests(unittest.TestCase):
+    def test_pure_distance_decay_has_no_hubs(self) -> None:
+        out, incoming = graph_math.strengths(decaying(14, 0.5))
+        self.assertTrue(np.allclose(out, 1.0))
+        self.assertTrue(np.allclose(incoming, 1.0))
+        self.assertLess(graph_math.gini(out), 1e-9)
+
+    def test_a_planted_hub_stands_out_under_decay_wherever_it_sits(self) -> None:
+        for position in (1, 6, 11):
+            matrix = decaying(14, 0.5)
+            matrix[position, position + 1:] *= 4.0
+            out, _ = graph_math.strengths(matrix)
+            self.assertEqual(int(np.argmax(out)), position)
+
+    def test_raw_strengths_do_show_the_position_bias(self) -> None:
+        out, _ = graph_math.strengths(decaying(14, 0.5), adjust=False)
+        self.assertEqual(int(np.argmax(out)), 12)   # the second-to-last detail: one close partner, so the highest raw mean
+
+
 class AnalyzeTests(unittest.TestCase):
     def test_partial_association_removes_a_length_effect(self) -> None:
         rng = np.random.default_rng(1)
@@ -128,6 +147,38 @@ class AnalyzeTests(unittest.TestCase):
             self.assertEqual(layer_zero, 0)
             self.assertTrue(np.allclose(first["000:0"], decaying(6)))
             self.assertEqual(len(table), 1)
+
+
+class PlotTests(unittest.TestCase):
+    def test_roles_find_the_hub_and_the_integrator(self) -> None:
+        from analysis.representation.geometry.deletion_graph import plot_story_graphs
+
+        n = 10
+        hub = np.zeros((n, n))
+        hub[0, 1:] = 1.0                                  # detail 0 moves everything
+        self.assertEqual(plot_story_graphs.node_table(hub, 0.3, 1).loc[0, "role"], "source hub")
+        sink = np.zeros((n, n))
+        sink[:-1, n - 1] = 1.0                            # everything moves the last detail
+        table = plot_story_graphs.node_table(sink, 0.3, 1)
+        self.assertEqual(table.loc[n - 1, "role"], "integrator")
+        self.assertEqual(table.loc[0, "out_strength"], 1.0 / (n - 1))
+        both = np.zeros((n, n))
+        both[0, 1:] = 1.0
+        both[:-1, n - 1] += 3.0
+        self.assertEqual(plot_story_graphs.node_table(both, 0.5, 1)["role"].tolist().count(""), n - 2)
+
+    def test_draws_a_png_with_and_without_texts(self) -> None:
+        from analysis.representation.geometry.deletion_graph import plot_story_graphs
+
+        weights = decaying(14)
+        nodes = plot_story_graphs.node_table(weights, 0.2, 2)
+        with tempfile.TemporaryDirectory() as folder:
+            plain = Path(folder) / "a.png"
+            labelled = Path(folder) / "b.png"
+            plot_story_graphs.draw_story(weights, nodes, "t", plain)
+            plot_story_graphs.draw_story(weights, nodes, "t", labelled, texts=[f"detail number {i} " * 6 for i in range(14)])
+            self.assertGreater(plain.stat().st_size, 5000)
+            self.assertGreater(labelled.stat().st_size, 5000)
 
 
 if __name__ == "__main__":
