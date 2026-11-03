@@ -132,6 +132,9 @@ def main() -> None:
             if len(segments) < args.min_details:
                 audit.append({**base, "status": "too_few_details", "n_details": len(segments)})
                 continue
+            if not text.strip():
+                audit.append({**base, "status": "empty_text", "n_details": len(segments)})
+                continue
             encoded = tokenize_without_truncation(text, tokenizer)
             token_count = int(encoded["input_ids"].shape[1])
             if token_count > effective_limit:

@@ -168,6 +168,52 @@ def efficiency(graph: np.ndarray) -> float:
     return float(reciprocal.mean())
 
 
+def coupling_dissimilarity(weights: np.ndarray, edges: str = "excess") -> np.ndarray:
+    """Symmetric dissimilarity for a layout: strongly coupled details are close (``1 / (1 + coupling)``, so it lies in (0, 1]).
+
+    ``edges="excess"`` uses each pair's weight relative to the average pair at its lag (distance in the story is taken out);
+    ``"raw"`` uses the weight relative to the story's mean weight (neighbouring details dominate).
+    """
+    matrix = excess_matrix(weights) if edges == "excess" else upper(weights) / max(upper(weights)[np.triu_indices(len(weights), 1)].mean(), EPSILON)
+    coupling = matrix + matrix.T
+    dissimilarity = 1.0 / (1.0 + coupling)
+    np.fill_diagonal(dissimilarity, 0.0)
+    return dissimilarity
+
+
+def layout_2d(dissimilarity: np.ndarray, iterations: int = 300) -> np.ndarray:
+    """Metric multidimensional scaling in 2D (classical start, then SMACOF stress majorisation): distances between points follow
+    ``dissimilarity``.  The result is rotated so the first detail sits left of the last one."""
+    n = dissimilarity.shape[0]
+    centring = np.eye(n) - 1.0 / n
+    gram = -0.5 * centring @ (dissimilarity ** 2) @ centring
+    values, vectors = np.linalg.eigh(gram)
+    order = np.argsort(values)[::-1][:2]
+    points = vectors[:, order] * np.sqrt(np.maximum(values[order], 1e-12))
+    for _ in range(iterations):
+        distance = np.linalg.norm(points[:, None, :] - points[None, :, :], axis=-1)
+        ratio = np.where(distance > EPSILON, dissimilarity / np.maximum(distance, EPSILON), 0.0)
+        np.fill_diagonal(ratio, 0.0)
+        updated = (np.diag(ratio.sum(axis=1)) - ratio) @ points / n
+        if np.abs(updated - points).max() < 1e-7:
+            points = updated
+            break
+        points = updated
+    points = points - points.mean(axis=0)
+    direction = points[-1] - points[0]
+    angle = -np.arctan2(direction[1], direction[0])
+    rotation = np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]])
+    return points @ rotation.T
+
+
+def top_pairs(weights: np.ndarray, k: int, edges: str = "excess") -> list[tuple[int, int, float, float]]:
+    """The k strongest forward pairs as (source, target, raw weight, ranking value), ranked by the excess or the raw weight."""
+    ranking = excess_matrix(weights) if edges == "excess" else upper(weights)
+    rows, cols = np.triu_indices(len(weights), 1)
+    order = np.argsort(-ranking[rows, cols], kind="stable")[:k]
+    return [(int(rows[o]), int(cols[o]), float(upper(weights)[rows[o], cols[o]]), float(ranking[rows[o], cols[o]])) for o in order]
+
+
 def graph_measures(weights: np.ndarray, keep: float = 0.2) -> dict[str, float]:
     """All measures of one story's coupling matrix (n >= 4 details)."""
     matrix = upper(weights)
