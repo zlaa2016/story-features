@@ -3,6 +3,8 @@
 Question: when one detail is removed, which *later* details change, and how does the pattern of those dependencies (the
 story's directed graph) differ between stories and across ages?
 
+**Requires** `networkx` for the analysis and picture steps (PageRank, shortest paths, components, longest path, Kamada-Kawai layout); the GPU extraction does not use it.
+
 **Edges.** For a story with n details, one full pass gives every detail's state (mean over its tokens, and its last token) at a
 few layers. Each detail i is then deleted in turn and the story re-run. Edge i -> j is how far detail j's state moved:
 `cos` = 1 - cosine(full, deleted) or `rel` = ||full - deleted|| / ||full||. A causal LM cannot change an earlier state because of
