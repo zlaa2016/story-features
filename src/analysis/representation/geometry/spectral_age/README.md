@@ -103,6 +103,7 @@ PYTHONPATH=src python -m analysis.representation.geometry.spectral_age.age_tests
 `batch_random100_ages2-12` draws up to 100 random stories per age (2-12) from the stories with vectors (stated range under 8); an age with fewer keeps all of them and the real counts are in
 `<output>/selection/summary.json`.  Run with `STEPS=pooled,within,compare` for panels A and B (and C) plus step D:
 
-* `compare_<view>/fig_whole_vs_detail_overlap.png` and `overlap_whole_vs_detail.csv`: the PCs of the whole-story vectors against the PCs
-  of the same stories' segmented detail vectors (raw pooled, and story-centred), as subspace overlap at each share of variance, with the
-  details of other stories as the null and `chance` = width / dimension.
+* `compare_<view>/fig_whole_vs_detail_overlap.png` and `overlap_whole_vs_detail.csv`: for each story at an age, the PCs of its own detail
+  vectors (as in B, never pooled across stories) against the PCs of the whole-story vectors of that age, as subspace overlap at each share
+  of variance, averaged over the stories.  The null pairs the whole-story PCs with the own-detail PCs of stories outside that age;
+  `chance` = width / dimension.
