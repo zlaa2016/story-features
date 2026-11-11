@@ -118,3 +118,11 @@ Next to the curve-level tests each step writes one test on the first 5 PCs only,
 * `halves_<view>/`: the same for the overlap of the first 5 PCs of two halves of a story's details; `overlap_halves_top5.csv` has the per-age means and the other-story null.
 
 One test per panel, no multiple-comparison correction; stories at several ages are used once per cell, so read neighbouring ages as non-independent.
+
+### Does position in the story matter? (step `chunks`)
+
+`STEPS=chunks` (details only) cuts each story's details, in story order, into up to 5 consecutive chunks (fewer for short stories: chunks of at least 7 details, never under 2 chunks) and, separately, into random chunks of the same sizes (10 draws per story).  Each chunk gets its own PCA.
+For chunks 1-4 apart in the story it records the overlap of their first 3 PCs and the cosine of their story-centred means.  The story's own null is the random chunks, so the number to read is **ordered minus random**.
+Outputs in `chunks_<view>/`: `fig_chunks.png`, `story_chunks.csv` (per story), `chunks_by_age_distance.csv` (per age and distance, with SEM and a Wilcoxon p), `chunk_age_tests.json`.
+Tests: each story's ordered-minus-random difference (chunks 1 and 2 apart, PC overlap and mean cosine) against age (size-adjusted Spearman with the age midpoint, ages shuffled inside strata of story length) and against 0 (Wilcoxon).
+Chunk counts differ between short and long stories, so the difference to random chunks of the same sizes, not the raw overlap, is compared across ages; `stories_by_n_chunks` in the JSON shows the mix.

@@ -230,6 +230,13 @@ class RandomPipelineTests(unittest.TestCase):
             self.assertTrue((out / "halves_isolated/fig_halves_overlap.png").exists())
             self.assertTrue((out / "pooled/fig_age_by_variance.png").exists())
             self.assertTrue((out / "fig_four_panels.png").exists())
+            run.main(["--batch-dir", str(root / "batch"), "--baseline-csv", str(root / "base.csv"), "--global-dir", str(global_dir), "--detail-dir", str(detail_dir),
+                      "--reselect-available", "--steps", "chunks", "--chunk-draws", "3", "--curve-permutations", "50", "--output-dir", str(out)])
+            chunks = json.loads((out / "chunks_isolated/chunk_age_tests.json").read_text())
+            self.assertIn("age_overlap_d1", chunks)
+            self.assertTrue(np.isfinite(chunks["age_centroid_d1"]["T"]))
+            self.assertTrue((out / "chunks_isolated/fig_chunks.png").exists())
+            self.assertEqual(set(pd.read_csv(out / "chunks_isolated/chunks_by_age_distance.csv")["distance"]), {1, 2, 3, 4})
             for folder in ("pooled", "within_isolated"):
                 self.assertTrue(np.isfinite(json.loads((out / folder / "age_top5_test.json").read_text())["T"]))
             self.assertTrue((out / "halves_isolated/age_top5_test.json").exists())
@@ -253,6 +260,24 @@ class RandomPipelineTests(unittest.TestCase):
             table = pd.read_csv(out / "halves_isolated/overlap_halves.csv")
             self.assertTrue(((table["overlap"] >= 0) & (table["overlap"] <= 1 + 1e-9)).all())
             self.assertTrue((table["overlap"].dropna() >= table["null_mean"].dropna().min() - 1e-9).all())
+
+
+class ChunkTests(unittest.TestCase):
+    def test_chunk_count_is_fewer_for_short_stories(self) -> None:
+        self.assertEqual([run.chunk_count(n, 5, 7) for n in (20, 21, 28, 35, 90)], [2, 3, 4, 5, 5])
+
+    def test_story_with_position_drift_beats_random_chunks_and_a_shuffled_story_does_not(self) -> None:
+        rng = np.random.default_rng(3)
+        d, n = 40, 60
+        t = np.linspace(0, 1, n)[:, None]
+        drift = rng.normal(size=(2, d)) * 3
+        ordered_story = np.sin(np.pi * t) * drift[0] + t * drift[1] + rng.normal(size=(n, d))  # a path through the embedding space
+        shuffled_story = ordered_story[rng.permutation(n)]
+        stats = run.story_chunk_stats(ordered_story, 5, 3, 20, np.random.default_rng(0))
+        self.assertGreater(stats["ordered_centroid"][0], stats["random_centroid"][0] + 0.2)
+        self.assertGreater(stats["ordered_centroid"][0], stats["ordered_centroid"][3])  # nearer chunks are more alike
+        flat = run.story_chunk_stats(shuffled_story, 5, 3, 20, np.random.default_rng(0))
+        self.assertLess(abs(flat["ordered_centroid"][0] - flat["random_centroid"][0]), 0.2)
 
 
 class MultiFolderTests(unittest.TestCase):

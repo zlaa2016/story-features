@@ -131,7 +131,7 @@ def top_share(x: np.ndarray, members: np.ndarray, n_pcs: int = TOP_PCS) -> float
     return float(values[:n_pcs].sum() / values.sum())
 
 
-def within_scalar_test(frame: pd.DataFrame, column: str, permutations: int = 2000, seed: int = 42, panel: str = "within story", n_pcs: int = TOP_PCS) -> dict:
+def within_scalar_test(frame: pd.DataFrame, column: str, permutations: int = 2000, seed: int = 42, panel: str = "within story", n_pcs: int = TOP_PCS, statistic: str | None = None) -> dict:
     """Age test of one per-story number (stories are the units): Spearman rho with the age midpoint, story length ranked out and
     ages shuffled inside strata of story length (as in ``within_curve_test``)."""
     frame = frame.dropna(subset=["age_mid", "n_units", column]).reset_index(drop=True)
@@ -151,7 +151,7 @@ def within_scalar_test(frame: pd.DataFrame, column: str, permutations: int = 200
         for members in groups:
             permuted[members] = age_rank[rng.permutation(members)]
         null[draw] = column_correlations(project @ permuted, value, norm)[0]
-    return {"panel": panel, "statistic": f"size-adjusted Spearman rho(age midpoint, {column}); first {n_pcs} PCs", "T": observed,
+    return {"panel": panel, "statistic": statistic or f"size-adjusted Spearman rho(age midpoint, {column}); first {n_pcs} PCs", "T": observed,
             "p_two_sided": float((1 + np.sum(np.abs(null) >= abs(observed) - 1e-12)) / (1 + permutations)), "null_mean": float(null.mean()),
             "null_sd": float(null.std()), "n_stories": int(len(frame)), "permutations": permutations}
 
