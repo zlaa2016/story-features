@@ -23,6 +23,8 @@ from shared.modeling import MODEL_SPECS, load_model, resolve_layers
 global_extraction = importlib.import_module(
     "features.representation_extraction.causal_lm.detail_extraction.extract_global"
 )
+event_segments = importlib.import_module("features.representation_extraction.causal_lm.detail_extraction.event_segments")
+event_records = event_segments.event_records
 GlobalRepresentationExtractor = global_extraction.GlobalRepresentationExtractor
 delete_span = global_extraction.delete_span
 locate_segment_spans = global_extraction.locate_segment_spans
@@ -71,6 +73,15 @@ def story_records(cohorts: list[Path], story_keys: list[str], record_type: str =
     return [found[key] for key in story_keys if key in found]
 
 
+def ordered_stories(stories_csv: Path, column: str, max_stories: int) -> pd.DataFrame:
+    """Rows of the stories csv, most viewed first when it has view counts; at most ``max_stories`` (0 keeps all)."""
+    frame = pd.read_csv(stories_csv, low_memory=False).drop_duplicates(column)
+    if "view_count" in frame.columns:
+        frame = frame.sort_values(["view_count", column], ascending=[False, True], kind="stable")
+    frame = frame.reset_index(drop=True)
+    return frame.head(max_stories) if max_stories > 0 else frame
+
+
 def ordered_story_keys(stories_csv: Path, column: str, max_stories: int) -> list[str]:
     """Story keys of the csv, most viewed first when it has view counts; at most ``max_stories`` (0 keeps all)."""
     frame = pd.read_csv(stories_csv, low_memory=False).drop_duplicates(column)
@@ -82,7 +93,8 @@ def ordered_story_keys(stories_csv: Path, column: str, max_stories: int) -> list
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--cohort", type=Path, nargs="+", required=True, help="cohort jsonl files holding the stories' original records")
+    parser.add_argument("--cohort", type=Path, nargs="*", default=[], help="cohort jsonl files holding the stories' original records")
+    parser.add_argument("--event-dir", type=Path, default=None, help="use legacy event segments of this folder as the units instead of the cohorts' details (needs a story_id column)")
     parser.add_argument("--stories", type=Path, required=True, help="csv with the wanted stories (e.g. a batch's subset_stories.csv)")
     parser.add_argument("--story-column", default="story_key")
     parser.add_argument("--max-stories", type=int, default=0, help="keep only the N most viewed stories of the csv (0 = all)")
@@ -106,11 +118,18 @@ def main() -> None:
         print(f"Shard already complete: {result_path}")
         return
 
-    keys = ordered_story_keys(args.stories, args.story_column, args.max_stories)
+    stories = ordered_stories(args.stories, args.story_column, args.max_stories)
     stop = None if args.limit <= 0 else args.start + args.limit
-    keys = keys[args.start:stop]
-    records = story_records(args.cohort, keys)
-    print(f"{len(keys)} wanted stories in this shard, {len(records)} found in the cohorts", flush=True)
+    stories = stories.iloc[args.start:stop]
+    keys = [str(key) for key in stories[args.story_column]]
+    if args.event_dir is not None:
+        wanted = [(str(r[args.story_column]), int(r["story_id"]), str(r.get("video_id", ""))) for _, r in stories.iterrows()]
+        records = event_records(args.event_dir, wanted)
+    elif args.cohort:
+        records = story_records(args.cohort, keys)
+    else:
+        raise SystemExit("give --cohort files or --event-dir")
+    print(f"{len(keys)} wanted stories in this shard, {len(records)} found", flush=True)
 
     model, tokenizer, device, spec = load_model(
         args.model_key, model_name=args.model_name, dtype=args.dtype, attn_implementation=args.attn_implementation
@@ -123,7 +142,7 @@ def main() -> None:
     arrays: dict[str, np.ndarray] = {}
     metadata: list[dict[str, Any]] = []
     found_keys = {record["story_key"] for record in records}
-    audit = [{"story_key": key, "status": "not_in_cohorts"} for key in keys if key not in found_keys]
+    audit = [{"story_key": key, "status": "not_found"} for key in keys if key not in found_keys]
     try:
         for index, record in enumerate(records, start=1):
             text = str(record["text"])

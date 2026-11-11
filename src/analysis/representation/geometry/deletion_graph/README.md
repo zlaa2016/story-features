@@ -58,3 +58,14 @@ Extraction writes `<detail_extraction>/<model>_deletion_graph_<batch>/deletion_g
 stories skipped: not in any cohort, fewer than 4 details, over the context limit, details that could not be mapped). Analysis writes
 `story_measures.csv`, `age_summary.csv`, `age_tests.csv` (Spearman with age, raw and partialling out `n_details`, for membership and
 midpoint-of-range ages), `causal_check.csv` and `fig_measures_by_age.png` under `results/analysis/representation/geometry/deletion_graph/`.
+
+## Events instead of details (`batch_events_ages2-12`)
+
+The legacy event-segmented stories (`data/legacy/review_samples_event_segments/`, file prefix = master `story_id`) can be graphed with the same
+deletion coupling: an event takes the place of a detail (`extract_deletion_graph.py --event-dir`, `UNITS=events` in the slurm scripts).
+`event_batch.py` builds the batch of those stories whose reading-age range touches 2-12 (a story is in `membership.csv` once per covered age).
+`compare_units.py` then sets the event graph measures against the detail graph measures of the same stories (`units_comparison.csv`).
+
+Caveats: an event graph has about 10 nodes against tens for details, so levels differ and only ranks across stories and age trends are
+comparable; `story_key` is `<video_id>__story01`, so for a video with several stories the event file may belong to another story, which
+`compare_units.py` catches by requiring matching token counts; stories without a detail record in any cohort show up as `not_found` in the audit.
