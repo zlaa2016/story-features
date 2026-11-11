@@ -52,6 +52,25 @@ class AgreementTests(unittest.TestCase):
         self.assertAlmostEqual(result["chance_node_overlap"], 3 / 14)
 
 
+class CrossGraphR2Tests(unittest.TestCase):
+    def test_semantic_gain_is_large_when_semantic_drives_deletion_and_small_when_independent(self) -> None:
+        rng = np.random.default_rng(5)
+        gains_dependent, gains_independent = [], []
+        for _ in range(20):
+            semantic = np.triu(rng.random((20, 20)), 1)  # no distance structure: the gain is what the semantic weights explain
+            dependent = semantic ** 2 * (1 + 0.05 * rng.random(semantic.shape))
+            gains_dependent.append(semantic_graph.cross_graph_r2(dependent, semantic)["r2_deletion_gain_semantic"])
+            gains_independent.append(semantic_graph.cross_graph_r2(np.triu(rng.random((20, 20)), 1), semantic)["r2_deletion_gain_semantic"])
+        self.assertGreater(np.mean(gains_dependent), 0.3)
+        self.assertLess(np.mean(gains_independent), 0.1)
+
+    def test_lag_alone_explains_a_pure_decay(self) -> None:
+        n = 15
+        pure = np.triu(np.array([[np.exp(-0.4 * abs(j - i)) for j in range(n)] for i in range(n)]), 1)
+        result = semantic_graph.cross_graph_r2(pure, decaying(n, np.random.default_rng(6)))
+        self.assertGreater(result["r2_deletion_lag"], 0.95)
+
+
 class EndToEndTests(unittest.TestCase):
     def test_main_writes_agreement_and_comparison(self) -> None:
         rng = np.random.default_rng(0)

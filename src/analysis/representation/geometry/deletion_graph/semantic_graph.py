@@ -12,7 +12,8 @@ because the graph measures need non-negative strengths.  ``--standardize none`` 
 Outputs in ``--output-dir``:
 * ``edge_agreement.csv``: per story, Spearman between the two graphs' pair weights (``rho_raw``, and ``rho_excess`` after dividing each
   pair by the average pair at its lag, which removes the shared fade with distance), overlap of the strongest ``keep`` share of pairs
-  against what chance gives, and how many of the 3 key sources / 3 key impacted details the two graphs share,
+  against what chance gives, how many of the 3 key sources / 3 key impacted details the two graphs share, and the cross-graph R²
+  (``r2_deletion_gain_semantic`` = share of the deletion weights' rank variance the semantic weights explain beyond lag; ``..._lag`` = lag alone),
 * ``agreement_age_tests.csv``: Spearman of each agreement statistic with the story's mid age,
 * ``measures_comparison.csv`` / ``measures_overview.csv``: every graph measure of the two graphs side by side (``compare_units.compare``),
 * ``semantic_story_measures.csv``, ``semantic_audit.csv`` (stories skipped and why), ``fig_agreement_by_age.png``.
@@ -85,7 +86,35 @@ def edge_agreement(deletion: np.ndarray, semantic: np.ndarray, keep: float = 0.2
         "source_overlap": len(_top_set(out_d, k) & _top_set(out_s, k)) / k,
         "impacted_overlap": len(_top_set(in_d, k) & _top_set(in_s, k)) / k,
         "chance_node_overlap": k / max(len(out_d), 1),
+        **cross_graph_r2(deletion, semantic),
     }
+
+
+def _r2(response: np.ndarray, features: np.ndarray) -> float:
+    design = np.column_stack([np.ones(len(response)), features])
+    coefficients = np.linalg.lstsq(design, response, rcond=None)[0]
+    spread = ((response - response.mean()) ** 2).sum()
+    return float(1 - ((response - design @ coefficients) ** 2).sum() / spread) if spread > 0 else float("nan")
+
+
+def cross_graph_r2(deletion: np.ndarray, semantic: np.ndarray) -> dict[str, float]:
+    """How much of one graph's pair weights the other explains beyond distance in the story (ranks, ordinary least squares).
+
+    ``r2_deletion_lag``: deletion weights from lag alone; ``r2_deletion_gain_semantic``: what the semantic weights add on top of lag;
+    ``r2_semantic_lag`` and ``r2_semantic_gain_deletion`` the other way round.  A small gain means the graphs carry different information.
+    """
+    rows, cols = np.triu_indices(deletion.shape[0], 1)
+    keys = ("r2_deletion_lag", "r2_deletion_gain_semantic", "r2_semantic_lag", "r2_semantic_gain_deletion")
+    if rows.size < 8:
+        return {key: float("nan") for key in keys}
+    lag = (cols - rows).astype(np.float64)
+    lag_features = np.column_stack([lag, np.log(lag)])
+    d, s = stats.rankdata(deletion[rows, cols]), stats.rankdata(semantic[rows, cols])
+    d_lag, s_lag = _r2(d, lag_features), _r2(s, lag_features)
+    return dict(zip(keys, (
+        d_lag, _r2(d, np.column_stack([lag_features, s])) - d_lag,
+        s_lag, _r2(s, np.column_stack([lag_features, d])) - s_lag,
+    )))
 
 
 def load_detail_vectors(folders: list[Path], view: str, layer: int, key: str | None) -> tuple[pd.DataFrame, np.ndarray]:
@@ -130,7 +159,8 @@ def plot_by_age(agreement: pd.DataFrame, membership: pd.DataFrame, columns: list
     import matplotlib.pyplot as plt
 
     by_age = membership.merge(agreement, on="story_key", how="inner")
-    figure, axes = plt.subplots(2, 3, figsize=(13, 7), sharex=True)
+    rows_needed = -(-len(columns) // 3)
+    figure, axes = plt.subplots(rows_needed, 3, figsize=(13, 3.5 * rows_needed), sharex=True, squeeze=False)
     for axis, column in zip(axes.ravel(), columns):
         part = by_age.groupby("age")[column].agg(["median", lambda s: s.quantile(0.25), lambda s: s.quantile(0.75)])
         part.columns = ["median", "q25", "q75"]
@@ -179,7 +209,8 @@ def main() -> None:
     agreement.to_csv(args.output_dir / "edge_agreement.csv", index=False)
     pd.DataFrame(audit).to_csv(args.output_dir / "semantic_audit.csv", index=False)
 
-    columns = ["rho_raw", "rho_excess", "top_overlap", "source_overlap", "impacted_overlap", "n_details"]
+    columns = ["rho_raw", "rho_excess", "top_overlap", "source_overlap", "impacted_overlap", "n_details",
+               "r2_deletion_lag", "r2_deletion_gain_semantic", "r2_semantic_lag", "r2_semantic_gain_deletion"]
     tests = age_tests(agreement, columns)
     tests.to_csv(args.output_dir / "agreement_age_tests.csv", index=False)
     plot_by_age(agreement, pd.read_csv(args.batch / "membership.csv"), columns, args.output_dir / "fig_agreement_by_age.png")

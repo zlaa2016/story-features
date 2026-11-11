@@ -241,6 +241,66 @@ def structure_measures(graph: np.ndarray) -> dict[str, float]:
     }
 
 
+def binary_entropy_bits(p: np.ndarray) -> np.ndarray:
+    p = np.clip(np.asarray(p, dtype=np.float64), 0.0, 1.0)
+    safe = np.clip(p, EPSILON, 1 - EPSILON)
+    return np.where((p <= 0) | (p >= 1), 0.0, -(safe * np.log2(safe) + (1 - safe) * np.log2(1 - safe)))
+
+
+def adjacency_bits(graph: np.ndarray) -> dict[str, float]:
+    """Bits per forward pair to write down which pairs are edges, under two models (lower = more regular = more compressible).
+
+    ``adj_bits_lag``: the chance of an edge depends only on the lag (distance between the two details); the code length is the
+    entropy of that model.  ``adj_bits_row``: it depends only on the source detail (hub-like rows).  The node order is the story's order,
+    so there is no labelling ambiguity.  The share of kept pairs is fixed, so an unstructured graph costs the same in every story and the
+    drop below that is the structure.
+    """
+    n = graph.shape[0]
+    edge = (np.asarray(graph) > 0)
+    pairs = n * (n - 1) / 2
+    lag_bits = 0.0
+    for lag in range(1, n):
+        diagonal = np.diagonal(edge, offset=lag)
+        lag_bits += diagonal.size * float(binary_entropy_bits(diagonal.mean()))
+    row_bits = 0.0
+    for i in range(n - 1):
+        row = edge[i, i + 1:]
+        row_bits += row.size * float(binary_entropy_bits(row.mean()))
+    return {"adj_bits_lag": lag_bits / pairs, "adj_bits_row": row_bits / pairs}
+
+
+def level_width_frac(graph: np.ndarray) -> float:
+    """Widest level of the DAG (level = longest path from a source) as a share of the details: wide = many details act in parallel."""
+    return max(len(level) for level in nx.topological_generations(to_digraph(graph))) / graph.shape[0]
+
+
+def compression_measures(matrix: np.ndarray, graph: np.ndarray) -> dict[str, float]:
+    """Measures of how compressible a story's graph is: low-rank residuals of the weights, bits for the edges, concentration of edges, treewidth.
+
+    ``lowrank_resid2/3``: share of the weights' energy left after keeping the 2 / 3 strongest singular directions; ``sv_rank90_frac``: the
+    rank that keeps 90% of the energy as a share of n - 1; ``degree_share_entropy``: entropy of how the thresholded graph's edges spread
+    over the details (1 = evenly, low = concentrated on a few); ``treewidth_frac``: approximate treewidth (networkx min-degree heuristic)
+    of the undirected thresholded graph as a share of n - 1 (low = decomposes into small pieces).
+    """
+    n = matrix.shape[0]
+    energy = np.linalg.svd(upper(matrix), compute_uv=False) ** 2
+    total = energy.sum()
+    flat = undirected(graph)
+    degrees = np.array([d for _, d in flat.degree()], dtype=np.float64)
+    share = degrees / degrees.sum() if degrees.sum() > 0 else None
+    cumulative = np.cumsum(energy) / total if total > EPSILON else None
+    out = {
+        "lowrank_resid2": float(1 - cumulative[1]) if cumulative is not None else float("nan"),
+        "lowrank_resid3": float(1 - cumulative[2]) if cumulative is not None else float("nan"),
+        "sv_rank90_frac": float((np.searchsorted(cumulative, 0.9) + 1) / (n - 1)) if cumulative is not None else float("nan"),
+        "degree_share_entropy": float(-(share[share > 0] * np.log(share[share > 0])).sum() / np.log(n)) if share is not None else float("nan"),
+        "treewidth_frac": float(nx.algorithms.approximation.treewidth_min_degree(flat)[0] / (n - 1)),
+        "level_width_frac": level_width_frac(graph),
+    }
+    out.update(adjacency_bits(graph))
+    return out
+
+
 def lag_permuted(weights: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     """The same matrix with the weights shuffled among pairs of the same lag: the decay with distance is kept, which pairs are strong is not."""
     matrix = upper(weights)
@@ -301,6 +361,7 @@ def graph_measures(weights: np.ndarray, keep: float = 0.2) -> dict[str, float]:
     }
     measures.update(spectral(matrix))
     measures.update(structure_measures(graph))
+    measures.update(compression_measures(matrix, graph))
     return measures
 
 
@@ -332,6 +393,14 @@ MEASURE_LABELS = {
     "sinks_frac": "share of details that are only moved",
     "feedforward_share": "share of two-step paths with a direct shortcut",
     "reduction_frac": "edges left after transitive reduction",
+    "lowrank_resid2": "energy left after rank-2 approximation",
+    "lowrank_resid3": "energy left after rank-3 approximation",
+    "sv_rank90_frac": "rank for 90% of the energy / (n-1)",
+    "degree_share_entropy": "how evenly edges spread over details (1 = evenly)",
+    "treewidth_frac": "approximate treewidth / (n-1)",
+    "level_width_frac": "widest DAG level / n",
+    "adj_bits_lag": "bits per pair for the edges given lag",
+    "adj_bits_row": "bits per pair for the edges given source row",
     "max_clique_frac_z": "largest clique vs distance-only null (SD)",
     "clustering_z": "clustering vs distance-only null (SD)",
     "transitivity_z": "transitivity vs distance-only null (SD)",

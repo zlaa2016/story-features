@@ -78,3 +78,12 @@ re-extracted: it needs the deletion shards and the detail-vector folders of the 
 Per story it reports the pair-weight Spearman raw and after dividing out the lag, the overlap of the strongest pairs against chance, and how many
 key source / key impacted details the two graphs share; it also puts every graph measure of both side by side.  Stories whose vector count
 differs from the deletion graph's detail count are skipped and listed in `semantic_audit.csv`.
+
+## Compression measures (in `graph_math.compression_measures`, computed for every graph)
+
+`lowrank_resid2/3` (energy left after a rank-2/3 approximation of the weights), `sv_rank90_frac` (rank for 90% of the energy / (n-1)),
+`adj_bits_lag` / `adj_bits_row` (bits per forward pair to write down the thresholded edges if the edge chance depends only on the lag / only on
+the source row; node order is the story order so there is no labelling ambiguity), `degree_share_entropy` (1 = edges spread evenly over details),
+`treewidth_frac` (networkx min-degree approximation / (n-1)) and `level_width_frac` (widest DAG level / n).  Lower residual, bits, rank and
+treewidth mean a more compressible graph.  `semantic_graph.py` adds a cross-graph R² per story: how much of the deletion weights' rank variance
+lag alone explains (`r2_deletion_lag`), what the semantic weights add beyond lag (`r2_deletion_gain_semantic`), and the reverse.
