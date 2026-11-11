@@ -69,3 +69,12 @@ deletion coupling: an event takes the place of a detail (`extract_deletion_graph
 Caveats: an event graph has about 10 nodes against tens for details, so levels differ and only ranks across stories and age trends are
 comparable; `story_key` is `<video_id>__story01`, so for a video with several stories the event file may belong to another story, which
 `compare_units.py` catches by requiring matching token counts; stories without a detail record in any cohort show up as `not_found` in the audit.
+
+## Semantic graph against the deletion graph (`semantic_graph.py`, `semantic.slurm`)
+
+The semantic graph uses the cosine of existing detail vectors (`isolated`: each detail embedded alone; `contextual`: its state inside the
+story) as edge strength, on the forward pairs i < j, and goes through the same graph measures as the deletion matrices.  Nothing is
+re-extracted: it needs the deletion shards and the detail-vector folders of the same model (`MODEL_DIRS` in `spectral_age/run.py`).
+Per story it reports the pair-weight Spearman raw and after dividing out the lag, the overlap of the strongest pairs against chance, and how many
+key source / key impacted details the two graphs share; it also puts every graph measure of both side by side.  Stories whose vector count
+differs from the deletion graph's detail count are skipped and listed in `semantic_audit.csv`.

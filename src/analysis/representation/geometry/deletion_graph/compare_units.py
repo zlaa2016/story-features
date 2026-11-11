@@ -33,26 +33,29 @@ def spearman(x: pd.Series, y: pd.Series) -> float:
     return float(stats.spearmanr(pair.iloc[:, 0], pair.iloc[:, 1])[0])
 
 
-def compare(events: pd.DataFrame, details: pd.DataFrame, ages: pd.DataFrame, token_ratio: float = 1.25) -> tuple[pd.DataFrame, pd.DataFrame]:
-    both = events.merge(details, on="story_key", suffixes=("_event", "_detail"))
-    ratio = both["token_count_event"] / both["token_count_detail"]
+def compare(events: pd.DataFrame, details: pd.DataFrame, ages: pd.DataFrame, token_ratio: float = 1.25,
+            names: tuple[str, str] = ("event", "detail")) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """``events``/``details`` are the two tables to compare; ``names`` label them in the output columns."""
+    first, second = names
+    both = events.merge(details, on="story_key", suffixes=(f"_{first}", f"_{second}"))
+    ratio = both[f"token_count_{first}"] / both[f"token_count_{second}"]
     kept = both[(ratio <= token_ratio) & (ratio >= 1 / token_ratio)].merge(ages, on="story_key", how="left")
     rows = []
     for measure in [m for m in measure_columns(events) if m in details.columns]:
-        e, d = kept[f"{measure}_event"], kept[f"{measure}_detail"]
+        e, d = kept[f"{measure}_{first}"], kept[f"{measure}_{second}"]
         pair = pd.concat([e, d], axis=1).dropna()
         p = float("nan")
         if len(pair) >= 10 and (pair.iloc[:, 0] != pair.iloc[:, 1]).any():
             p = float(stats.wilcoxon(pair.iloc[:, 0], pair.iloc[:, 1]).pvalue)
         rows.append({
             "measure": measure, "n": len(pair), "rho_units": spearman(e, d),
-            "median_event": float(e.median()), "median_detail": float(d.median()), "wilcoxon_p": p,
-            "rho_age_event": spearman(e, kept["age_mid"]), "rho_age_detail": spearman(d, kept["age_mid"]),
+            f"median_{first}": float(e.median()), f"median_{second}": float(d.median()), "wilcoxon_p": p,
+            f"rho_age_{first}": spearman(e, kept["age_mid"]), f"rho_age_{second}": spearman(d, kept["age_mid"]),
         })
     overview = pd.DataFrame([{
-        "events_stories": len(events), "details_stories": len(details), "in_both": len(both), "text_matched": len(kept),
+        f"{first}_stories": len(events), f"{second}_stories": len(details), "in_both": len(both), "text_matched": len(kept),
         "dropped_text_mismatch": len(both) - len(kept),
-        "events_per_story_median": float(kept["n_details_event"].median()), "details_per_story_median": float(kept["n_details_detail"].median()),
+        f"{first}_units_median": float(kept[f"n_details_{first}"].median()), f"{second}_units_median": float(kept[f"n_details_{second}"].median()),
     }])
     return pd.DataFrame(rows), overview
 
