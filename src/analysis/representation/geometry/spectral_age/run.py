@@ -21,9 +21,9 @@ D. halves      (step ``halves``) each story's details are split at random into t
 
 E. chunks      (step ``chunks``) does the position of a detail in the story matter?  Each story's details, in story order, are cut into
                up to 5 consecutive chunks (fewer for short stories) and, separately, into random chunks of the same sizes; each chunk gets
-               its own PCA.  For chunks 1-4 apart in the story: overlap of their first PCs and cosine of their means, ordered minus random
-               (the story's own null).  Tests are run on age (size-adjusted Spearman of the story's ordered - random difference with the
-               age midpoint) and against zero (Wilcoxon).
+               its own PCA.  Ordered chunks are reported by how far apart they sit (overlap of their first PCs, cosine of their means) and
+               the random chunks separately over all pairs; the two are not combined.  Tests are run on age (size-adjusted Spearman of the
+               story's value with the age midpoint) for each design on its own.
 
 Other reductions reported next to PCA: participation ratio, entropy effective rank, spectral decay
 exponent and the TwoNN intrinsic dimension (nonlinear manifold dimension).
@@ -552,6 +552,7 @@ def plot_halves(observed, null_mean, null_sd, path: Path, ages, label: str, args
 # E. does the position of a detail in the story matter? ordered chunks vs random chunks
 # --------------------------------------------------------------------------------------
 CHUNK_DISTANCES = 4
+SLOTS = CHUNK_DISTANCES + 1  # chunks 1..4 apart, then the mean over all pairs of chunks
 
 
 def chunk_count(n_details: int, maximum: int, minimum_size: int) -> int:
@@ -560,21 +561,24 @@ def chunk_count(n_details: int, maximum: int, minimum_size: int) -> int:
 
 
 def chunk_pair_stats(z: np.ndarray, order: np.ndarray, n_chunks: int, n_pcs: int) -> tuple[np.ndarray, np.ndarray]:
-    """Cut the details (rows of ``z``, centred on the story) into ``n_chunks`` consecutive pieces of ``order``; for chunks ``d`` apart (d = 1..4)
-    the mean overlap of their first PCs and the mean cosine of their means.  NaN where the story has no chunks that far apart."""
+    """Cut the details (rows of ``z``, centred on the story) into ``n_chunks`` consecutive pieces of ``order``; for chunks ``d`` apart (d = 1..4, NaN where
+    the story has no chunks that far apart) and for all pairs of chunks (last slot): the mean overlap of their first PCs and the mean cosine of their means."""
     parts = np.array_split(order, n_chunks)
     axes = [overlap.principal_axes(z[part])[0] for part in parts]
     means = base.normalize_rows(np.stack([z[part].mean(axis=0) for part in parts]))
     k = int(min(n_pcs, min(len(part) for part in parts) - 1))
-    shared, centroid = np.full(CHUNK_DISTANCES, np.nan), np.full(CHUNK_DISTANCES, np.nan)
+    shared, centroid = np.full(SLOTS, np.nan), np.full(SLOTS, np.nan)
+    pairs = [(i, j) for i in range(n_chunks) for j in range(i + 1, n_chunks)]
+    values = {(i, j): (overlap.subspace_overlap(axes[i], axes[j], k), float(means[i] @ means[j])) for i, j in pairs}
     for d in range(1, min(CHUNK_DISTANCES, n_chunks - 1) + 1):
-        shared[d - 1] = np.mean([overlap.subspace_overlap(axes[i], axes[i + d], k) for i in range(n_chunks - d)])
-        centroid[d - 1] = np.mean([float(means[i] @ means[i + d]) for i in range(n_chunks - d)])
+        shared[d - 1], centroid[d - 1] = np.mean([values[(i, i + d)] for i in range(n_chunks - d)], axis=0)
+    shared[-1], centroid[-1] = np.mean(list(values.values()), axis=0)
     return shared, centroid
 
 
 def story_chunk_stats(z: np.ndarray, n_chunks: int, n_pcs: int, draws: int, rng: np.random.Generator) -> dict[str, np.ndarray]:
-    """Ordered chunks against chunks of the same sizes drawn at random from the story's details (mean over ``draws``)."""
+    """Chunks in story order, and separately chunks of the same sizes drawn at random from the story's details (mean over ``draws``;
+    only the all-pairs slot means anything for them, since random chunks have no position)."""
     z = z - z.mean(axis=0)
     ordered = chunk_pair_stats(z, np.arange(len(z)), n_chunks, n_pcs)
     random = [chunk_pair_stats(z, rng.permutation(len(z)), n_chunks, n_pcs) for _ in range(draws)]
@@ -583,11 +587,9 @@ def story_chunk_stats(z: np.ndarray, n_chunks: int, n_pcs: int, draws: int, rng:
 
 
 def run_chunks(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dict:
-    """Each story's details, in story order, are cut into consecutive chunks and, separately, into random chunks of the same sizes; each chunk
-    gets its own PCA and chunks are compared by how far apart they sit in the story.  Order matters if ordered chunks that are close share more
-    PCs (and more of their mean direction) than random chunks do.  Stories are the units; tests are run on age."""
-    from scipy.stats import wilcoxon
-
+    """Each story's details, in story order, are cut into consecutive chunks; separately, into random chunks of the same sizes.  Each chunk gets its own
+    PCA and chunks are compared (first PCs overlap, cosine of means): the ordered chunks by how far apart they sit in the story, the random chunks over
+    all pairs.  The two are reported separately and not combined.  Stories are the units; the tests are run on age."""
     overlap.AGES = ages
     membership = pd.read_csv(selection / "membership.csv", dtype={"story_key": str})
     details = detail_table(dirs[args.detail_view], args.detail_view)
@@ -602,8 +604,7 @@ def run_chunks(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
     out.mkdir(parents=True, exist_ok=True)
     print(f"[chunks:{args.detail_view}] {len(keys)} stories, {len(details)} detail rows; up to {args.chunk_max} chunks of at least {args.chunk_min_size} details", flush=True)
     rng = np.random.default_rng(args.seed + 3)
-    names = ("ordered_overlap", "random_overlap", "ordered_centroid", "random_centroid")
-    table = {name: np.full((len(keys), CHUNK_DISTANCES), np.nan) for name in names}
+    table = {name: np.full((len(keys), SLOTS), np.nan) for name in ("ordered_overlap", "random_overlap", "ordered_centroid", "random_centroid")}
     n_chunks = np.zeros(len(keys), dtype=int)
     for i, key in enumerate(keys):
         rows = rows_of[key]
@@ -616,50 +617,55 @@ def run_chunks(args, dirs, selection: Path, ages: np.ndarray, label: str) -> dic
     lower = np.maximum(subset.loc[keys, "range_lower"].to_numpy(dtype=int), int(ages.min()))
     upper = np.minimum(subset.loc[keys, "range_upper"].to_numpy(dtype=int), int(ages.max()))
     frame = pd.DataFrame({"story_key": keys, "age_mid": (lower + upper) / 2, "n_units": [len(rows_of[k]) for k in keys], "n_chunks": n_chunks})
+    slot_names = [f"d{d}" for d in range(1, CHUNK_DISTANCES + 1)] + ["all"]
     for kind in ("overlap", "centroid"):
-        delta = table[f"ordered_{kind}"] - table[f"random_{kind}"]
-        for d in range(CHUNK_DISTANCES):
-            frame[f"ordered_{kind}_d{d + 1}"], frame[f"random_{kind}_d{d + 1}"], frame[f"delta_{kind}_d{d + 1}"] = table[f"ordered_{kind}"][:, d], table[f"random_{kind}"][:, d], delta[:, d]
+        for j, slot in enumerate(slot_names):
+            frame[f"ordered_{kind}_{slot}"] = table[f"ordered_{kind}"][:, j]
+        frame[f"random_{kind}_all"] = table[f"random_{kind}"][:, -1]
     frame.to_csv(out / "story_chunks.csv", index=False)
 
     in_cell = {int(a): set(membership.loc[membership["age"] == a, "story_key"]) for a in ages}
     cells = {a: np.array([i for i, k in enumerate(keys) if k in members], dtype=int) for a, members in in_cell.items()}
     rows_out = []
     for a, members in cells.items():
-        for d in range(CHUNK_DISTANCES):
-            record = {"age": a, "distance": d + 1}
+        for j, slot in enumerate(slot_names):
+            record = {"age": a, "chunks_apart": slot}
             for kind in ("overlap", "centroid"):
-                ordered, random = table[f"ordered_{kind}"][members, d], table[f"random_{kind}"][members, d]
-                ok = np.isfinite(ordered) & np.isfinite(random)
-                delta = (ordered - random)[ok]
-                record.update({f"n_stories": int(ok.sum()), f"ordered_{kind}": float(np.mean(ordered[ok])) if ok.any() else np.nan, f"random_{kind}": float(np.mean(random[ok])) if ok.any() else np.nan,
-                               f"delta_{kind}": float(delta.mean()) if len(delta) else np.nan, f"sem_{kind}": float(delta.std(ddof=1) / np.sqrt(len(delta))) if len(delta) > 1 else np.nan,
-                               f"p_{kind}": float(wilcoxon(delta).pvalue) if len(delta) > 5 and np.any(delta != 0) else np.nan})
+                for design in ("ordered", "random"):
+                    if design == "random" and slot != "all":
+                        continue
+                    values = table[f"{design}_{kind}"][members, j]
+                    values = values[np.isfinite(values)]
+                    record.update({f"n_{design}_{kind}": int(len(values)), f"{design}_{kind}": float(values.mean()) if len(values) else np.nan,
+                                   f"sem_{design}_{kind}": float(values.std(ddof=1) / np.sqrt(len(values))) if len(values) > 1 else np.nan})
             rows_out.append(record)
     by_age = pd.DataFrame(rows_out)
-    by_age.to_csv(out / "chunks_by_age_distance.csv", index=False)
+    by_age.to_csv(out / "chunks_by_age.csv", index=False)
 
-    tests = {"design": {"chunk_max": args.chunk_max, "chunk_min_size": args.chunk_min_size, "chunk_pcs": args.chunk_pcs, "random_draws": args.chunk_draws,
-                        "stories": len(keys), "stories_by_n_chunks": {int(c): int((n_chunks == c).sum()) for c in np.unique(n_chunks)}}}
+    design_info = {"chunk_max": args.chunk_max, "chunk_min_size": args.chunk_min_size, "chunk_pcs": args.chunk_pcs, "random_draws": args.chunk_draws,
+                   "stories": len(keys), "stories_by_n_chunks": {int(c): int((n_chunks == c).sum()) for c in np.unique(n_chunks)}}
+    tests: dict[str, dict] = {"ordered": {"design": design_info}, "random": {"design": design_info}}
     for kind, what in (("overlap", f"overlap of the first {args.chunk_pcs} PCs of two chunks"), ("centroid", "cosine of the means of two chunks")):
-        for d in (1, 2):
-            column = f"delta_{kind}_d{d}"
-            valid = frame.dropna(subset=[column])
-            if len(valid) < 20:
-                continue
-            delta = valid[column].to_numpy()
-            test = age_tests.within_scalar_test(valid, column, args.curve_permutations, args.seed, panel=f"chunks, {what}, chunks {d} apart",
-                                                statistic=f"size-adjusted Spearman rho(age midpoint, ordered - random {what}, chunks {d} apart)")
-            tests[f"age_{kind}_d{d}"] = {**test, "mean_delta": float(delta.mean()), "wilcoxon_p_delta_vs_0": float(wilcoxon(delta).pvalue) if np.any(delta != 0) else None}
-    age_tests.save_top(tests, out, "chunk_age_tests.json")
-    for key, value in tests.items():
-        if key.startswith("age_"):
-            print(f"[chunks] {key}: mean ordered - random = {value['mean_delta']:.4f} (p vs 0 = {value['wilcoxon_p_delta_vs_0']:.3g}); age rho = {value['T']:.3f}, p = {value['p_two_sided']:.4g}", flush=True)
-    plot_chunks(frame, by_age, tests, out / "fig_chunks.png", ages, label, args)
+        for design, slots in (("ordered", ("d1", "d2", "all")), ("random", ("all",))):
+            for slot in slots:
+                column = f"{design}_{kind}_{slot}"
+                valid = frame.dropna(subset=[column])
+                if len(valid) < 20:
+                    continue
+                where = f"chunks {slot[1:]} apart" if slot != "all" else "all pairs of chunks"
+                test = age_tests.within_scalar_test(valid, column, args.curve_permutations, args.seed, panel=f"{design} chunks, {what}, {where}",
+                                                    statistic=f"size-adjusted Spearman rho(age midpoint, {what}, {design} chunks, {where})")
+                tests[design][f"age_{kind}_{slot}"] = {**test, "mean": float(valid[column].mean())}
+    for design in ("ordered", "random"):
+        age_tests.save_top(tests[design], out, f"chunk_age_tests_{design}.json")
+        for key, value in tests[design].items():
+            if key.startswith("age_"):
+                print(f"[chunks] {design} {key[4:]}: mean {value['mean']:.4f}; age rho = {value['T']:+.3f}, p = {value['p_two_sided']:.4g}", flush=True)
+    plot_chunks(frame, by_age, tests, out, ages, label, args)
     return {}
 
 
-def plot_chunks(frame: pd.DataFrame, by_age: pd.DataFrame, tests: dict, path: Path, ages: np.ndarray, label: str, args) -> None:
+def plot_chunks(frame: pd.DataFrame, by_age: pd.DataFrame, tests: dict, out: Path, ages: np.ndarray, label: str, args) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -667,26 +673,44 @@ def plot_chunks(frame: pd.DataFrame, by_age: pd.DataFrame, tests: dict, path: Pa
 
     overlap.AGES = ages
     distances = np.arange(1, CHUNK_DISTANCES + 1)
+    measures = (("overlap", f"PC overlap (first {args.chunk_pcs} PCs)"), ("centroid", "cosine of chunk means"))
+    title = f"({label}; {args.detail_view} details; {tests['ordered']['design']['stories']} stories)"
+
+    def notes(design: str) -> str:
+        return "   |   ".join(f"{key[4:]}: age rho = {value['T']:+.2f} (p = {value['p_two_sided']:.3g})" for key, value in tests[design].items() if key.startswith("age_"))
+
     figure = plt.figure(figsize=(14, 10), facecolor="#fcfcfb")
     grid = figure.add_gridspec(2, 2)
-    for row, (kind, what) in enumerate((("overlap", f"PC overlap (first {args.chunk_pcs} PCs)"), ("centroid", "cosine of chunk means"))):
+    for row, (kind, what) in enumerate(measures):
         axis = figure.add_subplot(grid[row, 0])
-        for name, color, text in (("ordered", "#2a6f97", "chunks in story order"), ("random", "#999999", "random chunks, same sizes")):
-            mean = [np.nanmean(frame[f"{name}_{kind}_d{d}"]) for d in distances]
-            sem = [np.nanstd(frame[f"{name}_{kind}_d{d}"]) / np.sqrt(max(frame[f"{name}_{kind}_d{d}"].notna().sum(), 1)) for d in distances]
-            axis.errorbar(distances, mean, yerr=sem, color=color, marker="o", label=text)
+        mean = [frame[f"ordered_{kind}_d{d}"].mean() for d in distances]
+        sem = [frame[f"ordered_{kind}_d{d}"].std() / np.sqrt(max(frame[f"ordered_{kind}_d{d}"].notna().sum(), 1)) for d in distances]
+        axis.errorbar(distances, mean, yerr=sem, color="#2a6f97", marker="o")
         axis.set_xticks(distances)
         axis.set_xlabel("chunks apart in the story")
         axis.set_ylabel(what)
         axis.set_title(f"{'A' if row == 0 else 'C'}. {what} by chunk distance, all stories", fontsize=10, loc="left")
-        axis.legend(frameon=False, fontsize=8)
-        matrix = by_age.pivot(index="distance", columns="age", values=f"delta_{kind}").reindex(columns=ages).to_numpy()
-        overlap.heatmap(figure.add_subplot(grid[row, 1]), matrix, [str(d) for d in distances], f"{'B' if row == 0 else 'D'}. ordered minus random {what}, by age (red = order matters)", "RdBu_r", diverging=True, label="difference")
-    notes = [f"{key[4:]}: mean difference {value['mean_delta']:+.3f}, age rho = {value['T']:+.2f} (p = {value['p_two_sided']:.3g})" for key, value in tests.items() if key.startswith("age_")]
-    figure.text(0.01, 0.005, "   |   ".join(notes), fontsize=8, color="#555")
-    figure.suptitle(f"Does position in the story matter? Ordered vs random chunks ({label}; {args.detail_view} details; {tests['design']['stories']} stories)", fontsize=12, x=0.01, ha="left")
+        matrix = np.stack([by_age[by_age["chunks_apart"] == f"d{d}"].set_index("age")[f"ordered_{kind}"].reindex(ages).to_numpy() for d in distances])
+        overlap.heatmap(figure.add_subplot(grid[row, 1]), matrix, [str(d) for d in distances], f"{'B' if row == 0 else 'D'}. {what} by age and chunk distance", "viridis", label=what)
+    figure.text(0.01, 0.005, notes("ordered"), fontsize=8, color="#555")
+    figure.suptitle(f"Chunks in story order {title}", fontsize=12, x=0.01, ha="left")
     figure.tight_layout(rect=(0, 0.02, 1, 0.96))
-    figure.savefig(path, dpi=140, facecolor="#fcfcfb")
+    figure.savefig(out / "fig_chunks_ordered.png", dpi=140, facecolor="#fcfcfb")
+    plt.close(figure)
+
+    figure, axes = plt.subplots(1, 2, figsize=(13, 4.6), facecolor="#fcfcfb")
+    everything = by_age[by_age["chunks_apart"] == "all"].set_index("age").reindex(ages)
+    for axis, (kind, what) in zip(axes, measures):
+        axis.errorbar(ages, everything[f"random_{kind}"], yerr=everything[f"sem_random_{kind}"], color="#999999", marker="o", label="random chunks (all pairs)")
+        axis.errorbar(ages, everything[f"ordered_{kind}"], yerr=everything[f"sem_ordered_{kind}"], color="#2a6f97", marker="o", alpha=0.35, label="ordered chunks (all pairs), for scale")
+        axis.set_xlabel("age")
+        axis.set_ylabel(what)
+        axis.set_title(f"{what} by age", fontsize=10, loc="left")
+        axis.legend(frameon=False, fontsize=8)
+    figure.text(0.01, 0.01, notes("random"), fontsize=8, color="#555")
+    figure.suptitle(f"Random chunks of the same sizes {title}", fontsize=12, x=0.01, ha="left")
+    figure.tight_layout(rect=(0, 0.04, 1, 0.94))
+    figure.savefig(out / "fig_chunks_random.png", dpi=140, facecolor="#fcfcfb")
     plt.close(figure)
 
 
